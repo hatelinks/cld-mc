@@ -187,6 +187,21 @@ public final class Hydro {
         return best;
     }
 
+    /** Наибольшая глубина озера (уровень минус крупный рельеф) в узлах рядом с точкой или 0. */
+    public double lakeDepth(double x, double z) {
+        double fx = (x - ox) / G, fz = (z - oz) / G;
+        int i = (int) Math.floor(fx), k = (int) Math.floor(fz);
+        double best = 0;
+        for (int dk = 0; dk <= 1; dk++)
+            for (int di = 0; di <= 1; di++) {
+                int ii = i + di, kk = k + dk;
+                if (ii < 0 || kk < 0 || ii >= nx || kk >= nz) continue;
+                int id = kk * nx + ii;
+                if (kind[id] == 3) best = Math.max(best, filled[id] - h[id]);
+            }
+        return best;
+    }
+
     public int[] bucket(double x, double z) {
         int bi = (int) Math.floor((x - ox) / B), bk = (int) Math.floor((z - oz) / B);
         if (bi < 0 || bk < 0 || bi >= bnx || bk >= bnz) return null;
