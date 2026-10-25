@@ -42,6 +42,10 @@ public final class Worlds {
         return terrain(seedFrom(rs.getOrCreateNoise(SEED_NOISE)));
     }
 
+    public static Terrain terrain(net.minecraft.server.level.ServerLevel level) {
+        return terrain(seedFrom(level.getChunkSource().randomState().getOrCreateNoise(SEED_NOISE)));
+    }
+
     private static final int CACHE = 1024;
 
     private static final class Cache {

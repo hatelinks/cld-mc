@@ -32,5 +32,6 @@ public final class TcwMod {
         DENSITY.register(modBus);
         FEATURES.register(modBus);
         MODIFIERS.register(modBus);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(LocateCommand::register);
     }
 }
