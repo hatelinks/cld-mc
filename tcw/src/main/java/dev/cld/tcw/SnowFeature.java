@@ -57,7 +57,8 @@ public final class SnowFeature extends Feature<NoneFeatureConfiguration> {
                     for (int k = 0; k < thick; k++) {
                         p.set(x, g - k, z);
                         BlockState s = level.getBlockState(p);
-                        if (!RockFeature.natural(s) && !s.isAir()) break;
+                        if (s.isAir()) continue; // ледяная пещера под ледником
+                        if (!RockFeature.natural(s)) break;
                         BlockState ice = k == 0 ? SNOW_BLOCK : k > thick - 4 ? BLUE : PACKED;
                         level.setBlock(p, crevasse && k < thick - 2 ? AIR : ice, 2);
                     }
@@ -78,6 +79,33 @@ public final class SnowFeature extends Feature<NoneFeatureConfiguration> {
                         level.setBlock(p, Blocks.SNOW.defaultBlockState().setValue(SnowLayerBlock.LAYERS, layers), 2);
                 }
             }
+        iceCaves(level, t, o, ground);
         return true;
+    }
+
+    private static final net.minecraft.core.Direction[] DIRS = net.minecraft.core.Direction.values();
+
+    /** Под ледниками стены и пол пещер становятся льдом. */
+    private static void iceCaves(WorldGenLevel level, Terrain t, BlockPos o, Surface ground) {
+        BlockPos.MutableBlockPos p = new BlockPos.MutableBlockPos(), q = new BlockPos.MutableBlockPos();
+        for (int j = 0; j < 16; j++)
+            for (int i = 0; i < 16; i++) {
+                int x = o.getX() + i, z = o.getZ() + j;
+                if (!t.caves.glacial(Worlds.column(t, x, z), x, z)) continue;
+                int g = ground.at(i, j);
+                for (int y = g; y > g - 32; y--) {
+                    p.set(x, y, z);
+                    BlockState s = level.getBlockState(p);
+                    if (s.isAir() || !RockFeature.natural(s) || s.is(Blocks.SNOW_BLOCK)) continue;
+                    boolean open = false;
+                    for (net.minecraft.core.Direction d : DIRS) {
+                        q.setWithOffset(p, d);
+                        if (level.getBlockState(q).isAir() && q.getY() < g - 1) { open = true; break; }
+                    }
+                    if (!open) continue;
+                    long h = (x * 341873128712L) ^ (y * 132897987541L) ^ (z * 7919L);
+                    level.setBlock(p, (h >>> 7 & 3) == 0 ? BLUE : PACKED, 2);
+                }
+            }
     }
 }

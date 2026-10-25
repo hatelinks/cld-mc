@@ -3,6 +3,7 @@ package dev.cld.tcw;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.cld.tcw.gen.Caves;
 import dev.cld.tcw.gen.Terrain;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.util.StringRepresentable;
@@ -32,7 +33,7 @@ public final class ColumnDensity implements DensityFunction {
 
     public enum Value implements StringRepresentable {
         SURFACE("surface"), CONTINENTS("continents"), EROSION("erosion"), RIDGES("ridges"),
-        TEMPERATURE("temperature"), VEGETATION("vegetation"), DEPTH("depth");
+        TEMPERATURE("temperature"), VEGETATION("vegetation"), DEPTH("depth"), CAVES("caves");
         public static final Codec<Value> CODEC = StringRepresentable.fromEnum(Value::values);
         private final String name;
         Value(String name) { this.name = name; }
@@ -58,6 +59,7 @@ public final class ColumnDensity implements DensityFunction {
             case TEMPERATURE -> t.climate(c, Terrain.P_TEMPERATURE, x, y, z);
             case VEGETATION -> t.climate(c, Terrain.P_VEGETATION, x, y, z);
             case DEPTH -> t.climate(c, Terrain.P_DEPTH, x, y, z);
+            case CAVES -> t.caves.density(x, y, z, c);
         };
     }
 
@@ -73,12 +75,12 @@ public final class ColumnDensity implements DensityFunction {
 
     @Override
     public double minValue() {
-        return value == Value.SURFACE ? -800 * SLOPE : value == Value.DEPTH ? -7 : -2;
+        return value == Value.SURFACE ? -800 * SLOPE : value == Value.DEPTH ? -7 : value == Value.CAVES ? -3 : -2;
     }
 
     @Override
     public double maxValue() {
-        return value == Value.SURFACE ? 800 * SLOPE : value == Value.DEPTH ? 7 : 2;
+        return value == Value.SURFACE ? 800 * SLOPE : value == Value.DEPTH ? 7 : value == Value.CAVES ? Caves.SOLID : 2;
     }
 
     @Override
