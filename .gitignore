@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 quest_builder/out/
 out/
+pregen/build/
