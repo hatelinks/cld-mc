@@ -5,3 +5,7 @@ quest_builder/out/
 out/
 pregen/build/
 structures/build/
+menu/build/
+menu/dist/
+earlywindow/build/
+earlywindow/dist/
