@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="cld_structures"
+version="${version}"
+displayName="Структуры без наложений"
+authors="D, Claude"
+description='''Не даёт структурам разных модов генерироваться друг в друге: при соседстве остаётся более редкая.'''
+
+[[mixins]]
+config="cld_structures.mixins.json"
+
+[[dependencies.cld_structures]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.cld_structures]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
