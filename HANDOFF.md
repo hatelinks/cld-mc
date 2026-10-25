@@ -53,6 +53,7 @@
 ## 8. Репозиторий и сборка на GitHub
 - `pack/` — конфиги экземпляра (Prism): `minecraft/config`, `defaultconfigs`, `options.txt`, `instance.cfg`, `mmc-pack.json`, `MODS.md` (список модов, версии, SHA-1). Полный архив с jar модов, ресурспаками и шейдером — в GitHub Releases (`cld-mc-pack.zip`, импорт в Prism).
 - Перед заливкой сборки убирать: логи, крэши, hs_err/replay, сохранения, journeymap, baritone, blueprints, usercache/usernamecache, servers.dat, command_history, кэши, `.sable`, `pregen`, `config/sodium-fingerprint.json`, `*.bak`, отключённые jar; в options.txt — lastServer и размер окна; в instance.cfg — путь к Java. Затем искать ники, UUID, пути `/Users/…`, модель компьютера, почту, токены — в т.ч. внутри jar/zip.
+- Разрешение владельца: после каждого готового изменения сразу заливать на GitHub (в `main`), предварительно проверив новые файлы на личные данные.
 
 ## 9. Дальше
 - Отдельный серверный набор (без клиентских модов).
