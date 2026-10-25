@@ -195,6 +195,36 @@ public final class Hydro {
 
     public int segments() { return segN; }
 
+    /** Ближайший отрезок реки, подходящий под условие: {x, z, уровень воды} или null. */
+    public double[] nearestSegment(double x, double z, java.util.function.IntPredicate ok, boolean atStep) {
+        double best = Double.MAX_VALUE;
+        double[] r = null;
+        for (int s = 0; s < segN; s++) {
+            if (!ok.test(s)) continue;
+            double t = atStep ? 0.74 : 0.5;
+            double px = sax[s] + (sbx[s] - sax[s]) * t, pz = saz[s] + (sbz[s] - saz[s]) * t;
+            double d = (px - x) * (px - x) + (pz - z) * (pz - z);
+            if (d < best) { best = d; r = new double[] { px, pz, atStep ? sba[s] : sba[s] + (sbb[s] - sba[s]) * t }; }
+        }
+        return r;
+    }
+
+    public boolean big(int s) { return sAcc[s] > 400; }
+    public boolean step(int s) { return sba[s] - sbb[s] > 3 && sAcc[s] > 80; }
+
+    /** Ближайший узел озера: {x, z, уровень} или null. */
+    public double[] nearestLake(double x, double z) {
+        double best = Double.MAX_VALUE;
+        double[] r = null;
+        for (int id = 0; id < kind.length; id++) {
+            if (kind[id] != 3) continue;
+            double px = ox + (id % nx) * G, pz = oz + (id / nx) * G;
+            double d = (px - x) * (px - x) + (pz - z) * (pz - z);
+            if (d < best) { best = d; r = new double[] { px, pz, filled[id] }; }
+        }
+        return r;
+    }
+
     /** Минимальная куча по ключу float. */
     static final class Heap {
         final int[] ids;

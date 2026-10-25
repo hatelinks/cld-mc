@@ -98,4 +98,25 @@ dump({"type": "tcw:world", "dimension_type": "tcw:telipailo", "biomes": "#minecr
                    {"step": "top_layer_modification", "feature": "tcw:snow"}],
       "remove_carvers": ["bettercaves:better_cave", "bettercaves:surface_cave"]},
      NS, "neoforge", "biome_modifier", "world.json")
+# --- WWOO: «заплатки» из мёртвых кораллов, бетона и терракоты вне бесплодных земель (во всех мирах)
+W = "wythers:"
+patches = ["terrain/extended/dead_coral_stone", "terrain/extended/dead_coral_stone_2", "terrain/local/beach_mossy_stone",
+           "terrain/local/disk_dead_coral_shore", "terrain/local/fungal_coral", "terrain/local/fungal_coral_2",
+           "terrain/local/fungal_coral_mycelium", "terrain/local/fungal_fire_coral_shore", "terrain/local/fungal_fire_coral_shore_2",
+           "terrain/local/fungal_powder", "vegetation/local/other/fungal_powder_spores",
+           "terrain/feature/lake_salt", "terrain/local/crust_salt", "terrain/local/pamukkale_diorite",
+           "terrain/local/replace_volcanics_flower_forest", "terrain/extended/onsen_calcite", "terrain/extended/onsen_deepslate",
+           "terrain/extended/badlands_edge", "terrain/feature/danakil_desert_mounds",
+           "terrain/local/danakil_orange", "terrain/local/danakil_red", "terrain/local/danakil_terracotta",
+           "terrain/local/danakil_water", "terrain/local/danakil_yellow", "terrain/local/danakil_yellow_2",
+           "terrain/local/thermal_savanna_brown", "terrain/local/thermal_savanna_gray", "terrain/local/thermal_savanna_mud",
+           "terrain/local/thermal_savanna_soul", "terrain/local/thermal_steppe_brown", "terrain/local/thermal_steppe_gray",
+           "terrain/local/thermal_steppe_mud", "terrain/local/thermal_steppe_soul", "terrain/local/thermal_taiga_disk_terracotta_orange",
+           "terrain/local/thermal_taiga_disk_terracotta_white", "terrain/local/thermal_taiga_disk_terracotta_yellow",
+           "decor/dense_steam", "decor/sparse_steam", "terrain/extended/gravelify_packed_mud",
+           "terrain/extended/volcanic_flows_ore", "vegetation/extended/trees/forest_badlands"]
+dump({"neoforge:conditions": [{"type": "neoforge:mod_loaded", "modid": "wwoo"}],
+      "type": "neoforge:remove_features", "biomes": "#minecraft:is_overworld",
+      "features": [W + p for p in patches]},
+     NS, "neoforge", "biome_modifier", "wwoo_no_patches.json")
 print("ok")
