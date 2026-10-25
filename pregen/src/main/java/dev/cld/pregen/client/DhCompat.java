@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 /**
  * Distant Horizons (необязательно):
  * - пока открыта карта, DH не генерирует, не рисует и почти не занимает потоки;
- * - дальняя генерация работает только в мирах «Горы до небес» (тип измерения gdn:*),
+ * - дальняя генерация работает только в мирах «Горы до небес» и TelipailoCraft (тип измерения gdn:* или tcw:*),
  *   в стандартном мире DH лишь дорисовывает уже сгенерированное.
  * Значения ставятся через API DH поверх конфига и не сохраняются в файл; снятое значение возвращает конфиг.
  * Работает через отражение, чтобы мод собирался и запускался без DH.
@@ -56,7 +56,7 @@ final class DhCompat {
         }
         if (gdn != null && !gdn.equals(gdnWorld)) {
             gdnWorld = gdn;
-            LOG.info("cld_pregen: мир {}, дальняя генерация DH {}", gdn ? "«Горы до небес»" : "стандартный", gdn ? "по конфигу" : "выключена");
+            LOG.info("cld_pregen: мир {}, дальняя генерация DH {}", gdn ? "«Горы до небес»/TelipailoCraft" : "стандартный", gdn ? "по конфигу" : "выключена");
             apply();
         }
     }
@@ -68,7 +68,7 @@ final class DhCompat {
 
     private static boolean isGdn(Level level) {
         return level.dimensionTypeRegistration().unwrapKey().map(ResourceKey::location)
-                .map(id -> id.getNamespace().equals("gdn")).orElse(false);
+                .map(id -> id.getNamespace().equals("gdn") || id.getNamespace().equals("tcw")).orElse(false);
     }
 
     private static void apply() {

@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="tcw"
+version="${version}"
+displayName="TelipailoCraft: мир"
+authors="D, Claude"
+description='''Свой тип мира «TelipailoCraft»: огромные континенты, хребты разного характера, эрозия, реки от гор до океана, озёра, снег по склонам и ледники. Высота мира 768 (от -128 до 640).'''
+
+[[mixins]]
+config="tcw.mixins.json"
+
+[[mixins]]
+config="tcw.cirrus.mixins.json"
+
+[[dependencies.tcw]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.tcw]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
