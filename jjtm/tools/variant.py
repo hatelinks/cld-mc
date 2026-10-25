@@ -1,7 +1,9 @@
 """Вариант jjtm с другой высотой мира.
 
-Рельеф ниже уровня моря (Y 63) не меняется, всё выше сжимается линейно,
-чтобы горы, пещеры и руды из версии 2096 поместились в новую высоту.
+Рельеф ниже уровня моря (Y 63) не меняется, высота суши над морем сжимается линейно,
+чтобы горы из версии 2096 поместились в новую высоту. Сжимается сама «высота рельефа»
+(offset+factor+jagged в overworld_surface), а вертикальный градиент плотности остаётся прежним,
+поэтому толщина корки над пещерами в блоках та же, что в версии 2096.
 Использование: variant.py <src> <out> <height>
 """
 import json, os, shutil, sys
@@ -16,21 +18,18 @@ V_SEA = 1 - 2 * (SEA - MIN_Y) / (OLD_TOP - MIN_Y)
 def remap(y):
     return y if y <= SEA else min(NEW_TOP - 1, round(SEA + (y - SEA) / S))
 
-def baseline():
-    # y_clamped_gradient 1 -> -1 на -64..2032, но с изломом на уровне моря
+def surface(o):
+    # overworld_surface = baseline + (offset + factor + jagged); сжимаем вторую часть выше уровня моря
+    a = -V_SEA
+    terrain = {"type": "minecraft:add", "argument1": o["argument1"]["argument2"], "argument2": o["argument2"]}
     return {"type": "minecraft:add",
-            "argument1": {"type": "minecraft:y_clamped_gradient", "from_y": MIN_Y, "to_y": SEA,
-                          "from_value": 1, "to_value": V_SEA},
-            "argument2": {"type": "minecraft:y_clamped_gradient", "from_y": SEA, "to_y": NEW_TOP,
-                          "from_value": 0, "to_value": -1 - V_SEA}}
+            "argument1": o["argument1"]["argument1"],
+            "argument2": {"type": "minecraft:spline", "spline": {"coordinate": terrain, "points": [
+                {"location": a - 0.01, "value": a - 0.01, "derivative": 1},
+                {"location": a, "value": a, "derivative": 1 / S}]}}}
 
 def fix(o):
     if isinstance(o, dict):
-        if o.get("type") == "minecraft:y_clamped_gradient" and o.get("to_y") == OLD_TOP:
-            if o["from_value"] == 1 and o["to_value"] == -1:
-                return baseline()
-            o["to_y"] = o["to_value"] = NEW_TOP  # identity-координата в overworld_combined_fix
-            return o
         if set(o) == {"absolute"} and isinstance(o["absolute"], int):
             o["absolute"] = remap(o["absolute"])
         return {k: fix(v) for k, v in o.items()}
@@ -69,6 +68,9 @@ for root, _, files in os.walk(os.path.join(OUT, "data")):
         if "/placed_feature/" in p:
             o = scale_counts(o)  # до remap: нужны старые высоты
         o = fix(o)
+        if n == "overworld_surface.json":
+            assert o["argument1"]["argument1"] == "minecraft:overworld_baseline", "неожиданный overworld_surface"
+            o = surface(o)
         if n == "overworld.json" and "/dimension_type/" in p:
             o["height"] = o["logical_height"] = H
         if n == "overworld.json" and "/noise_settings/" in p:
@@ -77,7 +79,7 @@ for root, _, files in os.walk(os.path.join(OUT, "data")):
 
 toml = os.path.join(OUT, "META-INF", "neoforge.mods.toml")
 if os.path.exists(toml):
-    t = open(toml).read().replace('version="0.2.0-1.21.1"', f'version="0.2.0-1.21.1-h{H}"')
+    t = open(toml).read().replace('version="0.3.0-1.21.1"', f'version="0.3.0-1.21.1-h{H}"')
     open(toml, "w").write(t)
 mc = os.path.join(OUT, "pack.mcmeta")
 m = json.load(open(mc)); m["pack"]["description"] += f", высота {H}"
