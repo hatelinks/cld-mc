@@ -42,6 +42,8 @@ public final class ClientHooks {
         NeoForge.EVENT_BUS.addListener(ClientHooks::onScreenOpening);
         NeoForge.EVENT_BUS.addListener(ClientHooks::onClientTick);
         NeoForge.EVENT_BUS.addListener(ClientHooks::onScreenRender);
+        NeoForge.EVENT_BUS.addListener(DhCompat::onLevelLoad);
+        NeoForge.EVENT_BUS.addListener(DhCompat::onLoggedOut);
     }
 
     static Button findCreateButton(CreateWorldScreen screen) {
