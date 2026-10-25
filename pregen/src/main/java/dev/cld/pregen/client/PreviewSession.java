@@ -65,6 +65,9 @@ final class PreviewSession {
         Minecraft mc = Minecraft.getInstance();
         server.execute(PregenTask::stopActive);
         ClientHooks.session = null;
+        // Как в PauseScreen: сначала закрыть соединение, иначе сервер не узнает, что игрок вышел,
+        // не остановится, и mc.disconnect() будет вечно ждать его выключения.
+        if (mc.level != null) mc.level.disconnect();
         mc.disconnect(new GenericMessageScreen(Component.translatable("cld_pregen.deleting")));
         try (var access = mc.getLevelSource().createAccess(levelId)) {
             access.deleteLevel();
