@@ -14,9 +14,21 @@ for h in 2096 1024 512; do
   top=$(( h - 64 )); cloud=$(( 63 + 129 * (top - 63) / 257 ))
   mkdir -p "$tmp/h$h/assets/minecraft/cirrus/cloud_dimensions"
   printf '{\n  "enabled": true,\n  "cloud_height": %s\n}\n' "$cloud" > "$tmp/h$h/assets/minecraft/cirrus/cloud_dimensions/overworld.json"
-  sed -i.bak "s/version=\"0.3.2-1.21.1\"/version=\"0.3.2-1.21.1-h$h\"/" "$tmp/h$h/META-INF/neoforge.mods.toml" && rm "$tmp/h$h/META-INF/neoforge.mods.toml.bak"
-  (cd "$tmp/h$h" && zip -qr -X "$OLDPWD/dist/jjtm-neoforge-1.21.1-0.3.2-h$h.jar" META-INF pack.mcmeta assets data \
-                 && zip -qr -X "$OLDPWD/dist/jjtm-1.21.1-datapack-h$h.zip" pack.mcmeta data)
+  sed -i.bak "s/version=\"0.3.3-1.21.1\"/version=\"0.3.3-1.21.1-h$h\"/" "$tmp/h$h/META-INF/neoforge.mods.toml" && rm "$tmp/h$h/META-INF/neoforge.mods.toml.bak"
+  # -fast: ячейка шума 8 блоков по высоте вместо 4 (как в ванилле) — вдвое меньше расчётов, рельеф чуть глаже
+  cp -r "$tmp/h$h" "$tmp/h$h-fast"
+  python3 -I - "$tmp/h$h-fast" "$h" <<'PY'
+import json, os, sys
+d, h = sys.argv[1], sys.argv[2]
+p = os.path.join(d, "data/minecraft/worldgen/noise_settings/overworld.json")
+o = json.load(open(p)); o["noise"]["size_vertical"] = 2; json.dump(o, open(p, "w"), indent=2, ensure_ascii=False)
+t = os.path.join(d, "META-INF/neoforge.mods.toml")
+s = open(t).read().replace(f'-h{h}"', f'-h{h}-fast"'); open(t, "w").write(s)
+PY
+  for v in "h$h" "h$h-fast"; do
+    (cd "$tmp/$v" && zip -qr -X "$OLDPWD/dist/jjtm-neoforge-1.21.1-0.3.3-$v.jar" META-INF pack.mcmeta assets data \
+                  && zip -qr -X "$OLDPWD/dist/jjtm-1.21.1-datapack-$v.zip" pack.mcmeta data)
+  done
 done
 rm -rf "$tmp"
 ls dist
