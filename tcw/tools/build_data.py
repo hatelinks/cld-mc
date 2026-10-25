@@ -45,6 +45,83 @@ for name in ["entrances", "noodle", "pillars", "spaghetti_2d", "spaghetti_2d_thi
         return d
     dump(walk(o, fix), NS, "worldgen", "density_function", "caves", name + ".json")
 
+# --- свои горные биомы (копии ванильных списков фич, чтобы не ломать их порядок)
+def biome(name, src, temp, features=None, grass=None, foliage=None, extra_spawn=(), sky=None, music=None):
+    b = van(f"worldgen/biome/{src}.json")
+    b["temperature"] = temp
+    b["has_precipitation"] = True
+    if features: b["features"] = features(b["features"])
+    e = b["effects"]
+    if grass: e["grass_color"] = grass
+    if foliage: e["foliage_color"] = foliage
+    if sky: e["sky_color"] = sky
+    if music:
+        e["music"] = dict(e.get("music") or {"max_delay": 24000, "min_delay": 12000, "replace_current_music": False}, sound=music)
+    cr = b["spawners"].setdefault("creature", [])
+    have = {x["type"] for x in cr}
+    for t, w, lo, hi in extra_spawn:
+        if t not in have: cr.append({"type": t, "weight": w, "minCount": lo, "maxCount": hi})
+    dump(b, NS, "worldgen", "biome", name + ".json")
+
+def swap(old, new):
+    return lambda fs: [[new if f == old else f for f in step] for step in fs]
+
+def keep_veg(allowed):
+    return lambda fs: [step if i != 9 else [f for f in step if f in allowed] for i, step in enumerate(fs)]
+
+tp = van("worldgen/placed_feature/trees_taiga.json")
+for pl in tp["placement"]:
+    if pl["type"] == "minecraft:count":
+        pl["count"] = {"type": "minecraft:weighted_list", "distribution": [{"data": 1, "weight": 4}, {"data": 2, "weight": 4}, {"data": 4, "weight": 2}]}
+dump(tp, NS, "worldgen", "placed_feature", "trees_subalpine.json")
+
+GOAT = ("minecraft:goat", 5, 1, 3)
+biome("subalpine_forest", "taiga", 0.7, swap("minecraft:trees_taiga", "tcw:trees_subalpine"),
+      grass=0x7FA05A, foliage=0x5E8A4E, extra_spawn=[("minecraft:sheep", 6, 2, 4)])
+biome("alpine_meadow", "meadow", 0.8, grass=0x8DC25A, foliage=0x76B04A,
+      extra_spawn=[GOAT, ("minecraft:sheep", 8, 2, 5)])
+biome("alpine_tundra", "meadow", 0.5, keep_veg({"minecraft:glow_lichen", "minecraft:patch_grass_plain"}),
+      grass=0x9DA672, foliage=0x8C9A64, extra_spawn=[GOAT], music="minecraft:music.overworld.stony_peaks")
+biome("scree_slopes", "stony_peaks", 0.6, extra_spawn=[GOAT])
+biome("glacier", "frozen_peaks", -0.7)
+biome("volcanic_slopes", "stony_peaks", 1.0, grass=0x8A8A5A, sky=0x8C9AAE)
+
+OWN = ["subalpine_forest", "alpine_meadow", "alpine_tundra", "scree_slopes", "glacier", "volcanic_slopes"]
+ids = [f"tcw:{b}" for b in OWN]
+for tag in ["is_overworld", "is_mountain"]:
+    dump({"replace": False, "values": ids}, "minecraft", "tags", "worldgen", "biome", tag + ".json")
+dump({"replace": False, "values": ids}, "c", "tags", "worldgen", "biome", "is_mountain.json")
+dump({"replace": False, "values": ["tcw:subalpine_forest"]}, "minecraft", "tags", "worldgen", "biome", "is_taiga.json")
+dump({"replace": False, "values": ["tcw:subalpine_forest"]}, "minecraft", "tags", "worldgen", "biome", "is_forest.json")
+
+def blk(name, **props):
+    st = {"Name": name}
+    if props: st["Properties"] = props
+    return {"type": "minecraft:block", "result_state": st}
+
+def cond(c, then): return {"type": "minecraft:condition", "if_true": c, "then_run": then}
+def seq(*r): return {"type": "minecraft:sequence", "sequence": list(r)}
+def biomes(*b): return {"type": "minecraft:biome", "biome_is": [f"tcw:{x}" for x in b]}
+def noise(lo, hi, n="minecraft:surface"): return {"type": "minecraft:noise_threshold", "noise": n, "min_threshold": lo, "max_threshold": hi}
+FLOOR = {"type": "minecraft:stone_depth", "offset": 0, "surface_type": "floor", "add_surface_depth": False, "secondary_depth_range": 0}
+UNDER = {"type": "minecraft:stone_depth", "offset": 0, "surface_type": "floor", "add_surface_depth": True, "secondary_depth_range": 0}
+WATER_OK = {"type": "minecraft:water", "offset": -1, "surface_depth_multiplier": 0, "add_stone_depth": False}
+own_rules = [
+    cond(biomes("scree_slopes"), cond(UNDER, seq(
+        cond(noise(-0.05, 9, "minecraft:gravel"), blk("minecraft:gravel")),
+        cond(noise(0.35, 9), blk("minecraft:andesite")),
+        blk("minecraft:stone")))),
+    cond(biomes("alpine_tundra"), cond(FLOOR, cond(WATER_OK, seq(
+        cond(noise(0.3, 9), blk("minecraft:coarse_dirt")),
+        cond(noise(-9, -0.45), blk("minecraft:moss_block")))))),
+    cond(biomes("volcanic_slopes"), cond(UNDER, seq(
+        cond(noise(0.15, 9), blk("minecraft:tuff")),
+        cond(noise(-9, -0.25), blk("minecraft:basalt", axis="y")),
+        cond(noise(-0.1, 0.05, "minecraft:gravel"), blk("minecraft:blackstone")),
+        blk("minecraft:smooth_basalt")))),
+    cond(biomes("glacier"), seq(cond(FLOOR, blk("minecraft:snow_block")), cond(UNDER, blk("minecraft:packed_ice")))),
+]
+
 # --- настройки шума
 ns = van("worldgen/noise_settings/overworld.json")
 ns["noise"] = {"min_y": MIN_Y, "height": HEIGHT, "size_horizontal": 1, "size_vertical": 2}
@@ -75,6 +152,9 @@ r["final_density"] = {"type": "minecraft:min", "argument1": walk(r["final_densit
 r["initial_density_without_jaggedness"] = surface
 s = json.dumps(r)
 assert "overworld/" not in s, [x for x in s.split('"') if "overworld/" in x][:5]
+sr = ns["surface_rule"]["sequence"]
+above = next(r for r in sr if r.get("if_true", {}).get("type") == "minecraft:above_preliminary_surface")
+above["then_run"]["sequence"][0:0] = own_rules
 dump(ns, NS, "worldgen", "noise_settings", "telipailo.json")
 dump({"firstOctave": -7, "amplitudes": [1.0]}, NS, "worldgen", "noise", "seed.json")
 
@@ -86,7 +166,7 @@ preset = van("worldgen/world_preset/normal.json")
 preset["dimensions"]["minecraft:overworld"] = {
     "type": "tcw:telipailo",
     "generator": {"type": "minecraft:noise", "settings": "tcw:telipailo",
-                  "biome_source": {"type": "minecraft:multi_noise", "preset": "minecraft:overworld"}}}
+                  "biome_source": {"type": "tcw:telipailo", "preset": "minecraft:overworld"}}}
 dump(preset, NS, "worldgen", "world_preset", "telipailo.json")
 dump({"values": ["tcw:telipailo"]}, "minecraft", "tags", "worldgen", "world_preset", "normal.json")
 

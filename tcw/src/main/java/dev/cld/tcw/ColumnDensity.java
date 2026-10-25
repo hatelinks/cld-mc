@@ -27,6 +27,7 @@ public final class ColumnDensity implements DensityFunction {
     }
 
     public Value value() { return value; }
+    public Terrain terrain() { return terrain; }
     public NoiseHolder noise() { return noise; }
 
     public static final double SLOPE = 0.06;

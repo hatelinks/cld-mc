@@ -3,6 +3,13 @@
   "minVersion": "0.8",
   "package": "dev.cld.tcw.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": ["FluidPickerMixin"],
-  "injectors": {"defaultRequire": 1}
+  "mixins": [
+    "FluidPickerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "client.CreateWorldScreenMixin"
+  ]
 }
