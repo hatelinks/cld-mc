@@ -24,7 +24,8 @@ public final class WaterFeature extends Feature<NoneFeatureConfiguration> {
         WorldGenLevel level = ctx.level();
         Terrain t = Worlds.terrain(level);
         BlockPos o = ctx.origin();
-        double[] w = new double[2];
+        double[] w = new double[2], w2 = new double[2];
+        Surface sf = new Surface(level, o, Heightmap.Types.OCEAN_FLOOR_WG);
         BlockPos.MutableBlockPos p = new BlockPos.MutableBlockPos();
         boolean any = false;
         for (int j = 0; j < 16; j++)
@@ -38,7 +39,18 @@ public final class WaterFeature extends Feature<NoneFeatureConfiguration> {
                 if (kind == Terrain.WATER_RIVER) {
                     int bottom = Math.min((int) Math.floor(w[1]), top);
                     if (top - wl > 8) continue; // под навесом или в столбе: не трогаем
-                    for (int y = Math.max(top, wl); y > bottom; y--) {
+                    // вода не выше соседей: иначе на крутых участках встают стены из блоков воды.
+                    // Где уровень упирается в дно, кладём один слой, и вода сама стекает по уступам.
+                    int lim = wl;
+                    for (int d = 0; d < 4; d++) {
+                        int dx = d == 0 ? 1 : d == 1 ? -1 : 0, dz = d == 2 ? 1 : d == 3 ? -1 : 0;
+                        int nk = t.water(x + dx, z + dz, w2);
+                        int nl = nk == Terrain.WATER_RIVER || nk == Terrain.WATER_LAKE ? (int) Math.floor(w2[0]) : sf.at(i + dx, j + dz) - 1;
+                        lim = Math.min(lim, nl);
+                    }
+                    int carveTop = Math.max(top, wl);
+                    wl = Math.max(bottom + 1, lim);
+                    for (int y = carveTop; y > bottom; y--) {
                         p.set(x, y, z);
                         BlockState s = level.getBlockState(p);
                         if (s.isAir() || s.is(BlockTags.LOGS) || s.is(BlockTags.LEAVES) || s.getFluidState().isSource()) {

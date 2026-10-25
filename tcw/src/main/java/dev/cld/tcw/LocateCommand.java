@@ -56,10 +56,12 @@ public final class LocateCommand {
         tcw.then(Commands.literal("lake").executes(c -> lake(c.getSource())));
         tcw.then(Commands.literal("cave_hall").executes(c -> hall(c.getSource())));
         tcw.then(Commands.literal("cenote").executes(c -> cenote(c.getSource())));
-        tcw.then(Commands.literal("underground_river").executes(c -> columns(c.getSource(), "подземная река", 16, 4000,
-                (t, col, x, z) -> t.caves.riverLevel(x, z, col))));
-        tcw.then(Commands.literal("ice_cave").executes(c -> columns(c.getSource(), "ледяная пещера", 16, 12000,
-                (t, col, x, z) -> t.caves.iceLevel(x, z, col))));
+        tcw.then(Commands.literal("underground_river").executes(c -> {
+            CommandSourceStack s = c.getSource();
+            return columns(s, "подземная река", s.getPosition().x, s.getPosition().z, 8, 6000,
+                    (t, x, z) -> t.caves.nearGallery(x, z), (t, col, x, z) -> t.caves.riverLevel(x, z, col));
+        }));
+        tcw.then(Commands.literal("ice_cave").executes(c -> iceCave(c.getSource())));
         d.register(Commands.literal("locate").requires(s -> s.hasPermission(2)).then(tcw));
     }
 
@@ -233,19 +235,36 @@ public final class LocateCommand {
     }
 
     interface ColumnProbe { double at(Terrain t, Terrain.Column c, double x, double z); }
+    interface Prefilter { boolean ok(Terrain t, double x, double z); }
 
-    /** Поиск по столбцам рельефа кольцами (точный, поэтому радиус меньше). */
-    private static int columns(CommandSourceStack src, String what, int step, int radius, ColumnProbe probe) {
+    /** Ледник поблизости по крупной модели, затем ледяной ход возле него. */
+    private static int iceCave(CommandSourceStack src) {
         Terrain t = terrain(src);
         if (t == null) return 0;
         double x0 = src.getPosition().x, z0 = src.getPosition().z;
+        double[] g = rings(t, x0, z0, 96, RADIUS, (tt, s) ->
+                s.temp < -0.25 && s.mountain > 0.3 && s.height > tt.snowLine(0, 0, s.temp) + 40);
+        if (g == null) return report(src, t, "ледяная пещера", null, Double.NaN);
+        return columns(src, "ледяная пещера", g[0], g[1], 8, 700, null, (tt, col, x, z) -> tt.caves.iceLevel(x, z, col));
+    }
+
+    /**
+     * Поиск по столбцам рельефа кольцами вокруг (cx, cz). Столбец считается только там, где прошёл быстрый фильтр;
+     * число столбцов ограничено, чтобы сервер не подвисал.
+     */
+    private static int columns(CommandSourceStack src, String what, double cx, double cz, int step, int radius, Prefilter pre, ColumnProbe probe) {
+        Terrain t = terrain(src);
+        if (t == null) return 0;
         Terrain.Column c = new Terrain.Column();
+        int budget = 20000;
         for (int r = 0; r <= radius; r += step) {
             int n = Math.max(1, r / step);
             for (int i = -n; i <= n; i++)
                 for (int j = -n; j <= n; j++) {
                     if (Math.max(Math.abs(i), Math.abs(j)) != n) continue;
-                    double x = x0 + i * step, z = z0 + j * step;
+                    double x = cx + i * step, z = cz + j * step;
+                    if (pre != null && !pre.ok(t, x, z)) continue;
+                    if (--budget < 0) return report(src, t, what, null, Double.NaN);
                     t.column(x, z, c);
                     double y = probe.at(t, c, x, z);
                     if (!Double.isNaN(y)) return report(src, t, what, new double[] { x, z }, y + 1);
