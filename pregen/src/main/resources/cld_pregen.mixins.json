@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.cld.pregen.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": ["ServerChunkCacheInvoker"],
+  "injectors": {"defaultRequire": 1}
+}

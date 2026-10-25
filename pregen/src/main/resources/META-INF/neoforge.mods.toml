@@ -9,6 +9,9 @@ displayName="Предпросмотр мира"
 authors="D, Claude"
 description='''Предпросмотр и прегенерация мира прямо из экрана создания мира.'''
 
+[[mixins]]
+config="cld_pregen.mixins.json"
+
 [[dependencies.cld_pregen]]
 modId="neoforge"
 type="required"
