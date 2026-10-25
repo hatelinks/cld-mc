@@ -4,7 +4,7 @@
     "coordinate": "minecraft:overworld_surface",
     "points": [
       {
-        "location": 0.025,
+        "location": 0.045,
         "derivative": 0,
         "value": {
           "coordinate": "minecraft:overworld_surface",
@@ -18,7 +18,7 @@
         }
       },
       {
-        "location": 0.05,
+        "location": 0.09,
         "derivative": 0,
         "value": {
           "coordinate": "minecraft:cave_barrier",

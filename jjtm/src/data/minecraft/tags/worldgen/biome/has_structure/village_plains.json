@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:bamboo_jungle",
+    "minecraft:beach",
+    "minecraft:birch_forest",
+    "minecraft:cherry_grove",
+    "minecraft:dark_forest",
+    "minecraft:flower_forest",
+    "minecraft:forest",
+    "minecraft:jungle",
+    "minecraft:mangrove_swamp",
+    "minecraft:meadow",
+    "minecraft:mushroom_fields",
+    "minecraft:old_growth_birch_forest",
+    "minecraft:plains",
+    "minecraft:sparse_jungle",
+    "minecraft:stony_shore",
+    "minecraft:sunflower_plains",
+    "minecraft:swamp"
+  ]
+}

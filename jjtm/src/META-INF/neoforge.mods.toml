@@ -4,7 +4,7 @@ license="All Rights Reserved"
 
 [[mods]]
 modId="jjthunder_to_the_max"
-version="0.2.0-1.21.1"
+version="0.3.0-1.21.1"
 displayName="JJThunder To The Max"
 authors="JJThunder"
 description='''Terraforms Overworld. Неофициальный порт датапака на 1.21.1 для личного использования.'''
