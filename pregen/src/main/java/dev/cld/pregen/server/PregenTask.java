@@ -92,10 +92,12 @@ public final class PregenTask {
         return null;
     }
 
-    private void tick() {
+    private void tick() { fill(System.nanoTime() + msPerTick * 1_000_000L); }
+
+    /** Ставит в очередь новые чанки, пока есть место в maxInFlight и не вышло время. */
+    private void fill(long end) {
         ServerChunkCache cache = level.getChunkSource();
         MapData map = MapData.get();
-        long end = System.nanoTime() + msPerTick * 1_000_000L;
         while (running && inFlight.get() < maxInFlight && System.nanoTime() < end) {
             ChunkPos p = next();
             if (p == null) { running = !finished(); return; }
@@ -111,6 +113,8 @@ public final class PregenTask {
                     inFlight.decrementAndGet();
                     done.incrementAndGet();
                 }
+                // сразу занять освободившееся место, не дожидаясь следующего тика
+                if (running && active == this) fill(System.nanoTime() + 1_000_000L);
             }, level.getServer());
         }
     }

@@ -18,6 +18,20 @@ public final class ClientHooks {
     static CreateWorldScreen origin;
     static boolean pending;
     static PreviewSession session;
+    private static Integer savedRenderDistance;
+
+    /** На время предпросмотра сервер грузит вокруг игрока минимум чанков (дальность 2), чтобы все потоки шли на прегенерацию. */
+    static void lowerRenderDistance() {
+        var opt = Minecraft.getInstance().options.renderDistance();
+        if (savedRenderDistance == null) savedRenderDistance = opt.get();
+        opt.set(2);
+    }
+
+    static void restoreRenderDistance() {
+        if (savedRenderDistance == null) return;
+        Minecraft.getInstance().options.renderDistance().set(savedRenderDistance);
+        savedRenderDistance = null;
+    }
 
     public static void init() {
         NeoForge.EVENT_BUS.addListener(ClientHooks::onScreenInit);
@@ -40,12 +54,14 @@ public final class ClientHooks {
             e.addListener(Button.builder(Component.translatable("cld_pregen.button.preview"), b -> {
                 origin = cws;
                 pending = true;
+                lowerRenderDistance();
                 create.onPress();
             }).bounds(8, cws.height - 28, 110, 20)
               .tooltip(net.minecraft.client.gui.components.Tooltip.create(Component.translatable("cld_pregen.button.preview.tip")))
               .build());
         } else if (e.getScreen() instanceof TitleScreen || e.getScreen() instanceof SelectWorldScreen) {
             pending = false; // создание мира отменено
+            if (session == null) restoreRenderDistance();
         }
     }
 

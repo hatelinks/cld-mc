@@ -31,7 +31,7 @@ final class PreviewScreen extends Screen {
     private MapView map;
     private EditBox seedBox;
     private Button startStop;
-    private int radius = 64, msPerTick = 20, priority = 1;
+    private int radius = 64, msPerTick = 20, priority = 2;
     private PregenTask.Shape shape = PregenTask.Shape.SQUARE;
     private MapView.Mode mode = MapView.Mode.BLOCKS;
     private boolean showProgress = true, showSlime, showStructures = true;
