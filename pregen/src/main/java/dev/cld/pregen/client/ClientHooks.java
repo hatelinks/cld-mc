@@ -27,9 +27,11 @@ public final class ClientHooks {
         var opt = Minecraft.getInstance().options.renderDistance();
         if (savedRenderDistance == null) savedRenderDistance = opt.get();
         opt.set(2);
+        DhCompat.pause(); // с самого создания мира, а не только после открытия карты
     }
 
     static void restoreRenderDistance() {
+        DhCompat.resume();
         if (savedRenderDistance == null) return;
         Minecraft.getInstance().options.renderDistance().set(savedRenderDistance);
         savedRenderDistance = null;
