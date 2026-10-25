@@ -34,6 +34,7 @@ public final class TcwMod {
     }
 
     public TcwMod(IEventBus modBus) {
+        QuietLogs.apply();
         DENSITY.register(modBus);
         FEATURES.register(modBus);
         MODIFIERS.register(modBus);
