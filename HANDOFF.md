@@ -50,6 +50,9 @@
 - Предупреждение DH про WWOO: возможны линии сетки в LOD, которые DH генерирует сам; нормальные чанки рисуются без них.
 - Логи: сообщения про `alexsmobs`, `iceandfire`, `ars_nouveau`, `quark`, `mowziesmobs` — из построек IDAS (мобы и предметы модов, которых нет), безвредны. Ошибки тегов IDAS bop/byg — нет BOP/BYG.
 
+- Краши Java на Mac (код 6, SIGSEGV в ZGC): причина была в ZGC и максимуме памяти 8 ГБ на 16 ГБ Mac. Помогло: убрать `-XX:+UseZGC -XX:+ZGenerational` (обычный G1), память 2048–6144 МБ. Sable и spark не виноваты.
+- Спам «CSA config read» от Create Structures Arise в debug.log глушит tcw с 0.4.3.
+
 ## 8. Репозиторий и сборка на GitHub
 - `pack/` — конфиги экземпляра (Prism): `minecraft/config`, `defaultconfigs`, `options.txt`, `instance.cfg`, `mmc-pack.json`, `MODS.md` (список модов, версии, SHA-1). Полный архив с jar модов, ресурспаками и шейдером — в GitHub Releases (`cld-mc-pack.zip`, импорт в Prism).
 - Перед заливкой сборки убирать: логи, крэши, hs_err/replay, сохранения, journeymap, baritone, blueprints, usercache/usernamecache, servers.dat, command_history, кэши, `.sable`, `pregen`, `config/sodium-fingerprint.json`, `*.bak`, отключённые jar; в options.txt — lastServer и размер окна; в instance.cfg — путь к Java. Затем искать ники, UUID, пути `/Users/…`, модель компьютера, почту, токены — в т.ч. внутри jar/zip.
