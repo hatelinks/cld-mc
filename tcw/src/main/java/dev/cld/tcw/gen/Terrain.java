@@ -8,6 +8,8 @@ import java.util.concurrent.CompletableFuture;
 public final class Terrain {
     public static final int WATER_NONE = 0, WATER_OCEAN = 1, WATER_RIVER = 2, WATER_LAKE = 3;
 
+    /** Насколько дно у берега может быть ниже, чем крупный рельеф под озером. */
+    static final double LAKE_SLACK = 8;
     static final int CACHE = Integer.getInteger("tcw.hydroCache", 6);
     public final Macro macro;
     public final Caves caves;
@@ -155,7 +157,8 @@ public final class Terrain {
                 h = hmin;
             }
             double ll = hy.lakeLevel(x, z);
-            if (!Double.isNaN(ll) && h < ll - 0.3 && (c.waterKind == WATER_NONE || ll > c.water)) {
+            // глубже самого озера — это соседняя долина, а не дно озера: воды там нет
+            if (!Double.isNaN(ll) && h < ll - 0.3 && ll - h <= hy.lakeDepth(x, z) + LAKE_SLACK && (c.waterKind == WATER_NONE || ll > c.water)) {
                 c.water = Math.floor(ll);
                 c.waterKind = WATER_LAKE;
             }
@@ -202,12 +205,80 @@ public final class Terrain {
             }
         }
         double ll = hy.lakeLevel(x, z);
-        if (!Double.isNaN(ll) && (kind == WATER_NONE || ll > out[0])) {
+        if (!Double.isNaN(ll) && (kind == WATER_NONE || ll > out[0] && ll - out[0] <= hy.lakeDepth(x, z) + LAKE_SLACK)) {
             out[0] = Math.floor(ll);
             out[1] = Double.NaN;
             kind = WATER_LAKE;
         }
         return kind;
+    }
+
+    /**
+     * Уровни озёр для чанка 16×16 с учётом перелива: вода в столбце не выше той высоты, через которую она ушла бы
+     * к суше или реке (заливка от краёв окна вокруг чанка). Без этого на краю озера над склоном встаёт стена воды.
+     * out[j*16+i] = уровень воды или Integer.MIN_VALUE. Возвращает false, если озёр в чанке нет.
+     */
+    private Hydro hydroAt(double x, double z) {
+        Macro.Cont c = macro.cont(x, z, contTmp.get());
+        return hydro(c.ci, c.cj);
+    }
+
+    public boolean lakeLevels(int x0, int z0, int[] out) {
+        java.util.Arrays.fill(out, Integer.MIN_VALUE);
+        double[] w = new double[2];
+        boolean any = false;
+        for (int j = 0; j < 16 && !any; j++)
+            for (int i = 0; i < 16 && !any; i++) any = water(x0 + i, z0 + j, w) == WATER_LAKE;
+        if (!any) return false;
+        final int m = 24, n = 16 + 2 * m;
+        float[] cap = new float[n * n], ground = new float[n * n], level = new float[n * n];
+        boolean[] done = new boolean[n * n];
+        Column col = new Column();
+        Hydro.Heap q = new Hydro.Heap(n * n * 4);
+        for (int j = 0; j < n; j++)
+            for (int i = 0; i < n; i++) {
+                int id = j * n + i, x = x0 - m + i, z = z0 - m + j;
+                int kind = water(x, z, w);
+                double wl = w[0];
+                float g = (float) Math.floor(column(x, z, col).height);
+                ground[id] = g;
+                boolean lake = kind == WATER_LAKE && wl > g && wl - g <= hydroAt(x, z).lakeDepth(x, z) + LAKE_SLACK;
+                if (!lake) {
+                    level[id] = kind == WATER_RIVER ? Math.max(g, (float) Math.floor(wl)) : g;
+                    done[id] = true;
+                    q.push(id, level[id]);
+                } else {
+                    cap[id] = (float) wl;
+                    if (i == 0 || j == 0 || i == n - 1 || j == n - 1) {
+                        level[id] = cap[id];
+                        done[id] = true;
+                        q.push(id, level[id]);
+                    }
+                }
+            }
+        while (q.size > 0) {
+            int c = q.pop();
+            int ci = c % n, cj = c / n;
+            for (int d = 0; d < 4; d++) {
+                int i = ci + (d == 0 ? 1 : d == 1 ? -1 : 0), j = cj + (d == 2 ? 1 : d == 3 ? -1 : 0);
+                if (i < 0 || j < 0 || i >= n || j >= n) continue;
+                int id = j * n + i;
+                if (done[id]) continue;
+                done[id] = true;
+                level[id] = Math.min(cap[id], Math.max(ground[id], level[c]));
+                q.push(id, level[id]);
+            }
+        }
+        any = false;
+        for (int j = 0; j < 16; j++)
+            for (int i = 0; i < 16; i++) {
+                int id = (j + m) * n + i + m;
+                if (cap[id] != 0 && level[id] > ground[id]) {
+                    out[j * 16 + i] = (int) level[id];
+                    any = true;
+                }
+            }
+        return any;
     }
 
     public static final int P_CONTINENTS = 0, P_EROSION = 1, P_RIDGES = 2, P_TEMPERATURE = 3, P_VEGETATION = 4, P_DEPTH = 5;

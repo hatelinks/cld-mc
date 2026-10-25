@@ -28,6 +28,8 @@ public final class WaterFeature extends Feature<NoneFeatureConfiguration> {
         Surface sf = new Surface(level, o, Heightmap.Types.OCEAN_FLOOR_WG);
         BlockPos.MutableBlockPos p = new BlockPos.MutableBlockPos();
         boolean any = false;
+        int[] lakes = new int[256];
+        boolean hasLakes = t.lakeLevels(o.getX(), o.getZ(), lakes);
         for (int j = 0; j < 16; j++)
             for (int i = 0; i < 16; i++) {
                 int x = o.getX() + i, z = o.getZ() + j;
@@ -69,7 +71,7 @@ public final class WaterFeature extends Feature<NoneFeatureConfiguration> {
                     p.set(x, wl, z);
                     level.scheduleTick(p, Fluids.WATER, 0);
                     any = true;
-                } else if (top < wl) {
+                } else if (hasLakes && lakes[j * 16 + i] != Integer.MIN_VALUE && top < (wl = Math.min(wl, lakes[j * 16 + i]))) {
                     for (int y = top + 1; y <= wl; y++) {
                         p.set(x, y, z);
                         BlockState s = level.getBlockState(p);
