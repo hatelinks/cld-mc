@@ -56,6 +56,7 @@ final class PreviewSession {
             server.tickRateManager().setFrozen(false);
         });
         ClientHooks.session = null;
+        ClientHooks.restoreRenderDistance();
         Minecraft.getInstance().setScreen(null);
     }
 
@@ -75,6 +76,7 @@ final class PreviewSession {
             LOG.warn("Не удалось удалить мир предпросмотра {}", levelId, e);
         }
         MapData.reset();
+        if (newSeed == null) ClientHooks.restoreRenderDistance();
         if (origin == null) {
             mc.setScreen(new SelectWorldScreen(new TitleScreen()));
             return;
@@ -85,6 +87,7 @@ final class PreviewSession {
             Button create = ClientHooks.findCreateButton(origin);
             if (create != null) {
                 ClientHooks.pending = true;
+                ClientHooks.lowerRenderDistance();
                 create.onPress();
             }
         }
