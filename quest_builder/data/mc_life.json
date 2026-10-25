@@ -1,0 +1,603 @@
+{
+ "key": "mc_life",
+ "id": "",
+ "title": "Свет знаний",
+ "subtitle": "MineColonies — обучение, здоровье и чудеса",
+ "group": "Жизнь колонии",
+ "icon": "minecolonies:blockhutuniversity",
+ "order": 22,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Свет знаний",
+   "sub": "Сильная и умная колония",
+   "desc": [
+    "Образованные и здоровые жители работают лучше. Университет открывает исследования — новые здания и улучшения."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "minecolonies:blockhutuniversity",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_build_builder_2"
+   ]
+  },
+  {
+   "k": "library",
+   "title": "Библиотека",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "В библиотеке жители учатся и повышают навыки.",
+    "&6Как получить:&r верстак: Книга, Build Tool.",
+    "&6Цель:&r Если нужны более квалифицированные рабочие, построй Библиотеку. Там они будут обучаться, просвещаться и улучшать свои характеристики!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutlibrary",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_library"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_life/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "school",
+   "title": "Школа",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "В школе учатся дети колонии и вырастают умнее.",
+    "&6Как получить:&r верстак: Перо, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutschool",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_life/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "university",
+   "title": "Университет",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Университет — исследования колонии: новые постройки, бонусы, улучшения стражи и жителей.",
+    "&6Как получить:&r верстак: Книга, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutuniversity",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:book",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "mc_life/library"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "hospital",
+   "title": "Больница",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Лекарь лечит больных жителей. Болезни снижают работоспособность.",
+    "&6Как получить:&r верстак: Морковь, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhuthospital",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_life/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "graveyard",
+   "title": "Кладбище",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Могильщик хоронит погибших жителей и может воскресить их.",
+    "&6Как получить:&r верстак: Кость, Камень, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutgraveyard",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_life/hospital"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_minecolonies_citizen_bury",
+   "title": "И впрямь печальный день. . .",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Похорони своего первого жителя. Да, это печальный день для всех, но это лучше, чем позволить могиле истлеть и быть преданной забвению."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/citizen_bury"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "mc_life/graveyard"
+   ]
+  },
+  {
+   "k": "adv_minecolonies_citizen_resurrect",
+   "title": "Воистину прекрасный день!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Твой Могильщик воскресил погибшего жителя!"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/citizen_resurrect"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 60
+    }
+   ],
+   "deps": [
+    "mc_life/graveyard"
+   ]
+  },
+  {
+   "k": "enchanter",
+   "title": "Башня чародея",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Чародей зачаровывает книги, поглощая древние тома и опыт рабочих.",
+    "&6Как получить:&r верстак: Стол зачаровывания, Build Tool.",
+    "&6Цель:&r Колдун гремучий с Башни чародея поглощает древние тома с рейдеров и опыт рабочих, чтобы создавать зачарованные книги, а также свитки."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutenchanter",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_enchanter"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_life/library"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "mysticalsite",
+   "title": "Мистическое место",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Мистическое место ничего не производит, но повышает счастье жителей.",
+    "&6Как получить:&r верстак: Алмаз, Build Tool.",
+    "&6Цель:&r Мистическое место может быть бессмысленным, хотя его наличие в колонии уже заставит граждан гордиться тобой. Поэтому ты его очень хочешь возвести, а для этого следует исследовать и уже потом создать его!"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutmysticalsite",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/build_mysticalsite"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_life/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_minecolonies_build_mysticalsite_5",
+   "title": "Эй, посмотри-ка, это не твой дом?",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Улучши Мистическое место до уровня 5. Пусть оно станет предметом зависти всего мира!"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/build_mysticalsite_5"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 100
+    }
+   ],
+   "deps": [
+    "mc_life/mysticalsite"
+   ]
+  },
+  {
+   "k": "bottles",
+   "title": "Большие бутылки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Стекло, glass pane.",
+    "&6Зачем нужен:&r идёт в Большая бутылка для воды.",
+    "&7Вариантов: 3. Засчитывается «Большая бутылка»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "minecolonies:large_empty_bottle",
+      "minecolonies:large_water_bottle",
+      "minecolonies:large_soy_milk_bottle"
+     ],
+     "count": 1,
+     "title": "Большая бутылка (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_life/intro"
+   ]
+  },
+  {
+   "k": "mc_soups",
+   "title": "Супы колонистов",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Блюда колонии. Их готовят повар и шеф-повар — получите любое блюдо из группы «супы колонистов».",
+    "&6Как получить:&r верстак: Капуста, Манный хлеб, Лук, Миска.",
+    "&6Зачем нужен:&r идёт в Голубцы, Куриный суп, Ролл с ламинарией, Рататуй, Фаршированная тыква.",
+    "&7Вариантов: 9. Засчитывается «Капустный суп»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "minecolonies:cabochis",
+      "minecolonies:chicken_broth",
+      "minecolonies:corn_chowder",
+      "minecolonies:eggdrop_soup",
+      "minecolonies:pea_soup",
+      "minecolonies:potato_soup",
+      "minecolonies:squash_soup",
+      "minecolonies:veggie_soup",
+      "minecolonies:pottage"
+     ],
+     "count": 1,
+     "title": "Капустный суп (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_life/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "mc_mains",
+   "title": "Горячее колонистов",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Блюда колонии. Их готовят повар и шеф-повар — получите любое блюдо из группы «горячее колонистов».",
+    "&6Как получить:&r верстак: Чеснок, Лук, Сырой лосось.",
+    "&7Вариантов: 14. Засчитывается «Запеченный лосось»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "minecolonies:baked_salmon",
+      "minecolonies:fish_n_chips",
+      "minecolonies:kebab",
+      "minecolonies:mutton_dinner",
+      "minecolonies:spicy_grilled_chicken",
+      "minecolonies:fried_rice",
+      "minecolonies:congee",
+      "minecolonies:polenta",
+      "minecolonies:pierogi",
+      "minecolonies:meat_ravioli",
+      "minecolonies:cheese_ravioli",
+      "minecolonies:veggie_ravioli",
+      "minecolonies:pasta_plain",
+      "minecolonies:pasta_tomato"
+     ],
+     "count": 1,
+     "title": "Запеченный лосось (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_life/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "mc_bakery",
+   "title": "Выпечка колонистов",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Блюда колонии. Их готовят повар и шеф-повар — получите любое блюдо из группы «выпечка колонистов».",
+    "&6Как получить:&r верстак: Твердая пшеница, Яблоко, Сахар.",
+    "&7Вариантов: 8. Засчитывается «Яблочный пирог»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "minecolonies:apple_pie",
+      "minecolonies:manchet_bread",
+      "minecolonies:muffin",
+      "minecolonies:cheese_pizza",
+      "minecolonies:veggie_quiche",
+      "minecolonies:tortillas",
+      "minecolonies:plain_cheesecake",
+      "minecolonies:rice_ball"
+     ],
+     "count": 1,
+     "title": "Яблочный пирог (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_life/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "mc_dairy",
+   "title": "Молочная лавка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Блюда колонии. Их готовят повар и шеф-повар — получите любое блюдо из группы «молочная лавка».",
+    "&6Как получить:&r верстак: Большая бутылка с молоком.",
+    "&6Зачем нужен:&r идёт в Обычные макароны, Простой чизкейк.",
+    "&7Вариантов: 12. Засчитывается «Масло»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "minecolonies:butter",
+      "minecolonies:cheddar_cheese",
+      "minecolonies:feta_cheese",
+      "minecolonies:creamcheese",
+      "minecolonies:yogurt",
+      "minecolonies:yogurt_with_berries",
+      "minecolonies:tofu",
+      "minecolonies:soysauce",
+      "minecolonies:kimchi",
+      "minecolonies:mint_jelly",
+      "minecolonies:mint_tea",
+      "minecolonies:pepper_hummus"
+     ],
+     "count": 1,
+     "title": "Масло (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_life/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "finale",
+   "title": "Просвещённая колония",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Жители учатся, лечатся и счастливы.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "minecraft:emerald",
+     "count": 8
+    },
+    {
+     "type": "item",
+     "id": "minecraft:golden_apple",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "mc_life/university",
+    "mc_life/graveyard",
+    "mc_life/enchanter",
+    "mc_life/school"
+   ],
+   "finale": true
+  }
+ ]
+}

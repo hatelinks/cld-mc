@@ -1,0 +1,572 @@
+{
+ "key": "create_enchant_ch",
+ "id": "3AFC3EA429A2F9DC",
+ "title": "Золото знаний",
+ "subtitle": "Create: Enchantment Industry — жидкий опыт, зачарование и печать книг",
+ "group": "Эра механизмов",
+ "icon": "create_enchantment_industry:blaze_enchanter",
+ "order": 8,
+ "quests": [
+  {
+   "id": "762DEABF97F9A868",
+   "title": "Крупица опыта",
+   "sub": "Опыт в твёрдом виде",
+   "desc": [
+    "Крупица опыта — твёрдая форма опыта в Create, из неё получают жидкий опыт."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:experience_nugget",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "33627C656E58AF04"
+   ]
+  },
+  {
+   "id": "3FAE0DCF7A818B23",
+   "title": "Люк для опыта",
+   "sub": "Опыт в трубы",
+   "desc": [
+    "Люк принимает опыт игрока и превращает его в жидкость, а в обратную сторону выдаёт опыт из жидкости.",
+    "Подробности смотрите в Ponder."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:experience_hatch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "762DEABF97F9A868",
+    "727F09E229C92364"
+   ]
+  },
+  {
+   "id": "51FD7382DFC8C714",
+   "title": "Ведро чар",
+   "sub": "Жидкий опыт",
+   "desc": [
+    "Жидкий опыт хранится в баках и переносится по трубам."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:experience_bucket",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3FAE0DCF7A818B23"
+   ]
+  },
+  {
+   "id": "67FC4C7AA32F7498",
+   "title": "Фонарь опыта",
+   "sub": "Свет знаний",
+   "desc": [
+    "Декоративный и полезный источник света, связанный с жидким опытом."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:experience_lantern",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:experience_bottle",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "51FD7382DFC8C714"
+   ]
+  },
+  {
+   "id": "36A573B8F77EE4EC",
+   "title": "Бак для опыта",
+   "sub": "Запасы знаний",
+   "desc": [
+    "Обычный бак подходит для хранения жидкого опыта."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:fluid_tank",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "51FD7382DFC8C714",
+    "0528BC2DA69E662B"
+   ]
+  },
+  {
+   "id": "5385D69A459A71D2",
+   "title": "Зачарователь Blaze",
+   "sub": "Автоматические чары",
+   "desc": [
+    "Блок в духе горелки, который зачаровывает предметы жидким опытом."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:blaze_enchanter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3FAE0DCF7A818B23",
+    "293E9B8D6EA8FD5D"
+   ]
+  },
+  {
+   "id": "1DC5F329A32BBC2E",
+   "title": "Шаблон чар",
+   "sub": "Задайте нужные чары",
+   "desc": [
+    "Шаблон хранит набор чар, которые зачарователь должен нанести."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:enchanting_template",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5385D69A459A71D2"
+   ]
+  },
+  {
+   "id": "4724970DBD480F90",
+   "title": "Улучшенный шаблон",
+   "sub": "Больше возможностей",
+   "desc": [
+    "Расширенная версия шаблона для более сложных чар."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:super_enchanting_template",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:lapis_lazuli",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "1DC5F329A32BBC2E"
+   ]
+  },
+  {
+   "id": "217DBA50171A1F94",
+   "title": "Первая зачарованная книга",
+   "sub": "Результат работы",
+   "desc": [
+    "Получите зачарованную книгу автоматически, без стола зачарования."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:enchanted_book",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5385D69A459A71D2"
+   ]
+  },
+  {
+   "id": "7C30EDF6F7920BEB",
+   "title": "Принтер книг",
+   "sub": "Копируем чары",
+   "desc": [
+    "Принтер копирует чары с одной книги на другую за жидкий опыт.",
+    "Один раз получили хорошую книгу, дальше размножаете."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:printer",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "217DBA50171A1F94",
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "37F76A026EFC87C5",
+   "title": "Механический точильный камень",
+   "sub": "Снимаем чары",
+   "desc": [
+    "Автоматически снимает чары с предметов и возвращает опыт."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:mechanical_grindstone",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "25385F994C28D4F2"
+   ]
+  },
+  {
+   "id": "37DDBB8085ED6E23",
+   "title": "Сток для точила",
+   "sub": "Опыт в трубы",
+   "desc": [
+    "Отводит выделяемый при снятии чар опыт в трубы или баки."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:grindstone_drain",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:experience_bottle",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "37F76A026EFC87C5",
+    "727F09E229C92364"
+   ]
+  },
+  {
+   "id": "3285919AE27446A5",
+   "title": "Круг знаний",
+   "sub": "Замкнутый цикл",
+   "desc": [
+    "Постройте цикл: снимаете чары точилом, опыт уходит в бак, а оттуда на новый предмет."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Построить цепочку: снять чары с предмета и отправить опыт в бак"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "37DDBB8085ED6E23",
+    "36A573B8F77EE4EC"
+   ]
+  },
+  {
+   "id": "0981AFBDDDC9FD9F",
+   "title": "Кузнец Blaze",
+   "sub": "Автоматическая кузница",
+   "desc": [
+    "Блок, который чинит и комбинирует предметы жидким опытом, как наковальня.",
+    "Подробности смотрите в Ponder."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:blaze_forger",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5385D69A459A71D2",
+    "37F76A026EFC87C5"
+   ]
+  },
+  {
+   "id": "6DE7A698AFDFA027",
+   "title": "Крупица большого опыта",
+   "sub": "Концентрированный опыт",
+   "desc": [
+    "Более ценная форма опыта для продвинутых рецептов."
+   ],
+   "x": 2.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:super_experience_nugget",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0981AFBDDDC9FD9F"
+   ]
+  },
+  {
+   "id": "5F6550040551E436",
+   "title": "Блок большого опыта",
+   "sub": "Для строителей",
+   "desc": [
+    "Декоративный блок из большого опыта."
+   ],
+   "x": 4.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:super_experience_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:lapis_lazuli",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "6DE7A698AFDFA027"
+   ]
+  },
+  {
+   "id": "4E97EDAD415E4502",
+   "title": "Основа торта",
+   "sub": "Сладкие знания",
+   "desc": [
+    "Основа для торта, который хранит опыт."
+   ],
+   "x": 0.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:experience_cake_base",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "51FD7382DFC8C714"
+   ]
+  },
+  {
+   "id": "16D00BD4269925C8",
+   "title": "Торт чар",
+   "sub": "Вкусный опыт",
+   "desc": [
+    "Торт, который можно съесть для получения опыта."
+   ],
+   "x": 2.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:experience_cake",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4E97EDAD415E4502"
+   ]
+  },
+  {
+   "id": "609B05E814168419",
+   "title": "Кусок торта",
+   "sub": "Порция знаний",
+   "desc": [
+    "Порция торта, хранящая опыт."
+   ],
+   "x": 4.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_enchantment_industry:experience_cake_slice",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "16D00BD4269925C8"
+   ]
+  }
+ ]
+}

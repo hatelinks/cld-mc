@@ -1,0 +1,273 @@
+{
+  "type": "minecraft:spline",
+  "spline": {
+    "coordinate": {
+      "type": "minecraft:noise",
+      "noise": "minecraft:temperature_med",
+      "xz_scale": 0.15,
+      "y_scale": 0
+    },
+    "points": [
+      {
+        "location": -0.58,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:noise",
+            "noise": "minecraft:temperature_med",
+            "xz_scale": 0.15,
+            "y_scale": 0
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": -0.55,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:add",
+            "argument1": {
+              "type": "minecraft:mul",
+              "argument1": {
+                "type": "minecraft:noise",
+                "noise": "minecraft:cave_layer",
+                "xz_scale": 20,
+                "y_scale": 0
+              },
+              "argument2": 0.1
+            },
+            "argument2": -0.55
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": -0.52,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:noise",
+            "noise": "minecraft:temperature_med",
+            "xz_scale": 0.15,
+            "y_scale": 0
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": -0.23,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:noise",
+            "noise": "minecraft:temperature_med",
+            "xz_scale": 0.15,
+            "y_scale": 0
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": -0.2,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:add",
+            "argument1": {
+              "type": "minecraft:mul",
+              "argument1": {
+                "type": "minecraft:noise",
+                "noise": "minecraft:cave_layer",
+                "xz_scale": 20,
+                "y_scale": 0
+              },
+              "argument2": 0.1
+            },
+            "argument2": -0.2
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": -0.17,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:noise",
+            "noise": "minecraft:temperature_med",
+            "xz_scale": 0.15,
+            "y_scale": 0
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": 0.17,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:noise",
+            "noise": "minecraft:temperature_med",
+            "xz_scale": 0.15,
+            "y_scale": 0
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": 0.2,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:add",
+            "argument1": {
+              "type": "minecraft:mul",
+              "argument1": {
+                "type": "minecraft:noise",
+                "noise": "minecraft:cave_layer",
+                "xz_scale": 20,
+                "y_scale": 0
+              },
+              "argument2": 0.1
+            },
+            "argument2": 0.2
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": 0.23,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:noise",
+            "noise": "minecraft:temperature_med",
+            "xz_scale": 0.15,
+            "y_scale": 0
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": 0.52,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:noise",
+            "noise": "minecraft:temperature_med",
+            "xz_scale": 0.15,
+            "y_scale": 0
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": 0.55,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:add",
+            "argument1": {
+              "type": "minecraft:mul",
+              "argument1": {
+                "type": "minecraft:noise",
+                "noise": "minecraft:cave_layer",
+                "xz_scale": 20,
+                "y_scale": 0
+              },
+              "argument2": 0.1
+            },
+            "argument2": 0.55
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": 0.58,
+        "derivative": 0,
+        "value": {
+          "coordinate": {
+            "type": "minecraft:noise",
+            "noise": "minecraft:temperature_med",
+            "xz_scale": 0.15,
+            "y_scale": 0
+          },
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

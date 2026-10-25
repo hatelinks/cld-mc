@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:add",
+  "argument1": {
+    "type": "minecraft:add",
+    "argument1": "minecraft:overworld_baseline",
+    "argument2": "minecraft:offset_flat_cached"
+  },
+  "argument2": {
+    "type": "minecraft:add",
+    "argument1": "minecraft:factor_flat_cached",
+    "argument2": "minecraft:jagged_flat_cached"
+  }
+}

@@ -1,0 +1,777 @@
+{
+ "key": "create_contraptions",
+ "id": "4E58F60330ABD4A8",
+ "title": "Ожившая механика",
+ "subtitle": "Подшипники, поршни, лебёдки и шасси",
+ "group": "Эра механизмов",
+ "icon": "create:mechanical_bearing",
+ "order": 5,
+ "quests": [
+  {
+   "id": "49B7E4AD354FB33E",
+   "title": "Склейте конструкцию",
+   "sub": "Первый шаг к подвижным конструкциям",
+   "desc": [
+    "Суперклей скрепляет блоки так, чтобы они двигались как единое целое."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Склеить блоки суперклеем"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3CA72296F5FEE9B4"
+   ]
+  },
+  {
+   "id": "0097B87D1AE72AD0",
+   "title": "Механический подшипник",
+   "sub": "Вращаем конструкции",
+   "desc": [
+    "Подшипник вращает присоединённую конструкцию вокруг своей оси.",
+    "Так делают мельницы, карусели и башни."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:mechanical_bearing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "49B7E4AD354FB33E"
+   ]
+  },
+  {
+   "id": "1D49B046C9FD5317",
+   "title": "Механический поршень",
+   "sub": "Двигаем по прямой",
+   "desc": [
+    "Поршень выдвигает присоединённую конструкцию и тянет её обратно.",
+    "Длину увеличивают удлинителями."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:mechanical_piston",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "49B7E4AD354FB33E"
+   ]
+  },
+  {
+   "id": "31BFFAA8A4157437",
+   "title": "Удлинитель поршня",
+   "sub": "Больший ход",
+   "desc": [
+    "Каждый удлинитель добавляет блок к дальности хода."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:piston_extension_pole",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "1D49B046C9FD5317"
+   ]
+  },
+  {
+   "id": "39A262DC34E9C66F",
+   "title": "Липкий поршень Create",
+   "sub": "Двигаем одиночные блоки",
+   "desc": [
+    "Липкий поршень тянет за собой блоки перед собой."
+   ],
+   "x": 8.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:sticky_mechanical_piston",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1D49B046C9FD5317"
+   ]
+  },
+  {
+   "id": "117F4C4D40D53D02",
+   "title": "Лебёдка",
+   "sub": "Подъём и спуск",
+   "desc": [
+    "Лебёдка поднимает и опускает конструкции на верёвке.",
+    "Идеальна для лифтов и шахт."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:rope_pulley",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "49B7E4AD354FB33E"
+   ]
+  },
+  {
+   "id": "146116AC55770324",
+   "title": "Магнит лебёдки",
+   "sub": "Подбирает предметы",
+   "desc": [
+    "Магнит можно опустить вместо блока и использовать для сбора предметов."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:pulley_magnet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "117F4C4D40D53D02"
+   ]
+  },
+  {
+   "id": "76799FE853392922",
+   "title": "Портальный подъёмник",
+   "sub": "Двигаем по линии",
+   "desc": [
+    "Каретка скользит по валу вдоль направляющей."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:gantry_shaft",
+     "count": 4
+    },
+    {
+     "type": "item",
+     "id": "create:gantry_carriage",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:super_glue",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "49B7E4AD354FB33E"
+   ]
+  },
+  {
+   "id": "504D12DF07263C45",
+   "title": "Линейное шасси",
+   "sub": "Расширяем область склейки",
+   "desc": [
+    "Шасси склеивает цепочку блоков вдоль выбранной линии."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:linear_chassis",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "49B7E4AD354FB33E"
+   ]
+  },
+  {
+   "id": "0B24BC478B10838E",
+   "title": "Радиальное шасси",
+   "sub": "Склейка по плоскости",
+   "desc": [
+    "Склеивает целую плоскость блоков."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:radial_chassis",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "49B7E4AD354FB33E"
+   ]
+  },
+  {
+   "id": "21CD92E5FB17EC46",
+   "title": "Вторичное линейное шасси",
+   "sub": "Продолжаем линию",
+   "desc": [
+    "Расширяет склейку другой оси."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:secondary_linear_chassis",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "504D12DF07263C45"
+   ]
+  },
+  {
+   "id": "36C151AEC87D1D65",
+   "title": "Липучка",
+   "sub": "Управляемая склейка",
+   "desc": [
+    "Липучка по сигналу то приклеивает, то отпускает блок."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:sticker",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "49B7E4AD354FB33E",
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "4377DF93BA3007A7",
+   "title": "Сиденье",
+   "sub": "Катаемся на конструкции",
+   "desc": [
+    "Сядьте на сиденье, и конструкция увезёт вас вместе с собой."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:white_seat",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0097B87D1AE72AD0"
+   ]
+  },
+  {
+   "id": "63B841C51F12FF9F",
+   "title": "Ящик с инструментами",
+   "sub": "Всё под рукой",
+   "desc": [
+    "Ящик хранит инструменты и автоматически возвращает их в слот.",
+    "Работает и на подвижных конструкциях."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:white_toolbox",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "25385F994C28D4F2"
+   ]
+  },
+  {
+   "id": "6A012942FF641C6A",
+   "title": "Контроллер конструкции",
+   "sub": "Управление с сиденья",
+   "desc": [
+    "Контроллер включает и отключает работу механизмов на подвижной конструкции."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:contraption_controls",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:super_glue",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "0097B87D1AE72AD0",
+    "1D49B046C9FD5317"
+   ]
+  },
+  {
+   "id": "3375F8A996CE5171",
+   "title": "Механический каток",
+   "sub": "Строим дороги в движении",
+   "desc": [
+    "Каток ровняет землю и строит дороги на движущейся технике."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:mechanical_roller",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:super_glue",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "6A012942FF641C6A",
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "51A9692CD201A0FA",
+   "title": "Сборщик вагонеток",
+   "sub": "Конструкция на рельсах",
+   "desc": [
+    "Сборщик превращает конструкцию в вагонетку, которая едет по обычным рельсам."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:cart_assembler",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "49B7E4AD354FB33E"
+   ]
+  },
+  {
+   "id": "64B203CB1D8E15DD",
+   "title": "Сцепка вагонеток",
+   "sub": "Составы",
+   "desc": [
+    "Сцепка соединяет несколько вагонеток в состав."
+   ],
+   "x": 2.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:minecart_coupling",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "51A9692CD201A0FA"
+   ]
+  },
+  {
+   "id": "19D2B9116B401A62",
+   "title": "Постройте подвижную машину",
+   "sub": "Итог главы",
+   "desc": [
+    "Соберите что-нибудь полезное: лифт, комбайн или вездеход."
+   ],
+   "x": 4.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Построить конструкцию, которая двигается: лифт, комбайн или вездеход"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "0097B87D1AE72AD0",
+    "1D49B046C9FD5317",
+    "117F4C4D40D53D02"
+   ]
+  },
+  {
+   "k": "clockwork_bearing",
+   "title": "Часовой механизм",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Подшипник часов: стрелки собранного механизма показывают текущее игровое время.",
+    "&6Как получить:&r верстак: Латунный корпус, Электронная лампа."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:clockwork_bearing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "49B7E4AD354FB33E",
+    "4D1D7873774CA66B",
+    "49A87F51BFFBB1C4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "elevator_pulley",
+   "title": "Лифтовая лебёдка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Лифт: поднимает и опускает кабину между этажами по сигналу с контактов.",
+    "&6Как получить:&r верстак: Железный лист, Латунный корпус, Блок сушёной ламинарии."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:elevator_pulley",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "create_contraptions/clockwork_bearing",
+    "024258E95184EEE4",
+    "4D1D7873774CA66B"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "copycat_step",
+   "title": "Заполняемая ступенька",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r &eПреобразует&r любой &eтвёрдый блок&r в декоративную ступеньку.",
+    "&6Как получить:&r камнерез: Цинковый слиток.",
+    "&6Как использовать:&r ПКМ с блоком в руке: Применяет &eпредмет в руке&r как его &eматериал&r, если это возможно. _Кликните снова, чтобы изменить ориентацию или состояние. Используйте гаечный ключ для демонтажа установленного материала.",
+    "&6Зачем нужен:&r идёт в Заполняемая плита, Заполняемая вертикальная ступенька."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:copycat_step",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_contraptions/clockwork_bearing",
+    "61F3DD348420C73D"
+   ]
+  },
+  {
+   "k": "seats",
+   "title": "Сиденья (все цвета)",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Сиденье садит игрока или моба. Если стоит на механизме, едет вместе с ним.",
+    "&6Как получить:&r верстак: orange wool.",
+    "&6Зачем нужен:&r идёт в Чёрное сиденье, Синее сиденье, Коричневое сиденье, Бирюзовое сиденье, Серое сиденье.",
+    "&7Вариантов: 15. Засчитывается «Оранжевое сиденье»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:orange_seat",
+      "create:magenta_seat",
+      "create:light_blue_seat",
+      "create:yellow_seat",
+      "create:lime_seat",
+      "create:pink_seat",
+      "create:gray_seat",
+      "create:light_gray_seat",
+      "create:cyan_seat",
+      "create:purple_seat",
+      "create:blue_seat",
+      "create:brown_seat",
+      "create:green_seat",
+      "create:red_seat",
+      "create:black_seat"
+     ],
+     "count": 1,
+     "title": "Оранжевое сиденье (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_contraptions/clockwork_bearing"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "finale",
+   "title": "Душа машины",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Ваши механизмы сами двигаются, копают и строят.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "create:super_glue",
+     "count": 2
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "31BFFAA8A4157437",
+    "4377DF93BA3007A7",
+    "6A012942FF641C6A",
+    "19D2B9116B401A62"
+   ],
+   "finale": true
+  }
+ ]
+}

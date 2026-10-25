@@ -1,0 +1,292 @@
+{
+ "key": "ec_compass",
+ "id": "6AC332C63E55C978",
+ "title": "Путеводная стрелка",
+ "subtitle": "Explorer's Compass — поиск структур по всему миру",
+ "group": "Хозяйство и путешествия",
+ "icon": "explorerscompass:explorerscompass",
+ "order": 15,
+ "quests": [
+  {
+   "id": "520494043376DA40",
+   "title": "Обычный компас",
+   "sub": "Дорога домой",
+   "desc": [
+    "Обычный компас указывает на точку спауна.",
+    "Компас исследователя умеет искать структуры."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:compass",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "id": "3C5338891F0D45A1",
+   "title": "Компас исследователя",
+   "sub": "Ищем структуры",
+   "desc": [
+    "Выберите тип структуры и нажмите на кнопку поиска, компас укажет направление."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "explorerscompass:explorerscompass",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "520494043376DA40"
+   ]
+  },
+  {
+   "id": "27F66B73FE25B863",
+   "title": "Первая находка",
+   "sub": "Идём за стрелкой",
+   "desc": [
+    "Найдите любую структуру и дойдите до неё. Поиск может занять время в новом мире."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Найти структуру с помощью компаса исследователя"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "3C5338891F0D45A1"
+   ]
+  },
+  {
+   "id": "6D813B2627681816",
+   "title": "Деревня",
+   "sub": "Первое поселение",
+   "desc": [
+    "Деревни — место для торговли и первых запасов."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:village_plains"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:compass",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "5508C1C34546F2C8",
+   "title": "Заброшенная шахта",
+   "sub": "Подземелье для опытных",
+   "desc": [
+    "Заброшенные шахты богаты рудами и сундуками, но полны пауков."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:mineshaft"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "05EA20AF50724AF1",
+   "title": "Пустынный храм",
+   "sub": "Ловушки и сокровища",
+   "desc": [
+    "Осторожно с ловушкой под центральным блоком."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:desert_pyramid"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "27FF642AA6A54ABE",
+   "title": "Крепость Края",
+   "sub": "Путь в Энд",
+   "desc": [
+    "В крепости находится портал в Энд."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:stronghold"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "4EE5B87DDE3EACC3",
+   "title": "Подводная крепость",
+   "sub": "Стражи и сокровища",
+   "desc": [
+    "Подготовьте зелья дыхания под водой."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:monument"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "4E4541B1C4374F8A",
+   "title": "Лесной особняк",
+   "sub": "Опасное логово",
+   "desc": [
+    "Здесь живут иллюзионисты и вредители."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:mansion"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "06560091D6DFB925",
+   "title": "Древний город",
+   "sub": "Царство тишины",
+   "desc": [
+    "Двигайтесь тихо: Хранитель реагирует на звуки."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:ancient_city"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,476 @@
+{
+ "key": "mc_guard",
+ "id": "",
+ "title": "Щит колонии",
+ "subtitle": "MineColonies — стража и оборона",
+ "group": "Жизнь колонии",
+ "icon": "minecolonies:blockhutbarracks",
+ "order": 23,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Щит колонии",
+   "sub": "Набеги и защита",
+   "desc": [
+    "Когда колония растёт, на неё нападают варвары, пираты, мумии и викинги.",
+    "Стражники защищают жителей и границы. Чем больше башен и казарм, тем сильнее армия."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "minecolonies:blockhutbarracks",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "mc_found/citizen"
+   ]
+  },
+  {
+   "k": "guardtower",
+   "title": "Сторожевая башня",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Сторожевая башня нанимает одного стражника: рыцаря, лучника или друида.",
+    "&6Как получить:&r верстак: Лук, Build Tool.",
+    "&6Зачем нужен:&r идёт в Вывеска охраны.",
+    "&6Цель:&r Построй Сторожевую Башню и найми Стражника, чтобы защититься от недругов, посягающих на твой растущий городок!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutguardtower",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/build_guard_tower"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_guard/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "scepter",
+   "title": "Жезл стражи",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Жезл стражи задаёт стражнику точку патруля или охраны."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:scepterguard",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_guard/guardtower"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "rally",
+   "title": "Вывеска охраны",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вывеска охраны собирает стражей вокруг вас — удобно в походах и при обороне.",
+    "&6Как получить:&r верстак: Сторожевая башня, Лук, Железный меч, yellow banner."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:banner_rally_guards",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_guard/guardtower"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "gatehouse",
+   "title": "Застава",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Застава расширяет защищённую зону и охраняет вход в колонию.",
+    "&6Как получить:&r верстак: Лук, Железный меч, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutgatehouse",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_guard/guardtower"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "barracks",
+   "title": "Казармы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Казармы вмещают несколько башен с отрядами стражей.",
+    "&6Как получить:&r верстак: Железный блок, Build Tool.",
+    "&6Цель:&r Развивающейся колонии необходимо больше Стражи, чтобы усмирять всех нарушителей её границ. Построй Казарму, чтобы нанять больше солдат за счёт уменьшения площади застройки колонии Башнями!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutbarracks",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:military/build_barracks"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:arrow",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "mc_guard/guardtower"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_military_build_barracks_tower",
+   "title": "Примитивный полк",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Построй Башню внутри твоих новых Казарм. Уровни этих Башен привязаны к уровню Казармы, и увеличивают максимальное количество Стражников в них с повышением своего уровня!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:military/build_barracks_tower"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "mc_guard/barracks"
+   ]
+  },
+  {
+   "k": "adv_military_build_all_barracks_towers",
+   "title": "Великий гарнизон",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Могущественная Казарма, которая вселяет страх в сердца твоих врагов - та, что имеет все улучшения (в том числе улучшены все башни)."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:military/build_all_barracks_towers"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 80
+    }
+   ],
+   "deps": [
+    "mc_guard/adv_military_build_barracks_tower"
+   ]
+  },
+  {
+   "k": "archery",
+   "title": "Стрельбище",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "На стрельбище лучники тренируют меткость.",
+    "&6Как получить:&r верстак: Лук, Build Tool.",
+    "&6Цель:&r Дай своим Рыцарям немного прикрытия. Построй Стрельбище, чтобы тренировать Лучников."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutarchery",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:military/build_archery"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_guard/barracks"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "academy",
+   "title": "Боевая академия",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "В боевой академии рыцари тренируют владение мечом.",
+    "&6Как получить:&r верстак: Железный меч, Build Tool.",
+    "&6Цель:&r Любая битва опасна и сродни спору со Смертью. Построй Боевую академию и назначь Стражника туда в целях тренировки без риска потерять жизнь!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutcombatacademy",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:military/build_combat_academy"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "mc_guard/barracks"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "spear",
+   "title": "Копьё",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Железный слиток, Палка, Build Tool."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:spear",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_guard/guardtower"
+   ]
+  },
+  {
+   "k": "adv_military_army_8",
+   "title": "Деканус",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r У тебя в колонии уже 8 стражей, но армия всегда начинается с малого. . ."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:military/army_8"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 38
+    }
+   ],
+   "deps": [
+    "mc_guard/guardtower"
+   ]
+  },
+  {
+   "k": "adv_military_army_30",
+   "title": "Лейтенант",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r 30 бойцов - приличный плюс к престижу колонии!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:military/army_30"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 60
+    }
+   ],
+   "deps": [
+    "mc_guard/adv_military_army_8"
+   ]
+  },
+  {
+   "k": "adv_military_army_80",
+   "title": "Центурион",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Войско из 80-ти солдат - нехилое препятствие!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:military/army_80"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 110
+    }
+   ],
+   "deps": [
+    "mc_guard/adv_military_army_30"
+   ]
+  },
+  {
+   "k": "finale_guard",
+   "title": "Неприступная колония",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Ваша армия готова отразить любой набег.",
+    "&6Как получить:&r верстак: Железный блок, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutbarracks",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 150
+    }
+   ],
+   "deps": [
+    "mc_guard/adv_military_army_30",
+    "mc_guard/academy",
+    "mc_guard/archery",
+    "mc_guard/gatehouse"
+   ],
+   "finale": true,
+   "note": "Ручное описание по общим знаниям о моде"
+  }
+ ]
+}

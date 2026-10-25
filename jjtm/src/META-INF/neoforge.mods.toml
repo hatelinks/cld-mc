@@ -1,0 +1,18 @@
+modLoader="lowcodefml"
+loaderVersion="[1,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="jjthunder_to_the_max"
+version="0.2.0-1.21.1"
+displayName="JJThunder To The Max"
+authors="JJThunder"
+description='''Terraforms Overworld. Неофициальный порт датапака на 1.21.1 для личного использования.'''
+logoFile="assets/jjthunder_to_the_max/icon.png"
+
+[[dependencies.jjthunder_to_the_max]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"

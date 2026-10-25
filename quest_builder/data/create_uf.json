@@ -1,0 +1,591 @@
+{
+ "key": "create_uf",
+ "id": "",
+ "title": "Фабрика без шахт",
+ "subtitle": "Create: Ultimate Factory — ресурсы из машин",
+ "group": "Эра механизмов",
+ "icon": "minecraft:diamond",
+ "order": 8.7,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Фабрика без шахт",
+   "sub": "Редкие ресурсы из простых",
+   "desc": [
+    "Create: Ultimate Factory добавляет рецепты для машин Create: из дешёвых блоков получаются редкие ресурсы.",
+    "Так можно автоматизировать то, что обычно добывают в Незере, Крае или океане.",
+    "Квест засчитывается, когда нужный предмет у вас в инвентаре."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "minecraft:diamond",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "uf_diamond",
+   "title": "Алмаз из угля",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Механический пресс над чашей сжимает угольный блок в алмаз.",
+    "&6Как получить:&r дробильные колёса: deepslate diamond ore.",
+    "&6Зачем нужен:&r идёт в Алмазная крошка, Алмазный нож, Мистическое место, Кузнечный шаблон."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:diamond",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_blaze_rod",
+   "title": "Стержень из порошка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пресс над чашей сжимает огненный порошок в огненный стержень.",
+    "&6Как получить:&r механический пресс над чашей: Огненный порошок.",
+    "&6Зачем нужен:&r идёт в Кузнечный шаблон, Огненный порошок, Улучшение «Алхимия»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:blaze_rod",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_stones",
+   "title": "Камни Create из гравия",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пресс над чашей: гравий с кусочками металла превращается в кримзит (железо), охрум (золото), веридий (медь) или азурин (цинк).",
+    "&6Зачем нужен:&r идёт в Кримзитовая колонна, Дроблёное рудное железо, Резной кримзит, Плита из резного кримзитового кирпича, Ступеньки из резного кримзитового кирпича."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:crimsite",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_deepslate",
+   "title": "Глубинный сланец и туф",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пресс над чашей уплотняет камень в глубинный сланец, а булыжник — в туф.",
+    "&6Как получить:&r механический пресс над чашей: Камень.",
+    "&6Зачем нужен:&r идёт в Резной глубинный сланец, Плита из резного глубинносланцевого кирпича, Ступеньки из резного глубинносланцевого кирпича, Ограда из резного глубинносланцевого кирпича, Резные глубинносланцевые кирпичи."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:deepslate",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_coal",
+   "title": "Уголь из древесного",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вентилятор через огонь душ превращает древесный уголь в обычный.",
+    "&6Как получить:&r дробильные колёса: deepslate coal ore.",
+    "&6Зачем нужен:&r идёт в Чёрный краситель, Империевый уголь, Инфериевый уголь, Инсаниевый уголь, Прудентиевый уголь."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:coal",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_crying",
+   "title": "Плачущий обсидиан",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Обсидиан под вентилятором через огонь душ становится плачущим.",
+    "&6Как получить:&r вентилятор через огонь душ: Обсидиан.",
+    "&6Зачем нужен:&r идёт в Обсидиановый порошок, Осколок аметиста."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:crying_obsidian",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_chorus",
+   "title": "Хорус из яблока",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вентилятор через огонь душ превращает яблоко в плод хоруса.",
+    "&6Как получить:&r вентилятор через драконье дыхание: Яблоко.",
+    "&6Зачем нужен:&r идёт в Биомасса, Сгусток Энда."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:chorus_fruit",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_wither_rose",
+   "title": "Роза иссушения",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Мак под вентилятором через огонь душ становится розой иссушения.",
+    "&6Как получить:&r вентилятор через огонь душ: poppy.",
+    "&6Зачем нужен:&r идёт в Катализатор массового иссушения, Чёрный краситель."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:wither_rose",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_pearl",
+   "title": "Жемчуг из эндерняка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Дробильные колёса иногда дают жемчуг Края из эндерняка.",
+    "&6Как получить:&r дробильные колёса: Эндерняк.",
+    "&6Зачем нужен:&r идёт в Улучшение «Алхимия», Улучшение \"Удалённый доступ (Группа)\", Улучшение \"Удалённый доступ\", Пыль перемещения, Свиток перемещения."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:ender_pearl",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_skull",
+   "title": "Череп из чернита",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Дробильные колёса с небольшим шансом дают череп скелета-иссушителя из чернита.",
+    "&6Как получить:&r дробильные колёса: Чернит."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:wither_skeleton_skull",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_heart",
+   "title": "Сердце моря",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Дробление коралловых блоков иногда даёт сердце моря.",
+    "&6Как получить:&r механический источник: Око Края."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:heart_of_the_sea",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_netherite",
+   "title": "Незеритовый лом",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Дробление незерских кирпичей с малым шансом даёт незеритовый лом.",
+    "&6Как получить:&r дробильные колёса: Незерские кирпичи.",
+    "&6Зачем нужен:&r идёт в Незеритовая дверь, Незеритовый люк."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:netherite_scrap",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_nautilus",
+   "title": "Раковина наутилуса",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Дробление красного песчаника иногда даёт раковину наутилуса.",
+    "&6Как получить:&r дробильные колёса: red sandstone.",
+    "&6Зачем нужен:&r идёт в Кусочек опыта, Колючая раковина, Костная мука, Сердце моря."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:nautilus_shell",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_glowstone",
+   "title": "Светопыль",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Дробление песка душ даёт светопыль.",
+    "&6Как получить:&r дробильные колёса: prismarine crystals."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:glowstone_dust",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_redstone",
+   "title": "Редстоун из кремня",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Механический смешиватель делает редстоун из кремня и незерака.",
+    "&6Как получить:&r дробильные колёса: Редстоуновая руда.",
+    "&6Зачем нужен:&r идёт в Горелка аэростата, Стационарная картофельная пушка, Дроблёное рудное золото, Электронная лампа, Золотой лист."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:redstone",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_gunpowder",
+   "title": "Порох",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Смешиватель делает порох из угля и огненного порошка.",
+    "&6Как получить:&r механический смешиватель над чашей: Огненный порошок.",
+    "&6Зачем нужен:&r идёт в Хлопушка, Запускатель."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:gunpowder",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_slime",
+   "title": "Слизь из магмы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Промывка вентилятором через воду превращает сгусток магмы в слизь.",
+    "&6Как получить:&r вентилятор через снег: Сгусток магмы.",
+    "&6Зачем нужен:&r идёт в Сгусток магмы, Вантузомёт."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:slime_ball",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  },
+  {
+   "k": "uf_blue_ice",
+   "title": "Синий лёд",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Промывка плотного льда даёт синий лёд.",
+    "&6Как получить:&r вентилятор через снег: Плотный лёд."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:blue_ice",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "create_uf/intro"
+   ],
+   "note": "Рецепт из Create: Ultimate Factory, описание по рецепту"
+  }
+ ]
+}

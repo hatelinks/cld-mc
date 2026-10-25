@@ -1,0 +1,482 @@
+{
+ "key": "create_trains",
+ "id": "781B1E4F3D70C1DB",
+ "title": "Стальные пути",
+ "subtitle": "Рельсы, станции, расписания и информационные панели",
+ "group": "Эра механизмов",
+ "icon": "create:track",
+ "order": 6,
+ "quests": [
+  {
+   "id": "3B6917DA1CFEF16E",
+   "title": "Железнодорожный корпус",
+   "sub": "Основа для поездов",
+   "desc": [
+    "Корпус нужен для стыков, станций и тележек."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:railway_casing",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "24619BF54C5E12ED",
+   "title": "Рельсы Create",
+   "sub": "Пути для поездов",
+   "desc": [
+    "Рельсы Create ставятся под любым углом и изгибаются плавными дугами.",
+    "Планируйте маршрут заранее."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:track",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3B6917DA1CFEF16E"
+   ]
+  },
+  {
+   "id": "731DBE26F6069AEE",
+   "title": "Малая тележка",
+   "sub": "Колёса поезда",
+   "desc": [
+    "Тележка ставится на рельсы, к ней прикрепляют вагон."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:small_bogey",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "24619BF54C5E12ED"
+   ]
+  },
+  {
+   "id": "482FEFCCE4FA6A49",
+   "title": "Большая тележка",
+   "sub": "Для тяжёлых вагонов",
+   "desc": [
+    "Двойная тележка для широких вагонов."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:large_bogey",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:track",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "731DBE26F6069AEE"
+   ]
+  },
+  {
+   "id": "5B7555DD21115C50",
+   "title": "Станция",
+   "sub": "Остановка и сборка",
+   "desc": [
+    "На станции собирается состав и настраивается расписание.",
+    "Нажмите на станцию, чтобы дать ей имя."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:track_station",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "24619BF54C5E12ED"
+   ]
+  },
+  {
+   "id": "2AE6FB0C56973F46",
+   "title": "Пульт машиниста",
+   "sub": "Управление поездом",
+   "desc": [
+    "Сядьте за пульт и ведите поезд вручную."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:controls",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5B7555DD21115C50",
+    "731DBE26F6069AEE"
+   ]
+  },
+  {
+   "id": "2A275BB7BABD7211",
+   "title": "Расписание",
+   "sub": "Автоматические маршруты",
+   "desc": [
+    "В расписании задают станции, время ожидания и условия отправления."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:schedule",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2AE6FB0C56973F46"
+   ]
+  },
+  {
+   "id": "2EE6E44503BD0F84",
+   "title": "Сигнал",
+   "sub": "Безопасность на путях",
+   "desc": [
+    "Сигналы делят пути на участки и не дают поездам столкнуться."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:track_signal",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_casing",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "24619BF54C5E12ED"
+   ]
+  },
+  {
+   "id": "097EBBE39CEB2DA0",
+   "title": "Наблюдатель за путями",
+   "sub": "Сигнал при проезде",
+   "desc": [
+    "Наблюдатель подаёт редстоун-сигнал, когда мимо проезжает поезд."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:track_observer",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "24619BF54C5E12ED"
+   ]
+  },
+  {
+   "id": "7E1BF100F43E2285",
+   "title": "Дверь поезда",
+   "sub": "Вход в вагон",
+   "desc": [
+    "Автоматические двери открываются на станциях."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:train_door",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3B6917DA1CFEF16E"
+   ]
+  },
+  {
+   "id": "0F05517E5CE17831",
+   "title": "Люк поезда",
+   "sub": "Люк в вагоне",
+   "desc": [
+    "Люк подходит для крыши и вентиляции."
+   ],
+   "x": 8.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:train_trapdoor",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7E1BF100F43E2285"
+   ]
+  },
+  {
+   "id": "3E424827E40102BD",
+   "title": "Свисток",
+   "sub": "Подаём сигнал",
+   "desc": [
+    "Свисток встраивается в вагон и подаёт гудок."
+   ],
+   "x": 8.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:steam_whistle",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:track",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "5A476EC56B83BCA9"
+   ]
+  },
+  {
+   "id": "4E9920555CE130CE",
+   "title": "Лампа Никси",
+   "sub": "Светящиеся цифры",
+   "desc": [
+    "Лампа показывает текст или число, которые вы запишете на бирке."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:nixie_tube",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "2256B71788516C06",
+   "title": "Дисплейная связь",
+   "sub": "Данные на табло",
+   "desc": [
+    "Связь выводит данные из механизмов на панели и лампы."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:display_link",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4E9920555CE130CE"
+   ]
+  },
+  {
+   "id": "7EB88B787B767C82",
+   "title": "Табло",
+   "sub": "Расписание на вокзале",
+   "desc": [
+    "Большое табло для станции: прибытие, отправление, состояние склада."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:display_board",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2256B71788516C06"
+   ]
+  },
+  {
+   "id": "3EE07BADDB99FDC1",
+   "title": "Первый поезд",
+   "sub": "Итог главы",
+   "desc": [
+    "Постройте две станции, соедините их путями и отправьте поезд по расписанию."
+   ],
+   "x": 8.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Запустить поезд по расписанию между двумя станциями"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    },
+    {
+     "type": "item",
+     "id": "create:brass_casing",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "2A275BB7BABD7211",
+    "2EE6E44503BD0F84"
+   ]
+  }
+ ]
+}

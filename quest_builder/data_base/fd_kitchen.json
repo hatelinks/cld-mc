@@ -1,0 +1,1302 @@
+{
+ "key": "fd_kitchen",
+ "id": "5ACD0D6236013053",
+ "title": "Огонь очага",
+ "subtitle": "Farmer's Delight — культуры, кухня и сытные блюда",
+ "group": "Хозяйство и путешествия",
+ "icon": "farmersdelight:cooking_pot",
+ "order": 11,
+ "quests": [
+  {
+   "id": "4417E1FE44840A6C",
+   "title": "Огонь очага",
+   "sub": "Farmer's Delight — еда без спешки",
+   "desc": [
+    "Farmer's Delight добавляет новые культуры, кухонную утварь и множество блюд.",
+    "Готовьте на плите и в котле, а не просто жарьте мясо."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": "farmersdelight:cooking_pot",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Открыть кулинарную книгу в JEI"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "id": "7A15B32A774A07BF",
+   "title": "Дикая капуста",
+   "sub": "Находка в мире",
+   "desc": [
+    "Дикие культуры растут на равнинах и в лесах, их можно собирать без посадки."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:wild_cabbages",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4417E1FE44840A6C"
+   ]
+  },
+  {
+   "id": "07BEDDC2F77CAFCA",
+   "title": "Дикий лук",
+   "sub": "Находка в мире",
+   "desc": [
+    "Лук растёт кустиками, его можно сорвать и посадить на грядке."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:wild_onions",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4417E1FE44840A6C"
+   ]
+  },
+  {
+   "id": "49AAE9E1B3776B9C",
+   "title": "Дикие помидоры",
+   "sub": "Находка в мире",
+   "desc": [
+    "Помидоры растут на кустах, из них получают семена."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:wild_tomatoes",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "4417E1FE44840A6C"
+   ]
+  },
+  {
+   "id": "508F61953C3A6DF4",
+   "title": "Дикий рис",
+   "sub": "Находка у воды",
+   "desc": [
+    "Рис растёт на мелководье и в болотах."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:wild_rice",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4417E1FE44840A6C"
+   ]
+  },
+  {
+   "id": "4FC12FD933396527",
+   "title": "Семена капусты",
+   "sub": "Первая грядка",
+   "desc": [
+    "Посадите семена на вспаханной земле и дождитесь урожая."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:cabbage_seeds",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7A15B32A774A07BF"
+   ]
+  },
+  {
+   "id": "2FFC29D991101634",
+   "title": "Семена помидоров",
+   "sub": "Растут вверх по верёвке",
+   "desc": [
+    "Помидоры можно подвязывать к верёвке, тогда они растут выше."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:tomato_seeds",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "49AAE9E1B3776B9C"
+   ]
+  },
+  {
+   "id": "6A92B09ECEEED6A0",
+   "title": "Лук",
+   "sub": "Овощ для супов",
+   "desc": [
+    "Лук сажают прямо как корнеплод."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:onion",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "07BEDDC2F77CAFCA"
+   ]
+  },
+  {
+   "id": "538254F77811FBB1",
+   "title": "Рис",
+   "sub": "Основа многих блюд",
+   "desc": [
+    "Рис сажают на мелководье."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:rice",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "508F61953C3A6DF4"
+   ]
+  },
+  {
+   "id": "33C0B5778E31F4E2",
+   "title": "Кремнёвый нож",
+   "sub": "Первый нож",
+   "desc": [
+    "Ножом режут блюда и добывают дополнительные ресурсы."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:flint_knife",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4417E1FE44840A6C"
+   ]
+  },
+  {
+   "id": "69EE87B4A98A7E97",
+   "title": "Разделочная доска",
+   "sub": "Рабочая поверхность",
+   "desc": [
+    "Положите предмет на доску и обработайте инструментом: нож, топор или лопата дают разные результаты."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:cutting_board",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "33C0B5778E31F4E2"
+   ]
+  },
+  {
+   "id": "3ECECC9DD293C01F",
+   "title": "Железный нож",
+   "sub": "Нож получше",
+   "desc": [
+    "Железный нож быстрее и прочнее кремнёвого."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:iron_knife",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "69EE87B4A98A7E97"
+   ]
+  },
+  {
+   "id": "6EECEFB454B69950",
+   "title": "Органический компост",
+   "sub": "Для улучшенной почвы",
+   "desc": [
+    "Компост делают из органических отходов, он превращается в богатую почву."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:organic_compost",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "69EE87B4A98A7E97"
+   ]
+  },
+  {
+   "id": "16294689367F64A3",
+   "title": "Богатая почва",
+   "sub": "Идеальная грядка",
+   "desc": [
+    "На богатой почве культуры растут быстрее и вырастают как на плодородной земле."
+   ],
+   "x": 8.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:rich_soil",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6EECEFB454B69950"
+   ]
+  },
+  {
+   "id": "3DD3CC9B1C24AD2B",
+   "title": "Печь-плита",
+   "sub": "Открытый огонь",
+   "desc": [
+    "Плита готовит блюда на сковороде и подогревает котёл сверху."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:stove",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "69EE87B4A98A7E97"
+   ]
+  },
+  {
+   "id": "1D9023A70D1F9B25",
+   "title": "Кухонный котёл",
+   "sub": "Готовим сложные блюда",
+   "desc": [
+    "Ставится на плиту или другой источник тепла, готовит блюда из нескольких ингредиентов."
+   ],
+   "x": 2.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:cooking_pot",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "3DD3CC9B1C24AD2B"
+   ]
+  },
+  {
+   "id": "2E001EE480F6587E",
+   "title": "Сковорода",
+   "sub": "Жарим и подогреваем",
+   "desc": [
+    "Сковорода работает на плите или костре и жарит яйца, стейки и другие блюда."
+   ],
+   "x": 4.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:skillet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3DD3CC9B1C24AD2B"
+   ]
+  },
+  {
+   "id": "1DA0E2ED21BA0EA0",
+   "title": "Плетёная корзина",
+   "sub": "Удобная тара",
+   "desc": [
+    "Корзина хранит предметы и умеет собирать их автоматически."
+   ],
+   "x": 6.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:wooden_basket",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "69EE87B4A98A7E97"
+   ]
+  },
+  {
+   "id": "235E2188A7EBC544",
+   "title": "Кухонный шкаф",
+   "sub": "Для хранения посуды",
+   "desc": [
+    "Шкафы бывают разных видов дерева."
+   ],
+   "x": 8.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:oak_cabinet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "69EE87B4A98A7E97"
+   ]
+  },
+  {
+   "id": "200DD3CA76404CE9",
+   "title": "Яичница",
+   "sub": "Первое блюдо",
+   "desc": [
+    "Жарится на сковороде, лёгкое питательное блюдо."
+   ],
+   "x": 0.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:fried_egg",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "2E001EE480F6587E"
+   ]
+  },
+  {
+   "id": "2394837644B679CA",
+   "title": "Овощной суп",
+   "sub": "Первое блюдо в котле",
+   "desc": [
+    "Суп готовят в кухонном котле."
+   ],
+   "x": 2.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:vegetable_soup",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25",
+    "4FC12FD933396527"
+   ]
+  },
+  {
+   "id": "7992FFADDFF26768",
+   "title": "Томатный соус",
+   "sub": "Основа для пасты",
+   "desc": [
+    "Соус нужен для паст и других блюд."
+   ],
+   "x": 4.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:tomato_sauce",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25",
+    "2FFC29D991101634"
+   ]
+  },
+  {
+   "id": "0EA5A9F71EB9DA33",
+   "title": "Голубцы",
+   "sub": "Сытный обед",
+   "desc": [
+    "Капуста с начинкой, сытное блюдо."
+   ],
+   "x": 6.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:cabbage_rolls",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25",
+    "4FC12FD933396527"
+   ]
+  },
+  {
+   "id": "3654BBB9E7CDEF94",
+   "title": "Жареный рис",
+   "sub": "Рис в деле",
+   "desc": [
+    "Рис с овощами и яйцом, быстрая и сытная еда."
+   ],
+   "x": 8.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:fried_rice",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25",
+    "538254F77811FBB1"
+   ]
+  },
+  {
+   "id": "0CF7DFC9109616B1",
+   "title": "Бекон с яйцами",
+   "sub": "Завтрак путешественника",
+   "desc": [
+    "Одно из лучших блюд ранней игры."
+   ],
+   "x": 0.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:bacon_and_eggs",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "200DD3CA76404CE9"
+   ]
+  },
+  {
+   "id": "50055304B25D21EC",
+   "title": "Пельмени",
+   "sub": "Тесто и начинка",
+   "desc": [
+    "Пельмени дают питание на долгое время."
+   ],
+   "x": 2.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:dumplings",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25"
+   ]
+  },
+  {
+   "id": "326B6E469B61C6B3",
+   "title": "Луковый суп",
+   "sub": "Согреваем",
+   "desc": [
+    "Простой согревающий суп."
+   ],
+   "x": 4.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:onion_soup",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25",
+    "6A92B09ECEEED6A0"
+   ]
+  },
+  {
+   "id": "679355F56DE39465",
+   "title": "Тушёная говядина",
+   "sub": "Сытное рагу",
+   "desc": [
+    "Рагу даёт долгую сытость."
+   ],
+   "x": 6.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:beef_stew",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25"
+   ]
+  },
+  {
+   "id": "0888D4EA233DA314",
+   "title": "Паста с фрикадельками",
+   "sub": "Итальянский вечер",
+   "desc": [
+    "Требует тесто, соус и мясо."
+   ],
+   "x": 8.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:pasta_with_meatballs",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7992FFADDFF26768"
+   ]
+  },
+  {
+   "id": "0808F3DD1211B132",
+   "title": "Рататуй",
+   "sub": "Овощное рагу",
+   "desc": [
+    "Много овощей, много сытости."
+   ],
+   "x": 0.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:ratatouille",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7992FFADDFF26768",
+    "6A92B09ECEEED6A0"
+   ]
+  },
+  {
+   "id": "706A94E30091CAF4",
+   "title": "Гамбургер",
+   "sub": "Фастфуд",
+   "desc": [
+    "Котлета, булка и овощи."
+   ],
+   "x": 2.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:hamburger",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25"
+   ]
+  },
+  {
+   "id": "2F57E62634921180",
+   "title": "Пастуший пирог",
+   "sub": "Запеканка",
+   "desc": [
+    "Блюдо из мяса и картофеля."
+   ],
+   "x": 4.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:shepherds_pie",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "679355F56DE39465"
+   ]
+  },
+  {
+   "id": "00AC5CEA2CEA6FE0",
+   "title": "Жареная курица",
+   "sub": "Праздничное блюдо",
+   "desc": [
+    "Целая курица со специями."
+   ],
+   "x": 6.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:roast_chicken",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25"
+   ]
+  },
+  {
+   "id": "410E18EFBC56D533",
+   "title": "Ветчина в мёде",
+   "sub": "Праздничный стол",
+   "desc": [
+    "Одно из самых сытных блюд."
+   ],
+   "x": 8.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:honey_glazed_ham",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "00AC5CEA2CEA6FE0"
+   ]
+  },
+  {
+   "id": "35F5F21626122E77",
+   "title": "Корж для пирога",
+   "sub": "Основа пирогов",
+   "desc": [
+    "Из коржа получаются все пироги."
+   ],
+   "x": 0.0,
+   "y": 16.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:pie_crust",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "69EE87B4A98A7E97"
+   ]
+  },
+  {
+   "id": "60635A1A83272E16",
+   "title": "Яблочный пирог",
+   "sub": "Сладкая выпечка",
+   "desc": [
+    "Пирог можно нарезать на порции."
+   ],
+   "x": 2.0,
+   "y": 16.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:apple_pie",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "35F5F21626122E77"
+   ]
+  },
+  {
+   "id": "52FCB35DE57E823C",
+   "title": "Чизкейк",
+   "sub": "Десерт",
+   "desc": [
+    "Пирог с ягодами."
+   ],
+   "x": 4.0,
+   "y": 16.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:sweet_berry_cheesecake",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "35F5F21626122E77"
+   ]
+  },
+  {
+   "id": "0AB1FA08948D976B",
+   "title": "Печенье с мёдом",
+   "sub": "Перекус",
+   "desc": [
+    "Простое печенье для походов."
+   ],
+   "x": 6.0,
+   "y": 16.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:honey_cookie",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "69EE87B4A98A7E97"
+   ]
+  },
+  {
+   "id": "2B9E9AD653646118",
+   "title": "Горячее какао",
+   "sub": "Согревает",
+   "desc": [
+    "Напиток для холодных ночей."
+   ],
+   "x": 8.0,
+   "y": 16.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:hot_cocoa",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25"
+   ]
+  },
+  {
+   "id": "438F8BEBC2D63BA7",
+   "title": "Холст",
+   "sub": "Ткань для декора",
+   "desc": [
+    "Холст нужен для вывесок и ковров."
+   ],
+   "x": 0.0,
+   "y": 18.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:canvas",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "69EE87B4A98A7E97"
+   ]
+  },
+  {
+   "id": "3E99EAB7C1C46EB9",
+   "title": "Холщовая вывеска",
+   "sub": "Вывеска",
+   "desc": [
+    "Вывески можно красить в разные цвета."
+   ],
+   "x": 2.0,
+   "y": 18.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:canvas_sign",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "438F8BEBC2D63BA7"
+   ]
+  },
+  {
+   "id": "0B6DBDA54FC55170",
+   "title": "Холщовый ковёр",
+   "sub": "Уют",
+   "desc": [
+    "Ковёр для кухни или дома."
+   ],
+   "x": 4.0,
+   "y": 18.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:canvas_rug",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "438F8BEBC2D63BA7"
+   ]
+  },
+  {
+   "id": "7FF91844C374197E",
+   "title": "Верёвка",
+   "sub": "Для помидоров и забора",
+   "desc": [
+    "Верёвка нужна для подвязки культур и заборов."
+   ],
+   "x": 6.0,
+   "y": 18.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:rope",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "69EE87B4A98A7E97"
+   ]
+  },
+  {
+   "id": "0A8B64108053BA77",
+   "title": "Татами",
+   "sub": "Пол для дома",
+   "desc": [
+    "Татами хорошо смотрится в японском стиле."
+   ],
+   "x": 8.0,
+   "y": 18.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "farmersdelight:tatami",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "69EE87B4A98A7E97"
+   ]
+  }
+ ]
+}

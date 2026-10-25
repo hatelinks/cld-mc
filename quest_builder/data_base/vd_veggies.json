@@ -1,0 +1,890 @@
+{
+ "key": "vd_veggies",
+ "id": "50816B39F400E877",
+ "title": "Грядки с зеленью",
+ "subtitle": "Veggies Delight — овощи, салаты и сытные блюда",
+ "group": "Хозяйство и путешествия",
+ "icon": "veggiesdelight:broccoli",
+ "order": 11.5,
+ "quests": [
+  {
+   "id": "5B13827920C96059",
+   "title": "Грядки с зеленью",
+   "sub": "Veggies Delight — больше овощей на столе",
+   "desc": [
+    "Veggies Delight добавляет дикие и посевные овощи и много блюд для кухни из Farmer's Delight.",
+    "Готовьте в котле на плите, как и раньше."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": "veggiesdelight:broccoli",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Найти дикие овощи в мире"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "id": "33C18F854C790A50",
+   "title": "Дикий чеснок",
+   "sub": "Найти в мире",
+   "desc": [
+    "Дикие овощи растут в разных биомах, их можно собирать и сажать."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:wild_garlic",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5B13827920C96059"
+   ]
+  },
+  {
+   "id": "653102109B710187",
+   "title": "Дикая брокколи",
+   "sub": "Найти в мире",
+   "desc": [
+    "Брокколи пригодится в супах и салатах."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:wild_broccoli",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5B13827920C96059"
+   ]
+  },
+  {
+   "id": "4D459FEC3BDE0931",
+   "title": "Дикий цуккини",
+   "sub": "Найти в мире",
+   "desc": [
+    "Цуккини годится для жарки и начинки."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:wild_zucchinis",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "5B13827920C96059"
+   ]
+  },
+  {
+   "id": "4FFEDB6897050467",
+   "title": "Дикий батат",
+   "sub": "Найти в мире",
+   "desc": [
+    "Батат даёт сладкие блюда."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:wild_sweet_potatoes",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5B13827920C96059"
+   ]
+  },
+  {
+   "id": "56692E80747E7C29",
+   "title": "Дикая репа",
+   "sub": "Найти в мире",
+   "desc": [
+    "Репа подходит для тушёных блюд."
+   ],
+   "x": 8.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:wild_turnips",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5B13827920C96059"
+   ]
+  },
+  {
+   "id": "3E2FC6E79110729B",
+   "title": "Дикий перец",
+   "sub": "Найти в мире",
+   "desc": [
+    "Болгарский перец используется в начинках."
+   ],
+   "x": 10.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:wild_bellpeppers",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5B13827920C96059"
+   ]
+  },
+  {
+   "id": "68E51F2418192256",
+   "title": "Чеснок",
+   "sub": "Грядка чеснока",
+   "desc": [
+    "Чеснок сажают дольками."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:garlic",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:carrot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "33C18F854C790A50"
+   ]
+  },
+  {
+   "id": "76E37EF338FB2773",
+   "title": "Семена брокколи",
+   "sub": "Грядка брокколи",
+   "desc": [
+    "Посадите семена и ждите урожая."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:broccoli_seeds",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "653102109B710187"
+   ]
+  },
+  {
+   "id": "2CF54A1FCC965932",
+   "title": "Семена цуккини",
+   "sub": "Грядка цуккини",
+   "desc": [
+    "Посадите семена и ждите урожая."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:zucchini_seeds",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4D459FEC3BDE0931"
+   ]
+  },
+  {
+   "id": "0827532257C43B0B",
+   "title": "Батат",
+   "sub": "Сладкий корнеплод",
+   "desc": [
+    "Сажается как картофель."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:sweet_potato",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4FFEDB6897050467"
+   ]
+  },
+  {
+   "id": "1E6AD7D6363C90B6",
+   "title": "Репа",
+   "sub": "Корнеплод",
+   "desc": [
+    "Сажается как картофель."
+   ],
+   "x": 8.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:turnip",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "56692E80747E7C29"
+   ]
+  },
+  {
+   "id": "51345DC639C6BDC0",
+   "title": "Семена перца",
+   "sub": "Грядка перца",
+   "desc": [
+    "Посадите семена и ждите урожая."
+   ],
+   "x": 10.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:bellpepper_seeds",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3E2FC6E79110729B"
+   ]
+  },
+  {
+   "id": "56C6074882958F63",
+   "title": "Брокколи",
+   "sub": "Урожай",
+   "desc": [
+    "Из брокколи готовят супы и салаты."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:broccoli",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "76E37EF338FB2773"
+   ]
+  },
+  {
+   "id": "7C127A168C098708",
+   "title": "Цуккини",
+   "sub": "Урожай",
+   "desc": [
+    "Из цуккини готовят блюда с начинкой."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:zucchini",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2CF54A1FCC965932"
+   ]
+  },
+  {
+   "id": "30F5AC669E2C7FEE",
+   "title": "Цветная капуста",
+   "sub": "Урожай",
+   "desc": [
+    "Из цветной капусты делают хлеб и супы."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:cauliflower",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:carrot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "76E37EF338FB2773"
+   ]
+  },
+  {
+   "id": "391954D597E11B0C",
+   "title": "Перец",
+   "sub": "Урожай",
+   "desc": [
+    "Перец идёт в начинки."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:bellpepper",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "51345DC639C6BDC0"
+   ]
+  },
+  {
+   "id": "7FE2BE8F5CDAB27D",
+   "title": "Жареный чеснок",
+   "sub": "Пряность",
+   "desc": [
+    "Жареный чеснок усиливает вкус блюд."
+   ],
+   "x": 8.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:roasted_garlic_clove",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "68E51F2418192256",
+    "2E001EE480F6587E"
+   ]
+  },
+  {
+   "id": "1C13A48C4010242A",
+   "title": "Чесночный хлеб",
+   "sub": "Простой гарнир",
+   "desc": [
+    "Хлеб с чесноком к любому блюду."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:garlic_bread",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "68E51F2418192256",
+    "1D9023A70D1F9B25"
+   ]
+  },
+  {
+   "id": "6FB5E3E616FC24D7",
+   "title": "Суп из брокколи",
+   "sub": "Овощной суп",
+   "desc": [
+    "Нежный суп с брокколи."
+   ],
+   "x": 2.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:broccoli_soup",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "56C6074882958F63",
+    "1D9023A70D1F9B25"
+   ]
+  },
+  {
+   "id": "48348E8484A2D30B",
+   "title": "Цезарь",
+   "sub": "Салат",
+   "desc": [
+    "Салат с сыром и курицей."
+   ],
+   "x": 4.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:cesar_salad",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "56C6074882958F63"
+   ]
+  },
+  {
+   "id": "7DCD0EB2ED4D835E",
+   "title": "Запечённые овощи",
+   "sub": "Овощи",
+   "desc": [
+    "Овощи, запечённые целиком."
+   ],
+   "x": 6.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:roasted_vegetables",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7C127A168C098708",
+    "1D9023A70D1F9B25"
+   ]
+  },
+  {
+   "id": "231DF19ADB9F3EDD",
+   "title": "Фаршированные цуккини",
+   "sub": "Сытное блюдо",
+   "desc": [
+    "Цуккини с начинкой."
+   ],
+   "x": 8.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:stuffed_zucchinis",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7C127A168C098708"
+   ]
+  },
+  {
+   "id": "120A2B59E042EA99",
+   "title": "Паста с брокколи",
+   "sub": "Паста",
+   "desc": [
+    "Паста с овощами."
+   ],
+   "x": 10.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:pasta_with_broccoli",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:carrot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "56C6074882958F63",
+    "1D9023A70D1F9B25"
+   ]
+  },
+  {
+   "id": "150B7A4206B5B920",
+   "title": "Картофельное пюре",
+   "sub": "Гарнир",
+   "desc": [
+    "Классический гарнир."
+   ],
+   "x": 0.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:mashed_potatoes",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25"
+   ]
+  },
+  {
+   "id": "538ECF3A08F30750",
+   "title": "Лазанья",
+   "sub": "Запеканка",
+   "desc": [
+    "Сытное блюдо для компании."
+   ],
+   "x": 2.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:lasagna_slice",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7C127A168C098708",
+    "1D9023A70D1F9B25"
+   ]
+  },
+  {
+   "id": "578A26F9C00918F8",
+   "title": "Рыба с картошкой",
+   "sub": "Британский обед",
+   "desc": [
+    "Хрустящая рыба и картофель."
+   ],
+   "x": 4.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:fish_and_chips",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2E001EE480F6587E"
+   ]
+  },
+  {
+   "id": "11D31FFC8A0BEA08",
+   "title": "Кекс из батата",
+   "sub": "Десерт",
+   "desc": [
+    "Сладкий кекс."
+   ],
+   "x": 6.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:sweet_potato_cupcake",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "0827532257C43B0B"
+   ]
+  },
+  {
+   "id": "2238634C0DD50C7E",
+   "title": "Пирог из батата",
+   "sub": "Пирог",
+   "desc": [
+    "Сладкий пирог."
+   ],
+   "x": 8.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:sweet_potato_pie",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0827532257C43B0B"
+   ]
+  },
+  {
+   "id": "7DBB44D4090F2753",
+   "title": "Брауни",
+   "sub": "Необычный десерт",
+   "desc": [
+    "Шоколадный десерт со свёклой."
+   ],
+   "x": 10.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "veggiesdelight:beetroot_brownie",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1D9023A70D1F9B25"
+   ]
+  }
+ ]
+}

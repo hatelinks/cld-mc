@@ -1,0 +1,1826 @@
+{
+ "key": "act_explore",
+ "id": "",
+ "title": "Дальние горизонты",
+ "subtitle": "Исследование мира: биомы, руины, города",
+ "group": "Хозяйство и путешествия",
+ "icon": "minecraft:filled_map",
+ "order": 19,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Дальние горизонты",
+   "sub": "Мир большой — посмотрите его",
+   "desc": [
+    "Здесь квесты на путешествия. Задачи засчитываются сами, когда вы входите в биом или постройку.",
+    "Компасы из главы «Путеводная стрелка» помогут найти цели быстрее."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "minecraft:filled_map",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "biomes_0",
+   "title": "Тёплые края",
+   "sub": "Биомы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Посетите все биомы: Пустыня, Саванна, Бесплодные земли, Джунгли.",
+    "Природный компас найдёт нужный биом за вас."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "biome",
+     "id": "minecraft:desert",
+     "title": "Пустыня"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:savanna",
+     "title": "Саванна"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:badlands",
+     "title": "Бесплодные земли"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:jungle",
+     "title": "Джунгли"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "act_explore/intro"
+   ]
+  },
+  {
+   "k": "biomes_1",
+   "title": "Леса и луга",
+   "sub": "Биомы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Посетите все биомы: Лес, Березняк, Тёмный лес, Вишнёвая роща, Цветочный лес, Луг.",
+    "Природный компас найдёт нужный биом за вас."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "biome",
+     "id": "minecraft:forest",
+     "title": "Лес"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:birch_forest",
+     "title": "Березняк"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:dark_forest",
+     "title": "Тёмный лес"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:cherry_grove",
+     "title": "Вишнёвая роща"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:flower_forest",
+     "title": "Цветочный лес"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:meadow",
+     "title": "Луг"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "act_explore/biomes_0"
+   ]
+  },
+  {
+   "k": "biomes_2",
+   "title": "Холод и горы",
+   "sub": "Биомы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Посетите все биомы: Тайга, Снежная равнина, Ледяные шипы, Зубчатые пики, Заснеженные пики.",
+    "Природный компас найдёт нужный биом за вас."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "biome",
+     "id": "minecraft:taiga",
+     "title": "Тайга"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:snowy_plains",
+     "title": "Снежная равнина"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:ice_spikes",
+     "title": "Ледяные шипы"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:jagged_peaks",
+     "title": "Зубчатые пики"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:frozen_peaks",
+     "title": "Заснеженные пики"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "act_explore/biomes_1"
+   ]
+  },
+  {
+   "k": "biomes_3",
+   "title": "Вода и болота",
+   "sub": "Биомы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Посетите все биомы: Болото, Мангровое болото, Пляж, Грибные поля, Глубокий океан, Тёплый океан.",
+    "Природный компас найдёт нужный биом за вас."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "biome",
+     "id": "minecraft:swamp",
+     "title": "Болото"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:mangrove_swamp",
+     "title": "Мангровое болото"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:beach",
+     "title": "Пляж"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:mushroom_fields",
+     "title": "Грибные поля"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:deep_ocean",
+     "title": "Глубокий океан"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:warm_ocean",
+     "title": "Тёплый океан"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "act_explore/biomes_2"
+   ]
+  },
+  {
+   "k": "biomes_4",
+   "title": "Подземелья",
+   "sub": "Биомы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Посетите все биомы: Пышные пещеры, Карстовые пещеры, Глубокая тьма, Морозные пещеры, Затерянные пещеры.",
+    "Природный компас найдёт нужный биом за вас."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "biome",
+     "id": "minecraft:lush_caves",
+     "title": "Пышные пещеры"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:dripstone_caves",
+     "title": "Карстовые пещеры"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:deep_dark",
+     "title": "Глубокая тьма"
+    },
+    {
+     "type": "biome",
+     "id": "yungscavebiomes:frosted_caves",
+     "title": "Морозные пещеры"
+    },
+    {
+     "type": "biome",
+     "id": "yungscavebiomes:lost_caves",
+     "title": "Затерянные пещеры"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "act_explore/biomes_3"
+   ]
+  },
+  {
+   "k": "biomes_5",
+   "title": "Нижний мир",
+   "sub": "Биомы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Посетите все биомы: Пустоши Незера, Багровый лес, Искажённый лес, Долина песка душ, Базальтовые дельты.",
+    "Природный компас найдёт нужный биом за вас."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "biome",
+     "id": "minecraft:nether_wastes",
+     "title": "Пустоши Незера"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:crimson_forest",
+     "title": "Багровый лес"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:warped_forest",
+     "title": "Искажённый лес"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:soul_sand_valley",
+     "title": "Долина песка душ"
+    },
+    {
+     "type": "biome",
+     "id": "minecraft:basalt_deltas",
+     "title": "Базальтовые дельты"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "act_explore/biomes_4"
+   ]
+  },
+  {
+   "k": "struct_hdr_idas",
+   "title": "Руины и легенды",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Integrated Dungeons and Structures разбросал по миру замки, таверны, склепы и лабиринты.",
+    "Каждая задача засчитывается, когда вы входите в постройку."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Начать поиски построек"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "minecraft:golden_carrot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "act_explore/intro"
+   ]
+  },
+  {
+   "k": "idas_castle",
+   "title": "Замок",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Замок».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:castle",
+     "title": "Замок"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_haunted_manor",
+   "title": "Особняк с привидениями",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Особняк с привидениями».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:haunted_manor",
+     "title": "Особняк с привидениями"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_labyrinth",
+   "title": "Лабиринт",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Лабиринт».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:labyrinth",
+     "title": "Лабиринт"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_pillager_fortress",
+   "title": "Крепость разбойников",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Крепость разбойников».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:pillager_fortress",
+     "title": "Крепость разбойников"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    },
+    {
+     "type": "item",
+     "id": "minecraft:ender_pearl",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_necromancers_spire",
+   "title": "Шпиль некроманта",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Шпиль некроманта».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:necromancers_spire",
+     "title": "Шпиль некроманта"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_abandoned_lighthouse",
+   "title": "Заброшенный маяк",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Заброшенный маяк».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:abandoned_lighthouse",
+     "title": "Заброшенный маяк"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_bazaar",
+   "title": "Базар",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Базар».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:bazaar",
+     "title": "Базар"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_tudor_pub",
+   "title": "Таверна в стиле Тюдоров",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Таверна в стиле Тюдоров».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:tudor_pub",
+     "title": "Таверна в стиле Тюдоров"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_treetop_tavern",
+   "title": "Таверна на дереве",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Таверна на дереве».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:treetop_tavern",
+     "title": "Таверна на дереве"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_frozen_crypt",
+   "title": "Ледяной склеп",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Ледяной склеп».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:frozen_crypt",
+     "title": "Ледяной склеп"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_ruins_of_the_deep",
+   "title": "Руины глубин",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Руины глубин».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:ruins_of_the_deep",
+     "title": "Руины глубин"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_tinkers_citadel",
+   "title": "Цитадель мастеров",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Цитадель мастеров».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:tinkers_citadel",
+     "title": "Цитадель мастеров"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_tree_of_wisdom",
+   "title": "Древо мудрости",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Древо мудрости».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:tree_of_wisdom",
+     "title": "Древо мудрости"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_snifferhenge",
+   "title": "Нюхачий круг",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Нюхачий круг».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:snifferhenge",
+     "title": "Нюхачий круг"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_ancient_mines",
+   "title": "Древние шахты",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Древние шахты».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:ancient_mines",
+     "title": "Древние шахты"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_ruined_church",
+   "title": "Разрушенная церковь",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Разрушенная церковь».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:ruined_church",
+     "title": "Разрушенная церковь"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_collectors_museum",
+   "title": "Музей коллекционера",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Музей коллекционера».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:collectors_museum",
+     "title": "Музей коллекционера"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_redhorn_guild",
+   "title": "Гильдия Красного Рога",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Гильдия Красного Рога».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:redhorn_guild",
+     "title": "Гильдия Красного Рога"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_pumpkin_cafe",
+   "title": "Тыквенное кафе",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Тыквенное кафе».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:pumpkin_cafe",
+     "title": "Тыквенное кафе"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "idas_wacky_wares",
+   "title": "Лавка чудес",
+   "sub": "IDAS",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Лавка чудес».",
+    "Explorer's Compass ищет постройки по названию."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "idas:wacky_wares",
+     "title": "Лавка чудес"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_idas"
+   ]
+  },
+  {
+   "k": "struct_hdr_rs",
+   "title": "Новые лица старых построек",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Repurposed Structures добавляет варианты привычных построек для разных биомов: особняки, пирамиды, шахты, города."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Начать поиски"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_explore/intro"
+   ]
+  },
+  {
+   "k": "rs_city_nether",
+   "title": "Незерский город",
+   "sub": "Repurposed Structures",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Незерский город»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "repurposed_structures:city_nether",
+     "title": "Незерский город"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_rs"
+   ]
+  },
+  {
+   "k": "rs_city_overworld",
+   "title": "Город в обычном мире",
+   "sub": "Repurposed Structures",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Город в обычном мире»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "repurposed_structures:city_overworld",
+     "title": "Город в обычном мире"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_rs"
+   ]
+  },
+  {
+   "k": "rs_mansion_birch",
+   "title": "Березовый особняк",
+   "sub": "Repurposed Structures",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Березовый особняк»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "repurposed_structures:mansion_birch",
+     "title": "Березовый особняк"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    },
+    {
+     "type": "item",
+     "id": "minecraft:golden_carrot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_rs"
+   ]
+  },
+  {
+   "k": "rs_mansion_desert",
+   "title": "Пустынный особняк",
+   "sub": "Repurposed Structures",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Пустынный особняк»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "repurposed_structures:mansion_desert",
+     "title": "Пустынный особняк"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_rs"
+   ]
+  },
+  {
+   "k": "rs_ancient_city_ocean",
+   "title": "Подводный древний город",
+   "sub": "Repurposed Structures",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Подводный древний город»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "repurposed_structures:ancient_city_ocean",
+     "title": "Подводный древний город"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_rs"
+   ]
+  },
+  {
+   "k": "rs_fortress_jungle",
+   "title": "Крепость в джунглях",
+   "sub": "Repurposed Structures",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Крепость в джунглях»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "repurposed_structures:fortress_jungle",
+     "title": "Крепость в джунглях"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_rs"
+   ]
+  },
+  {
+   "k": "rs_bastion_underground",
+   "title": "Подземный бастион",
+   "sub": "Repurposed Structures",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Подземный бастион»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "repurposed_structures:bastion_underground",
+     "title": "Подземный бастион"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_rs"
+   ]
+  },
+  {
+   "k": "rs_pyramid_jungle",
+   "title": "Пирамида джунглей",
+   "sub": "Repurposed Structures",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Пирамида джунглей»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "repurposed_structures:pyramid_jungle",
+     "title": "Пирамида джунглей"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_rs"
+   ]
+  },
+  {
+   "k": "rs_monument_desert",
+   "title": "Пустынный монумент",
+   "sub": "Repurposed Structures",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Пустынный монумент»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "repurposed_structures:monument_desert",
+     "title": "Пустынный монумент"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_rs"
+   ]
+  },
+  {
+   "k": "rs_stronghold_nether",
+   "title": "Крепость Края в Незере",
+   "sub": "Repurposed Structures",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите постройку «Крепость Края в Незере»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "repurposed_structures:stronghold_nether",
+     "title": "Крепость Края в Незере"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_rs"
+   ]
+  },
+  {
+   "k": "struct_hdr_cs",
+   "title": "Следы инженеров",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Create: Structures Arise добавляет руины фабрик, поезда, воздушные корабли разбойников и мельницы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Начать поиски"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_explore/intro"
+   ]
+  },
+  {
+   "k": "csa_windmill",
+   "title": "create_structures_arise:structures/windmill",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/windmill"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    },
+    {
+     "type": "item",
+     "id": "minecraft:ender_pearl",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "csa_createlosttrainstation",
+   "title": "create_structures_arise:structures/createlosttrainstation",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/createlosttrainstation"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "csa_pillagersteampunkairship",
+   "title": "create_structures_arise:structures/pillagersteampunkairship",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/pillagersteampunkairship"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "csa_towerofochrum",
+   "title": "create_structures_arise:structures/towerofochrum",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/towerofochrum"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "csa_crimsite_tower",
+   "title": "create_structures_arise:structures/crimsite_tower",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/crimsite_tower"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "csa_create_ruined_castle",
+   "title": "create_structures_arise:structures/create_ruined_castle",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/create_ruined_castle"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "csa_darkcastle",
+   "title": "create_structures_arise:structures/darkcastle",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/darkcastle"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "csa_obsidiantemple",
+   "title": "create_structures_arise:structures/obsidiantemple",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/obsidiantemple"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "csa_minetrain",
+   "title": "create_structures_arise:structures/minetrain",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/minetrain"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "csa_chocolate_pit",
+   "title": "create_structures_arise:structures/chocolate_pit",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/chocolate_pit"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "csa_honey_pit",
+   "title": "create_structures_arise:structures/honey_pit",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/honey_pit"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "csa_createcushercrane",
+   "title": "create_structures_arise:structures/createcushercrane",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "create_structures_arise:structures/createcushercrane"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/struct_hdr_cs"
+   ]
+  },
+  {
+   "k": "galleon",
+   "title": "Галеон",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Затонувший корабль Supplementaries с сокровищами."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "supplementaries:galleon",
+     "title": "Галеон"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 50
+    }
+   ],
+   "deps": [
+    "act_explore/intro"
+   ]
+  },
+  {
+   "k": "road_sign",
+   "title": "Дорожный указатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Указатели у дорог показывают путь к ближайшей деревне."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "supplementaries:adventure/road_sign"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_explore/intro"
+   ]
+  },
+  {
+   "k": "farm_struct",
+   "title": "Ферма Farmer's Delight",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "FarmersStructures добавляет фермы и дома поваров с кухонной утварью Farmer's Delight."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "farmers_structures:cooks",
+     "title": "Дом повара"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/intro"
+   ]
+  },
+  {
+   "k": "barbarian_camp",
+   "title": "Лагерь варваров",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Лагерь налётчиков MineColonies. Осторожно: там опасно!"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecolonies:barbarian_camp",
+     "title": "Лагерь варваров"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 60
+    }
+   ],
+   "deps": [
+    "act_explore/intro"
+   ]
+  },
+  {
+   "k": "dims",
+   "title": "Три мира",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Побывайте в Незере и в Крае."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "dimension",
+     "id": "minecraft:the_nether",
+     "title": "Незер"
+    },
+    {
+     "type": "dimension",
+     "id": "minecraft:the_end",
+     "title": "Край"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 60
+    }
+   ],
+   "deps": [
+    "act_explore/biomes_5"
+   ]
+  },
+  {
+   "k": "fog_menu",
+   "title": "Туманы и небо",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6AtmosphericA:&r в каждом биоме свой туман и цвет неба. Клавишу меню настроек тумана можно назначить в управлении."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Открыть меню AtmosphericA"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "act_explore/intro"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Великий путешественник",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вы повидали биомы, руины и города этого мира.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "minecraft:diamond",
+     "count": 4
+    },
+    {
+     "type": "item",
+     "id": "minecraft:ender_pearl",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "act_explore/dims",
+    "act_explore/idas_castle",
+    "act_explore/idas_haunted_manor",
+    "act_explore/idas_labyrinth"
+   ],
+   "finale": true
+  }
+ ]
+}
