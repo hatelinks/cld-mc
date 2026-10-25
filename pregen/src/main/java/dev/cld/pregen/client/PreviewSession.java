@@ -39,6 +39,7 @@ final class PreviewSession {
         this.maxY = ow.getMaxBuildHeight() - 1;
         this.sea = ow.getSeaLevel();
         MapData.reset();
+        DhCompat.pause();
         server.execute(() -> server.tickRateManager().setFrozen(true));
     }
 
@@ -58,6 +59,7 @@ final class PreviewSession {
         });
         ClientHooks.session = null;
         ClientHooks.restoreRenderDistance();
+        DhCompat.resume();
         Minecraft.getInstance().setScreen(null);
     }
 
@@ -77,6 +79,7 @@ final class PreviewSession {
             LOG.warn("Не удалось удалить мир предпросмотра {}", levelId, e);
         }
         MapData.reset();
+        DhCompat.resume();
         if (newSeed == null) ClientHooks.restoreRenderDistance();
         if (origin == null) {
             mc.setScreen(new SelectWorldScreen(new TitleScreen()));
