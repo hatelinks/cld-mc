@@ -12,10 +12,16 @@ public final class Macro {
     public static final Style[] STYLES = Style.values();
 
     final long seed;
+    public final Options opt;
+    public final double cs;
     final Simplex wA, wB, wC, wD, coastN, hills, ridge1, ridge2, rmf, peak, temp, humid, trench, island, lift, needle, rWarpA, rWarpB;
 
-    public Macro(long seed) {
+    public Macro(long seed) { this(seed, Options.DEFAULT); }
+
+    public Macro(long seed, Options opt) {
         this.seed = seed;
+        this.opt = opt;
+        cs = opt.cs();
         long s = seed * 0x9E3779B97F4A7C15L;
         wA = new Simplex(s + 1); wB = new Simplex(s + 2); wC = new Simplex(s + 3); wD = new Simplex(s + 4);
         coastN = new Simplex(s + 5); hills = new Simplex(s + 6); ridge1 = new Simplex(s + 7); ridge2 = new Simplex(s + 8);
@@ -69,8 +75,8 @@ public final class Macro {
     public static double hashD(long seed, long a, long b) { return (hash(seed, a, b) >>> 11) * 0x1.0p-53; }
 
     // ---------- климат, [-1, 1]
-    public double temperature(double x, double z) { return clamp(fbm(temp, x / 8000, z / 8000, 3) * 1.9, -1, 1); }
-    public double humidity(double x, double z) { return clamp(fbm(humid, x / 6000, z / 6000, 3) * 1.9, -1, 1); }
+    public double temperature(double x, double z) { return clamp(fbm(temp, x / (8000 * opt.climateMul()), z / (8000 * opt.climateMul()), 3) * 1.9, -1, 1); }
+    public double humidity(double x, double z) { return clamp(fbm(humid, x / (6000 * opt.climateMul()), z / (6000 * opt.climateMul()), 3) * 1.9, -1, 1); }
 
     // ---------- континенты
     /** Результат разбора точки: ячейка континента и расстояние до берега (плюс — суша). */
@@ -80,14 +86,14 @@ public final class Macro {
         public double coast, qx, qz;
     }
 
-    public double cellCenterX(int i, int j) { return (i + 0.5 + 0.6 * (hashD(seed, i * 2L, j) - 0.5)) * CS; }
-    public double cellCenterZ(int i, int j) { return (j + 0.5 + 0.6 * (hashD(seed, i * 2L + 1, j) - 0.5)) * CS; }
+    public double cellCenterX(int i, int j) { return (i + 0.5 + 0.6 * (hashD(seed, i * 2L, j) - 0.5)) * cs; }
+    public double cellCenterZ(int i, int j) { return (j + 0.5 + 0.6 * (hashD(seed, i * 2L + 1, j) - 0.5)) * cs; }
     public boolean landCell(int i, int j) { return hashD(seed ^ 0x55L, i, j) > 0.15; }
 
     public Cont cont(double x, double z, Cont out) {
         double qx = x + 1400 * wA.noise(x / 3800, z / 3800) + 160 * wC.noise(x / 650, z / 650);
         double qz = z + 1400 * wB.noise(x / 3800, z / 3800) + 160 * wD.noise(x / 650, z / 650);
-        int gi = (int) Math.floor(qx / CS), gj = (int) Math.floor(qz / CS);
+        int gi = (int) Math.floor(qx / cs), gj = (int) Math.floor(qz / cs);
         int bi = 0, bj = 0;
         double bd = Double.MAX_VALUE;
         for (int i = gi - 1; i <= gi + 1; i++)
@@ -108,7 +114,7 @@ public final class Macro {
                 // ширина пролива своя у каждой пары соседей: от узких проливов до морей
                 long a1 = (long) bi * 73856093L ^ (long) bj * 19349663L, a2 = (long) i * 73856093L ^ (long) j * 19349663L;
                 double ph = hashD(seed ^ 0x5EAL, Math.min(a1, a2), Math.max(a1, a2));
-                double width = 600 + 2600 * ph * ph * ph;
+                double width = (600 + 2600 * ph * ph * ph) * Math.min(1, cs / 14000);
                 coast = Math.min(coast, e - width - wn);
             }
         out.ci = bi; out.cj = bj; out.qx = qx; out.qz = qz;
@@ -209,13 +215,14 @@ public final class Macro {
         double rx = x + 700 * rWarpA.noise(x / 2200, z / 2200), rz = z + 700 * rWarpB.noise(x / 2200, z / 2200);
         double r1 = 1 - Math.abs(ridge1.noise(rx / 5200, rz / 5200));
         double r2 = 1 - Math.abs(ridge2.noise(rx / 3300 + 50, rz / 3300));
-        double m = Math.max(ss(0.64, 0.93, r1), 0.85 * ss(0.76, 0.96, r2));
+        double rs = opt.ridgeShift();
+        double m = Math.max(ss(0.64 + rs, 0.93 + rs * 0.5, r1), 0.85 * ss(0.76 + rs, 0.96 + rs * 0.3, r2));
         m *= ss(-150, 700, cd);
         s.mountain = m;
 
         double pk = 0.5 + 0.5 * fbm(peak, x / 1700, z / 1700, 2);
         double rm = ridged(rmf, rx / 1150, rz / 1150, 4);
-        double mount = Math.pow(m, 1.1) * (200 + 360 * pk) * (0.42 + 0.58 * rm);
+        double mount = Math.pow(m, 1.1) * (200 + 360 * pk) * (0.42 + 0.58 * rm) * opt.heightMul();
         double foot = Math.pow(m, 0.5) * 45 * (0.5 + 0.5 * fbm(hills, x / 400 + 9, z / 400, 2));
 
         double[] w = s.style;
@@ -256,7 +263,10 @@ public final class Macro {
             hm += w[i] * v;
             lifted += w[i] * l;
         }
-        s.height = base + (hm + foot) * land + lifted;
+        double hh = base + (hm + foot) * land + lifted;
+        // мягкий потолок под верх мира
+        if (hh > 590) hh = 590 + 42 * Math.tanh((hh - 590) / 42);
+        s.height = hh;
         return s;
     }
 

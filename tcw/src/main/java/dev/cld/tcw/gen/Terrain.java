@@ -15,12 +15,20 @@ public final class Terrain {
     final Simplex fine, rough, meanderA, meanderB, snowN;
     private final Map<Long, CompletableFuture<Hydro>> hydros = new LinkedHashMap<>(16, 0.75f, true) {
         @Override
-        protected boolean removeEldestEntry(Map.Entry<Long, CompletableFuture<Hydro>> e) { return size() > CACHE; }
+        protected boolean removeEldestEntry(Map.Entry<Long, CompletableFuture<Hydro>> e) { return size() > cacheSize; }
     };
 
-    public Terrain(long seed) {
+    public final Options opt;
+    /** Сколько континентов держать в памяти: при маленьких континентах их в поле зрения больше. */
+    private final int cacheSize;
+
+    public Terrain(long seed) { this(seed, Options.DEFAULT); }
+
+    public Terrain(long seed, Options opt) {
         this.seed = seed;
-        macro = new Macro(seed);
+        this.opt = opt;
+        cacheSize = Math.max(CACHE, (int) Math.ceil(CACHE * Math.pow(14000 / opt.cs(), 2)));
+        macro = new Macro(seed, opt);
         long s = seed * 0xD1B54A32D192ED03L;
         fine = new Simplex(s + 1); rough = new Simplex(s + 2); meanderA = new Simplex(s + 3); meanderB = new Simplex(s + 4);
         snowN = new Simplex(s + 5);
@@ -281,6 +289,6 @@ public final class Terrain {
 
     /** Снеговая линия по температуре. */
     public double snowLine(double x, double z, double temp) {
-        return 330 + 240 * temp + 18 * snowN.noise(x / 300, z / 300);
+        return 330 + opt.snowOffset() + 240 * temp + 18 * snowN.noise(x / 300, z / 300);
     }
 }

@@ -27,7 +27,7 @@ public final class Hydro {
     public Hydro(Macro m, int ci, int cj) {
         this.ci = ci;
         this.cj = cj;
-        double half = Macro.CS * 1.05 + 1700;
+        double half = m.cs * 1.05 + 1700;
         ox = Math.floor((m.cellCenterX(ci, cj) - half) / G) * G;
         oz = Math.floor((m.cellCenterZ(ci, cj) - half) / G) * G;
         nx = (int) (2 * half / G) + 2;
