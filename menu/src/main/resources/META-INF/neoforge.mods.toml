@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="cld_menu"
+version="${version}"
+displayName="Главное меню сборки"
+authors="D, Claude"
+description='''Живой пиксельный пейзаж вместо панорамы, свой логотип, без кнопок Realms и «Моды».'''
+
+[[mixins]]
+config="cld_menu.mixins.json"
+
+[[dependencies.cld_menu]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.cld_menu]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="CLIENT"
