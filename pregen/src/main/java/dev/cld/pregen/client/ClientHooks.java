@@ -1,7 +1,9 @@
 package dev.cld.pregen.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.PauseScreen;
 import net.minecraft.client.gui.screens.ReceivingLevelScreen;
@@ -37,6 +39,7 @@ public final class ClientHooks {
         NeoForge.EVENT_BUS.addListener(ClientHooks::onScreenInit);
         NeoForge.EVENT_BUS.addListener(ClientHooks::onScreenOpening);
         NeoForge.EVENT_BUS.addListener(ClientHooks::onClientTick);
+        NeoForge.EVENT_BUS.addListener(ClientHooks::onScreenRender);
     }
 
     static Button findCreateButton(CreateWorldScreen screen) {
@@ -47,22 +50,45 @@ public final class ClientHooks {
         return null;
     }
 
+    private static Button previewButton;
+
+    /** Кнопка «Тип мира» на вкладке «Мир»: CycleButton с подписью options.generic_value(selectWorld.mapType, …). */
+    private static AbstractWidget findWorldTypeButton(CreateWorldScreen screen) {
+        for (GuiEventListener l : screen.children()) {
+            if (l instanceof CycleButton<?> b && b.getMessage().getContents() instanceof TranslatableContents tc
+                    && tc.getKey().equals("options.generic_value") && tc.getArgs().length > 0
+                    && tc.getArgs()[0] instanceof Component name && name.getContents() instanceof TranslatableContents nk
+                    && nk.getKey().equals("selectWorld.mapType")) return b;
+        }
+        return null;
+    }
+
     private static void onScreenInit(ScreenEvent.Init.Post e) {
         if (e.getScreen() instanceof CreateWorldScreen cws) {
             Button create = findCreateButton(cws);
             if (create == null) return;
-            e.addListener(Button.builder(Component.translatable("cld_pregen.button.preview"), b -> {
+            previewButton = Button.builder(Component.translatable("cld_pregen.button.preview"), b -> {
                 origin = cws;
                 pending = true;
                 lowerRenderDistance();
                 create.onPress();
-            }).bounds(8, cws.height - 28, 110, 20)
+            }).bounds(cws.width / 2 - 75, 0, 150, 20)
               .tooltip(net.minecraft.client.gui.components.Tooltip.create(Component.translatable("cld_pregen.button.preview.tip")))
-              .build());
+              .build();
+            previewButton.visible = false;
+            e.addListener(previewButton);
         } else if (e.getScreen() instanceof TitleScreen || e.getScreen() instanceof SelectWorldScreen) {
             pending = false; // создание мира отменено
             if (session == null) restoreRenderDistance();
         }
+    }
+
+    /** Вкладки пересобирают виджеты без события Init, поэтому кнопку прячем и ставим на место каждый кадр. */
+    private static void onScreenRender(ScreenEvent.Render.Pre e) {
+        if (!(e.getScreen() instanceof CreateWorldScreen cws) || previewButton == null) return;
+        AbstractWidget type = findWorldTypeButton(cws);
+        previewButton.visible = type != null && type.visible;
+        if (previewButton.visible) previewButton.setPosition(cws.width / 2 - previewButton.getWidth() / 2, type.getY() - 24);
     }
 
     private static void onScreenOpening(ScreenEvent.Opening e) {
