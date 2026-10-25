@@ -35,7 +35,12 @@ public final class Worlds {
 
     /** Настройки из генератора Верхнего мира запущенного сервера (сохраняются в level.dat вместе с источником биомов). */
     public static Options currentOptions() {
-        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        MinecraftServer server;
+        try {
+            server = ServerLifecycleHooks.getCurrentServer();
+        } catch (LinkageError e) { // вне игры (проверочные инструменты)
+            return Options.DEFAULT;
+        }
         if (server == null) return Options.DEFAULT;
         if (server == optServer) return optCached;
         Options o = server.registryAccess().registry(Registries.LEVEL_STEM)
