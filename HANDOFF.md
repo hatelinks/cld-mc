@@ -26,18 +26,36 @@
 - Вылет Veil «renderer is null» = в options.txt выключен `mod_resources` или сломался конфиг какого-то мода. Лечение: вернуть `mod_resources` / удалить строки resourcePacks.
 - Sable 1.2.2 вылетает от огня на корабле → временно `/gamerule doFireTick false`.
 
-## 4. Текущая задача — оптимизация (шаг 7), в процессе
-- Sodium у меня крашился, т.к. Sodium 0.8 несовместим с Sable 1.2 (нужен 0.6.13). Решили обновить авиацию:
-  - Sable **2.0.6** и Create Aeronautics bundled **1.3.2** (внутри Simulated 1.3.2, Offroad 1.3.2) лежат в `~/Claude/new-mods`.
-  - Sable 2.0.6 объявляет несовместимыми Sodium < 0.8.12-alpha.2 и Sable Companion > 1.6.0; требует NeoForge ≥ 21.1.228 (наш 248 подходит).
-  - JNI-интерфейс Rapier в Sable 2 изменился (53 функции, сцена int→long) → нативку пересобрали на Маке скриптом `~/Claude/sable-android-2.0/build_android_native.sh` (rustup-цель aarch64-linux-android для закреплённого toolchain, cargo-ndk, NDK r27c). Исходники: коммит `ad8b4d3` (тег mc1.21.1-2.0.6). Проверка в скрипте через `strings` на Маке ложно ругается — сама библиотека верна (все 53 JNI-функции есть).
-  - Готов `sable-android-support-neoforge-1.21.1-2.0.0.jar` (в `new-mods`): новая .so, версия 2.0.0, зависимость sable `[2.0.0,)`; coremod и классы прежние (loadLibrary по-прежнему через System.load, все 16 классов Simulated с tick() на месте).
-- **Следующие шаги:**
-  1. Положить в `new-mods` новые версии аддонов авиации: Create Propulsion (Simulated), Tracks, Compact Flap, Aeroworks, Climbable Ropes, Waystones Sable, Jade-VS — Claude проверит совместимость с Simulated 1.3.2 / Sable 2.
-  2. Запуск на Маке без Sodium (убрать старые sable 1.2.2, aeronautics 1.2.1 и sable-android-support 1.2.0) → Claude смотрит лог.
-  3. Телефон с sable-android-support 2.0.0.
-  4. Sodium **0.8.13** на Маке (на Android Sodium не ставить — известны краши Aeronautics+Sodium на мобильных рендерерах).
-  5. Затем по одному: FerriteCore 7.0.3, ModernFix 5.27.26, Entity Culling 1.11.3 (только клиент), Lithium 0.15.4. Память на Маке: мин = макс 6–8 ГБ.
-  6. Отдельный серверный набор (без клиентских модов).
-  7. Пересобрать квесты после обновления авиации (ID предметов могли поменяться) — нужен `quest_builder.zip` и новые jar.
+## 4. Авиация и оптимизация (сделано)
+- Авиация обновлена: Sable **2.0.6**, Create Aeronautics bundled **1.3.2**. Для Android — свой `sable-android-support 2.0.0` (пересобранная нативка Rapier под новый JNI Sable 2; скрипт сборки `~/Claude/sable-android-2.0/build_android_native.sh`). На Маке этот jar не нужен.
+- На Маке стоят Sodium 0.8.13, FerriteCore 7.0.3, ModernFix 5.27.27, Lithium 0.15.4, Noisium(ed) 3.0.6. На Android Sodium не ставить (краши Aeronautics+Sodium на мобильных рендерерах).
+- Java на Маке: **Azul Zulu 21.0.13**, аргументы `-XX:+UseZGC -XX:+ZGenerational`, память 6–8 ГБ. С Java от Mojang (Microsoft 21.0.7) + G1 было два крэша JVM (SIGSEGV в C2 `Chunk::chop`, порча `G1MonotonicArena`) сразу после старта рендера DH; после смены Java и GC крэшей нет.
+- Профилировать — Spark; свои оптимизации писать только против конкретного тормоза из отчёта.
+
+## 5. Рельеф JJThunder To The Max (jjtm, папка `jjtm/`)
+- Порт датапака 1.20.1 → 1.21.1, мод lowcodefml `jjthunder_to_the_max`, сейчас **0.3.3**. Варианты высоты мира: h2096 (оригинал), h1024, h512 — рельеф выше Y 63 сжимается сплайном поверх суммы offset+factor+jagged, корка над пещерами не истончается. В игре стоит **h1024-fast**.
+- `-fast`: `size_vertical 2` (ячейка шума 8 блоков по высоте, как в ванилле) — вдвое меньше расчётов; во всех вариантах `overworld_determiner` обёрнут в `flat_cache`, пещерные 3D-шумы — в `cache_once` (результат тот же). Генерация стала «на порядок» быстрее.
+- Пещеры: толще корка (сплайн 0.045/0.09) и условный biome modifier убирает карвер `bettercaves:surface_cave` (главный источник дыр в поверхности).
+- Структуры: теги `has_structure` (replace:false) добавляют 39 наземным биомам деревни, аванпосты, особняки и т.п. по климату.
+- Облака Cirrus: `assets/minecraft/cirrus/cloud_dimensions/overworld.json` с `cloud_height` 1051/513/256 (пропорционально высоте мира); jjtm грузится после cirrus (optional dependency, ordering AFTER). Caelus — это API элитр, к облакам отношения не имеет.
+- Сборка: `jjtm/build.sh` (port.py → tweaks.py → variant.py) → `jjtm/dist/`.
+
+## 6. Свои моды
+- **cld_pregen 1.2.0** (`pregen/`): кнопка «Предпросмотр» на вкладке «Мир» над «Тип мира». Создаёт мир, замораживает его и прегенерирует по спирали с живой картой; «Применить сид» пересоздаёт мир, «Оставить мир»/«Назад». На время карты: прорисовка 2, DH на паузе через его API (генерация и рендер выкл., 1 поток), всё возвращается при выходе. Важные грабли: в замороженном мире не снимаются тикеты `UNKNOWN` от `getChunkFuture` — мод снимает их сам (иначе утечка памяти и остановка генерации); перед `mc.disconnect()` нужен `level.disconnect()` (иначе зависание).
+- **cld_structures 1.0.0** (`structures/`): mixin в лямбду `ChunkGenerator.createStructures` — набор структур пропускает чанк, если рядом может появиться структура более редкого набора (больше spacing) того же этапа генерации с подходящим биомом. Детерминированно (зависит только от сида и координат). Настройки: `config/cld_structures.properties`.
+- Сборка обоих без Gradle: `LIBS=<jar NeoForge 21.1.248> <мод>/build.sh` (javac против `neoforge-*-client.jar` + `client-*-srg.jar`; у cld_structures `-proc:none`).
+
+## 7. Дальняя прорисовка и конфиги
+- Distant Horizons 3.3.3: дальность LOD 256 на Маке (на телефоне ~64), обычная прорисовка 32, автообновление DH выключено. Cirrus: совместимость с DH и «Sync Cloud Distance» включены.
+- Предупреждение DH про WWOO: возможны линии сетки в LOD, которые DH генерирует сам; нормальные чанки рисуются без них.
+- Логи: сообщения про `alexsmobs`, `iceandfire`, `ars_nouveau`, `quark`, `mowziesmobs` — из построек IDAS (мобы и предметы модов, которых нет), безвредны. Ошибки тегов IDAS bop/byg — нет BOP/BYG.
+
+## 8. Репозиторий и сборка на GitHub
+- `pack/` — конфиги экземпляра (Prism): `minecraft/config`, `defaultconfigs`, `options.txt`, `instance.cfg`, `mmc-pack.json`, `MODS.md` (список модов, версии, SHA-1). Полный архив с jar модов, ресурспаками и шейдером — в GitHub Releases (`cld-mc-pack.zip`, импорт в Prism).
+- Перед заливкой сборки убирать: логи, крэши, hs_err/replay, сохранения, journeymap, baritone, blueprints, usercache/usernamecache, servers.dat, command_history, кэши, `.sable`, `pregen`, `config/sodium-fingerprint.json`, `*.bak`, отключённые jar; в options.txt — lastServer и размер окна; в instance.cfg — путь к Java. Затем искать ники, UUID, пути `/Users/…`, модель компьютера, почту, токены — в т.ч. внутри jar/zip.
+
+## 9. Дальше
+- Отдельный серверный набор (без клиентских модов).
+- Пересобрать квесты после обновления авиации (ID предметов могли поменяться).
+- Проверить в игре cld_structures и облака на новом мире.
 - У Claude нет интернета для скачивания модов: моды скачиваю я сам и кладу в `~/Claude/new-mods` или `test-mc-pack/mods`; Claude читает jar и логи из подключённой папки.

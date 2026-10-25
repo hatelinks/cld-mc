@@ -1,0 +1,347 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create_uf"
+	group: "246BC345C62FA335"
+	icon: {
+		id: "minecraft:diamond"
+	}
+	id: "4A2D015021FF2BFA"
+	images: [ ]
+	order_index: 11
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			icon: {
+				id: "minecraft:diamond"
+			}
+			id: "383DE3806A4E8002"
+			rewards: [{
+				id: "003DC6AE26F8C18C"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [{
+				id: "1C1435B5060EE7D5"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "09382BEA0CF0B455"
+			rewards: [{
+				id: "74A26B03C9C98AAA"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "4DCC42F5E8A80922"
+				item: { count: 1, id: "minecraft:diamond" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: -2.25d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "432ED7A74B872D57"
+			rewards: [{
+				id: "7F8F895FCDE0FA71"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "01FFB146770CC2F7"
+				item: { count: 1, id: "minecraft:blaze_rod" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "427DB097B85A0E3C"
+			rewards: [{
+				id: "21EEB7CC9F8932ED"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "488B48E0EFC8B761"
+				item: { count: 1, id: "create:crimsite" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "2FD7FA884BCF882B"
+			rewards: [{
+				id: "76094EC68A624150"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "5C9470953DAF3CEB"
+				item: { count: 1, id: "minecraft:deepslate" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "44A6894842FC908C"
+			rewards: [{
+				id: "6DE624F81E0418FD"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "45D485A2E8820AAF"
+				item: { count: 1, id: "minecraft:coal" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: -2.25d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "779EEBB3BF277FBA"
+			rewards: [{
+				id: "5AAA629BE210D290"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "776F4F96B8F393ED"
+				item: { count: 1, id: "minecraft:crying_obsidian" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "4C3492FDFDCBC992"
+			rewards: [{
+				id: "42691B9AD8D1FDFA"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "4CFAC20EA83A7903"
+				item: { count: 1, id: "minecraft:chorus_fruit" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "5688CACB76364268"
+			rewards: [{
+				id: "7AADEC256F355DB3"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "2BAD1425A9384C90"
+				item: { count: 1, id: "minecraft:wither_rose" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: 2.25d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "5E4415CD1DE318E3"
+			rewards: [{
+				id: "54B966587BD045EA"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "2EB52C0A949DA692"
+				item: { count: 1, id: "minecraft:ender_pearl" }
+				type: "item"
+			}]
+			x: 5.5d
+			y: -2.25d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "78B2F0EF2E4CB4B4"
+			rewards: [{
+				id: "2A6FE9A7B5C60B29"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "0FC0AA6DFAA20741"
+				item: { count: 1, id: "minecraft:wither_skeleton_skull" }
+				type: "item"
+			}]
+			x: 5.5d
+			y: -0.75d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "6448B950E8158B4B"
+			rewards: [{
+				id: "74385EB8A0E0A29A"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "0BF3370C7AE05642"
+				item: { count: 1, id: "minecraft:heart_of_the_sea" }
+				type: "item"
+			}]
+			x: 5.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "0C2D02BB61DBA630"
+			rewards: [{
+				id: "59B61EF47668C6E0"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "30EA6DB190CFD656"
+				item: { count: 1, id: "minecraft:netherite_scrap" }
+				type: "item"
+			}]
+			x: 5.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "51CF7AC9467DC512"
+			optional: true
+			rewards: [{
+				id: "5EBC5F20FD9ADDB9"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "7BE0773DEA0005DC"
+				item: { count: 1, id: "minecraft:nautilus_shell" }
+				type: "item"
+			}]
+			x: 7.0d
+			y: -2.25d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "198B0A8077605D19"
+			optional: true
+			rewards: [{
+				id: "7C54323E6E79923C"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "164AF1440797C5D6"
+				item: { count: 1, id: "minecraft:glowstone_dust" }
+				type: "item"
+			}]
+			x: 7.0d
+			y: -0.75d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "3D445692321DCC8D"
+			optional: true
+			rewards: [{
+				id: "5C07054F15435757"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "42FC6E24D4890D27"
+				item: { count: 1, id: "minecraft:redstone" }
+				type: "item"
+			}]
+			x: 7.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "5E8CF03F9C23D408"
+			optional: true
+			rewards: [{
+				id: "3B0D7817CE142CF7"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "7E729B7068AB1403"
+				item: { count: 1, id: "minecraft:gunpowder" }
+				type: "item"
+			}]
+			x: 7.0d
+			y: 2.25d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "4EF706150874CF72"
+			optional: true
+			rewards: [{
+				id: "0FE69EF0BBB9A98B"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "46E5149857722F43"
+				item: { count: 1, id: "minecraft:slime_ball" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: -2.25d
+		}
+		{
+			dependencies: ["383DE3806A4E8002"]
+			id: "14932AF2ADA132A3"
+			optional: true
+			rewards: [{
+				id: "03028B10FE0949C1"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "70FAF94889A1A596"
+				item: { count: 1, id: "minecraft:blue_ice" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: -0.75d
+		}
+	]
+}
