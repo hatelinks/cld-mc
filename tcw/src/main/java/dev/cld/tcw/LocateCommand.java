@@ -3,6 +3,7 @@ package dev.cld.tcw;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.cld.tcw.gen.Caves;
+import dev.cld.tcw.gen.Rocks;
 import dev.cld.tcw.gen.Hydro;
 import dev.cld.tcw.gen.Macro;
 import dev.cld.tcw.gen.Terrain;
@@ -56,6 +57,7 @@ public final class LocateCommand {
         tcw.then(Commands.literal("lake").executes(c -> lake(c.getSource())));
         tcw.then(Commands.literal("cave_hall").executes(c -> hall(c.getSource())));
         tcw.then(Commands.literal("cenote").executes(c -> cenote(c.getSource())));
+        tcw.then(Commands.literal("arch").executes(c -> arch(c.getSource())));
         tcw.then(Commands.literal("underground_river").executes(c -> {
             CommandSourceStack s = c.getSource();
             return columns(s, "подземная река", s.getPosition().x, s.getPosition().z, 8, 6000,
@@ -232,6 +234,25 @@ public final class LocateCommand {
             if (best != null) return report(src, t, "карстовый провал (сенот)", new double[] { best.x + best.r + 2, best.z }, Double.NaN);
         }
         return report(src, t, "карстовый провал", null, Double.NaN);
+    }
+
+    private static int arch(CommandSourceStack src) {
+        Terrain t = terrain(src);
+        if (t == null) return 0;
+        Rocks.Columns cols = (x, z) -> Worlds.column(t, x, z);
+        double x0 = src.getPosition().x, z0 = src.getPosition().z;
+        int gi0 = (int) Math.floor(x0 / Rocks.ARCH_CELL), gj0 = (int) Math.floor(z0 / Rocks.ARCH_CELL);
+        for (int r = 0; r <= RADIUS / (int) Rocks.ARCH_CELL; r++) {
+            Rocks.Arch best = null;
+            for (int i = gi0 - r; i <= gi0 + r; i++)
+                for (int j = gj0 - r; j <= gj0 + r; j++) {
+                    if (Math.max(Math.abs(i - gi0), Math.abs(j - gj0)) != r) continue;
+                    Rocks.Arch a = t.rocks.arch(i, j, cols);
+                    if (a != null && (best == null || Math.hypot(a.x - x0, a.z - z0) < Math.hypot(best.x - x0, best.z - z0))) best = a;
+                }
+            if (best != null) return report(src, t, "каменная арка", new double[] { best.x, best.z }, Double.NaN);
+        }
+        return report(src, t, "каменная арка", null, Double.NaN);
     }
 
     interface ColumnProbe { double at(Terrain t, Terrain.Column c, double x, double z); }

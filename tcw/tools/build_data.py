@@ -146,8 +146,13 @@ def final(d):
             d = dict(d, argument1=0.22)
     return refs(d)
 
-r["final_density"] = {"type": "minecraft:min", "argument1": walk(r["final_density"], final),
-                      "argument2": {"type": "minecraft:interpolated", "argument": col("caves")}}
+# арки и карнизы, подрезки под карнизами — одно значение rock без интерполяции, с точностью до блока:
+# max(min(F, rock + 2), rock - 2), см. Rocks.combined
+rock = col("rock")  # cache_once здесь портит разрешение (значения ложатся ячейками 4×8)
+r["final_density"] = {"type": "minecraft:max", "argument2": {"type": "minecraft:add", "argument1": rock, "argument2": -2}, "argument1": {
+    "type": "minecraft:min", "argument2": {"type": "minecraft:add", "argument1": rock, "argument2": 2}, "argument1": {
+        "type": "minecraft:min", "argument1": walk(r["final_density"], final),
+        "argument2": {"type": "minecraft:interpolated", "argument": col("caves")}}}}
 # предварительная поверхность (водоносные слои, правила поверхности): без пещер
 r["initial_density_without_jaggedness"] = surface
 s = json.dumps(r)
