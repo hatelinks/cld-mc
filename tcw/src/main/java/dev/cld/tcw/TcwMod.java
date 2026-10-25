@@ -39,7 +39,7 @@ public final class TcwMod {
         MODIFIERS.register(modBus);
         BIOME_SOURCES.register(modBus);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(Spawn::onCreateSpawn);
-        if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) dev.cld.tcw.client.ClientSetup.init();
+        if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) dev.cld.tcw.client.ClientSetup.init(modBus);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(LocateCommand::register);
     }
 }

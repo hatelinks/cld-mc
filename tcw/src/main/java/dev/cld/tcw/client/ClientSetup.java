@@ -18,7 +18,6 @@ import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.WorldOptions;
 import net.minecraft.world.level.levelgen.presets.WorldPreset;
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
-import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
 /** Клиент: тип мира по умолчанию, кнопка «Карта мира» при создании мира и команда /tcwmap. */
@@ -30,9 +29,31 @@ public final class ClientSetup {
 
     private ClientSetup() {}
 
-    public static void init() {
-        NeoForge.EVENT_BUS.addListener(ClientSetup::onScreenInit);
+    public static void init(net.neoforged.bus.api.IEventBus modBus) {
         NeoForge.EVENT_BUS.addListener(ClientSetup::onClientCommands);
+        modBus.addListener((net.neoforged.neoforge.client.event.RegisterPresetEditorsEvent e) ->
+                e.register(PRESET, (screen, ctx) -> new OptionsScreen(screen)));
+    }
+
+    /** Кнопка «Карта мира» для вкладки «Мир» (ширина как у поля сида). */
+    public static Button mapButton() {
+        return Button.builder(Component.literal("Карта мира"), b -> {
+            if (Minecraft.getInstance().screen instanceof CreateWorldScreen s) openPreview(s);
+        }).width(308).build();
+    }
+
+    /** Настройки TelipailoCraft из выбранного сейчас мира (или по умолчанию). */
+    static dev.cld.tcw.gen.Options options(WorldCreationUiState ui) {
+        var gen = ui.getSettings().selectedDimensions().overworld();
+        return gen != null && gen.getBiomeSource() instanceof dev.cld.tcw.TcwBiomeSource b ? b.options() : dev.cld.tcw.gen.Options.DEFAULT;
+    }
+
+    static void setOptions(WorldCreationUiState ui, dev.cld.tcw.gen.Options o) {
+        ui.updateDimensions((reg, dims) -> {
+            if (!(dims.overworld() instanceof net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator ng)
+                    || !(ng.getBiomeSource() instanceof dev.cld.tcw.TcwBiomeSource b)) return dims;
+            return dims.replaceOverworldGenerator(reg, new net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator(b.withOptions(o), ng.generatorSettings()));
+        });
     }
 
     public static void selectTcw(WorldCreationUiState ui) {
@@ -45,13 +66,7 @@ public final class ClientSetup {
         return h != null && h.is(PRESET);
     }
 
-    private static void onScreenInit(ScreenEvent.Init.Post e) {
-        if (!(e.getScreen() instanceof CreateWorldScreen s)) return;
-        e.addListener(Button.builder(Component.literal("Карта мира"), b -> openPreview(s))
-                .bounds(s.width - 92, 4, 88, 20).build());
-    }
-
-    private static void openPreview(CreateWorldScreen s) {
+    static void openPreview(CreateWorldScreen s) {
         WorldCreationUiState ui = s.getUiState();
         if (!isTcw(ui)) selectTcw(ui);
         long seed = WorldOptions.parseSeed(ui.getSeed()).orElseGet(() -> {
@@ -62,7 +77,7 @@ public final class ClientSetup {
         var reg = ui.getSettings().worldgenLoadContext();
         var settings = reg.registryOrThrow(Registries.NOISE_SETTINGS).getOrThrow(SETTINGS);
         RandomState rs = RandomState.create(settings, reg.lookupOrThrow(Registries.NOISE), seed);
-        Terrain t = Worlds.terrain(Worlds.seedFrom(rs.getOrCreateNoise(Worlds.SEED_NOISE)));
+        Terrain t = Worlds.terrain(Worlds.seedFrom(rs.getOrCreateNoise(Worlds.SEED_NOISE)), options(ui));
         Minecraft.getInstance().setScreen(new MapScreen(s, t, 0, 0, null, "Сид " + seed));
     }
 
