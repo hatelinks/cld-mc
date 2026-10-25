@@ -20,7 +20,11 @@ public final class TcwMod {
     private static final DeferredRegister<MapCodec<? extends BiomeModifier>> MODIFIERS =
             DeferredRegister.create(NeoForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, NS);
 
+    private static final DeferredRegister<MapCodec<? extends net.minecraft.world.level.biome.BiomeSource>> BIOME_SOURCES =
+            DeferredRegister.create(Registries.BIOME_SOURCE, NS);
+
     static {
+        BIOME_SOURCES.register("telipailo", () -> TcwBiomeSource.CODEC);
         DENSITY.register("column", () -> ColumnDensity.CODEC.codec());
         FEATURES.register("water", () -> new WaterFeature(NoneFeatureConfiguration.CODEC));
         FEATURES.register("rock", () -> new RockFeature(NoneFeatureConfiguration.CODEC));
@@ -33,6 +37,9 @@ public final class TcwMod {
         DENSITY.register(modBus);
         FEATURES.register(modBus);
         MODIFIERS.register(modBus);
+        BIOME_SOURCES.register(modBus);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(Spawn::onCreateSpawn);
+        if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) dev.cld.tcw.client.ClientSetup.init();
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(LocateCommand::register);
     }
 }
