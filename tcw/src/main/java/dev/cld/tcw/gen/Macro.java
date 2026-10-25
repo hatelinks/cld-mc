@@ -280,6 +280,14 @@ public final class Macro {
         return best;
     }
 
+    /** Вулкан ячейки (i, j): {cx, cz, высота} или null, если в ячейке его нет. */
+    public double[] cone(int i, int j) {
+        if (hashD(seed ^ 0xC0L, i, j) > 0.55) return null;
+        double cx = (i + 0.2 + 0.6 * hashD(seed ^ 0xC1L, i, j)) * CONE_CELL;
+        double cz = (j + 0.2 + 0.6 * hashD(seed ^ 0xC2L, i, j)) * CONE_CELL;
+        return new double[] { cx, cz, 220 + 300 * hashD(seed ^ 0xC3L, i, j) };
+    }
+
     /** Центр кратера ближайшего вулкана, если точка внутри кратера: {cx, cz, rc, rimHeight}. */
     public double[] crater(double x, double z) {
         int gi = (int) Math.floor(x / CONE_CELL), gj = (int) Math.floor(z / CONE_CELL);
