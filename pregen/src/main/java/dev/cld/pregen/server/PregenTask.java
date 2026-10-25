@@ -2,6 +2,9 @@ package dev.cld.pregen.server;
 
 import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicInteger;
+import dev.cld.pregen.mixin.ServerChunkCacheInvoker;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.TicketType;
@@ -92,6 +95,12 @@ public final class PregenTask {
         return null;
     }
 
+    /** Колбэк всегда в очередь сервера, а не сразу в текущем стеке. */
+    private void later(Runnable r) {
+        MinecraftServer server = level.getServer();
+        server.tell(new TickTask(server.getTickCount(), r));
+    }
+
     private void tick() { fill(System.nanoTime() + msPerTick * 1_000_000L); }
 
     /** Ставит в очередь новые чанки, пока есть место в maxInFlight и не вышло время. */
@@ -104,7 +113,9 @@ public final class PregenTask {
             if (map.at(p.x, p.z) != null) { done.incrementAndGet(); continue; }
             inFlight.incrementAndGet();
             cache.addRegionTicket(TICKET, p, 0, p);
-            var future = cache.getChunkFuture(p.x, p.z, ChunkStatus.FULL, true);
+            // не getChunkFuture: в потоке сервера он ждёт готовности чанка, и ожидания вкладывались друг в друга,
+            // так что тик сервера не заканчивался (мир не грузился, выход зависал на сохранении)
+            var future = ((ServerChunkCacheInvoker) cache).cld$getChunkFutureMainThread(p.x, p.z, ChunkStatus.FULL, true);
             // getChunkFuture ставит временный тикет UNKNOWN, который снимается только в незамороженном мире.
             // Мир заморожен, поэтому снимаем его сами, иначе каждый чанк остаётся в памяти навсегда.
             cache.removeRegionTicket(TicketType.UNKNOWN, p, 0, p);
@@ -119,7 +130,7 @@ public final class PregenTask {
                 }
                 // сразу занять освободившееся место, не дожидаясь следующего тика
                 if (running && active == this) fill(System.nanoTime() + 1_000_000L);
-            }, level.getServer());
+            }, this::later);
         }
     }
 }
