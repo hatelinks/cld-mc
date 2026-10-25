@@ -2,6 +2,7 @@ package dev.cld.tcw;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import dev.cld.tcw.gen.Caves;
 import dev.cld.tcw.gen.Hydro;
 import dev.cld.tcw.gen.Macro;
 import dev.cld.tcw.gen.Terrain;
@@ -53,6 +54,12 @@ public final class LocateCommand {
         tcw.then(Commands.literal("river").executes(c -> river(c.getSource(), false)));
         tcw.then(Commands.literal("waterfall").executes(c -> river(c.getSource(), true)));
         tcw.then(Commands.literal("lake").executes(c -> lake(c.getSource())));
+        tcw.then(Commands.literal("cave_hall").executes(c -> hall(c.getSource())));
+        tcw.then(Commands.literal("cenote").executes(c -> cenote(c.getSource())));
+        tcw.then(Commands.literal("underground_river").executes(c -> columns(c.getSource(), "подземная река", 16, 4000,
+                (t, col, x, z) -> t.caves.riverLevel(x, z, col))));
+        tcw.then(Commands.literal("ice_cave").executes(c -> columns(c.getSource(), "ледяная пещера", 16, 12000,
+                (t, col, x, z) -> t.caves.iceLevel(x, z, col))));
         d.register(Commands.literal("locate").requires(s -> s.hasPermission(2)).then(tcw));
     }
 
@@ -186,13 +193,74 @@ public final class LocateCommand {
         return report(src, t, "озеро", hit, hit == null ? Double.NaN : hit[2]);
     }
 
+    private static int hall(CommandSourceStack src) {
+        Terrain t = terrain(src);
+        if (t == null) return 0;
+        double x0 = src.getPosition().x, z0 = src.getPosition().z;
+        int gi0 = (int) Math.floor(x0 / Caves.HALL_CELL), gj0 = (int) Math.floor(z0 / Caves.HALL_CELL);
+        for (int r = 0; r <= RADIUS / (int) Caves.HALL_CELL; r++) {
+            Caves.Hall best = null;
+            for (int i = gi0 - r; i <= gi0 + r; i++)
+                for (int j = gj0 - r; j <= gj0 + r; j++) {
+                    if (Math.max(Math.abs(i - gi0), Math.abs(j - gj0)) != r) continue;
+                    Caves.Hall h = t.caves.hall(i, j);
+                    if (h != null && (best == null || Math.hypot(h.x - x0, h.z - z0) < Math.hypot(best.x - x0, best.z - z0))) best = h;
+                }
+            if (best != null) {
+                String what = "гигантский зал" + (best.fluid == Caves.LAVA ? " с лавой" : best.fluid == Caves.WATER ? " с озером" : "");
+                return report(src, t, what, new double[] { best.x, best.z }, best.fluid != Caves.NONE ? best.level + 1 : best.floor() + 2);
+            }
+        }
+        return report(src, t, "гигантский зал", null, Double.NaN);
+    }
+
+    private static int cenote(CommandSourceStack src) {
+        Terrain t = terrain(src);
+        if (t == null) return 0;
+        double x0 = src.getPosition().x, z0 = src.getPosition().z;
+        int gi0 = (int) Math.floor(x0 / Caves.SINK_CELL), gj0 = (int) Math.floor(z0 / Caves.SINK_CELL);
+        for (int r = 0; r <= RADIUS / (int) Caves.SINK_CELL; r++) {
+            Caves.Sink best = null;
+            for (int i = gi0 - r; i <= gi0 + r; i++)
+                for (int j = gj0 - r; j <= gj0 + r; j++) {
+                    if (Math.max(Math.abs(i - gi0), Math.abs(j - gj0)) != r) continue;
+                    Caves.Sink s = t.caves.sink(i, j);
+                    if (s != null && (best == null || Math.hypot(s.x - x0, s.z - z0) < Math.hypot(best.x - x0, best.z - z0))) best = s;
+                }
+            if (best != null) return report(src, t, "карстовый провал (сенот)", new double[] { best.x + best.r + 2, best.z }, Double.NaN);
+        }
+        return report(src, t, "карстовый провал", null, Double.NaN);
+    }
+
+    interface ColumnProbe { double at(Terrain t, Terrain.Column c, double x, double z); }
+
+    /** Поиск по столбцам рельефа кольцами (точный, поэтому радиус меньше). */
+    private static int columns(CommandSourceStack src, String what, int step, int radius, ColumnProbe probe) {
+        Terrain t = terrain(src);
+        if (t == null) return 0;
+        double x0 = src.getPosition().x, z0 = src.getPosition().z;
+        Terrain.Column c = new Terrain.Column();
+        for (int r = 0; r <= radius; r += step) {
+            int n = Math.max(1, r / step);
+            for (int i = -n; i <= n; i++)
+                for (int j = -n; j <= n; j++) {
+                    if (Math.max(Math.abs(i), Math.abs(j)) != n) continue;
+                    double x = x0 + i * step, z = z0 + j * step;
+                    t.column(x, z, c);
+                    double y = probe.at(t, c, x, z);
+                    if (!Double.isNaN(y)) return report(src, t, what, new double[] { x, z }, y + 1);
+                }
+        }
+        return report(src, t, what, null, Double.NaN);
+    }
+
     private static double dist(double[] p, double x, double z) {
         return Math.hypot(p[0] - x, p[1] - z);
     }
 
     private static int report(CommandSourceStack src, Terrain t, String what, double[] hit, double y) {
         if (hit == null) {
-            src.sendFailure(Component.literal("Не найдено в радиусе " + RADIUS + " блоков: " + what));
+            src.sendFailure(Component.literal("Не найдено поблизости: " + what));
             return 0;
         }
         int x = (int) Math.floor(hit[0]), z = (int) Math.floor(hit[1]);
