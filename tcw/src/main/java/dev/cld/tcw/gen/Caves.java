@@ -125,6 +125,12 @@ public final class Caves {
         return g;
     }
 
+    /** Быстрая проверка без столбца рельефа: рядом ли линия подземной реки. */
+    public boolean nearGallery(double x, double z) {
+        double wx = x + 140 * galWx.noise(x / 650, z / 650), wz = z + 140 * galWz.noise(x / 650, z / 650);
+        return Math.abs(gal.noise(wx / 1100, wz / 1100)) < 0.02;
+    }
+
     double galleryShape(Gallery g, double x, double y, double z) {
         double dy = y - g.y, w = dy / (dy > 0 ? g.rv : g.rv * 0.7), u = g.dist / g.rw;
         double q = u * u + w * w;
