@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="jjthunder_to_the_max"
+version="${version}"
+displayName="Горы до небес (JJThunder To The Max)"
+authors="JJThunder; порт и типы мира: D, Claude"
+description='''Рельеф JJThunder To The Max как отдельные типы мира «Горы до небес 1024» и «Горы до небес 512». Стандартный мир остаётся ванильным. Неофициальный порт для личного использования.'''
+logoFile="icon.png"
+
+[[mixins]]
+config="gdn.mixins.json"
+
+[[mixins]]
+config="gdn.cirrus.mixins.json"
+
+[[dependencies.jjthunder_to_the_max]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.jjthunder_to_the_max]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
