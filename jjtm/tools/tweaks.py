@@ -2,6 +2,8 @@
 
 1. Пещеры: толще «корка» над пещерами, чтобы они реже выходили на поверхность.
    Если стоит YUNG's Better Caves, убираем его карвер surface_cave — он нарочно прорезает входы с поверхности.
+3. Скорость без изменения рельефа: 2D-шум overworld_determiner считается раз на столбец (flat_cache),
+   повторно используемые 3D-шумы пещер — раз на точку (cache_once).
 2. Структуры: каждый наземный биом получает деревни, аванпосты, особняки, руины и т.п.
    по климату. Теги has_structure дописываются (replace: false), ванильные значения сохраняются.
 Использование: tweaks.py <pack-dir>
@@ -66,4 +68,17 @@ os.makedirs(tag_dir, exist_ok=True)
 for tag, biomes in ADD.items():
     vals = sorted(set("minecraft:" + b for b in biomes))
     json.dump({"replace": False, "values": vals}, open(os.path.join(tag_dir, tag + ".json"), "w"), indent=2)
+# --- 3. кэш шумов (результат тот же, вычислений меньше) ----------------------
+DF = os.path.join(DATA, "worldgen/density_function")
+for name, cache in [("overworld_determiner", "minecraft:flat_cache"),  # y_scale 0: от Y не зависит
+                    ("cave_barrier", "minecraft:cache_once"), ("cave_barrier_2", "minecraft:cache_once"),
+                    ("old_caves_small", "minecraft:cache_once"), ("old_caves_med", "minecraft:cache_once"),
+                    ("old_caves_large", "minecraft:cache_once")]:
+    p = os.path.join(DF, name + ".json")
+    d = json.load(open(p))
+    assert d["type"] == "minecraft:noise", name
+    if cache == "minecraft:flat_cache":
+        assert d["y_scale"] == 0, name
+    json.dump({"type": cache, "argument": d}, open(p, "w"), indent=2)
+
 print(f"пещеры: корка {CRUST}; структуры: {len(ADD)} тегов, {len(set(LAND))} наземных биомов")
