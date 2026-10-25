@@ -1,0 +1,953 @@
+{
+ "key": "ma_farm",
+ "id": "6C80E321C359DC86",
+ "title": "Семена бытия",
+ "subtitle": "Mystical Agriculture — выращивайте ресурсы из эссенций",
+ "group": "Магия и поселения",
+ "icon": "mysticalagriculture:inferium_essence",
+ "order": 9,
+ "quests": [
+  {
+   "id": "53EBCDA4BFDB493B",
+   "title": "Мистический сад",
+   "sub": "Выращиваем руду на грядках",
+   "desc": [
+    "Mystical Agriculture позволяет выращивать ресурсы как обычные культуры.",
+    "Из руд и мобов добываются эссенции, из них делаются семена, а семена растут на специальной земле."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": "mysticalagriculture:inferium_essence",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Открыть книгу Mystical Agriculture"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "id": "0D5F1E70FF50C70F",
+   "title": "Руда инфериума",
+   "sub": "Источник эссенции",
+   "desc": [
+    "Руда встречается под землёй в обычном мире.",
+    "Из неё выпадает инфериумовая эссенция."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_ore",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "53EBCDA4BFDB493B"
+   ]
+  },
+  {
+   "id": "549472105094A59C",
+   "title": "Эссенция инфериума",
+   "sub": "Основа всего",
+   "desc": [
+    "Эссенция нужна для семян и многих рецептов."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0D5F1E70FF50C70F"
+   ]
+  },
+  {
+   "id": "16B060CC2C9A0511",
+   "title": "Осколок процветания",
+   "sub": "Руда процветания",
+   "desc": [
+    "Осколки выпадают из руды процветания и нужны для крафта."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prosperity_shard",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bone_meal",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "53EBCDA4BFDB493B"
+   ]
+  },
+  {
+   "id": "67AAAF03F00EBB4A",
+   "title": "Руда процветания",
+   "sub": "Откуда осколки",
+   "desc": [
+    "Руда встречается под землёй, глубже может быть глубинный вариант."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prosperity_ore",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "53EBCDA4BFDB493B"
+   ]
+  },
+  {
+   "id": "2B3DFC18A20346FE",
+   "title": "Слиток процветания",
+   "sub": "Металл знания",
+   "desc": [
+    "Слитки нужны для многих деталей мода."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prosperity_ingot",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "16B060CC2C9A0511"
+   ]
+  },
+  {
+   "id": "63108DCABED29F5B",
+   "title": "База семян",
+   "sub": "Основа любого семени",
+   "desc": [
+    "Из базы семян делаются семена под любую культуру."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prosperity_seed_base",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2B3DFC18A20346FE"
+   ]
+  },
+  {
+   "id": "42365F13D1C49077",
+   "title": "Первые семена",
+   "sub": "Начало посадок",
+   "desc": [
+    "Инфериум — самая простая культура, на ней учатся основам мода."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_seeds",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "549472105094A59C",
+    "63108DCABED29F5B"
+   ]
+  },
+  {
+   "id": "6F761A87AC472585",
+   "title": "Земля инфериума",
+   "sub": "Особая грядка",
+   "desc": [
+    "Мистические культуры растут только на специальной земле соответствующего уровня."
+   ],
+   "x": 8.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_farmland",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "42365F13D1C49077"
+   ]
+  },
+  {
+   "id": "1CA0E40DB0649CFA",
+   "title": "Мистическое удобрение",
+   "sub": "Мгновенный рост",
+   "desc": [
+    "Мгновенно завершает рост мистической культуры."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:mystical_fertilizer",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bone_meal",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "6DA47918EC82621E",
+   "title": "Земляной урожай",
+   "sub": "Первая культура",
+   "desc": [
+    "Вырастите ресурсные семена и соберите урожай эссенции."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:dirt_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "5DE024BF50C04C7A",
+   "title": "Каменный урожай",
+   "sub": "Камень на грядке",
+   "desc": [
+    "Грядка с камнем избавит от лишней добычи."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:stone_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "05B42D32872500AE",
+   "title": "Древесный урожай",
+   "sub": "Лес без леса",
+   "desc": [
+    "Эссенция превращается в брёвна и другие деревянные материалы."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:wood_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "29ECC4EF31E487FF",
+   "title": "Угольный урожай",
+   "sub": "Топливо",
+   "desc": [
+    "Бесконечное топливо для печей и горелок."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:coal_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "10AE93D6BC56C3B9",
+   "title": "Медный урожай",
+   "sub": "Медь на грядке",
+   "desc": [
+    "Медь нужна для Create и многих рецептов."
+   ],
+   "x": 8.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:copper_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "7A786547F86A05BC",
+   "title": "Железный урожай",
+   "sub": "Металл на грядке",
+   "desc": [
+    "Железо без походов в шахту."
+   ],
+   "x": 10.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:iron_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bone_meal",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "4F303FD0C297BD92",
+   "title": "Красный урожай",
+   "sub": "Редстоун без шахты",
+   "desc": [
+    "Пригодится для автоматизации."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:redstone_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "5EE6533FDEA96192",
+   "title": "Золотой урожай",
+   "sub": "Золото на грядке",
+   "desc": [
+    "Золото нужно для листов и многих рецептов."
+   ],
+   "x": 2.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:gold_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7A786547F86A05BC"
+   ]
+  },
+  {
+   "id": "2AADCFFCB5A59087",
+   "title": "Алмазный урожай",
+   "sub": "Алмазы на грядке",
+   "desc": [
+    "Для высоких уровней ферм потребуются продвинутые грядки."
+   ],
+   "x": 4.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:diamond_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5EE6533FDEA96192"
+   ]
+  },
+  {
+   "id": "0D950F0558271BA7",
+   "title": "Изумрудный урожай",
+   "sub": "Изумруд на грядке",
+   "desc": [
+    "Выгоден для торговли с жителями."
+   ],
+   "x": 6.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:emerald_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "5EE6533FDEA96192"
+   ]
+  },
+  {
+   "id": "2F144FF1B54793A7",
+   "title": "Воздух",
+   "sub": "Стихия ветра",
+   "desc": [
+    "Нужна для рецептов агломератов."
+   ],
+   "x": 0.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:air_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "2D23BFE225A3C5F4",
+   "title": "Земля",
+   "sub": "Стихия земли",
+   "desc": [
+    "Нужна для рецептов агломератов."
+   ],
+   "x": 2.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:earth_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "34CCA1F0A3DB330D",
+   "title": "Вода",
+   "sub": "Стихия воды",
+   "desc": [
+    "Нужна для рецептов агломератов."
+   ],
+   "x": 4.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:water_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "45F04018E0FA8C4F",
+   "title": "Огонь",
+   "sub": "Стихия огня",
+   "desc": [
+    "Нужна для рецептов агломератов."
+   ],
+   "x": 6.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:fire_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bone_meal",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "7D9C8A0362F5AADD",
+   "title": "Зомби на грядке",
+   "sub": "Мясо и гниль",
+   "desc": [
+    "Падаль растёт на грядке, а не бегает по ночам."
+   ],
+   "x": 0.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:zombie_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "452DFBB61F6C9044",
+   "title": "Коровий урожай",
+   "sub": "Кожа и мясо",
+   "desc": [
+    "Ресурсы коровы без скотного двора."
+   ],
+   "x": 2.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:cow_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6F761A87AC472585"
+   ]
+  },
+  {
+   "id": "7005211D8CB126CB",
+   "title": "Огненный урожай",
+   "sub": "Стержни без Нижнего мира",
+   "desc": [
+    "Ифриты на грядке: стержни для зелий и горелок Create."
+   ],
+   "x": 4.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:blaze_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "45F04018E0FA8C4F"
+   ]
+  },
+  {
+   "id": "3C1DBE2D71FEE0D6",
+   "title": "Эссенция пруденция",
+   "sub": "Второй уровень",
+   "desc": [
+    "Эссенции высших уровней дают более продвинутые культуры, смотрите JEI."
+   ],
+   "x": 8.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "ma_gear/inferium_farm"
+   ]
+  },
+  {
+   "id": "6F8AD82D0D28B68B",
+   "title": "Эссенция терциума",
+   "sub": "Третий уровень",
+   "desc": [
+    "Ещё более ценная эссенция."
+   ],
+   "x": 10.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3C1DBE2D71FEE0D6"
+   ]
+  },
+  {
+   "id": "3A24838EF6D12015",
+   "title": "Эссенция империума",
+   "sub": "Четвёртый уровень",
+   "desc": [
+    "Эссенции этого уровня нужны для сильной экипировки."
+   ],
+   "x": 12.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6F8AD82D0D28B68B"
+   ]
+  },
+  {
+   "id": "20A4C0B01C02F7EC",
+   "title": "Эссенция супремиума",
+   "sub": "Пятый уровень",
+   "desc": [
+    "Предел обычных эссенций, дальше идёт пробуждение."
+   ],
+   "x": 14.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_essence",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3A24838EF6D12015"
+   ]
+  },
+  {
+   "id": "476AD4588E80FA92",
+   "title": "Агломератио",
+   "sub": "Стихии в концентрате",
+   "desc": [
+    "Агломератио нужны для культур, зависящих от стихий.",
+    "Рецепты смотрите в JEI."
+   ],
+   "x": 8.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:earth_agglomeratio",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bone_meal",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "2D23BFE225A3C5F4"
+   ]
+  }
+ ]
+}

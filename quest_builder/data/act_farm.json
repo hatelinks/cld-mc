@@ -1,0 +1,929 @@
+{
+ "key": "act_farm",
+ "id": "",
+ "title": "Щедрая земля",
+ "subtitle": "Фермерство и кухня: достижения",
+ "group": "Хозяйство и путешествия",
+ "icon": "minecraft:golden_hoe",
+ "order": 21,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Щедрая земля",
+   "sub": "Работа на земле и у плиты",
+   "desc": [
+    "Квесты на достижения Farmer's Delight, Veggies Delight и обычные хозяйственные дела."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "minecraft:golden_hoe",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "adv_main_get_fd_seed",
+   "title": "Урожаи дикой природы",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Четыре новых культуры можно найти в дикой природе, в разных климатах... или где-нибудь в сундуках."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/get_fd_seed"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/intro"
+   ]
+  },
+  {
+   "k": "adv_main_craft_knife",
+   "title": "Охота и собирательство",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Создайте нож, чтобы добывать больше продуктов из растений и животных"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/craft_knife"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/intro"
+   ]
+  },
+  {
+   "k": "adv_main_use_cutting_board",
+   "title": "Берегите пальцы",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Держа инструмент в руках, используйте его на разделочной доске, чтобы разделать некоторые предметы"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/use_cutting_board"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bone_meal",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "act_farm/intro"
+   ]
+  },
+  {
+   "k": "adv_main_harvest_straw",
+   "title": "Хватаясь за соломинку",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Срежьте траву ножом, чтобы получить солому"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/harvest_straw"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/intro"
+   ]
+  },
+  {
+   "k": "adv_main_plant_rice",
+   "title": "Пускать корни",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Посадите рис в неглубокий водоём"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/plant_rice"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_harvest_straw"
+   ]
+  },
+  {
+   "k": "adv_main_get_rich_soil",
+   "title": "Растительная пища",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Оставьте немного органического компоста разлагаться, пока он не превратится в плодородную почву. Грибы могут помочь!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/get_rich_soil"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_harvest_straw"
+   ]
+  },
+  {
+   "k": "adv_main_place_organic_compost",
+   "title": "Продвинутое компостирование",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Разместите органический компост. Он разлагается лучше с солнцем, водой и грибами!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/place_organic_compost"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "farmersdelight:rich_soil",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_harvest_straw"
+   ]
+  },
+  {
+   "k": "adv_main_get_mushroom_colony",
+   "title": "Грибы среди нас",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Посадите грибы в тёмное место, дождитесь образования колонии, а затем срежьте её!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/get_mushroom_colony"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_harvest_straw"
+   ]
+  },
+  {
+   "k": "adv_main_harvest_ropelogged_tomato",
+   "title": "Шпалера",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Повесьте верёвку над томатной лозой, чтобы она росла выше"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/harvest_ropelogged_tomato"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_get_mushroom_colony"
+   ]
+  },
+  {
+   "k": "adv_main_place_cooking_pot",
+   "title": "Кушать подано!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Поставьте кухонный котёл и приступайте за готовку!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/place_cooking_pot"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_get_mushroom_colony"
+   ]
+  },
+  {
+   "k": "adv_main_place_skillet",
+   "title": "Осторожно, горячо!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Поставьте свою сковороду на блок крадучись"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/place_skillet"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "minecraft:wheat_seeds",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_get_mushroom_colony"
+   ]
+  },
+  {
+   "k": "adv_main_use_skillet",
+   "title": "Готовка на ходу",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Сковороды позволяют готовить на ходу. Встаньте возле огня, и держите еду в другой руке!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/use_skillet"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_get_mushroom_colony"
+   ]
+  },
+  {
+   "k": "adv_main_eat_nourishing_food",
+   "title": "Вкусно и питательно",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Сытное блюдо подарит вам сытость на длительное время!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/eat_nourishing_food"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_use_skillet"
+   ]
+  },
+  {
+   "k": "adv_main_place_feast",
+   "title": "Пир на весь мир",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Некоторые блюда лучше всего подавать на стол, чтобы разделить их с друзьями. Приготовьте свои миски!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/place_feast"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_use_skillet"
+   ]
+  },
+  {
+   "k": "adv_main_get_ham",
+   "title": "Дикий мясник",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Используйте нож для извлечения больших кусков мяса из Свиней"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/get_ham"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bone_meal",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_use_skillet"
+   ]
+  },
+  {
+   "k": "adv_main_hit_raider_with_rotten_tomato",
+   "title": "Фуу! Позор!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Бросьте гнилой томат в надоедливого разбойника!"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/hit_raider_with_rotten_tomato"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_use_skillet"
+   ]
+  },
+  {
+   "k": "adv_main_plant_all_crops",
+   "title": "Севооборот",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Вырастите все фрукты, овощи, грибы и корни, какие только сможете найти!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/plant_all_crops"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 60
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_get_ham"
+   ]
+  },
+  {
+   "k": "adv_main_obtain_netherite_knife",
+   "title": "Не выносишь жару...",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Потратьте целый незеритовый слиток, чтобы улучшить свой нож! Или свалите с кухни."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/obtain_netherite_knife"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_get_ham"
+   ]
+  },
+  {
+   "k": "adv_main_master_chef",
+   "title": "Шеф-повар",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Попробуйте все доступные виды блюд!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "farmersdelight:main/master_chef"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 60
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_get_ham"
+   ]
+  },
+  {
+   "k": "adv_main_r_first_veggie",
+   "title": "Салатус начнём!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Соберите свой первый овощ"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "veggiesdelight:main/r_first_veggie"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_get_ham"
+   ]
+  },
+  {
+   "k": "adv_main_r_fruit_veggie",
+   "title": "Разве это не фрукт?",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Среди нас амогус"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "veggiesdelight:main/r_fruit_veggie"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "farmersdelight:rich_soil",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_r_first_veggie"
+   ]
+  },
+  {
+   "k": "adv_main_vd_garlic_master",
+   "title": "Garlic Jr.",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Make every dish possible out of garlic"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "veggiesdelight:main/vd_garlic_master"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_r_first_veggie"
+   ]
+  },
+  {
+   "k": "adv_main_vd_broccoli_master",
+   "title": "Брокколи босс",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Приготовьте все блюда из брокколи"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "veggiesdelight:main/vd_broccoli_master"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_r_first_veggie"
+   ]
+  },
+  {
+   "k": "adv_main_vd_zucchini_master",
+   "title": "Зенит цукинии",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Приготовьте все блюда из цукини"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "veggiesdelight:main/vd_zucchini_master"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_r_first_veggie"
+   ]
+  },
+  {
+   "k": "adv_main_vd_sweet_potato_master",
+   "title": "Sweet Victory",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Make every dish possible out of sweet potatoes"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "veggiesdelight:main/vd_sweet_potato_master"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "minecraft:wheat_seeds",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_vd_zucchini_master"
+   ]
+  },
+  {
+   "k": "adv_main_vd_turnip_master",
+   "title": "Репа-ритм",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Приготовьте все блюда из репы"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "veggiesdelight:main/vd_turnip_master"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_vd_zucchini_master"
+   ]
+  },
+  {
+   "k": "adv_main_vd_bellpepper_master",
+   "title": "Dr. Pepper",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Make every dish possible out of bell peppers"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "veggiesdelight:main/vd_bellpepper_master"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_vd_zucchini_master"
+   ]
+  },
+  {
+   "k": "adv_main_vd_cauliflower_master",
+   "title": "Cauli-Master",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Make every dish possible out of cauliflowers"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "veggiesdelight:main/vd_cauliflower_master"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_vd_zucchini_master"
+   ]
+  },
+  {
+   "k": "adv_main_r_all_veggies",
+   "title": "Поймай их всех!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Соберите все овощи"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "veggiesdelight:main/r_all_veggies"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 60
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bone_meal",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_vd_cauliflower_master"
+   ]
+  },
+  {
+   "k": "harvest_big",
+   "title": "Большой урожай",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Соберите большой урожай — по 64 пшеницы, моркови и картофеля. Механический комбайн Create очень поможет."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:wheat",
+     "count": 64
+    },
+    {
+     "type": "item",
+     "id": "minecraft:carrot",
+     "count": 64
+    },
+    {
+     "type": "item",
+     "id": "minecraft:potato",
+     "count": 64
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 50
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_vd_cauliflower_master"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Щедрый урожай",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Ваша ферма и кухня работают в полную силу.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "minecraft:golden_carrot",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "act_farm/adv_main_r_all_veggies",
+    "act_farm/harvest_big",
+    "act_farm/adv_main_vd_sweet_potato_master",
+    "act_farm/adv_main_vd_turnip_master"
+   ],
+   "finale": true
+  }
+ ]
+}

@@ -1,0 +1,638 @@
+{
+ "key": "toms",
+ "id": "",
+ "title": "Единый склад",
+ "subtitle": "Tom's Simple Storage — сеть хранилищ",
+ "group": "Хозяйство и путешествия",
+ "icon": "toms_storage:storage_terminal",
+ "order": 13.5,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Единый склад",
+   "sub": "Все сундуки в одном окне",
+   "desc": [
+    "Tom's Storage соединяет ваши сундуки, бочки и ящики в одну сеть. Терминал показывает всё содержимое сразу и ищет по названию.",
+    "Хорошо сочетается с хранилищами Sophisticated Storage и ящиками Storage Drawers."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "toms_storage:storage_terminal",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "inventory_connector",
+   "title": "Инвентарный коннектор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Коннектор — сердце сети: подключается к сундукам вокруг и к кабелям.",
+    "&6Как получить:&r верстак: Сундук%s, Редстоуновый компаратор."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:inventory_connector",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "storage_terminal",
+   "title": "Терминал хранилища",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Терминал показывает все предметы сети. Ставится рядом с коннектором или через кабель.",
+    "&6Как получить:&r верстак: Сундук%s, Обрамлённое стекло, Редстоуновый компаратор.",
+    "&6Зачем нужен:&r идёт в Терминал крафта."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:storage_terminal",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "trim",
+   "title": "Соединитель инвентарей",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Соединитель инвентарей объединяет соседние хранилища в одно для коннектора.",
+    "&6Как получить:&r верстак: Ведро воды, Соединитель инвентарей.",
+    "&6Зачем нужен:&r идёт в Конфигуратор инвентаря."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:trim",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:chest",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "toms/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "inventory_cable",
+   "title": "Инвентарный кабель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Кабель тянет сеть к дальним сундукам.",
+    "&6Как получить:&r верстак: Сундук%s, Обрамлённый стеклянный люк.",
+    "&6Зачем нужен:&r идёт в Базовая инвентарная воронка, Коннектор инвентарного кабеля, Инвентарный кабель в раме, Излучатель уровня."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:inventory_cable",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "inventory_cable_connector",
+   "title": "Коннектор инвентарного кабеля",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Сундук%s, Инвентарный кабель.",
+    "&6Зачем нужен:&r идёт в Коннектор инвентарного кабеля в раме."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:inventory_cable_connector",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/inventory_cable"
+   ]
+  },
+  {
+   "k": "framed",
+   "title": "Кабели в раме",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Инвентарный кабель.",
+    "&7Вариантов: 2. Засчитывается «Инвентарный кабель в раме»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "toms_storage:inventory_cable_framed",
+      "toms_storage:inventory_cable_connector_framed"
+     ],
+     "count": 1,
+     "title": "Инвентарный кабель в раме (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/inventory_cable"
+   ]
+  },
+  {
+   "k": "crafting_terminal",
+   "title": "Терминал крафта",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Терминал крафта: верстак прямо в окне склада, берёт материалы из сети.",
+    "&6Как получить:&r верстак: Верстак, Терминал хранилища."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:crafting_terminal",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/storage_terminal"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "wireless_terminal",
+   "title": "Беспроводной терминал",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Беспроводной терминал открывает склад издалека.",
+    "&6Как получить:&r верстак: Обрамлённое стекло, Редстоуновый компаратор, Подзорная труба.",
+    "&6Зачем нужен:&r идёт в Улучшенный беспроводной терминал."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:wireless_terminal",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "toms/crafting_terminal"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_wireless_terminal",
+   "title": "Улучшенный беспроводной терминал",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r кузнечный стол: Незеритовый слиток, Кузнечный шаблон незеритового улучшения, Беспроводной терминал."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:adv_wireless_terminal",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "toms/wireless_terminal"
+   ]
+  },
+  {
+   "k": "filters",
+   "title": "Фильтры",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак.",
+    "&6Зачем нужен:&r идёт в Полиморфный фильтр предметов, Фильтр по тегам.",
+    "&7Вариантов: 3. Засчитывается «Фильтр предметов»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "toms_storage:item_filter",
+      "toms_storage:tag_item_filter",
+      "toms_storage:polymorphic_item_filter"
+     ],
+     "count": 1,
+     "title": "Фильтр предметов (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/crafting_terminal"
+   ]
+  },
+  {
+   "k": "interface",
+   "title": "Интерфейс и прокси",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Интерфейс позволяет воронкам и машинам класть вещи в сеть, прокси — видеть сеть как один сундук.",
+    "&6Как получить:&r верстак: Сундук%s, Обрамлённый стеклянный люк."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:inventory_interface",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "toms_storage:inventory_proxy",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/crafting_terminal"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "basic_inventory_hopper",
+   "title": "Базовая инвентарная воронка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Воронка, Инвентарный кабель."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:basic_inventory_hopper",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:chest",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "toms/inventory_cable"
+   ]
+  },
+  {
+   "k": "level_emitter",
+   "title": "Излучатель уровня",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Излучатель уровня подаёт сигнал, когда предметов в сети больше или меньше заданного.",
+    "&6Как получить:&r верстак: Редстоуновый компаратор, Редстоуновый факел, Инвентарный кабель."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:level_emitter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/inventory_cable"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "inventory_configurator",
+   "title": "Конфигуратор инвентаря",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Соединитель инвентарей."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:inventory_configurator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/trim"
+   ]
+  },
+  {
+   "k": "filing_cabinet",
+   "title": "Шкаф-картотека",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Картотека хранит множество разных одиночных предметов.",
+    "&6Как получить:&r верстак: Сундук%s, Гладкий камень."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:filing_cabinet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/crafting_terminal"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "open_crate",
+   "title": "Открытый ящик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Сундук%s, Обрамлённый стеклянный люк."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:open_crate",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/filing_cabinet"
+   ]
+  },
+  {
+   "k": "paint_kit",
+   "title": "Набор красок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Ведро, Ведро воды."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "toms_storage:paint_kit",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "toms/filing_cabinet"
+   ]
+  },
+  {
+   "k": "contraption_terminal",
+   "title": "Терминал на штуковине",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Create Contraption Terminals:&r терминал Tom's Storage работает и на собранной штуковине Create — открывает всё её хранилище.",
+    "Также терминалом удобно смотреть содержимое хранилищ предметов Create."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Открыть терминал на движущейся штуковине"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "toms/storage_terminal"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Единый склад",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Все сундуки соединены в одну сеть.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "minecraft:diamond",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "toms/adv_wireless_terminal",
+    "toms/filters",
+    "toms/interface",
+    "toms/filing_cabinet"
+   ],
+   "finale": true
+  }
+ ]
+}

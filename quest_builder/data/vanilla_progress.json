@@ -1,0 +1,1762 @@
+{
+ "key": "vanilla_progress",
+ "id": "0352D29FFBD29A21",
+ "title": "Путь выжившего",
+ "subtitle": "Стандартное прохождение Minecraft по достижениям",
+ "group": "",
+ "icon": "minecraft:grass_block",
+ "order": 0,
+ "quests": [
+  {
+   "id": "626C3C0B6BFE7075",
+   "title": "Новый мир",
+   "sub": "Начало пути",
+   "desc": [
+    "Добро пожаловать! Этот квест засчитывается сам, как только вы оказываетесь в обычном мире.",
+    "Дальше идёт классическое прохождение по достижениям Minecraft."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "dimension",
+     "id": "minecraft:overworld",
+     "title": "Зайти в обычный мир"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "id": "3F7D9D88D7A8EC84",
+   "title": "Каменный век",
+   "sub": "Первая кирка",
+   "desc": [
+    "Срубите дерево, сделайте верстак и деревянную кирку, затем добудьте булыжник."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/mine_stone"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "626C3C0B6BFE7075"
+   ]
+  },
+  {
+   "id": "4BD21DA830FF08BA",
+   "title": "Каменные инструменты",
+   "sub": "Улучшаем кирку",
+   "desc": [
+    "Скрафтите каменную кирку из булыжника: она быстрее и добывает железо."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/upgrade_tools"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3F7D9D88D7A8EC84"
+   ]
+  },
+  {
+   "id": "7A66E2EE19468472",
+   "title": "Железо в печи",
+   "sub": "Первая плавка",
+   "desc": [
+    "Найдите железную руду, добудьте её каменной киркой и переплавьте в печи."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/smelt_iron"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "4BD21DA830FF08BA"
+   ]
+  },
+  {
+   "id": "5E3E38D8D407304B",
+   "title": "Экипировка",
+   "sub": "Железная броня",
+   "desc": [
+    "Сделайте любой предмет железной брони и наденьте его."
+   ],
+   "x": 8.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/obtain_armor"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "7A66E2EE19468472"
+   ]
+  },
+  {
+   "id": "085AC80D56369860",
+   "title": "Горячая штучка",
+   "sub": "Ведро лавы",
+   "desc": [
+    "Сделайте ведро из трёх слитков железа и наберите лаву. Осторожнее с огнём."
+   ],
+   "x": 10.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/lava_bucket"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "7A66E2EE19468472"
+   ]
+  },
+  {
+   "id": "5CCD05F7CE371A22",
+   "title": "Железная кирка",
+   "sub": "Лучший инструмент",
+   "desc": [
+    "Сделайте железную кирку: она добывает алмазы."
+   ],
+   "x": 12.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/iron_tools"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "7A66E2EE19468472"
+   ]
+  },
+  {
+   "id": "6BAB2A8A300BFF15",
+   "title": "Обсидиан",
+   "sub": "Вода и лава",
+   "desc": [
+    "Вылейте воду на источник лавы, чтобы получить обсидиан."
+   ],
+   "x": 14.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/form_obsidian"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "085AC80D56369860"
+   ]
+  },
+  {
+   "id": "1D6383F46F1A2000",
+   "title": "Алмазы!",
+   "sub": "Блестящая находка",
+   "desc": [
+    "Алмазы встречаются глубоко под землёй, ищите их на уровне ниже 0 в пещерах и шахтах."
+   ],
+   "x": 16.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/mine_diamond"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "5CCD05F7CE371A22"
+   ]
+  },
+  {
+   "id": "495DC7E802186D7C",
+   "title": "Нам нужно глубже",
+   "sub": "Дверь в Нижний мир",
+   "desc": [
+    "Постройте портал из обсидиана и зажгите его огнивом."
+   ],
+   "x": 18.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/enter_the_nether"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "6BAB2A8A300BFF15",
+    "1D6383F46F1A2000"
+   ]
+  },
+  {
+   "id": "5DD3438E999E547B",
+   "title": "Прикрой меня алмазами",
+   "sub": "Алмазная броня",
+   "desc": [
+    "Сделайте любую алмазную деталь брони и наденьте её."
+   ],
+   "x": 20.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/shiny_gear"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "1D6383F46F1A2000"
+   ]
+  },
+  {
+   "id": "46D7B2F82D0ADD85",
+   "title": "Зачарователь",
+   "sub": "Первые чары",
+   "desc": [
+    "Постройте стол зачарований, возьмите книги и лазурит, и зачаруйте предмет."
+   ],
+   "x": 22.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/enchant_item"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "minecraft:torch",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "1D6383F46F1A2000"
+   ]
+  },
+  {
+   "id": "38E9DAC9770A4492",
+   "title": "Взгляд ока",
+   "sub": "Дорога к крепости",
+   "desc": [
+    "Сделайте Око Эндера и бросьте его, оно укажет путь к крепости."
+   ],
+   "x": 24.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/follow_ender_eye"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "495DC7E802186D7C"
+   ]
+  },
+  {
+   "id": "1E1CE928E465FA8C",
+   "title": "Конец?",
+   "sub": "Портал в Энд",
+   "desc": [
+    "Найдите портал в крепости, вставьте в раму Очи Эндера и шагните внутрь."
+   ],
+   "x": 26.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/enter_the_end"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "38E9DAC9770A4492"
+   ]
+  },
+  {
+   "id": "7273A03817E38906",
+   "title": "Не сегодня, спасибо",
+   "sub": "Щит наготове",
+   "desc": [
+    "Отразите стрелу щитом. Попросите скелета выстрелить в вас."
+   ],
+   "x": 28.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/deflect_arrow"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5E3E38D8D407304B"
+   ]
+  },
+  {
+   "id": "7FD2A02B553E256E",
+   "title": "Зомби-доктор",
+   "sub": "Спасаем жителя",
+   "desc": [
+    "Дайте зомби-жителю зелье слабости и золотое яблоко."
+   ],
+   "x": 30.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:story/cure_zombie_villager"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "46D7B2F82D0ADD85"
+   ]
+  },
+  {
+   "id": "3BEDA10701A13F7C",
+   "title": "Хозяйство",
+   "sub": "Уют и еда",
+   "desc": [
+    "Начало фермерской ветки: еда, животные и урожай.",
+    "&6Как получить:&r съешьте любую еду."
+   ],
+   "x": 0.0,
+   "y": 3.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:husbandry/root"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:torch",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "3F7D9D88D7A8EC84"
+   ]
+  },
+  {
+   "id": "3A7686CE769A8AE7",
+   "title": "Семя в землю",
+   "sub": "Первая грядка",
+   "desc": [
+    "Посадите семена или другую культуру на вспаханной земле."
+   ],
+   "x": 2.0,
+   "y": 3.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:husbandry/plant_seed"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3BEDA10701A13F7C"
+   ]
+  },
+  {
+   "id": "3844338A673B16A1",
+   "title": "Размножение животных",
+   "sub": "Свой скотный двор",
+   "desc": [
+    "Накормите двух животных одного вида, чтобы они завели детёныша."
+   ],
+   "x": 4.0,
+   "y": 3.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:husbandry/breed_an_animal"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3BEDA10701A13F7C"
+   ]
+  },
+  {
+   "id": "325F419B984E7904",
+   "title": "Лучший друг",
+   "sub": "Приручите питомца",
+   "desc": [
+    "Приручите волка костью или кошку рыбой."
+   ],
+   "x": 6.0,
+   "y": 3.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:husbandry/tame_an_animal"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:diamond",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "3BEDA10701A13F7C"
+   ]
+  },
+  {
+   "id": "4726B95DBEC870B5",
+   "title": "Рыбное дело",
+   "sub": "Первая рыба",
+   "desc": [
+    "Сделайте удочку и поймайте рыбу."
+   ],
+   "x": 8.0,
+   "y": 3.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:husbandry/fishy_business"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3BEDA10701A13F7C"
+   ]
+  },
+  {
+   "id": "2095C1276DA8B61E",
+   "title": "Осторожный сбор мёда",
+   "sub": "Мёд в бутылке",
+   "desc": [
+    "Соберите мёд из улья бутылочкой, не разозлив пчёл, для этого поставьте под улей костёр."
+   ],
+   "x": 10.0,
+   "y": 3.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:husbandry/safely_harvest_honey"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "3BEDA10701A13F7C"
+   ]
+  },
+  {
+   "id": "032B29CDD433996C",
+   "title": "Сбалансированное питание",
+   "sub": "Всё съедобное",
+   "desc": [
+    "Попробуйте все виды еды в игре."
+   ],
+   "x": 12.0,
+   "y": 3.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:husbandry/balanced_diet"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "3844338A673B16A1"
+   ]
+  },
+  {
+   "id": "1AF184CB9884BD6B",
+   "title": "Полный хлев",
+   "sub": "Разведите всех",
+   "desc": [
+    "Разведите каждый вид животных, которые размножаются."
+   ],
+   "x": 14.0,
+   "y": 3.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:husbandry/bred_all_animals"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    },
+    {
+     "type": "item",
+     "id": "minecraft:golden_apple",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "3844338A673B16A1"
+   ]
+  },
+  {
+   "id": "47ABAD219C31A536",
+   "title": "Полный каталог",
+   "sub": "Все виды кошек",
+   "desc": [
+    "Приручите все виды кошек."
+   ],
+   "x": 16.0,
+   "y": 3.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:husbandry/complete_catalogue"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "325F419B984E7904"
+   ]
+  },
+  {
+   "id": "49C2836C5364299D",
+   "title": "Незеритовая мотыга",
+   "sub": "Лучший инструмент",
+   "desc": [
+    "Улучшите алмазную мотыгу до незеритовой."
+   ],
+   "x": 18.0,
+   "y": 3.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:husbandry/obtain_netherite_hoe"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "3A7686CE769A8AE7",
+    "294C263339C2A04A"
+   ]
+  },
+  {
+   "id": "78E38D0087E1CEE2",
+   "title": "Приключения",
+   "sub": "Выходим в мир",
+   "desc": [
+    "Начало ветки: бой, торговля, исследования.",
+    "&6Как получить:&r победите любого моба (или погибните от него)."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/root"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "3F7D9D88D7A8EC84"
+   ]
+  },
+  {
+   "id": "38BB3B7717185D39",
+   "title": "Охотник на монстров",
+   "sub": "Первый моб",
+   "desc": [
+    "Победите любого враждебного моба."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/kill_a_mob"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "78E38D0087E1CEE2",
+    "5E3E38D8D407304B"
+   ]
+  },
+  {
+   "id": "4302069B6EAB8877",
+   "title": "Сладкий сон",
+   "sub": "Сменим точку возрождения",
+   "desc": [
+    "Поспите в кровати ночью: возрождаться будете у неё."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/sleep_in_bed"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "78E38D0087E1CEE2"
+   ]
+  },
+  {
+   "id": "418D36BC5109709E",
+   "title": "Прицелься",
+   "sub": "Лук в деле",
+   "desc": [
+    "Выстрелите из лука в любую цель."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/shoot_arrow"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "78E38D0087E1CEE2"
+   ]
+  },
+  {
+   "id": "18484C2440C85878",
+   "title": "Выгодная сделка",
+   "sub": "Первая торговля",
+   "desc": [
+    "Обменяйтесь с жителем деревни, изумруды дают торговлю."
+   ],
+   "x": 8.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/trade"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "78E38D0087E1CEE2"
+   ]
+  },
+  {
+   "id": "11112A1B8D2A488B",
+   "title": "Помощник",
+   "sub": "Железный страж",
+   "desc": [
+    "Постройте железного голема из блоков железа и тыквы."
+   ],
+   "x": 10.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/summon_iron_golem"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "18484C2440C85878"
+   ]
+  },
+  {
+   "id": "40C6BA5E517452D2",
+   "title": "Посмертие",
+   "sub": "Тотем бессмертия",
+   "desc": [
+    "Используйте тотем бессмертия, он выпадает из заклинателей в особняках и рейдах."
+   ],
+   "x": 12.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/totem_of_undying"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "38BB3B7717185D39"
+   ]
+  },
+  {
+   "id": "5993205A83FFF166",
+   "title": "Добровольное изгнание",
+   "sub": "Капитан рейда",
+   "desc": [
+    "Убейте капитана налётчиков."
+   ],
+   "x": 14.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/voluntary_exile"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "38BB3B7717185D39"
+   ]
+  },
+  {
+   "id": "2EECB1F75612D27E",
+   "title": "Герой деревни",
+   "sub": "Отбейте налёт",
+   "desc": [
+    "Отразите налёт на деревню."
+   ],
+   "x": 16.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/hero_of_the_village"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "5993205A83FFF166"
+   ]
+  },
+  {
+   "id": "46C357A83BB851E8",
+   "title": "Старушка Бетси",
+   "sub": "Арбалет",
+   "desc": [
+    "Выстрелите из арбалета."
+   ],
+   "x": 18.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/ol_betsy"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:torch",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "418D36BC5109709E",
+    "7A66E2EE19468472"
+   ]
+  },
+  {
+   "id": "6D8E9588FE4ACEB6",
+   "title": "Бросок трезубцем",
+   "sub": "Трезубец",
+   "desc": [
+    "Бросьте трезубец во что-нибудь."
+   ],
+   "x": 20.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/throw_trident"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "38BB3B7717185D39"
+   ]
+  },
+  {
+   "id": "0A3F6F6FB9128867",
+   "title": "Все монстры повержены",
+   "sub": "Охотник-легенда",
+   "desc": [
+    "Убейте по одному моба каждого вида врагов."
+   ],
+   "x": 22.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:adventure/kill_all_mobs"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 50
+    }
+   ],
+   "deps": [
+    "38BB3B7717185D39"
+   ]
+  },
+  {
+   "id": "008C054E2BD5B91A",
+   "title": "Нижний мир",
+   "sub": "Огонь и красные земли",
+   "desc": [
+    "&6Как получить:&r постройте портал из обсидиана и войдите в Нижний мир.",
+    "Берите золото, камни и зелья огнестойкости."
+   ],
+   "x": 0.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/root"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "495DC7E802186D7C"
+   ]
+  },
+  {
+   "id": "2AD0CD9868BF9EA7",
+   "title": "Ужасная крепость",
+   "sub": "Цитадель ифритов",
+   "desc": [
+    "Найдите крепость Нижнего мира."
+   ],
+   "x": 2.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/find_fortress"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "008C054E2BD5B91A"
+   ]
+  },
+  {
+   "id": "1C31D1400CFC7C69",
+   "title": "В огонь",
+   "sub": "Стержень ифрита",
+   "desc": [
+    "Убейте ифрита и получите огненный стержень."
+   ],
+   "x": 4.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/obtain_blaze_rod"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "2AD0CD9868BF9EA7"
+   ]
+  },
+  {
+   "id": "1550F4511D952623",
+   "title": "Те самые деньки",
+   "sub": "Бастион",
+   "desc": [
+    "Найдите руины бастиона. Возьмите золотые доспехи, пиглины ходят рядом."
+   ],
+   "x": 6.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/find_bastion"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "008C054E2BD5B91A"
+   ]
+  },
+  {
+   "id": "294C263339C2A04A",
+   "title": "Скрыто в глубине",
+   "sub": "Древние обломки",
+   "desc": [
+    "Добудьте алмазной киркой древние обломки на высоте около 15."
+   ],
+   "x": 8.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/obtain_ancient_debris"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "008C054E2BD5B91A",
+    "1D6383F46F1A2000"
+   ]
+  },
+  {
+   "id": "1DD99FD0974E66F7",
+   "title": "В обломках",
+   "sub": "Незеритовая броня",
+   "desc": [
+    "Соберите полный комплект незеритовой брони."
+   ],
+   "x": 10.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/netherite_armor"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 50
+    },
+    {
+     "type": "item",
+     "id": "minecraft:diamond",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "294C263339C2A04A"
+   ]
+  },
+  {
+   "id": "12A2234953F9F46C",
+   "title": "Местная пивоварня",
+   "sub": "Первое зелье",
+   "desc": [
+    "Сварите зелье на варочной стойке."
+   ],
+   "x": 12.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/brew_potion"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "1C31D1400CFC7C69"
+   ]
+  },
+  {
+   "id": "693AF042E28A1A94",
+   "title": "Верхом на лавовом ходоке",
+   "sub": "Лавовая прогулка",
+   "desc": [
+    "Оседлайте лавового ходока и покатайтесь по лаве."
+   ],
+   "x": 14.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/ride_strider"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "008C054E2BD5B91A"
+   ]
+  },
+  {
+   "id": "3B86FF52639696B9",
+   "title": "Подпространственный пузырь",
+   "sub": "Быстрый путь",
+   "desc": [
+    "Пройдите по Нижнему миру около 875 блоков: в Верхнем это почти 7 км."
+   ],
+   "x": 16.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/fast_travel"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "008C054E2BD5B91A"
+   ]
+  },
+  {
+   "id": "0E0C2C6944C40386",
+   "title": "Кто режет лук?",
+   "sub": "Плачущий обсидиан",
+   "desc": [
+    "Получите плачущий обсидиан."
+   ],
+   "x": 18.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/obtain_crying_obsidian"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:golden_apple",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "008C054E2BD5B91A"
+   ]
+  },
+  {
+   "id": "029016AD3B188D79",
+   "title": "Верни маяк домой",
+   "sub": "Первый маяк",
+   "desc": [
+    "Постройте и активируйте маяк."
+   ],
+   "x": 20.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/create_beacon"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "12A2234953F9F46C",
+    "5DD3438E999E547B"
+   ]
+  },
+  {
+   "id": "2A4C61C8FE9E63EC",
+   "title": "Иссушающие высоты",
+   "sub": "Босс",
+   "desc": [
+    "Призовите иссушителя: нужно четыре блока песка душ и три черепа."
+   ],
+   "x": 22.0,
+   "y": 9.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:nether/summon_wither"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 50
+    }
+   ],
+   "deps": [
+    "1C31D1400CFC7C69",
+    "029016AD3B188D79"
+   ]
+  },
+  {
+   "id": "2F25FFB8F67B7823",
+   "title": "Конец",
+   "sub": "Остров в пустоте",
+   "desc": [
+    "&6Как получить:&r войдите в портал Края в крепости.",
+    "Подготовьтесь к бою с драконом."
+   ],
+   "x": 0.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:end/root"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "1E1CE928E465FA8C"
+   ]
+  },
+  {
+   "id": "4B60DF33EFCEB2CF",
+   "title": "Освободи Энд",
+   "sub": "Дракон Края",
+   "desc": [
+    "Победите Дракона Края. Разрушайте кристаллы на башнях."
+   ],
+   "x": 2.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:end/kill_dragon"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 100
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "2F25FFB8F67B7823"
+   ]
+  },
+  {
+   "id": "2B89BC6DB7745208",
+   "title": "Далёкий путь",
+   "sub": "Врата Края",
+   "desc": [
+    "Бросьте жемчужину Эндера в портал, который появится после битвы."
+   ],
+   "x": 4.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:end/enter_end_gateway"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "4B60DF33EFCEB2CF"
+   ]
+  },
+  {
+   "id": "41AE780C339EFE39",
+   "title": "Город в конце игры",
+   "sub": "Город Энда",
+   "desc": [
+    "Найдите город Края на дальних островах."
+   ],
+   "x": 6.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:end/find_end_city"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "2B89BC6DB7745208"
+   ]
+  },
+  {
+   "id": "6601341E25BE2985",
+   "title": "Небо — не предел",
+   "sub": "Элитры",
+   "desc": [
+    "Найдите корабль Края и заберите элитры."
+   ],
+   "x": 8.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:end/elytra"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    },
+    {
+     "type": "item",
+     "id": "minecraft:torch",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "41AE780C339EFE39"
+   ]
+  },
+  {
+   "id": "149CE61CF57673B4",
+   "title": "Следующее поколение",
+   "sub": "Яйцо дракона",
+   "desc": [
+    "Заберите яйцо дракона с портала."
+   ],
+   "x": 10.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:end/dragon_egg"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "4B60DF33EFCEB2CF"
+   ]
+  },
+  {
+   "id": "65787C0BF8910D30",
+   "title": "Конец... снова...",
+   "sub": "Воскресить дракона",
+   "desc": [
+    "Поставьте четыре кристалла Края у портала и воскресите дракона."
+   ],
+   "x": 12.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:end/respawn_dragon"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "4B60DF33EFCEB2CF"
+   ]
+  },
+  {
+   "id": "0C016FB446221F8F",
+   "title": "Тебе нужна мята",
+   "sub": "Дыхание дракона",
+   "desc": [
+    "Соберите дыхание дракона в стеклянный флакон."
+   ],
+   "x": 14.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:end/dragon_breath"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "4B60DF33EFCEB2CF"
+   ]
+  },
+  {
+   "id": "27399F42DEB4C8A4",
+   "title": "Вид отсюда прекрасен",
+   "sub": "Левитация",
+   "desc": [
+    "Поднимите себя на 50 блоков снарядом шалкера."
+   ],
+   "x": 16.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecraft:end/levitate"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "41AE780C339EFE39"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Покоритель миров",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вы прошли весь путь обычного Minecraft: от первого дерева до Края.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "minecraft:diamond",
+     "count": 4
+    },
+    {
+     "type": "item",
+     "id": "minecraft:golden_apple",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "6601341E25BE2985",
+    "12A2234953F9F46C",
+    "1550F4511D952623",
+    "294C263339C2A04A"
+   ],
+   "finale": true
+  }
+ ]
+}

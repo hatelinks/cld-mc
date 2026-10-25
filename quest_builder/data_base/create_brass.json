@@ -1,0 +1,935 @@
+{
+ "key": "create_brass",
+ "id": "348C996FBFCCB172",
+ "title": "Латунный рассвет",
+ "subtitle": "Автоматика, точные механизмы и чертежи",
+ "group": "Эра механизмов",
+ "icon": "create:brass_casing",
+ "order": 2,
+ "quests": [
+  {
+   "id": "33627C656E58AF04",
+   "title": "Латунь",
+   "sub": "Медь плюс цинк",
+   "desc": [
+    "Латунь получают в нагретом тазу, смешав медь и цинк.",
+    "С неё начинается вторая эра Create."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "61F3DD348420C73D",
+    "726EE956CAD7B225",
+    "293E9B8D6EA8FD5D"
+   ]
+  },
+  {
+   "id": "0C03B415D50A44C3",
+   "title": "Латунный лист",
+   "sub": "Прессуем латунь",
+   "desc": [
+    "Листы получают под механическим прессом, как и железные."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:brass_sheet",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "33627C656E58AF04"
+   ]
+  },
+  {
+   "id": "27D0961A37A6E0CB",
+   "title": "Медный лист",
+   "sub": "Для труб и корпусов",
+   "desc": [
+    "Медные листы идут на трубы и медный корпус."
+   ],
+   "x": 2.0,
+   "y": -2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:copper_sheet",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "722FF84B978AB3C4"
+   ]
+  },
+  {
+   "id": "661D00C466179724",
+   "title": "Золотой лист",
+   "sub": "Для точных механизмов",
+   "desc": [
+    "Золотые листы нужны для точных механизмов."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:golden_sheet",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "722FF84B978AB3C4"
+   ]
+  },
+  {
+   "id": "4D1D7873774CA66B",
+   "title": "Латунный корпус",
+   "sub": "Основа продвинутых машин",
+   "desc": [
+    "Корпус получают, обработав дерево латунным листом."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:brass_casing",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0C03B415D50A44C3",
+    "25385F994C28D4F2"
+   ]
+  },
+  {
+   "id": "6B1C78F7E8D37C21",
+   "title": "Обсидиановая пыль",
+   "sub": "Дробим обсидиан",
+   "desc": [
+    "Пыль получают, измельчив обсидиан дробильными колёсами."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:powdered_obsidian",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0E718320D3288F39"
+   ]
+  },
+  {
+   "id": "5ABE00FA0DD4656D",
+   "title": "Прочный лист",
+   "sub": "Самый твёрдый лист",
+   "desc": [
+    "Лист делают из обсидиановой пыли, рецепт смотрите в JEI.",
+    "Нужен для самых прочных конструкций."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:sturdy_sheet",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6B1C78F7E8D37C21"
+   ]
+  },
+  {
+   "id": "49A87F51BFFBB1C4",
+   "title": "Электронная лампа",
+   "sub": "Вакуумная электроника",
+   "desc": [
+    "Лампы нужны для продвинутой электроники и умных механизмов.",
+    "Рецепт смотрите в JEI."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:electron_tube",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:electron_tube",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "0C03B415D50A44C3"
+   ]
+  },
+  {
+   "id": "63B86FA0C25B7639",
+   "title": "Точный механизм",
+   "sub": "Сердце автоматики",
+   "desc": [
+    "Точный механизм делается последовательной сборкой: деплоеры и прессы по очереди обрабатывают заготовку на депо или ремне.",
+    "Рецепт и порядок шагов смотрите в JEI."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:precision_mechanism",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "661D00C466179724",
+    "0C03B415D50A44C3"
+   ]
+  },
+  {
+   "id": "590DB3C6FF1EAEE7",
+   "title": "Латунная рука",
+   "sub": "Для деплоеров и инструментов",
+   "desc": [
+    "Деталь нужна для деплоера и ряда инструментов."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:brass_hand",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0C03B415D50A44C3"
+   ]
+  },
+  {
+   "id": "08A98D564978AF80",
+   "title": "Деплоер",
+   "sub": "Автоматические руки",
+   "desc": [
+    "Деплоер действует как игрок: кладёт блоки, использует предметы, бьёт сущности.",
+    "Ключ ко многим автоматическим рецептам."
+   ],
+   "x": 8.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:deployer",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "590DB3C6FF1EAEE7",
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "34905A16E2C24FB0",
+   "title": "Механическая рука",
+   "sub": "Роботизированный манипулятор",
+   "desc": [
+    "Рука переносит предметы между блоками по заданной схеме.",
+    "Нужна для компактной автоматизации."
+   ],
+   "x": 10.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:mechanical_arm",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:precision_mechanism",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "63B86FA0C25B7639",
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "687BB901F267E6D0",
+   "title": "Механический крафтер",
+   "sub": "Автокрафт любых рецептов",
+   "desc": [
+    "Крафтеры соединяются в сетку и собирают сложные рецепты."
+   ],
+   "x": 12.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:mechanical_crafter",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "14A2BAACB971B490",
+   "title": "Латунная воронка",
+   "sub": "Фильтрация предметов",
+   "desc": [
+    "Воронка умеет выбирать, какие предметы пропускать."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:brass_funnel",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B",
+    "4AC419F72F9DBEA4"
+   ]
+  },
+  {
+   "id": "6D193585585B7B47",
+   "title": "Латунный туннель",
+   "sub": "Разветвление потока",
+   "desc": [
+    "Туннель разделяет поток на несколько веток и умеет фильтровать."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:brass_tunnel",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B",
+    "5AC545B93EDFAC44"
+   ]
+  },
+  {
+   "id": "6CA896B7E668CBB2",
+   "title": "Умный жёлоб",
+   "sub": "Жёлоб с фильтром",
+   "desc": [
+    "Пропускает только нужные предметы."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:smart_chute",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B",
+    "5E476C1ED8B02443"
+   ]
+  },
+  {
+   "id": "722946AB95A2EBBE",
+   "title": "Фильтр",
+   "sub": "Список разрешённых предметов",
+   "desc": [
+    "Фильтр вставляют в воронки и туннели.",
+    "Атрибутный фильтр выбирает предметы по свойствам."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:filter",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0C03B415D50A44C3"
+   ]
+  },
+  {
+   "id": "32A96488469646A3",
+   "title": "Атрибутный фильтр",
+   "sub": "Фильтр по свойству",
+   "desc": [
+    "Например, пропускать только съедобное или только руды."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:attribute_filter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "722946AB95A2EBBE"
+   ]
+  },
+  {
+   "id": "01732AB44FE34758",
+   "title": "Радиореле",
+   "sub": "Беспроводной редстоун",
+   "desc": [
+    "Радиореле передаёт редстоун-сигнал на расстояние.",
+    "Каждая пара настраивается предметами-частотами."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:redstone_link",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0C03B415D50A44C3"
+   ]
+  },
+  {
+   "id": "7DC8185D267E2D7A",
+   "title": "Пороговый переключатель",
+   "sub": "Реагирует на наполненность",
+   "desc": [
+    "Выдаёт сигнал, когда склад заполнен или опустел выше или ниже порога."
+   ],
+   "x": 8.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:stockpile_switch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:electron_tube",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "7E1ADD131FC9B5E2",
+   "title": "Коробка передач",
+   "sub": "Поворот и разветвление",
+   "desc": [
+    "Разветвляет и поворачивает вращение в одном блоке."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:gearbox",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "25385F994C28D4F2",
+    "56239D98E7831D04"
+   ]
+  },
+  {
+   "id": "10D862C5EBBB6111",
+   "title": "Сцепление",
+   "sub": "Включаем и выключаем вращение",
+   "desc": [
+    "Сигнал редстоуна разрывает цепь вращения."
+   ],
+   "x": 2.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:clutch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7E1ADD131FC9B5E2"
+   ]
+  },
+  {
+   "id": "5D8CF4488B5C2679",
+   "title": "Реверс",
+   "sub": "Меняет направление",
+   "desc": [
+    "С сигналом редстоуна переключает вращение в обратную сторону."
+   ],
+   "x": 4.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:gearshift",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7E1ADD131FC9B5E2"
+   ]
+  },
+  {
+   "id": "336093C6E28AA8DA",
+   "title": "Последовательный реверс",
+   "sub": "Запрограммируйте движение",
+   "desc": [
+    "Выполняет заданную последовательность поворотов."
+   ],
+   "x": 6.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:sequenced_gearshift",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:precision_mechanism",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "5D8CF4488B5C2679",
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "1CE9B60F0C48C2D6",
+   "title": "Цепная передача",
+   "sub": "Связь вдоль линии",
+   "desc": [
+    "Блоки с цепной передачей раздают вращение вдоль линии."
+   ],
+   "x": 8.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:encased_chain_drive",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7E1ADD131FC9B5E2"
+   ]
+  },
+  {
+   "id": "3DB1A852B89B4AD4",
+   "title": "Регулируемая цепная передача",
+   "sub": "Скорость по сигналу",
+   "desc": [
+    "Меняет скорость в линии по уровню сигнала."
+   ],
+   "x": 10.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:adjustable_chain_gearshift",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1CE9B60F0C48C2D6"
+   ]
+  },
+  {
+   "id": "2CF41E036A0AB084",
+   "title": "Регулятор скорости",
+   "sub": "Точная скорость",
+   "desc": [
+    "Задаёт нужную скорость вращения вручную."
+   ],
+   "x": 12.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:rotation_speed_controller",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "63B86FA0C25B7639",
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "2ADFA6A02F6C896B",
+   "title": "Пустой чертёж",
+   "sub": "Сохранение построек",
+   "desc": [
+    "Чертёж хранит копию вашей конструкции."
+   ],
+   "x": 0.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:empty_schematic",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "0C03B415D50A44C3"
+   ]
+  },
+  {
+   "id": "2EDCB63D2490CC4E",
+   "title": "Чертёж и перо",
+   "sub": "Выделите область",
+   "desc": [
+    "Отметьте два угла постройки и сохраните её как чертёж."
+   ],
+   "x": 2.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:schematic_and_quill",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2ADFA6A02F6C896B"
+   ]
+  },
+  {
+   "id": "27E85B9B4CE718A1",
+   "title": "Стол чертежей",
+   "sub": "Загрузка чертежей",
+   "desc": [
+    "Стол загружает файлы чертежей с вашего компьютера в игру."
+   ],
+   "x": 4.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:schematic_table",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2ADFA6A02F6C896B"
+   ]
+  },
+  {
+   "id": "1857E2C87BB0B910",
+   "title": "Чертёжная пушка",
+   "sub": "Постройка по чертежу",
+   "desc": [
+    "Пушка строит по чертежу, расходуя материалы из соседних контейнеров.",
+    "Нужен порох в качестве топлива."
+   ],
+   "x": 6.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:schematicannon",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "27E85B9B4CE718A1"
+   ]
+  }
+ ]
+}

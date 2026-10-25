@@ -1,0 +1,565 @@
+{
+ "key": "act_hunt",
+ "id": "",
+ "title": "Тропа охотника",
+ "subtitle": "Сражения с мобами и налётчиками",
+ "group": "Хозяйство и путешествия",
+ "icon": "minecraft:iron_sword",
+ "order": 20,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Тропа охотника",
+   "sub": "Защитите себя и колонию",
+   "desc": [
+    "Квесты на победу над мобами. Счётчик растёт сам, когда вы побеждаете нужных существ.",
+    "&cImproved Mobs&r делает мобов умнее и сильнее со временем — готовьте броню заранее."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "minecraft:iron_sword",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "hunt_0",
+   "title": "Ночные гости",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Победите: зомби ×20, скелеты ×20, пауки ×10, криперы ×10."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecraft:zombie",
+     "count": 20,
+     "title": "Зомби: 20"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:skeleton",
+     "count": 20,
+     "title": "Скелеты: 20"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:spider",
+     "count": 10,
+     "title": "Пауки: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:creeper",
+     "count": 10,
+     "title": "Криперы: 10"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "act_hunt/intro"
+   ]
+  },
+  {
+   "k": "hunt_1",
+   "title": "Хозяева тьмы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Победите: эндермены ×10, ведьмы ×5, слизни ×10, фантомы ×5."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecraft:enderman",
+     "count": 10,
+     "title": "Эндермены: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:witch",
+     "count": 5,
+     "title": "Ведьмы: 5"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:slime",
+     "count": 10,
+     "title": "Слизни: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:phantom",
+     "count": 5,
+     "title": "Фантомы: 5"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 50
+    }
+   ],
+   "deps": [
+    "act_hunt/hunt_0"
+   ]
+  },
+  {
+   "k": "hunt_2",
+   "title": "Разбойники",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Победите: разбойники ×15, поборники ×5, заклинатель ×1, разоритель ×1."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecraft:pillager",
+     "count": 15,
+     "title": "Разбойники: 15"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:vindicator",
+     "count": 5,
+     "title": "Поборники: 5"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:evoker",
+     "count": 1,
+     "title": "Заклинатель: 1"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:ravager",
+     "count": 1,
+     "title": "Разоритель: 1"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 80
+    },
+    {
+     "type": "item",
+     "id": "minecraft:arrow",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "act_hunt/hunt_1"
+   ]
+  },
+  {
+   "k": "hunt_3",
+   "title": "Огни Незера",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Победите: всполохи ×10, гасты ×5, скелеты-иссушители ×10, пиглины-громилы ×2."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecraft:blaze",
+     "count": 10,
+     "title": "Всполохи: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:ghast",
+     "count": 5,
+     "title": "Гасты: 5"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:wither_skeleton",
+     "count": 10,
+     "title": "Скелеты-иссушители: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:piglin_brute",
+     "count": 2,
+     "title": "Пиглины-громилы: 2"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 100
+    }
+   ],
+   "deps": [
+    "act_hunt/hunt_2"
+   ]
+  },
+  {
+   "k": "hunt_4",
+   "title": "Глубины",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Победите: утопленники ×15, стражи ×10, древний страж ×1."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecraft:drowned",
+     "count": 15,
+     "title": "Утопленники: 15"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:guardian",
+     "count": 10,
+     "title": "Стражи: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:elder_guardian",
+     "count": 1,
+     "title": "Древний страж: 1"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 100
+    }
+   ],
+   "deps": [
+    "act_hunt/hunt_3"
+   ]
+  },
+  {
+   "k": "hunt_5",
+   "title": "Легенды",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Победите: дракон края ×1, иссушитель ×1, хранитель ×1."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecraft:ender_dragon",
+     "count": 1,
+     "title": "Дракон Края: 1"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:wither",
+     "count": 1,
+     "title": "Иссушитель: 1"
+    },
+    {
+     "type": "kill",
+     "id": "minecraft:warden",
+     "count": 1,
+     "title": "Хранитель: 1"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 300
+    }
+   ],
+   "deps": [
+    "act_hunt/hunt_4"
+   ],
+   "finale": true
+  },
+  {
+   "k": "raid_0",
+   "title": "Набег: варвары",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Отбейте набег — варвары нападают на колонию, когда она растёт. Победите налётчиков вместе со стражей."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecolonies:barbarian",
+     "count": 10,
+     "title": "Варвар: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:archerbarbarian",
+     "count": 5,
+     "title": "Варвар-лучник: 5"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:chiefbarbarian",
+     "count": 1,
+     "title": "Вождь Варваров: 1"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 80
+    }
+   ],
+   "deps": [
+    "act_hunt/intro",
+    "mc_guard/guardtower"
+   ]
+  },
+  {
+   "k": "raid_1",
+   "title": "Набег: пираты",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Отбейте набег — пираты нападают на колонию, когда она растёт. Победите налётчиков вместе со стражей."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecolonies:pirate",
+     "count": 10,
+     "title": "Пират: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:archerpirate",
+     "count": 5,
+     "title": "Пират-лучник: 5"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:chiefpirate",
+     "count": 1,
+     "title": "Капитан пиратов: 1"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 80
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cooked_beef",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "act_hunt/raid_0"
+   ]
+  },
+  {
+   "k": "raid_2",
+   "title": "Набег: мумии",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Отбейте набег — мумии нападают на колонию, когда она растёт. Победите налётчиков вместе со стражей."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecolonies:mummy",
+     "count": 10,
+     "title": "Мумия: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:archermummy",
+     "count": 5,
+     "title": "Мумия-лучник: 5"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:pharao",
+     "count": 1,
+     "title": "Фараон: 1"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 80
+    }
+   ],
+   "deps": [
+    "act_hunt/raid_1"
+   ]
+  },
+  {
+   "k": "raid_3",
+   "title": "Набег: викинги",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Отбейте набег — викинги нападают на колонию, когда она растёт. Победите налётчиков вместе со стражей."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecolonies:shieldmaiden",
+     "count": 10,
+     "title": "Воительница: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:norsemenarcher",
+     "count": 5,
+     "title": "Лучник викингов: 5"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:norsemenchief",
+     "count": 1,
+     "title": "Конунг: 1"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 80
+    }
+   ],
+   "deps": [
+    "act_hunt/raid_2"
+   ]
+  },
+  {
+   "k": "raid_4",
+   "title": "Набег: амазонки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Отбейте набег — амазонки нападают на колонию, когда она растёт. Победите налётчиков вместе со стражей."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecolonies:amazon",
+     "count": 10,
+     "title": "Амазонка: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:amazonspearman",
+     "count": 5,
+     "title": "Амазонка-копьеносец: 5"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:amazonchief",
+     "count": 1,
+     "title": "Предводительница Амазонок: 1"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 80
+    }
+   ],
+   "deps": [
+    "act_hunt/raid_3"
+   ]
+  },
+  {
+   "k": "raid_5",
+   "title": "Набег: утонувшие пираты",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Отбейте набег — утонувшие пираты нападают на колонию, когда она растёт. Победите налётчиков вместе со стражей."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "kill",
+     "id": "minecolonies:drownedpirate",
+     "count": 10,
+     "title": "Утонувший Пират: 10"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:drownedarcherpirate",
+     "count": 5,
+     "title": "Утонувший лучник пиратов: 5"
+    },
+    {
+     "type": "kill",
+     "id": "minecolonies:drownedchiefpirate",
+     "count": 1,
+     "title": "Утонувший глава пиратов: 1"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 80
+    }
+   ],
+   "deps": [
+    "act_hunt/raid_4"
+   ]
+  }
+ ]
+}

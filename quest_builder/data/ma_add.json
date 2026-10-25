@@ -1,0 +1,488 @@
+{
+ "key": "ma_add",
+ "id": "",
+ "title": "За гранью супремия",
+ "subtitle": "Mystical Agradditions — шестой уровень и особые семена",
+ "group": "Мистическое земледелие",
+ "icon": "mysticalagradditions:insanium_essence",
+ "order": 10.5,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "За гранью супремия",
+   "sub": "Инсаний и особые основы",
+   "desc": [
+    "Mystical Agradditions добавляет шестую ступень — &5инсаний&r, особые основания для семян звезды Незера и яйца дракона, а также яблоки, уголь и паксели."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "mysticalagradditions:insanium_essence",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "ma_gear/supremium_mat"
+   ]
+  },
+  {
+   "k": "insanium_essence",
+   "title": "Инсаниевая эссенция",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Инсаниевая эссенция — следующая ступень после супремия. Делается на алтаре инфузии.",
+    "&6Как получить:&r верстак: Инсаниевый блок.",
+    "&6Зачем нужен:&r идёт в Основание из пробуждённого дракония, Основание из Яйца Дракона, Основание из Духа Гайи, Инсаниевое яблоко, Инсаниевый блок."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagradditions:insanium_essence",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ma_add/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "insanium_mat",
+   "title": "Инсаниевые слиток и самоцвет",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Блок инсаниевых слитков.",
+    "&6Зачем нужен:&r идёт в Блок инсаниевых слитков, Кусочек инсания."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagradditions:insanium_ingot",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagradditions:insanium_gemstone",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ma_add/intro"
+   ]
+  },
+  {
+   "k": "insanium_farmland",
+   "title": "Инсаниевая пашня",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Инсаниевая пашня — самая быстрая земля.",
+    "&6Как получить:&r верстак: Грядка, Инсаниевая эссенция."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagradditions:insanium_farmland",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "ma_add/insanium_essence"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "insanium_blocks",
+   "title": "Инсаниевые блоки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Инсаниевая эссенция.",
+    "&6Зачем нужен:&r идёт в Инсаниевая эссенция.",
+    "&7Вариантов: 4. Засчитывается «Инсаниевый блок»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "mysticalagradditions:insanium_block",
+      "mysticalagradditions:insanium_ingot_block",
+      "mysticalagradditions:insanium_gemstone_block",
+      "mysticalagradditions:insanium_nugget"
+     ],
+     "count": 1,
+     "title": "Инсаниевый блок (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ma_add/insanium_essence"
+   ]
+  },
+  {
+   "k": "paxels",
+   "title": "Паксели",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Паксель — кирка, топор и лопата в одном инструменте.",
+    "&6Как получить:&r верстак: Инфериевый топор, Инфериевая кирка, Инфериевая лопата.",
+    "&7Вариантов: 6. Засчитывается «Инфериевый паксель»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "mysticalagradditions:inferium_paxel",
+      "mysticalagradditions:prudentium_paxel",
+      "mysticalagradditions:tertium_paxel",
+      "mysticalagradditions:imperium_paxel",
+      "mysticalagradditions:supremium_paxel",
+      "mysticalagradditions:awakened_supremium_paxel"
+     ],
+     "count": 1,
+     "title": "Инфериевый паксель (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ma_add/intro",
+    "ma_gear/inferium_tool"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "apples",
+   "title": "Яблоки ступеней",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Каждое яблоко даёт набор полезных эффектов. Чем выше ступень, тем сильнее.",
+    "&6Как получить:&r верстак: Золотое яблоко, Инфериевая эссенция.",
+    "&7Вариантов: 6. Засчитывается «Инфериевое яблоко»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "mysticalagradditions:inferium_apple",
+      "mysticalagradditions:prudentium_apple",
+      "mysticalagradditions:tertium_apple",
+      "mysticalagradditions:imperium_apple",
+      "mysticalagradditions:supremium_apple",
+      "mysticalagradditions:insanium_apple"
+     ],
+     "count": 1,
+     "title": "Инфериевое яблоко (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ma_add/intro",
+    "549472105094A59C"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "coals",
+   "title": "Уголь ступеней",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Топливо, которое горит дольше обычного угля.",
+    "&6Как получить:&r верстак: Блок инфериевого угля.",
+    "&6Зачем нужен:&r идёт в Блок инфериевого угля.",
+    "&7Вариантов: 6. Засчитывается «Инфериевый уголь»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "mysticalagradditions:inferium_coal",
+      "mysticalagradditions:prudentium_coal",
+      "mysticalagradditions:tertium_coal",
+      "mysticalagradditions:imperium_coal",
+      "mysticalagradditions:supremium_coal",
+      "mysticalagradditions:insanium_coal"
+     ],
+     "count": 1,
+     "title": "Инфериевый уголь (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ma_add/apples"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "nether_star_shard",
+   "title": "Осколок звезды Незера",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Осколок звезды Незера — для основания семян звезды Незера.",
+    "&6Как получить:&r верстак: Nether star essence.",
+    "&6Зачем нужен:&r идёт в Звезда Незера."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagradditions:nether_star_shard",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_essence",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "ma_add/apples"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "nether_star_crux",
+   "title": "Основание из Звезды Незера",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Основание ставится под семена особых ресурсов — без него они не растут.",
+    "&6Как получить:&r верстак: Звезда Незера, Инсаниевая эссенция, Иссушённая душа."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagradditions:nether_star_crux",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ma_add/insanium_essence"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "dragon_egg_chunk",
+   "title": "Кусочек яйца дракона",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Dragon egg essence."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagradditions:dragon_egg_chunk",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ma_add/apples"
+   ]
+  },
+  {
+   "k": "dragon_egg_crux",
+   "title": "Основание из Яйца Дракона",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Чешуя Дракона, Инсаниевая эссенция."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagradditions:dragon_egg_crux",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ma_add/insanium_essence"
+   ]
+  },
+  {
+   "k": "other_crux",
+   "title": "Другие основания",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Awakened draconium block, Dragon heart, Инсаниевая эссенция.",
+    "&7Вариантов: 4. Засчитывается «Основание из пробуждённого дракония»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "mysticalagradditions:awakened_draconium_crux",
+      "mysticalagradditions:gaia_spirit_crux",
+      "mysticalagradditions:neutronium_crux",
+      "mysticalagradditions:nitro_crystal_crux"
+     ],
+     "count": 1,
+     "title": "Основание из пробуждённого дракония (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ma_add/insanium_essence"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "За гранью",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Инсаний и особые основания освоены.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "mysticalagradditions:insanium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "ma_add/insanium_farmland",
+    "ma_add/coals",
+    "ma_add/nether_star_shard",
+    "ma_add/nether_star_crux"
+   ],
+   "finale": true
+  }
+ ]
+}

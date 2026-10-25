@@ -1,0 +1,2190 @@
+{
+ "key": "aero_fleet",
+ "id": "",
+ "title": "Небесный флот",
+ "subtitle": "Create Aeronautics и Propulsion — дирижабли и самолёты",
+ "group": "Эра механизмов",
+ "icon": "aeronautics:propeller_bearing",
+ "order": 10,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Всё небо — ваш простор",
+   "sub": "Аэростаты, пропеллеры и реактивная тяга",
+   "desc": [
+    "Aeronautics добавляет то, что держит штуковину в воздухе: &eоболочки аэростатов&r с горячим воздухом, &eлевитит&r и пропеллеры.",
+    "Propulsion добавляет реактивные двигатели, крылья и топливо.",
+    "Сначала освойте главу «Законы полёта»."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "aeronautics:propeller_bearing",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "sim_physics/physics_assembler"
+   ]
+  },
+  {
+   "k": "aviators_goggles",
+   "title": "Авиаторские очки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Очки авиатора показывают подъёмную силу и тягу аэродинамических блоков.",
+    "&6Как получить:&r верстак: Инженерные очки.",
+    "&6Как использовать:&r При взгляде на блоки: &eКинетические компоненты&r показывают оказываемую &eнагрузку&r или &eобщую мощность&r. &eСтрессометры&r показывают статистику своей &eкинетической сети&r. Некоторые другие блоки раскрывают информацию о содержащихся в них предметах или жидкостях."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:aviators_goggles",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/intro",
+    "448C7601A00C9972"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_high_fashion",
+   "title": "Высокая мода",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Получите авиаторские очки"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "aeronautics:high_fashion"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "aero_fleet/aviators_goggles"
+   ]
+  },
+  {
+   "k": "envelope",
+   "title": "Оболочка аэростата",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Из оболочек строят герметичный купол. Наполненный горячим воздухом, он поднимает штуковину.",
+    "&6Как получить:&r верстак: Палка, Белая шерсть.",
+    "&7Вариантов: 16. Засчитывается «Оболочка аэростата»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "aeronautics:white_envelope",
+      "aeronautics:orange_envelope",
+      "aeronautics:magenta_envelope",
+      "aeronautics:light_blue_envelope",
+      "aeronautics:yellow_envelope",
+      "aeronautics:lime_envelope",
+      "aeronautics:pink_envelope",
+      "aeronautics:gray_envelope",
+      "aeronautics:light_gray_envelope",
+      "aeronautics:cyan_envelope",
+      "aeronautics:purple_envelope",
+      "aeronautics:blue_envelope",
+      "aeronautics:brown_envelope",
+      "aeronautics:green_envelope",
+      "aeronautics:red_envelope",
+      "aeronautics:black_envelope"
+     ],
+     "count": 1,
+     "title": "Оболочка аэростата (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "envelope_shaft",
+   "title": "Вал в оболочке",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&7Вариантов: 16. Засчитывается «Вал в белой оболочке аэростата»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "aeronautics:white_envelope_encased_shaft",
+      "aeronautics:orange_envelope_encased_shaft",
+      "aeronautics:magenta_envelope_encased_shaft",
+      "aeronautics:light_blue_envelope_encased_shaft",
+      "aeronautics:yellow_envelope_encased_shaft",
+      "aeronautics:lime_envelope_encased_shaft",
+      "aeronautics:pink_envelope_encased_shaft",
+      "aeronautics:gray_envelope_encased_shaft",
+      "aeronautics:light_gray_envelope_encased_shaft",
+      "aeronautics:cyan_envelope_encased_shaft",
+      "aeronautics:purple_envelope_encased_shaft",
+      "aeronautics:blue_envelope_encased_shaft",
+      "aeronautics:brown_envelope_encased_shaft",
+      "aeronautics:green_envelope_encased_shaft",
+      "aeronautics:red_envelope_encased_shaft",
+      "aeronautics:black_envelope_encased_shaft"
+     ],
+     "count": 1,
+     "title": "Вал в белой оболочке аэростата (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/intro"
+   ]
+  },
+  {
+   "k": "adjustable_burner",
+   "title": "Горелка аэростата",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Горелка нагревает воздух в оболочке. Сила огня регулируется сигналом — так управляют высотой.",
+    "&6Как получить:&r верстак: coal block, Андезитовый сплав, Железный лист, Редстоун."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:adjustable_burner",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:iron_sheet",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "aero_fleet/intro",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_head_in_the_clouds",
+   "title": "Ветер в волосах",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Заполните герметичную конструкцию оболочки горячим воздухом"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "aeronautics:head_in_the_clouds"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "aero_fleet/adjustable_burner",
+    "aero_fleet/envelope"
+   ]
+  },
+  {
+   "k": "steam_vent",
+   "title": "Паровое сопло",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Паровое сопло наполняет оболочку паром от котла вместо огня горелки.",
+    "&6Как получить:&r верстак: Золотой лист, Медный блок."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:steam_vent",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/adv_head_in_the_clouds",
+    "661D00C466179724"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "wooden_propeller",
+   "title": "Деревянный пропеллер",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Простой пропеллер: создаёт тягу при вращении. Ставится на подшипник.",
+    "&6Как получить:&r верстак: Андезитовый пропеллер.",
+    "&6Зачем нужен:&r идёт в Андезитовый пропеллер."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:wooden_propeller",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/adv_head_in_the_clouds"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "andesite_propeller",
+   "title": "Андезитовый пропеллер",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Андезитовый пропеллер прочнее и даёт больше тяги.",
+    "&6Как получить:&r верстак: Деревянный пропеллер.",
+    "&6Зачем нужен:&r идёт в Деревянный пропеллер."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:andesite_propeller",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:brass_casing",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "aero_fleet/wooden_propeller"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_for_every_action",
+   "title": "На каждое действие...",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Разместите и запустите пропеллер для создания тяги"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "aeronautics:for_every_action"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "aero_fleet/wooden_propeller"
+   ]
+  },
+  {
+   "k": "propeller_bearing",
+   "title": "Пропеллерный подшипник",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пропеллерный подшипник собирает из парусов большой винт — главная тяга дирижабля.",
+    "&6Как получить:&r верстак: Латунный корпус, Железный лист."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:propeller_bearing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/adv_head_in_the_clouds",
+    "024258E95184EEE4",
+    "4D1D7873774CA66B"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_in_thrust_we_trust",
+   "title": "Тяга — наше всё",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Соберите пропеллерный подшипник для создания ещё большей тяги"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "aeronautics:in_thrust_we_trust"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "aero_fleet/propeller_bearing"
+   ]
+  },
+  {
+   "k": "gyroscopic_propeller_bearing",
+   "title": "Гироскопический пропеллерный подшипник",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Гироскопический подшипник держит винт ровно, даже если корпус качается.",
+    "&6Как получить:&r верстак: Латунный корпус, Механизм гироскопа."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:gyroscopic_propeller_bearing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "createpropulsion:platinum_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "aero_fleet/adv_head_in_the_clouds",
+    "4D1D7873774CA66B",
+    "sim_physics/gyroscopic_mechanism"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "smart_propeller",
+   "title": "Умный пропеллер",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r &eСоздаёт тягу&r при вращении. &eПри наклоне пропеллера&r по одной из осей всегда пытается &eвыровнять его строго по вертикали&r.",
+    "&6Как получить:&r верстак: Латунный корпус, Пропеллер, Механизм гироскопа.",
+    "&6Как использовать:&r ПКМ гаечным ключом: &eМеняет&r направление тяги пропеллера."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:smart_propeller",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/gyroscopic_propeller_bearing",
+    "4D1D7873774CA66B",
+    "sim_physics/gyroscopic_mechanism",
+    "create_andesite/propeller"
+   ]
+  },
+  {
+   "k": "end_stone_powder",
+   "title": "Эндерняковый порошок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Порошок из дроблёного эндерняка — компонент левититовой смеси.",
+    "&6Как получить:&r дробильные колёса: Эндерняк.",
+    "&6Зачем нужен:&r идёт в Левититовая смесь, Эндерняк."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:end_stone_powder",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/gyroscopic_propeller_bearing"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "levitite_blend",
+   "title": "Левититовая смесь",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Левититовая смесь — жидкость, которую смешивают в чаше. Залейте её в мир и дождитесь кристаллизации."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Левититовая смесь"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/end_stone_powder"
+   ]
+  },
+  {
+   "k": "levitite",
+   "title": "Левитит",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Левитит — парящий блок: сам держится в воздухе и поднимает постройку без горелок."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:levitite",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:iron_sheet",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "aero_fleet/gyroscopic_propeller_bearing"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_unidentified_floating_object",
+   "title": "Неопознанный летающий объект",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Кристаллизуйте левититовую смесь в левитит"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "aeronautics:unidentified_floating_object"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "aero_fleet/levitite"
+   ]
+  },
+  {
+   "k": "pearlescent_levitite",
+   "title": "Перламутровый левитит",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:pearlescent_levitite",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/gyroscopic_propeller_bearing"
+   ]
+  },
+  {
+   "k": "mounted_potato_cannon",
+   "title": "Стационарная картофельная пушка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Стационарная картофельная пушка: ставится на корабль и стреляет по сигналу.",
+    "&6Как получить:&r механический крафтер: Шестерня, Медный лист, Жидкостная труба, Блок сушёной ламинарии, Редстоун."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:mounted_potato_cannon",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/adv_unidentified_floating_object",
+    "56239D98E7831D04",
+    "727F09E229C92364"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_heavier_artillery",
+   "title": "Тяжёлая артиллерия",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Выстрелите овощем из стационарной картофельной пушки"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "aeronautics:heavier_artillery"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "aero_fleet/mounted_potato_cannon"
+   ]
+  },
+  {
+   "k": "platinum_ore",
+   "title": "Платиновая руда",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Платина — металл Propulsion. Руда встречается глубоко под землёй, в том числе в глубинном сланце.",
+    "&6Зачем нужен:&r идёт в Дроблёная рудная платина, Кусочек опыта."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:platinum_ore",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/adv_unidentified_floating_object"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "raw_platinum",
+   "title": "Рудная платина",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Block of Raw Platinum.",
+    "&6Зачем нужен:&r идёт в Дроблёная рудная платина, Кусочек опыта."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:raw_platinum",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:brass_casing",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "aero_fleet/adv_unidentified_floating_object"
+   ]
+  },
+  {
+   "k": "platinum_ingot",
+   "title": "Платиновый слиток",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r плавильная печь: Deepslate Platinum Ore."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:platinum_ingot",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/adv_unidentified_floating_object"
+   ]
+  },
+  {
+   "k": "platinum_sheet",
+   "title": "Платиновый лист",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Платиновый лист прессуется механическим прессом. Из него делают корпуса и баки двигателей.",
+    "&6Как получить:&r механический пресс: Platinum Ingot."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:platinum_sheet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/platinum_ingot"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "platinum_casing",
+   "title": "Платиновый корпус",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r автономный активатор: Блок промышленного железа, Platinum Ingot."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:platinum_casing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/platinum_ingot",
+    "create_misc/iron_blocks"
+   ]
+  },
+  {
+   "k": "platinum_fluid_tank",
+   "title": "Платиновый бак",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Бак для топлива на борту.",
+    "&6Как получить:&r верстак: Жидкостный бак, Platinum Sheet."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:platinum_fluid_tank",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "createpropulsion:platinum_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "aero_fleet/platinum_sheet",
+    "36A573B8F77EE4EC"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "pine_resin",
+   "title": "Сосновая смола",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Смола хвойных деревьев — сырьё для скипидара, жидкого топлива двигателей.",
+    "&6Как получить:&r дробильные колёса: spruce log."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:pine_resin",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/platinum_fluid_tank"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "turpentine",
+   "title": "Скипидар",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Скипидар перегоняют из смолы. Это топливо жидкостной горелки и двигателей."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Скипидар"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/pine_resin"
+   ]
+  },
+  {
+   "k": "oxidizer",
+   "title": "Окислитель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Окислитель усиливает горение топлива в реактивных двигателях."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Окислитель"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/platinum_fluid_tank",
+    "024258E95184EEE4"
+   ]
+  },
+  {
+   "k": "solid_burner",
+   "title": "Твердотопливная горелка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Горелка сжигает твёрдое топливо и греет двигатель.",
+    "&6Как получить:&r верстак: Медный лист, Железный лист, Плавильная печь."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:solid_burner",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:iron_sheet",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "aero_fleet/platinum_fluid_tank",
+    "024258E95184EEE4",
+    "27D0961A37A6E0CB"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "liquid_burner",
+   "title": "Жидкостная горелка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Горелка на жидком топливе — работает дольше и сильнее.",
+    "&6Как получить:&r верстак: Медный лист, Жидкостная труба, Плавильная печь."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:liquid_burner",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/platinum_fluid_tank",
+    "727F09E229C92364"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "stirling_engine",
+   "title": "Двигатель Стирлинга",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Двигатель Стирлинга превращает тепло горелки во вращение.",
+    "&6Как получить:&r верстак: Андезитовый сплав, Шестерня, Медный лист, Вал."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:stirling_engine",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/liquid_burner",
+    "56239D98E7831D04",
+    "27D0961A37A6E0CB"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "thruster",
+   "title": "Реактивный двигатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Реактивный двигатель создаёт прямую тягу, сжигая топливо из бака.",
+    "&6Как получить:&r верстак: Латунный корпус, Медный лист, Жидкостная труба, Железный лист, Механическая помпа."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:thruster",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/liquid_burner",
+    "4D1D7873774CA66B",
+    "024258E95184EEE4",
+    "3311659D6E2742B8"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_fuel_propulsion",
+   "title": "Реактивная тяга",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Craft a Thruster"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "createpropulsion:fuel_propulsion"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "create:brass_casing",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "aero_fleet/thruster"
+   ]
+  },
+  {
+   "k": "vector_thruster",
+   "title": "Векторный двигатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Векторный двигатель поворачивает сопло по сигналу — тяга в нужную сторону.",
+    "&6Как получить:&r верстак: Ion Thruster, Platinum Nugget, Platinum Sheet, Гироскопный датчик."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:vector_thruster",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/platinum_sheet",
+    "sim_physics/gimbal_sensor"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_im_vectoring_it",
+   "title": "Управляемый вектор",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Craft a Vector Thruster"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "createpropulsion:im_vectoring_it"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "aero_fleet/vector_thruster"
+   ]
+  },
+  {
+   "k": "liquid_vector_thruster",
+   "title": "Жидкостный векторный двигатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Кусочек меди, Медный лист, Thruster, Гироскопный датчик."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:liquid_vector_thruster",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/thruster",
+    "sim_physics/gimbal_sensor"
+   ]
+  },
+  {
+   "k": "cable",
+   "title": "Кабель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Кабель передаёт энергию между блоками Propulsion.",
+    "&6Как получить:&r верстак: Platinum Nugget, Platinum Sheet, Чёрный краситель, Редстоун."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:cable",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/platinum_sheet"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "cable_hub",
+   "title": "Кабельный узел",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:cable_hub",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "createpropulsion:platinum_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "aero_fleet/liquid_burner"
+   ]
+  },
+  {
+   "k": "cable_relay",
+   "title": "Кабельное реле",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Cable, Platinum Casing, Platinum Nugget."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:cable_relay",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/cable",
+    "aero_fleet/platinum_casing"
+   ]
+  },
+  {
+   "k": "ion_thruster",
+   "title": "Ионный двигатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Ионный двигатель работает на энергии вместо топлива: тихо и без выхлопа.",
+    "&6Как получить:&r верстак: Латунный лист, Жёлоб, Механизм точности, Прочный лист, Редстоуновый аккумулятор."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:ion_thruster",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/liquid_burner",
+    "5E476C1ED8B02443",
+    "sim_physics/redstone_sim",
+    "63B86FA0C25B7639"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_energy_propulsion",
+   "title": "Электрическая тяга",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Craft an Ion Thruster"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "createpropulsion:energy_propulsion"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "aero_fleet/ion_thruster"
+   ]
+  },
+  {
+   "k": "wing",
+   "title": "Крыло",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Крыло создаёт подъёмную силу, когда штуковина движется вперёд. Основа самолёта.",
+    "&6Как получить:&r верстак: Андезитовый сплав, Железный лист, Железный самородок.",
+    "&6Зачем нужен:&r идёт в Copycat Wing, Tempered Wing."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:wing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/ion_thruster",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "tempered_wing",
+   "title": "Закалённое крыло",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r печь: Wing."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:tempered_wing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:iron_sheet",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "aero_fleet/wing"
+   ]
+  },
+  {
+   "k": "adv_mighty_wings",
+   "title": "Могучие крылья",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Craft Tempered Wings"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "createpropulsion:mighty_wings"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "aero_fleet/tempered_wing"
+   ]
+  },
+  {
+   "k": "copycat_wing",
+   "title": "Заполняемые крылья",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механическая пила: Wing.",
+    "&7Вариантов: 3. Засчитывается «Copycat Wing»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "createpropulsion:copycat_wing",
+      "createpropulsion:copycat_wing_8",
+      "createpropulsion:copycat_wing_12"
+     ],
+     "count": 1,
+     "title": "Copycat Wing (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/wing"
+   ]
+  },
+  {
+   "k": "tilt_adapter",
+   "title": "Адаптер наклона",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Адаптер наклона превращает наклон штуковины в сигнал.",
+    "&6Как получить:&r верстак: Андезитовый корпус, Шестерня, Вал линейного привода, Железный лист, Редстоун."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:tilt_adapter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/ion_thruster",
+    "56239D98E7831D04",
+    "024258E95184EEE4",
+    "76799FE853392922"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "redstone_converter",
+   "title": "Редстоун-преобразователь",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Platinum Sheet, Редстоун, Редстоуновый факел, Редстоуновый аккумулятор."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:redstone_converter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/platinum_sheet",
+    "sim_physics/redstone_sim"
+   ]
+  },
+  {
+   "k": "redstone_transmission",
+   "title": "Редстоун-трансмиссия",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Латунный корпус, Электронная лампа, Редстоуновый компаратор, Редстоун."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:redstone_transmission",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:brass_casing",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "aero_fleet/ion_thruster",
+    "4D1D7873774CA66B",
+    "49A87F51BFFBB1C4"
+   ]
+  },
+  {
+   "k": "auto_glue",
+   "title": "Автоклей",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Automatically creates one &ehoney glue box&r over the connected structure.",
+    "&6Как использовать:&r Any solid block: Right-click to &eauto-glue&r the connected contraption.",
+    "&6Как использовать:&r Existing honey glue: Left-click to &eremove&r honey glue touching the block."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:auto_glue",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/redstone_transmission"
+   ]
+  },
+  {
+   "k": "assembler_stick",
+   "title": "Автосборка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Quickly &eassemble&r or &edisassemble&r contraptions by right-clicking blocks.",
+    "&6Как использовать:&r In-world blocks: Right-click to &eassemble&r connected structure.",
+    "&6Как использовать:&r Assembled sublevels: Right-click to &edisassemble&r instantly."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:assembler_stick",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/redstone_transmission"
+   ]
+  },
+  {
+   "k": "glued_contraption_mover",
+   "title": "Переносчик штуковин",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Captures a glued contraption into Create placement mode and then &emoves&r it.",
+    "&6Как использовать:&r Glued contraption: Right-click to prepare &emove&r schematic.",
+    "&6Как использовать:&r After paste: Source contraption is &ehard-wiped&r and tool is restored."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:glued_contraption_mover",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/redstone_transmission"
+   ]
+  },
+  {
+   "k": "glued_contraption_cloner",
+   "title": "Клонировщик штуковин",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Captures a glued contraption into Create placement mode and &eclones&r it.",
+    "&6Как использовать:&r Glued contraption: Right-click to prepare &eclone&r schematic.",
+    "&6Как использовать:&r After paste: Original remains; schematic is &econsumed&r and tool restored."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:glued_contraption_cloner",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/redstone_transmission"
+   ]
+  },
+  {
+   "k": "contraption_remover",
+   "title": "Удалитель штуковин",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Hard wipes the full connected glued contraption instantly.",
+    "&6Как использовать:&r Glued contraption: Right-click to &ehard-wipe&r all connected glued blocks and glue entities."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createpropulsion:contraption_remover",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/assembler_stick"
+   ]
+  },
+  {
+   "k": "gyroscope",
+   "title": "Гироскоп",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Гироскоп Aeroworks стабилизирует самолёт.",
+    "&6Как получить:&r верстак: Маховик, Гироскопный датчик."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeroworks:gyroscope",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/assembler_stick",
+    "create_andesite/flywheel",
+    "sim_physics/gimbal_sensor"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "joystick",
+   "title": "Джойстик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Двухосевой &eрычаг управления&r, передающий сигналы на настраиваемых частотах &eRedstone Link&r.",
+    "&6Как получить:&r механический крафтер: Латунный слиток, Механизм точности, Редстоуновый передатчик сигнала, Вал.",
+    "&6Как использовать:&r При ПКМ: &eПереключает&r джойстик. &eДвижения мыши&r используются для наклона рычага, пока он активен. Нажмите &eESC&r для выхода.",
+    "&6Как использовать:&r При ПКМ с зажатой клавишей крадущегося режима: Открывает ручной &eинтерфейс настройки&r.",
+    "&6Как использовать:&r При питании редстоуном: &eСохраняет&r &eнаклон&r рычага."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeroworks:joystick",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "createpropulsion:platinum_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "aero_fleet/assembler_stick",
+    "01732AB44FE34758",
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "k": "compact_flap_bearing",
+   "title": "Компактный поворотный подшипник",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r &eКомпактный механический подшипник&r, который возвращает контрапшен в нейтраль после снятия редстоун-сигнала.",
+    "&6Как получить:&r верстак: Андезитовый корпус, Редстоуновый факел, Пружина.",
+    "&6Как использовать:&r При сигнале с любой стороны: Поворачивает контрапшен &eвлево или вправо&r на выставленный угол и возвращает его при снятии сигнала."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "compactflap:compact_flap_bearing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/assembler_stick",
+    "sim_physics/spring"
+   ]
+  },
+  {
+   "k": "analog_compact_flap_bearing",
+   "title": "Аналоговый компактный поворотный подшипник",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r &eАналоговый компактный подшипник&r, где угол зависит от силы редстоун-сигнала.",
+    "&6Как получить:&r верстак: Латунный корпус, Редстоуновый факел, Пружина.",
+    "&6Как использовать:&r При сигнале с любой стороны: Поворачивает на заданный угол &eв зависимости от силы сигнала&r и возвращается в нейтраль при его снижении."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "compactflap:analog_compact_flap_bearing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/compact_flap_bearing",
+    "4D1D7873774CA66B",
+    "sim_physics/spring"
+   ]
+  },
+  {
+   "k": "compact_swivel",
+   "title": "Компактные физические подшипники",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r &eКомпактный физический подшипник&r, который двигает присоединенные блоки как физическую конструкцию.",
+    "&6Как получить:&r верстак: Блок промышленного железа, Редстоуновый факел, Пружина.",
+    "&6Как использовать:&r При сигнале с любой стороны: Поворачивает &eфизическую конструкцию&r влево или вправо на выставленный угол."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "compactflap:compact_swivel_flap",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "compactflap:analog_swivel_bearing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/compact_flap_bearing",
+    "create_misc/iron_blocks",
+    "sim_physics/spring"
+   ]
+  },
+  {
+   "k": "glider_rope",
+   "title": "Верёвка планериста",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Сушёная ламинария, Нить.",
+    "&6Зачем нужен:&r идёт в Орнитоптер-планер, Орнитоптер-планер чёрный, Орнитоптер-планер синий, Орнитоптер-планер коричневый, Орнитоптер-планер бирюзовый."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createornithopterglider:rope",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:iron_sheet",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "aero_fleet/compact_flap_bearing"
+   ]
+  },
+  {
+   "k": "elytra_piece",
+   "title": "Фрагмент элитры",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Фрагмент элитр. Из них и сетки собирается орнитоптер-планер.",
+    "&6Как получить:&r дробильные колёса: Элитры.",
+    "&6Зачем нужен:&r идёт в Крылатая сетка, чёрный Крылатая сетка, синий Крылатая сетка, коричневый Крылатая сетка, бирюзовый Крылатая сетка."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createornithopterglider:elytra_piece",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/compact_flap_bearing"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "wing_mesh",
+   "title": "Крылатая сетка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Фрагмент элитры, Белая шерсть.",
+    "&6Зачем нужен:&r идёт в Орнитоптер-планер, чёрный Крылатая сетка, синий Крылатая сетка, коричневый Крылатая сетка, бирюзовый Крылатая сетка.",
+    "&7Вариантов: 16. Засчитывается «Крылатая сетка»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "createornithopterglider:wing_mesh",
+      "createornithopterglider:wing_mesh_orange",
+      "createornithopterglider:wing_mesh_magenta",
+      "createornithopterglider:wing_mesh_light_blue",
+      "createornithopterglider:wing_mesh_yellow",
+      "createornithopterglider:wing_mesh_lime",
+      "createornithopterglider:wing_mesh_pink",
+      "createornithopterglider:wing_mesh_gray",
+      "createornithopterglider:wing_mesh_light_gray",
+      "createornithopterglider:wing_mesh_cyan",
+      "createornithopterglider:wing_mesh_purple",
+      "createornithopterglider:wing_mesh_blue",
+      "createornithopterglider:wing_mesh_brown",
+      "createornithopterglider:wing_mesh_green",
+      "createornithopterglider:wing_mesh_red",
+      "createornithopterglider:wing_mesh_black"
+     ],
+     "count": 1,
+     "title": "Крылатая сетка (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/elytra_piece"
+   ]
+  },
+  {
+   "k": "glider",
+   "title": "Орнитоптер-планер",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Личный планер: надевается как элитры и позволяет парить. Можно перекрасить.",
+    "&6Как получить:&r механический крафтер: Rope, Андезитовый корпус, Кусочек латуни, Шестерня, Вал.",
+    "&7Вариантов: 16. Засчитывается «Орнитоптер-планер»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "createornithopterglider:ornithopterglider",
+      "createornithopterglider:ornithopterglider_orange",
+      "createornithopterglider:ornithopterglider_magenta",
+      "createornithopterglider:ornithopterglider_light_blue",
+      "createornithopterglider:ornithopterglider_yellow",
+      "createornithopterglider:ornithopterglider_lime",
+      "createornithopterglider:ornithopterglider_pink",
+      "createornithopterglider:ornithopterglider_gray",
+      "createornithopterglider:ornithopterglider_light_gray",
+      "createornithopterglider:ornithopterglider_cyan",
+      "createornithopterglider:ornithopterglider_purple",
+      "createornithopterglider:ornithopterglider_blue",
+      "createornithopterglider:ornithopterglider_brown",
+      "createornithopterglider:ornithopterglider_green",
+      "createornithopterglider:ornithopterglider_red",
+      "createornithopterglider:ornithopterglider_black"
+     ],
+     "count": 1,
+     "title": "Орнитоптер-планер (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/wing_mesh"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "finale_air",
+   "title": "Капитан небес",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вы построили собственный флот. Небо принадлежит вам!",
+    "&6Как получить:&r верстак: Латунный корпус, Железный лист."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "aeronautics:propeller_bearing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 150
+    },
+    {
+     "type": "item",
+     "id": "createpropulsion:platinum_ingot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "aero_fleet/propeller_bearing",
+    "aero_fleet/levitite",
+    "aero_fleet/thruster",
+    "aero_fleet/wing",
+    "aero_fleet/glider"
+   ],
+   "finale": true,
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "climb_ropes",
+   "title": "По канату на борт",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Climbable Ropes:&r по верёвкам Simulated можно лазать, даже если корабль движется.",
+    "В настройках управления есть клавиша, которая фиксирует камеру, пока вы держитесь за верёвку."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Забраться по верёвке на корабль"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "aero_fleet/intro"
+   ]
+  },
+  {
+   "k": "ship_waystone",
+   "title": "Обелиск на борту",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Waystones Sable:&r путеводный обелиск можно поставить прямо на летающий корабль — телепорт будет к кораблю, где бы он ни был."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Поставить путеводный обелиск на корабль"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "aero_fleet/intro"
+   ]
+  }
+ ]
+}

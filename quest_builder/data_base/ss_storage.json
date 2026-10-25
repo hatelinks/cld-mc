@@ -1,0 +1,1132 @@
+{
+ "key": "ss_storage",
+ "id": "54534D5835BC6072",
+ "title": "Ларцы и бочки",
+ "subtitle": "Sophisticated Storage — контейнеры с улучшениями и единый склад",
+ "group": "Хозяйство и путешествия",
+ "icon": "sophisticatedstorage:chest",
+ "order": 13,
+ "quests": [
+  {
+   "id": "19DCDFB2D2779BDE",
+   "title": "Ларец",
+   "sub": "Начало склада",
+   "desc": [
+    "Ларцы вмещают столько же, сколько обычные сундуки, но поддерживают улучшения."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": "sophisticatedstorage:chest",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:chest",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "id": "002E186ECA29418A",
+   "title": "Бочка",
+   "sub": "Склад побольше",
+   "desc": [
+    "Бочки хранят предметы и тоже принимают улучшения."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:barrel",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "19DCDFB2D2779BDE"
+   ]
+  },
+  {
+   "id": "70718EBAA30CB3ED",
+   "title": "Шалкер",
+   "sub": "Склад в кармане",
+   "desc": [
+    "Переносной ящик с улучшениями."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:shulker_box",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "19DCDFB2D2779BDE"
+   ]
+  },
+  {
+   "id": "30EBDA3521204A83",
+   "title": "База улучшений",
+   "sub": "Основа апгрейдов",
+   "desc": [
+    "Из базы делаются все улучшения контейнеров."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:upgrade_base",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "19DCDFB2D2779BDE"
+   ]
+  },
+  {
+   "id": "71EB0F9D9877AB9F",
+   "title": "Медный ларец",
+   "sub": "Первый уровень",
+   "desc": [
+    "Больше слотов в том же блоке."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:copper_chest",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "19DCDFB2D2779BDE"
+   ]
+  },
+  {
+   "id": "114F7EF41E14374A",
+   "title": "Железный ларец",
+   "sub": "Второй уровень",
+   "desc": [
+    "Ещё больше места."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:iron_chest",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "71EB0F9D9877AB9F"
+   ]
+  },
+  {
+   "id": "480CF24ED609FF6F",
+   "title": "Золотой ларец",
+   "sub": "Третий уровень",
+   "desc": [
+    "Золотой уровень для основного склада."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:gold_chest",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "114F7EF41E14374A"
+   ]
+  },
+  {
+   "id": "7FB15038283E426C",
+   "title": "Алмазный ларец",
+   "sub": "Четвёртый уровень",
+   "desc": [
+    "Огромное хранилище."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:diamond_chest",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "480CF24ED609FF6F"
+   ]
+  },
+  {
+   "id": "4B68FF5035469A4A",
+   "title": "Незеритовый ларец",
+   "sub": "Высший уровень",
+   "desc": [
+    "Самый вместительный контейнер."
+   ],
+   "x": 8.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:netherite_chest",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7FB15038283E426C"
+   ]
+  },
+  {
+   "id": "3D68F3209648196B",
+   "title": "Апгрейд до меди",
+   "sub": "Переход на новый уровень",
+   "desc": [
+    "Улучшение апгрейдит ларец без потери содержимого."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:basic_to_copper_tier_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "1F06A20C2FE33336",
+   "title": "Апгрейд до железа",
+   "sub": "Переход на новый уровень",
+   "desc": [
+    "Улучшение апгрейдит ларец без потери содержимого."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:basic_to_iron_tier_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "5DDADC8ACB3F65AF",
+   "title": "Апгрейд до золота",
+   "sub": "Переход на новый уровень",
+   "desc": [
+    "Улучшение апгрейдит ларец без потери содержимого."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:basic_to_gold_tier_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "09ED3EA613A8CB6C",
+   "title": "Апгрейд до алмаза",
+   "sub": "Переход на новый уровень",
+   "desc": [
+    "Улучшение апгрейдит ларец без потери содержимого."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:basic_to_diamond_tier_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "0D6E6D82B65EB805",
+   "title": "Автоподбор",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Подбирает предметы рядом с ларцом.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:pickup_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "7C4976970923E7AB",
+   "title": "Воронка",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Передаёт предметы соседним контейнерам.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:hopper_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "11C49037E7B0A530",
+   "title": "Магнит",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Притягивает предметы к ларцу.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:magnet_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "57C6512078721E42",
+   "title": "Фильтр",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Фильтрует, что можно класть или брать.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:filter_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "765AABB65B5076FF",
+   "title": "Пустота",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Уничтожает лишние предметы.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 8.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:void_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "52EB0A89721662FE",
+   "title": "Кормление",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Кормит находящихся рядом игроков.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 10.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:feeding_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "4ED66FB00C12D8AE",
+   "title": "Сжатие",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Упаковывает ресурсы в блоки.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 12.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:compacting_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "0800BD609888C2A7",
+   "title": "Плавильня",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Печь внутри ларца.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:smelting_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "7B8BB83EBB0EA4D3",
+   "title": "Коптильня",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Коптильня внутри ларца.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 2.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:smoking_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "1868CE3FCDE75576",
+   "title": "Доменная печь",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Доменная печь внутри ларца.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 4.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:blasting_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "4940D6CD3D6062EE",
+   "title": "Верстак",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Верстак прямо в ларце.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 6.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:crafting_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "0020E435A1D4B586",
+   "title": "Стек I",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Увеличивает размер стека.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 8.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:stack_upgrade_tier_1",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "7A0B4C84392DC11B",
+   "title": "Стек II",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Увеличивает размер стека ещё больше.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 10.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:stack_upgrade_tier_2",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "7A0F9BA0757590B5",
+   "title": "Стек III",
+   "sub": "Улучшение контейнера",
+   "desc": [
+    "Увеличивает размер стека ещё больше.",
+    "Подробности в подсказке предмета."
+   ],
+   "x": 12.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:stack_upgrade_tier_3",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "24A4A9333613C04E",
+   "title": "Контроллер склада",
+   "sub": "Центр склада",
+   "desc": [
+    "Контроллер объединяет все контейнеры вокруг в единую систему."
+   ],
+   "x": 0.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:controller",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "30EBDA3521204A83"
+   ]
+  },
+  {
+   "id": "5D32E1D789B3A18F",
+   "title": "Соединитель",
+   "sub": "Продлеваем сеть",
+   "desc": [
+    "Соединители расширяют сеть на расстояние."
+   ],
+   "x": 2.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:storage_connector",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "24A4A9333613C04E"
+   ]
+  },
+  {
+   "id": "2A1DBC5F4F4E86DE",
+   "title": "Связь",
+   "sub": "Связь с контроллером",
+   "desc": [
+    "Связывает склад с контроллером."
+   ],
+   "x": 4.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:storage_link",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "24A4A9333613C04E"
+   ]
+  },
+  {
+   "id": "1735883FC2823513",
+   "title": "Порт ввода-вывода",
+   "sub": "Вход и выход",
+   "desc": [
+    "Принимает и отдаёт предметы соседним механизмам."
+   ],
+   "x": 6.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:storage_io",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "24A4A9333613C04E"
+   ]
+  },
+  {
+   "id": "47139CEFFC320D60",
+   "title": "Порт ввода",
+   "sub": "Только вход",
+   "desc": [
+    "Принимает предметы и больше ничего."
+   ],
+   "x": 8.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:storage_input",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "1735883FC2823513"
+   ]
+  },
+  {
+   "id": "583853C0E9F30486",
+   "title": "Порт вывода",
+   "sub": "Только выход",
+   "desc": [
+    "Отдаёт предметы наружу."
+   ],
+   "x": 10.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:storage_output",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "1735883FC2823513"
+   ]
+  },
+  {
+   "id": "1412797BA81255D9",
+   "title": "Упаковочная лента",
+   "sub": "Для порядка и красоты",
+   "desc": [
+    "Помогает переносить ларцы с содержимым."
+   ],
+   "x": 0.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:packing_tape",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "19DCDFB2D2779BDE"
+   ]
+  },
+  {
+   "id": "3069166522B8605B",
+   "title": "Кисть",
+   "sub": "Для порядка и красоты",
+   "desc": [
+    "Красит ларцы и бочки."
+   ],
+   "x": 2.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:paintbrush",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "19DCDFB2D2779BDE"
+   ]
+  },
+  {
+   "id": "43A7260B3110DC64",
+   "title": "Стол декора",
+   "sub": "Для порядка и красоты",
+   "desc": [
+    "Позволяет менять отделку ларцов."
+   ],
+   "x": 4.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:decoration_table",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "19DCDFB2D2779BDE"
+   ]
+  },
+  {
+   "id": "33E86003BB994298",
+   "title": "Инструмент склада",
+   "sub": "Для порядка и красоты",
+   "desc": [
+    "Помогает настраивать склад."
+   ],
+   "x": 6.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:storage_tool",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "19DCDFB2D2779BDE"
+   ]
+  },
+  {
+   "id": "77669B3F5DF4D997",
+   "title": "Ограниченная бочка",
+   "sub": "Для порядка и красоты",
+   "desc": [
+    "Хранит только часть слотов."
+   ],
+   "x": 8.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "sophisticatedstorage:limited_barrel_1",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "19DCDFB2D2779BDE"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1385 @@
+{
+ "key": "mc_craft",
+ "id": "",
+ "title": "Руки колонии",
+ "subtitle": "MineColonies — ремёсла и производство",
+ "group": "Жизнь колонии",
+ "icon": "minecolonies:blockhutlumberjack",
+ "order": 21,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Руки колонии",
+   "sub": "Рабочие места",
+   "desc": [
+    "Каждое рабочее здание даёт жителю профессию. Работник берёт инструменты и ресурсы со склада и сам делает продукцию.",
+    "Начните с лесоруба, шахтёра и фермера — они дают основу всех материалов."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "minecolonies:blockhutlumberjack",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "mc_found/builder"
+   ]
+  },
+  {
+   "k": "lumberjack",
+   "title": "Хижина лесоруба",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Лесоруб рубит деревья и сажает саженцы. Даёт бревна для всех построек.",
+    "&6Как получить:&r верстак: stone axe, Build Tool.",
+    "&6Цель:&r Заверши строительство Хижины Лесоруба (используй строительный инструмент, чтобы поставить её) для того, чтобы собрать дерево для других хижин."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutlumberjack",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_lumberjack"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "miner",
+   "title": "Шахта",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Шахтёр копает шахту вниз уровнями и приносит камень, уголь и руду.",
+    "&6Как получить:&r верстак: stone pickaxe, Build Tool.",
+    "&6Цель:&r Заверши строительство Шахты (используй Жезл строителя), чтобы добыть руду, сланец и булыжник для будущих построек."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutminer",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_miner"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_production_deep_mine",
+   "title": "На самое днище",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Шахтёр спустился до уровня бедрока."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/deep_mine"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 60
+    }
+   ],
+   "deps": [
+    "mc_craft/miner"
+   ]
+  },
+  {
+   "k": "farmer",
+   "title": "Ферма",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Фермер возделывает поля. Поставьте рядом поле и выберите семена.",
+    "&6Как получить:&r верстак: stone hoe, Build Tool.",
+    "&6Цель:&r Чтобы начать производство еды для жителей, построй Ферму. После чего необходимо разместить Поле (блок в виде пугала) и отметить культуры, которые твой Фермер будет выращивать."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutfarmer",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_farmer"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "mc_craft/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "field",
+   "title": "Поле",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Поле размечает грядку для фермера. До 5 полей на одного фермера.",
+    "&6Как получить:&r верстак: Сноп сена, Кожа, Тыква, Палка."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutfield",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_craft/farmer"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_production_max_fields",
+   "title": "Гринпис ставит вам лайк!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Назначь одному Фермеру максимальное количество полей (5)."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/max_fields"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "mc_craft/field"
+   ]
+  },
+  {
+   "k": "fisherman",
+   "title": "Хижина рыбака",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Рыбак ловит рыбу и сокровища у ближайшей воды.",
+    "&6Как получить:&r верстак: Удочка, Build Tool.",
+    "&6Цель:&r Построй Хижину рыбака максимально близко к воде, чтобы вылавливать сочные и питательные морепродукты и не только."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutfisherman",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_fisherman"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "cook",
+   "title": "Столовая",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Столовая: повар готовит еду и кормит жителей. Сытые жители работают быстрее.",
+    "&6Как получить:&r верстак: Яблоко, Build Tool.",
+    "&6Цель:&r Постройте столовую, где ваши горожане смогут поесть. Официант будет готовить мясо и подавать еду вам и вашим горожанам."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutcook",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_cook"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/farmer",
+    "mc_craft/fisherman"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "baker",
+   "title": "Пекарня",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пекарь печёт хлеб, торты и пироги из пшеницы и других продуктов.",
+    "&6Как получить:&r верстак: Пшеница, Build Tool.",
+    "&6Цель:&r Твоим жителям необходимо добавить немного зерновых культур в рацион питания. Построй Пекарню, где хозяин лавки будет делать изысканные хлебобулочные изделия для них!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutbaker",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_baker"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "mc_craft/farmer"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "kitchen",
+   "title": "Кухня Шеф-повара",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Кухня шеф-повара готовит сложные блюда колонии — сытнее обычной еды.",
+    "&6Как получить:&r верстак: Коптильня, Build Tool."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutkitchen",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/cook"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "sawmill",
+   "title": "Лесопилка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Плотник на лесопилке крафтит из дерева: доски, двери, сундуки. Ему можно обучить рецепты.",
+    "&6Как получить:&r верстак: Деревянный топор, Build Tool.",
+    "&6Цель:&r С Курьером на твоей стороне можно начинать использовать труд ремесленников. Построй Лесопилку, чтобы начать незабываемый крафтовый опыт!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutsawmill",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_sawmill"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/lumberjack"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_minecolonies_building_add_recipe_door",
+   "title": "Удверительный крафтинг",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Научи Плотника рецепту крафта дверей из 6 разных видов досок (Примечание: ремесленники будут крафтить только в том случае, если другому рабочему это необходимо. Чтобы узнать больше об этом, смотри информационную вкладку в их хижине)."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/building_add_recipe_door"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "mc_craft/sawmill"
+   ]
+  },
+  {
+   "k": "stonemason",
+   "title": "Хижина каменщика",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Каменщик крафтит из камня: кирпичи, ступени, плиты.",
+    "&6Как получить:&r верстак: Каменные кирпичи, Build Tool.",
+    "&6Цель:&r Каменщик может использовать рецепты крафта 3х3, используя камень как главный ингредиент. Построй Хижину каменщика, чтобы воспользоваться этим мастерством!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutstonemason",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_stonemason"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/miner"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "smeltery",
+   "title": "Плавильня",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Плавильщик переплавляет руду. На высоких уровнях даёт больше слитков из руды.",
+    "&6Как получить:&r верстак: Железный слиток, Build Tool.",
+    "&6Цель:&r Построй Плавильню, чтобы выплавлять руду вместо тебя! Работает крайне эффективно при наличии квалифицированного работника."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutsmeltery",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_smeltery"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/miner"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_production_build_smeltery_3",
+   "title": "Хлопот не оберёшься!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Плавильня 3-го уровня применяет Удачу 2 при обработке рудных блоков, здорово!"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_smeltery_3"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "mc_craft/smeltery"
+   ]
+  },
+  {
+   "k": "adv_production_build_smeltery_5",
+   "title": "Это рудамечательно!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Плавильня 5-го уровня применяет Удачу 4 при обработке рудных блоков, лучше и быть не может!"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_smeltery_5"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 80
+    }
+   ],
+   "deps": [
+    "mc_craft/adv_production_build_smeltery_3"
+   ]
+  },
+  {
+   "k": "stonesmeltery",
+   "title": "Кирпичный двор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Кирпичный двор обжигает камень, глину и стекло.",
+    "&6Как получить:&r верстак: Печь, Каменные кирпичи, Build Tool.",
+    "&6Цель:&r Построй Кирпичный двор, чтобы автоматизировать обжиг камня и многое другое для мастеров других специальностей"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutstonesmeltery",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_stone_smeltery"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "minecraft:coal",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "mc_craft/stonemason"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "crusher",
+   "title": "Дробильщик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Дробильщик превращает булыжник в гравий, песок и пыль.",
+    "&6Как получить:&r верстак: Булыжник, Железный слиток, Build Tool.",
+    "&6Цель:&r Построй Измельчитель, чтобы получить полезные вещи (например, гравий из булыжника)!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutcrusher",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_crusher"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/stonemason"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "sifter",
+   "title": "Просеиватель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Просеиватель ищет руду и редкости в гравии, песке и земле. Нужны сетки.",
+    "&6Как получить:&r верстак: Нить, Build Tool.",
+    "&6Цель:&r Построй Хижину просеивателя, чтобы получить дополнительные ресурсы, что прячутся в некоторых блоках."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutsifter",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_sifter"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/crusher"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "blacksmith",
+   "title": "Кузница",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Кузнец делает инструменты, оружие и броню для жителей.",
+    "&6Как получить:&r верстак: Железный слиток, Build Tool.",
+    "&6Цель:&r Большинству рабочих для работы нужны инструменты. Построй Кузницу, чтобы автоматизировать производство инструментов!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutblacksmith",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_blacksmith"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/smeltery"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "composter",
+   "title": "Хижина компостёра",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Компостёр перерабатывает отходы в компост — лучшее удобрение для полей.",
+    "&6Как получить:&r верстак: Бочка для компоста, Build Tool.",
+    "&6Цель:&r В Хижине Компостёра рабочий будет забирать любые перерабатываемые предметы, чтобы использовать их для создания удобрения (аналог костной муки), необходимого для Ферм."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutcomposter",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_composter"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "mc_craft/farmer"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "compost_blocks",
+   "title": "Бочка и компостированная земля",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Земля, Железный слиток, Build Tool.",
+    "&6Зачем нужен:&r идёт в Хижина компостёра."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:barrel_block",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "minecolonies:composted_dirt",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_craft/composter"
+   ]
+  },
+  {
+   "k": "florist",
+   "title": "Цветочный магазин",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Флорист выращивает цветы — нужны для красителей и украшений.",
+    "&6Как получить:&r верстак: poppy, Build Tool.",
+    "&6Цель:&r Цветочный Магазин будет использовать удобрение или другие виды \"костной муки\", чтобы выращивать цветы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutflorist",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_florist"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/composter"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "plantation",
+   "title": "Плантация",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Плантатор выращивает тростник, кактусы, бамбук и другие особые растения.",
+    "&6Как получить:&r верстак: Кактус, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutplantation",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/farmer"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "plantationfield",
+   "title": "Поле плантации",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Железный слиток, Палка, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutplantationfield",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_craft/plantation"
+   ]
+  },
+  {
+   "k": "beekeeper",
+   "title": "Пасека",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пасечник собирает мёд и соты с ульев.",
+    "&6Как получить:&r верстак: beehive, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutbeekeeper",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "mc_craft/florist"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "chicken",
+   "title": "Курятник",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Птичник разводит кур: яйца, перья, мясо.",
+    "&6Как получить:&r верстак: Яйцо, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutchickenherder",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/farmer"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "cow",
+   "title": "Хижина скотовода",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Скотовод разводит коров: молоко, кожа, говядина.",
+    "&6Как получить:&r верстак: Сырая говядина, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutcowboy",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/farmer"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "swine",
+   "title": "Хижина свинопаса",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Свинопас разводит свиней.",
+    "&6Как получить:&r верстак: Сырая свинина, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutswineherder",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/farmer"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "shepherd",
+   "title": "Пастушья хижина",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пастух разводит овец и стрижёт шерсть.",
+    "&6Как получить:&r верстак: Ножницы, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutshepherd",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "minecraft:coal",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "mc_craft/farmer"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "rabbit",
+   "title": "Хижина кроликовода",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Кроликовод разводит кроликов.",
+    "&6Как получить:&r верстак: Сырая крольчатина, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutrabbithutch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/farmer"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_production_build_all_herders",
+   "title": "Нестадно, однако. . .",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Построй хижины для разведения полезной фауны каждого типа. Не забудь дать каждой живность для работы!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_all_herders"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 60
+    }
+   ],
+   "deps": [
+    "mc_craft/chicken",
+    "mc_craft/cow",
+    "mc_craft/swine",
+    "mc_craft/shepherd",
+    "mc_craft/rabbit"
+   ]
+  },
+  {
+   "k": "glassblower",
+   "title": "Хижина стеклодува",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Стеклодув плавит песок в стекло и делает стеклянные панели.",
+    "&6Как получить:&r верстак: Стекло, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutglassblower",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/stonesmeltery"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "dyer",
+   "title": "Хижина красильщика",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Красильщик делает красители и красит шерсть, стекло и терракоту.",
+    "&6Как получить:&r верстак: Красный краситель, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutdyer",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "mc_craft/florist"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "concrete",
+   "title": "Хижина с бетономешалкой",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Бетономешалка делает сухой и твёрдый бетон всех цветов.",
+    "&6Как получить:&r верстак: white concrete powder, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutconcretemixer",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/dyer",
+    "mc_craft/crusher"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "fletcher",
+   "title": "Хижина стрельника",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Стрельник делает стрелы, луки и арбалеты для стражи.",
+    "&6Как получить:&r верстак: Нить, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutfletcher",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/sawmill"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "mechanic",
+   "title": "Хижина механика",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Механик делает редстоун-устройства: поршни, воронки, рельсы.",
+    "&6Как получить:&r верстак: Блок редстоуна, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutmechanic",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/blacksmith"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "netherworker",
+   "title": "Шахта Нижнего мира",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Работник Нижнего мира уходит в ад через портал и приносит его ресурсы.",
+    "&6Как получить:&r верстак: Обсидиан, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutnetherworker",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "mc_craft/blacksmith"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "alchemist",
+   "title": "Башня Алхимика",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Алхимик варит зелья и выращивает незерские наросты.",
+    "&6Как получить:&r верстак: brewing stand, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutalchemist",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_craft/netherworker"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "meshes",
+   "title": "Сетки просеивателя",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&7Вариантов: 4. Засчитывается «Нитиевая сетка»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "minecolonies:sifter_mesh_string",
+      "minecolonies:sifter_mesh_flint",
+      "minecolonies:sifter_mesh_iron",
+      "minecolonies:sifter_mesh_diamond"
+     ],
+     "count": 1,
+     "title": "Нитиевая сетка (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_craft/sifter"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Город мастеров",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Все ремёсла колонии работают.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "minecraft:emerald",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "mc_craft/concrete",
+    "mc_craft/alchemist",
+    "mc_craft/sifter",
+    "mc_craft/beekeeper"
+   ],
+   "finale": true
+  }
+ ]
+}

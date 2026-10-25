@@ -1,0 +1,1373 @@
+{
+ "key": "sim_physics",
+ "id": "",
+ "title": "Законы полёта",
+ "subtitle": "Create Simulated — физические штуковины",
+ "group": "Эра механизмов",
+ "icon": "simulated:physics_assembler",
+ "order": 9,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Да пребудет с вами физика",
+   "sub": "Основа авиации и транспорта",
+   "desc": [
+    "Create Simulated превращает собранную конструкцию в &eфизическое тело&r: она падает, катится, качается и сталкивается.",
+    "На этом построены дирижабли, самолёты и вездеходы из следующих глав.",
+    "Начните с физического сборщика — он «оживляет» постройку."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "simulated:physics_assembler",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "physics_assembler",
+   "title": "Физический сборщик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Сердце каждой физической штуковины. Поставьте его в постройку, подайте сигнал — и блоки станут единым физическим телом.",
+    "&6Как получить:&r верстак: Андезитовый сплав, Андезитовый корпус, Рычаг.",
+    "&6Зачем нужен:&r идёт в Диаграмма штуковины."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:physics_assembler",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/intro",
+    "25385F994C28D4F2"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_applied_kinematics",
+   "title": "Прикладная кинематика",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Получите физический сборщик — сердце каждой физической штуковины"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "simulated:applied_kinematics"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "sim_physics/physics_assembler"
+   ]
+  },
+  {
+   "k": "honey_glue",
+   "title": "Мёдоклей",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Мёдоклей отмечает, какие блоки входят в штуковину. Выделите область — блоки склеятся.",
+    "&6Как получить:&r заправщик: Железный лист."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:honey_glue",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "sim_physics/intro",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_not_gonna_sugarcoat_it",
+   "title": "Сладкая зона",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Используйте мёдоклей для соединения группы блоков"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "simulated:not_gonna_sugarcoat_it"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "sim_physics/honey_glue"
+   ]
+  },
+  {
+   "k": "contraption_diagram",
+   "title": "Диаграмма штуковины",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Схема показывает массу, центр тяжести и подъёмную силу штуковины — главный инструмент конструктора.",
+    "&6Как получить:&r верстак: Бумага, Физический сборщик.",
+    "&6Как использовать:&r ПКМ на физической штуковине: &eВизуализирует силы&r, действующие на &eфизическую штуковину&r"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:contraption_diagram",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/physics_assembler"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_measure_once_build_twice",
+   "title": "Семь раз построй, один раз замерь",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Исследуйте диаграмму физической штуковины"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "simulated:measure_once_build_twice"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "sim_physics/contraption_diagram"
+   ]
+  },
+  {
+   "k": "nameplate",
+   "title": "Именная табличка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав, Бумага, Палка.",
+    "&6Зачем нужен:&r идёт в Чёрная именная табличка, Синяя именная табличка, Коричневая именная табличка, Бирюзовая именная табличка, Серая именная табличка.",
+    "&7Вариантов: 16. Засчитывается «Белая именная табличка»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "simulated:white_nameplate",
+      "simulated:orange_nameplate",
+      "simulated:magenta_nameplate",
+      "simulated:light_blue_nameplate",
+      "simulated:yellow_nameplate",
+      "simulated:lime_nameplate",
+      "simulated:pink_nameplate",
+      "simulated:gray_nameplate",
+      "simulated:light_gray_nameplate",
+      "simulated:cyan_nameplate",
+      "simulated:purple_nameplate",
+      "simulated:blue_nameplate",
+      "simulated:brown_nameplate",
+      "simulated:green_nameplate",
+      "simulated:red_nameplate",
+      "simulated:black_nameplate"
+     ],
+     "count": 1,
+     "title": "Белая именная табличка (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/intro",
+    "7BF2AA99A5A1C7CD"
+   ]
+  },
+  {
+   "k": "handle",
+   "title": "Скоба",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "За скобу можно ухватиться и ехать вместе со штуковиной, даже если она летит.",
+    "&6Как получить:&r верстак: Чёрная скоба.",
+    "&6Зачем нужен:&r идёт в Чёрная скоба, Синяя скоба, Коричневая скоба, Медная скоба, Бирюзовая скоба.",
+    "&7Вариантов: 18. Засчитывается «Железная скоба»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "simulated:iron_handle",
+      "simulated:copper_handle",
+      "simulated:white_handle",
+      "simulated:orange_handle",
+      "simulated:magenta_handle",
+      "simulated:light_blue_handle",
+      "simulated:yellow_handle",
+      "simulated:lime_handle",
+      "simulated:pink_handle",
+      "simulated:gray_handle",
+      "simulated:light_gray_handle",
+      "simulated:cyan_handle",
+      "simulated:purple_handle",
+      "simulated:blue_handle",
+      "simulated:brown_handle",
+      "simulated:green_handle",
+      "simulated:red_handle",
+      "simulated:black_handle"
+     ],
+     "count": 1,
+     "title": "Железная скоба (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_get_a_grip",
+   "title": "Стальная хватка",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Возьмитесь за скобу"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "simulated:get_a_grip"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "create:iron_sheet",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "sim_physics/handle"
+   ]
+  },
+  {
+   "k": "steering_wheel",
+   "title": "Штурвал",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Штурвал поворачивает подключённые механизмы, пока вы его держите. Так рулят кораблями и машинами.",
+    "&6Как получить:&r верстак: Андезитовый корпус, Большая шестерня, Вал."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:steering_wheel",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/adv_get_a_grip",
+    "25385F994C28D4F2",
+    "50EE13560C3B6D6C"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "throttle_lever",
+   "title": "Тяговый рычаг",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Тяговый рычаг задаёт силу сигнала — удобно для управления скоростью двигателей.",
+    "&6Как получить:&r верстак: Латунный корпус, Палка."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:throttle_lever",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/adv_get_a_grip",
+    "4D1D7873774CA66B"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_unpowered_steering",
+   "title": "Йо-хо-хо, и бутылка зелья!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Ухватитесь за штурвал и покрутите его"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "simulated:unpowered_steering"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "sim_physics/steering_wheel"
+   ]
+  },
+  {
+   "k": "swivel_bearing",
+   "title": "Шарнирный подшипник",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Шарнирный подшипник крутит часть постройки как отдельное физическое тело — для дверей, башен и шарниров.",
+    "&6Как получить:&r верстак: Шестерня, Блок промышленного железа."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:swivel_bearing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/adv_get_a_grip",
+    "create_misc/iron_blocks"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_you_spin_me_right_round",
+   "title": "Карусель, карусель...",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Соберите физическую штуковину, используя шарнирный подшипник"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "simulated:you_spin_me_right_round"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "sim_physics/swivel_bearing"
+   ]
+  },
+  {
+   "k": "spring",
+   "title": "Пружина",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пружина соединяет два блока упругой связью: подвеска, амортизаторы, батуты.",
+    "&6Как получить:&r верстак: Железный лист, Железный самородок.",
+    "&6Как использовать:&r ПКМ с гаечным ключом: Регулирует &eжёсткость&r пружины",
+    "&6Как использовать:&r ПКМ с пружиной в руке: &eУвеличивает&r длину в состоянии покоя",
+    "&6Как использовать:&r ПКМ крадучись с пружиной в руке: &eУменьшает&r длину в состоянии покоя",
+    "&6Зачем нужен:&r идёт в Аналоговый компактный поворотный подшипник, Аналоговый компактный физический подшипник, Компактный поворотный подшипник, Компактный физический подшипник, Колёсное крепление."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:spring",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "simulated:honey_glue",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "sim_physics/adv_get_a_grip",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "torsion_spring",
+   "title": "Торсионная пружина",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Торсионная пружина возвращает повёрнутую часть в исходное положение.",
+    "&6Как получить:&r верстак: Андезитовый корпус, Вал, Пружина."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:torsion_spring",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/spring"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "ropes",
+   "title": "Верёвки и лебёдка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Моток верёвки связывает крепления. Лебёдка наматывает верёвку и поднимает груз.",
+    "&6Как получить:&r верстак.",
+    "&6Зачем нужен:&r идёт в Вантузомёт."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:rope_coupling",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "simulated:rope_connector",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "simulated:rope_winch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/torsion_spring"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_learning_the_ropes",
+   "title": "Морских узлов мастер",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Соедините крепление или лебёдку с верёвкой"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "simulated:learning_the_ropes"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "sim_physics/ropes"
+   ]
+  },
+  {
+   "k": "docking_connector",
+   "title": "Стыковочный порт",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Стыковочный порт соединяет две штуковины в полёте или на земле. Отпускается по сигналу.",
+    "&6Как получить:&r механический крафтер: Латунный корпус, Латунный лист, Жёлоб, Электронная лампа, Железный лист."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:docking_connector",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "sim_physics/torsion_spring",
+    "4D1D7873774CA66B",
+    "49A87F51BFFBB1C4",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_a_calculated_connection",
+   "title": "Есть контакт!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Выровняйте и состыкуйте два стыковочных порта"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "simulated:a_calculated_connection"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "sim_physics/docking_connector"
+   ]
+  },
+  {
+   "k": "engine_assembly",
+   "title": "Двигательный узел",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Двигательный узел — деталь портативного двигателя, собирается последовательной сборкой.",
+    "&6Как получить:&r последовательная сборка: Железный лист, Незавершённый двигательный узел.",
+    "&6Зачем нужен:&r идёт в Красный портативный двигатель."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:engine_assembly",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/torsion_spring",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "portable_engine",
+   "title": "Портативный двигатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Небольшой двигатель на топливе: даёт вращение прямо на борту без парового котла.",
+    "&7Вариантов: 16. Засчитывается «Белый портативный двигатель»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "simulated:white_portable_engine",
+      "simulated:orange_portable_engine",
+      "simulated:magenta_portable_engine",
+      "simulated:light_blue_portable_engine",
+      "simulated:yellow_portable_engine",
+      "simulated:lime_portable_engine",
+      "simulated:pink_portable_engine",
+      "simulated:gray_portable_engine",
+      "simulated:light_gray_portable_engine",
+      "simulated:cyan_portable_engine",
+      "simulated:purple_portable_engine",
+      "simulated:blue_portable_engine",
+      "simulated:brown_portable_engine",
+      "simulated:green_portable_engine",
+      "simulated:red_portable_engine",
+      "simulated:black_portable_engine"
+     ],
+     "count": 1,
+     "title": "Белый портативный двигатель (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/torsion_spring"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_steamless_engine",
+   "title": "Теперь на 100% без пара!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Разместите и активируйте портативный двигатель"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "simulated:steamless_engine"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "sim_physics/portable_engine"
+   ]
+  },
+  {
+   "k": "gyroscopic_mechanism",
+   "title": "Механизм гироскопа",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Механизм гироскопа — компонент датчиков и стабилизаторов.",
+    "&6Как получить:&r последовательная сборка: Кусочек латуни, Шестерня, Железный лист, Вал, Незаконченный механизм гироскопа.",
+    "&6Зачем нужен:&r идёт в Гироскопический пропеллерный подшипник, Умный пропеллер, Гироскопный датчик."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:gyroscopic_mechanism",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:iron_sheet",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "sim_physics/adv_steamless_engine",
+    "56239D98E7831D04",
+    "create_andesite/nuggets",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "gimbal_sensor",
+   "title": "Гироскопный датчик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Гироскопный датчик выдаёт сигнал при наклоне. С ним штуковина держит равновесие сама.",
+    "&6Как получить:&r верстак: Латунный корпус, Компас, Механизм гироскопа.",
+    "&6Зачем нужен:&r идёт в Гироскоп."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:gimbal_sensor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/gyroscopic_mechanism",
+    "520494043376DA40",
+    "4D1D7873774CA66B"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "altitude_sensor",
+   "title": "Высотный датчик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Сигнал зависит от высоты: можно сделать автопилот по высоте.",
+    "&6Как получить:&r верстак: Андезитовый корпус, Железный лист, Бумага."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:altitude_sensor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/adv_steamless_engine",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "velocity_sensor",
+   "title": "Скоростной датчик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Сигнал зависит от скорости штуковины.",
+    "&6Как получить:&r верстак: Андезитовый корпус, Пропеллер, Бочка."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:velocity_sensor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/adv_steamless_engine",
+    "create_andesite/propeller"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "optical_sensor",
+   "title": "Оптический датчик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Видит блок прямо перед собой и подаёт сигнал — датчик препятствий.",
+    "&6Как получить:&r верстак: Латунный корпус, Электронная лампа, Осколок аметиста."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:optical_sensor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "simulated:honey_glue",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "sim_physics/adv_steamless_engine",
+    "4D1D7873774CA66B",
+    "49A87F51BFFBB1C4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "lasers",
+   "title": "Лазер и лазерный датчик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Лазер светит лучом, датчик подаёт сигнал при попадании — для дальних связей и прицелов.",
+    "&6Как получить:&r верстак: Андезитовый корпус, Редстоуновый факел."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:laser_pointer",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "simulated:laser_sensor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/optical_sensor",
+    "25385F994C28D4F2"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "navigation_table",
+   "title": "Навигационный стол",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Навигационный стол указывает направление к цели — компас для дальних перелётов.",
+    "&6Как получить:&r верстак: Латунный корпус, Латунный лист, Механизм точности."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:navigation_table",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/optical_sensor",
+    "4D1D7873774CA66B",
+    "63B86FA0C25B7639"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "redstone_magnet",
+   "title": "Редстоуновый магнит",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Магнит притягивает другие штуковины, пока на него подаётся сигнал.",
+    "&6Как получить:&r верстак: Медный лист, Блок промышленного железа, Редстоун."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:redstone_magnet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/optical_sensor",
+    "create_misc/iron_blocks",
+    "27D0961A37A6E0CB"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "redstone_sim",
+   "title": "Аккумулятор и индуктор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Латунный лист, Полированный розовый кварц, Редстоуновый факел."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:redstone_accumulator",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "simulated:redstone_inductor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "sim_physics/optical_sensor",
+    "create_brass/polished_rose_quartz",
+    "0C03B415D50A44C3"
+   ]
+  },
+  {
+   "k": "receivers",
+   "title": "Особые приёмники",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Латунный корпус, Железный лист, Передатчик."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:directional_linked_receiver",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "simulated:modulating_linked_receiver",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/redstone_sim",
+    "024258E95184EEE4",
+    "create_logistics/transmitter"
+   ]
+  },
+  {
+   "k": "linked_typewriter",
+   "title": "Частотная пишущая машинка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Частотная пишущая машинка: каждая клавиша клавиатуры управляет своей частотой. Удобное управление кораблём.",
+    "&6Как получить:&r механический крафтер: Золотой лист, Механизм точности, Передатчик.",
+    "&6Как использовать:&r ПКМ по блоку: &eПереключается&r на частотную пишущую машинку. Пока она активна, &eуправление движением&r и все &eназначенные клавиши&r перехватываются ею.",
+    "&6Как использовать:&r ПКМ крадучись: Открывает &eинтерфейс конфигурации&r.",
+    "&6Как использовать:&r ПКМ с частотным контроллером: Привязывает частоты &eконтроллера частот&r к пишущей машинке."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:linked_typewriter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/redstone_sim",
+    "create_logistics/transmitter",
+    "63B86FA0C25B7639"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "transmissions",
+   "title": "Передачи штуковин",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Латунный корпус, Шестерня, Электронная лампа, Вал."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:analog_transmission",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "simulated:directional_gearshift",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/redstone_sim",
+    "4D1D7873774CA66B",
+    "49A87F51BFFBB1C4"
+   ]
+  },
+  {
+   "k": "auger",
+   "title": "Шнек",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Шнековый вал перемещает предметы и сыпучие блоки вдоль себя.",
+    "&6Как получить:&r верстак: Шнековая шестерня.",
+    "&6Зачем нужен:&r идёт в Шнековая шестерня."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:auger_shaft",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "simulated:auger_cog",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:iron_sheet",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "sim_physics/redstone_sim"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "plunger_launcher",
+   "title": "Вантузомёт",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вантузомёт цепляется к штуковине и тянет её к вам.",
+    "&6Как получить:&r механический крафтер: Андезитовый сплав, Жидкостная труба, Механизм точности, Медный слиток, Сгусток слизи.",
+    "&6Как использовать:&r ПКМ с предметом: &eЗапускает&r &eвантуз&r на верёвке. Два запущенных вантуза &eсоединятся&r и &eскрепят прикреплённые блоки друг с другом&r.",
+    "&6Как использовать:&r ПКМ крадучись с предметом: &eУбирает&r все &eвантузы&r на верёвке.",
+    "&6Как использовать:&r Когда надет баллон: &eНе&r тратиться &eпрочность&r. Вместо этого будет тратится &eвоздух&r из баллона"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:plunger_launcher",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/ropes",
+    "727F09E229C92364",
+    "63B86FA0C25B7639"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "sym_sail",
+   "title": "Симметричный парус",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Парус, который работает одинаково в обе стороны — пригодится для крыльев и рулей.",
+    "&6Как получить:&r верстак: Парус ветряной мельницы.",
+    "&6Зачем нужен:&r идёт в Парус ветряной мельницы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:white_symmetric_sail",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "sim_physics/plunger_launcher",
+    "3351EFE6BEA86D5B"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "finale_sim",
+   "title": "Конструктор физики",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вы освоили физику штуковин. Пора в небо!",
+    "&6Как получить:&r верстак: Андезитовый сплав, Андезитовый корпус, Рычаг.",
+    "&6Зачем нужен:&r идёт в Диаграмма штуковины."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "simulated:physics_assembler",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 100
+    },
+    {
+     "type": "item",
+     "id": "simulated:honey_glue",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "sim_physics/lasers",
+    "sim_physics/navigation_table",
+    "sim_physics/portable_engine",
+    "sim_physics/docking_connector"
+   ],
+   "finale": true,
+   "note": "Ручное описание по общим знаниям о моде"
+  }
+ ]
+}

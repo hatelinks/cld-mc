@@ -1,0 +1,392 @@
+{
+ "key": "create_logistics",
+ "id": "069C03F24B413B75",
+ "title": "Река посылок",
+ "subtitle": "Хранилища, упаковки и автоматические заказы (Create 6.0)",
+ "group": "Эра механизмов",
+ "icon": "create:item_vault",
+ "order": 4,
+ "quests": [
+  {
+   "id": "6B83F5A0F12F3DE5",
+   "title": "Хранилище предметов",
+   "sub": "Большой склад",
+   "desc": [
+    "Хранилища можно соединять в большие блоки, ёмкость растёт вместе с размером.",
+    "Подходят для складов с автоматическим выводом."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:item_vault",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "4BEAF37297D8D98E",
+   "title": "Картонный блок",
+   "sub": "Новый материал 6.0",
+   "desc": [
+    "Картон нужен для упаковок и их механизмов."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:cardboard_block",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6B83F5A0F12F3DE5"
+   ]
+  },
+  {
+   "id": "346EA39F6C9646CB",
+   "title": "Упаковщик",
+   "sub": "Предметы в посылку",
+   "desc": [
+    "Упаковщик собирает содержимое соседнего хранилища в посылки."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:packager",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4BEAF37297D8D98E",
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "177849228149511F",
+   "title": "Переупаковщик",
+   "sub": "Собирает заказы",
+   "desc": [
+    "Объединяет и пересобирает посылки в нужные наборы."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:repackager",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "346EA39F6C9646CB"
+   ]
+  },
+  {
+   "id": "2C1629D50FDDDA95",
+   "title": "Лягушачий порт",
+   "sub": "Приём посылок",
+   "desc": [
+    "Порт принимает и отправляет посылки между складами, ловя их языком."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:package_frogport",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "346EA39F6C9646CB"
+   ]
+  },
+  {
+   "id": "39CE838A8A83FED3",
+   "title": "Цепной конвейер",
+   "sub": "Транспорт посылок",
+   "desc": [
+    "Цепи переносят посылки на большие расстояния и по воздуху."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:chain_conveyor",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2C1629D50FDDDA95"
+   ]
+  },
+  {
+   "id": "7A020C90507A1978",
+   "title": "Складская связь",
+   "sub": "Подключаем склад к сети",
+   "desc": [
+    "Связь делает склад видимым для остальной логистической сети."
+   ],
+   "x": 8.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:stock_link",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "346EA39F6C9646CB"
+   ]
+  },
+  {
+   "id": "3C6C2F6FD8BA6A55",
+   "title": "Складской тикер",
+   "sub": "Заказ любых предметов",
+   "desc": [
+    "Тикер показывает всё, что есть на складе, и отправляет заказы."
+   ],
+   "x": 10.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:stock_ticker",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:chute",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "7A020C90507A1978"
+   ]
+  },
+  {
+   "id": "6A427A1873C0D2E5",
+   "title": "Заводской датчик",
+   "sub": "Автоматический запрос",
+   "desc": [
+    "Датчик следит за количеством и сам заказывает нужные предметы."
+   ],
+   "x": 8.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:factory_gauge",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7A020C90507A1978"
+   ]
+  },
+  {
+   "id": "7064E96303CB81E0",
+   "title": "Люк для предметов",
+   "sub": "Вход на склад",
+   "desc": [
+    "Люк принимает предметы и отправляет их в хранилище."
+   ],
+   "x": 10.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:item_hatch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6B83F5A0F12F3DE5"
+   ]
+  },
+  {
+   "id": "35454BF63C42D02C",
+   "title": "Портативный интерфейс хранилища",
+   "sub": "Обмен с механизмами на ходу",
+   "desc": [
+    "Передаёт предметы между подвижными конструкциями и неподвижным складом."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:portable_storage_interface",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6B83F5A0F12F3DE5"
+   ]
+  },
+  {
+   "id": "51158C06DA946047",
+   "title": "Весовой катапульт",
+   "sub": "Запускает предметы",
+   "desc": [
+    "Катапульта выстреливает предметы на заданное расстояние."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:weighted_ejector",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "31EAB41880CCFD5B",
+   "title": "Планшет",
+   "sub": "Записи и списки",
+   "desc": [
+    "Планшет хранит списки и заметки, удобный инструмент для планирования заводов."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:clipboard",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3F57DDE28908D3B5"
+   ]
+  }
+ ]
+}

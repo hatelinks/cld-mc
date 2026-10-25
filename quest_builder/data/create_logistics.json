@@ -1,0 +1,808 @@
+{
+ "key": "create_logistics",
+ "id": "069C03F24B413B75",
+ "title": "Река посылок",
+ "subtitle": "Хранилища, упаковки и автоматические заказы (Create 6.0)",
+ "group": "Эра механизмов",
+ "icon": "create:item_vault",
+ "order": 4,
+ "quests": [
+  {
+   "id": "6B83F5A0F12F3DE5",
+   "title": "Хранилище предметов",
+   "sub": "Большой склад",
+   "desc": [
+    "Хранилища можно соединять в большие блоки, ёмкость растёт вместе с размером.",
+    "Подходят для складов с автоматическим выводом."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:item_vault",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "4BEAF37297D8D98E",
+   "title": "Картонный блок",
+   "sub": "Новый материал 6.0",
+   "desc": [
+    "Картон нужен для упаковок и их механизмов."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:cardboard_block",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6B83F5A0F12F3DE5"
+   ]
+  },
+  {
+   "id": "346EA39F6C9646CB",
+   "title": "Упаковщик",
+   "sub": "Предметы в посылку",
+   "desc": [
+    "Упаковщик собирает содержимое соседнего хранилища в посылки."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:packager",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4BEAF37297D8D98E",
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "177849228149511F",
+   "title": "Переупаковщик",
+   "sub": "Собирает заказы",
+   "desc": [
+    "Объединяет и пересобирает посылки в нужные наборы."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:repackager",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "346EA39F6C9646CB"
+   ]
+  },
+  {
+   "id": "2C1629D50FDDDA95",
+   "title": "Лягушачий порт",
+   "sub": "Приём посылок",
+   "desc": [
+    "Порт принимает и отправляет посылки между складами, ловя их языком."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:package_frogport",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "346EA39F6C9646CB"
+   ]
+  },
+  {
+   "id": "39CE838A8A83FED3",
+   "title": "Цепной конвейер",
+   "sub": "Транспорт посылок",
+   "desc": [
+    "Цепи переносят посылки на большие расстояния и по воздуху."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:chain_conveyor",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2C1629D50FDDDA95"
+   ]
+  },
+  {
+   "id": "7A020C90507A1978",
+   "title": "Складская связь",
+   "sub": "Подключаем склад к сети",
+   "desc": [
+    "Связь делает склад видимым для остальной логистической сети."
+   ],
+   "x": 8.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:stock_link",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "346EA39F6C9646CB"
+   ]
+  },
+  {
+   "id": "3C6C2F6FD8BA6A55",
+   "title": "Складской тикер",
+   "sub": "Заказ любых предметов",
+   "desc": [
+    "Тикер показывает всё, что есть на складе, и отправляет заказы."
+   ],
+   "x": 10.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:stock_ticker",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:chute",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "7A020C90507A1978"
+   ]
+  },
+  {
+   "id": "6A427A1873C0D2E5",
+   "title": "Заводской датчик",
+   "sub": "Автоматический запрос",
+   "desc": [
+    "Датчик следит за количеством и сам заказывает нужные предметы."
+   ],
+   "x": 8.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:factory_gauge",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7A020C90507A1978"
+   ]
+  },
+  {
+   "id": "7064E96303CB81E0",
+   "title": "Люк для предметов",
+   "sub": "Вход на склад",
+   "desc": [
+    "Люк принимает предметы и отправляет их в хранилище."
+   ],
+   "x": 10.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:item_hatch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6B83F5A0F12F3DE5"
+   ]
+  },
+  {
+   "id": "35454BF63C42D02C",
+   "title": "Портативный интерфейс хранилища",
+   "sub": "Обмен с механизмами на ходу",
+   "desc": [
+    "Передаёт предметы между подвижными конструкциями и неподвижным складом."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:portable_storage_interface",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6B83F5A0F12F3DE5"
+   ]
+  },
+  {
+   "id": "51158C06DA946047",
+   "title": "Весовой катапульт",
+   "sub": "Запускает предметы",
+   "desc": [
+    "Катапульта выстреливает предметы на заданное расстояние."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:weighted_ejector",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "31EAB41880CCFD5B",
+   "title": "Планшет",
+   "sub": "Записи и списки",
+   "desc": [
+    "Планшет хранит списки и заметки, удобный инструмент для планирования заводов."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:clipboard",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3F57DDE28908D3B5"
+   ]
+  },
+  {
+   "k": "transmitter",
+   "title": "Передатчик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Деталь для блоков сети запасов — нужна в рецептах связи и запросов.",
+    "&6Как получить:&r верстак: Медный лист, lightning rod.",
+    "&6Зачем нужен:&r идёт в Передатчик информации, Редстоуновый передатчик сигнала, Складской передатчик, Заглушка частоты редстоунового передатчика сигнала, Направленный частотный приёмник."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:transmitter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:cardboard",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "6B83F5A0F12F3DE5",
+    "27D0961A37A6E0CB"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "package_filter",
+   "title": "Фильтр отправлений",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Фильтр по адресу посылки: пропускает только посылки с нужной подписью.",
+    "&6Как получить:&r верстак: Кусочек цинка.",
+    "&6Как использовать:&r ПКМ с предметом: Открывает &eинтерфейс конфигурации&r."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:package_filter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_logistics/transmitter",
+    "create_andesite/nuggets"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "redstone_requester",
+   "title": "Редстоуновый запрашиватель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "По сигналу редстоуна заказывает со склада заданный набор предметов.",
+    "&6Как получить:&r верстак: Складской передатчик."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:redstone_requester",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "7A020C90507A1978"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "cardboard",
+   "title": "Картон",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Картон из древесной массы. Из него делают коробки, броню и меч.",
+    "&6Как получить:&r механический пресс: Древесная масса.",
+    "&6Зачем нужен:&r идёт в Блок картона, Картонные ботинки, Картонный нагрудник, Картонный шлем, Картонные поножи."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:cardboard",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_logistics/transmitter"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "pulp",
+   "title": "Древесная масса",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический смешиватель над чашей: Бамбук.",
+    "&6Зачем нужен:&r идёт в Картон."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:pulp",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "create_logistics/transmitter"
+   ]
+  },
+  {
+   "k": "bound_cardboard_block",
+   "title": "Обвязанный блок картона",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Блок картона.",
+    "&6Зачем нужен:&r идёт в Картон."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:bound_cardboard_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "4BEAF37297D8D98E"
+   ]
+  },
+  {
+   "k": "cardboard_armor",
+   "title": "Картонные доспехи",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Шуточная броня. Защищает плохо, но в ней можно спрятаться от мобов, если присесть.",
+    "&6Как получить:&r верстак: Картон."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:cardboard_helmet",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create:cardboard_chestplate",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create:cardboard_leggings",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create:cardboard_boots",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_logistics/cardboard"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "cardboard_sword",
+   "title": "Картонный меч",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Бонк! Почти &eбезвредное&r, но мощное оружие.",
+    "&6Как получить:&r верстак: Картон."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:cardboard_sword",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_logistics/cardboard"
+   ]
+  },
+  {
+   "k": "postbox",
+   "title": "Почтовый ящик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Почтовый ящик принимает посылки от лягушек-отправщиков и раздаёт их по адресу.",
+    "&6Как получить:&r верстак: Андезитовый сплав, Бочка.",
+    "&6Зачем нужен:&r идёт в Чёрный почтовый ящик, Синий почтовый ящик, Коричневый почтовый ящик, Бирюзовый почтовый ящик, Серый почтовый ящик.",
+    "&7Вариантов: 16. Засчитывается «Белый почтовый ящик»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:white_postbox",
+      "create:orange_postbox",
+      "create:magenta_postbox",
+      "create:light_blue_postbox",
+      "create:yellow_postbox",
+      "create:lime_postbox",
+      "create:pink_postbox",
+      "create:gray_postbox",
+      "create:light_gray_postbox",
+      "create:cyan_postbox",
+      "create:purple_postbox",
+      "create:blue_postbox",
+      "create:brown_postbox",
+      "create:green_postbox",
+      "create:red_postbox",
+      "create:black_postbox"
+     ],
+     "count": 1,
+     "title": "Белый почтовый ящик (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_logistics/transmitter",
+    "7BF2AA99A5A1C7CD"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "table_cloth",
+   "title": "Скатерть-витрина",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Магазин без продавца: выкладывает товар на стол, а покупатель платит через тикер.",
+    "&6Как получить:&r камнерез: Латунный слиток.",
+    "&7Вариантов: 17. Засчитывается «Латунная столешница»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:brass_table_cloth",
+      "create:white_table_cloth",
+      "create:orange_table_cloth",
+      "create:magenta_table_cloth",
+      "create:light_blue_table_cloth",
+      "create:yellow_table_cloth",
+      "create:lime_table_cloth",
+      "create:pink_table_cloth",
+      "create:gray_table_cloth",
+      "create:light_gray_table_cloth",
+      "create:cyan_table_cloth",
+      "create:purple_table_cloth",
+      "create:blue_table_cloth",
+      "create:brown_table_cloth",
+      "create:green_table_cloth",
+      "create:red_table_cloth",
+      "create:black_table_cloth"
+     ],
+     "count": 1,
+     "title": "Латунная столешница (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_logistics/postbox",
+    "33627C656E58AF04"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "finale",
+   "title": "Почтмейстер",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Посылки, лягушки-отправщики и склады работают без вашего участия.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "create:cardboard",
+     "count": 32
+    },
+    {
+     "type": "item",
+     "id": "create:brass_casing",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "39CE838A8A83FED3",
+    "3C6C2F6FD8BA6A55",
+    "6A427A1873C0D2E5",
+    "create_logistics/redstone_requester"
+   ],
+   "finale": true
+  }
+ ]
+}

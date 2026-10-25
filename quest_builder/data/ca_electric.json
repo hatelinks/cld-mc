@@ -1,0 +1,1349 @@
+{
+ "key": "ca_electric",
+ "id": "69D2DBDDA8D2E182",
+ "title": "Искра и проводник",
+ "subtitle": "Create Crafts & Additions — электричество, провода и биотопливо",
+ "group": "Эра механизмов",
+ "icon": "createaddition:electric_motor",
+ "order": 8.2,
+ "quests": [
+  {
+   "id": "056E1AE2F7C173F8",
+   "title": "Первая искра",
+   "sub": "Электричество на службе у механики",
+   "desc": [
+    "Аддон добавляет электричество к Create: энергию FE можно вырабатывать, хранить и превращать обратно во вращение.",
+    "Начинается всё с металла и проволоки."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": "createaddition:electric_motor",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Открыть Ponder у Create Crafts & Additions"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "id": "7752651586C834E0",
+   "title": "Ковка электрума",
+   "sub": "Новый сплав",
+   "desc": [
+    "Электрум — золото и серебро по смыслу, сплав для продвинутой электрики."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:electrum_ingot",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "661D00C466179724"
+   ]
+  },
+  {
+   "id": "3BCFDEE3C21F870C",
+   "title": "Электрумовый лист",
+   "sub": "Листы для деталей",
+   "desc": [
+    "Электрумовые листы идут на многие детали."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:electrum_sheet",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7752651586C834E0"
+   ]
+  },
+  {
+   "id": "67E4218FC3ACAA64",
+   "title": "Цинковый лист",
+   "sub": "Для латунных конструкций",
+   "desc": [
+    "Цинковые листы нужны во многих рецептах."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:zinc_sheet",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "createaddition:copper_wire",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "0C03B415D50A44C3"
+   ]
+  },
+  {
+   "id": "29A262F3CE867D3F",
+   "title": "Прокатный стан",
+   "sub": "Из слитков в стержни",
+   "desc": [
+    "Стан делает из слитков стержни и проволоку, подробности в Ponder."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:rolling_mill",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B",
+    "722FF84B978AB3C4"
+   ]
+  },
+  {
+   "id": "237EF72C6EFAA2E9",
+   "title": "Железный стержень",
+   "sub": "Простые детали",
+   "desc": [
+    "Стержни из железа нужны для многих рецептов."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:iron_rod",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "createaddition:copper_wire",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "29A262F3CE867D3F"
+   ]
+  },
+  {
+   "id": "3F44D95CD60CC10A",
+   "title": "Медный стержень",
+   "sub": "Для проводов",
+   "desc": [
+    "Медный стержень нужен для электрических деталей."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:copper_rod",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "29A262F3CE867D3F"
+   ]
+  },
+  {
+   "id": "7499E1DC6F50D180",
+   "title": "Латунный стержень",
+   "sub": "Крепкие детали",
+   "desc": [
+    "Латунный стержень подходит для продвинутых механизмов."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:brass_rod",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "createaddition:capacitor",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "29A262F3CE867D3F"
+   ]
+  },
+  {
+   "id": "02613171AED1B9C9",
+   "title": "Золотой стержень",
+   "sub": "Для проводки",
+   "desc": [
+    "Золотой стержень применяется в проводах."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:gold_rod",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "29A262F3CE867D3F"
+   ]
+  },
+  {
+   "id": "0854B95D555C7849",
+   "title": "Медный провод",
+   "sub": "Проводник тока",
+   "desc": [
+    "Медная проволока нужна для катушек и моторов."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:copper_wire",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "29A262F3CE867D3F"
+   ]
+  },
+  {
+   "id": "5B43B9550057047C",
+   "title": "Катушка",
+   "sub": "Для провода",
+   "desc": [
+    "Катушка хранит провод."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:spool",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0854B95D555C7849"
+   ]
+  },
+  {
+   "id": "342B831505C1A155",
+   "title": "Катушка меди",
+   "sub": "Провод на катушке",
+   "desc": [
+    "Медная катушка для моторов и генераторов."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:copper_spool",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "createaddition:copper_wire",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "5B43B9550057047C"
+   ]
+  },
+  {
+   "id": "2D59E2B4C6DDC227",
+   "title": "Электрумовый провод",
+   "sub": "Провод без потерь",
+   "desc": [
+    "Электрумовый провод лучше проводит ток."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:electrum_wire",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "29A262F3CE867D3F",
+    "7752651586C834E0"
+   ]
+  },
+  {
+   "id": "04E95345D46473F4",
+   "title": "Генератор",
+   "sub": "Вращение в энергию",
+   "desc": [
+    "Генератор превращает вращение в электрическую энергию FE."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:alternator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:copper_sheet",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "342B831505C1A155",
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "02032C5128A0C3FE",
+   "title": "Электромотор",
+   "sub": "Энергия во вращение",
+   "desc": [
+    "Мотор превращает электричество в вращение."
+   ],
+   "x": 2.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:electric_motor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "342B831505C1A155",
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "6FD9B8D552AE813D",
+   "title": "Серво-мотор",
+   "sub": "Точное вращение",
+   "desc": [
+    "Серво-мотор вращает механизмы точно и на заданный угол."
+   ],
+   "x": 4.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:servo_motor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "createaddition:capacitor",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "02032C5128A0C3FE"
+   ]
+  },
+  {
+   "id": "445AA98B4A1410FD",
+   "title": "Соединитель",
+   "sub": "Кабели между блоками",
+   "desc": [
+    "Соединители тянут провода между блоками."
+   ],
+   "x": 6.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:connector",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0854B95D555C7849"
+   ]
+  },
+  {
+   "id": "664B2C4D188313D0",
+   "title": "Большой соединитель",
+   "sub": "Дальняя связь",
+   "desc": [
+    "Большие соединители тянут провода на большие расстояния."
+   ],
+   "x": 8.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:large_connector",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "445AA98B4A1410FD"
+   ]
+  },
+  {
+   "id": "56669D55CF268D4E",
+   "title": "Конденсатор",
+   "sub": "Простое хранение энергии",
+   "desc": [
+    "Конденсатор хранит небольшой запас энергии."
+   ],
+   "x": 0.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:capacitor",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "445AA98B4A1410FD"
+   ]
+  },
+  {
+   "id": "7931CD974EAA82EE",
+   "title": "Аккумулятор",
+   "sub": "Накопитель побольше",
+   "desc": [
+    "Аккумулятор хранит больше энергии, чем конденсатор."
+   ],
+   "x": 2.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:accumulator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "createaddition:copper_wire",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "56669D55CF268D4E"
+   ]
+  },
+  {
+   "id": "3E56005255731224",
+   "title": "Модульный аккумулятор",
+   "sub": "Склад энергии",
+   "desc": [
+    "Модули объединяются в большой накопитель."
+   ],
+   "x": 4.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:modular_accumulator",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7931CD974EAA82EE"
+   ]
+  },
+  {
+   "id": "2FD4665F41F8895D",
+   "title": "Редстоун-реле",
+   "sub": "Сигнал по проводам",
+   "desc": [
+    "Реле управляет электрическими цепями по сигналу."
+   ],
+   "x": 6.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:redstone_relay",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "445AA98B4A1410FD"
+   ]
+  },
+  {
+   "id": "7CDB624E8EF53B83",
+   "title": "Портативный интерфейс",
+   "sub": "Энергия на ходу",
+   "desc": [
+    "Позволяет передавать энергию подвижным конструкциям."
+   ],
+   "x": 8.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:portable_energy_interface",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7931CD974EAA82EE"
+   ]
+  },
+  {
+   "id": "5DB4DDC1B68290C6",
+   "title": "Солома",
+   "sub": "Сырьё для биомассы",
+   "desc": [
+    "Солома даёт биомассу."
+   ],
+   "x": 0.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:straw",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "createaddition:capacitor",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "0E5F212BA32FD396"
+   ]
+  },
+  {
+   "id": "32865798520640E7",
+   "title": "Биомасса",
+   "sub": "Горючий материал",
+   "desc": [
+    "Биомасса сжигается как топливо."
+   ],
+   "x": 2.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:biomass",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "createaddition:copper_wire",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "5DB4DDC1B68290C6"
+   ]
+  },
+  {
+   "id": "50EFE6A32D1CC509",
+   "title": "Гранулы биомассы",
+   "sub": "Гранулы",
+   "desc": [
+    "Топливо для жидкой горелки и печей."
+   ],
+   "x": 4.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:biomass_pellet",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "32865798520640E7"
+   ]
+  },
+  {
+   "id": "3332FF5E7859B50D",
+   "title": "Семенное масло",
+   "sub": "Масло из семян",
+   "desc": [
+    "Из семян выжимают масло."
+   ],
+   "x": 6.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:seed_oil_bucket",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "32865798520640E7"
+   ]
+  },
+  {
+   "id": "7A45A26D2EAA0E50",
+   "title": "Биоэтанол",
+   "sub": "Жидкое топливо",
+   "desc": [
+    "Топливо для жидкой горелки."
+   ],
+   "x": 8.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:bioethanol_bucket",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "createaddition:copper_wire",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "3332FF5E7859B50D"
+   ]
+  },
+  {
+   "id": "3531E25303CB7EA6",
+   "title": "Жидкая горелка",
+   "sub": "Тепло без угля",
+   "desc": [
+    "Горелка работает на жидком топливе."
+   ],
+   "x": 10.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:liquid_blaze_burner",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "50EFE6A32D1CC509",
+    "293E9B8D6EA8FD5D"
+   ]
+  },
+  {
+   "id": "7DBDE47DB27D2659",
+   "title": "Катушка Теслы",
+   "sub": "Электрическое оружие",
+   "desc": [
+    "Катушка Теслы бьёт током по сущностям рядом."
+   ],
+   "x": 0.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:tesla_coil",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7931CD974EAA82EE"
+   ]
+  },
+  {
+   "id": "0697F5B43D7E2565",
+   "title": "Цифровой адаптер",
+   "sub": "Данные и управление",
+   "desc": [
+    "Адаптер даёт доступ к параметрам через компьютеры и сети."
+   ],
+   "x": 2.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:digital_adapter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "445AA98B4A1410FD",
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "60EB7CB44DF202A5",
+   "title": "Алмазная пыль",
+   "sub": "Для шлифовки",
+   "desc": [
+    "Алмазная пыль нужна для шлифовальной бумаги."
+   ],
+   "x": 4.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:diamond_grit",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "createaddition:capacitor",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "29A262F3CE867D3F"
+   ]
+  },
+  {
+   "id": "7A0A48E35B07229D",
+   "title": "Алмазная наждачка",
+   "sub": "Для твёрдых материалов",
+   "desc": [
+    "Шкурка шлифует твёрдые материалы."
+   ],
+   "x": 6.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:diamond_grit_sandpaper",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "60EB7CB44DF202A5"
+   ]
+  },
+  {
+   "id": "4E9C7375B94A3EB5",
+   "title": "Колючая проволока",
+   "sub": "Защита участка",
+   "desc": [
+    "Колючая проволока ранит всех, кто попытается пройти."
+   ],
+   "x": 8.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:barbed_wire",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0854B95D555C7849"
+   ]
+  },
+  {
+   "k": "wires",
+   "title": "Железный и золотой провод",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r прокатный стан: Железный лист.",
+    "&6Зачем нужен:&r идёт в Колючая проволока, Низковольтный соединитель с подсветкой."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:iron_wire",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "createaddition:gold_wire",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "056E1AE2F7C173F8",
+    "024258E95184EEE4"
+   ]
+  },
+  {
+   "k": "spools",
+   "title": "Улучшенные катушки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Катушка хранит провод для соединения коннекторов. Разные провода пропускают разный ток.",
+    "&6Как получить:&r верстак: Золотой провод, Пустая катушка.",
+    "&6Как использовать:&r Сильный ток: Подключается к &eвысоковольтным соединителям&r.",
+    "&6Как использовать:&r ПКМ по двум соединителям: Создаёт провод между ними, при этом &eпустая катушка&r сохраняется."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:gold_spool",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "createaddition:electrum_spool",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ca_electric/wires",
+    "5B43B9550057047C"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "festive_spool",
+   "title": "Медная катушка с гирляндой",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Используется для хранения проводов.",
+    "&6Как получить:&r верстак: Биомасса, Медная катушка.",
+    "&6Как использовать:&r Слабый ток: Подключается к &eнизковольтным соединителям&r.",
+    "&6Как использовать:&r ПКМ по двум соединителям: Создаёт провод между ними и возвращает &eпустую катушку&r."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:festive_spool",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "32865798520640E7",
+    "342B831505C1A155"
+   ]
+  },
+  {
+   "k": "electrum_more",
+   "title": "Электрум",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r зарядник: Золотой стержень.",
+    "&6Зачем нужен:&r идёт в Высоковольтный соединитель."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:electrum_rod",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "createaddition:electrum_nugget",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "createaddition:electrum_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:copper_sheet",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "056E1AE2F7C173F8"
+   ]
+  },
+  {
+   "k": "electrum_amulet",
+   "title": "Амулет из бледного золота",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Когда &eжизнь&r бьёт под дых, сжатый в кармане &eамулет&r внушает ощущение, будто &eудача&r вот-вот повернётся лицом.",
+    "&6Как получить:&r верстак: Алмазная крошка, Электрумовый слиток, Цинковый лист, Электрумовый провод."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:electrum_amulet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "7752651586C834E0"
+   ]
+  },
+  {
+   "k": "small_light_connector",
+   "title": "Низковольтный соединитель с подсветкой",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Соединяет блоки, совместимые с &eForge Energy&r, &eпроводами&r для передачи &e⚡&r, при подаче энергии испускает свет.",
+    "&6Как получить:&r верстак: Железный провод, Низковольтный соединитель.",
+    "&6Как использовать:&r При слабом токе: Соединяется с &eнизковольтными проводами&r.",
+    "&6Как использовать:&r ПКМ с катушкой: Удерживая &eмедную&r, &eзолотую&r, или &eэлектрумовую катушку&r создаётся до 4 &eпроводных соединений&r с другими &eнизковольтными соединителями&r.",
+    "&6Как использовать:&r ПКМ с гаечным ключом: Для переключения между режимами: &eпередача с токоприёмом&r, &eпередача с токоотдачей&r и &eтолько передача&r."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:small_light_connector",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "445AA98B4A1410FD",
+    "ca_electric/wires"
+   ]
+  },
+  {
+   "k": "biomass_pellet_block",
+   "title": "Палета биомассы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Гранула биомассы.",
+    "&6Зачем нужен:&r идёт в Гранула биомассы."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:biomass_pellet_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "50EFE6A32D1CC509"
+   ]
+  },
+  {
+   "k": "cakes",
+   "title": "Торты из печи",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс над чашей: Тесто, Сахар.",
+    "&6Зачем нужен:&r идёт в Испечённая основа торта."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createaddition:cake_base",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "createaddition:cake_base_baked",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "createaddition:chocolate_cake",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "createaddition:honey_cake",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "056E1AE2F7C173F8",
+    "create_andesite/dough"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Электрификация",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Генераторы, провода и аккумуляторы — у вас есть электричество.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "createaddition:copper_spool",
+     "count": 2
+    },
+    {
+     "type": "item",
+     "id": "create:copper_sheet",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "04E95345D46473F4",
+    "02032C5128A0C3FE",
+    "7931CD974EAA82EE",
+    "ca_electric/spools"
+   ],
+   "finale": true
+  }
+ ]
+}

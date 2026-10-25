@@ -1,0 +1,1277 @@
+{
+ "key": "sd_drawers",
+ "id": "5A5D936310BFFE78",
+ "title": "Ящики порядка",
+ "subtitle": "Storage Drawers — склад по видам предметов",
+ "group": "Хозяйство и путешествия",
+ "icon": "storagedrawers:oak_full_drawers_4",
+ "order": 14,
+ "quests": [
+  {
+   "id": "38F8CA97833248DE",
+   "title": "Порядок на складе",
+   "sub": "Storage Drawers — склад по видам",
+   "desc": [
+    "Ящики хранят большое количество предметов одного вида и удобно складываются в стены.",
+    "Планируйте склад заранее: один ящик на каждый ресурс."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": "storagedrawers:oak_full_drawers_4",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Посмотреть рецепты ящиков в JEI"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "id": "5F269EF90ABC2903",
+   "title": "Накладка",
+   "sub": "Рамка для ящика",
+   "desc": [
+    "Накладки нужны для сборки ящиков."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:oak_trim",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "38F8CA97833248DE"
+   ]
+  },
+  {
+   "id": "04448CA67380B917",
+   "title": "Ящик на один слот",
+   "sub": "Самый ёмкий",
+   "desc": [
+    "Один слот, но огромная вместимость одного предмета."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:oak_full_drawers_1",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5F269EF90ABC2903"
+   ]
+  },
+  {
+   "id": "345BB7CDCE7BE04F",
+   "title": "Ящик на два слота",
+   "sub": "Два вида предметов",
+   "desc": [
+    "Два предмета в одном блоке."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:oak_full_drawers_2",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "04448CA67380B917"
+   ]
+  },
+  {
+   "id": "19B4D93D73C2D8A8",
+   "title": "Ящик на четыре слота",
+   "sub": "Четыре вида предметов",
+   "desc": [
+    "Четыре предмета в одном блоке."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:oak_full_drawers_4",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "345BB7CDCE7BE04F"
+   ]
+  },
+  {
+   "id": "61D2A73A1CA9776E",
+   "title": "Полуящик",
+   "sub": "Компактный",
+   "desc": [
+    "Половинная высота блока."
+   ],
+   "x": 8.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:oak_half_drawers_1",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5F269EF90ABC2903"
+   ]
+  },
+  {
+   "id": "0BBFFF540FC6D984",
+   "title": "Шаблон улучшения",
+   "sub": "Основа улучшений",
+   "desc": [
+    "Из шаблона делаются все улучшения вместимости."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:upgrade_template",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5F269EF90ABC2903"
+   ]
+  },
+  {
+   "id": "2E9946C02098A3FD",
+   "title": "Медное улучшение",
+   "sub": "Первый уровень",
+   "desc": [
+    "Увеличивает вместимость ящика."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:copper_storage_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "id": "03F4BAE78FF6C37A",
+   "title": "Железное улучшение",
+   "sub": "Второй уровень",
+   "desc": [
+    "Ещё больше места."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:iron_storage_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2E9946C02098A3FD"
+   ]
+  },
+  {
+   "id": "5494F0BFC368B43D",
+   "title": "Золотое улучшение",
+   "sub": "Третий уровень",
+   "desc": [
+    "Золотой уровень."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:gold_storage_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "03F4BAE78FF6C37A"
+   ]
+  },
+  {
+   "id": "57F66940ECA17805",
+   "title": "Алмазное улучшение",
+   "sub": "Четвёртый уровень",
+   "desc": [
+    "Очень большая вместимость."
+   ],
+   "x": 8.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:diamond_storage_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "5494F0BFC368B43D"
+   ]
+  },
+  {
+   "id": "3DA271DD37CC2528",
+   "title": "Изумрудное улучшение",
+   "sub": "Высший уровень",
+   "desc": [
+    "Максимальная вместимость."
+   ],
+   "x": 10.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:emerald_storage_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "57F66940ECA17805"
+   ]
+  },
+  {
+   "id": "2FD6C0F297D78AAA",
+   "title": "Контроллер",
+   "sub": "Единый доступ",
+   "desc": [
+    "Контроллер объединяет все ящики рядом в одну систему."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:controller",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "345BB7CDCE7BE04F"
+   ]
+  },
+  {
+   "id": "6E429847CE8BFBD0",
+   "title": "Порт контроллера",
+   "sub": "Вход и выход",
+   "desc": [
+    "Позволяет механизмам обращаться к системе ящиков."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:controller_io",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2FD6C0F297D78AAA"
+   ]
+  },
+  {
+   "id": "721AE66AD973E4C7",
+   "title": "Вытягиватель",
+   "sub": "Автоматический вывод",
+   "desc": [
+    "Вытягивает предметы из ящиков в соседние блоки."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:drawer_puller",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2FD6C0F297D78AAA"
+   ]
+  },
+  {
+   "id": "461AA136EA065F04",
+   "title": "Ключ ящиков",
+   "sub": "Управление режимами",
+   "desc": [
+    "Ключ переключает режим ящика, например блокировку предметов."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:drawer_key",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "04448CA67380B917"
+   ]
+  },
+  {
+   "id": "07DCD154FC0A963D",
+   "title": "Ключ количества",
+   "sub": "Отображение числа",
+   "desc": [
+    "Показывает количество предметов на ящике."
+   ],
+   "x": 8.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:quantify_key",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "461AA136EA065F04"
+   ]
+  },
+  {
+   "id": "36E4999C6C913E0B",
+   "title": "Улучшение «Пустота»",
+   "sub": "Лишнее исчезает",
+   "desc": [
+    "Удаляет предметы, которым не хватило места."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:void_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "id": "3E838A080AEFDB18",
+   "title": "Редстоун-улучшение",
+   "sub": "Сигнал по наполнению",
+   "desc": [
+    "Подаёт редстоун-сигнал в зависимости от наполнения."
+   ],
+   "x": 2.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:redstone_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "id": "63E87CC45079F77B",
+   "title": "Подсветка",
+   "sub": "Свет в ящике",
+   "desc": [
+    "Ящик светится, если в нём лежат предметы."
+   ],
+   "x": 4.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:illumination_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "id": "56E3A9FF9FDEFEFB",
+   "title": "Индикатор наполнения",
+   "sub": "Видно запас",
+   "desc": [
+    "Показывает уровень заполнения ящика."
+   ],
+   "x": 6.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:fill_level_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "id": "3E93FF3157DA75BC",
+   "title": "Компактный ящик",
+   "sub": "Блоки и слитки вместе",
+   "desc": [
+    "Хранит ресурс в трёх формах и автоматически пересчитывает."
+   ],
+   "x": 8.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:compacting_drawers_3",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "19B4D93D73C2D8A8"
+   ]
+  },
+  {
+   "id": "653B0C1AAEE4F3BE",
+   "title": "Стол обрамления",
+   "sub": "Меняем отделку",
+   "desc": [
+    "Позволяет оформить ящики любым материалом."
+   ],
+   "x": 0.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:framing_table",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5F269EF90ABC2903"
+   ]
+  },
+  {
+   "id": "38A364E29161605F",
+   "title": "Обрамлённый ящик",
+   "sub": "Своя отделка",
+   "desc": [
+    "Ящик в любом оформлении."
+   ],
+   "x": 2.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:framed_full_drawers_1",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "653B0C1AAEE4F3BE"
+   ]
+  },
+  {
+   "id": "04A85E1CA40A282C",
+   "title": "Кольцо ключей",
+   "sub": "Все ключи вместе",
+   "desc": [
+    "Хранит ключи одним предметом."
+   ],
+   "x": 4.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:keyring",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "461AA136EA065F04"
+   ]
+  },
+  {
+   "id": "0DBEB580CE63EE20",
+   "title": "Лента",
+   "sub": "Для переноски",
+   "desc": [
+    "Помогает переносить ящики вместе с содержимым."
+   ],
+   "x": 6.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:tape",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5F269EF90ABC2903"
+   ]
+  },
+  {
+   "k": "obsidian_storage_upgrade",
+   "title": "Улучшение хранилища (I)",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Обсидиан, Шаблон для улучшений."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:obsidian_storage_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "k": "netherite_storage_upgrade",
+   "title": "Улучшение хранилища (VII)",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Шаблон для улучшений."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:netherite_storage_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "k": "one_stack_upgrade",
+   "title": "Понижение хранилища",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Кремень, Шаблон для улучшений."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:one_stack_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "k": "compacting_more",
+   "title": "Другие спрессовывающие ящики",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Acacia full drawers 1, Поршень, Камень.",
+    "&7Вариантов: 3. Засчитывается «Спрессовывающий ящик (2-уровень)»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "storagedrawers:compacting_drawers_2",
+      "storagedrawers:compacting_half_drawers_2",
+      "storagedrawers:compacting_half_drawers_3"
+     ],
+     "count": 1,
+     "title": "Спрессовывающий ящик (2-уровень) (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "38F8CA97833248DE"
+   ]
+  },
+  {
+   "k": "hopper_upgrade",
+   "title": "Улучшений \"Воронка\"",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Воронка, Шаблон для улучшений.",
+    "&6Зачем нужен:&r идёт в Улучшение \"Магнит\" (I)."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:hopper_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "k": "drawer_magnet",
+   "title": "Магнитные улучшения",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Железная решётка, Улучшений \"Воронка\".",
+    "&6Зачем нужен:&r идёт в Улучшение \"Магнит\" (II)."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:magnet_upgrade",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "storagedrawers:magnet_upgrade_2",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "storagedrawers:magnet_upgrade_3",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "sd_drawers/hopper_upgrade"
+   ]
+  },
+  {
+   "k": "balance_fill_upgrade",
+   "title": "Улучшение \"Равномерное распределение\"",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Редстоуновый компаратор, Шаблон для улучшений."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:balance_fill_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "k": "conversion_upgrade",
+   "title": "Улучшение \"Преобразование\"",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Лазурит, Шаблон для улучшений."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:conversion_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "k": "redstone_minmax",
+   "title": "Редстоун мин./макс.",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Шаблон для улучшений."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:min_redstone_upgrade",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "storagedrawers:max_redstone_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "k": "portability_upgrade",
+   "title": "Улучшение \"Переносимость\"",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Панцирь шалкера, Шаблон для улучшений."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:portability_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_planks",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "k": "remote",
+   "title": "Удалённый доступ",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Жемчуг Края, Шаблон для улучшений.",
+    "&6Зачем нужен:&r идёт в Улучшение \"Удалённый доступ (Группа)\"."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:remote_upgrade",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "storagedrawers:remote_group_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "0BBFFF540FC6D984"
+   ]
+  },
+  {
+   "k": "detached_drawer",
+   "title": "Отсоединенный ящик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:detached_drawer",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "38F8CA97833248DE"
+   ]
+  },
+  {
+   "k": "keys_more",
+   "title": "Особые ключи",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Бирка, Ключ от ящика.",
+    "&6Зачем нужен:&r идёт в Персональный ключ (CoFH)."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "storagedrawers:personal_key",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "storagedrawers:priority_key",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "storagedrawers:shroud_key",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "storagedrawers:suspend_key",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "461AA136EA065F04"
+   ]
+  },
+  {
+   "k": "keybuttons",
+   "title": "Кнопки-ключи",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Каменная кнопка, Ключ от ящика.",
+    "&7Вариантов: 3. Засчитывается «Кнопка ключа ящика»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "storagedrawers:keybutton_drawer",
+      "storagedrawers:keybutton_quantify",
+      "storagedrawers:keybutton_concealment"
+     ],
+     "count": 1,
+     "title": "Кнопка ключа ящика (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "461AA136EA065F04"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Порядок во всём",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Ящики, контроллер и ключи — склад рассортирован.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "minecraft:diamond",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "57F66940ECA17805",
+    "6E429847CE8BFBD0",
+    "3E93FF3157DA75BC",
+    "sd_drawers/drawer_magnet"
+   ],
+   "finale": true
+  }
+ ]
+}

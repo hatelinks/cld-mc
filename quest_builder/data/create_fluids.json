@@ -1,0 +1,994 @@
+{
+ "key": "create_fluids",
+ "id": "610D95AB8E165C12",
+ "title": "Пар и глубина",
+ "subtitle": "Трубы, баки, паровые двигатели и подводное снаряжение",
+ "group": "Эра механизмов",
+ "icon": "create:fluid_pipe",
+ "order": 3,
+ "quests": [
+  {
+   "id": "7B0E0CC10C513F62",
+   "title": "Медный корпус",
+   "sub": "Основа для жидкостей",
+   "desc": [
+    "Медный корпус получают, обработав дерево медным листом.",
+    "Он нужен для баков, насосов и труб."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:copper_casing",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "27D0961A37A6E0CB"
+   ]
+  },
+  {
+   "id": "727F09E229C92364",
+   "title": "Труба",
+   "sub": "Транспорт жидкостей",
+   "desc": [
+    "Трубы переносят жидкости между баками, насосами и машинами.",
+    "Гаечным ключом ставят окно или закрывают отверстие."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:fluid_pipe",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7B0E0CC10C513F62"
+   ]
+  },
+  {
+   "id": "3311659D6E2742B8",
+   "title": "Механический насос",
+   "sub": "Двигает жидкость",
+   "desc": [
+    "Насос толкает жидкость по трубам в нужную сторону.",
+    "Ему нужно вращение, а направление задаётся стрелкой."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:mechanical_pump",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "727F09E229C92364",
+    "56239D98E7831D04"
+   ]
+  },
+  {
+   "id": "0528BC2DA69E662B",
+   "title": "Бак для жидкости",
+   "sub": "Хранение жидкостей",
+   "desc": [
+    "Баки можно соединять в большие блоки, ёмкость растёт вместе с размером."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:fluid_tank",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:fluid_pipe",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "727F09E229C92364"
+   ]
+  },
+  {
+   "id": "7E9564794C1138E9",
+   "title": "Стеклянная труба",
+   "sub": "Окно в трубу",
+   "desc": [
+    "Через стеклянную трубу видно, течёт ли жидкость, и по ней можно ходить."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:glass_fluid_pipe",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "727F09E229C92364"
+   ]
+  },
+  {
+   "id": "5E778F408B6EF231",
+   "title": "Корпусная труба",
+   "sub": "Прячем трубы в стену",
+   "desc": [
+    "Корпусные трубы встраиваются в блоки и не портят внешний вид."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:encased_fluid_pipe",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "727F09E229C92364"
+   ]
+  },
+  {
+   "id": "4FA7ECAA01D15585",
+   "title": "Умная труба",
+   "sub": "Фильтр жидкости",
+   "desc": [
+    "Пропускает только выбранную жидкость."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:smart_fluid_pipe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "727F09E229C92364",
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "0AAF27D578857371",
+   "title": "Носик",
+   "sub": "Наливает жидкость",
+   "desc": [
+    "Поставьте носик над депо или ремнём, и он будет заливать жидкость в предметы: бутылки, вёдра, плавить шоколад и другие рецепты."
+   ],
+   "x": 8.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:spout",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:copper_casing",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "0528BC2DA69E662B",
+    "727F09E229C92364"
+   ]
+  },
+  {
+   "id": "746BD117BEB07418",
+   "title": "Слив",
+   "sub": "Выливает жидкость",
+   "desc": [
+    "Слив выливает жидкость из предметов обратно в трубы или баки."
+   ],
+   "x": 10.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:item_drain",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:fluid_pipe",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "0AAF27D578857371"
+   ]
+  },
+  {
+   "id": "0DC23C45738E4E20",
+   "title": "Портативный жидкостный интерфейс",
+   "sub": "Обмен с механизмами на ходу",
+   "desc": [
+    "Позволяет передавать жидкость между подвижными конструкциями и станциями."
+   ],
+   "x": 12.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:portable_fluid_interface",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0528BC2DA69E662B"
+   ]
+  },
+  {
+   "id": "2F150C6B2FFF7287",
+   "title": "Шланговый подъёмник",
+   "sub": "Вода и лава без конца",
+   "desc": [
+    "Опускается в водоём или лавовое озеро и качает жидкость, пока источник не закончится.",
+    "Вода из обычных водоёмов становится бесконечной."
+   ],
+   "x": 8.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:hose_pulley",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "727F09E229C92364",
+    "0528BC2DA69E662B"
+   ]
+  },
+  {
+   "id": "2036F94C6F737D03",
+   "title": "Бойлер",
+   "sub": "Котёл для пара",
+   "desc": [
+    "Бойлер — это бак с горелкой снизу и водой внутри.",
+    "Чем горячее горелка и чем больше воды, тем больше пара."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:fluid_tank",
+     "count": 3
+    },
+    {
+     "type": "item",
+     "id": "create:blaze_burner",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:fluid_pipe",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "0528BC2DA69E662B",
+    "293E9B8D6EA8FD5D"
+   ]
+  },
+  {
+   "id": "6D5BBA1510DE73C2",
+   "title": "Паровой двигатель",
+   "sub": "Мощный источник вращения",
+   "desc": [
+    "Двигатель ставят рядом с бойлером, к нему подключают вал."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:steam_engine",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2036F94C6F737D03"
+   ]
+  },
+  {
+   "id": "5A476EC56B83BCA9",
+   "title": "Паровой свисток",
+   "sub": "Для поездов и украшения",
+   "desc": [
+    "Свисток подаёт сигнал при подаче пара."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:steam_whistle",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2036F94C6F737D03"
+   ]
+  },
+  {
+   "id": "662CB42AB751C745",
+   "title": "Медный баллон",
+   "sub": "Запас воздуха",
+   "desc": [
+    "Баллон надевается как броня и хранит сжатый воздух.",
+    "Если его поставить на землю и подать вращение, он наполняется воздухом."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:copper_backtank",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "7B0E0CC10C513F62",
+    "56239D98E7831D04"
+   ]
+  },
+  {
+   "id": "2D284E6F11AFD87C",
+   "title": "Водолазный шлем",
+   "sub": "Дышим под водой",
+   "desc": [
+    "Шлем вместе с баллоном даёт дыхание под водой."
+   ],
+   "x": 8.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:copper_diving_helmet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:copper_casing",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "662CB42AB751C745"
+   ]
+  },
+  {
+   "id": "3BB0C46B665605A9",
+   "title": "Водолазные ботинки",
+   "sub": "Ходим по дну",
+   "desc": [
+    "Ботинки позволяют ходить по дну и не плыть вверх."
+   ],
+   "x": 10.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:copper_diving_boots",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:copper_sheet",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "662CB42AB751C745"
+   ]
+  },
+  {
+   "id": "1347043E5AC5FEFF",
+   "title": "Погрузитесь",
+   "sub": "Проверка снаряжения",
+   "desc": [
+    "Спуститесь на дно океана и проверьте, что воздуха хватает."
+   ],
+   "x": 12.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Пройти под водой с водолазным снаряжением"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2D284E6F11AFD87C",
+    "3BB0C46B665605A9"
+   ]
+  },
+  {
+   "id": "6F16CAA312362F19",
+   "title": "Насадка",
+   "sub": "Расширяет поток воздуха",
+   "desc": [
+    "Насадка на вентилятор расширяет зону, в которой он действует."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:nozzle",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "102C27CB1DF6B087"
+   ]
+  },
+  {
+   "k": "fluid_valve",
+   "title": "Жидкостный вентиль",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Перекрывает трубу по сигналу или вращению.",
+    "&6Как получить:&r верстак: Железный лист, Жидкостная труба."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:fluid_valve",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "727F09E229C92364",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "valve_handle",
+   "title": "Ручка вентиля",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Поворачивает механизмы на точный угол. Можно перекрашивать.",
+    "&6Как получить:&r верстак: Медный лист, Андезитовый сплав.",
+    "&6Зачем нужен:&r идёт в Чёрная ручка вентиля, Синяя ручка вентиля, Коричневая ручка вентиля, Бирюзовая ручка вентиля, Серая ручка вентиля.",
+    "&7Вариантов: 17. Засчитывается «Медная ручка вентиля»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:copper_valve_handle",
+      "create:white_valve_handle",
+      "create:orange_valve_handle",
+      "create:magenta_valve_handle",
+      "create:light_blue_valve_handle",
+      "create:yellow_valve_handle",
+      "create:lime_valve_handle",
+      "create:pink_valve_handle",
+      "create:gray_valve_handle",
+      "create:light_gray_valve_handle",
+      "create:cyan_valve_handle",
+      "create:purple_valve_handle",
+      "create:blue_valve_handle",
+      "create:brown_valve_handle",
+      "create:green_valve_handle",
+      "create:red_valve_handle",
+      "create:black_valve_handle"
+     ],
+     "count": 1,
+     "title": "Медная ручка вентиля (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "7B0E0CC10C513F62",
+    "27D0961A37A6E0CB"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "sweet_fluids",
+   "title": "Мёд и шоколад",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Create добавляет жидкие мёд и шоколад.",
+    "Мёд сливается из ульев трубой, шоколад смешивается в чаше из какао, сахара и молока."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Мёд и шоколад"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:fluid_pipe",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "7B0E0CC10C513F62"
+   ]
+  },
+  {
+   "k": "bar_of_chocolate",
+   "title": "Шоколадная плитка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс над чашей.",
+    "&6Зачем нужен:&r идёт в Шоколад."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:bar_of_chocolate",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_fluids/sweet_fluids"
+   ]
+  },
+  {
+   "k": "sweets",
+   "title": "Сладости Create",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Сладости из заправщика: окуните ягоды, яблоко или рулет в шоколад или мёд.",
+    "&6Как получить:&r заправщик: Сладкие ягоды.",
+    "&6Зачем нужен:&r идёт в Фруктовый салат, Фаршированная тыква."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:chocolate_glazed_berries",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create:honeyed_apple",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create:sweet_roll",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_fluids/sweet_fluids"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "builders_tea",
+   "title": "Чай строителя",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Чай строителя: даёт ускорение, пока вы строите. Наливается в бутылку заправщиком.",
+    "&6Как получить:&r заправщик: Стеклянный пузырёк.",
+    "&6Зачем нужен:&r идёт в Стеклянный пузырёк."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:builders_tea",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_fluids/sweet_fluids"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "blaze_cake_base",
+   "title": "Основа торта всполоха",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс над чашей: Незераковая мука, Сахар.",
+    "&6Зачем нужен:&r идёт в Торт всполоха."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:blaze_cake_base",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:copper_sheet",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "create_fluids/sweet_fluids",
+    "create_andesite/cinder_flour"
+   ]
+  },
+  {
+   "k": "blaze_cake",
+   "title": "Торт всполоха",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Торт для горелки всполоха: разжигает её до супер-нагрева на долгое время.",
+    "&6Как получить:&r заправщик: Основа торта всполоха.",
+    "&6Зачем нужен:&r идёт в Катализатор массового супернагрева."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:blaze_cake",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_fluids/blaze_cake_base"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "diving_set",
+   "title": "Медный водолазный костюм",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Шлем и ботинки вместе с баллоном дают дышать под водой и ходить по дну.",
+    "&6Как получить:&r верстак.",
+    "&6Как использовать:&r Когда надет: Даёт эффект &eводного дыхания&r, медленно тратя &eвоздух&r из баллона.",
+    "&6Зачем нужен:&r идёт в Незеритовый лаволазный шлем."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:copper_diving_helmet",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create:copper_diving_boots",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_fluids/blaze_cake"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "netherite_diving",
+   "title": "Лаволазный костюм",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Незеритовый комплект позволяет купаться в лаве и не гореть, пока в баллоне есть воздух.",
+    "&6Как получить:&r кузнечный стол: Медный баллон, Кузнечный шаблон незеритового улучшения.",
+    "&6Как использовать:&r Когда надет: Обеспечивает подачу &eсжатого воздуха&r к оборудованию, которое в этом нуждается.",
+    "&6Как использовать:&r При подаче силы вращения блоку: &eСобирает&r и &eсжимает воздух&r со скоростью, зависящей от скорости вращения."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:netherite_backtank",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create:netherite_diving_helmet",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create:netherite_diving_boots",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "662CB42AB751C745"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "finale",
+   "title": "Повелитель пара",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Трубы, насосы, баки и паровые двигатели — всё под контролем.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "create:fluid_tank",
+     "count": 4
+    },
+    {
+     "type": "item",
+     "id": "create:copper_sheet",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "746BD117BEB07418",
+    "6D5BBA1510DE73C2",
+    "create_fluids/diving_set",
+    "2F150C6B2FFF7287"
+   ],
+   "finale": true
+  }
+ ]
+}
