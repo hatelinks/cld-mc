@@ -1,6 +1,7 @@
 """Наши правки поверх порта jjtm (общие для всех высот).
 
 1. Пещеры: толще «корка» над пещерами, чтобы они реже выходили на поверхность.
+   Если стоит YUNG's Better Caves, убираем его карвер surface_cave — он нарочно прорезает входы с поверхности.
 2. Структуры: каждый наземный биом получает деревни, аванпосты, особняки, руины и т.п.
    по климату. Теги has_structure дописываются (replace: false), ванильные значения сохраняются.
 Использование: tweaks.py <pack-dir>
@@ -19,6 +20,15 @@ d = json.load(open(p))
 for pt in d["spline"]["points"]:
     pt["location"] = CRUST.get(pt["location"], pt["location"])
 json.dump(d, open(p, "w"), indent=2)
+
+mod_dir = os.path.join(PACK, "data", "jjthunder_to_the_max", "neoforge", "biome_modifier")
+os.makedirs(mod_dir, exist_ok=True)
+json.dump({
+    "neoforge:conditions": [{"type": "neoforge:mod_loaded", "modid": "bettercaves"}],
+    "type": "neoforge:remove_carvers",
+    "biomes": "#minecraft:is_overworld",
+    "carvers": "bettercaves:surface_cave",
+}, open(os.path.join(mod_dir, "remove_bettercaves_surface_cave.json"), "w"), indent=2)
 
 # --- 2. структуры ------------------------------------------------------------
 SNOWY = ["snowy_plains", "ice_spikes", "snowy_taiga", "grove", "snowy_slopes", "frozen_peaks", "jagged_peaks", "snowy_beach"]

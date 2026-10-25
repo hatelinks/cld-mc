@@ -1,0 +1,11 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "bettercaves"
+    }
+  ],
+  "type": "neoforge:remove_carvers",
+  "biomes": "#minecraft:is_overworld",
+  "carvers": "bettercaves:surface_cave"
+}

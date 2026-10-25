@@ -79,7 +79,7 @@ for root, _, files in os.walk(os.path.join(OUT, "data")):
 
 toml = os.path.join(OUT, "META-INF", "neoforge.mods.toml")
 if os.path.exists(toml):
-    t = open(toml).read().replace('version="0.3.0-1.21.1"', f'version="0.3.0-1.21.1-h{H}"')
+    t = open(toml).read().replace('version="0.3.1-1.21.1"', f'version="0.3.1-1.21.1-h{H}"')
     open(toml, "w").write(t)
 mc = os.path.join(OUT, "pack.mcmeta")
 m = json.load(open(mc)); m["pack"]["description"] += f", высота {H}"
