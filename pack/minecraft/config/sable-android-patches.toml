@@ -1,0 +1,17 @@
+[tick_throttle]
+dev.simulated_team.simulated.content.blocks.gimbal_sensor.GimbalSensorBlockEntity = 4
+dev.simulated_team.simulated.content.blocks.velocity_sensor.VelocitySensorBlockEntity = 3
+dev.simulated_team.simulated.content.blocks.altitude_sensor.AltitudeSensorBlockEntity = 3
+dev.simulated_team.simulated.content.blocks.spring.SpringBlockEntity = 3
+dev.simulated_team.simulated.content.blocks.nav_table.NavTableBlockEntity = 4
+dev.simulated_team.simulated.content.blocks.lasers.optical_sensor.OpticalSensorBlockEntity = 2
+dev.simulated_team.simulated.content.blocks.redstone_magnet.RedstoneMagnetBlockEntity = 3
+dev.simulated_team.simulated.content.blocks.docking_connector.DockingConnectorBlockEntity = 3
+dev.simulated_team.simulated.content.blocks.nameplate.NameplateBlockEntity = 4
+dev.simulated_team.simulated.content.blocks.rope.rope_winch.RopeWinchBlockEntity = 2
+dev.simulated_team.simulated.content.blocks.swivel_bearing.SwivelBearingBlockEntity = 2
+dev.simulated_team.simulated.content.blocks.physics_assembler.PhysicsAssemblerBlockEntity = 2
+dev.simulated_team.simulated.content.blocks.redstone.AbstractLinkedReceiverBlockEntity = 2
+dev.simulated_team.simulated.content.blocks.redstone.redstone_inductor.RedstoneInductorBlockEntity = 2
+dev.simulated_team.simulated.content.blocks.throttle_lever.ThrottleLeverBlockEntity = 2
+dev.simulated_team.simulated.content.blocks.merging_glue.MergingGlueBlockEntity = 3

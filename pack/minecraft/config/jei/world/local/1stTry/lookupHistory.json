@@ -1,0 +1,10 @@
+[
+  {"version":1},
+  {"ingredient":{"id":"minecraft:oxeye_daisy"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"farmersdelight:pumpkin_slice"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"biomeswevegone:cooked_white_puffball_cap"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"biomeswevegone:white_puffball_cap"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"biomeswevegone:white_puffball_spores"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"mysticalagriculture:platinum_seeds"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"minecraft:oak_door"},"type":"item_stack","bookmarkType":"INGREDIENT"}
+]

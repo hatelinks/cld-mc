@@ -1,0 +1,15 @@
+[
+  {"version":1},
+  {"ingredient":{"id":"create:wooden_bracket"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"create_aquatic_ambitions:prismarine_alloy"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"create_things_and_misc:crushed_magma"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"create_things_and_misc:vibration_mechanism"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"multipiston:multipistonblock"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"ftbquests:task_screen_configurator"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"ftbquests:screen_1"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"ftbquests:book"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"mysticalagradditions:supremium_paxel"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"mysticalagradditions:awakened_supremium_paxel"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"mysticalagriculture:unattuned_augment"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"mysticalagriculture:absorption_i_augment"},"type":"item_stack","bookmarkType":"INGREDIENT"}
+]

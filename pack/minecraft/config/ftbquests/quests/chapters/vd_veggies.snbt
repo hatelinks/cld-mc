@@ -1,0 +1,993 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "vd_veggies"
+	group: "2239F7D906E70A56"
+	icon: {
+		id: "veggiesdelight:broccoli"
+	}
+	id: "50816B39F400E877"
+	images: [ ]
+	order_index: 1
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			icon: {
+				id: "veggiesdelight:broccoli"
+			}
+			id: "5B13827920C96059"
+			rewards: [{
+				id: "0DE82C1643940EAE"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				id: "5E3676F89457AF1E"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 11.25d
+		}
+		{
+			dependencies: ["5B13827920C96059"]
+			id: "33C18F854C790A50"
+			rewards: [{
+				id: "6A1EDAAA6D6B30C0"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "56D57572A6EF4911"
+				item: { count: 1, id: "veggiesdelight:wild_garlic" }
+				type: "item"
+			}]
+			x: 2.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["5B13827920C96059"]
+			id: "653102109B710187"
+			rewards: [{
+				id: "2012260003225062"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "696B50CA6597F643"
+				item: { count: 1, id: "veggiesdelight:wild_broccoli" }
+				type: "item"
+			}]
+			x: 2.0d
+			y: 8.25d
+		}
+		{
+			dependencies: ["5B13827920C96059"]
+			id: "4D459FEC3BDE0931"
+			rewards: [
+				{
+					id: "15B30DF2B98343CC"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "77447351C3C6BD55"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "00521EA92FB5554E"
+				item: { count: 1, id: "veggiesdelight:wild_zucchinis" }
+				type: "item"
+			}]
+			x: 2.0d
+			y: 9.75d
+		}
+		{
+			dependencies: ["5B13827920C96059"]
+			id: "4FFEDB6897050467"
+			rewards: [
+				{
+					id: "47F3EF44DEB36DC7"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "6F942C0394723BF1"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "3E4582C333399D87"
+				item: { count: 1, id: "veggiesdelight:wild_sweet_potatoes" }
+				type: "item"
+			}]
+			x: 2.0d
+			y: 12.0d
+		}
+		{
+			dependencies: ["5B13827920C96059"]
+			id: "56692E80747E7C29"
+			optional: true
+			rewards: [{
+				id: "3B350D3DDC8E8A87"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "759D44A4724DF70D"
+				item: { count: 1, id: "veggiesdelight:wild_turnips" }
+				type: "item"
+			}]
+			x: 2.0d
+			y: 13.5d
+		}
+		{
+			dependencies: ["5B13827920C96059"]
+			id: "3E2FC6E79110729B"
+			optional: true
+			rewards: [{
+				id: "0C583E0E94ECCBA0"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "4FC2EB785967700D"
+				item: { count: 1, id: "veggiesdelight:wild_bellpeppers" }
+				type: "item"
+			}]
+			x: 2.0d
+			y: 15.0d
+		}
+		{
+			dependencies: ["33C18F854C790A50"]
+			id: "68E51F2418192256"
+			rewards: [
+				{
+					id: "1E699B3EC3FAB3CC"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "4B621F26985CBDD5"
+					item: {
+						count: 1
+						id: "minecraft:carrot"
+					}
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				consume_items: false
+				count: 8L
+				id: "039E8CA9488310F7"
+				item: { count: 1, id: "veggiesdelight:garlic" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: 5.25d
+		}
+		{
+			dependencies: ["653102109B710187"]
+			id: "76E37EF338FB2773"
+			rewards: [{
+				id: "5721B014B98CE672"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 4L
+				id: "6EE43C62CE1D0384"
+				item: { count: 1, id: "veggiesdelight:broccoli_seeds" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: 8.25d
+		}
+		{
+			dependencies: ["4D459FEC3BDE0931"]
+			id: "2CF54A1FCC965932"
+			rewards: [{
+				id: "26B78E1B226F5721"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 4L
+				id: "2AA815E43E450D8D"
+				item: { count: 1, id: "veggiesdelight:zucchini_seeds" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: 10.5d
+		}
+		{
+			dependencies: ["4FFEDB6897050467"]
+			id: "0827532257C43B0B"
+			rewards: [{
+				id: "032FAE26FC79B2C7"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				consume_items: false
+				count: 8L
+				id: "05F7160F994A0AED"
+				item: { count: 1, id: "veggiesdelight:sweet_potato" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: 12.75d
+		}
+		{
+			dependencies: ["56692E80747E7C29"]
+			id: "1E6AD7D6363C90B6"
+			optional: true
+			rewards: [
+				{
+					id: "5C2A6EF40BBD4665"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "7D7CB452FA93713C"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				count: 8L
+				id: "5D271CA0FFD1F55D"
+				item: { count: 1, id: "veggiesdelight:turnip" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: 15.0d
+		}
+		{
+			dependencies: ["3E2FC6E79110729B"]
+			id: "51345DC639C6BDC0"
+			optional: true
+			rewards: [{
+				id: "500BA83EEEB0A922"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 4L
+				id: "3232FF01F252FB55"
+				item: { count: 1, id: "veggiesdelight:bellpepper_seeds" }
+				type: "item"
+			}]
+			x: 4.0d
+			y: 16.5d
+		}
+		{
+			dependencies: ["76E37EF338FB2773"]
+			id: "56C6074882958F63"
+			rewards: [
+				{
+					id: "5A5ADFD85E372F87"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "4C3CBF06D56CB85C"
+					item: {
+						count: 1
+						id: "minecraft:carrot"
+					}
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				consume_items: false
+				count: 8L
+				id: "0EAAA8FB1476AE22"
+				item: { count: 1, id: "veggiesdelight:broccoli" }
+				type: "item"
+			}]
+			x: 6.25d
+			y: 8.25d
+		}
+		{
+			dependencies: ["2CF54A1FCC965932"]
+			id: "7C127A168C098708"
+			rewards: [{
+				id: "2F923756B9A89F21"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				consume_items: false
+				count: 8L
+				id: "787763DC49DF25B6"
+				item: { count: 1, id: "veggiesdelight:zucchini" }
+				type: "item"
+			}]
+			x: 7.75d
+			y: 11.25d
+		}
+		{
+			dependencies: ["76E37EF338FB2773"]
+			id: "30F5AC669E2C7FEE"
+			optional: true
+			rewards: [
+				{
+					id: "55BF0D0450FD622A"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "2CDE3731BEFB2274"
+					item: {
+						count: 1
+						id: "minecraft:carrot"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				count: 4L
+				id: "06149319FE8F8542"
+				item: { count: 1, id: "veggiesdelight:cauliflower" }
+				type: "item"
+			}]
+			x: 6.25d
+			y: 10.5d
+		}
+		{
+			dependencies: ["51345DC639C6BDC0"]
+			id: "391954D597E11B0C"
+			optional: true
+			rewards: [{
+				id: "4540D75930F9E698"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 4L
+				id: "6D2414290A073983"
+				item: { count: 1, id: "veggiesdelight:bellpepper" }
+				type: "item"
+			}]
+			x: 7.75d
+			y: 18.0d
+		}
+		{
+			dependencies: [
+				"68E51F2418192256"
+				"2E001EE480F6587E"
+			]
+			id: "7FE2BE8F5CDAB27D"
+			optional: true
+			rewards: [{
+				id: "6A6CA70EA2DE5D44"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 4L
+				id: "4609BCEDCAD56D57"
+				item: { count: 1, id: "veggiesdelight:roasted_garlic_clove" }
+				type: "item"
+			}]
+			x: 6.25d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"68E51F2418192256"
+				"1D9023A70D1F9B25"
+			]
+			id: "1C13A48C4010242A"
+			rewards: [{
+				id: "3168F7096E2FECED"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 2L
+				id: "088AB64F5410DD68"
+				item: { count: 1, id: "veggiesdelight:garlic_bread" }
+				type: "item"
+			}]
+			x: 6.25d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"56C6074882958F63"
+				"1D9023A70D1F9B25"
+			]
+			id: "6FB5E3E616FC24D7"
+			rewards: [
+				{
+					id: "4EEA8A029D7ED7F2"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "17487503BBDE05D8"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				count: 2L
+				id: "234F6E296AD67DAF"
+				item: { count: 1, id: "veggiesdelight:broccoli_soup" }
+				type: "item"
+			}]
+			x: 10.0d
+			y: 3.0d
+		}
+		{
+			dependencies: ["56C6074882958F63"]
+			id: "48348E8484A2D30B"
+			optional: true
+			rewards: [{
+				id: "35D045222B86B462"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 2L
+				id: "64D7BC5316DC20A5"
+				item: { count: 1, id: "veggiesdelight:cesar_salad" }
+				type: "item"
+			}]
+			x: 10.0d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"7C127A168C098708"
+				"1D9023A70D1F9B25"
+			]
+			id: "7DCD0EB2ED4D835E"
+			rewards: [{
+				id: "58CFCB87A7B1378D"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 2L
+				id: "7FE975495DD1B1E3"
+				item: { count: 1, id: "veggiesdelight:roasted_vegetables" }
+				type: "item"
+			}]
+			x: 11.5d
+			y: 12.0d
+		}
+		{
+			dependencies: ["7C127A168C098708"]
+			id: "231DF19ADB9F3EDD"
+			optional: true
+			rewards: [{
+				id: "2F1653AA9F7DE5E7"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "21CED9BA7ED17A43"
+				item: { count: 1, id: "veggiesdelight:stuffed_zucchinis" }
+				type: "item"
+			}]
+			x: 11.5d
+			y: 13.5d
+		}
+		{
+			dependencies: [
+				"56C6074882958F63"
+				"1D9023A70D1F9B25"
+			]
+			id: "120A2B59E042EA99"
+			optional: true
+			rewards: [
+				{
+					id: "2011741D58E631DA"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "383D19153B0DC27F"
+					item: {
+						count: 1
+						id: "minecraft:carrot"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				count: 2L
+				id: "27BA4B634C70C4B0"
+				item: { count: 1, id: "veggiesdelight:pasta_with_broccoli" }
+				type: "item"
+			}]
+			x: 10.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["1D9023A70D1F9B25"]
+			id: "150B7A4206B5B920"
+			optional: true
+			rewards: [{
+				id: "356B8C4C20496731"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 2L
+				id: "09272A142B8B1C78"
+				item: { count: 1, id: "veggiesdelight:mashed_potatoes" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 27.75d
+		}
+		{
+			dependencies: [
+				"7C127A168C098708"
+				"1D9023A70D1F9B25"
+			]
+			id: "538ECF3A08F30750"
+			optional: true
+			rewards: [{
+				id: "2EFAD5D48F23954D"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "108F05481B6E72AB"
+				item: { count: 1, id: "veggiesdelight:lasagna_slice" }
+				type: "item"
+			}]
+			x: 11.5d
+			y: 15.0d
+		}
+		{
+			dependencies: ["2E001EE480F6587E"]
+			id: "578A26F9C00918F8"
+			optional: true
+			rewards: [{
+				id: "19F6844FBCDE398D"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 2L
+				id: "27B39D1282AA7DA1"
+				item: { count: 1, id: "veggiesdelight:fish_and_chips" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 29.25d
+		}
+		{
+			dependencies: ["0827532257C43B0B"]
+			id: "11D31FFC8A0BEA08"
+			optional: true
+			rewards: [
+				{
+					id: "5B67619FD989E587"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "58DEB2B5257424EF"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				count: 2L
+				id: "3EBDD05BCAE2B8FD"
+				item: { count: 1, id: "veggiesdelight:sweet_potato_cupcake" }
+				type: "item"
+			}]
+			x: 7.75d
+			y: 13.5d
+		}
+		{
+			dependencies: ["0827532257C43B0B"]
+			id: "2238634C0DD50C7E"
+			optional: true
+			rewards: [{
+				id: "6DD5D981EBBC1600"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "337362F23683D409"
+				item: { count: 1, id: "veggiesdelight:sweet_potato_pie" }
+				type: "item"
+			}]
+			x: 7.75d
+			y: 15.0d
+		}
+		{
+			dependencies: ["1D9023A70D1F9B25"]
+			id: "7DBB44D4090F2753"
+			optional: true
+			rewards: [{
+				id: "26642E496BBD4A16"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "0B31AD40C4D4EFB0"
+				item: { count: 1, id: "veggiesdelight:beetroot_brownie" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 30.75d
+		}
+		{
+			dependencies: ["5B13827920C96059"]
+			id: "1AEADD4CF69FFD81"
+			rewards: [
+				{
+					id: "73B801F0E3E3348B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 8
+					id: "50AC2BBDDEEE231F"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "79B71C303B8059AA"
+					item: { count: 1, id: "veggiesdelight:cauliflower_seeds" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "5A44C6D17BF43DD0"
+					item: { count: 1, id: "veggiesdelight:turnip_seeds" }
+					type: "item"
+				}
+			]
+			x: 2.0d
+			y: 16.5d
+		}
+		{
+			dependencies: ["68E51F2418192256"]
+			id: "0B83C654B1262A31"
+			rewards: [{
+				id: "397135154717F9FD"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "699A7EFDD766C7FC"
+					item: { count: 1, id: "veggiesdelight:garlic_clove" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "24F5EC2E1E8CA198"
+					item: { count: 1, id: "veggiesdelight:dandelion_leaf" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "3732612B1E9BC281"
+					item: { count: 1, id: "veggiesdelight:cauliflower_floret" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "3B978CE308080D61"
+					item: { count: 1, id: "veggiesdelight:zucchini_slice" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "571890023385FA22"
+					item: { count: 1, id: "veggiesdelight:potato_noodle" }
+					type: "item"
+				}
+			]
+			x: 6.25d
+			y: 4.5d
+		}
+		{
+			dependencies: ["68E51F2418192256"]
+			id: "5C13E368C0A03806"
+			rewards: [{
+				id: "22BC2D41E315C9FD"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "5C8232522F6F1448"
+				item: { count: 1, id: "veggiesdelight:garlic_crate" }
+				type: "item"
+			}]
+			x: 6.25d
+			y: 6.0d
+		}
+		{
+			dependencies: ["0827532257C43B0B"]
+			id: "0FCA999251D7520B"
+			rewards: [{
+				id: "73E292A5A01DB981"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				consume_items: false
+				id: "65806C44DB03E9DE"
+				item: { count: 1, id: "veggiesdelight:baked_sweet_potato" }
+				type: "item"
+			}]
+			x: 7.75d
+			y: 16.5d
+		}
+		{
+			dependencies: [
+				"56C6074882958F63"
+				"4C73D86026EE4E03"
+			]
+			id: "3CD175E29FD9A218"
+			rewards: [
+				{
+					id: "749AC4EA2C2E11C3"
+					type: "xp"
+					xp: 20
+				}
+				{
+					count: 8
+					id: "12D4632BF429B343"
+					item: {
+						count: 1
+						id: "minecraft:carrot"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "3E32CE9DB5B46011"
+				item: { count: 1, id: "veggiesdelight:broccoli_salad" }
+				type: "item"
+			}]
+			x: 10.0d
+			y: 9.0d
+		}
+		{
+			dependencies: [
+				"0B83C654B1262A31"
+				"12DBCAD745FEEF5C"
+			]
+			id: "7D80184A7E7334D2"
+			rewards: [{
+				id: "6C76A55260047149"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				consume_items: false
+				id: "0D1BD80A2897D60B"
+				item: { count: 1, id: "veggiesdelight:cauliflower_soup" }
+				type: "item"
+			}]
+			x: 10.0d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"7D80184A7E7334D2"
+				"148E42983DA793CB"
+				"6A92B09ECEEED6A0"
+			]
+			id: "76EF30E733209ECF"
+			rewards: [{
+				id: "20ECA492AFD53A66"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				consume_items: false
+				id: "102EE1B9DB222D0D"
+				item: { count: 1, id: "veggiesdelight:garlic_baked_cod" }
+				type: "item"
+			}]
+			x: 13.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"0FCA999251D7520B"
+				"148E42983DA793CB"
+				"6A92B09ECEEED6A0"
+			]
+			id: "2D395F107AAA1F9C"
+			rewards: [{
+				id: "7067BD55FA0D73F1"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				consume_items: false
+				id: "30FB413770AE07E5"
+				item: { count: 1, id: "veggiesdelight:chicken_fajitas_wrap" }
+				type: "item"
+			}]
+			x: 11.5d
+			y: 16.5d
+		}
+		{
+			dependencies: [
+				"0827532257C43B0B"
+				"0B83C654B1262A31"
+				"7C127A168C098708"
+			]
+			id: "607446E024A7B106"
+			rewards: [
+				{
+					id: "40B8009357C9953B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					count: 8
+					id: "65047D67591AAAAB"
+					item: {
+						count: 1
+						id: "minecraft:bread"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "5789B7F40A4DBA58"
+				item: { count: 1, id: "veggiesdelight:raw_vegetarian_patty" }
+				type: "item"
+			}]
+			x: 11.5d
+			y: 10.5d
+		}
+		{
+			dependencies: ["7D80184A7E7334D2"]
+			id: "0A6355252FCAC710"
+			rewards: [{
+				id: "2B29D025B80788CE"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				consume_items: false
+				id: "569DF63456CCFC81"
+				item: { count: 1, id: "veggiesdelight:carrot_cake" }
+				type: "item"
+			}]
+			x: 13.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["7D80184A7E7334D2"]
+			id: "1D3742564253F0E4"
+			rewards: [{
+				id: "72CE3F36BDA7A745"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				consume_items: false
+				id: "6A60889B1B79320B"
+				item: { count: 1, id: "veggiesdelight:carrot_juice" }
+				type: "item"
+			}]
+			x: 13.5d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"76EF30E733209ECF"
+				"0A6355252FCAC710"
+				"1D3742564253F0E4"
+				"6FB5E3E616FC24D7"
+			]
+			id: "6A35BD3FD34DD53C"
+			rewards: [
+				{
+					id: "01930AD1EC184397"
+					type: "xp"
+					xp: 200
+				}
+				{
+					count: 16
+					id: "305AC380B028EBCF"
+					item: {
+						count: 1
+						id: "minecraft:golden_carrot"
+					}
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				id: "68C7FF7C96CF150B"
+				type: "checkmark"
+			}]
+			x: 15.5d
+			y: 2.25d
+		}
+	]
+}

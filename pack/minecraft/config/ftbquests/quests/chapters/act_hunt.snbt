@@ -1,0 +1,462 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "act_hunt"
+	group: "2239F7D906E70A56"
+	icon: {
+		id: "minecraft:iron_sword"
+	}
+	id: "2E3DF889E28331AE"
+	images: [ ]
+	order_index: 9
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			icon: {
+				id: "minecraft:iron_sword"
+			}
+			id: "77BA4B5B695385A5"
+			rewards: [{
+				id: "32A8E90B313EA2BE"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [{
+				id: "095D67081BD4822A"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 0.75d
+		}
+		{
+			dependencies: ["77BA4B5B695385A5"]
+			id: "29705D4311E0A61D"
+			rewards: [{
+				id: "3D4A0D1E49860286"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [
+				{
+					entity: "minecraft:zombie"
+					id: "2D0EAC928288BC10"
+					type: "kill"
+					value: 20L
+				}
+				{
+					entity: "minecraft:skeleton"
+					id: "05C1C4B47A5859E2"
+					type: "kill"
+					value: 20L
+				}
+				{
+					entity: "minecraft:spider"
+					id: "5213273B1453FE35"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:creeper"
+					id: "1E76924D99034248"
+					type: "kill"
+					value: 10L
+				}
+			]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["29705D4311E0A61D"]
+			id: "7EFEAB63DA443778"
+			rewards: [{
+				id: "31BB08C675968C21"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [
+				{
+					entity: "minecraft:enderman"
+					id: "1C43132AAB098819"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:witch"
+					id: "6DDA9D58F29F5686"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecraft:slime"
+					id: "34F1A5701923443B"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:phantom"
+					id: "0F321E6089521263"
+					type: "kill"
+					value: 5L
+				}
+			]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7EFEAB63DA443778"]
+			id: "1471FF6AA3BCC597"
+			rewards: [
+				{
+					id: "4091302D4C8358F8"
+					type: "xp"
+					xp: 80
+				}
+				{
+					count: 32
+					id: "61770425829B8084"
+					item: {
+						count: 1
+						id: "minecraft:arrow"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					entity: "minecraft:pillager"
+					id: "0AF5E7DC1A6FAFFF"
+					type: "kill"
+					value: 15L
+				}
+				{
+					entity: "minecraft:vindicator"
+					id: "419BB0BB84B3FC99"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecraft:evoker"
+					id: "1AEA852B8B62A3FD"
+					type: "kill"
+					value: 1L
+				}
+				{
+					entity: "minecraft:ravager"
+					id: "7BC6A59FE577C289"
+					type: "kill"
+					value: 1L
+				}
+			]
+			x: 6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1471FF6AA3BCC597"]
+			id: "1628EEA6072579A8"
+			rewards: [{
+				id: "4FD3532231D05391"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [
+				{
+					entity: "minecraft:blaze"
+					id: "3EBAD73A3CB1F348"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:ghast"
+					id: "288F00BB31125E47"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecraft:wither_skeleton"
+					id: "018423665759150F"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:piglin_brute"
+					id: "0CC2601E5AD182C8"
+					type: "kill"
+					value: 2L
+				}
+			]
+			x: 8.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1628EEA6072579A8"]
+			id: "327D9A8623D3009B"
+			rewards: [{
+				id: "0B493B71C5375416"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [
+				{
+					entity: "minecraft:drowned"
+					id: "40F4CB4972BA6BE4"
+					type: "kill"
+					value: 15L
+				}
+				{
+					entity: "minecraft:guardian"
+					id: "6E28D920F7910177"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecraft:elder_guardian"
+					id: "06D0D4BF9BB0FFFA"
+					type: "kill"
+					value: 1L
+				}
+			]
+			x: 10.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["327D9A8623D3009B"]
+			id: "38C82016031BCCFC"
+			rewards: [{
+				id: "5E86A905267ADEE9"
+				type: "xp"
+				xp: 300
+			}]
+			shape: "gear"
+			size: 2.0d
+			tasks: [
+				{
+					entity: "minecraft:ender_dragon"
+					id: "151619EE8E24024A"
+					type: "kill"
+					value: 1L
+				}
+				{
+					entity: "minecraft:wither"
+					id: "163A1A8AC2E38B17"
+					type: "kill"
+					value: 1L
+				}
+				{
+					entity: "minecraft:warden"
+					id: "7E8CA5DFDDE76B7F"
+					type: "kill"
+					value: 1L
+				}
+			]
+			x: 12.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"77BA4B5B695385A5"
+				"37AF69B87D710173"
+			]
+			id: "0788123622C54ECD"
+			rewards: [{
+				id: "73BB75B59E9A2008"
+				type: "xp"
+				xp: 80
+			}]
+			tasks: [
+				{
+					entity: "minecolonies:barbarian"
+					id: "1AE5729F92A7C980"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecolonies:archerbarbarian"
+					id: "3DB746430EB2107D"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecolonies:chiefbarbarian"
+					id: "051398A320BAF742"
+					type: "kill"
+					value: 1L
+				}
+			]
+			x: 2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["0788123622C54ECD"]
+			id: "44C4F0F008796DD7"
+			rewards: [
+				{
+					id: "66B36AFB6BE0A6A6"
+					type: "xp"
+					xp: 80
+				}
+				{
+					count: 16
+					id: "4323EE8672F94ABC"
+					item: {
+						count: 1
+						id: "minecraft:cooked_beef"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					entity: "minecolonies:pirate"
+					id: "37EE425EF332296D"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecolonies:archerpirate"
+					id: "5A645A63ADF57F8D"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecolonies:chiefpirate"
+					id: "44679BF47E45F3EC"
+					type: "kill"
+					value: 1L
+				}
+			]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["44C4F0F008796DD7"]
+			id: "45500F3607095442"
+			optional: true
+			rewards: [{
+				id: "049DF066B002155E"
+				type: "xp"
+				xp: 80
+			}]
+			tasks: [
+				{
+					entity: "minecolonies:mummy"
+					id: "59FF3FFD47D6FD02"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecolonies:archermummy"
+					id: "27D1811EEE2E1FF3"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecolonies:pharao"
+					id: "77754674DAE0E6DD"
+					type: "kill"
+					value: 1L
+				}
+			]
+			x: 6.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["45500F3607095442"]
+			id: "4BA3097EFDBE2666"
+			optional: true
+			rewards: [{
+				id: "3E8DA2CBDFB103BA"
+				type: "xp"
+				xp: 80
+			}]
+			tasks: [
+				{
+					entity: "minecolonies:shieldmaiden"
+					id: "76456412BE1B503F"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecolonies:norsemenarcher"
+					id: "677DB6E19B3B2ED9"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecolonies:norsemenchief"
+					id: "5CDF722EA4D36099"
+					type: "kill"
+					value: 1L
+				}
+			]
+			x: 8.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["4BA3097EFDBE2666"]
+			id: "731D553C4B9544AA"
+			optional: true
+			rewards: [{
+				id: "4DFA05C4B3CD9405"
+				type: "xp"
+				xp: 80
+			}]
+			tasks: [
+				{
+					entity: "minecolonies:amazon"
+					id: "1C619E1CA30B4CA3"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecolonies:amazonspearman"
+					id: "6402F65544B7F61F"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecolonies:amazonchief"
+					id: "493E3A0B953BC260"
+					type: "kill"
+					value: 1L
+				}
+			]
+			x: 10.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["731D553C4B9544AA"]
+			id: "594EFD384B4FF418"
+			optional: true
+			rewards: [{
+				id: "215F138122EA7AD4"
+				type: "xp"
+				xp: 80
+			}]
+			tasks: [
+				{
+					entity: "minecolonies:drownedpirate"
+					id: "326CDEE65169DF7F"
+					type: "kill"
+					value: 10L
+				}
+				{
+					entity: "minecolonies:drownedarcherpirate"
+					id: "5C2848CC909216AE"
+					type: "kill"
+					value: 5L
+				}
+				{
+					entity: "minecolonies:drownedchiefpirate"
+					id: "3891EEF8DFA95171"
+					type: "kill"
+					value: 1L
+				}
+			]
+			x: 12.5d
+			y: 2.25d
+		}
+	]
+}

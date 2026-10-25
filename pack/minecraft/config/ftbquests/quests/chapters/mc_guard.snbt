@@ -1,0 +1,340 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mc_guard"
+	group: "2A69CCF386B9CA7D"
+	icon: {
+		id: "minecolonies:blockhutbarracks"
+	}
+	id: "45B6246A86F80A84"
+	images: [ ]
+	order_index: 3
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["76E8814121E74F45"]
+			icon: {
+				id: "minecolonies:blockhutbarracks"
+			}
+			id: "03E4DF9939906839"
+			rewards: [{
+				id: "285BF3425938E34C"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [{
+				id: "142A347962C7CE9F"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["03E4DF9939906839"]
+			id: "37AF69B87D710173"
+			rewards: [{
+				id: "4A0C627E48A11645"
+				type: "xp"
+				xp: 15
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [
+				{
+					consume_items: false
+					id: "57AB0CD669AC6092"
+					item: { count: 1, id: "minecolonies:blockhutguardtower" }
+					type: "item"
+				}
+				{
+					advancement: "minecolonies:minecolonies/build_guard_tower"
+					criterion: ""
+					id: "211BBDABC818D2BE"
+					type: "advancement"
+				}
+			]
+			x: 2.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["37AF69B87D710173"]
+			id: "11004B6CD6042FD4"
+			optional: true
+			rewards: [{
+				id: "429FA449DC9B503D"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "6070F3E0751755F7"
+				item: { count: 1, id: "minecolonies:scepterguard" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["37AF69B87D710173"]
+			id: "70A3F018E166421F"
+			optional: true
+			rewards: [{
+				id: "07830DA27A37B650"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "1BBA059B24E40041"
+				item: { count: 1, id: "minecolonies:banner_rally_guards" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["37AF69B87D710173"]
+			id: "67C927865AB16BF7"
+			rewards: [{
+				id: "7A487E523478DD1E"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "37927D6192679F11"
+				item: { count: 1, id: "minecolonies:blockhutgatehouse" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["37AF69B87D710173"]
+			id: "52AED919B2647F59"
+			rewards: [
+				{
+					id: "424713928E44BD67"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 32
+					id: "2BA05C2D7BA0118C"
+					item: {
+						count: 1
+						id: "minecraft:arrow"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "1BDC28E98B00061D"
+					item: { count: 1, id: "minecolonies:blockhutbarracks" }
+					type: "item"
+				}
+				{
+					advancement: "minecolonies:military/build_barracks"
+					criterion: ""
+					id: "0F7CCA7AB20EEA56"
+					type: "advancement"
+				}
+			]
+			x: 4.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["52AED919B2647F59"]
+			id: "62BD6CB69918EE35"
+			rewards: [{
+				id: "6E46424E116EE597"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "minecolonies:military/build_barracks_tower"
+				criterion: ""
+				id: "6BFC0D5D39A6E5AF"
+				type: "advancement"
+			}]
+			x: 6.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["62BD6CB69918EE35"]
+			id: "1B1B3A2E58DACD4C"
+			rewards: [{
+				id: "1BF17B68A3D2C528"
+				type: "xp"
+				xp: 80
+			}]
+			tasks: [{
+				advancement: "minecolonies:military/build_all_barracks_towers"
+				criterion: ""
+				id: "5F12006A5A28FF74"
+				type: "advancement"
+			}]
+			x: 8.5d
+			y: 3.75d
+		}
+		{
+			dependencies: ["52AED919B2647F59"]
+			id: "348608EC43A30FFC"
+			rewards: [{
+				id: "213FD9C1D1C14A83"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "1205AB396C9C1ECA"
+					item: { count: 1, id: "minecolonies:blockhutarchery" }
+					type: "item"
+				}
+				{
+					advancement: "minecolonies:military/build_archery"
+					criterion: ""
+					id: "3E750368EB433157"
+					type: "advancement"
+				}
+			]
+			x: 6.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["52AED919B2647F59"]
+			id: "511CFAA1FB937A09"
+			rewards: [
+				{
+					id: "6AC0D65A36D2440E"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 16
+					id: "11268BAEEAC7D395"
+					item: {
+						count: 1
+						id: "minecraft:cooked_beef"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "522560E46484DDE1"
+					item: { count: 1, id: "minecolonies:blockhutcombatacademy" }
+					type: "item"
+				}
+				{
+					advancement: "minecolonies:military/build_combat_academy"
+					criterion: ""
+					id: "02CC31B893351351"
+					type: "advancement"
+				}
+			]
+			x: 6.5d
+			y: 6.75d
+		}
+		{
+			dependencies: ["37AF69B87D710173"]
+			id: "58218147B23FE786"
+			optional: true
+			rewards: [{
+				id: "34FA101B697E0BEE"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "2D86ED742714E3F1"
+				item: { count: 1, id: "minecolonies:spear" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["37AF69B87D710173"]
+			id: "2C84C0C26DFF989F"
+			rewards: [{
+				id: "1DE6257AF26E7CCF"
+				type: "xp"
+				xp: 38
+			}]
+			tasks: [{
+				advancement: "minecolonies:military/army_8"
+				criterion: ""
+				id: "393D7FC766207CAD"
+				type: "advancement"
+			}]
+			x: 4.5d
+			y: 9.0d
+		}
+		{
+			dependencies: ["2C84C0C26DFF989F"]
+			id: "1599467173EA3A91"
+			rewards: [{
+				id: "5957B934545DB259"
+				type: "xp"
+				xp: 60
+			}]
+			tasks: [{
+				advancement: "minecolonies:military/army_30"
+				criterion: ""
+				id: "5125CCFA29E256AA"
+				type: "advancement"
+			}]
+			x: 6.5d
+			y: 8.25d
+		}
+		{
+			dependencies: ["1599467173EA3A91"]
+			id: "6AEFB3CA336DDE64"
+			rewards: [{
+				id: "02799253E276CFF8"
+				type: "xp"
+				xp: 110
+			}]
+			tasks: [{
+				advancement: "minecolonies:military/army_80"
+				criterion: ""
+				id: "03283774E97EF1F2"
+				type: "advancement"
+			}]
+			x: 8.5d
+			y: 8.25d
+		}
+		{
+			dependencies: [
+				"1599467173EA3A91"
+				"511CFAA1FB937A09"
+				"348608EC43A30FFC"
+				"67C927865AB16BF7"
+			]
+			id: "3A3C93DA86064999"
+			rewards: [{
+				id: "39079F134C94C0DC"
+				type: "xp"
+				xp: 150
+			}]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				consume_items: false
+				id: "50B591488D7538C0"
+				item: { count: 1, id: "minecolonies:blockhutbarracks" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 6.0d
+		}
+	]
+}

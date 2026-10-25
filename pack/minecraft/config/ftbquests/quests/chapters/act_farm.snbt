@@ -1,0 +1,686 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "act_farm"
+	group: "2239F7D906E70A56"
+	icon: {
+		id: "minecraft:golden_hoe"
+	}
+	id: "766D3C522C96E952"
+	images: [ ]
+	order_index: 10
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			icon: {
+				id: "minecraft:golden_hoe"
+			}
+			id: "25089C869B3AA278"
+			rewards: [{
+				id: "111C07BAA351BCEE"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [{
+				id: "599D8C59B05DC74F"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 2.25d
+		}
+		{
+			dependencies: ["25089C869B3AA278"]
+			id: "5FBAC34739B018EA"
+			rewards: [{
+				id: "32E8D61AF02D6956"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/get_fd_seed"
+				criterion: ""
+				id: "20144E1B1AD3C46B"
+				type: "advancement"
+			}]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["25089C869B3AA278"]
+			id: "618DBCFE7134119A"
+			rewards: [{
+				id: "4A50E1CAC78DBE2E"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/craft_knife"
+				criterion: ""
+				id: "2FFF9474B4270731"
+				type: "advancement"
+			}]
+			x: 2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["25089C869B3AA278"]
+			id: "6A0D817F695E18EC"
+			rewards: [
+				{
+					id: "4848D6231A8445A2"
+					type: "xp"
+					xp: 20
+				}
+				{
+					count: 32
+					id: "6656AE44BA4342AE"
+					item: {
+						count: 1
+						id: "minecraft:bone_meal"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				advancement: "farmersdelight:main/use_cutting_board"
+				criterion: ""
+				id: "4975CED115C780DA"
+				type: "advancement"
+			}]
+			x: 2.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["25089C869B3AA278"]
+			id: "21C8A8BC33E24FAD"
+			rewards: [{
+				id: "56EF912D8BCEBC1C"
+				type: "xp"
+				xp: 20
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				advancement: "farmersdelight:main/harvest_straw"
+				criterion: ""
+				id: "7C07155D0F23A22A"
+				type: "advancement"
+			}]
+			x: 2.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["21C8A8BC33E24FAD"]
+			id: "1F850205F79A4720"
+			rewards: [{
+				id: "195656987BFB914A"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/plant_rice"
+				criterion: ""
+				id: "091B204A10DDADE3"
+				type: "advancement"
+			}]
+			x: 4.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["21C8A8BC33E24FAD"]
+			id: "39D14D4566BCC63A"
+			rewards: [{
+				id: "54CAF6770642229A"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/get_rich_soil"
+				criterion: ""
+				id: "0DF0E85019CC52A5"
+				type: "advancement"
+			}]
+			x: 4.5d
+			y: 3.75d
+		}
+		{
+			dependencies: ["21C8A8BC33E24FAD"]
+			id: "340A29C9B6759E3E"
+			rewards: [
+				{
+					id: "3F5733D9BFF70C7A"
+					type: "xp"
+					xp: 20
+				}
+				{
+					count: 4
+					id: "6C5DE6BCDFD62D74"
+					item: {
+						count: 1
+						id: "farmersdelight:rich_soil"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				advancement: "farmersdelight:main/place_organic_compost"
+				criterion: ""
+				id: "7604D993377B1DB3"
+				type: "advancement"
+			}]
+			x: 4.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["21C8A8BC33E24FAD"]
+			id: "19384F0A0FFD7E88"
+			rewards: [{
+				id: "5E92021DA9303105"
+				type: "xp"
+				xp: 20
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				advancement: "farmersdelight:main/get_mushroom_colony"
+				criterion: ""
+				id: "3E3ECF87390ABF93"
+				type: "advancement"
+			}]
+			x: 4.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["19384F0A0FFD7E88"]
+			id: "254863B9915AFEB9"
+			rewards: [{
+				id: "6231DA6A5588B93C"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/harvest_ropelogged_tomato"
+				criterion: ""
+				id: "1929ABAE44A0105D"
+				type: "advancement"
+			}]
+			x: 6.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["19384F0A0FFD7E88"]
+			id: "405C32D74D97CD3C"
+			rewards: [{
+				id: "2BC4FF9C3A26321A"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/place_cooking_pot"
+				criterion: ""
+				id: "359B039249ACACD7"
+				type: "advancement"
+			}]
+			x: 6.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["19384F0A0FFD7E88"]
+			id: "4B16BEA05407074E"
+			rewards: [
+				{
+					id: "498890F50F29F041"
+					type: "xp"
+					xp: 20
+				}
+				{
+					count: 16
+					id: "3C600337391EB421"
+					item: {
+						count: 1
+						id: "minecraft:wheat_seeds"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				advancement: "farmersdelight:main/place_skillet"
+				criterion: ""
+				id: "1533EE3797CB1AA1"
+				type: "advancement"
+			}]
+			x: 6.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["19384F0A0FFD7E88"]
+			id: "78266B3420B76462"
+			rewards: [{
+				id: "5FE2F3725496B63D"
+				type: "xp"
+				xp: 20
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				advancement: "farmersdelight:main/use_skillet"
+				criterion: ""
+				id: "69F18C1904A05E6F"
+				type: "advancement"
+			}]
+			x: 6.5d
+			y: 9.75d
+		}
+		{
+			dependencies: ["78266B3420B76462"]
+			id: "25CC1C7D803AF2D9"
+			rewards: [{
+				id: "19F3E4FC6C55301B"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/eat_nourishing_food"
+				criterion: ""
+				id: "7906B130969BF46B"
+				type: "advancement"
+			}]
+			x: 8.75d
+			y: 6.75d
+		}
+		{
+			dependencies: ["78266B3420B76462"]
+			id: "3D11FB6C6590E9ED"
+			rewards: [{
+				id: "5BD7C5DA6C4640D8"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/place_feast"
+				criterion: ""
+				id: "770CD860D5A26616"
+				type: "advancement"
+			}]
+			x: 8.75d
+			y: 8.25d
+		}
+		{
+			dependencies: ["78266B3420B76462"]
+			id: "00F10018752AD118"
+			rewards: [
+				{
+					id: "749E248081DBCADE"
+					type: "xp"
+					xp: 20
+				}
+				{
+					count: 32
+					id: "0AE29DC4523ABA80"
+					item: {
+						count: 1
+						id: "minecraft:bone_meal"
+					}
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				advancement: "farmersdelight:main/get_ham"
+				criterion: ""
+				id: "0154A9FC0581AF83"
+				type: "advancement"
+			}]
+			x: 8.75d
+			y: 10.5d
+		}
+		{
+			dependencies: ["78266B3420B76462"]
+			id: "40F87620E428BDEF"
+			optional: true
+			rewards: [{
+				id: "111B53DE13F1B4EB"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/hit_raider_with_rotten_tomato"
+				criterion: ""
+				id: "2E98FAAC0325D3A7"
+				type: "advancement"
+			}]
+			x: 8.75d
+			y: 12.75d
+		}
+		{
+			dependencies: ["00F10018752AD118"]
+			id: "7F3B873C15D2A584"
+			rewards: [{
+				id: "35A52C0E5719CABC"
+				type: "xp"
+				xp: 60
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/plant_all_crops"
+				criterion: ""
+				id: "78CFA99DE2E4E4AF"
+				type: "advancement"
+			}]
+			x: 11.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["00F10018752AD118"]
+			id: "52A600982EA7E6B5"
+			optional: true
+			rewards: [{
+				id: "5BE2F83D1AD08116"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/obtain_netherite_knife"
+				criterion: ""
+				id: "170C390E6151A6E7"
+				type: "advancement"
+			}]
+			x: 11.0d
+			y: 9.0d
+		}
+		{
+			dependencies: ["00F10018752AD118"]
+			id: "7BE65D4B05947D0C"
+			rewards: [{
+				id: "6D29C7CDA63FA436"
+				type: "xp"
+				xp: 60
+			}]
+			tasks: [{
+				advancement: "farmersdelight:main/master_chef"
+				criterion: ""
+				id: "2E4568F2151AEDD7"
+				type: "advancement"
+			}]
+			x: 11.0d
+			y: 10.5d
+		}
+		{
+			dependencies: ["00F10018752AD118"]
+			id: "5675E6F682BAA16C"
+			rewards: [{
+				id: "545AFAAA45287EF1"
+				type: "xp"
+				xp: 20
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				advancement: "veggiesdelight:main/r_first_veggie"
+				criterion: ""
+				id: "26AB146B3867A047"
+				type: "advancement"
+			}]
+			x: 11.0d
+			y: 12.75d
+		}
+		{
+			dependencies: ["5675E6F682BAA16C"]
+			id: "0110352113E8AE65"
+			rewards: [
+				{
+					id: "1ECB02C85395FC74"
+					type: "xp"
+					xp: 20
+				}
+				{
+					count: 4
+					id: "33F99F2095B92A45"
+					item: {
+						count: 1
+						id: "farmersdelight:rich_soil"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				advancement: "veggiesdelight:main/r_fruit_veggie"
+				criterion: ""
+				id: "3228CBDAF8E340EC"
+				type: "advancement"
+			}]
+			x: 13.0d
+			y: 10.5d
+		}
+		{
+			dependencies: ["5675E6F682BAA16C"]
+			id: "4F4C2DB40EFFCFAE"
+			rewards: [{
+				id: "0057473A0FB27DBF"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "veggiesdelight:main/vd_garlic_master"
+				criterion: ""
+				id: "76ADAB172FC513DB"
+				type: "advancement"
+			}]
+			x: 13.0d
+			y: 12.0d
+		}
+		{
+			dependencies: ["5675E6F682BAA16C"]
+			id: "6212FE74AA474367"
+			rewards: [{
+				id: "548FBA1C9F3D5AA5"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "veggiesdelight:main/vd_broccoli_master"
+				criterion: ""
+				id: "3786C9483A0CA543"
+				type: "advancement"
+			}]
+			x: 13.0d
+			y: 13.5d
+		}
+		{
+			dependencies: ["5675E6F682BAA16C"]
+			id: "24AE32FBA062ADFA"
+			rewards: [{
+				id: "36F400BB3DCE9209"
+				type: "xp"
+				xp: 20
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				advancement: "veggiesdelight:main/vd_zucchini_master"
+				criterion: ""
+				id: "195D538868F9BC94"
+				type: "advancement"
+			}]
+			x: 13.0d
+			y: 15.75d
+		}
+		{
+			dependencies: ["24AE32FBA062ADFA"]
+			id: "106C96647FB416C4"
+			rewards: [
+				{
+					id: "45B371B13947769E"
+					type: "xp"
+					xp: 20
+				}
+				{
+					count: 16
+					id: "6D623F9C12E8D1DD"
+					item: {
+						count: 1
+						id: "minecraft:wheat_seeds"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				advancement: "veggiesdelight:main/vd_sweet_potato_master"
+				criterion: ""
+				id: "223FDB91998805D6"
+				type: "advancement"
+			}]
+			x: 15.0d
+			y: 12.75d
+		}
+		{
+			dependencies: ["24AE32FBA062ADFA"]
+			id: "2C8EAF78F7D564FE"
+			rewards: [{
+				id: "47654E1F59EE5434"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "veggiesdelight:main/vd_turnip_master"
+				criterion: ""
+				id: "00EDE66F7379ED3E"
+				type: "advancement"
+			}]
+			x: 15.0d
+			y: 14.25d
+		}
+		{
+			dependencies: ["24AE32FBA062ADFA"]
+			id: "4EA027C768C432B6"
+			rewards: [{
+				id: "15D0875A98FD1BEE"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "veggiesdelight:main/vd_bellpepper_master"
+				criterion: ""
+				id: "64A22CABB908E666"
+				type: "advancement"
+			}]
+			x: 15.0d
+			y: 15.75d
+		}
+		{
+			dependencies: ["24AE32FBA062ADFA"]
+			id: "3B8770791EC36103"
+			rewards: [{
+				id: "29DAFCA71B386F05"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				advancement: "veggiesdelight:main/vd_cauliflower_master"
+				criterion: ""
+				id: "1D2596EBED7C05BF"
+				type: "advancement"
+			}]
+			x: 15.0d
+			y: 17.25d
+		}
+		{
+			dependencies: ["3B8770791EC36103"]
+			id: "2C54B8BF11E782B7"
+			rewards: [
+				{
+					id: "069989A9078E6730"
+					type: "xp"
+					xp: 60
+				}
+				{
+					count: 32
+					id: "2FE0CEB34667ED2F"
+					item: {
+						count: 1
+						id: "minecraft:bone_meal"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				advancement: "veggiesdelight:main/r_all_veggies"
+				criterion: ""
+				id: "49B51853E4F214A8"
+				type: "advancement"
+			}]
+			x: 17.0d
+			y: 15.0d
+		}
+		{
+			dependencies: ["3B8770791EC36103"]
+			id: "30EF7E4D98F7FAB9"
+			rewards: [{
+				id: "707C23A9A7D5C5F9"
+				type: "xp"
+				xp: 50
+			}]
+			tasks: [
+				{
+					consume_items: false
+					count: 64L
+					id: "2CF529F9FA19A046"
+					item: { count: 1, id: "minecraft:wheat" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					count: 64L
+					id: "2E1A09C822C61AEB"
+					item: { count: 1, id: "minecraft:carrot" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					count: 64L
+					id: "03E5312B68C6A2B8"
+					item: { count: 1, id: "minecraft:potato" }
+					type: "item"
+				}
+			]
+			x: 17.0d
+			y: 16.5d
+		}
+		{
+			dependencies: [
+				"2C54B8BF11E782B7"
+				"30EF7E4D98F7FAB9"
+				"106C96647FB416C4"
+				"2C8EAF78F7D564FE"
+			]
+			id: "2553D1D968B0B910"
+			rewards: [
+				{
+					id: "35C199A4101451F5"
+					type: "xp"
+					xp: 200
+				}
+				{
+					count: 32
+					id: "032A13E1BBC526A1"
+					item: {
+						count: 1
+						id: "minecraft:golden_carrot"
+					}
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				id: "37D8DBCEA663C903"
+				type: "checkmark"
+			}]
+			x: 19.0d
+			y: 15.0d
+		}
+	]
+}

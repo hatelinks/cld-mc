@@ -1,0 +1,900 @@
+{
+  "version": 2,
+  "__comment": [
+    "Mobs will be able to equip items declared here",
+    "Value is the item. It also accepts item components. The default config has an example with a harming potion",
+    "Weight is the weight of an item. Higher weight means that the item is more likely to get choosen",
+    "Quality is a modifier applied to the weight. The final weight used is weight + quality * current difficulty"
+  ],
+  "MAINHAND": [
+    {
+      "value": "minecraft:crossbow",
+      "weight": 342.0,
+      "quality": 3.079599142074585
+    },
+    {
+      "value": "minecraft:diamond_axe",
+      "weight": 884.0,
+      "quality": 2.2444424629211426
+    },
+    {
+      "value": "minecraft:diamond_sword",
+      "weight": 918.0,
+      "quality": 2.216036558151245
+    },
+    {
+      "value": "minecraft:enchanted_book",
+      "weight": 200.0,
+      "quality": 3.6840314865112305
+    },
+    {
+      "value": "minecraft:fishing_rod",
+      "weight": 656.0,
+      "quality": 2.4785239696502686
+    },
+    {
+      "value": "minecraft:golden_axe",
+      "weight": 1492.0,
+      "quality": 1.8851739168167114
+    },
+    {
+      "value": "minecraft:golden_sword",
+      "weight": 1589.0,
+      "quality": 1.8460296392440796
+    },
+    {
+      "value": "minecraft:iron_axe",
+      "weight": 1355.0,
+      "quality": 1.9467763900756836
+    },
+    {
+      "value": "minecraft:iron_sword",
+      "weight": 1473.0,
+      "quality": 1.8933994770050049
+    },
+    {
+      "value": "minecraft:lava_bucket",
+      "weight": 247.0,
+      "quality": 3.432752847671509
+    },
+    {
+      "value": "minecraft:netherite_axe",
+      "weight": 722.0,
+      "quality": 2.400606632232666
+    },
+    {
+      "value": "minecraft:netherite_sword",
+      "weight": 749.0,
+      "quality": 2.372253179550171
+    },
+    {
+      "value": "minecraft:stone_axe",
+      "weight": 2251.0,
+      "quality": 1.6437819004058838
+    },
+    {
+      "value": "minecraft:stone_sword",
+      "weight": 2691.0,
+      "quality": 1.5487518310546875
+    },
+    {
+      "value": "minecraft:trident",
+      "weight": 739.0,
+      "quality": 2.381967782974243
+    },
+    {
+      "value": "minecraft:wooden_axe",
+      "weight": 1810.0,
+      "quality": 1.7675225734710693
+    },
+    {
+      "value": "minecraft:wooden_sword",
+      "weight": 1955.0,
+      "quality": 1.7227892875671387
+    },
+    {
+      "value": "create:cardboard_sword",
+      "weight": 44000.0,
+      "quality": 0.6102612018585205
+    },
+    {
+      "value": "create_things_and_misc:brass_knife",
+      "weight": 3911.0,
+      "quality": 1.3673286437988281
+    },
+    {
+      "value": "create_things_and_misc:copper_knife",
+      "weight": 3982.0,
+      "quality": 1.3591829538345337
+    },
+    {
+      "value": "create_things_and_misc:zinc_knife",
+      "weight": 3982.0,
+      "quality": 1.3591829538345337
+    },
+    {
+      "value": "minecolonies:chiefsword",
+      "weight": 954.0,
+      "quality": 2.1879377365112305
+    },
+    {
+      "value": "minecolonies:iron_scimitar",
+      "weight": 1527.0,
+      "quality": 1.8706048727035522
+    },
+    {
+      "value": "minecolonies:spear",
+      "weight": 797.0,
+      "quality": 2.3236303329467773
+    },
+    {
+      "value": "mysticalagriculture:awakened_supremium_axe",
+      "weight": 224.0,
+      "quality": 3.5449445247650146
+    },
+    {
+      "value": "mysticalagriculture:awakened_supremium_crossbow",
+      "weight": 364.0,
+      "quality": 3.0170745849609375
+    },
+    {
+      "value": "mysticalagriculture:awakened_supremium_fishing_rod",
+      "weight": 675.0,
+      "quality": 2.4549546241760254
+    },
+    {
+      "value": "mysticalagriculture:awakened_supremium_scythe",
+      "weight": 234.0,
+      "quality": 3.4960882663726807
+    },
+    {
+      "value": "mysticalagriculture:awakened_supremium_sword",
+      "weight": 238.0,
+      "quality": 3.472395420074463
+    },
+    {
+      "value": "mysticalagriculture:creative_soulium_dagger",
+      "weight": 129.0,
+      "quality": 4.263354778289795
+    },
+    {
+      "value": "mysticalagriculture:diamond_scythe",
+      "weight": 902.0,
+      "quality": 2.2293150424957275
+    },
+    {
+      "value": "mysticalagriculture:hostile_soulium_dagger",
+      "weight": 1147.0,
+      "quality": 2.0581107139587402
+    },
+    {
+      "value": "mysticalagriculture:imperium_axe",
+      "weight": 394.0,
+      "quality": 2.9382665157318115
+    },
+    {
+      "value": "mysticalagriculture:imperium_crossbow",
+      "weight": 301.0,
+      "quality": 3.2125842571258545
+    },
+    {
+      "value": "mysticalagriculture:imperium_fishing_rod",
+      "weight": 570.0,
+      "quality": 2.598026752471924
+    },
+    {
+      "value": "mysticalagriculture:imperium_scythe",
+      "weight": 411.0,
+      "quality": 2.8955657482147217
+    },
+    {
+      "value": "mysticalagriculture:imperium_sword",
+      "weight": 420.0,
+      "quality": 2.8755667209625244
+    },
+    {
+      "value": "mysticalagriculture:inferium_axe",
+      "weight": 747.0,
+      "quality": 2.3734233379364014
+    },
+    {
+      "value": "mysticalagriculture:inferium_crossbow",
+      "weight": 323.0,
+      "quality": 3.139753818511963
+    },
+    {
+      "value": "mysticalagriculture:inferium_fishing_rod",
+      "weight": 594.0,
+      "quality": 2.5619115829467773
+    },
+    {
+      "value": "mysticalagriculture:inferium_scythe",
+      "weight": 779.0,
+      "quality": 2.340726375579834
+    },
+    {
+      "value": "mysticalagriculture:inferium_sword",
+      "weight": 793.0,
+      "quality": 2.326829195022583
+    },
+    {
+      "value": "mysticalagriculture:passive_soulium_dagger",
+      "weight": 1147.0,
+      "quality": 2.0581107139587402
+    },
+    {
+      "value": "mysticalagriculture:prudentium_axe",
+      "weight": 618.0,
+      "quality": 2.528369188308716
+    },
+    {
+      "value": "mysticalagriculture:prudentium_crossbow",
+      "weight": 317.0,
+      "quality": 3.159329414367676
+    },
+    {
+      "value": "mysticalagriculture:prudentium_fishing_rod",
+      "weight": 585.0,
+      "quality": 2.574660301208496
+    },
+    {
+      "value": "mysticalagriculture:prudentium_scythe",
+      "weight": 645.0,
+      "quality": 2.4931488037109375
+    },
+    {
+      "value": "mysticalagriculture:prudentium_sword",
+      "weight": 657.0,
+      "quality": 2.477627754211426
+    },
+    {
+      "value": "mysticalagriculture:soulium_dagger",
+      "weight": 1244.0,
+      "quality": 2.0030417442321777
+    },
+    {
+      "value": "mysticalagriculture:supremium_axe",
+      "weight": 251.0,
+      "quality": 3.413642406463623
+    },
+    {
+      "value": "mysticalagriculture:supremium_crossbow",
+      "weight": 364.0,
+      "quality": 3.0170745849609375
+    },
+    {
+      "value": "mysticalagriculture:supremium_fishing_rod",
+      "weight": 675.0,
+      "quality": 2.4549546241760254
+    },
+    {
+      "value": "mysticalagriculture:supremium_scythe",
+      "weight": 261.0,
+      "quality": 3.3697776794433594
+    },
+    {
+      "value": "mysticalagriculture:supremium_sword",
+      "weight": 266.0,
+      "quality": 3.3487608432769775
+    },
+    {
+      "value": "mysticalagriculture:tertium_axe",
+      "weight": 501.0,
+      "quality": 2.7122647762298584
+    },
+    {
+      "value": "mysticalagriculture:tertium_crossbow",
+      "weight": 310.0,
+      "quality": 3.182734727859497
+    },
+    {
+      "value": "mysticalagriculture:tertium_fishing_rod",
+      "weight": 577.0,
+      "quality": 2.587354898452759
+    },
+    {
+      "value": "mysticalagriculture:tertium_scythe",
+      "weight": 523.0,
+      "quality": 2.6732940673828125
+    },
+    {
+      "value": "mysticalagriculture:tertium_sword",
+      "weight": 534.0,
+      "quality": 2.6555237770080566
+    }
+  ],
+  "OFFHAND": [
+    {
+      "value": "minecraft:bow",
+      "weight": 720.0,
+      "quality": 2.402869701385498
+    },
+    {
+      "value": "minecraft:ender_pearl",
+      "weight": 274.0,
+      "quality": 3.316575527191162
+    },
+    {
+      "value": "minecraft:flint_and_steel",
+      "weight": 532.0,
+      "quality": 2.657431125640869
+    },
+    {
+      "value": {
+        "id": "minecraft:lingering_potion",
+        "components": {
+          "minecraft:potion_contents": {
+            "potion": "minecraft:harming"
+          }
+        }
+      },
+      "weight": 304.0,
+      "quality": 3.200761079788208
+    },
+    {
+      "value": "minecraft:shield",
+      "weight": 650.0,
+      "quality": 2.4859108924865723
+    },
+    {
+      "value": "minecraft:snowball",
+      "weight": 738.0,
+      "quality": 2.3836498260498047
+    },
+    {
+      "value": {
+        "id": "minecraft:splash_potion",
+        "components": {
+          "minecraft:potion_contents": {
+            "potion": "minecraft:harming"
+          }
+        }
+      },
+      "weight": 304.0,
+      "quality": 3.200761079788208
+    },
+    {
+      "value": "minecraft:tnt",
+      "weight": 142.0,
+      "quality": 4.126515865325928
+    },
+    {
+      "value": "minecraft:wind_charge",
+      "weight": 232.0,
+      "quality": 3.5036070346832275
+    },
+    {
+      "value": "minecolonies:pharaoscepter",
+      "weight": 720.0,
+      "quality": 2.402869701385498
+    },
+    {
+      "value": "mysticalagriculture:awakened_supremium_bow",
+      "weight": 1193.0,
+      "quality": 2.0307912826538086
+    },
+    {
+      "value": "mysticalagriculture:imperium_bow",
+      "weight": 333.0,
+      "quality": 3.1072325706481934
+    },
+    {
+      "value": "mysticalagriculture:inferium_bow",
+      "weight": 478.0,
+      "quality": 2.75441312789917
+    },
+    {
+      "value": "mysticalagriculture:prudentium_bow",
+      "weight": 431.0,
+      "quality": 2.8512980937957764
+    },
+    {
+      "value": "mysticalagriculture:supremium_bow",
+      "weight": 1193.0,
+      "quality": 2.0307912826538086
+    },
+    {
+      "value": "mysticalagriculture:tertium_bow",
+      "weight": 383.0,
+      "quality": 2.9645802974700928
+    },
+    {
+      "value": "supplementaries:bomb",
+      "weight": 105.0,
+      "quality": 4.559698581695557
+    },
+    {
+      "value": "supplementaries:bomb_blue",
+      "weight": 85.0,
+      "quality": 4.8920207023620605
+    }
+  ],
+  "FEET": [
+    {
+      "value": "minecraft:chainmail_boots",
+      "weight": 1524.0,
+      "quality": 1.8718407154083252
+    },
+    {
+      "value": "minecraft:diamond_boots",
+      "weight": 434.0,
+      "quality": 2.843489646911621
+    },
+    {
+      "value": "minecraft:golden_boots",
+      "weight": 1468.0,
+      "quality": 1.8955179452896118
+    },
+    {
+      "value": "minecraft:iron_boots",
+      "weight": 1329.0,
+      "quality": 1.9594168663024902
+    },
+    {
+      "value": "minecraft:leather_boots",
+      "weight": 2108.0,
+      "quality": 1.6802500486373901
+    },
+    {
+      "value": "minecraft:netherite_boots",
+      "weight": 230.0,
+      "quality": 3.511570453643799
+    },
+    {
+      "value": "create:cardboard_boots",
+      "weight": 3252.0,
+      "quality": 1.4541054964065552
+    },
+    {
+      "value": "create:copper_diving_boots",
+      "weight": 2189.0,
+      "quality": 1.659153938293457
+    },
+    {
+      "value": "create:netherite_diving_boots",
+      "weight": 230.0,
+      "quality": 3.511570453643799
+    },
+    {
+      "value": "create_things_and_misc:sticky_boots_boots",
+      "weight": 534.0,
+      "quality": 2.654677152633667
+    },
+    {
+      "value": "minecolonies:pirate_boots",
+      "weight": 974.0,
+      "quality": 2.1733338832855225
+    },
+    {
+      "value": "minecolonies:pirate_shoes",
+      "weight": 442.0,
+      "quality": 2.8282198905944824
+    },
+    {
+      "value": "minecolonies:plate_armor_boots",
+      "weight": 492.0,
+      "quality": 2.7285091876983643
+    },
+    {
+      "value": "mysticalagriculture:awakened_supremium_boots",
+      "weight": 80.0,
+      "quality": 4.986630916595459
+    },
+    {
+      "value": "mysticalagriculture:imperium_boots",
+      "weight": 170.0,
+      "quality": 3.8848419189453125
+    },
+    {
+      "value": "mysticalagriculture:inferium_boots",
+      "weight": 288.0,
+      "quality": 3.2594196796417236
+    },
+    {
+      "value": "mysticalagriculture:prudentium_boots",
+      "weight": 260.0,
+      "quality": 3.371518611907959
+    },
+    {
+      "value": "mysticalagriculture:supremium_boots",
+      "weight": 122.0,
+      "quality": 4.34128475189209
+    },
+    {
+      "value": "mysticalagriculture:tertium_boots",
+      "weight": 189.0,
+      "quality": 3.7486767768859863
+    }
+  ],
+  "LEGS": [
+    {
+      "value": "minecraft:chainmail_leggings",
+      "weight": 701.0,
+      "quality": 2.4248876571655273
+    },
+    {
+      "value": "minecraft:diamond_leggings",
+      "weight": 258.0,
+      "quality": 3.3831517696380615
+    },
+    {
+      "value": "minecraft:golden_leggings",
+      "weight": 977.0,
+      "quality": 2.171024799346924
+    },
+    {
+      "value": "minecraft:iron_leggings",
+      "weight": 505.0,
+      "quality": 2.705221652984619
+    },
+    {
+      "value": "minecraft:leather_leggings",
+      "weight": 1785.0,
+      "quality": 1.775734543800354
+    },
+    {
+      "value": "minecraft:netherite_leggings",
+      "weight": 169.0,
+      "quality": 3.8937301635742188
+    },
+    {
+      "value": "create:cardboard_leggings",
+      "weight": 3252.0,
+      "quality": 1.4541054964065552
+    },
+    {
+      "value": "minecolonies:pirate_leggins",
+      "weight": 412.0,
+      "quality": 2.8945648670196533
+    },
+    {
+      "value": "minecolonies:pirate_legs",
+      "weight": 248.0,
+      "quality": 3.4266552925109863
+    },
+    {
+      "value": "minecolonies:plate_armor_legs",
+      "weight": 265.0,
+      "quality": 3.3526763916015625
+    },
+    {
+      "value": "mysticalagriculture:awakened_supremium_leggings",
+      "weight": 80.0,
+      "quality": 4.986630916595459
+    },
+    {
+      "value": "mysticalagriculture:imperium_leggings",
+      "weight": 124.0,
+      "quality": 4.310079097747803
+    },
+    {
+      "value": "mysticalagriculture:inferium_leggings",
+      "weight": 225.0,
+      "quality": 3.5370235443115234
+    },
+    {
+      "value": "mysticalagriculture:prudentium_leggings",
+      "weight": 171.0,
+      "quality": 3.879840850830078
+    },
+    {
+      "value": "mysticalagriculture:supremium_leggings",
+      "weight": 112.0,
+      "quality": 4.466644763946533
+    },
+    {
+      "value": "mysticalagriculture:tertium_leggings",
+      "weight": 134.0,
+      "quality": 4.200528144836426
+    }
+  ],
+  "CHEST": [
+    {
+      "value": "minecraft:chainmail_chestplate",
+      "weight": 526.0,
+      "quality": 2.6681764125823975
+    },
+    {
+      "value": "minecraft:diamond_chestplate",
+      "weight": 205.0,
+      "quality": 3.648608684539795
+    },
+    {
+      "value": "minecraft:elytra",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "minecraft:golden_chestplate",
+      "weight": 525.0,
+      "quality": 2.670105457305908
+    },
+    {
+      "value": "minecraft:iron_chestplate",
+      "weight": 418.0,
+      "quality": 2.879988431930542
+    },
+    {
+      "value": "minecraft:leather_chestplate",
+      "weight": 1060.0,
+      "quality": 2.112828254699707
+    },
+    {
+      "value": "minecraft:netherite_chestplate",
+      "weight": 145.0,
+      "quality": 4.097623825073242
+    },
+    {
+      "value": "create:cardboard_chestplate",
+      "weight": 2378.0,
+      "quality": 1.6139291524887085
+    },
+    {
+      "value": "create:copper_backtank",
+      "weight": 271.0,
+      "quality": 3.3253607749938965
+    },
+    {
+      "value": "create:netherite_backtank",
+      "weight": 117.0,
+      "quality": 4.394130706787109
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_black",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_blue",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_brown",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_cyan",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_gray",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_green",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_light_blue",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_light_gray",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_lime",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_magenta",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_orange",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_pink",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_purple",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_red",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "createornithopterglider:ornithopterglider_yellow",
+      "weight": 1377.0,
+      "quality": 1.9364917278289795
+    },
+    {
+      "value": "minecolonies:pirate_chest",
+      "weight": 193.0,
+      "quality": 3.7225332260131836
+    },
+    {
+      "value": "minecolonies:pirate_top",
+      "weight": 344.0,
+      "quality": 3.0725443363189697
+    },
+    {
+      "value": "minecolonies:plate_armor_chest",
+      "weight": 206.0,
+      "quality": 3.642198085784912
+    },
+    {
+      "value": "mysticalagriculture:awakened_supremium_chestplate",
+      "weight": 80.0,
+      "quality": 4.990251064300537
+    },
+    {
+      "value": "mysticalagriculture:imperium_chestplate",
+      "weight": 129.0,
+      "quality": 4.256934642791748
+    },
+    {
+      "value": "mysticalagriculture:inferium_chestplate",
+      "weight": 181.0,
+      "quality": 3.8065743446350098
+    },
+    {
+      "value": "mysticalagriculture:prudentium_chestplate",
+      "weight": 170.0,
+      "quality": 3.888995885848999
+    },
+    {
+      "value": "mysticalagriculture:supremium_chestplate",
+      "weight": 103.0,
+      "quality": 4.583811283111572
+    },
+    {
+      "value": "mysticalagriculture:tertium_chestplate",
+      "weight": 140.0,
+      "quality": 4.145218372344971
+    },
+    {
+      "value": "quark:backpack",
+      "weight": 0.0,
+      "quality": 0.0
+    }
+  ],
+  "HEAD": [
+    {
+      "value": "minecraft:chainmail_helmet",
+      "weight": 758.0,
+      "quality": 2.3619778156280518
+    },
+    {
+      "value": "minecraft:diamond_helmet",
+      "weight": 295.0,
+      "quality": 3.235085964202881
+    },
+    {
+      "value": "minecraft:golden_helmet",
+      "weight": 861.0,
+      "quality": 2.2642273902893066
+    },
+    {
+      "value": "minecraft:iron_helmet",
+      "weight": 760.0,
+      "quality": 2.3602020740509033
+    },
+    {
+      "value": "minecraft:leather_helmet",
+      "weight": 1935.0,
+      "quality": 1.7288334369659424
+    },
+    {
+      "value": "minecraft:netherite_helmet",
+      "weight": 217.0,
+      "quality": 3.5841634273529053
+    },
+    {
+      "value": "minecraft:shulker_shell",
+      "weight": 518.0,
+      "quality": 2.681710720062256
+    },
+    {
+      "value": "minecraft:turtle_helmet",
+      "weight": 679.0,
+      "quality": 2.450045108795166
+    },
+    {
+      "value": "aeronautics:aviators_goggles",
+      "weight": 4340.0,
+      "quality": 1.3207496404647827
+    },
+    {
+      "value": "create:cardboard_helmet",
+      "weight": 1902.0,
+      "quality": 1.73883855342865
+    },
+    {
+      "value": "create:copper_diving_helmet",
+      "weight": 787.0,
+      "quality": 2.3330979347229004
+    },
+    {
+      "value": "create:goggles",
+      "weight": 0.0,
+      "quality": 0.0
+    },
+    {
+      "value": "create:netherite_diving_helmet",
+      "weight": 217.0,
+      "quality": 3.5841634273529053
+    },
+    {
+      "value": "minecolonies:build_goggles",
+      "weight": 50000.0,
+      "quality": 0.5848035216331482
+    },
+    {
+      "value": "minecolonies:pirate_cap",
+      "weight": 283.0,
+      "quality": 3.2800333499908447
+    },
+    {
+      "value": "minecolonies:pirate_hat",
+      "weight": 578.0,
+      "quality": 2.58542537689209
+    },
+    {
+      "value": "minecolonies:plate_armor_helmet",
+      "weight": 353.0,
+      "quality": 3.0484189987182617
+    },
+    {
+      "value": "minecolonies:santa_hat",
+      "weight": 2000.0,
+      "quality": 1.7099759578704834
+    },
+    {
+      "value": "mysticalagriculture:awakened_supremium_helmet",
+      "weight": 82.0,
+      "quality": 4.949382781982422
+    },
+    {
+      "value": "mysticalagriculture:imperium_helmet",
+      "weight": 117.0,
+      "quality": 4.39379358291626
+    },
+    {
+      "value": "mysticalagriculture:inferium_helmet",
+      "weight": 259.0,
+      "quality": 3.3776297569274902
+    },
+    {
+      "value": "mysticalagriculture:prudentium_helmet",
+      "weight": 175.0,
+      "quality": 3.8460512161254883
+    },
+    {
+      "value": "mysticalagriculture:supremium_helmet",
+      "weight": 106.0,
+      "quality": 4.5397138595581055
+    },
+    {
+      "value": "mysticalagriculture:tertium_helmet",
+      "weight": 166.0,
+      "quality": 3.9134302139282227
+    },
+    {
+      "value": "quark:forgotten_hat",
+      "weight": 3576.0,
+      "quality": 1.408795714378357
+    }
+  ]
+}
