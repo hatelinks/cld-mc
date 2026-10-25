@@ -1,0 +1,313 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "ma_add"
+	group: "16043205C9B2450B"
+	icon: {
+		id: "mysticalagradditions:insanium_essence"
+	}
+	id: "4947B08EAC1551A7"
+	images: [ ]
+	order_index: 3
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["4731EE3EB60FF835"]
+			icon: {
+				id: "mysticalagradditions:insanium_essence"
+			}
+			id: "7335E2E5259C34B7"
+			rewards: [{
+				id: "102DBC2540AA42D6"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [{
+				id: "2B4E5A21D06950CF"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 6.0d
+		}
+		{
+			dependencies: ["7335E2E5259C34B7"]
+			id: "46932532931DF387"
+			rewards: [{
+				id: "45DCD516CA800994"
+				type: "xp"
+				xp: 15
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				consume_items: false
+				id: "4EF65B05868D20BF"
+				item: { count: 1, id: "mysticalagradditions:insanium_essence" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7335E2E5259C34B7"]
+			id: "381B03EF8DD89E00"
+			rewards: [{
+				id: "6348563DBCBC71C4"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "46029978E90AA192"
+					item: { count: 1, id: "mysticalagradditions:insanium_ingot" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "5BCFBE23C71C56CF"
+					item: { count: 1, id: "mysticalagradditions:insanium_gemstone" }
+					type: "item"
+				}
+			]
+			x: 2.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["46932532931DF387"]
+			id: "0269961400230F67"
+			rewards: [
+				{
+					id: "3B59677A0F9CB983"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 4
+					id: "1C5852642C16D491"
+					item: {
+						count: 1
+						id: "mysticalagriculture:supremium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "6F99D9D41F450B2A"
+				item: { count: 1, id: "mysticalagradditions:insanium_farmland" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["46932532931DF387"]
+			id: "131DDFFB6670CAD8"
+			optional: true
+			rewards: [{
+				id: "7F396E5E0A9D0CBF"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "23BA8D2F3AB7021C"
+				item: { count: 1, id: "mysticalagradditions:insanium_block" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"7335E2E5259C34B7"
+				"3465585651452E50"
+			]
+			id: "5CE6ED70838CC304"
+			rewards: [{
+				id: "6F5B40E2B16761D6"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "26781E879AC690A0"
+				item: { count: 1, id: "mysticalagradditions:inferium_paxel" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 6.75d
+		}
+		{
+			dependencies: [
+				"7335E2E5259C34B7"
+				"549472105094A59C"
+			]
+			id: "0BE8B96CFF3EE9A5"
+			rewards: [{
+				id: "1BBFEF0EAE057E96"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "09708E75578C1BEF"
+				item: { count: 1, id: "mysticalagradditions:inferium_apple" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 8.25d
+		}
+		{
+			dependencies: ["0BE8B96CFF3EE9A5"]
+			id: "2C7DCB19BF1BA9D9"
+			rewards: [{
+				id: "6C3E024D17E5ED58"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "713CF0037B835EC6"
+				item: { count: 1, id: "mysticalagradditions:inferium_coal" }
+				type: "item"
+			}]
+			x: 6.0d
+			y: 7.5d
+		}
+		{
+			dependencies: ["0BE8B96CFF3EE9A5"]
+			id: "466B3FBD57B5EA3C"
+			rewards: [
+				{
+					id: "4A30A4709218BF22"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 8
+					id: "47C71E54CF8C002F"
+					item: {
+						count: 1
+						id: "mysticalagriculture:imperium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "7F99762CA3EFAA6C"
+				item: { count: 1, id: "mysticalagradditions:nether_star_shard" }
+				type: "item"
+			}]
+			x: 6.0d
+			y: 9.0d
+		}
+		{
+			dependencies: ["46932532931DF387"]
+			id: "2529E3E098776636"
+			rewards: [{
+				id: "38A35AB603474F2D"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "103B8E8894BEE99F"
+				item: { count: 1, id: "mysticalagradditions:nether_star_crux" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["0BE8B96CFF3EE9A5"]
+			id: "36884C1289C4656C"
+			rewards: [{
+				id: "6B5F46A60EBC7E79"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "63103894F8652B65"
+				item: { count: 1, id: "mysticalagradditions:dragon_egg_chunk" }
+				type: "item"
+			}]
+			x: 6.0d
+			y: 10.5d
+		}
+		{
+			dependencies: ["46932532931DF387"]
+			id: "2992180FB7597120"
+			rewards: [{
+				id: "52EF6C9201599B0E"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "77599F647469759D"
+				item: { count: 1, id: "mysticalagradditions:dragon_egg_crux" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["46932532931DF387"]
+			id: "4234B222DB7CB820"
+			optional: true
+			rewards: [{
+				id: "43C40A28D92BE445"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "193CC76F9861A09B"
+				item: { count: 1, id: "mysticalagradditions:awakened_draconium_crux" }
+				type: "item"
+			}]
+			x: 6.0d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"0269961400230F67"
+				"2C7DCB19BF1BA9D9"
+				"466B3FBD57B5EA3C"
+				"2529E3E098776636"
+			]
+			id: "4E19ABD1F6CA07F9"
+			rewards: [
+				{
+					id: "3E1F818E03295E75"
+					type: "xp"
+					xp: 200
+				}
+				{
+					count: 4
+					id: "7585F9220D5ED6B6"
+					item: {
+						count: 1
+						id: "mysticalagradditions:insanium_essence"
+					}
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				id: "7F2E68581D62E9BD"
+				type: "checkmark"
+			}]
+			x: 8.0d
+			y: 5.25d
+		}
+	]
+}

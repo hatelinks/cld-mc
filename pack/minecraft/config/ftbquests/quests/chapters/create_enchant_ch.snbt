@@ -1,0 +1,470 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create_enchant_ch"
+	group: "246BC345C62FA335"
+	icon: {
+		id: "create_enchantment_industry:blaze_enchanter"
+	}
+	id: "3AFC3EA429A2F9DC"
+	images: [ ]
+	order_index: 8
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["33627C656E58AF04"]
+			id: "762DEABF97F9A868"
+			rewards: [{
+				id: "795B84B7CECC4A00"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [{
+				consume_items: false
+				count: 4L
+				id: "56A04DE25D18338C"
+				item: { count: 1, id: "create:experience_nugget" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 3.75d
+		}
+		{
+			dependencies: [
+				"762DEABF97F9A868"
+				"727F09E229C92364"
+			]
+			id: "3FAE0DCF7A818B23"
+			rewards: [{
+				id: "4786097A15524A54"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "2433A20509970B85"
+				item: { count: 1, id: "create_enchantment_industry:experience_hatch" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 3.75d
+		}
+		{
+			dependencies: ["3FAE0DCF7A818B23"]
+			id: "51FD7382DFC8C714"
+			rewards: [{
+				id: "71BE649AD089EE25"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "1B5F05D763C45B1E"
+				item: { count: 1, id: "create_enchantment_industry:experience_bucket" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["51FD7382DFC8C714"]
+			id: "67FC4C7AA32F7498"
+			optional: true
+			rewards: [
+				{
+					id: "3E2D185B2B0BB6B1"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 4
+					id: "6B125E7DD8972752"
+					item: {
+						count: 1
+						id: "minecraft:experience_bottle"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "15FB2F6035FF283D"
+				item: { count: 1, id: "create_enchantment_industry:experience_lantern" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"51FD7382DFC8C714"
+				"0528BC2DA69E662B"
+			]
+			id: "36A573B8F77EE4EC"
+			rewards: [
+				{
+					id: "418E26A7E3B779C8"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 4
+					id: "3C8CD1E3FEB27872"
+					item: {
+						count: 1
+						id: "minecraft:experience_bottle"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				count: 2L
+				id: "4B0623B6DBD1B17F"
+				item: { count: 1, id: "create:fluid_tank" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 3.75d
+		}
+		{
+			dependencies: [
+				"3FAE0DCF7A818B23"
+				"293E9B8D6EA8FD5D"
+			]
+			id: "5385D69A459A71D2"
+			rewards: [{
+				id: "341726E4AF557B70"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "59808119F9B73903"
+				item: { count: 1, id: "create_enchantment_industry:blaze_enchanter" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["5385D69A459A71D2"]
+			id: "1DC5F329A32BBC2E"
+			rewards: [{
+				id: "4C2D733E1460FE19"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "14C9FE11E5D793A8"
+				item: { count: 1, id: "create_enchantment_industry:enchanting_template" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["1DC5F329A32BBC2E"]
+			id: "4724970DBD480F90"
+			optional: true
+			rewards: [
+				{
+					id: "5056A260FA1EE6E5"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "0CCD1A595777849D"
+					item: {
+						count: 1
+						id: "minecraft:lapis_lazuli"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "08922F1566D4529A"
+				item: { count: 1, id: "create_enchantment_industry:super_enchanting_template" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 3.75d
+		}
+		{
+			dependencies: ["5385D69A459A71D2"]
+			id: "217DBA50171A1F94"
+			rewards: [{
+				id: "06E9266296B2F750"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "6770C53CD4340A78"
+				item: { count: 1, id: "minecraft:enchanted_book" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 6.75d
+		}
+		{
+			dependencies: [
+				"217DBA50171A1F94"
+				"63B86FA0C25B7639"
+			]
+			id: "7C30EDF6F7920BEB"
+			rewards: [
+				{
+					id: "5DA9B2E67C69AE08"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "789F32AAEF09C73D"
+					item: {
+						count: 1
+						id: "minecraft:lapis_lazuli"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "5741133C2BAC723C"
+				item: { count: 1, id: "create_enchantment_industry:printer" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["25385F994C28D4F2"]
+			id: "37F76A026EFC87C5"
+			rewards: [{
+				id: "03AD569AE2EDD901"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [{
+				consume_items: false
+				id: "198DD10234765663"
+				item: { count: 1, id: "create_enchantment_industry:mechanical_grindstone" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 8.25d
+		}
+		{
+			dependencies: [
+				"37F76A026EFC87C5"
+				"727F09E229C92364"
+			]
+			id: "37DDBB8085ED6E23"
+			rewards: [
+				{
+					id: "42AFB1B5E5EE40DE"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 4
+					id: "2DA48BF8614663F0"
+					item: {
+						count: 1
+						id: "minecraft:experience_bottle"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "1DAC582D68672584"
+				item: { count: 1, id: "create_enchantment_industry:grindstone_drain" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 7.5d
+		}
+		{
+			dependencies: [
+				"37DDBB8085ED6E23"
+				"36A573B8F77EE4EC"
+			]
+			id: "3285919AE27446A5"
+			rewards: [{
+				id: "26900DD129EA68D3"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				id: "02F3355EDFD808C7"
+				type: "checkmark"
+			}]
+			x: 8.5d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"5385D69A459A71D2"
+				"37F76A026EFC87C5"
+			]
+			id: "0981AFBDDDC9FD9F"
+			rewards: [{
+				id: "569C8861A569E146"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "4A1FBE4F7004BF7E"
+				item: { count: 1, id: "create_enchantment_industry:blaze_forger" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 8.25d
+		}
+		{
+			dependencies: ["0981AFBDDDC9FD9F"]
+			id: "6DE7A698AFDFA027"
+			optional: true
+			rewards: [{
+				id: "2ACE3154E77057BD"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "715A26268097DDAB"
+				item: { count: 1, id: "create_enchantment_industry:super_experience_nugget" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 9.0d
+		}
+		{
+			dependencies: ["6DE7A698AFDFA027"]
+			id: "5F6550040551E436"
+			optional: true
+			rewards: [
+				{
+					id: "061EECB93B93BD66"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 8
+					id: "0C485B256D46E440"
+					item: {
+						count: 1
+						id: "minecraft:lapis_lazuli"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "09D1748748AEF76E"
+				item: { count: 1, id: "create_enchantment_industry:super_experience_block" }
+				type: "item"
+			}]
+			x: 10.5d
+			y: 9.0d
+		}
+		{
+			dependencies: ["51FD7382DFC8C714"]
+			id: "4E97EDAD415E4502"
+			optional: true
+			rewards: [{
+				id: "003689CE2E747DA2"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "6043A9AF8A9F657F"
+				item: { count: 1, id: "create_enchantment_industry:experience_cake_base" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["4E97EDAD415E4502"]
+			id: "16D00BD4269925C8"
+			optional: true
+			rewards: [{
+				id: "06B0F48EC6CD1935"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "4C9577CFB4C4087B"
+				item: { count: 1, id: "create_enchantment_industry:experience_cake" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["16D00BD4269925C8"]
+			id: "609B05E814168419"
+			optional: true
+			rewards: [{
+				id: "58679784C348790E"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "1ADCD24F90D7E4F4"
+				item: { count: 1, id: "create_enchantment_industry:experience_cake_slice" }
+				type: "item"
+			}]
+			x: 10.5d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"7C30EDF6F7920BEB"
+				"3285919AE27446A5"
+				"1DC5F329A32BBC2E"
+				"0981AFBDDDC9FD9F"
+			]
+			id: "5B9E87BA9DDEE425"
+			rewards: [
+				{
+					id: "0A3BA0F619E19CB7"
+					type: "xp"
+					xp: 200
+				}
+				{
+					count: 16
+					id: "29D00397B6C31BE1"
+					item: {
+						count: 1
+						id: "minecraft:experience_bottle"
+					}
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				id: "7D4094C659ADBD68"
+				type: "checkmark"
+			}]
+			x: 10.5d
+			y: 6.75d
+		}
+	]
+}

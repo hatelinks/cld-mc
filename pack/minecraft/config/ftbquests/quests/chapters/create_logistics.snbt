@@ -1,0 +1,565 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "create_logistics"
+	group: "246BC345C62FA335"
+	icon: {
+		id: "create:item_vault"
+	}
+	id: "069C03F24B413B75"
+	images: [ ]
+	order_index: 3
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["4D1D7873774CA66B"]
+			id: "6B83F5A0F12F3DE5"
+			rewards: [{
+				id: "36DDA5D818F49F14"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [{
+				consume_items: false
+				count: 2L
+				id: "5DD79CE5E9E1CDD5"
+				item: { count: 1, id: "create:item_vault" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 5.25d
+		}
+		{
+			dependencies: ["6B83F5A0F12F3DE5"]
+			id: "4BEAF37297D8D98E"
+			rewards: [{
+				id: "69B464BD6C2C1543"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 4L
+				id: "7DD2D0BED4B2C007"
+				item: { count: 1, id: "create:cardboard_block" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 2.25d
+		}
+		{
+			dependencies: [
+				"4BEAF37297D8D98E"
+				"63B86FA0C25B7639"
+			]
+			id: "346EA39F6C9646CB"
+			rewards: [{
+				id: "79FAD7D862EE500C"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "6F1F9FDCEA034EF4"
+				item: { count: 1, id: "create:packager" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["346EA39F6C9646CB"]
+			id: "177849228149511F"
+			optional: true
+			rewards: [
+				{
+					id: "21C360A7C6970329"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 4
+					id: "17655B7E53DA2943"
+					item: {
+						count: 1
+						id: "create:andesite_casing"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "014098416F19D810"
+				item: { count: 1, id: "create:repackager" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["346EA39F6C9646CB"]
+			id: "2C1629D50FDDDA95"
+			rewards: [
+				{
+					id: "0E3271C01DF4C981"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 4
+					id: "01ACCF1C7466FA51"
+					item: {
+						count: 1
+						id: "create:andesite_casing"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "090BB0608A4DF977"
+				item: { count: 1, id: "create:package_frogport" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["2C1629D50FDDDA95"]
+			id: "39CE838A8A83FED3"
+			rewards: [{
+				id: "6E0ED1BC3013699C"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				count: 4L
+				id: "54159DB3DD705E8B"
+				item: { count: 1, id: "create:chain_conveyor" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["346EA39F6C9646CB"]
+			id: "7A020C90507A1978"
+			rewards: [{
+				id: "68C97CEECB1E3B58"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "36F467CD35EA0479"
+				item: { count: 1, id: "create:stock_link" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["7A020C90507A1978"]
+			id: "3C6C2F6FD8BA6A55"
+			rewards: [
+				{
+					id: "2722EF69022B40C6"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 4
+					id: "370F0D6456A55302"
+					item: {
+						count: 1
+						id: "create:chute"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "29EE5C0454A73A4A"
+				item: { count: 1, id: "create:stock_ticker" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["7A020C90507A1978"]
+			id: "6A427A1873C0D2E5"
+			rewards: [{
+				id: "03E8FE38BD0FA24E"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "06C57FC3859CAD6A"
+				item: { count: 1, id: "create:factory_gauge" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 3.75d
+		}
+		{
+			dependencies: ["6B83F5A0F12F3DE5"]
+			id: "7064E96303CB81E0"
+			optional: true
+			rewards: [{
+				id: "266BF52A8B20AE14"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "4934B0DF391ECD4A"
+				item: { count: 1, id: "create:item_hatch" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["6B83F5A0F12F3DE5"]
+			id: "35454BF63C42D02C"
+			optional: true
+			rewards: [{
+				id: "4987A42F934D5C07"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "09BAA2E2B8276C85"
+				item: { count: 1, id: "create:portable_storage_interface" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["4D1D7873774CA66B"]
+			id: "51158C06DA946047"
+			optional: true
+			rewards: [
+				{
+					id: "7EA9ABA628095854"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 4
+					id: "1A3D6E68D412DF94"
+					item: {
+						count: 1
+						id: "create:andesite_casing"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "0DED574013742F84"
+				item: { count: 1, id: "create:weighted_ejector" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 16.5d
+		}
+		{
+			dependencies: ["3F57DDE28908D3B5"]
+			id: "31EAB41880CCFD5B"
+			optional: true
+			rewards: [{
+				id: "214178560C15ECA3"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "2329004658F97656"
+				item: { count: 1, id: "create:clipboard" }
+				type: "item"
+			}]
+			x: 0.0d
+			y: 18.0d
+		}
+		{
+			dependencies: [
+				"6B83F5A0F12F3DE5"
+				"27D0961A37A6E0CB"
+			]
+			id: "6775688D36EF60D6"
+			rewards: [
+				{
+					id: "18EF39B3554B6DC3"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 8
+					id: "133641B0A7070DD3"
+					item: {
+						count: 1
+						id: "create:cardboard"
+					}
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				consume_items: false
+				id: "493AADFD83DD7E31"
+				item: { count: 1, id: "create:transmitter" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 8.25d
+		}
+		{
+			dependencies: [
+				"6775688D36EF60D6"
+				"5D9995C51EB0A0E8"
+			]
+			id: "65D706D7A81BAC6C"
+			rewards: [{
+				id: "4DB7EBF61801B008"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "5189C3EE23B92638"
+				item: { count: 1, id: "create:package_filter" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["7A020C90507A1978"]
+			id: "076D712EDDF06744"
+			rewards: [{
+				id: "51802A5D3640C5C1"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "384E99B473CEEC90"
+				item: { count: 1, id: "create:redstone_requester" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["6775688D36EF60D6"]
+			id: "2A9A69C2CA6A3337"
+			rewards: [{
+				id: "7EACCC44E39121C3"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "489E2CA5EEB34060"
+				item: { count: 1, id: "create:cardboard" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 6.75d
+		}
+		{
+			dependencies: ["6775688D36EF60D6"]
+			id: "0FE89480839DD1E1"
+			rewards: [
+				{
+					id: "2385D813E15BFBEB"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 4
+					id: "05C37A2311DFCB11"
+					item: {
+						count: 1
+						id: "create:andesite_casing"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "6DD7B23EAAEEE8C8"
+				item: { count: 1, id: "create:pulp" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 8.25d
+		}
+		{
+			dependencies: ["4BEAF37297D8D98E"]
+			id: "2DF021A7875A0324"
+			optional: true
+			rewards: [{
+				id: "3E54C35D0FD4B0A2"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "42B65FF30D7D9BC6"
+				item: { count: 1, id: "create:bound_cardboard_block" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["2A9A69C2CA6A3337"]
+			id: "5E46BF872F155BD4"
+			optional: true
+			rewards: [{
+				id: "1D65F4440ECAB160"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "282969198F0A5D11"
+					item: { count: 1, id: "create:cardboard_helmet" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "149F3C1F90226947"
+					item: { count: 1, id: "create:cardboard_chestplate" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "76B46C4CCF7F5D16"
+					item: { count: 1, id: "create:cardboard_leggings" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "3045D0DC47DD8936"
+					item: { count: 1, id: "create:cardboard_boots" }
+					type: "item"
+				}
+			]
+			x: 6.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["2A9A69C2CA6A3337"]
+			id: "1BDE60EDA8F63C99"
+			optional: true
+			rewards: [{
+				id: "181C492201A2B0BC"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "6994936D05D16F25"
+				item: { count: 1, id: "create:cardboard_sword" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 7.5d
+		}
+		{
+			dependencies: [
+				"6775688D36EF60D6"
+				"7BF2AA99A5A1C7CD"
+			]
+			id: "65647FC0C8FC68D9"
+			rewards: [{
+				id: "15FC71725CB26CB1"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "4BA1400F4D3982D6"
+				item: { count: 1, id: "create:white_postbox" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 9.75d
+		}
+		{
+			dependencies: [
+				"65647FC0C8FC68D9"
+				"33627C656E58AF04"
+			]
+			id: "29CB1FE79D1F3467"
+			rewards: [{
+				id: "1D4B68EA0A25D423"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "64DAE06D0CE12CA7"
+				item: { count: 1, id: "create:brass_table_cloth" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 9.0d
+		}
+		{
+			dependencies: [
+				"39CE838A8A83FED3"
+				"3C6C2F6FD8BA6A55"
+				"6A427A1873C0D2E5"
+				"076D712EDDF06744"
+			]
+			id: "0B1A02BA0FBD9E15"
+			rewards: [
+				{
+					id: "1F8ADA0085FADB85"
+					type: "xp"
+					xp: 200
+				}
+				{
+					count: 32
+					id: "780F427EACA8510E"
+					item: {
+						count: 1
+						id: "create:cardboard"
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "2B0BEDA91B8D08B7"
+					item: {
+						count: 1
+						id: "create:brass_casing"
+					}
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				id: "16EAB13BB159F32B"
+				type: "checkmark"
+			}]
+			x: 10.5d
+			y: 3.0d
+		}
+	]
+}

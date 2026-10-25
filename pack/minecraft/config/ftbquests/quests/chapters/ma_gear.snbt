@@ -1,0 +1,1758 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "ma_gear"
+	group: "16043205C9B2450B"
+	icon: {
+		id: "mysticalagriculture:supremium_chestplate"
+	}
+	id: "0F0164300AC460D0"
+	images: [ ]
+	order_index: 2
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["549472105094A59C"]
+			id: "02CCBA76EA1DEEED"
+			rewards: [{
+				id: "4587048F68DCFC4B"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [
+				{
+					consume_items: false
+					id: "04A4AB613910FC04"
+					item: { count: 1, id: "mysticalagriculture:inferium_ingot" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "1A89AC526F63C553"
+					item: { count: 1, id: "mysticalagriculture:inferium_gemstone" }
+					type: "item"
+				}
+			]
+			x: 0.0d
+			y: 2.25d
+		}
+		{
+			dependencies: ["02CCBA76EA1DEEED"]
+			id: "1D29A4860F9A950F"
+			rewards: [{
+				id: "59380DFCD4FCB79A"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "7520611732F17391"
+					item: { count: 1, id: "mysticalagriculture:inferium_farmland" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "27037B9368CFD51C"
+					item: { count: 1, id: "mysticalagriculture:inferium_growth_accelerator" }
+					type: "item"
+				}
+			]
+			x: 2.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["1D29A4860F9A950F"]
+			id: "22E756CCBABDEF2C"
+			rewards: [{
+				id: "5331D324705B7C12"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "121E77BAD91E4861"
+				item: { count: 1, id: "mysticalagriculture:inferium_upgrade" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["22E756CCBABDEF2C"]
+			id: "51CC73277F8DF424"
+			rewards: [
+				{
+					id: "3D84592DF2DA015E"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 16
+					id: "04B4610892F97F57"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "1926B29E66E7DECE"
+				item: { count: 1, id: "mysticalagriculture:inferium_watering_can" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["51CC73277F8DF424"]
+			id: "1D88817EB477F912"
+			rewards: [{
+				id: "25B6B7CE7AE06E8A"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "563D8E1ABED6C9F8"
+					item: { count: 1, id: "mysticalagriculture:inferium_sickle" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "6408EDF84DB77FE2"
+					item: { count: 1, id: "mysticalagriculture:inferium_scythe" }
+					type: "item"
+				}
+			]
+			x: 8.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["1D88817EB477F912"]
+			id: "3465585651452E50"
+			rewards: [
+				{
+					id: "3C6B39A374D4AA4E"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 4
+					id: "59F21ABAF0B6D72A"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "15314E94B1526EC6"
+					item: { count: 1, id: "mysticalagriculture:inferium_sword" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "0536F7EA02E4A70D"
+					item: { count: 1, id: "mysticalagriculture:inferium_pickaxe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "6A226F322BAC64B6"
+					item: { count: 1, id: "mysticalagriculture:inferium_axe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "40492F5742346BC7"
+					item: { count: 1, id: "mysticalagriculture:inferium_shovel" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "709AD74CA87D85F5"
+					item: { count: 1, id: "mysticalagriculture:inferium_hoe" }
+					type: "item"
+				}
+			]
+			x: 10.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["3465585651452E50"]
+			id: "7377D4F1AF19B918"
+			rewards: [{
+				id: "5E3E2014FDE92096"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "2790CF25AA397808"
+					item: { count: 1, id: "mysticalagriculture:inferium_bow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "4C70C87A128D8AD7"
+					item: { count: 1, id: "mysticalagriculture:inferium_crossbow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "2606FF946DD71451"
+					item: { count: 1, id: "mysticalagriculture:inferium_fishing_rod" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "7BEF26FAFE74149D"
+					item: { count: 1, id: "mysticalagriculture:inferium_shears" }
+					type: "item"
+				}
+			]
+			x: 12.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["7377D4F1AF19B918"]
+			icon: {
+				id: "mysticalagriculture:inferium_chestplate"
+			}
+			id: "2192574C5C2DB5DF"
+			rewards: [
+				{
+					id: "5B0A7E3BCDBD7FFB"
+					type: "xp"
+					xp: 10
+				}
+				{
+					count: 4
+					id: "61D5F19B3E2EA88E"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "54B887117D0286BC"
+					item: { count: 1, id: "mysticalagriculture:inferium_helmet" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "61D7CF25C84C32D0"
+					item: { count: 1, id: "mysticalagriculture:inferium_chestplate" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "153B786D1384F0F1"
+					item: { count: 1, id: "mysticalagriculture:inferium_leggings" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "7EEF05A42A89F7CF"
+					item: { count: 1, id: "mysticalagriculture:inferium_boots" }
+					type: "item"
+				}
+			]
+			x: 14.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["2192574C5C2DB5DF"]
+			id: "2611704F1AFFB684"
+			optional: true
+			rewards: [{
+				id: "03759BDF950BD82B"
+				type: "xp"
+				xp: 10
+			}]
+			tasks: [{
+				consume_items: false
+				id: "7B257538E55D2AFF"
+				item: { count: 1, id: "mysticalagriculture:inferium_staff" }
+				type: "item"
+			}]
+			x: 16.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"3C1DBE2D71FEE0D6"
+				"02CCBA76EA1DEEED"
+			]
+			id: "3F0AC152842F908F"
+			rewards: [{
+				id: "2E1C629BC0D9DCDB"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "1048180A913A1D20"
+					item: { count: 1, id: "mysticalagriculture:prudentium_ingot" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "3F9E7130D54782AB"
+					item: { count: 1, id: "mysticalagriculture:prudentium_gemstone" }
+					type: "item"
+				}
+			]
+			x: 2.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3F0AC152842F908F"]
+			id: "0D9E18D8C717E35C"
+			rewards: [
+				{
+					id: "1048097C60D39901"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 4
+					id: "653DB3EDD4E71DFB"
+					item: {
+						count: 1
+						id: "mysticalagriculture:prosperity_shard"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "1E6C159328E6B2C9"
+					item: { count: 1, id: "mysticalagriculture:prudentium_farmland" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "4DC0DEBFEEF02A01"
+					item: { count: 1, id: "mysticalagriculture:prudentium_growth_accelerator" }
+					type: "item"
+				}
+			]
+			x: 4.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["0D9E18D8C717E35C"]
+			id: "276D1580116F1B43"
+			rewards: [{
+				id: "07C03E9D723AD5E6"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "75D848326D96D38E"
+				item: { count: 1, id: "mysticalagriculture:prudentium_upgrade" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["276D1580116F1B43"]
+			id: "717946F13AFF9B6E"
+			rewards: [{
+				id: "1009B48577D7AD69"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "23C831D585776F4D"
+				item: { count: 1, id: "mysticalagriculture:prudentium_watering_can" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["717946F13AFF9B6E"]
+			id: "6BF5F0365747388B"
+			rewards: [{
+				id: "0B3AC988933331EB"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "7617D8B4D114E823"
+					item: { count: 1, id: "mysticalagriculture:prudentium_sickle" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "5B8ED15D0B829F0B"
+					item: { count: 1, id: "mysticalagriculture:prudentium_scythe" }
+					type: "item"
+				}
+			]
+			x: 10.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["6BF5F0365747388B"]
+			id: "613648D49E643216"
+			rewards: [
+				{
+					id: "3624D503F2A36EA0"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 4
+					id: "419F84705C6978BF"
+					item: {
+						count: 1
+						id: "mysticalagriculture:prudentium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "65C43BD85B831DB2"
+					item: { count: 1, id: "mysticalagriculture:prudentium_sword" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "55F0CD2CC0FB9EC3"
+					item: { count: 1, id: "mysticalagriculture:prudentium_pickaxe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "0E8A1F308C158093"
+					item: { count: 1, id: "mysticalagriculture:prudentium_axe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "65D134ADB98CA07A"
+					item: { count: 1, id: "mysticalagriculture:prudentium_shovel" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "4CC0A0AC72C5323D"
+					item: { count: 1, id: "mysticalagriculture:prudentium_hoe" }
+					type: "item"
+				}
+			]
+			x: 12.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["613648D49E643216"]
+			id: "3307658DB8F9C8DA"
+			rewards: [
+				{
+					id: "309390D9D1AD5290"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 16
+					id: "5099CB5DDEDA901E"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "6228373A58985E53"
+					item: { count: 1, id: "mysticalagriculture:prudentium_bow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "70B4E37A98EDC772"
+					item: { count: 1, id: "mysticalagriculture:prudentium_crossbow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "4DC401A5315F4C24"
+					item: { count: 1, id: "mysticalagriculture:prudentium_fishing_rod" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "0441F660A83A4039"
+					item: { count: 1, id: "mysticalagriculture:prudentium_shears" }
+					type: "item"
+				}
+			]
+			x: 14.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["3307658DB8F9C8DA"]
+			icon: {
+				id: "mysticalagriculture:prudentium_chestplate"
+			}
+			id: "20D5F2C59C5E6F55"
+			rewards: [
+				{
+					id: "3020BD0CC506525B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 4
+					id: "19A4F4F749FA73BB"
+					item: {
+						count: 1
+						id: "mysticalagriculture:prudentium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "444447411C12CAF4"
+					item: { count: 1, id: "mysticalagriculture:prudentium_helmet" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "0F5C2D5A802BCECC"
+					item: { count: 1, id: "mysticalagriculture:prudentium_chestplate" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "278B15EA4A58CC73"
+					item: { count: 1, id: "mysticalagriculture:prudentium_leggings" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "68FA647DED203BF4"
+					item: { count: 1, id: "mysticalagriculture:prudentium_boots" }
+					type: "item"
+				}
+			]
+			x: 16.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["20D5F2C59C5E6F55"]
+			id: "3B0D203A39E34210"
+			optional: true
+			rewards: [{
+				id: "29BF4EE730D5BF06"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "527A24A3C41481F4"
+				item: { count: 1, id: "mysticalagriculture:prudentium_staff" }
+				type: "item"
+			}]
+			x: 18.5d
+			y: 1.5d
+		}
+		{
+			dependencies: [
+				"6F8AD82D0D28B68B"
+				"3F0AC152842F908F"
+			]
+			id: "57887FCDE4FD460E"
+			rewards: [{
+				id: "5B56909A446CCF6F"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "5EAAC56F987A51B6"
+					item: { count: 1, id: "mysticalagriculture:tertium_ingot" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "228A7C43C3D798D6"
+					item: { count: 1, id: "mysticalagriculture:tertium_gemstone" }
+					type: "item"
+				}
+			]
+			x: 4.5d
+			y: 3.75d
+		}
+		{
+			dependencies: ["57887FCDE4FD460E"]
+			id: "46561D528D40DB02"
+			rewards: [{
+				id: "6BD63C112BEF3709"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "5AA1C10F135E6A99"
+					item: { count: 1, id: "mysticalagriculture:tertium_farmland" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "3542B467D79B0498"
+					item: { count: 1, id: "mysticalagriculture:tertium_growth_accelerator" }
+					type: "item"
+				}
+			]
+			x: 6.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["46561D528D40DB02"]
+			id: "2EB058F7394207DD"
+			rewards: [{
+				id: "65B9A5E760195B1A"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				consume_items: false
+				id: "633A7927E9C84D50"
+				item: { count: 1, id: "mysticalagriculture:tertium_upgrade" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["2EB058F7394207DD"]
+			id: "1ADC848157D55795"
+			rewards: [
+				{
+					id: "4BBD0B808061579B"
+					type: "xp"
+					xp: 20
+				}
+				{
+					count: 4
+					id: "542580D36703E2A6"
+					item: {
+						count: 1
+						id: "mysticalagriculture:prosperity_shard"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "00F8C4E54AD09FAD"
+				item: { count: 1, id: "mysticalagriculture:tertium_watering_can" }
+				type: "item"
+			}]
+			x: 10.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["1ADC848157D55795"]
+			id: "519300AC8C0A1A89"
+			rewards: [{
+				id: "00F6234419091219"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "758C5E13B55C3DFF"
+					item: { count: 1, id: "mysticalagriculture:tertium_sickle" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "4DE631B17DC6B02D"
+					item: { count: 1, id: "mysticalagriculture:tertium_scythe" }
+					type: "item"
+				}
+			]
+			x: 12.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["519300AC8C0A1A89"]
+			id: "4C6502C33DAD53F6"
+			rewards: [
+				{
+					id: "1EF4AAC49976A831"
+					type: "xp"
+					xp: 20
+				}
+				{
+					count: 4
+					id: "74A8C568830A6870"
+					item: {
+						count: 1
+						id: "mysticalagriculture:tertium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "697333D60CC6E886"
+					item: { count: 1, id: "mysticalagriculture:tertium_sword" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "13B732D67068BBB2"
+					item: { count: 1, id: "mysticalagriculture:tertium_pickaxe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "4A762AD285E00A4F"
+					item: { count: 1, id: "mysticalagriculture:tertium_axe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "2E8B6FA0D980CE2B"
+					item: { count: 1, id: "mysticalagriculture:tertium_shovel" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "01F3460D19096D6A"
+					item: { count: 1, id: "mysticalagriculture:tertium_hoe" }
+					type: "item"
+				}
+			]
+			x: 14.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["4C6502C33DAD53F6"]
+			id: "3961E6F9F82E5B2F"
+			rewards: [{
+				id: "2277215CF90503CF"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "2BB67744B278823F"
+					item: { count: 1, id: "mysticalagriculture:tertium_bow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "72CFFB569356AE4C"
+					item: { count: 1, id: "mysticalagriculture:tertium_crossbow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "1C59580C2E1BD539"
+					item: { count: 1, id: "mysticalagriculture:tertium_fishing_rod" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "01CC85D9049BA2AA"
+					item: { count: 1, id: "mysticalagriculture:tertium_shears" }
+					type: "item"
+				}
+			]
+			x: 16.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3961E6F9F82E5B2F"]
+			icon: {
+				id: "mysticalagriculture:tertium_chestplate"
+			}
+			id: "6CDA8CCA8C69C14F"
+			rewards: [
+				{
+					id: "644EAA4AF7E2C156"
+					type: "xp"
+					xp: 20
+				}
+				{
+					count: 4
+					id: "3909638139B8DB01"
+					item: {
+						count: 1
+						id: "mysticalagriculture:tertium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "1D2FF4126CB49B5E"
+					item: { count: 1, id: "mysticalagriculture:tertium_helmet" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "62C4DCEB0C607666"
+					item: { count: 1, id: "mysticalagriculture:tertium_chestplate" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "25A0B7ADB17E2E4E"
+					item: { count: 1, id: "mysticalagriculture:tertium_leggings" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "218138AC9BADC008"
+					item: { count: 1, id: "mysticalagriculture:tertium_boots" }
+					type: "item"
+				}
+			]
+			x: 18.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["6CDA8CCA8C69C14F"]
+			id: "7F4934B7441199A0"
+			optional: true
+			rewards: [{
+				id: "4F2D43235B395FA6"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				consume_items: false
+				id: "0EDE6CA5AE89DCDA"
+				item: { count: 1, id: "mysticalagriculture:tertium_staff" }
+				type: "item"
+			}]
+			x: 20.5d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"3A24838EF6D12015"
+				"57887FCDE4FD460E"
+			]
+			id: "7470771BF0889710"
+			rewards: [{
+				id: "0E9B667DCFD1C73A"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "40DFF0842387B4B9"
+					item: { count: 1, id: "mysticalagriculture:imperium_ingot" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "1F232F22BD612346"
+					item: { count: 1, id: "mysticalagriculture:imperium_gemstone" }
+					type: "item"
+				}
+			]
+			x: 6.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["7470771BF0889710"]
+			id: "7D29772FD26F9007"
+			rewards: [
+				{
+					id: "0AD8300CB68DEB8E"
+					type: "xp"
+					xp: 25
+				}
+				{
+					count: 16
+					id: "40CF41425075960C"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "24E253F66C1CDF0C"
+					item: { count: 1, id: "mysticalagriculture:imperium_farmland" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "0A23601FD6D6C02C"
+					item: { count: 1, id: "mysticalagriculture:imperium_growth_accelerator" }
+					type: "item"
+				}
+			]
+			x: 8.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["7D29772FD26F9007"]
+			id: "56413B437DE083AB"
+			rewards: [{
+				id: "4B18CB4614E72AA0"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "4B592FC81411C823"
+				item: { count: 1, id: "mysticalagriculture:imperium_upgrade" }
+				type: "item"
+			}]
+			x: 10.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["56413B437DE083AB"]
+			id: "29A601E9BDAD42B5"
+			rewards: [{
+				id: "0CBA82A1BD451E97"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "0E08BBFBC2C44392"
+				item: { count: 1, id: "mysticalagriculture:imperium_watering_can" }
+				type: "item"
+			}]
+			x: 12.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["29A601E9BDAD42B5"]
+			id: "0450F9936C1BA64A"
+			rewards: [{
+				id: "5DDDD40D71736486"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "5084353C56A499CF"
+					item: { count: 1, id: "mysticalagriculture:imperium_sickle" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "645BF00DEFE844A7"
+					item: { count: 1, id: "mysticalagriculture:imperium_scythe" }
+					type: "item"
+				}
+			]
+			x: 14.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0450F9936C1BA64A"]
+			id: "0D479D7CEC7D49A4"
+			rewards: [
+				{
+					id: "2E5067403788DB6C"
+					type: "xp"
+					xp: 25
+				}
+				{
+					count: 4
+					id: "7E56AA840FCFE11C"
+					item: {
+						count: 1
+						id: "mysticalagriculture:imperium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "028341986C30F75B"
+					item: { count: 1, id: "mysticalagriculture:imperium_sword" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "7AAB9626289AC3DF"
+					item: { count: 1, id: "mysticalagriculture:imperium_pickaxe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "73FE8664AADAB17E"
+					item: { count: 1, id: "mysticalagriculture:imperium_axe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "24B0979C2D7C2C4A"
+					item: { count: 1, id: "mysticalagriculture:imperium_shovel" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "0A41B6FF8EF45F47"
+					item: { count: 1, id: "mysticalagriculture:imperium_hoe" }
+					type: "item"
+				}
+			]
+			x: 16.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["0D479D7CEC7D49A4"]
+			id: "2F23B9B444E37005"
+			rewards: [
+				{
+					id: "05658EEDF7D8F164"
+					type: "xp"
+					xp: 25
+				}
+				{
+					count: 4
+					id: "511485CE87EBBEE3"
+					item: {
+						count: 1
+						id: "mysticalagriculture:prosperity_shard"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "543A077ACF155DAD"
+					item: { count: 1, id: "mysticalagriculture:imperium_bow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "1DC8D35B5BA63F77"
+					item: { count: 1, id: "mysticalagriculture:imperium_crossbow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "7B042B96E42A2592"
+					item: { count: 1, id: "mysticalagriculture:imperium_fishing_rod" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "3DF578D8D6A5C68D"
+					item: { count: 1, id: "mysticalagriculture:imperium_shears" }
+					type: "item"
+				}
+			]
+			x: 18.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["2F23B9B444E37005"]
+			icon: {
+				id: "mysticalagriculture:imperium_chestplate"
+			}
+			id: "090A88EB314BB287"
+			rewards: [
+				{
+					id: "3DE3E401434742D5"
+					type: "xp"
+					xp: 25
+				}
+				{
+					count: 4
+					id: "187F34E7B45C9E2F"
+					item: {
+						count: 1
+						id: "mysticalagriculture:imperium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "08FF5E8D887E099E"
+					item: { count: 1, id: "mysticalagriculture:imperium_helmet" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "465562969DE10FCD"
+					item: { count: 1, id: "mysticalagriculture:imperium_chestplate" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "628AE92027AC9F40"
+					item: { count: 1, id: "mysticalagriculture:imperium_leggings" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "4C4D2A86B71EE643"
+					item: { count: 1, id: "mysticalagriculture:imperium_boots" }
+					type: "item"
+				}
+			]
+			x: 20.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["090A88EB314BB287"]
+			id: "38762376FBC304D8"
+			optional: true
+			rewards: [{
+				id: "3A1141F1B1DF2C33"
+				type: "xp"
+				xp: 25
+			}]
+			tasks: [{
+				consume_items: false
+				id: "130E53311C73FB22"
+				item: { count: 1, id: "mysticalagriculture:imperium_staff" }
+				type: "item"
+			}]
+			x: 22.5d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"20A4C0B01C02F7EC"
+				"7470771BF0889710"
+			]
+			id: "4731EE3EB60FF835"
+			rewards: [{
+				id: "6A5899F80BAF2F2B"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "60FB5216713CCBE0"
+					item: { count: 1, id: "mysticalagriculture:supremium_ingot" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "206F04D73D25D7D9"
+					item: { count: 1, id: "mysticalagriculture:supremium_gemstone" }
+					type: "item"
+				}
+			]
+			x: 8.5d
+			y: 6.75d
+		}
+		{
+			dependencies: ["4731EE3EB60FF835"]
+			id: "6589F6E77495C0AE"
+			rewards: [{
+				id: "7A0CEAD9D7AC52F8"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "6E3593207C8CD27E"
+					item: { count: 1, id: "mysticalagriculture:supremium_farmland" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "4CBE3830E1D53FE3"
+					item: { count: 1, id: "mysticalagriculture:supremium_growth_accelerator" }
+					type: "item"
+				}
+			]
+			x: 10.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["6589F6E77495C0AE"]
+			id: "10767FBD5CA94A11"
+			rewards: [{
+				id: "1E226FC32D88F697"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				consume_items: false
+				id: "668DA7D7F9B1B782"
+				item: { count: 1, id: "mysticalagriculture:supremium_upgrade" }
+				type: "item"
+			}]
+			x: 12.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["10767FBD5CA94A11"]
+			id: "5ABCDD48C48AE24A"
+			rewards: [
+				{
+					id: "0E93286242ACF37F"
+					type: "xp"
+					xp: 30
+				}
+				{
+					count: 16
+					id: "2F7FBDA3AA1E099B"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "3416D7BFF43353E5"
+				item: { count: 1, id: "mysticalagriculture:supremium_watering_can" }
+				type: "item"
+			}]
+			x: 14.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["5ABCDD48C48AE24A"]
+			id: "10A366976FC0294E"
+			rewards: [{
+				id: "02CDE2D39A1BC029"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "4207F84A3562F492"
+					item: { count: 1, id: "mysticalagriculture:supremium_sickle" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "6AFC41B08173ED42"
+					item: { count: 1, id: "mysticalagriculture:supremium_scythe" }
+					type: "item"
+				}
+			]
+			x: 16.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["10A366976FC0294E"]
+			id: "55B1E6EA50A46E82"
+			rewards: [
+				{
+					id: "2E1E487343BFA830"
+					type: "xp"
+					xp: 30
+				}
+				{
+					count: 4
+					id: "40CD55C9744CC775"
+					item: {
+						count: 1
+						id: "mysticalagriculture:supremium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "12E0FDE62DFD21D3"
+					item: { count: 1, id: "mysticalagriculture:supremium_sword" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "5EF1E6274EA030C3"
+					item: { count: 1, id: "mysticalagriculture:supremium_pickaxe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "4BAE54E38A368D5A"
+					item: { count: 1, id: "mysticalagriculture:supremium_axe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "3B6124DEE2C658F8"
+					item: { count: 1, id: "mysticalagriculture:supremium_shovel" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "7699CD544BE03D93"
+					item: { count: 1, id: "mysticalagriculture:supremium_hoe" }
+					type: "item"
+				}
+			]
+			x: 18.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["55B1E6EA50A46E82"]
+			id: "21C7FEA0B0BA43D2"
+			rewards: [{
+				id: "5BAB46699B4BC3CC"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "2A0FF3488E98F2B2"
+					item: { count: 1, id: "mysticalagriculture:supremium_bow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "365F2949CCAF2C8C"
+					item: { count: 1, id: "mysticalagriculture:supremium_crossbow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "258B4D7E048F3A85"
+					item: { count: 1, id: "mysticalagriculture:supremium_fishing_rod" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "0A7FE7077B86B108"
+					item: { count: 1, id: "mysticalagriculture:supremium_shears" }
+					type: "item"
+				}
+			]
+			x: 20.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["21C7FEA0B0BA43D2"]
+			icon: {
+				id: "mysticalagriculture:supremium_chestplate"
+			}
+			id: "347A383E402B3F01"
+			rewards: [
+				{
+					id: "7FD46324ECC373A4"
+					type: "xp"
+					xp: 30
+				}
+				{
+					count: 4
+					id: "1FC98E46C478024E"
+					item: {
+						count: 1
+						id: "mysticalagriculture:supremium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "24E2C4C74D39CA7C"
+					item: { count: 1, id: "mysticalagriculture:supremium_helmet" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "13B65CC339584CE4"
+					item: { count: 1, id: "mysticalagriculture:supremium_chestplate" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "4FDFDA9006A3C264"
+					item: { count: 1, id: "mysticalagriculture:supremium_leggings" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "73C8940670AB47AF"
+					item: { count: 1, id: "mysticalagriculture:supremium_boots" }
+					type: "item"
+				}
+			]
+			x: 22.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["347A383E402B3F01"]
+			id: "1C27B12C57C2D174"
+			optional: true
+			rewards: [{
+				id: "7C9D74E4827B1656"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				consume_items: false
+				id: "53E8F31CEAF7B096"
+				item: { count: 1, id: "mysticalagriculture:supremium_staff" }
+				type: "item"
+			}]
+			x: 24.5d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"2CC6F6B609EE5C4A"
+				"4731EE3EB60FF835"
+			]
+			id: "641CA6FF6869A256"
+			rewards: [{
+				id: "11C8D758ABB3DA14"
+				type: "xp"
+				xp: 35
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "2162B37EB6008302"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_ingot" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "635B2585445FCEB2"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_gemstone" }
+					type: "item"
+				}
+			]
+			x: 10.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["641CA6FF6869A256"]
+			id: "09D6B065CC794654"
+			rewards: [
+				{
+					id: "2702CA08376B41A8"
+					type: "xp"
+					xp: 35
+				}
+				{
+					count: 4
+					id: "12AE78DCB844EC67"
+					item: {
+						count: 1
+						id: "mysticalagriculture:prosperity_shard"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "31B7FEC7FB997299"
+				item: { count: 1, id: "mysticalagriculture:awakened_supremium_growth_accelerator" }
+				type: "item"
+			}]
+			x: 12.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["09D6B065CC794654"]
+			id: "726D300CE18AA283"
+			rewards: [{
+				id: "587B5189C893A1C1"
+				type: "xp"
+				xp: 35
+			}]
+			tasks: [{
+				consume_items: false
+				id: "023F666AAB9721B7"
+				item: { count: 1, id: "mysticalagriculture:awakened_supremium_upgrade" }
+				type: "item"
+			}]
+			x: 14.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["726D300CE18AA283"]
+			id: "215DD698199BA031"
+			rewards: [{
+				id: "5B3BFA2F0DCA1A4B"
+				type: "xp"
+				xp: 35
+			}]
+			tasks: [{
+				consume_items: false
+				id: "40B6BBF88A166BB3"
+				item: { count: 1, id: "mysticalagriculture:awakened_supremium_watering_can" }
+				type: "item"
+			}]
+			x: 16.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["215DD698199BA031"]
+			id: "6A2FF153DDBB8434"
+			rewards: [{
+				id: "67585CA74D303408"
+				type: "xp"
+				xp: 35
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "063B5100A8DEAD76"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_sickle" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "79422A48CD668898"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_scythe" }
+					type: "item"
+				}
+			]
+			x: 18.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["6A2FF153DDBB8434"]
+			id: "0724C5C6959DA2B0"
+			rewards: [
+				{
+					id: "70CB69F9FB31EDF9"
+					type: "xp"
+					xp: 35
+				}
+				{
+					count: 4
+					id: "46759E8037F638A6"
+					item: {
+						count: 1
+						id: "mysticalagriculture:awakened_supremium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "1DC58EF9792BC5EE"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_sword" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "7D9D1B9EAD32AF84"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_pickaxe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "15AAF3778D8EAE05"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_axe" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "3E422346E5651C86"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_shovel" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "613CAD1A958946F5"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_hoe" }
+					type: "item"
+				}
+			]
+			x: 20.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["0724C5C6959DA2B0"]
+			id: "0EB8067A309549C5"
+			rewards: [
+				{
+					id: "0EE2ECC8581DD364"
+					type: "xp"
+					xp: 35
+				}
+				{
+					count: 16
+					id: "6F83E3BA5FA4E1DB"
+					item: {
+						count: 1
+						id: "mysticalagriculture:inferium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "6CF1ED0136E4B710"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_bow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "35268AF9E15679BE"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_crossbow" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "18C2E2B770667E65"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_fishing_rod" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "3854338FF3A1D546"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_shears" }
+					type: "item"
+				}
+			]
+			x: 22.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["0EB8067A309549C5"]
+			icon: {
+				id: "mysticalagriculture:awakened_supremium_chestplate"
+			}
+			id: "6C17EFB8EE712F4E"
+			rewards: [
+				{
+					id: "79D1372B456AABED"
+					type: "xp"
+					xp: 35
+				}
+				{
+					count: 4
+					id: "0743226A3FC02771"
+					item: {
+						count: 1
+						id: "mysticalagriculture:awakened_supremium_essence"
+					}
+					type: "item"
+				}
+			]
+			tasks: [
+				{
+					consume_items: false
+					id: "561F5253158237E9"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_helmet" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "60A950E8BBDA0A3C"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_chestplate" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "77FDD270885E56AC"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_leggings" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "04943316AD5C7622"
+					item: { count: 1, id: "mysticalagriculture:awakened_supremium_boots" }
+					type: "item"
+				}
+			]
+			x: 24.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["6C17EFB8EE712F4E"]
+			id: "78F2F5F12669D74D"
+			optional: true
+			rewards: [{
+				id: "6A254EFA842AFE06"
+				type: "xp"
+				xp: 35
+			}]
+			tasks: [{
+				consume_items: false
+				id: "426A357EC2A1F81E"
+				item: { count: 1, id: "mysticalagriculture:awakened_supremium_staff" }
+				type: "item"
+			}]
+			x: 26.5d
+			y: 6.75d
+		}
+		{
+			dependencies: ["6C17EFB8EE712F4E"]
+			icon: {
+				id: "mysticalagriculture:awakened_supremium_chestplate"
+			}
+			id: "5110A3F6B92A8F52"
+			rewards: [{
+				id: "5F203E70C8EAB435"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				consume_items: false
+				id: "62BFA11F74BFC894"
+				item: { count: 1, id: "mysticalagriculture:awakened_supremium_chestplate" }
+				type: "item"
+			}]
+			x: 26.5d
+			y: 8.25d
+		}
+	]
+}

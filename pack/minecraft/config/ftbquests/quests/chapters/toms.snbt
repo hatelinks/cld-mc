@@ -1,0 +1,429 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "toms"
+	group: "2239F7D906E70A56"
+	icon: {
+		id: "toms_storage:storage_terminal"
+	}
+	id: "5FB42B457BB41714"
+	images: [ ]
+	order_index: 4
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			icon: {
+				id: "toms_storage:storage_terminal"
+			}
+			id: "676166435848DE36"
+			rewards: [{
+				id: "23BEA69C714CED99"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [{
+				id: "2614B8EA81B41F5E"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 5.25d
+		}
+		{
+			dependencies: ["676166435848DE36"]
+			id: "4F1C3643C8B786C9"
+			rewards: [{
+				id: "41DAEF7085863501"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "04949EA3B8DA5378"
+				item: { count: 1, id: "toms_storage:inventory_connector" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["676166435848DE36"]
+			id: "0ECD548C5A697162"
+			rewards: [{
+				id: "4BD7CAA01487DD1C"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "7F5A9E5C3E53F5D9"
+				item: { count: 1, id: "toms_storage:storage_terminal" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["676166435848DE36"]
+			id: "1FAA3B69137A2EFA"
+			rewards: [
+				{
+					id: "3D81E881A7FE66B8"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 2
+					id: "1F926CB2EC9B82D0"
+					item: {
+						count: 1
+						id: "minecraft:chest"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "3BA439E7542A4B57"
+				item: { count: 1, id: "toms_storage:trim" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["676166435848DE36"]
+			id: "3714BF8A709B88DE"
+			rewards: [{
+				id: "41B1C5B608190978"
+				type: "xp"
+				xp: 15
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				consume_items: false
+				id: "46D4072C03A5F618"
+				item: { count: 1, id: "toms_storage:inventory_cable" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 8.25d
+		}
+		{
+			dependencies: ["3714BF8A709B88DE"]
+			id: "06E7D3265C4EF503"
+			rewards: [{
+				id: "229A5E0FE907405A"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "676781033B709656"
+				item: { count: 1, id: "toms_storage:inventory_cable_connector" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 7.5d
+		}
+		{
+			dependencies: ["3714BF8A709B88DE"]
+			id: "2E1FF45A068AFC08"
+			optional: true
+			rewards: [{
+				id: "2A4452612AB04AEC"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "20D9A61156788672"
+				item: { count: 1, id: "toms_storage:inventory_cable_framed" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 9.0d
+		}
+		{
+			dependencies: ["0ECD548C5A697162"]
+			id: "4CF501B6DEC08763"
+			rewards: [{
+				id: "75124B4F7CE6E947"
+				type: "xp"
+				xp: 15
+			}]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				consume_items: false
+				id: "1A17F2D59B23FEF1"
+				item: { count: 1, id: "toms_storage:crafting_terminal" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 2.25d
+		}
+		{
+			dependencies: ["4CF501B6DEC08763"]
+			id: "359F5AE57B882A5A"
+			rewards: [
+				{
+					id: "47A6FD17279809B0"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 4
+					id: "0606FF40C264F6EC"
+					item: {
+						count: 1
+						id: "minecraft:iron_ingot"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "654C4ED17EA19083"
+				item: { count: 1, id: "toms_storage:wireless_terminal" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["359F5AE57B882A5A"]
+			id: "6435FF4399A64141"
+			rewards: [{
+				id: "70AA53666DF34971"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				consume_items: false
+				id: "3818291D301B5BA6"
+				item: { count: 1, id: "toms_storage:adv_wireless_terminal" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 0.75d
+		}
+		{
+			dependencies: ["4CF501B6DEC08763"]
+			id: "11CFE55834F59E0B"
+			rewards: [{
+				id: "79C45079678C6A90"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "0BD52CDFCD952D27"
+				item: { count: 1, id: "toms_storage:item_filter" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["4CF501B6DEC08763"]
+			id: "583EA06DB592B373"
+			rewards: [{
+				id: "766462651AB77D0E"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [
+				{
+					consume_items: false
+					id: "0A326FAD49EAA2F2"
+					item: { count: 1, id: "toms_storage:inventory_interface" }
+					type: "item"
+				}
+				{
+					consume_items: false
+					id: "7F6E8E3938EF2CC2"
+					item: { count: 1, id: "toms_storage:inventory_proxy" }
+					type: "item"
+				}
+			]
+			x: 6.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["3714BF8A709B88DE"]
+			id: "5F941643E4F7DBA1"
+			rewards: [
+				{
+					id: "3DA69BFF5984C61E"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 2
+					id: "246943FC57DEF6B0"
+					item: {
+						count: 1
+						id: "minecraft:chest"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "7ED2F120F36DAE14"
+				item: { count: 1, id: "toms_storage:basic_inventory_hopper" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 10.5d
+		}
+		{
+			dependencies: ["3714BF8A709B88DE"]
+			id: "3DFF6D8BC0B8024F"
+			rewards: [{
+				id: "0D5BA91570207803"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "0EF24949501F6CF9"
+				item: { count: 1, id: "toms_storage:level_emitter" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 12.0d
+		}
+		{
+			dependencies: ["1FAA3B69137A2EFA"]
+			id: "66FA3494156413BC"
+			rewards: [{
+				id: "5079A6964AEC4EAB"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "6B0E4B865950CDE6"
+				item: { count: 1, id: "toms_storage:inventory_configurator" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["4CF501B6DEC08763"]
+			id: "7AF048B20C4095CB"
+			rewards: [{
+				id: "360F3464E2F85963"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "478C239FE1EE7E05"
+				item: { count: 1, id: "toms_storage:filing_cabinet" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 4.5d
+		}
+		{
+			dependencies: ["7AF048B20C4095CB"]
+			id: "3622809CB752E64B"
+			optional: true
+			rewards: [{
+				id: "3B3874B1FB3243E1"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "0E4A4C6C06B71B23"
+				item: { count: 1, id: "toms_storage:open_crate" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 3.75d
+		}
+		{
+			dependencies: ["7AF048B20C4095CB"]
+			id: "50CFA862E0742DCC"
+			optional: true
+			rewards: [{
+				id: "74DECEF3AB2742E3"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "4B9C2A41133BD013"
+				item: { count: 1, id: "toms_storage:paint_kit" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 5.25d
+		}
+		{
+			dependencies: ["0ECD548C5A697162"]
+			id: "37DF873370360390"
+			optional: true
+			rewards: [{
+				id: "5E28B8FFC0BBBB12"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				id: "346193E89A349226"
+				type: "checkmark"
+			}]
+			x: 4.5d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"6435FF4399A64141"
+				"11CFE55834F59E0B"
+				"583EA06DB592B373"
+				"7AF048B20C4095CB"
+			]
+			id: "4DCEB7C845644DAD"
+			rewards: [
+				{
+					id: "22F2659CF4CFE84A"
+					type: "xp"
+					xp: 200
+				}
+				{
+					id: "373A071F4D5E25E9"
+					item: {
+						count: 1
+						id: "minecraft:diamond"
+					}
+					type: "item"
+				}
+				{
+					count: 16
+					id: "4C8254ECD953E4B8"
+					item: {
+						count: 1
+						id: "minecraft:iron_ingot"
+					}
+					type: "item"
+				}
+			]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				id: "53768598E098ADD7"
+				type: "checkmark"
+			}]
+			x: 10.5d
+			y: 2.25d
+		}
+	]
+}

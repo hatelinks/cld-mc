@@ -1,0 +1,265 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "off_road"
+	group: "246BC345C62FA335"
+	icon: {
+		id: "offroad:tire"
+	}
+	id: "4DBF09082EABF9C7"
+	images: [ ]
+	order_index: 14
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["7A4867FC76D52080"]
+			icon: {
+				id: "offroad:tire"
+			}
+			id: "60F5CA864284F2DD"
+			rewards: [{
+				id: "4168D966C99D4EA6"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [{
+				id: "65405262929D9C84"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"60F5CA864284F2DD"
+				"05571ED1E48DCA66"
+			]
+			id: "3F85ABB925FE2B91"
+			rewards: [{
+				id: "72F9AD15D7F2C69D"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "7B0A90B22112954B"
+				item: { count: 1, id: "offroad:wheel_mount" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"60F5CA864284F2DD"
+				"4705492C0880AE87"
+			]
+			id: "60DF89304A782C1E"
+			rewards: [{
+				id: "2283BC7011AF785D"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "3C265578C0A548BD"
+				item: { count: 1, id: "offroad:small_tire" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 2.25d
+		}
+		{
+			dependencies: [
+				"60F5CA864284F2DD"
+				"4705492C0880AE87"
+			]
+			id: "7180A94A9A70EFEC"
+			optional: true
+			rewards: [{
+				id: "2D42F11920F891D8"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "70580E8485B42BE0"
+				item: { count: 1, id: "offroad:monstrous_tire" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 3.75d
+		}
+		{
+			dependencies: [
+				"60F5CA864284F2DD"
+				"024258E95184EEE4"
+				"7ED8A37655BE6021"
+			]
+			id: "27873A35BB12188D"
+			rewards: [
+				{
+					id: "0464501290B9DFCC"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 4
+					id: "1BDCB47873D99961"
+					item: {
+						count: 1
+						id: "create:andesite_casing"
+					}
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			size: 1.25d
+			tasks: [{
+				consume_items: false
+				id: "71AE7706413F3918"
+				item: { count: 1, id: "offroad:rockcutting_wheel" }
+				type: "item"
+			}]
+			x: 2.5d
+			y: 6.0d
+		}
+		{
+			dependencies: [
+				"27873A35BB12188D"
+				"7E1ADD131FC9B5E2"
+				"7ED8A37655BE6021"
+			]
+			id: "22E187E3A6EA176C"
+			rewards: [{
+				id: "35C93CB91473FA23"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "15ACD3AFEE492F22"
+				item: { count: 1, id: "offroad:borehead_bearing" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 3.0d
+		}
+		{
+			dependencies: [
+				"27873A35BB12188D"
+				"05571ED1E48DCA66"
+				"652F92B7AB111650"
+			]
+			id: "68FC9969101990A8"
+			rewards: [{
+				id: "49D09823E22BD94D"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "26EB7000775561CA"
+				item: { count: 1, id: "tracks:track_mount" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"27873A35BB12188D"
+				"56239D98E7831D04"
+			]
+			id: "59BEE051DECF3DDB"
+			rewards: [{
+				id: "03F945ED7210B4ED"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "215BA76128623D12"
+				item: { count: 1, id: "tracks:small_track_drive_wheel" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 6.0d
+		}
+		{
+			dependencies: ["68FC9969101990A8"]
+			id: "439DD6C046BDB2C3"
+			rewards: [
+				{
+					id: "15E8F2BE71F45B3B"
+					type: "xp"
+					xp: 15
+				}
+				{
+					count: 4
+					id: "3AB438F210AB72D1"
+					item: {
+						count: 1
+						id: "create:iron_sheet"
+					}
+					type: "item"
+				}
+			]
+			tasks: [{
+				consume_items: false
+				id: "1029894998BC94E6"
+				item: { count: 1, id: "tracks:small_suspension_track" }
+				type: "item"
+			}]
+			x: 6.5d
+			y: 4.5d
+		}
+		{
+			dependencies: [
+				"27873A35BB12188D"
+				"05571ED1E48DCA66"
+				"63B86FA0C25B7639"
+			]
+			id: "266C6DB97D42E431"
+			rewards: [{
+				id: "2F6B146244EFAE0D"
+				type: "xp"
+				xp: 15
+			}]
+			tasks: [{
+				consume_items: false
+				id: "1746AF098AAA86F0"
+				item: { count: 1, id: "tracks:suspension_key" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 7.5d
+		}
+		{
+			dependencies: [
+				"439DD6C046BDB2C3"
+				"59BEE051DECF3DDB"
+				"60DF89304A782C1E"
+			]
+			id: "7C601F93CD0DF663"
+			rewards: [{
+				id: "1609CDB334238E18"
+				type: "xp"
+				xp: 80
+			}]
+			shape: "gear"
+			size: 2.0d
+			tasks: [{
+				consume_items: false
+				id: "1F5FBD52DE7EFF27"
+				item: { count: 1, id: "tracks:track_mount" }
+				type: "item"
+			}]
+			x: 8.5d
+			y: 4.5d
+		}
+	]
+}

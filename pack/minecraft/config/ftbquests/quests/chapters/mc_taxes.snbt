@@ -1,0 +1,148 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "mc_taxes"
+	group: "2A69CCF386B9CA7D"
+	icon: {
+		id: "minecraft:emerald"
+	}
+	id: "5DE90FF1CC4E98B4"
+	images: [ ]
+	order_index: 4
+	progression_mode: "flexible"
+	quest_links: [ ]
+	quests: [
+		{
+			dependencies: ["77711FF1BF71610E"]
+			icon: {
+				id: "minecraft:emerald"
+			}
+			id: "23F08D5065C04504"
+			rewards: [{
+				id: "1A93257FFDFC8217"
+				type: "xp"
+				xp: 10
+			}]
+			shape: "hexagon"
+			size: 1.75d
+			tasks: [{
+				id: "644AB2A5172E0263"
+				type: "checkmark"
+			}]
+			x: 0.0d
+			y: 1.5d
+		}
+		{
+			dependencies: ["23F08D5065C04504"]
+			id: "69D002F0F7134AC9"
+			rewards: [{
+				id: "33E3A688D1950C66"
+				type: "xp"
+				xp: 20
+			}]
+			tasks: [{
+				id: "79E38B91DB2CACDA"
+				type: "checkmark"
+			}]
+			x: 2.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["69D002F0F7134AC9"]
+			id: "0C4998D88CBBA1AE"
+			rewards: [{
+				id: "23FE62C0B36FF9FD"
+				type: "xp"
+				xp: 40
+			}]
+			tasks: [{
+				consume_items: false
+				count: 8L
+				id: "5FDE42B7E9FA5236"
+				item: { count: 1, id: "minecraft:emerald" }
+				type: "item"
+			}]
+			x: 4.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["0C4998D88CBBA1AE"]
+			id: "0FB6F38D6F78FD9F"
+			rewards: [{
+				id: "26C0078E0350C385"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				id: "6555708A09849B30"
+				type: "checkmark"
+			}]
+			x: 6.5d
+			y: 0.0d
+		}
+		{
+			dependencies: ["0C4998D88CBBA1AE"]
+			id: "74EACD42B3C4B773"
+			rewards: [{
+				id: "440C255F743E2A03"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				id: "00A9A87D4AFEA13A"
+				type: "checkmark"
+			}]
+			x: 6.5d
+			y: 1.5d
+		}
+		{
+			dependencies: ["0FB6F38D6F78FD9F"]
+			id: "2038743BA123D7A8"
+			rewards: [{
+				id: "543891938572762B"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				id: "166BCEA176AC09D6"
+				type: "checkmark"
+			}]
+			x: 8.5d
+			y: 0.0d
+		}
+		{
+			dependencies: [
+				"0C4998D88CBBA1AE"
+				"37AF69B87D710173"
+			]
+			id: "693A95E7E9D86E60"
+			rewards: [{
+				id: "501A7627C35EF89C"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				id: "4C48F7AC8266374D"
+				type: "checkmark"
+			}]
+			x: 6.5d
+			y: 3.0d
+		}
+		{
+			dependencies: ["2038743BA123D7A8"]
+			id: "45860C140DE46DDB"
+			optional: true
+			rewards: [{
+				id: "65082D48120919BC"
+				type: "xp"
+				xp: 30
+			}]
+			tasks: [{
+				id: "6AAE3904B086049C"
+				type: "checkmark"
+			}]
+			x: 10.5d
+			y: 0.0d
+		}
+	]
+}
