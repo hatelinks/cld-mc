@@ -46,7 +46,8 @@ final class PreviewSession {
         server.execute(() -> PregenTask.start(new PregenTask(server.overworld(), center, radius, shape, maxInFlight, msPerTick)));
     }
 
-    void stop() { server.execute(PregenTask::stopActive); }
+    // флаг volatile: останавливаем сразу, даже если поток сервера занят
+    void stop() { PregenTask.stopActive(); }
 
     /** Оставить мир: снять заморозку и пустить игрока. */
     void keep() {
@@ -64,7 +65,7 @@ final class PreviewSession {
     void discard(String newSeed) {
         active = false;
         Minecraft mc = Minecraft.getInstance();
-        server.execute(PregenTask::stopActive);
+        PregenTask.stopActive();
         ClientHooks.session = null;
         // Как в PauseScreen: сначала закрыть соединение, иначе сервер не узнает, что игрок вышел,
         // не остановится, и mc.disconnect() будет вечно ждать его выключения.

@@ -104,7 +104,11 @@ public final class PregenTask {
             if (map.at(p.x, p.z) != null) { done.incrementAndGet(); continue; }
             inFlight.incrementAndGet();
             cache.addRegionTicket(TICKET, p, 0, p);
-            cache.getChunkFuture(p.x, p.z, ChunkStatus.FULL, true).whenCompleteAsync((res, err) -> {
+            var future = cache.getChunkFuture(p.x, p.z, ChunkStatus.FULL, true);
+            // getChunkFuture ставит временный тикет UNKNOWN, который снимается только в незамороженном мире.
+            // Мир заморожен, поэтому снимаем его сами, иначе каждый чанк остаётся в памяти навсегда.
+            cache.removeRegionTicket(TicketType.UNKNOWN, p, 0, p);
+            future.whenCompleteAsync((res, err) -> {
                 try {
                     if (err == null && res != null && res.isSuccess() && res.orElse(null) instanceof LevelChunk c)
                         map.put(ChunkSample.of(level, c));
