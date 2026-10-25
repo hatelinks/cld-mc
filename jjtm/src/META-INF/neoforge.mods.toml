@@ -4,7 +4,7 @@ license="All Rights Reserved"
 
 [[mods]]
 modId="jjthunder_to_the_max"
-version="0.3.1-1.21.1"
+version="0.3.2-1.21.1"
 displayName="JJThunder To The Max"
 authors="JJThunder"
 description='''Terraforms Overworld. Неофициальный порт датапака на 1.21.1 для личного использования.'''
@@ -16,3 +16,11 @@ type="required"
 versionRange="[1.21.1]"
 ordering="NONE"
 side="BOTH"
+
+# грузимся после Cirrus, чтобы наша высота облаков (assets/minecraft/cirrus/cloud_dimensions) перекрывала его значение
+[[dependencies.jjthunder_to_the_max]]
+modId="cirrus"
+type="optional"
+versionRange="*"
+ordering="AFTER"
+side="CLIENT"
