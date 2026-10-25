@@ -1,0 +1,1030 @@
+{
+ "key": "create_misc",
+ "id": "",
+ "title": "Мастерская уюта",
+ "subtitle": "Create — инструменты, гаджеты и декор",
+ "group": "Эра механизмов",
+ "icon": "create:wrench",
+ "order": 5.5,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Мастерская уюта",
+   "sub": "Инструменты и украшения Create",
+   "desc": [
+    "Здесь собраны полезные инструменты и гаджеты Create, а также декоративные блоки.",
+    "Глава необязательна для прогресса, но многое тут сильно облегчает жизнь."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "create:wrench",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "extendo_grip",
+   "title": "Длиннохват",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Длиннохват увеличивает дальность, на которой вы ставите и ломаете блоки.",
+    "&6Как получить:&r механический крафтер: Латунный слиток, Латунная рука, Механизм точности.",
+    "&6Как использовать:&r Находясь в левой руке: Увеличивает &eрасстояние досягаемости&r предметов, используемых в &eправой руке&r.",
+    "&6Как использовать:&r Когда надет баллон: &eНе&r тратится &eпрочность&r. Вместо этого будет тратиться &eвоздух&r из баллона."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:extendo_grip",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/intro",
+    "590DB3C6FF1EAEE7",
+    "63B86FA0C25B7639"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "potato_cannon",
+   "title": "Картофельная пушка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Стреляет картофелем и другими предметами. Работает от баллона с воздухом.",
+    "&6Как получить:&r механический крафтер: Андезитовый сплав, Жидкостная труба, Механизм точности.",
+    "&6Как использовать:&r ПКМ с предметом в инвентаре: &eВыстреливает&r подходящим предметом из вашего &eинвентаря&r.",
+    "&6Как использовать:&r Когда надет баллон: &eНе&r тратится &eпрочность&r. Вместо этого будет тратиться &eвоздух&r из баллона."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:potato_cannon",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/intro",
+    "727F09E229C92364",
+    "63B86FA0C25B7639"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "wand_of_symmetry",
+   "title": "Жезл симметрии",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Повторяет ваши блоки зеркально относительно выбранной плоскости.",
+    "&6Как получить:&r механический крафтер: Латунный слиток, Механизм точности.",
+    "&6Как использовать:&r Когда использован по поверхности: &eСоздаёт&r или &eперемещает&r зеркало. &eПКМ крадучись&r, чтобы открыть &eинтерфейс конфигурации&r.",
+    "&6Как использовать:&r Когда использован по воздуху: Убирает зеркало."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:wand_of_symmetry",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_alloy",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "create_misc/intro",
+    "63B86FA0C25B7639"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "linked_controller",
+   "title": "Контроллер частот",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пульт с 6 кнопками: каждая включает свою частоту передатчиков сигнала.",
+    "&6Как получить:&r верстак: Редстоуновый передатчик сигнала.",
+    "&6Как использовать:&r ПКМ с предметом: &eВключает&r контроллер. &eУправление&r движением &eперехвачено&r, пока он &eактивен&r.",
+    "&6Как использовать:&r ПКМ крадучись: Открывает &eинтерфейс конфигурации&r.",
+    "&6Как использовать:&r ПКМ по передатчику сигнала: Включает &eрежим привязки&r: нажмите одну из &eшести клавиш&r, чтобы привязать её к &eчастоте передатчика&r."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:linked_controller",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/intro",
+    "01732AB44FE34758"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "toolboxes",
+   "title": "Ящики для инструментов",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Хранит инструменты; нажатие клавиши быстро достаёт нужный, если вы рядом с ящиком.",
+    "&6Как получить:&r верстак: Золотой лист, Шестерня.",
+    "&7Вариантов: 15. Засчитывается «Коричневый ящик для инструментов»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:brown_toolbox",
+      "create:orange_toolbox",
+      "create:magenta_toolbox",
+      "create:light_blue_toolbox",
+      "create:yellow_toolbox",
+      "create:lime_toolbox",
+      "create:pink_toolbox",
+      "create:gray_toolbox",
+      "create:light_gray_toolbox",
+      "create:cyan_toolbox",
+      "create:purple_toolbox",
+      "create:blue_toolbox",
+      "create:green_toolbox",
+      "create:red_toolbox",
+      "create:black_toolbox"
+     ],
+     "count": 1,
+     "title": "Коричневый ящик для инструментов (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/linked_controller",
+    "56239D98E7831D04",
+    "661D00C466179724"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "desk_bell",
+   "title": "Настольный звонок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Позвоните, и вас обслужат! Издаёт редстоун-сигнал при активации.",
+    "&6Как получить:&r верстак: Золотой лист, Андезитовый корпус.",
+    "&6Как использовать:&r Когда размещён на лифтовой штуковине: &eЗвенит&r, когда лифт прибывает на &eнужный этаж&r."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:desk_bell",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/linked_controller",
+    "661D00C466179724"
+   ]
+  },
+  {
+   "k": "cuckoo_clock",
+   "title": "Часы с кукушкой",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Часы с кукушкой: кукуют в полдень и в полночь. Если поставить их рядом с кроватью — будят утром.",
+    "&6Как получить:&r верстак: Андезитовый корпус, Часы.",
+    "&6Как использовать:&r При вращении: Показывают текущее время и напевает мелодию два раза в день. &eАктивируется&r &eодин&r &eраз&r в &eполдень&r и в &eсумерках&r, как только &eигроки&r &eмогут&r &eспать&r.",
+    "&6Зачем нужен:&r идёт в Странные часы с кукушкой."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:cuckoo_clock",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/linked_controller",
+    "25385F994C28D4F2"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "bells",
+   "title": "Колокола",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Особенный колокол декоративный, а призрачный показывает места, где ночью появляются мобы.",
+    "&6Как получить:&r верстак: Латунный лист, Латунный блок.",
+    "&6Зачем нужен:&r идёт в Призрачный колокол."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:peculiar_bell",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create:haunted_bell",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/linked_controller",
+    "0C03B415D50A44C3"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "placard",
+   "title": "Умная рамка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Умная рамка подаёт сигнал, если в неё вставить такой же предмет, как в ней показан.",
+    "&6Как получить:&r верстак: Латунный лист, Рамка.",
+    "&6Как использовать:&r ПКМ по рамке с предметом в руке: &eДобавляет&r удерживаемый &eпредмет&r в рамку. &eИздаёт&r короткий &eредстоун-сигнал&r, если соответствующий предмет уже присутствует.",
+    "&6Как использовать:&r ЛКМ по рамке с предметом: &eУбирает&r текущий &eпредмет&r из рамки."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:placard",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "create_misc/cuckoo_clock",
+    "0C03B415D50A44C3"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "experience_block",
+   "title": "Блок опыта",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Кусочек опыта.",
+    "&6Зачем нужен:&r идёт в Кусочек опыта, Шаблон зачарования, Жидкий опыт, Люк опыта, Фонарь опыта."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:experience_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/cuckoo_clock",
+    "762DEABF97F9A868"
+   ]
+  },
+  {
+   "k": "building",
+   "title": "Лестницы, подмостки и прутья",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Металлические варианты лестниц, подмостков и решёток. Подходят к стилю фабрики.",
+    "&6Как получить:&r камнерез.",
+    "&7Вариантов: 9. Засчитывается «Медная лестница»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:copper_ladder",
+      "create:brass_ladder",
+      "create:andesite_ladder",
+      "create:copper_scaffolding",
+      "create:brass_scaffolding",
+      "create:andesite_scaffolding",
+      "create:copper_bars",
+      "create:brass_bars",
+      "create:andesite_bars"
+     ],
+     "count": 1,
+     "title": "Медная лестница (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/cuckoo_clock"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "iron_blocks",
+   "title": "Промышленное железо",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r камнерез.",
+    "&6Зачем нужен:&r идёт в Компактный физический подшипник, Украшенное промышленным железом окно, Состаренный блок промышленного железа, Буровой подшипник, Бурильное колесо.",
+    "&7Вариантов: 2. Засчитывается «Блок промышленного железа»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:industrial_iron_block",
+      "create:weathered_iron_block"
+     ],
+     "count": 1,
+     "title": "Блок промышленного железа (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/cuckoo_clock"
+   ]
+  },
+  {
+   "k": "shingles",
+   "title": "Медная черепица",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Медная черепица и плитка для крыш. Со временем окисляется, воск сохраняет цвет.",
+    "&6Как получить:&r камнерез.",
+    "&6Зачем нужен:&r идёт в Плита из медной черепицы, Ступеньки из медной черепицы, Вощёная медная черепица.",
+    "&7Вариантов: 6. Засчитывается «Медная черепица»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:copper_shingles",
+      "create:copper_tiles",
+      "create:exposed_copper_shingles",
+      "create:weathered_copper_shingles",
+      "create:oxidized_copper_shingles",
+      "create:waxed_copper_shingles"
+     ],
+     "count": 1,
+     "title": "Медная черепица (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/iron_blocks"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "glass",
+   "title": "Узорное стекло",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Зачем нужен:&r идёт в Акациевое окно, Бамбуковое окно, Берёзовое окно, Вишнёвое окно, Багровое окно.",
+    "&7Вариантов: 4. Засчитывается «Обрамлённое стекло»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:framed_glass",
+      "create:tiled_glass",
+      "create:horizontal_framed_glass",
+      "create:vertical_framed_glass"
+     ],
+     "count": 1,
+     "title": "Обрамлённое стекло (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_alloy",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "create_misc/iron_blocks"
+   ]
+  },
+  {
+   "k": "windows",
+   "title": "Оконные блоки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Обрамлённое стекло, Дубовые доски.",
+    "&6Зачем нужен:&r идёт в Дубовая оконная панель.",
+    "&7Вариантов: 5. Засчитывается «Дубовое окно»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:oak_window",
+      "create:spruce_window",
+      "create:birch_window",
+      "create:industrial_iron_window",
+      "create:ornate_iron_window"
+     ],
+     "count": 1,
+     "title": "Дубовое окно (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/iron_blocks"
+   ]
+  },
+  {
+   "k": "doors",
+   "title": "Двери Create",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Медный корпус.",
+    "&7Вариантов: 4. Засчитывается «Медная дверь»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:copper_door",
+      "create:brass_door",
+      "create:andesite_door",
+      "create:framed_glass_door"
+     ],
+     "count": 1,
+     "title": "Медная дверь (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/iron_blocks",
+    "7B0E0CC10C513F62"
+   ]
+  },
+  {
+   "k": "rose_quartz_lamp",
+   "title": "Розовокварцевый фонарь",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Цинковый слиток, Полированный розовый кварц."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:rose_quartz_lamp",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/doors",
+    "create_brass/polished_rose_quartz"
+   ]
+  },
+  {
+   "k": "andesite_alloy_block",
+   "title": "Блок андезитового сплава",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав.",
+    "&6Зачем нужен:&r идёт в Андезитовый сплав."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create:andesite_alloy_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/doors",
+    "7BF2AA99A5A1C7CD"
+   ]
+  },
+  {
+   "k": "stone_asurine",
+   "title": "Азурин",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Камень Create для декора. Встречается в мире слоями и получается смешиванием или дроблением.",
+    "&6Зачем нужен:&r идёт в Азуриновая колонна, Дроблёный рудный цинк, Резной азурин, Плита из резного азуринового кирпича, Ступеньки из резного азуринового кирпича.",
+    "&7Вариантов: 5. Засчитывается «Азурин»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:asurine",
+      "create:cut_asurine",
+      "create:cut_asurine_bricks",
+      "create:polished_cut_asurine",
+      "create:asurine_pillar"
+     ],
+     "count": 1,
+     "title": "Азурин (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/doors"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "stone_crimsite",
+   "title": "Кримзит",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Камень Create для декора. Встречается в мире слоями и получается смешиванием или дроблением.",
+    "&6Зачем нужен:&r идёт в Кримзитовая колонна, Дроблёное рудное железо, Резной кримзит, Плита из резного кримзитового кирпича, Ступеньки из резного кримзитового кирпича.",
+    "&7Вариантов: 5. Засчитывается «Кримзит»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:crimsite",
+      "create:cut_crimsite",
+      "create:cut_crimsite_bricks",
+      "create:polished_cut_crimsite",
+      "create:crimsite_pillar"
+     ],
+     "count": 1,
+     "title": "Кримзит (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/doors"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "stone_limestone",
+   "title": "Известняк",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Камень Create для декора. Встречается в мире слоями и получается смешиванием или дроблением.",
+    "&6Зачем нужен:&r идёт в Резной известняк, Плита из резного известнякового кирпича, Ступеньки из резного известнякового кирпича, Ограда из резного известнякового кирпича, Резные известняковые кирпичи.",
+    "&7Вариантов: 5. Засчитывается «Известняк»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:limestone",
+      "create:cut_limestone",
+      "create:cut_limestone_bricks",
+      "create:polished_cut_limestone",
+      "create:limestone_pillar"
+     ],
+     "count": 1,
+     "title": "Известняк (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/doors"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "stone_ochrum",
+   "title": "Охрум",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Камень Create для декора. Встречается в мире слоями и получается смешиванием или дроблением.",
+    "&6Зачем нужен:&r идёт в Дроблёное рудное золото, Резной охрум, Плита из резного охрумого кирпича, Ступеньки из резного охрумого кирпича, Ограда из резного охрумого кирпича.",
+    "&7Вариантов: 5. Засчитывается «Охрум»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:ochrum",
+      "create:cut_ochrum",
+      "create:cut_ochrum_bricks",
+      "create:polished_cut_ochrum",
+      "create:ochrum_pillar"
+     ],
+     "count": 1,
+     "title": "Охрум (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/doors"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "stone_scorchia",
+   "title": "Тёмный пепел",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Камень Create для декора. Встречается в мире слоями и получается смешиванием или дроблением.",
+    "&6Как получить:&r верстак: Пепел.",
+    "&6Зачем нужен:&r идёт в Резной тёмный пепел, Плита из резного тёмнопеплового кирпича, Ступеньки из резного тёмнопеплового кирпича, Ограда из резного тёмнопеплового кирпича, Резные тёмнопепловые кирпичи.",
+    "&7Вариантов: 5. Засчитывается «Тёмный пепел»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:scorchia",
+      "create:cut_scorchia",
+      "create:cut_scorchia_bricks",
+      "create:polished_cut_scorchia",
+      "create:scorchia_pillar"
+     ],
+     "count": 1,
+     "title": "Тёмный пепел (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/doors"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "stone_scoria",
+   "title": "Пепел",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Камень Create для декора. Встречается в мире слоями и получается смешиванием или дроблением.",
+    "&6Как получить:&r печь: Песок душ.",
+    "&6Зачем нужен:&r идёт в Резной пепел, Плита из резного пеплового кирпича, Ступеньки из резного пеплового кирпича, Ограда из резного пеплового кирпича, Резные пепловые кирпичи.",
+    "&7Вариантов: 5. Засчитывается «Пепел»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:scoria",
+      "create:cut_scoria",
+      "create:cut_scoria_bricks",
+      "create:polished_cut_scoria",
+      "create:scoria_pillar"
+     ],
+     "count": 1,
+     "title": "Пепел (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/doors"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "stone_veridium",
+   "title": "Веридий",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Камень Create для декора. Встречается в мире слоями и получается смешиванием или дроблением.",
+    "&6Зачем нужен:&r идёт в Кусочек меди, Дроблёная рудная медь, Резной веридий, Плита из резного веридиевого кирпича, Ступеньки из резного веридиевого кирпича.",
+    "&7Вариантов: 5. Засчитывается «Веридий»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:veridium",
+      "create:cut_veridium",
+      "create:cut_veridium_bricks",
+      "create:polished_cut_veridium",
+      "create:veridium_pillar"
+     ],
+     "count": 1,
+     "title": "Веридий (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/doors"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "cut_vanilla",
+   "title": "Тёсаный камень",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Камнерез превращает обычные камни в тёсаные блоки, кирпичи и колонны в стиле Create.",
+    "&6Как получить:&r верстак: Резная гранитная плита.",
+    "&6Зачем нужен:&r идёт в Плита из резного гранитного кирпича, Ступеньки из резного гранитного кирпича, Ограда из резного гранитного кирпича, Резные гранитные кирпичи, Резная гранитная плита.",
+    "&7Вариантов: 7. Засчитывается «Резной гранит»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create:cut_granite",
+      "create:cut_diorite",
+      "create:cut_andesite",
+      "create:cut_calcite",
+      "create:cut_dripstone",
+      "create:cut_deepslate",
+      "create:cut_tuff"
+     ],
+     "count": 1,
+     "title": "Резной гранит (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_misc/doors"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "finale",
+   "title": "Уютная мастерская",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Инструменты и украшения Create собраны.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "create_misc/shingles",
+    "create_misc/glass",
+    "create_misc/windows",
+    "create_misc/doors"
+   ],
+   "finale": true
+  }
+ ]
+}

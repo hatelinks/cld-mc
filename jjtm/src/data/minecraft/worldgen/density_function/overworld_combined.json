@@ -1,0 +1,245 @@
+{
+  "type": "minecraft:spline",
+  "spline": {
+    "coordinate": "minecraft:overworld_surface",
+    "points": [
+      {
+        "location": 0.025,
+        "derivative": 0,
+        "value": {
+          "coordinate": "minecraft:overworld_surface",
+          "points": [
+            {
+              "location": 0,
+              "derivative": 1,
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "location": 0.05,
+        "derivative": 0,
+        "value": {
+          "coordinate": "minecraft:cave_barrier",
+          "points": [
+            {
+              "location": -1,
+              "derivative": 0,
+              "value": {
+                "coordinate": "minecraft:overworld_surface",
+                "points": [
+                  {
+                    "location": 0.1,
+                    "derivative": 0,
+                    "value": {
+                      "coordinate": "minecraft:cave_barrier_2",
+                      "points": [
+                        {
+                          "location": 0,
+                          "derivative": 0,
+                          "value": 0.1
+                        },
+                        {
+                          "location": 0.5,
+                          "derivative": 0,
+                          "value": {
+                            "coordinate": "minecraft:old_caves_small",
+                            "points": [
+                              {
+                                "location": 0,
+                                "derivative": 1,
+                                "value": 0
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "location": 0.5,
+                    "derivative": 0,
+                    "value": {
+                      "coordinate": "minecraft:cave_barrier_2",
+                      "points": [
+                        {
+                          "location": 0,
+                          "derivative": 0,
+                          "value": 0.1
+                        },
+                        {
+                          "location": 0.5,
+                          "derivative": 0,
+                          "value": {
+                            "coordinate": "minecraft:old_caves_med",
+                            "points": [
+                              {
+                                "location": 0,
+                                "derivative": 1,
+                                "value": 0
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "location": 1,
+                    "derivative": 0,
+                    "value": {
+                      "coordinate": "minecraft:cave_barrier_2",
+                      "points": [
+                        {
+                          "location": 0,
+                          "derivative": 0,
+                          "value": 0.1
+                        },
+                        {
+                          "location": 0.5,
+                          "derivative": 0,
+                          "value": {
+                            "coordinate": "minecraft:old_caves_large",
+                            "points": [
+                              {
+                                "location": 0,
+                                "derivative": 1,
+                                "value": 0
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "location": 1.5,
+                    "derivative": 0,
+                    "value": {
+                      "coordinate": "minecraft:overworld_underlands",
+                      "points": [
+                        {
+                          "location": 0,
+                          "derivative": 1,
+                          "value": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "location": 1,
+              "derivative": 0,
+              "value": {
+                "coordinate": "minecraft:overworld_surface",
+                "points": [
+                  {
+                    "location": 0.1,
+                    "derivative": 0,
+                    "value": {
+                      "coordinate": "minecraft:cave_barrier_2",
+                      "points": [
+                        {
+                          "location": 0,
+                          "derivative": 0,
+                          "value": 0.1
+                        },
+                        {
+                          "location": 0.5,
+                          "derivative": 0,
+                          "value": {
+                            "coordinate": "minecraft:overworld_caves_small",
+                            "points": [
+                              {
+                                "location": 0,
+                                "derivative": 1,
+                                "value": 0
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "location": 0.5,
+                    "derivative": 0,
+                    "value": {
+                      "coordinate": "minecraft:cave_barrier_2",
+                      "points": [
+                        {
+                          "location": 0,
+                          "derivative": 0,
+                          "value": 0.1
+                        },
+                        {
+                          "location": 0.5,
+                          "derivative": 0,
+                          "value": {
+                            "coordinate": "minecraft:overworld_caves_medium",
+                            "points": [
+                              {
+                                "location": 0,
+                                "derivative": 1,
+                                "value": 0
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "location": 1,
+                    "derivative": 0,
+                    "value": {
+                      "coordinate": "minecraft:cave_barrier_2",
+                      "points": [
+                        {
+                          "location": 0,
+                          "derivative": 0,
+                          "value": 0.1
+                        },
+                        {
+                          "location": 0.5,
+                          "derivative": 0,
+                          "value": {
+                            "coordinate": "minecraft:overworld_caves_large",
+                            "points": [
+                              {
+                                "location": 0,
+                                "derivative": 1,
+                                "value": 0
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "location": 1.5,
+                    "derivative": 0,
+                    "value": {
+                      "coordinate": "minecraft:overworld_underlands",
+                      "points": [
+                        {
+                          "location": 0,
+                          "derivative": 1,
+                          "value": 0
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

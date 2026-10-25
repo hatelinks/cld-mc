@@ -1,0 +1,2163 @@
+{
+ "key": "ma_gear",
+ "id": "",
+ "title": "Ступени мастерства",
+ "subtitle": "Mystical Agriculture — снаряжение всех ступеней",
+ "group": "Магия и поселения",
+ "icon": "mysticalagriculture:supremium_chestplate",
+ "order": 10.2,
+ "quests": [
+  {
+   "k": "inferium_mat",
+   "title": "Инфериум: материалы",
+   "sub": "Слитки и самоцветы",
+   "desc": [
+    "&6Как работает:&r слиток и самоцвет — основные материалы ступени, из них делают инструменты, броню и блоки.",
+    "&6Зачем нужен:&r без них не создать ни одну вещь этой ступени.",
+    "&6Как использовать:&r получаются на алтаре инфузии из материалов предыдущей ступени и эссенции."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_ingot",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_gemstone",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "549472105094A59C"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "inferium_farm",
+   "title": "Инфериум: грядки",
+   "sub": "Земля и ускорители роста",
+   "desc": [
+    "&6Как работает:&r особая земля ускоряет рост семян, а ускоритель сокращает время созревания рядом стоящих культур.",
+    "&6Зачем нужен:&r чем выше ступень, тем быстрее и выгоднее урожай.",
+    "&6Как использовать:&r посадите семена на землю нужной ступени и поставьте ускоритель рядом."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_farmland",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_growth_accelerator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "inferium_mat"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "inferium_upg",
+   "title": "Инфериум: улучшения",
+   "sub": "Улучшение для машин",
+   "desc": [
+    "&6Как работает:&r улучшение вставляется в машины Mystical Agriculture и повышает их скорость.",
+    "&6Зачем нужен:&r ускоряет автоматизацию.",
+    "&6Как использовать:&r поместите в слот улучшений на машине."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "inferium_farm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "inferium_can",
+   "title": "Инфериум: лейка",
+   "sub": "Лейка нужной ступени",
+   "desc": [
+    "&6Как работает:&r лейка поливает область вокруг и ускоряет рост культур.",
+    "&6Зачем нужен:&r полезна пока автоматизации ещё нет.",
+    "&6Как использовать:&r зажмите ПКМ рядом с грядками."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_watering_can",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "inferium_upg"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "inferium_har",
+   "title": "Инфериум: жатва",
+   "sub": "Серп и коса",
+   "desc": [
+    "&6Как работает:&r серп собирает урожай по области, коса — по ещё большей.",
+    "&6Зачем нужен:&r быстрый ручной сбор.",
+    "&6Как использовать:&r ЛКМ по зрелой культуре."
+   ],
+   "x": 8.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_sickle",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_scythe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "inferium_can"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "inferium_tool",
+   "title": "Инфериум: инструменты",
+   "sub": "Меч, кирка, топор, лопата, мотыга",
+   "desc": [
+    "&6Как работает:&r полный набор инструментов ступени.",
+    "&6Зачем нужен:&r прочнее и эффективнее предыдущих.",
+    "&6Как использовать:&r собираются из слитков ступени на верстаке."
+   ],
+   "x": 10.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_sword",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_pickaxe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_axe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_shovel",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_hoe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "inferium_har"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "inferium_rng",
+   "title": "Инфериум: снаряжение",
+   "sub": "Лук, арбалет, удочка, ножницы",
+   "desc": [
+    "&6Как работает:&r дальнобойное и вспомогательное снаряжение ступени.",
+    "&6Зачем нужен:&r закрывает все виды деятельности.",
+    "&6Как использовать:&r как обычные аналоги."
+   ],
+   "x": 12.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_bow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_crossbow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_fishing_rod",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_shears",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "inferium_tool"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "inferium_arm",
+   "title": "Инфериум: броня",
+   "sub": "Полный комплект",
+   "desc": [
+    "&6Как работает:&r четыре части брони дают защиту выше предыдущей ступени.",
+    "&6Зачем нужен:&r полный комплект — надёжная защита.",
+    "&6Как использовать:&r соберите все четыре части."
+   ],
+   "x": 14.0,
+   "y": 0.0,
+   "icon": "mysticalagriculture:inferium_chestplate",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_helmet",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_chestplate",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_leggings",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_boots",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "inferium_rng"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "inferium_stf",
+   "title": "Инфериум: посох",
+   "sub": "Посох ступени",
+   "desc": [
+    "&6Как работает:&r магический посох ступени.",
+    "&6Зачем нужен:&r особое оружие/инструмент мода.",
+    "&6Как использовать:&r ПКМ в нужном режиме."
+   ],
+   "x": 16.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_staff",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "inferium_arm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "prudentium_mat",
+   "title": "Пруденциум: материалы",
+   "sub": "Слитки и самоцветы",
+   "desc": [
+    "&6Как работает:&r слиток и самоцвет — основные материалы ступени, из них делают инструменты, броню и блоки.",
+    "&6Зачем нужен:&r без них не создать ни одну вещь этой ступени.",
+    "&6Как использовать:&r получаются на алтаре инфузии из материалов предыдущей ступени и эссенции."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_ingot",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_gemstone",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "3C1DBE2D71FEE0D6",
+    "inferium_mat"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "prudentium_farm",
+   "title": "Пруденциум: грядки",
+   "sub": "Земля и ускорители роста",
+   "desc": [
+    "&6Как работает:&r особая земля ускоряет рост семян, а ускоритель сокращает время созревания рядом стоящих культур.",
+    "&6Зачем нужен:&r чем выше ступень, тем быстрее и выгоднее урожай.",
+    "&6Как использовать:&r посадите семена на землю нужной ступени и поставьте ускоритель рядом."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_farmland",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_growth_accelerator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "prudentium_mat"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "prudentium_upg",
+   "title": "Пруденциум: улучшения",
+   "sub": "Улучшение для машин",
+   "desc": [
+    "&6Как работает:&r улучшение вставляется в машины Mystical Agriculture и повышает их скорость.",
+    "&6Зачем нужен:&r ускоряет автоматизацию.",
+    "&6Как использовать:&r поместите в слот улучшений на машине."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "prudentium_farm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "prudentium_can",
+   "title": "Пруденциум: лейка",
+   "sub": "Лейка нужной ступени",
+   "desc": [
+    "&6Как работает:&r лейка поливает область вокруг и ускоряет рост культур.",
+    "&6Зачем нужен:&r полезна пока автоматизации ещё нет.",
+    "&6Как использовать:&r зажмите ПКМ рядом с грядками."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_watering_can",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "prudentium_upg"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "prudentium_har",
+   "title": "Пруденциум: жатва",
+   "sub": "Серп и коса",
+   "desc": [
+    "&6Как работает:&r серп собирает урожай по области, коса — по ещё большей.",
+    "&6Зачем нужен:&r быстрый ручной сбор.",
+    "&6Как использовать:&r ЛКМ по зрелой культуре."
+   ],
+   "x": 8.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_sickle",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_scythe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "prudentium_can"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "prudentium_tool",
+   "title": "Пруденциум: инструменты",
+   "sub": "Меч, кирка, топор, лопата, мотыга",
+   "desc": [
+    "&6Как работает:&r полный набор инструментов ступени.",
+    "&6Зачем нужен:&r прочнее и эффективнее предыдущих.",
+    "&6Как использовать:&r собираются из слитков ступени на верстаке."
+   ],
+   "x": 10.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_sword",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_pickaxe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_axe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_shovel",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_hoe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "prudentium_har"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "prudentium_rng",
+   "title": "Пруденциум: снаряжение",
+   "sub": "Лук, арбалет, удочка, ножницы",
+   "desc": [
+    "&6Как работает:&r дальнобойное и вспомогательное снаряжение ступени.",
+    "&6Зачем нужен:&r закрывает все виды деятельности.",
+    "&6Как использовать:&r как обычные аналоги."
+   ],
+   "x": 12.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_bow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_crossbow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_fishing_rod",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_shears",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "prudentium_tool"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "prudentium_arm",
+   "title": "Пруденциум: броня",
+   "sub": "Полный комплект",
+   "desc": [
+    "&6Как работает:&r четыре части брони дают защиту выше предыдущей ступени.",
+    "&6Зачем нужен:&r полный комплект — надёжная защита.",
+    "&6Как использовать:&r соберите все четыре части."
+   ],
+   "x": 14.0,
+   "y": 2.0,
+   "icon": "mysticalagriculture:prudentium_chestplate",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_helmet",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_chestplate",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_leggings",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_boots",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "prudentium_rng"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "prudentium_stf",
+   "title": "Пруденциум: посох",
+   "sub": "Посох ступени",
+   "desc": [
+    "&6Как работает:&r магический посох ступени.",
+    "&6Зачем нужен:&r особое оружие/инструмент мода.",
+    "&6Как использовать:&r ПКМ в нужном режиме."
+   ],
+   "x": 16.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_staff",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "prudentium_arm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "tertium_mat",
+   "title": "Терциум: материалы",
+   "sub": "Слитки и самоцветы",
+   "desc": [
+    "&6Как работает:&r слиток и самоцвет — основные материалы ступени, из них делают инструменты, броню и блоки.",
+    "&6Зачем нужен:&r без них не создать ни одну вещь этой ступени.",
+    "&6Как использовать:&r получаются на алтаре инфузии из материалов предыдущей ступени и эссенции."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_ingot",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_gemstone",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "6F8AD82D0D28B68B",
+    "prudentium_mat"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "tertium_farm",
+   "title": "Терциум: грядки",
+   "sub": "Земля и ускорители роста",
+   "desc": [
+    "&6Как работает:&r особая земля ускоряет рост семян, а ускоритель сокращает время созревания рядом стоящих культур.",
+    "&6Зачем нужен:&r чем выше ступень, тем быстрее и выгоднее урожай.",
+    "&6Как использовать:&r посадите семена на землю нужной ступени и поставьте ускоритель рядом."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_farmland",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_growth_accelerator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tertium_mat"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "tertium_upg",
+   "title": "Терциум: улучшения",
+   "sub": "Улучшение для машин",
+   "desc": [
+    "&6Как работает:&r улучшение вставляется в машины Mystical Agriculture и повышает их скорость.",
+    "&6Зачем нужен:&r ускоряет автоматизацию.",
+    "&6Как использовать:&r поместите в слот улучшений на машине."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tertium_farm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "tertium_can",
+   "title": "Терциум: лейка",
+   "sub": "Лейка нужной ступени",
+   "desc": [
+    "&6Как работает:&r лейка поливает область вокруг и ускоряет рост культур.",
+    "&6Зачем нужен:&r полезна пока автоматизации ещё нет.",
+    "&6Как использовать:&r зажмите ПКМ рядом с грядками."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_watering_can",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tertium_upg"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "tertium_har",
+   "title": "Терциум: жатва",
+   "sub": "Серп и коса",
+   "desc": [
+    "&6Как работает:&r серп собирает урожай по области, коса — по ещё большей.",
+    "&6Зачем нужен:&r быстрый ручной сбор.",
+    "&6Как использовать:&r ЛКМ по зрелой культуре."
+   ],
+   "x": 8.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_sickle",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_scythe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tertium_can"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "tertium_tool",
+   "title": "Терциум: инструменты",
+   "sub": "Меч, кирка, топор, лопата, мотыга",
+   "desc": [
+    "&6Как работает:&r полный набор инструментов ступени.",
+    "&6Зачем нужен:&r прочнее и эффективнее предыдущих.",
+    "&6Как использовать:&r собираются из слитков ступени на верстаке."
+   ],
+   "x": 10.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_sword",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_pickaxe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_axe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_shovel",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_hoe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "tertium_har"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "tertium_rng",
+   "title": "Терциум: снаряжение",
+   "sub": "Лук, арбалет, удочка, ножницы",
+   "desc": [
+    "&6Как работает:&r дальнобойное и вспомогательное снаряжение ступени.",
+    "&6Зачем нужен:&r закрывает все виды деятельности.",
+    "&6Как использовать:&r как обычные аналоги."
+   ],
+   "x": 12.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_bow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_crossbow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_fishing_rod",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_shears",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tertium_tool"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "tertium_arm",
+   "title": "Терциум: броня",
+   "sub": "Полный комплект",
+   "desc": [
+    "&6Как работает:&r четыре части брони дают защиту выше предыдущей ступени.",
+    "&6Зачем нужен:&r полный комплект — надёжная защита.",
+    "&6Как использовать:&r соберите все четыре части."
+   ],
+   "x": 14.0,
+   "y": 4.0,
+   "icon": "mysticalagriculture:tertium_chestplate",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_helmet",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_chestplate",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_leggings",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_boots",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "tertium_rng"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "tertium_stf",
+   "title": "Терциум: посох",
+   "sub": "Посох ступени",
+   "desc": [
+    "&6Как работает:&r магический посох ступени.",
+    "&6Зачем нужен:&r особое оружие/инструмент мода.",
+    "&6Как использовать:&r ПКМ в нужном режиме."
+   ],
+   "x": 16.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tertium_staff",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tertium_arm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "imperium_mat",
+   "title": "Империум: материалы",
+   "sub": "Слитки и самоцветы",
+   "desc": [
+    "&6Как работает:&r слиток и самоцвет — основные материалы ступени, из них делают инструменты, броню и блоки.",
+    "&6Зачем нужен:&r без них не создать ни одну вещь этой ступени.",
+    "&6Как использовать:&r получаются на алтаре инфузии из материалов предыдущей ступени и эссенции."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_ingot",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_gemstone",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "3A24838EF6D12015",
+    "tertium_mat"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "imperium_farm",
+   "title": "Империум: грядки",
+   "sub": "Земля и ускорители роста",
+   "desc": [
+    "&6Как работает:&r особая земля ускоряет рост семян, а ускоритель сокращает время созревания рядом стоящих культур.",
+    "&6Зачем нужен:&r чем выше ступень, тем быстрее и выгоднее урожай.",
+    "&6Как использовать:&r посадите семена на землю нужной ступени и поставьте ускоритель рядом."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_farmland",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_growth_accelerator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "imperium_mat"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "imperium_upg",
+   "title": "Империум: улучшения",
+   "sub": "Улучшение для машин",
+   "desc": [
+    "&6Как работает:&r улучшение вставляется в машины Mystical Agriculture и повышает их скорость.",
+    "&6Зачем нужен:&r ускоряет автоматизацию.",
+    "&6Как использовать:&r поместите в слот улучшений на машине."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "imperium_farm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "imperium_can",
+   "title": "Империум: лейка",
+   "sub": "Лейка нужной ступени",
+   "desc": [
+    "&6Как работает:&r лейка поливает область вокруг и ускоряет рост культур.",
+    "&6Зачем нужен:&r полезна пока автоматизации ещё нет.",
+    "&6Как использовать:&r зажмите ПКМ рядом с грядками."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_watering_can",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "imperium_upg"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "imperium_har",
+   "title": "Империум: жатва",
+   "sub": "Серп и коса",
+   "desc": [
+    "&6Как работает:&r серп собирает урожай по области, коса — по ещё большей.",
+    "&6Зачем нужен:&r быстрый ручной сбор.",
+    "&6Как использовать:&r ЛКМ по зрелой культуре."
+   ],
+   "x": 8.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_sickle",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_scythe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "imperium_can"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "imperium_tool",
+   "title": "Империум: инструменты",
+   "sub": "Меч, кирка, топор, лопата, мотыга",
+   "desc": [
+    "&6Как работает:&r полный набор инструментов ступени.",
+    "&6Зачем нужен:&r прочнее и эффективнее предыдущих.",
+    "&6Как использовать:&r собираются из слитков ступени на верстаке."
+   ],
+   "x": 10.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_sword",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_pickaxe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_axe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_shovel",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_hoe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "imperium_har"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "imperium_rng",
+   "title": "Империум: снаряжение",
+   "sub": "Лук, арбалет, удочка, ножницы",
+   "desc": [
+    "&6Как работает:&r дальнобойное и вспомогательное снаряжение ступени.",
+    "&6Зачем нужен:&r закрывает все виды деятельности.",
+    "&6Как использовать:&r как обычные аналоги."
+   ],
+   "x": 12.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_bow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_crossbow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_fishing_rod",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_shears",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "imperium_tool"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "imperium_arm",
+   "title": "Империум: броня",
+   "sub": "Полный комплект",
+   "desc": [
+    "&6Как работает:&r четыре части брони дают защиту выше предыдущей ступени.",
+    "&6Зачем нужен:&r полный комплект — надёжная защита.",
+    "&6Как использовать:&r соберите все четыре части."
+   ],
+   "x": 14.0,
+   "y": 6.0,
+   "icon": "mysticalagriculture:imperium_chestplate",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_helmet",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_chestplate",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_leggings",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_boots",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "imperium_rng"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "imperium_stf",
+   "title": "Империум: посох",
+   "sub": "Посох ступени",
+   "desc": [
+    "&6Как работает:&r магический посох ступени.",
+    "&6Зачем нужен:&r особое оружие/инструмент мода.",
+    "&6Как использовать:&r ПКМ в нужном режиме."
+   ],
+   "x": 16.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_staff",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "imperium_arm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "supremium_mat",
+   "title": "Супремиум: материалы",
+   "sub": "Слитки и самоцветы",
+   "desc": [
+    "&6Как работает:&r слиток и самоцвет — основные материалы ступени, из них делают инструменты, броню и блоки.",
+    "&6Зачем нужен:&r без них не создать ни одну вещь этой ступени.",
+    "&6Как использовать:&r получаются на алтаре инфузии из материалов предыдущей ступени и эссенции."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_ingot",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_gemstone",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "20A4C0B01C02F7EC",
+    "imperium_mat"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "supremium_farm",
+   "title": "Супремиум: грядки",
+   "sub": "Земля и ускорители роста",
+   "desc": [
+    "&6Как работает:&r особая земля ускоряет рост семян, а ускоритель сокращает время созревания рядом стоящих культур.",
+    "&6Зачем нужен:&r чем выше ступень, тем быстрее и выгоднее урожай.",
+    "&6Как использовать:&r посадите семена на землю нужной ступени и поставьте ускоритель рядом."
+   ],
+   "x": 2.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_farmland",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_growth_accelerator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "supremium_mat"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "supremium_upg",
+   "title": "Супремиум: улучшения",
+   "sub": "Улучшение для машин",
+   "desc": [
+    "&6Как работает:&r улучшение вставляется в машины Mystical Agriculture и повышает их скорость.",
+    "&6Зачем нужен:&r ускоряет автоматизацию.",
+    "&6Как использовать:&r поместите в слот улучшений на машине."
+   ],
+   "x": 4.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "supremium_farm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "supremium_can",
+   "title": "Супремиум: лейка",
+   "sub": "Лейка нужной ступени",
+   "desc": [
+    "&6Как работает:&r лейка поливает область вокруг и ускоряет рост культур.",
+    "&6Зачем нужен:&r полезна пока автоматизации ещё нет.",
+    "&6Как использовать:&r зажмите ПКМ рядом с грядками."
+   ],
+   "x": 6.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_watering_can",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "supremium_upg"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "supremium_har",
+   "title": "Супремиум: жатва",
+   "sub": "Серп и коса",
+   "desc": [
+    "&6Как работает:&r серп собирает урожай по области, коса — по ещё большей.",
+    "&6Зачем нужен:&r быстрый ручной сбор.",
+    "&6Как использовать:&r ЛКМ по зрелой культуре."
+   ],
+   "x": 8.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_sickle",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_scythe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "supremium_can"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "supremium_tool",
+   "title": "Супремиум: инструменты",
+   "sub": "Меч, кирка, топор, лопата, мотыга",
+   "desc": [
+    "&6Как работает:&r полный набор инструментов ступени.",
+    "&6Зачем нужен:&r прочнее и эффективнее предыдущих.",
+    "&6Как использовать:&r собираются из слитков ступени на верстаке."
+   ],
+   "x": 10.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_sword",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_pickaxe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_axe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_shovel",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_hoe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "supremium_har"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "supremium_rng",
+   "title": "Супремиум: снаряжение",
+   "sub": "Лук, арбалет, удочка, ножницы",
+   "desc": [
+    "&6Как работает:&r дальнобойное и вспомогательное снаряжение ступени.",
+    "&6Зачем нужен:&r закрывает все виды деятельности.",
+    "&6Как использовать:&r как обычные аналоги."
+   ],
+   "x": 12.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_bow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_crossbow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_fishing_rod",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_shears",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "supremium_tool"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "supremium_arm",
+   "title": "Супремиум: броня",
+   "sub": "Полный комплект",
+   "desc": [
+    "&6Как работает:&r четыре части брони дают защиту выше предыдущей ступени.",
+    "&6Зачем нужен:&r полный комплект — надёжная защита.",
+    "&6Как использовать:&r соберите все четыре части."
+   ],
+   "x": 14.0,
+   "y": 8.0,
+   "icon": "mysticalagriculture:supremium_chestplate",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_helmet",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_chestplate",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_leggings",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_boots",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "supremium_rng"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "supremium_stf",
+   "title": "Супремиум: посох",
+   "sub": "Посох ступени",
+   "desc": [
+    "&6Как работает:&r магический посох ступени.",
+    "&6Зачем нужен:&r особое оружие/инструмент мода.",
+    "&6Как использовать:&r ПКМ в нужном режиме."
+   ],
+   "x": 16.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:supremium_staff",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "supremium_arm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "awakened_supremium_mat",
+   "title": "Пробуждённый супремиум: материалы",
+   "sub": "Слитки и самоцветы",
+   "desc": [
+    "&6Как работает:&r слиток и самоцвет — основные материалы ступени, из них делают инструменты, броню и блоки.",
+    "&6Зачем нужен:&r без них не создать ни одну вещь этой ступени.",
+    "&6Как использовать:&r получаются на алтаре инфузии из материалов предыдущей ступени и эссенции."
+   ],
+   "x": 0.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_ingot",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_gemstone",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 35
+    }
+   ],
+   "deps": [
+    "2CC6F6B609EE5C4A",
+    "supremium_mat"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "awakened_supremium_farm",
+   "title": "Пробуждённый супремиум: грядки",
+   "sub": "Земля и ускорители роста",
+   "desc": [
+    "&6Как работает:&r особая земля ускоряет рост семян, а ускоритель сокращает время созревания рядом стоящих культур.",
+    "&6Зачем нужен:&r чем выше ступень, тем быстрее и выгоднее урожай.",
+    "&6Как использовать:&r посадите семена на землю нужной ступени и поставьте ускоритель рядом."
+   ],
+   "x": 2.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_growth_accelerator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 35
+    }
+   ],
+   "deps": [
+    "awakened_supremium_mat"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "awakened_supremium_upg",
+   "title": "Пробуждённый супремиум: улучшения",
+   "sub": "Улучшение для машин",
+   "desc": [
+    "&6Как работает:&r улучшение вставляется в машины Mystical Agriculture и повышает их скорость.",
+    "&6Зачем нужен:&r ускоряет автоматизацию.",
+    "&6Как использовать:&r поместите в слот улучшений на машине."
+   ],
+   "x": 4.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_upgrade",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 35
+    }
+   ],
+   "deps": [
+    "awakened_supremium_farm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "awakened_supremium_can",
+   "title": "Пробуждённый супремиум: лейка",
+   "sub": "Лейка нужной ступени",
+   "desc": [
+    "&6Как работает:&r лейка поливает область вокруг и ускоряет рост культур.",
+    "&6Зачем нужен:&r полезна пока автоматизации ещё нет.",
+    "&6Как использовать:&r зажмите ПКМ рядом с грядками."
+   ],
+   "x": 6.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_watering_can",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 35
+    }
+   ],
+   "deps": [
+    "awakened_supremium_upg"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "awakened_supremium_har",
+   "title": "Пробуждённый супремиум: жатва",
+   "sub": "Серп и коса",
+   "desc": [
+    "&6Как работает:&r серп собирает урожай по области, коса — по ещё большей.",
+    "&6Зачем нужен:&r быстрый ручной сбор.",
+    "&6Как использовать:&r ЛКМ по зрелой культуре."
+   ],
+   "x": 8.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_sickle",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_scythe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 35
+    }
+   ],
+   "deps": [
+    "awakened_supremium_can"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "awakened_supremium_tool",
+   "title": "Пробуждённый супремиум: инструменты",
+   "sub": "Меч, кирка, топор, лопата, мотыга",
+   "desc": [
+    "&6Как работает:&r полный набор инструментов ступени.",
+    "&6Зачем нужен:&r прочнее и эффективнее предыдущих.",
+    "&6Как использовать:&r собираются из слитков ступени на верстаке."
+   ],
+   "x": 10.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_sword",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_pickaxe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_axe",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_shovel",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_hoe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 35
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "awakened_supremium_har"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "awakened_supremium_rng",
+   "title": "Пробуждённый супремиум: снаряжение",
+   "sub": "Лук, арбалет, удочка, ножницы",
+   "desc": [
+    "&6Как работает:&r дальнобойное и вспомогательное снаряжение ступени.",
+    "&6Зачем нужен:&r закрывает все виды деятельности.",
+    "&6Как использовать:&r как обычные аналоги."
+   ],
+   "x": 12.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_bow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_crossbow",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_fishing_rod",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_shears",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 35
+    }
+   ],
+   "deps": [
+    "awakened_supremium_tool"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "awakened_supremium_arm",
+   "title": "Пробуждённый супремиум: броня",
+   "sub": "Полный комплект",
+   "desc": [
+    "&6Как работает:&r четыре части брони дают защиту выше предыдущей ступени.",
+    "&6Зачем нужен:&r полный комплект — надёжная защита.",
+    "&6Как использовать:&r соберите все четыре части."
+   ],
+   "x": 14.0,
+   "y": 10.0,
+   "icon": "mysticalagriculture:awakened_supremium_chestplate",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_helmet",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_chestplate",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_leggings",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_boots",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 35
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "awakened_supremium_rng"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "awakened_supremium_stf",
+   "title": "Пробуждённый супремиум: посох",
+   "sub": "Посох ступени",
+   "desc": [
+    "&6Как работает:&r магический посох ступени.",
+    "&6Зачем нужен:&r особое оружие/инструмент мода.",
+    "&6Как использовать:&r ПКМ в нужном режиме."
+   ],
+   "x": 16.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_staff",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 35
+    }
+   ],
+   "deps": [
+    "awakened_supremium_arm"
+   ],
+   "note": "Описание по общим знаниям о моде, свериться в игре"
+  },
+  {
+   "k": "master",
+   "title": "Мастер мистического снаряжения",
+   "sub": "Пробуждённая броня",
+   "desc": [
+    "Вы прошли все ступени Mystical Agriculture."
+   ],
+   "x": 18.0,
+   "y": 10.0,
+   "icon": "mysticalagriculture:awakened_supremium_chestplate",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_chestplate",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 100
+    }
+   ],
+   "deps": [
+    "awakened_supremium_arm"
+   ]
+  }
+ ]
+}

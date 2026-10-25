@@ -1,0 +1,1225 @@
+{
+ "key": "mc_found",
+ "id": "",
+ "title": "Первый камень",
+ "subtitle": "MineColonies — основание колонии",
+ "group": "Жизнь колонии",
+ "icon": "minecolonies:blockhuttownhall",
+ "order": 20,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Своя колония",
+   "sub": "С чего начинается город",
+   "desc": [
+    "MineColonies превращает вас в правителя: жители сами строят, добывают, готовят и защищают город.",
+    "Ваша задача — ставить здания, снабжать строителя материалами и развивать колонию.",
+    "&6Как начать:&r скрафтите лагерь или корабль снабжения, поставьте его — внутри будут ратуша и первые вещи."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "minecolonies:blockhuttownhall",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "supply",
+   "title": "Лагерь или корабль снабжения",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Лагерь ставится на суше, корабль — на воде. При установке появляется постройка с сундуком стартовых вещей.",
+    "&6Как получить:&r верстак: Сундук%s.",
+    "&6Цель:&r Создай Лагерь Снабжения или Корабль и размести его щелчком правой кнопки мыши на земле. С этого и начнётся твой долгий и тернистый путь!",
+    "&7Вариантов: 2. Засчитывается «Лагерь снабжения»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "minecolonies:supplycampdeployer",
+      "minecolonies:supplychestdeployer"
+     ],
+     "count": 1,
+     "title": "Лагерь снабжения (любой вариант)"
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/root"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "build_tool",
+   "title": "Жезл строительства",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Главный инструмент MineColonies: выбирает схему здания, показывает её призраком в мире и отдаёт заказ строителю.",
+    "&6Как получить:&r верстак.",
+    "&6Зачем нужен:&r идёт в Золотой молот помощника строителя, Бочка для компоста, Башня Алхимика, Стрельбище, Пекарня."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "structurize:sceptergold",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/supply"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "townhall",
+   "title": "Ратуша",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Ратуша — центр колонии. Её установка создаёт колонию и задаёт её границы.",
+    "&6Как получить:&r верстак: Build Tool.",
+    "&6Цель:&r Размести ратушу, используя Жезл Строительства, - с его помощью можно выбрать стиль постройки будущего центра колонии, а также её местоположение."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhuttownhall",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/place_townhall"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_log",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "mc_found/build_tool"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "builder",
+   "title": "Хижина строителя",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Строитель возводит все остальные здания. Без него колония не растёт.",
+    "&6Как получить:&r верстак: Build Tool.",
+    "&6Цель:&r Скрафть и расположи Хижину строителя с помощью Жезла Строителя. После найми Строителя (по умолчанию он выбирается автоматически из тех жителей, что есть на старте колонии), и дай указание построить его собственную хижину!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutbuilder",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/start_builder"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/townhall"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_minecolonies_check_out_guide",
+   "title": "\"Ознакомьтесь с Руководством!\"",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Нажми ПКМ на Хижину строителя, чтобы понять, как всё устроено."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/check_out_guide"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "mc_found/builder"
+   ]
+  },
+  {
+   "k": "adv_minecolonies_build_builder",
+   "title": "Построй здание Строителя",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Сохраняй своего Строителя сытым и удовлетворяй его запросы по ресурсам и инструментам, пока он строит первую в истории начинающей колонии хижину."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/build_builder"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "mc_found/builder"
+   ]
+  },
+  {
+   "k": "adv_minecolonies_fulfill_request",
+   "title": "Исполнение обходится дёшево",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Строитель просит ресурсы и инструменты. Откройте его хижину и отдайте нужное — или положите на склад.",
+    "&6Цель:&r Удовлетвори один из запросов Строителя на инструменты или ресурсы, используя соответствующие кнопки на его экране запросов."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/fulfill_request"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "mc_found/builder"
+   ]
+  },
+  {
+   "k": "adv_minecolonies_build_town_hall",
+   "title": "Главное украшение",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Построй ратушу. Место, конечно, никакими бонусами не располагает, но зато какой имеет вид!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/build_town_hall"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cobblestone",
+     "count": 64
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_build_builder"
+   ]
+  },
+  {
+   "k": "citizen",
+   "title": "Дом",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Дома нужны, чтобы жители не уходили и чтобы приходили новые. Чем выше уровень дома, тем больше жильцов.",
+    "&6Как получить:&r верстак: Факел, Build Tool.",
+    "&6Цель:&r Твоим жителям нужно где-то жить! Построй им Дом. Каждый уровень постройки увеличивает число жителей колонии на 1."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutcitizen",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/build_citizen"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_build_builder"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "tavern",
+   "title": "Таверна",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Таверна селит до четырёх жителей и привлекает гостей, которых можно нанять.",
+    "&6Как получить:&r верстак: Бочка, Build Tool.",
+    "&6Цель:&r Твоим жителям нужна крыша над головой! Построй Таверну для начального жилья и найма! Также в нём можно нанять там новых жителей. . .за определённую сумму!"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhuttavern",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/build_tavern"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/citizen"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_minecolonies_citizen_eat_food_first",
+   "title": "Ещё один нахлебник. . .",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Голодные жители плохо работают. Положите им еду или постройте столовую.",
+    "&6Цель:&r Жителям нужно быть сытыми, чтобы работать. Положи немного еды в их инвентарь и они съедят её как только захотят!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/citizen_eat_food_first"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "mc_found/citizen"
+   ]
+  },
+  {
+   "k": "clipboard",
+   "title": "Планшет",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Планшет показывает все открытые запросы жителей в одном списке.",
+    "&6Как получить:&r верстак: Кожа, Палка, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:clipboard",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/builder"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "scroll",
+   "title": "Свиток ресурсов",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Свиток ресурсов показывает, каких материалов не хватает строителю для текущей стройки.",
+    "&6Как получить:&r верстак: Кожа, Палка, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:resourcescroll",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "mc_found/builder"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "goggles_mc",
+   "title": "Очки строителя",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Очки строителя подсвечивают границы зданий и колонии.",
+    "&6Как получить:&r верстак: glass pane, Золотой самородок, Железный слиток, Кожа, Build Tool."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:build_goggles",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/builder"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "tape_mc",
+   "title": "Строительная лента",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Палка."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockconstructiontape",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/builder"
+   ]
+  },
+  {
+   "k": "hammer",
+   "title": "Золотой молот помощника строителя",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Молот помощника строителя ускоряет работу строителя, если отдать его ему.",
+    "&6Как получить:&r верстак: Палка, Build Tool."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:assistanthammer_gold",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/builder"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "structurize_tools",
+   "title": "Инструменты Structurize",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Инструмент сканирования сохраняет постройку в схему, инструмент форм строит сферы и цилиндры, циркуль измеряет расстояния.",
+    "&6Как получить:&r верстак: Железный слиток."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "structurize:sceptersteel",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "structurize:shapetool",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "structurize:caliper",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/build_tool"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_minecolonies_build_builder_2",
+   "title": "Время улучшений!",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Улучшай свою Хижину строителя, чтобы, благодаря этому, можно было улучшать и другие хижины!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/build_builder_2"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_build_builder"
+   ]
+  },
+  {
+   "k": "warehouse",
+   "title": "Склад",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Склад хранит все ресурсы колонии. Жители берут оттуда нужное сами, а курьеры разносят вещи.",
+    "&6Как получить:&r верстак: Сундук%s, Build Tool.",
+    "&6Цель:&r Нужно немного автоматизации? Построй склад для централизованного хранения материалов!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutwarehouse",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_warehouse"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_build_builder_2"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "courier",
+   "title": "Хижина курьера",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Курьер носит вещи со склада рабочим и забирает у них готовую продукцию.",
+    "&6Как получить:&r верстак: iron boots, Build Tool.",
+    "&6Цель:&r Построй Хижину курьера, и назначь Курьера. Он сможет автоматически выполнять запросы рабочих вместо тебя!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockhutdeliveryman",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/build_delivery_person"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/warehouse"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "rack",
+   "title": "Полка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Полка — блок хранения склада. Каждая полка добавляет места.",
+    "&6Как получить:&r верстак: Железный самородок, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockminecoloniesrack",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:oak_log",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "mc_found/warehouse"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "post_stash",
+   "title": "Почтовый ящик и тайник",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Почтовый ящик заказывает вещи со склада прямо к вам, а в тайник вы складываете вещи, которые курьер заберёт на склад.",
+    "&6Как получить:&r верстак: Сундук%s, Build Tool.",
+    "&6Цель:&r Поставь Почтовый ящик и Тайник для упрощённого доступа к Складу."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockpostbox",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "minecolonies:blockstash",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "minecolonies:production/post_and_stash"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/courier"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "banner",
+   "title": "Флаг и знак колонии",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Build Tool.",
+    "&7Вариантов: 2. Засчитывается «Флаг колонии»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "minecolonies:colony_banner",
+      "minecolonies:colonysign"
+     ],
+     "count": 1,
+     "title": "Флаг колонии (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/townhall"
+   ]
+  },
+  {
+   "k": "map_mc",
+   "title": "Карта Колонии",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Карта, Build Tool."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:colonymap",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/townhall"
+   ]
+  },
+  {
+   "k": "questlog",
+   "title": "Журнал заданий",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Журнал заданий. Жители иногда предлагают поручения — выполняйте их ради наград и отношений.",
+    "&6Как получить:&r верстак: Кожа, Бумага, Палка, Build Tool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:questlog",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/townhall"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "quarry",
+   "title": "Карьер",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Схема карьера: шахтёр копает его сверху вниз и приносит камень и руду.",
+    "&6Как получить:&r верстак: Бочка, Железная кирка, Build Tool.",
+    "&7Вариантов: 2. Засчитывается «Простой карьер»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "minecolonies:simplequarry",
+      "minecolonies:mediumquarry"
+     ],
+     "count": 1,
+     "title": "Простой карьер (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_build_builder_2"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "waypoint",
+   "title": "Блок контрольной точки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Контрольные точки задают дорожки, по которым ходят жители.",
+    "&6Как получить:&r верстак: Build Tool."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecolonies:blockwaypoint",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/build_tool"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "adv_minecolonies_colony_population_5",
+   "title": "Любимый город, в синей дымке тает. . .",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Пришло время для большего числа граждан! Дети могут родиться только при наличии свободного пространства в одном из зданий. Чтобы дети росли, они должны быть сыты и хорошо спать."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/colony_population_5"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "mc_found/citizen"
+   ]
+  },
+  {
+   "k": "adv_minecolonies_colony_population_10",
+   "title": "Хутор",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r 10 жителей - больше рабочих, а чем больше рабочих, тем больше ресурсов!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/colony_population_10"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    },
+    {
+     "type": "item",
+     "id": "minecraft:cobblestone",
+     "count": 64
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_colony_population_5"
+   ]
+  },
+  {
+   "k": "adv_minecolonies_colony_population_25",
+   "title": "Деревня",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r 25 жителей это много. Надеюсь, ты позволишь им остаться в живых!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/colony_population_25"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 45
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_colony_population_10"
+   ]
+  },
+  {
+   "k": "adv_minecolonies_colony_population_50",
+   "title": "Село",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r 50 жителей - этой цифры достаточно, чтобы иметь по одному работнику в каждой профессии - а то и несколько!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/colony_population_50"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 70
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_colony_population_25"
+   ]
+  },
+  {
+   "k": "adv_minecolonies_colony_population_75",
+   "title": "Город",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Ты поселился. Ты и твои поселенцы выжили. Ты преуспел. Уважение +"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/colony_population_75"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 95
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_colony_population_50"
+   ]
+  },
+  {
+   "k": "adv_minecolonies_build_town_hall_5",
+   "title": "Значимое место в шедевре",
+   "sub": "Достижение",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Цель:&r Конечно, мало пользы от постройки ратуши 5-ого уровня. . .но вынужден признать, что выглядит красиво!"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "advancement",
+     "id": "minecolonies:minecolonies/build_town_hall_5"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 150
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_colony_population_25"
+   ]
+  },
+  {
+   "k": "cutter",
+   "title": "Architect's Cutter",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Резак архитектора делает декоративные блоки Domum Ornamentum: рамы, стены, балки из любых двух материалов. Нужен строителю для многих схем.",
+    "&6Как получить:&r верстак: Железный слиток, stone slab."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "domum_ornamentum:architectscutter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/builder"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "domum_bricks",
+   "title": "Кирпичи Domum",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Кирпич, Песчаник.",
+    "&7Вариантов: 5. Засчитывается «Cream Bricks»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "domum_ornamentum:cream_bricks",
+      "domum_ornamentum:beige_bricks",
+      "domum_ornamentum:brown_bricks",
+      "domum_ornamentum:roan_bricks",
+      "domum_ornamentum:sand_bricks"
+     ],
+     "count": 1,
+     "title": "Cream Bricks (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/cutter"
+   ]
+  },
+  {
+   "k": "floating_carpet",
+   "title": "Парящий ковёр",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Белая шерсть."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "domum_ornamentum:white_floating_carpet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "mc_found/cutter"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Отец-основатель",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Колония стоит, растёт и снабжается.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "minecraft:emerald",
+     "count": 8
+    },
+    {
+     "type": "item",
+     "id": "minecraft:iron_ingot",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "mc_found/adv_minecolonies_colony_population_75",
+    "mc_found/adv_minecolonies_build_town_hall_5",
+    "mc_found/post_stash",
+    "mc_found/rack"
+   ],
+   "finale": true
+  }
+ ]
+}

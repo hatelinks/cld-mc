@@ -1,0 +1,770 @@
+{
+ "key": "ma_altars",
+ "id": "3E5F2AD5B76AB93E",
+ "title": "Алтари и души",
+ "subtitle": "Mystical Agriculture — инфузия, пробуждение и автоматизация",
+ "group": "Мистическое земледелие",
+ "icon": "mysticalagriculture:infusion_altar",
+ "order": 10,
+ "quests": [
+  {
+   "id": "33DFC8922EAF47A3",
+   "title": "Пьедестал инфузии",
+   "sub": "Подставки для ингредиентов",
+   "desc": [
+    "Вокруг алтаря ставятся пьедесталы, на них кладут ингредиенты рецептов."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:infusion_pedestal",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "63108DCABED29F5B"
+   ]
+  },
+  {
+   "id": "61B65A3ED7BE3828",
+   "title": "Алтарь инфузии",
+   "sub": "Создание семян",
+   "desc": [
+    "На алтаре инфузии из базы семян и эссенций делаются семена для культур."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:infusion_altar",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "33DFC8922EAF47A3"
+   ]
+  },
+  {
+   "id": "535437FB70D9C21A",
+   "title": "Кристалл инфузии",
+   "sub": "Катализатор",
+   "desc": [
+    "Кристалл нужен для создания семян и других рецептов."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:infusion_crystal",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "61B65A3ED7BE3828"
+   ]
+  },
+  {
+   "id": "229B35E02987370D",
+   "title": "Первая инфузия",
+   "sub": "Обряд",
+   "desc": [
+    "Положите базу семян на алтарь, а нужные ингредиенты расставьте на пьедесталах."
+   ],
+   "x": 6.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Создать семена на алтаре инфузии"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "61B65A3ED7BE3828",
+    "549472105094A59C"
+   ]
+  },
+  {
+   "id": "3107890C30964912",
+   "title": "Сосуд эссенции",
+   "sub": "Хранилище эссенций",
+   "desc": [
+    "В сосуде удобно держать эссенции для инфузии."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:essence_vessel",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "61B65A3ED7BE3828"
+   ]
+  },
+  {
+   "id": "16AD72970226FA13",
+   "title": "Мастер-кристалл",
+   "sub": "Высший катализатор",
+   "desc": [
+    "Нужен для ритуалов высшего уровня."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:master_infusion_crystal",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "535437FB70D9C21A"
+   ]
+  },
+  {
+   "id": "4E8E0A874B2E61A0",
+   "title": "Пьедестал пробуждения",
+   "sub": "Подставки для пробуждения",
+   "desc": [
+    "Пьедесталы окружают алтарь пробуждения."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakening_pedestal",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "16AD72970226FA13"
+   ]
+  },
+  {
+   "id": "149B20CA99873848",
+   "title": "Алтарь пробуждения",
+   "sub": "Высший ритуал",
+   "desc": [
+    "Здесь создаются самые мощные материалы мода."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakening_altar",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "4E8E0A874B2E61A0"
+   ]
+  },
+  {
+   "id": "2CC6F6B609EE5C4A",
+   "title": "Пробуждённый супремиум",
+   "sub": "Вершина материалов",
+   "desc": [
+    "Самый ценный материал мода."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:awakened_supremium_ingot",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "149B20CA99873848",
+    "20A4C0B01C02F7EC"
+   ]
+  },
+  {
+   "id": "43CAA4006D98B561",
+   "title": "Стол изменений",
+   "sub": "Улучшаем снаряжение",
+   "desc": [
+    "На столе улучшения вставляют усилители в инструменты и броню."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:tinkering_table",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "535437FB70D9C21A"
+   ]
+  },
+  {
+   "id": "2BFD9BCEFCB78E17",
+   "title": "Зачарователь",
+   "sub": "Особые чары",
+   "desc": [
+    "Мистический зачарователь работает с эссенциями."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:enchanter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "43CAA4006D98B561"
+   ]
+  },
+  {
+   "id": "4EE3355D1ECCE020",
+   "title": "Каркас станка",
+   "sub": "Основа автоматизации",
+   "desc": [
+    "Из каркаса делаются все станки мода."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:machine_frame",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "535437FB70D9C21A"
+   ]
+  },
+  {
+   "id": "14D605F3D882C7CF",
+   "title": "Мистическая печь",
+   "sub": "Печь для эссенций",
+   "desc": [
+    "Быстрая печь мода, работает на мистическом топливе."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:furnace",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4EE3355D1ECCE020"
+   ]
+  },
+  {
+   "id": "2DF0163A30459511",
+   "title": "Переработчик семян",
+   "sub": "Семена в семена",
+   "desc": [
+    "Переделывает ненужные семена в нужные."
+   ],
+   "x": 8.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:seed_reprocessor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "4EE3355D1ECCE020"
+   ]
+  },
+  {
+   "id": "0AC635586848D766",
+   "title": "Автокомбайн",
+   "sub": "Сбор без рук",
+   "desc": [
+    "Автоматически собирает урожай с грядок в радиусе."
+   ],
+   "x": 10.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:harvester",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4EE3355D1ECCE020",
+    "ma_gear/inferium_har"
+   ]
+  },
+  {
+   "id": "5FB6CBBA78AFFED8",
+   "title": "База улучшений",
+   "sub": "Усиление станков",
+   "desc": [
+    "Улучшения повышают скорость и эффективность станков."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:upgrade_base",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "4EE3355D1ECCE020"
+   ]
+  },
+  {
+   "id": "3DAFEC3CBAD3B2B6",
+   "title": "Камень душ",
+   "sub": "Особый камень",
+   "desc": [
+    "Камень душ встречается в мире или делается в рецептах."
+   ],
+   "x": 0.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:soulstone",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "535437FB70D9C21A"
+   ]
+  },
+  {
+   "id": "303E7117B0752EE2",
+   "title": "Стекло душ",
+   "sub": "Особое стекло",
+   "desc": [
+    "Нужно для сосудов и станков."
+   ],
+   "x": 2.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:soul_glass",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "3DAFEC3CBAD3B2B6"
+   ]
+  },
+  {
+   "id": "6706F4068E7D73AC",
+   "title": "Руда душ",
+   "sub": "Источник пыли душ",
+   "desc": [
+    "Руда встречается под землёй, из неё выпадает пыль душ."
+   ],
+   "x": 4.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:soulium_ore",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3DAFEC3CBAD3B2B6"
+   ]
+  },
+  {
+   "id": "39F62F97C2AD45AA",
+   "title": "Слиток душ",
+   "sub": "Металл душ",
+   "desc": [
+    "Слиток нужен для оружия и спавнера."
+   ],
+   "x": 6.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:soulium_ingot",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:inferium_essence",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "6706F4068E7D73AC"
+   ]
+  },
+  {
+   "id": "347E71C0738E6803",
+   "title": "Кинжал душ",
+   "sub": "Собираем души",
+   "desc": [
+    "Убийства кинжалом пополняют сосуд для душ."
+   ],
+   "x": 8.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:soulium_dagger",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "39F62F97C2AD45AA"
+   ]
+  },
+  {
+   "id": "6DE6533D488F4B2D",
+   "title": "Сосуд для душ",
+   "sub": "Хранилище душ",
+   "desc": [
+    "Хранит накопленные души для спавнера."
+   ],
+   "x": 10.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:soul_jar",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:prudentium_essence",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "347E71C0738E6803"
+   ]
+  },
+  {
+   "id": "100ACF9639AA4835",
+   "title": "Экстрактор душ",
+   "sub": "Души из предметов",
+   "desc": [
+    "Достаёт души из предметов, которые когда-то были мобами."
+   ],
+   "x": 6.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:soul_extractor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4EE3355D1ECCE020",
+    "39F62F97C2AD45AA"
+   ]
+  },
+  {
+   "id": "55E7641A79D71058",
+   "title": "Спавнер душ",
+   "sub": "Моб-ферма в блоке",
+   "desc": [
+    "Порождает мобов с помощью накопленных душ.",
+    "Подробности смотрите в книге мода."
+   ],
+   "x": 12.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "mysticalagriculture:soulium_spawner",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "6DE6533D488F4B2D",
+    "4EE3355D1ECCE020"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Хранитель алтарей",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Инфузия, пробуждение и души подчинены вам.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "mysticalagriculture:imperium_essence",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "55E7641A79D71058",
+    "2CC6F6B609EE5C4A",
+    "100ACF9639AA4835",
+    "2DF0163A30459511"
+   ],
+   "finale": true
+  }
+ ]
+}

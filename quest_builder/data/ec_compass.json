@@ -1,0 +1,696 @@
+{
+ "key": "ec_compass",
+ "id": "6AC332C63E55C978",
+ "title": "Путеводная стрелка",
+ "subtitle": "Explorer's Compass — поиск структур по всему миру",
+ "group": "Хозяйство и путешествия",
+ "icon": "explorerscompass:explorerscompass",
+ "order": 15,
+ "quests": [
+  {
+   "id": "520494043376DA40",
+   "title": "Обычный компас",
+   "sub": "Дорога домой",
+   "desc": [
+    "Обычный компас указывает на точку спауна.",
+    "Компас исследователя умеет искать структуры."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:compass",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "id": "3C5338891F0D45A1",
+   "title": "Компас исследователя",
+   "sub": "Ищем структуры",
+   "desc": [
+    "Выберите тип структуры и нажмите на кнопку поиска, компас укажет направление."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "explorerscompass:explorerscompass",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "520494043376DA40"
+   ]
+  },
+  {
+   "id": "27F66B73FE25B863",
+   "title": "Первая находка",
+   "sub": "Идём за стрелкой",
+   "desc": [
+    "Найдите любую структуру и дойдите до неё. Поиск может занять время в новом мире."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Найти структуру с помощью компаса исследователя"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "3C5338891F0D45A1"
+   ]
+  },
+  {
+   "id": "6D813B2627681816",
+   "title": "Деревня",
+   "sub": "Первое поселение",
+   "desc": [
+    "Деревни — место для торговли и первых запасов."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:village_plains"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:compass",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "5508C1C34546F2C8",
+   "title": "Заброшенная шахта",
+   "sub": "Подземелье для опытных",
+   "desc": [
+    "Заброшенные шахты богаты рудами и сундуками, но полны пауков."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:mineshaft"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "05EA20AF50724AF1",
+   "title": "Пустынный храм",
+   "sub": "Ловушки и сокровища",
+   "desc": [
+    "Осторожно с ловушкой под центральным блоком."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:desert_pyramid"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "27FF642AA6A54ABE",
+   "title": "Крепость Края",
+   "sub": "Путь в Энд",
+   "desc": [
+    "В крепости находится портал в Энд."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:stronghold"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "4EE5B87DDE3EACC3",
+   "title": "Подводная крепость",
+   "sub": "Стражи и сокровища",
+   "desc": [
+    "Подготовьте зелья дыхания под водой."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:monument"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "4E4541B1C4374F8A",
+   "title": "Лесной особняк",
+   "sub": "Опасное логово",
+   "desc": [
+    "Здесь живут иллюзионисты и вредители."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:mansion"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "id": "06560091D6DFB925",
+   "title": "Древний город",
+   "sub": "Царство тишины",
+   "desc": [
+    "Двигайтесь тихо: Хранитель реагирует на звуки."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "minecraft:ancient_city"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "27F66B73FE25B863"
+   ]
+  },
+  {
+   "k": "naturescompass",
+   "title": "Природный компас",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Природный компас ищет биомы. Выберите биом в меню, и стрелка укажет путь.",
+    "&6Как получить:&r верстак: Компас."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "naturescompass:naturescompass",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "naturescompass:natures_compass"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "520494043376DA40"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "warp_dust",
+   "title": "Пыль перемещения",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пыль перемещения — основа всех предметов Waystones.",
+    "&6Как получить:&r верстак: Осколок аметиста, Жемчуг Края.",
+    "&6Зачем нужен:&r идёт в Плита перемещения."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "waystones:warp_dust",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "520494043376DA40"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "waystone",
+   "title": "Путеводный обелиск",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Обелиски встречаются в деревнях и строятся вручную. Активируйте обелиск — и сможете телепортироваться к нему с любого другого.",
+    "&6Как получить:&r верстак: Обсидиан, Каменные кирпичи, Камень перемещения.",
+    "&6Зачем нужен:&r идёт в Замшелый путеводный обелиск.",
+    "&7Вариантов: 6. Засчитывается «Путеводный обелиск»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "waystones:waystone",
+      "waystones:mossy_waystone",
+      "waystones:sandy_waystone",
+      "waystones:deepslate_waystone",
+      "waystones:blackstone_waystone",
+      "waystones:end_stone_waystone"
+     ],
+     "count": 1,
+     "title": "Путеводный обелиск (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ec_compass/warp_dust"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "warp_stone",
+   "title": "Камень перемещения",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Камень перемещения переносит к любому активированному обелиску из инвентаря.",
+    "&6Как получить:&r верстак: Осколок аметиста, Жемчуг Края.",
+    "&6Зачем нужен:&r идёт в Чёрный судьбоносный обелиск, Синий судьбоносный обелиск, Коричневый судьбоносный обелиск, Голубой судьбоносный обелиск, Серый судьбоносный обелиск."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "waystones:warp_stone",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:ender_pearl",
+     "count": 1
+    }
+   ],
+   "deps": [
+    "ec_compass/warp_dust"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "return_scroll",
+   "title": "Свиток возврата",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Свиток возврата — разовый телепорт к последнему обелиску.",
+    "&6Как получить:&r верстак: Чернильный мешок, Бумага."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "waystones:return_scroll",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ec_compass/warp_dust"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "scrolls_w",
+   "title": "Свитки перемещения",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Жемчуг Края, Чернильный мешок, Бумага.",
+    "&7Вариантов: 2. Засчитывается «Свиток перемещения»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "waystones:warp_scroll",
+      "waystones:blank_scroll"
+     ],
+     "count": 1,
+     "title": "Свиток перемещения (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ec_compass/warp_dust"
+   ]
+  },
+  {
+   "k": "warp_plate",
+   "title": "Плита перемещения",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Плита перемещения связывается с другой плитой осколком — встали и переместились.",
+    "&6Как получить:&r верстак: Каменные кирпичи, Dormant Shard, Пыль перемещения."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "waystones:warp_plate",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ec_compass/warp_dust"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "shards",
+   "title": "Осколки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Глубинный сланец, Кремень.",
+    "&7Вариантов: 2. Засчитывается «Deepslate Shard»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "waystones:deepslate_shard",
+      "waystones:dormant_shard"
+     ],
+     "count": 1,
+     "title": "Deepslate Shard (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ec_compass/warp_plate"
+   ]
+  },
+  {
+   "k": "sharestone",
+   "title": "Судьбоносный обелиск",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Обелиски одного цвета связаны в отдельную сеть — для своих маршрутов.",
+    "&6Как получить:&r верстак: Обсидиан, Каменные кирпичи, Камень перемещения.",
+    "&7Вариантов: 15. Засчитывается «Оранжевый судьбоносный обелиск»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "waystones:orange_sharestone",
+      "waystones:magenta_sharestone",
+      "waystones:light_blue_sharestone",
+      "waystones:yellow_sharestone",
+      "waystones:lime_sharestone",
+      "waystones:pink_sharestone",
+      "waystones:gray_sharestone",
+      "waystones:light_gray_sharestone",
+      "waystones:cyan_sharestone",
+      "waystones:purple_sharestone",
+      "waystones:blue_sharestone",
+      "waystones:brown_sharestone",
+      "waystones:green_sharestone",
+      "waystones:red_sharestone",
+      "waystones:black_sharestone"
+     ],
+     "count": 1,
+     "title": "Оранжевый судьбоносный обелиск (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ec_compass/warp_stone"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "portstone",
+   "title": "Портовый камень",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Полированный андезит, Каменные кирпичи, Камень перемещения.",
+    "&7Вариантов: 16. Засчитывается «Portstone»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "waystones:white_portstone",
+      "waystones:orange_portstone",
+      "waystones:magenta_portstone",
+      "waystones:light_blue_portstone",
+      "waystones:yellow_portstone",
+      "waystones:lime_portstone",
+      "waystones:pink_portstone",
+      "waystones:gray_portstone",
+      "waystones:light_gray_portstone",
+      "waystones:cyan_portstone",
+      "waystones:purple_portstone",
+      "waystones:blue_portstone",
+      "waystones:brown_portstone",
+      "waystones:green_portstone",
+      "waystones:red_portstone",
+      "waystones:black_portstone"
+     ],
+     "count": 1,
+     "title": "Portstone (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "ec_compass/warp_stone"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Первооткрыватель",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Компасы и обелиски приведут вас куда угодно.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "minecraft:ender_pearl",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "6D813B2627681816",
+    "27FF642AA6A54ABE",
+    "ec_compass/waystone",
+    "ec_compass/warp_stone"
+   ],
+   "finale": true
+  }
+ ]
+}

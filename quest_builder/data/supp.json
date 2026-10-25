@@ -1,0 +1,1946 @@
+{
+ "key": "supp",
+ "id": "",
+ "title": "Мелочи жизни",
+ "subtitle": "Supplementaries — полезные мелочи и уют",
+ "group": "Хозяйство и путешествия",
+ "icon": "supplementaries:sack",
+ "order": 18,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Мелочи жизни",
+   "sub": "Полезное и красивое",
+   "desc": [
+    "Supplementaries добавляет десятки предметов, которых не хватает в обычной игре: верёвки, мешки, баночки, флюгеры, пушки, фонари и многое другое.",
+    "Квесты идут разделами: быт, приборы, механика, приключения и декор."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "supplementaries:sack",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "flax_seeds",
+   "title": "Семена льна",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Дикий лён растёт в мире. Семена сажают на грядку, урожай — лён.",
+    "&6Зачем нужен:&r идёт в Растительное масло."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:flax_seeds",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "flax",
+   "title": "Лён",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Лён — сырьё для верёвок, мешков и ткани.",
+    "&6Как получить:&r верстак: Сноп льна.",
+    "&6Зачем нужен:&r идёт в Биомасса, Нить, Маркиза, Мазня, Коврик."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:flax",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/flax_seeds"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "rope",
+   "title": "Верёвка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Верёвка свисает вниз от блока и по ней можно лазать. ПКМ по верёвке опускает или поднимает её.",
+    "&6Как получить:&r верстак: Лён.",
+    "&6Зачем нужен:&r идёт в Орнитоптер-планер, Орнитоптер-планер чёрный, Орнитоптер-планер синий, Орнитоптер-планер коричневый, Орнитоптер-планер бирюзовый."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:rope",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:rope",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "supp/flax"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "pulley_block",
+   "title": "Шкив",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Шкив наматывает и разматывает верёвку или цепь. Работает с Create как лебёдка.",
+    "&6Как получить:&r верстак."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:pulley_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/flax_seeds"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "sack",
+   "title": "Мешок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Мешок — переносное хранилище на 9 слотов. В отличие от рюкзака, его можно ставить как блок.",
+    "&6Как получить:&r верстак: Лён."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:sack",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/flax"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "jar",
+   "title": "Баночка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Баночка хранит жидкости, мёд, рыбу, светлячков и даже маленьких мобов.",
+    "&6Как получить:&r верстак: Стекло.",
+    "&6Зачем нужен:&r идёт в Лодка в баночке."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:jar",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/flax_seeds"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "cage",
+   "title": "Клетка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Клетка ловит мелких и детёнышей мобов и позволяет перевозить их.",
+    "&6Как получить:&r верстак: Железная решётка."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:cage",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:flax",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "supp/flax_seeds"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "item_shelf",
+   "title": "Дубовая полка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Полка показывает один предмет — красивая витрина.",
+    "&6Как получить:&r верстак."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:item_shelf",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/cage"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "pedestal",
+   "title": "Пьедестал",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: chiseled stone bricks, stone brick slab, Каменные кирпичи."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:pedestal",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/cage"
+   ]
+  },
+  {
+   "k": "planters",
+   "title": "Горшки и цветочные ящики",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Костная мука, Кирпич, Земля."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:planter",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:flower_box",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/cage"
+   ]
+  },
+  {
+   "k": "home_decor",
+   "title": "Уют дома",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Лён.",
+    "&7Вариантов: 3. Засчитывается «Коврик»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "supplementaries:doormat",
+      "supplementaries:hat_stand",
+      "supplementaries:statue"
+     ],
+     "count": 1,
+     "title": "Коврик (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/flax"
+   ]
+  },
+  {
+   "k": "lunch_basket",
+   "title": "Обеденная корзинка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Обеденная корзинка хранит еду. Еда достаётся из неё прямо при поедании.",
+    "&6Как получить:&r верстак: Бамбук."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:lunch_basket",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/cage"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "sweets_s",
+   "title": "Сладости",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Бутылочка молока, Сахар.",
+    "&7Вариантов: 3. Засчитывается «Блинчик»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "supplementaries:pancake",
+      "supplementaries:candy",
+      "supplementaries:sugar_cube"
+     ],
+     "count": 1,
+     "title": "Блинчик (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/lunch_basket",
+    "fd_kitchen/milk_bottle"
+   ]
+  },
+  {
+   "k": "fodder",
+   "title": "Корм",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Корм для животных: кормит сразу нескольких и ускоряет рост детёнышей.",
+    "&6Как получить:&r верстак: Сноп сена, Сноп льна."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:fodder",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/lunch_basket"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "soap",
+   "title": "Мыло",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Мыло отмывает краску с шерсти, стекла и других блоков, а ещё снимает воск.",
+    "&6Как получить:&r верстак: Мыльный блок.",
+    "&6Зачем нужен:&r идёт в Стрела, Стекло, Карта, Поршень, Бамбуковые шипы.",
+    "&6Цель:&r Съешьте кусок мыла. Не пытайтесь повторить это дома"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:soap",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "supplementaries:husbandry/soap"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:candle",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "supp/lunch_basket"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "fire_pit",
+   "title": "Кострище",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Бутылочка светона."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:fire_pit",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/lunch_basket"
+   ]
+  },
+  {
+   "k": "key_lock",
+   "title": "Ключ и замок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Замок закрывает дверь или сундук: открыть их можно только ключом с тем же названием.",
+    "&6Как получить:&r верстак."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:key",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:lock_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/soap"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "globe",
+   "title": "Глобус",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Глобус показывает карту мира и крутится от удара.",
+    "&6Как получить:&r верстак: Старинный глобус, Мыло.",
+    "&6Зачем нужен:&r идёт в Старинный глобус.",
+    "&6Цель:&r Раскрутите глобус до невероятной скорости"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:globe",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "supplementaries:adventure/globe"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/soap"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "altimeter",
+   "title": "Высотомер",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Высотомер показывает высоту над уровнем моря.",
+    "&6Как получить:&r верстак: Редстоун.",
+    "&6Зачем нужен:&r идёт в Слоевая карта."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:altimeter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/globe"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "wind_vane",
+   "title": "Флюгер",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Флюгер крутится по ветру и подаёт сигнал в грозу.",
+    "&6Как получить:&r верстак: Железная решётка, Редстоун."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:wind_vane",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:rope",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "supp/globe"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "clock_block",
+   "title": "Часовой блок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Часовой блок показывает время и подаёт сигнал по часам.",
+    "&6Как получить:&r верстак: Часы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:clock_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/globe"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "hourglass",
+   "title": "Песочные часы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Песочные часы отсчитывают время и выдают сигнал, пока сыплется песок.",
+    "&6Как получить:&r верстак: Стекло."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:hourglass",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/globe"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "boards",
+   "title": "Доска объявлений и школьная доска",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "На доске объявлений вешают книги и карты, на школьной доске рисуют мелом.",
+    "&6Как получить:&r верстак: Бумага."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:notice_board",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:blackboard",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/hourglass"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "slice_map",
+   "title": "Слоевая карта",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Слоевая карта показывает мир на выбранной высоте — удобно под землёй.",
+    "&6Как получить:&r верстак: Depth gauge, Карта."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:slice_map",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/hourglass"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "displays",
+   "title": "Дисплей и динамик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Осколок аметиста, Глубинный сланец."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:crystal_display",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:speaker_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:flax",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "supp/hourglass"
+   ]
+  },
+  {
+   "k": "bellows",
+   "title": "Мехи",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Мехи раздувают огонь в печах (ускоряют плавку) и толкают сущности.",
+    "&6Как получить:&r верстак: Кожа."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:bellows",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/hourglass"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "faucet",
+   "title": "Кран",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Кран выливает жидкость из бочки, баночки или котла — полезен для автоматизации.",
+    "&6Как получить:&r верстак."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:faucet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/bellows"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "turn_table",
+   "title": "Вращатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вращатель поворачивает блоки и сущности над собой по сигналу.",
+    "&6Как получить:&r верстак: Булыжник, Редстоун.",
+    "&6Цель:&r Вращайте себя с помощью вращателя"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:turn_table",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "supplementaries:husbandry/turn_table"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/bellows"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "spring_launcher",
+   "title": "Запускатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Запускатель подбрасывает всё, что стоит над ним.",
+    "&6Как получить:&r верстак: Порох, Блок слизи, Липкий поршень."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:spring_launcher",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:candle",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "supp/bellows"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "crank_cog",
+   "title": "Шатун и шестерни",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Камень."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:crank",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:cog_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/bellows"
+   ]
+  },
+  {
+   "k": "slidy_block",
+   "title": "Передвижной блок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Туф."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:slidy_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/crank_cog"
+   ]
+  },
+  {
+   "k": "redstone_s",
+   "title": "Редстоун Supplementaries",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Булыжник, Редстоун."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:relayer",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:redstone_illuminator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/crank_cog"
+   ]
+  },
+  {
+   "k": "dispenser_minecart",
+   "title": "Раздающая вагонетка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Раздатчик, Вагонетка.",
+    "&6Зачем нужен:&r идёт в Раздатчик, Вагонетка."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:dispenser_minecart",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/crank_cog"
+   ]
+  },
+  {
+   "k": "wrench",
+   "title": "Гаечный ключ",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Гаечный ключ поворачивает блоки, не ломая их.",
+    "&6Как получить:&r верстак.",
+    "&6Цель:&r Поверните блок с помощью гаечного ключа"
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:wrench",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "supplementaries:husbandry/wrench"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:rope",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "supp/crank_cog"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "slingshot",
+   "title": "Рогатка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Рогатка стреляет любыми блоками и предметами.",
+    "&6Как получить:&r верстак: rabbit hide.",
+    "&6Зачем нужен:&r идёт в Пушка."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:slingshot",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/wrench"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "bomb",
+   "title": "Бомба",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Бомба взрывается при ударе. Ломает блоки слабее динамита.",
+    "&6Как получить:&r верстак: Динамит."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:bomb",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/slingshot"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "cannon",
+   "title": "Пушка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пушка стреляет ядрами и другими снарядами. Порох задаёт силу выстрела.",
+    "&6Как получить:&r разделочная доска: Пробуждённая супремиевая мотыга, Дубовая пушечная лодка.",
+    "&6Зачем нужен:&r идёт в Дубовая пушечная лодка, Бамбуковый пушечный плот."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:cannon",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/slingshot"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "cannonball",
+   "title": "Пушечное ядро",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:cannonball",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:flax",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "supp/slingshot"
+   ]
+  },
+  {
+   "k": "rope_arrow",
+   "title": "Обмотанная стрела",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Стрела оставляет за собой верёвку — по ней можно забраться наверх.",
+    "&6Как получить:&r особый рецепт: Rope, Стрела."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:rope_arrow",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/slingshot"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "flute",
+   "title": "Флейта",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Флейта зовёт прирученных животных к вам.",
+    "&6Как получить:&r верстак: Бамбук."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:flute",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/rope_arrow"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "bubble_blower",
+   "title": "Выдуватель пузырей",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:bubble_blower",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/rope_arrow"
+   ]
+  },
+  {
+   "k": "confetti_popper",
+   "title": "Хлопушка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Порох, Бумага."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:confetti_popper",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/rope_arrow"
+   ]
+  },
+  {
+   "k": "jar_boat",
+   "title": "Лодка в баночке",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Баночка."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:jar_boat",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/jar"
+   ]
+  },
+  {
+   "k": "goblet",
+   "title": "Чаша",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак.",
+    "&6Цель:&r Попейте из чаши"
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:goblet",
+     "count": 1
+    },
+    {
+     "type": "advancement",
+     "id": "supplementaries:nether/goblet"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/rope_arrow"
+   ]
+  },
+  {
+   "k": "bamboo_spikes",
+   "title": "Бамбуковые шипы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Шипы ранят мобов. Обработанные зельем шипы ещё и отравляют.",
+    "&6Как получить:&r промывка вентилятором через воду: Обработанные бамбуковые шипы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:bamboo_spikes",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/flute"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "sconces",
+   "title": "Бра",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Факел.",
+    "&6Зачем нужен:&r идёт в Бра-рычаг, Бра душ.",
+    "&7Вариантов: 6. Засчитывается «Бра»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "supplementaries:sconce",
+      "supplementaries:sconce_soul",
+      "supplementaries:sconce_ender",
+      "supplementaries:sconce_glow",
+      "supplementaries:sconce_lever",
+      "supplementaries:sconce_nether_brass"
+     ],
+     "count": 1,
+     "title": "Бра (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "minecraft:candle",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "supp/flute"
+   ]
+  },
+  {
+   "k": "candle_holders",
+   "title": "Подсвечники",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Свеча.",
+    "&6Зачем нужен:&r идёт в Чёрный подсвечник, Синий подсвечник, Коричневый подсвечник, Бирюзовый подсвечник, Серый подсвечник."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:candle_holder",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/sconces"
+   ]
+  },
+  {
+   "k": "lamps",
+   "title": "Каменные лампы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Камень, Факел.",
+    "&7Вариантов: 4. Засчитывается «Каменная лампа»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "supplementaries:stone_lamp",
+      "supplementaries:deepslate_lamp",
+      "supplementaries:blackstone_lamp",
+      "supplementaries:end_stone_lamp"
+     ],
+     "count": 1,
+     "title": "Каменная лампа (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/sconces"
+   ]
+  },
+  {
+   "k": "lumisene_bottle",
+   "title": "Бутылочка светона",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Стеклянный пузырёк, Светящиеся ягоды.",
+    "&6Зачем нужен:&r идёт в Кострище."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:lumisene_bottle",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/sconces"
+   ]
+  },
+  {
+   "k": "awnings",
+   "title": "Маркизы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Лён.",
+    "&6Зачем нужен:&r идёт в Чёрная маркиза, Синяя маркиза, Коричневая маркиза, Бирюзовая маркиза, Серая маркиза."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:awning",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/flax"
+   ]
+  },
+  {
+   "k": "presents",
+   "title": "Подарок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Бумага.",
+    "&7Вариантов: 2. Засчитывается «Подарок»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "supplementaries:present",
+      "supplementaries:trapped_present"
+     ],
+     "count": 1,
+     "title": "Подарок (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/sconces"
+   ]
+  },
+  {
+   "k": "timber",
+   "title": "Фахверк",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Деревянные каркасы и мазня — для домов в стиле фахверк.",
+    "&6Как получить:&r верстак.",
+    "&7Вариантов: 5. Засчитывается «Деревянный каркас»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "supplementaries:timber_frame",
+      "supplementaries:timber_brace",
+      "supplementaries:timber_cross_brace",
+      "supplementaries:daub",
+      "supplementaries:daub_frame"
+     ],
+     "count": 1,
+     "title": "Деревянный каркас (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/sconces"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "decor_blocks",
+   "title": "Декоративные блоки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Пепельный кирпич.",
+    "&6Зачем нужен:&r идёт в Пепельный кирпич, Плита из пепельного кирпича, Ступеньки из пепельного кирпича, Ограда из пепельного кирпича.",
+    "&7Вариантов: 7. Засчитывается «Пепельные кирпичи»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "supplementaries:ash_bricks",
+      "supplementaries:stone_tile",
+      "supplementaries:blackstone_tile",
+      "supplementaries:lapis_bricks",
+      "supplementaries:gravel_bricks",
+      "supplementaries:checker_block",
+      "supplementaries:fine_wood"
+     ],
+     "count": 1,
+     "title": "Пепельные кирпичи (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/sconces"
+   ]
+  },
+  {
+   "k": "metal_doors",
+   "title": "Металлические двери и ворота",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак.",
+    "&6Зачем нужен:&r идёт в Незеритовая дверь.",
+    "&7Вариантов: 7. Засчитывается «Золотая дверь»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "supplementaries:gold_door",
+      "supplementaries:gold_trapdoor",
+      "supplementaries:gold_gate",
+      "supplementaries:gold_bars",
+      "supplementaries:iron_gate",
+      "supplementaries:netherite_door",
+      "supplementaries:netherite_trapdoor"
+     ],
+     "count": 1,
+     "title": "Золотая дверь (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/sconces"
+   ]
+  },
+  {
+   "k": "material_blocks",
+   "title": "Блоки материалов",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Перо.",
+    "&6Зачем нужен:&r идёт в Перо, Белая кровать.",
+    "&7Вариантов: 4. Засчитывается «Перьевой блок»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "supplementaries:feather_block",
+      "supplementaries:flint_block",
+      "supplementaries:flax_block",
+      "supplementaries:soap_block"
+     ],
+     "count": 1,
+     "title": "Перьевой блок (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/sconces"
+   ]
+  },
+  {
+   "k": "wicker_fence",
+   "title": "Плетёный забор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Сахарный тростник."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:wicker_fence",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/sconces"
+   ]
+  },
+  {
+   "k": "ash",
+   "title": "Пепел",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Soot.",
+    "&6Зачем нужен:&r идёт в Пепельный кирпич, Мыло."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "supplementaries:ash",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/sconces"
+   ]
+  },
+  {
+   "k": "carry_on",
+   "title": "Своя ноша не тянет",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Carry On:&r присядьте и нажмите ПКМ пустыми руками по сундуку, бочке или животному — вы поднимете его вместе с содержимым.",
+    "Удобно для переезда склада и перевозки питомцев."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Перенести сундук руками"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "supp/intro"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Хозяин мелочей",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вы попробовали полезные мелочи Supplementaries.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "supplementaries:rope",
+     "count": 32
+    }
+   ],
+   "deps": [
+    "supp/bamboo_spikes",
+    "supp/sconces",
+    "supp/bomb",
+    "supp/cannon"
+   ],
+   "finale": true
+  }
+ ]
+}

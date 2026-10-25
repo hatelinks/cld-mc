@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:add",
+  "argument1": "minecraft:overworld_offset_combined",
+  "argument2": {
+    "type": "minecraft:add",
+    "argument1": "minecraft:overworld_factor_combined",
+    "argument2": "minecraft:overworld_jagged_combined"
+  }
+}

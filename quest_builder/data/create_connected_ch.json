@@ -1,0 +1,1624 @@
+{
+ "key": "create_connected_ch",
+ "id": "005C6C3966678BF4",
+ "title": "Узлы и связи",
+ "subtitle": "Create: Connected — коробки передач, муфты, копикэты и катализаторы",
+ "group": "Эра механизмов",
+ "icon": "create_connected:six_way_gearbox",
+ "order": 7,
+ "quests": [
+  {
+   "id": "432ABD3EEE72BED0",
+   "title": "Крестовой соединитель",
+   "sub": "Два вала в одном блоке",
+   "desc": [
+    "Соединитель пропускает через один блок два независимых вала, которые не влияют друг на друга.",
+    "Помогает уплотнить проводку вращения."
+   ],
+   "x": 0.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:cross_connector",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4705492C0880AE87"
+   ]
+  },
+  {
+   "id": "437E77CFFFB85CF9",
+   "title": "Андезитовый соединитель",
+   "sub": "Вариант в корпусе",
+   "desc": [
+    "Тот же соединитель, но в андезитовом корпусе."
+   ],
+   "x": 2.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:andesite_encased_cross_connector",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "432ABD3EEE72BED0",
+    "25385F994C28D4F2"
+   ]
+  },
+  {
+   "id": "4F16DF6C60A0A5C0",
+   "title": "Латунный соединитель",
+   "sub": "Вариант в латуни",
+   "desc": [
+    "Версия в латунном корпусе, подходит для красивых механизмов."
+   ],
+   "x": 4.0,
+   "y": 0.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:brass_encased_cross_connector",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "432ABD3EEE72BED0",
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "134AC281AA32BD55",
+   "title": "Латунная коробка передач",
+   "sub": "Больше выходов",
+   "desc": [
+    "Расширенная версия обычной коробки, выходы настраиваются под задачу."
+   ],
+   "x": 0.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:brass_gearbox",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_alloy",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "7E1ADD131FC9B5E2",
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "id": "4F56D2A744DE6CAC",
+   "title": "Параллельная коробка",
+   "sub": "Два вала рядом",
+   "desc": [
+    "Передаёт вращение на параллельные валы."
+   ],
+   "x": 2.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:parallel_gearbox",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "134AC281AA32BD55"
+   ]
+  },
+  {
+   "id": "20AC0A60D4443698",
+   "title": "Шестисторонняя коробка",
+   "sub": "Все стороны сразу",
+   "desc": [
+    "Раздаёт вращение сразу во все шесть направлений."
+   ],
+   "x": 4.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:six_way_gearbox",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_alloy",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "134AC281AA32BD55"
+   ]
+  },
+  {
+   "id": "766BB2EB81CE413B",
+   "title": "Вертикальная коробка",
+   "sub": "Вертикальный вариант",
+   "desc": [
+    "Удобна для башен и компактных установок."
+   ],
+   "x": 6.0,
+   "y": 2.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:vertical_brass_gearbox",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "134AC281AA32BD55"
+   ]
+  },
+  {
+   "id": "4847563ECD72982B",
+   "title": "Инвертированное сцепление",
+   "sub": "Работает наоборот",
+   "desc": [
+    "Пропускает вращение, пока сигнала нет, и размыкает цепь при сигнале."
+   ],
+   "x": 0.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:inverted_clutch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "10D862C5EBBB6111"
+   ]
+  },
+  {
+   "id": "6BA7039206C86E4E",
+   "title": "Инвертированный реверс",
+   "sub": "Реверс наоборот",
+   "desc": [
+    "Реверс, который включается при отсутствии сигнала."
+   ],
+   "x": 2.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:inverted_gearshift",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5D8CF4488B5C2679"
+   ]
+  },
+  {
+   "id": "2CDB6DFACADE2462",
+   "title": "Центробежное сцепление",
+   "sub": "Включается от скорости",
+   "desc": [
+    "Срабатывает, когда скорость вращения выше нужной."
+   ],
+   "x": 4.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:centrifugal_clutch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4847563ECD72982B"
+   ]
+  },
+  {
+   "id": "040C77A4B7B84941",
+   "title": "Муфта свободного хода",
+   "sub": "Только в одну сторону",
+   "desc": [
+    "Передаёт вращение только в одном направлении."
+   ],
+   "x": 6.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:freewheel_clutch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4847563ECD72982B"
+   ]
+  },
+  {
+   "id": "44ED6FE974616205",
+   "title": "Предохранительная муфта",
+   "sub": "Защита от перегрузки",
+   "desc": [
+    "Размыкает цепь при перегрузке, вместо того чтобы остановить всю сеть."
+   ],
+   "x": 8.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:overstress_clutch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_alloy",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "4847563ECD72982B"
+   ]
+  },
+  {
+   "id": "7AE89C0EB6C2BDD2",
+   "title": "Срезной штифт",
+   "sub": "Дешёвый предохранитель",
+   "desc": [
+    "Ломается при перегрузке и спасает остальные детали."
+   ],
+   "x": 10.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:shear_pin",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "44ED6FE974616205"
+   ]
+  },
+  {
+   "id": "20EC9682209C2A98",
+   "title": "Тормоз",
+   "sub": "Останавливает вращение",
+   "desc": [
+    "Тормозит вал по сигналу редстоуна."
+   ],
+   "x": 12.0,
+   "y": 4.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:brake",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4847563ECD72982B"
+   ]
+  },
+  {
+   "id": "37E6DA262EFBE6CA",
+   "title": "Колесо с рукоятью",
+   "sub": "Больше силы руками",
+   "desc": [
+    "Крутите колесо вручную, чтобы раскрутить сеть."
+   ],
+   "x": 0.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:crank_wheel",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "5D6B3DC9FECF044C"
+   ]
+  },
+  {
+   "id": "72F16AAFB5653A76",
+   "title": "Большое колесо",
+   "sub": "Ещё мощнее",
+   "desc": [
+    "Большое колесо даёт больше оборотов за одно движение."
+   ],
+   "x": 2.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:large_crank_wheel",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "37E6DA262EFBE6CA"
+   ]
+  },
+  {
+   "id": "556D82F3D74D81E0",
+   "title": "Цепная шестерня",
+   "sub": "Шестерня в цепи",
+   "desc": [
+    "Передаёт вращение вдоль цепной линии."
+   ],
+   "x": 4.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:encased_chain_cogwheel",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "1CE9B60F0C48C2D6"
+   ]
+  },
+  {
+   "id": "29ACCD94E43CCD4D",
+   "title": "Кинетическая батарея",
+   "sub": "Хранит вращение",
+   "desc": [
+    "Накапливает энергию вращения и отдаёт её, когда сети не хватает мощности."
+   ],
+   "x": 6.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:kinetic_battery",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "1E4A89210B0C203D",
+   "title": "Кинетический мост",
+   "sub": "Вращение без валов",
+   "desc": [
+    "Передаёт вращение между двумя точками без валов.",
+    "Подробности смотрите в Ponder."
+   ],
+   "x": 8.0,
+   "y": 6.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:kinetic_bridge",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "29ACCD94E43CCD4D"
+   ]
+  },
+  {
+   "id": "3741890B35881233",
+   "title": "Управляющий чип",
+   "sub": "Мозги механизмов",
+   "desc": [
+    "Чип нужен для умных механизмов, например генераторов импульсов."
+   ],
+   "x": 0.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:control_chip",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_alloy",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "63B86FA0C25B7639"
+   ]
+  },
+  {
+   "id": "685D46B14FBD3E23",
+   "title": "Последовательный генератор импульсов",
+   "sub": "Программируемые сигналы",
+   "desc": [
+    "Выдаёт заданную последовательность сигналов редстоуна."
+   ],
+   "x": 2.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:sequenced_pulse_generator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3741890B35881233"
+   ]
+  },
+  {
+   "id": "1C08FF29FD60EFA8",
+   "title": "Линк-передатчик",
+   "sub": "Радиосигнал в предмете",
+   "desc": [
+    "Передатчик работает как радиореле, но носится с собой."
+   ],
+   "x": 4.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:linked_transmitter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3741890B35881233",
+    "01732AB44FE34758"
+   ]
+  },
+  {
+   "id": "2E126AF2C989F77D",
+   "title": "Линк-рычаг",
+   "sub": "Рычаг с радиосигналом",
+   "desc": [
+    "Рычаг сразу передаёт сигнал по радиоканалу."
+   ],
+   "x": 6.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:linked_lever",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_alloy",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "01732AB44FE34758"
+   ]
+  },
+  {
+   "id": "3FCC085D5B7AD521",
+   "title": "Линк-аналоговый рычаг",
+   "sub": "Плавная настройка",
+   "desc": [
+    "Передаёт сигнал разной силы."
+   ],
+   "x": 8.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:linked_analog_lever",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "2E126AF2C989F77D"
+   ]
+  },
+  {
+   "id": "7D84EBAB2B8F554D",
+   "title": "Линк-кнопка",
+   "sub": "Кнопка с радиосигналом",
+   "desc": [
+    "Существует в разных видах дерева и камня."
+   ],
+   "x": 10.0,
+   "y": 8.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:linked_oak_button",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2E126AF2C989F77D"
+   ]
+  },
+  {
+   "id": "77012EBA2F306799",
+   "title": "Складской бункер",
+   "sub": "Вертикальное хранилище",
+   "desc": [
+    "Бункеры собираются в высокие колонны и подходят для хранения одного типа предметов."
+   ],
+   "x": 0.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:item_silo",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6B83F5A0F12F3DE5"
+   ]
+  },
+  {
+   "id": "62859B42E42A3E1A",
+   "title": "Порт доступа",
+   "sub": "Подключаем склад",
+   "desc": [
+    "Порт даёт доступ к соседнему хранилищу для механизмов."
+   ],
+   "x": 2.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:inventory_access_port",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "77012EBA2F306799"
+   ]
+  },
+  {
+   "id": "5E524E2D2C36F101",
+   "title": "Инвентарный мост",
+   "sub": "Склад на расстоянии",
+   "desc": [
+    "Связывает два инвентаря без конвейеров."
+   ],
+   "x": 4.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:inventory_bridge",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_alloy",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "62859B42E42A3E1A"
+   ]
+  },
+  {
+   "id": "6AB40C4871C291EF",
+   "title": "Сосуд для жидкости",
+   "sub": "Вертикальный бак",
+   "desc": [
+    "Сосуды собираются в колонны и работают как бак."
+   ],
+   "x": 6.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:fluid_vessel",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "0528BC2DA69E662B"
+   ]
+  },
+  {
+   "id": "7FE7C3D11842696B",
+   "title": "Латунный жёлоб",
+   "sub": "Жёлоб с настройкой",
+   "desc": [
+    "Жёлоб из латуни, который умеет фильтровать."
+   ],
+   "x": 8.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:brass_chute",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "6CA896B7E668CBB2"
+   ]
+  },
+  {
+   "id": "1EEC45FC56B2973C",
+   "title": "Приборная панель",
+   "sub": "Данные в одном месте",
+   "desc": [
+    "Панель показывает данные из подключённых блоков."
+   ],
+   "x": 10.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:dashboard",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "2256B71788516C06"
+   ]
+  },
+  {
+   "id": "45B26712D5A81504",
+   "title": "Пустой катализатор",
+   "sub": "Основа катализаторов",
+   "desc": [
+    "Катализатор ставится перед вентилятором и добавляет новые рецепты обработки."
+   ],
+   "x": 0.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:empty_fan_catalyst",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "102C27CB1DF6B087"
+   ]
+  },
+  {
+   "id": "5A9AF88D7EB1A36A",
+   "title": "Катализатор плавки",
+   "sub": "Обжиг в потоке",
+   "desc": [
+    "Вентилятор с этим катализатором выплавляет предметы, как плавильная печь."
+   ],
+   "x": 2.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:fan_blasting_catalyst",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "45B26712D5A81504"
+   ]
+  },
+  {
+   "id": "73A78F6A0588EAB5",
+   "title": "Катализатор копчения",
+   "sub": "Копчение",
+   "desc": [
+    "Коптит еду и другие предметы."
+   ],
+   "x": 4.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:fan_smoking_catalyst",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "45B26712D5A81504"
+   ]
+  },
+  {
+   "id": "50DF9A57A83DA7CF",
+   "title": "Катализатор промывки",
+   "sub": "Промывка",
+   "desc": [
+    "Промывает руды и обрабатывает предметы."
+   ],
+   "x": 6.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:fan_splashing_catalyst",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "45B26712D5A81504"
+   ]
+  },
+  {
+   "id": "73716B410E3AC7C6",
+   "title": "Катализатор заклинания",
+   "sub": "Тёмная обработка",
+   "desc": [
+    "Обрабатывает предметы по рецептам проклятия."
+   ],
+   "x": 8.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:fan_haunting_catalyst",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_alloy",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "45B26712D5A81504"
+   ]
+  },
+  {
+   "id": "71188FF22224745C",
+   "title": "Катализатор заморозки",
+   "sub": "Холодная обработка",
+   "desc": [
+    "Замораживает предметы."
+   ],
+   "x": 10.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:fan_freezing_catalyst",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "45B26712D5A81504"
+   ]
+  },
+  {
+   "id": "11C427A3DA2231B0",
+   "title": "Катализатор шлифовки",
+   "sub": "Полировка потоком",
+   "desc": [
+    "Шлифует предметы, как наждачная бумага."
+   ],
+   "x": 12.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:fan_sanding_catalyst",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "45B26712D5A81504"
+   ]
+  },
+  {
+   "id": "01EAD58AFAA7CF0D",
+   "title": "Красильный катализатор",
+   "sub": "Окраска в потоке",
+   "desc": [
+    "Красит предметы в нужный цвет, цвет зависит от катализатора."
+   ],
+   "x": 14.0,
+   "y": 12.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:red_fan_dyeing_catalyst",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "45B26712D5A81504"
+   ]
+  },
+  {
+   "id": "408A367A3B57124E",
+   "title": "Копикэт-блок",
+   "sub": "Маскировка под любой блок",
+   "desc": [
+    "Копикэт принимает вид любого блока, на который вы его настроили."
+   ],
+   "x": 0.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:copycat_block",
+     "count": 4
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "0C03B415D50A44C3"
+   ]
+  },
+  {
+   "id": "2577CF8DFFF23C05",
+   "title": "Копикэт-плита",
+   "sub": "Плита-маскировка",
+   "desc": [
+    "Плита, которая копирует вид другого блока."
+   ],
+   "x": 2.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:copycat_slab",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "408A367A3B57124E"
+   ]
+  },
+  {
+   "id": "5527E48D09E55A77",
+   "title": "Копикэт-лестница",
+   "sub": "Ступеньки-маскировка",
+   "desc": [
+    "Лестница, которая копирует вид другого блока."
+   ],
+   "x": 4.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:copycat_stairs",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "408A367A3B57124E"
+   ]
+  },
+  {
+   "id": "5C668B6B2BCF734F",
+   "title": "Копикэт-забор",
+   "sub": "Забор-маскировка",
+   "desc": [
+    "Забор любого вида из одного набора."
+   ],
+   "x": 6.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:copycat_fence",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "408A367A3B57124E"
+   ]
+  },
+  {
+   "id": "0335D1F167FCD6B1",
+   "title": "Копикэт-стена",
+   "sub": "Стена-маскировка",
+   "desc": [
+    "Стена любого вида из одного набора."
+   ],
+   "x": 8.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:copycat_wall",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_alloy",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "408A367A3B57124E"
+   ]
+  },
+  {
+   "id": "440B8C8B3B1DFD07",
+   "title": "Копикэт-балка",
+   "sub": "Балка-маскировка",
+   "desc": [
+    "Тонкая балка для каркасов."
+   ],
+   "x": 10.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:copycat_beam",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "408A367A3B57124E"
+   ]
+  },
+  {
+   "id": "1F2AE8E1031E9B0B",
+   "title": "Копикэт-доска",
+   "sub": "Доска-маскировка",
+   "desc": [
+    "Тонкая доска для отделки."
+   ],
+   "x": 12.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:copycat_board",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "408A367A3B57124E"
+   ]
+  },
+  {
+   "id": "1B5570EFECA0485D",
+   "title": "Копикэт-мостик",
+   "sub": "Мостик-маскировка",
+   "desc": [
+    "Мостик для промышленных зданий."
+   ],
+   "x": 14.0,
+   "y": 14.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:copycat_catwalk",
+     "count": 2
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "408A367A3B57124E"
+   ]
+  },
+  {
+   "id": "08437C6C29C1612C",
+   "title": "Музыка завода",
+   "sub": "Для настроения",
+   "desc": [
+    "Пластинка в духе лифтовой музыки, хороша для заводов."
+   ],
+   "x": 12.0,
+   "y": 10.0,
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:music_disc_elevator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 2
+    }
+   ],
+   "deps": [
+    "1EEC45FC56B2973C"
+   ]
+  },
+  {
+   "k": "vertical_gearboxes",
+   "title": "Вертикальные передачи",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Параллельная угловая передача.",
+    "&6Зачем нужен:&r идёт в Параллельная угловая передача."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:vertical_parallel_gearbox",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create_connected:vertical_six_way_gearbox",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "4F56D2A744DE6CAC"
+   ]
+  },
+  {
+   "k": "copycats_more",
+   "title": "Ещё заполняемые блоки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r &eЗаполняемые панели&r, собранные в коробку для удобного размещения.",
+    "&6Как получить:&r верстак: Заполняемая панель.",
+    "&6Как использовать:&r ПКМ с блоком в руке: Применяет &eпредмет в руке&r как его &eматериал&r, если это возможно. &eКликните снова&r, чтобы изменить &eориентацию&r или &eсостояние&r. Используйте гаечный ключ для демонтажа установленного материала."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:copycat_box",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create_connected:copycat_vertical_step",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:andesite_alloy",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "432ABD3EEE72BED0"
+   ]
+  },
+  {
+   "k": "special_catalysts",
+   "title": "Особые катализаторы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Катализатор ставится перед вентилятором и превращает поток воздуха в нужную обработку без открытого огня или жидкости.",
+    "&6Как получить:&r применение предмета к блоку (ПКМ): Торт всполоха, Пустой вентиляторный катализатор.",
+    "&6Зачем нужен:&r идёт в Пустой вентиляторный катализатор.",
+    "&7Вариантов: 6. Засчитывается «Катализатор массового супернагрева»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create_connected:fan_seething_catalyst",
+      "create_connected:fan_withering_catalyst",
+      "create_connected:fan_enriched_catalyst",
+      "create_connected:fan_exploding_catalyst",
+      "create_connected:fan_ending_catalyst_dragons_breath",
+      "create_connected:fan_ending_catalyst_dragon_head"
+     ],
+     "count": 1,
+     "title": "Катализатор массового супернагрева (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "45B26712D5A81504",
+    "create_fluids/blaze_cake"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "redstone_link_wildcard",
+   "title": "Заглушка частоты редстоунового передатчика сигнала",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Подстановочный элемент, заменяющий любой предмет в слоте передатчика.",
+    "&6Как получить:&r верстак: Заглушка слота сборщика, Передатчик."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_connected:redstone_link_wildcard",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "432ABD3EEE72BED0",
+    "create_logistics/transmitter",
+    "create_brass/crafter_slot_cover"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Мастер передач",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Все хитрые передачи и узлы Create: Connected освоены.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "create_connected_ch/vertical_gearboxes",
+    "437E77CFFFB85CF9",
+    "20AC0A60D4443698",
+    "2CDB6DFACADE2462"
+   ],
+   "finale": true
+  }
+ ]
+}

@@ -1,0 +1,237 @@
+{
+ "key": "mc_taxes",
+ "id": "",
+ "title": "Казна колонии",
+ "subtitle": "WarNTaxes — налоги, казна и войны колоний",
+ "group": "Жизнь колонии",
+ "icon": "minecraft:emerald",
+ "order": 24,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Казна колонии",
+   "sub": "Колония платит налоги",
+   "desc": [
+    "WarNTaxes добавляет экономику в MineColonies: здания колонии приносят налог, который вы забираете изумрудами.",
+    "Чем больше зданий, выше их уровень и счастливее жители — тем больше доход. На содержание зданий налог тоже тратится.",
+    "&6Команды:&r все команды начинаются с &e/wnt&r. Нажмите Tab после /wnt, чтобы увидеть подсказки."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "minecraft:emerald",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "mc_found/townhall"
+   ]
+  },
+  {
+   "k": "check_tax",
+   "title": "Сколько накоплено?",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Узнайте, сколько налога накопила колония: команда &e/wnt checktax&r.",
+    "Налог начисляется периодически — каждое здание приносит немного монет."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Проверить налоги командой"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "mc_taxes/intro"
+   ]
+  },
+  {
+   "k": "claim_tax",
+   "title": "Первые налоги",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Заберите налог командой &e/wnt claimtax&r — он выдаётся изумрудами.",
+    "Квест засчитается, когда у вас будет 8 изумрудов.",
+    "&6Как получить:&r дробильные колёса: Изумрудная руда.",
+    "&6Зачем нужен:&r идёт в Динамик."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "minecraft:emerald",
+     "count": 8
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "mc_taxes/check_tax"
+   ],
+   "note": "Мод без предметов: квест-подсказка, проверить в игре"
+  },
+  {
+   "k": "tax_policy",
+   "title": "Налоговая политика",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Командой &e/wnt taxpolicy&r можно выбрать политику: выше налог — ниже счастье жителей, и наоборот."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Выбрать налоговую политику"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "mc_taxes/claim_tax"
+   ]
+  },
+  {
+   "k": "happiness",
+   "title": "Довольные жители",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Счастье жителей увеличивает налог. Еда, жильё, школа, таверна и мистическое место делают жителей счастливее."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Поднять счастье колонии"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "mc_taxes/claim_tax"
+   ]
+  },
+  {
+   "k": "warchest",
+   "title": "Военная казна",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Военная казна хранит деньги на случай войны: &e/wnt warchest deposit&r кладёт, &e/wnt warchest withdraw&r забирает."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Пополнить военную казну"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "mc_taxes/tax_policy"
+   ]
+  },
+  {
+   "k": "guards_tax",
+   "title": "Стража и доход",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Сторожевые башни повышают доход и защищают колонию от налётов других игроков."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Построить сторожевые башни"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "mc_taxes/claim_tax",
+    "mc_guard/guardtower"
+   ]
+  },
+  {
+   "k": "war_info",
+   "title": "Война и дипломатия",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "На сервере колонии могут объявлять друг другу войну, устраивать набеги, заключать мир и брать вассалов.",
+    "Подсказки: &e/wnt wars&r — список войн, &e/wnt warstats&r — статистика. Для одиночной игры это необязательно."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Узнать о войнах"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 30
+    }
+   ],
+   "deps": [
+    "mc_taxes/warchest"
+   ]
+  }
+ ]
+}

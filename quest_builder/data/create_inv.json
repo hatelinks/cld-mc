@@ -1,0 +1,1273 @@
+{
+ "key": "create_inv",
+ "id": "",
+ "title": "Мастерская изобретателя",
+ "subtitle": "Аддоны Create: Dragons Plus, Aquatic Ambitions, Things and Misc, Power Loader",
+ "group": "Эра механизмов",
+ "icon": "create_things_and_misc:radar",
+ "order": 8.5,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "Мастерская изобретателя",
+   "sub": "Маленькие, но полезные аддоны",
+   "desc": [
+    "Здесь собраны небольшие аддоны Create: окраска вентилятором, подводные машины, загрузчики чанков и множество гаджетов."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "create_things_and_misc:radar",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "fluid_hatch",
+   "title": "Жидкостный люк",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Жидкостный люк — компактный вход и выход жидкостей для машин.",
+    "&6Как получить:&r верстак: Осушитель предметов.",
+    "&6Как использовать:&r При ПКМ: &eПередаёт&r &eжидкость&r из &eпредмета в руке&r в &eбак&r, на который он установлен, или &eизвлекает&r &eжидкость&r из &eбака&r в &eпустые ёмкости&r.",
+    "&6Зачем нужен:&r идёт в Люк опыта."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_dragons_plus:fluid_hatch",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/intro",
+    "746BD117BEB07418"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "dragon_breath",
+   "title": "Жидкое драконье дыхание",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Драконье дыхание как жидкость: вентилятор через него «эндерит» предметы — особая обработка Dragons Plus."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Жидкое драконье дыхание"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/fluid_hatch"
+   ]
+  },
+  {
+   "k": "blaze_upgrade_smithing_template",
+   "title": "Кузнечный шаблон",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Кузнечный шаблон для улучшений всполоха.",
+    "&6Зачем нужен:&r идёт в Всполох-чародей, Всполох-кузнец."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_dragons_plus:blaze_upgrade_smithing_template",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "create_inv/fluid_hatch"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "prismarine_alloy",
+   "title": "Призмариновый сплав",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Призмариновый сплав — материал подводных машин.",
+    "&6Как получить:&r верстак: Блок призмаринового сплава.",
+    "&6Зачем нужен:&r идёт в Клетка морского источника, Блок призмаринового сплава, Стержень из призмаринового сплава."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_aquatic_ambitions:prismarine_alloy",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/fluid_hatch"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "pa_more",
+   "title": "Стержень и блок сплава",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Призмариновый сплав.",
+    "&6Зачем нужен:&r идёт в Клетка морского источника, Трезубец."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_aquatic_ambitions:prismarine_alloy_rod",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create_aquatic_ambitions:prismarine_alloy_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/prismarine_alloy"
+   ]
+  },
+  {
+   "k": "mechanical_conduit",
+   "title": "Клетка морского источника",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Жидкостная труба, Призмариновый сплав, Стержень из призмаринового сплава, Морской источник.",
+    "&6Что умеет:&r рецептов в сборке — 77. Например: brain coral block, brain coral fan, brain coral, bubble coral block, bubble coral fan."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_aquatic_ambitions:mechanical_conduit",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/pa_more"
+   ]
+  },
+  {
+   "k": "aq_misc",
+   "title": "Морские находки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Зачем нужен:&r идёт в Кальцит.",
+    "&7Вариантов: 3. Засчитывается «Порошок, богатый кальцием»."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create_aquatic_ambitions:calcium_rich_powder",
+      "create_aquatic_ambitions:spiky_shell",
+      "create_aquatic_ambitions:suspicious_rock"
+     ],
+     "count": 1,
+     "title": "Порошок, богатый кальцием (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:zinc_ingot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "create_inv/prismarine_alloy"
+   ]
+  },
+  {
+   "k": "andesite_chunk_loader",
+   "title": "Андезитовый загрузчик чанков",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Загрузчик держит чанки загруженными, пока на него подаётся вращение. Фабрика работает, даже когда вы далеко."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_power_loader:andesite_chunk_loader",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/prismarine_alloy"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "brass_chunk_loader",
+   "title": "Латунный загрузчик чанков",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Латунный загрузчик держит больше чанков и работает на поездах и штуковинах."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_power_loader:brass_chunk_loader",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/andesite_chunk_loader"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "vibration_mechanism",
+   "title": "Вибромеханизм",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вибромеханизм — компонент радаров и сигнальных устройств.",
+    "&6Как получить:&r последовательная сборка: Шестерня, Incomplete Vibration Mechanism, Rose Quartz Sheet, Осколок аметиста, Редстоун."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:vibration_mechanism",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/andesite_chunk_loader",
+    "56239D98E7831D04"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "radar",
+   "title": "Радар",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Радар показывает приближающихся мобов и игроков.",
+    "&6Как получить:&r верстак: Андезитовый сплав, Механическое табло, Vibration Mechanism."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:radar",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:copper_sheet",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "create_inv/vibration_mechanism"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "magnifying_glass",
+   "title": "Лупа",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Осколок аметиста, Медный слиток, Палка."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:magnifying_glass",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/vibration_mechanism"
+   ]
+  },
+  {
+   "k": "rose_quartz_sheet",
+   "title": "Лист розового кварца",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс: Полированный розовый кварц."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:rose_quartz_sheet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/vibration_mechanism",
+    "create_brass/polished_rose_quartz"
+   ]
+  },
+  {
+   "k": "experience_sheet",
+   "title": "Лист опыта",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс: Кусочек опыта."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:experience_sheet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/vibration_mechanism",
+    "762DEABF97F9A868"
+   ]
+  },
+  {
+   "k": "mending_rune",
+   "title": "Руна починки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Руна починки чинит инструменты опытом.",
+    "&6Как получить:&r последовательная сборка: Кусочек опыта, Experience Sheet, Incomplete Mending Rune, Rose Quartz Sheet."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:mending_rune",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "create_inv/rose_quartz_sheet",
+    "create_inv/experience_sheet"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "spout_gun",
+   "title": "Пистолет-заправщик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Ручной заправщик: стреляет жидкостью — водой, лавой, мёдом или слизью.",
+    "&6Как получить:&r механический крафтер: Медный лист, Жидкостная труба, Жидкостный бак, Механизм точности, Дозатор."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:spout_gun",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/mending_rune",
+    "0AAF27D578857371",
+    "36A573B8F77EE4EC",
+    "63B86FA0C25B7639"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "sprinkler",
+   "title": "Разбрызгиватель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Разбрызгиватель поливает поля вокруг, ускоряя рост.",
+    "&6Как получить:&r верстак: Медный корпус, Жидкостный бак, Пропеллер, Sprinkler Head."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:sprinkler",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/mending_rune",
+    "36A573B8F77EE4EC",
+    "create_andesite/propeller"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "cards",
+   "title": "Карты доступа",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Медный лист, Бумага."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:empty_card",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create_things_and_misc:card",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/mending_rune",
+    "27D0961A37A6E0CB"
+   ]
+  },
+  {
+   "k": "card_press",
+   "title": "Пресс для карт",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Латунный корпус, Латунный лист, Механический пресс, Камень."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:card_press",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:zinc_ingot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "create_inv/mending_rune",
+    "4D1D7873774CA66B",
+    "722FF84B978AB3C4"
+   ]
+  },
+  {
+   "k": "card_reader",
+   "title": "Считыватель карт",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Считыватель подаёт сигнал только при карте с нужным кодом — замок на двери.",
+    "&6Как получить:&r верстак: Латунный лист, Сушёная ламинария, Редстоун, Камень."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:card_reader",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/card_press",
+    "0C03B415D50A44C3"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "tickets",
+   "title": "Билеты на поезд",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс: Бумага."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:empty_ticket",
+     "count": 1
+    },
+    {
+     "type": "item",
+     "id": "create_things_and_misc:ticket",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/card_press"
+   ]
+  },
+  {
+   "k": "portable_whistle",
+   "title": "Портативный свисток",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Свисток вызывает поезд к станции, где вы стоите.",
+    "&6Как получить:&r верстак: Золотой лист, Медный слиток, Золотой слиток."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:portable_whistle",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/card_press",
+    "661D00C466179724"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "netherite_portable_whistle",
+   "title": "Незеритовый свисток",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r кузнечный стол: Portable Whistle, Незеритовый слиток."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:netherite_portable_whistle",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/portable_whistle"
+   ]
+  },
+  {
+   "k": "train_buffer",
+   "title": "Буфер поезда",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Sturdy Sheet Block."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:train_buffer",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:copper_sheet",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "create_inv/card_press"
+   ]
+  },
+  {
+   "k": "train_stop",
+   "title": "Тупиковый упор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый корпус, Металлическая балка, Железнодорожный путь."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:train_stop",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/train_buffer",
+    "create_andesite/metal_girder",
+    "24619BF54C5E12ED"
+   ]
+  },
+  {
+   "k": "signs",
+   "title": "Знаки для поезда",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r камнерез: Медный слиток.",
+    "&7Вариантов: 4. Засчитывается «Train Sign»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create_things_and_misc:train_sing",
+      "create_things_and_misc:redsing",
+      "create_things_and_misc:green_sing",
+      "create_things_and_misc:speed_25"
+     ],
+     "count": 1,
+     "title": "Train Sign (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/train_buffer"
+   ]
+  },
+  {
+   "k": "sticky_launcher",
+   "title": "Медная липкая катапульта",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r применение предмета к блоку (ПКМ): Блок-липучка, Медный блок."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:sticky_launcher",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/train_buffer"
+   ]
+  },
+  {
+   "k": "brass_sticky_launcher",
+   "title": "Латунная липкая катапульта",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r применение предмета к блоку (ПКМ): Латунный блок, Copper Sticky Launcher."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:brass_sticky_launcher",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/sticky_launcher"
+   ]
+  },
+  {
+   "k": "sticky_boots_boots",
+   "title": "Липкие ботинки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Липкие ботинки позволяют ходить по стенам из слизи.",
+    "&6Как получить:&r верстак: Блок-липучка, Блок слизи."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:sticky_boots_boots",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 4
+    }
+   ],
+   "deps": [
+    "create_inv/train_buffer"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "blaze_ballon",
+   "title": "Огненный шар",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Горелка всполоха, Парус ветряной мельницы."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:blaze_ballon",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/sticky_boots_boots",
+    "3351EFE6BEA86D5B",
+    "293E9B8D6EA8FD5D"
+   ]
+  },
+  {
+   "k": "neon_tube",
+   "title": "Неоновая трубка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Электронная лампа, Стекло."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:neon_tube",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/sticky_boots_boots",
+    "49A87F51BFFBB1C4"
+   ]
+  },
+  {
+   "k": "brass_speaker",
+   "title": "Латунный динамик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Фильтр предметов, Железнодорожный корпус, Vibration Mechanism."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:brass_speaker",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/vibration_mechanism",
+    "722946AB95A2EBBE",
+    "3B6917DA1CFEF16E"
+   ]
+  },
+  {
+   "k": "knives_tm",
+   "title": "Металлические ножи",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Латунный слиток, Палка.",
+    "&7Вариантов: 3. Засчитывается «Brass Knife»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create_things_and_misc:brass_knife",
+      "create_things_and_misc:copper_knife",
+      "create_things_and_misc:zinc_knife"
+     ],
+     "count": 1,
+     "title": "Brass Knife (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/sticky_boots_boots",
+    "33627C656E58AF04"
+   ]
+  },
+  {
+   "k": "crushed_magma",
+   "title": "Дроблёная магма",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r дробильные колёса: Магмовый блок.",
+    "&6Зачем нужен:&r идёт в Сгусток магмы."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:crushed_magma",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/sticky_boots_boots"
+   ]
+  },
+  {
+   "k": "slime_cake",
+   "title": "Торт из слизи",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r заправщик: Основа торта всполоха."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:slime_cake",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/sticky_boots_boots",
+    "create_fluids/blaze_cake_base"
+   ]
+  },
+  {
+   "k": "sturdy_sheet_block",
+   "title": "Блок прочных листов",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r камнерез: Прочный лист."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:sturdy_sheet_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/sticky_boots_boots"
+   ]
+  },
+  {
+   "k": "glue_packaging",
+   "title": "Упаковка клея",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Железный лист, Железный самородок.",
+    "&6Зачем нужен:&r идёт в Суперклей."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_things_and_misc:glue_packaging",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/sticky_boots_boots",
+    "024258E95184EEE4"
+   ]
+  },
+  {
+   "k": "sails_tm",
+   "title": "Деревянные паруса",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав, Дубовые доски.",
+    "&7Вариантов: 3. Засчитывается «Oak Sail»."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "any",
+     "ids": [
+      "create_things_and_misc:oak_sail",
+      "create_things_and_misc:spruce_sail",
+      "create_things_and_misc:birch_sail"
+     ],
+     "count": 1,
+     "title": "Oak Sail (любой вариант)"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 15
+    }
+   ],
+   "deps": [
+    "create_inv/sticky_boots_boots",
+    "7BF2AA99A5A1C7CD"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "Изобретатель",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Все маленькие аддоны Create освоены.",
+    "&7Откроется, когда будут выполнены последние квесты главы. Отметьте галочку и заберите награду."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "item",
+     "id": "create:brass_ingot",
+     "count": 8
+    },
+    {
+     "type": "item",
+     "id": "create:zinc_ingot",
+     "count": 16
+    }
+   ],
+   "deps": [
+    "create_inv/brass_sticky_launcher",
+    "create_inv/train_stop",
+    "create_inv/sticky_boots_boots",
+    "create_inv/card_reader"
+   ],
+   "finale": true
+  }
+ ]
+}
