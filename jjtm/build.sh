@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 tmp=$(mktemp -d)
-unzip -q original/JJThunder_To_The_Max_1.20.1_v0.3.0.jar -d "$tmp/jt"
+unzip -q original/JJThunder_To_The_Max_1.20.1_v0.2.0.jar -d "$tmp/jt"
 python3 -I tools/port.py "$tmp/jt" vanilla-1.21.1 "$tmp/pack"
 python3 -I tools/tweaks.py "$tmp/pack"
 cp -r "$tmp/pack/." src/
