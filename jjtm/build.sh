@@ -10,8 +10,12 @@ cp -r "$tmp/pack/." src/
 rm -f dist/*.jar dist/*.zip
 for h in 2096 1024 512; do
   if [ $h = 2096 ]; then cp -r src "$tmp/h$h"; else python3 -I tools/variant.py src "$tmp/h$h" $h; fi
-  sed -i.bak "s/version=\"0.3.1-1.21.1\"/version=\"0.3.1-1.21.1-h$h\"/" "$tmp/h$h/META-INF/neoforge.mods.toml" && rm "$tmp/h$h/META-INF/neoforge.mods.toml.bak"
-  (cd "$tmp/h$h" && zip -qr -X "$OLDPWD/dist/jjtm-neoforge-1.21.1-0.3.1-h$h.jar" META-INF pack.mcmeta assets data \
+  # облака Cirrus: ванильные 192 (129 над морем при верхе 320) растягиваем пропорционально высоте мира
+  top=$(( h - 64 )); cloud=$(( 63 + 129 * (top - 63) / 257 ))
+  mkdir -p "$tmp/h$h/assets/minecraft/cirrus/cloud_dimensions"
+  printf '{\n  "enabled": true,\n  "cloud_height": %s\n}\n' "$cloud" > "$tmp/h$h/assets/minecraft/cirrus/cloud_dimensions/overworld.json"
+  sed -i.bak "s/version=\"0.3.2-1.21.1\"/version=\"0.3.2-1.21.1-h$h\"/" "$tmp/h$h/META-INF/neoforge.mods.toml" && rm "$tmp/h$h/META-INF/neoforge.mods.toml.bak"
+  (cd "$tmp/h$h" && zip -qr -X "$OLDPWD/dist/jjtm-neoforge-1.21.1-0.3.2-h$h.jar" META-INF pack.mcmeta assets data \
                  && zip -qr -X "$OLDPWD/dist/jjtm-1.21.1-datapack-h$h.zip" pack.mcmeta data)
 done
 rm -rf "$tmp"
