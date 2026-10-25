@@ -1,5 +1,6 @@
 package dev.cld.tcw;
 
+import dev.cld.tcw.gen.Options;
 import dev.cld.tcw.gen.Terrain;
 import java.util.Optional;
 import net.minecraft.core.RegistryAccess;
@@ -16,14 +17,34 @@ public final class Worlds {
 
     private Worlds() {}
 
-    public static Terrain terrain(long seed) {
+    /** Генератор для сида с настройками текущего мира (сервера). */
+    public static Terrain terrain(long seed) { return terrain(seed, currentOptions()); }
+
+    public static Terrain terrain(long seed, Options opt) {
         Terrain t = last;
-        if (t != null && t.seed() == seed) return t;
+        if (t != null && t.seed() == seed && t.opt.equals(opt)) return t;
         synchronized (Worlds.class) {
             t = last;
-            if (t == null || t.seed() != seed) last = t = new Terrain(seed);
+            if (t == null || t.seed() != seed || !t.opt.equals(opt)) last = t = new Terrain(seed, opt);
             return t;
         }
+    }
+
+    private static volatile MinecraftServer optServer;
+    private static volatile Options optCached = Options.DEFAULT;
+
+    /** Настройки из генератора Верхнего мира запущенного сервера (сохраняются в level.dat вместе с источником биомов). */
+    public static Options currentOptions() {
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if (server == null) return Options.DEFAULT;
+        if (server == optServer) return optCached;
+        Options o = server.registryAccess().registry(Registries.LEVEL_STEM)
+                .map(r -> r.get(LevelStem.OVERWORLD))
+                .map(stem -> stem.generator().getBiomeSource() instanceof TcwBiomeSource b ? b.options() : Options.DEFAULT)
+                .orElse(Options.DEFAULT);
+        optCached = o;
+        optServer = server;
+        return o;
     }
 
     public static final ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise.NoiseParameters> SEED_NOISE =

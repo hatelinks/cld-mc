@@ -54,7 +54,7 @@ public final class Caves {
     private double hd(long salt, int i, int j) { return Macro.hashD(seed ^ salt, i, j); }
 
     private Hall makeHall(int i, int j) {
-        if (hd(11, i, j) > 0.6) return NO_HALL;
+        if (hd(11, i, j) > t.opt.hallChance()) return NO_HALL;
         double cx = (i + 0.15 + 0.7 * hd(12, i, j)) * HALL_CELL, cz = (j + 0.15 + 0.7 * hd(13, i, j)) * HALL_CELL;
         double rx = 45 + 70 * hd(14, i, j), rz = rx * (0.6 + 0.6 * hd(15, i, j)), ry = 22 + 30 * hd(16, i, j);
         double a = Math.PI * hd(17, i, j);

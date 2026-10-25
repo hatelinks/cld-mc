@@ -3,6 +3,7 @@ package dev.cld.tcw;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.cld.tcw.gen.Macro;
+import dev.cld.tcw.gen.Options;
 import dev.cld.tcw.gen.Simplex;
 import dev.cld.tcw.gen.Terrain;
 import java.util.ArrayList;
@@ -27,9 +28,19 @@ import net.neoforged.fml.ModList;
  * Под землёй в холодных и жарких сухих краях — пещерные биомы YUNG's Cave Biomes, если мод установлен.
  */
 public final class TcwBiomeSource extends BiomeSource {
+    static final com.mojang.serialization.Codec<Options> OPTIONS_CODEC = RecordCodecBuilder.create(i -> i.group(
+            com.mojang.serialization.Codec.INT.optionalFieldOf("continents", 1).forGetter(Options::continents),
+            com.mojang.serialization.Codec.INT.optionalFieldOf("mountains", 1).forGetter(Options::mountains),
+            com.mojang.serialization.Codec.INT.optionalFieldOf("height", 1).forGetter(Options::height),
+            com.mojang.serialization.Codec.INT.optionalFieldOf("climate", 1).forGetter(Options::climate),
+            com.mojang.serialization.Codec.INT.optionalFieldOf("snow", 1).forGetter(Options::snow),
+            com.mojang.serialization.Codec.INT.optionalFieldOf("halls", 1).forGetter(Options::halls)
+    ).apply(i, Options::new));
+
     public static final MapCodec<TcwBiomeSource> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
             MultiNoiseBiomeSourceParameterList.CODEC.fieldOf("preset").forGetter(s -> s.preset),
-            RegistryOps.retrieveGetter(Registries.BIOME)
+            RegistryOps.retrieveGetter(Registries.BIOME),
+            OPTIONS_CODEC.optionalFieldOf("options", Options.DEFAULT).forGetter(TcwBiomeSource::options)
     ).apply(i, TcwBiomeSource::new));
 
     private static final Simplex N = new Simplex(4242);
@@ -37,9 +48,22 @@ public final class TcwBiomeSource extends BiomeSource {
     private final Holder<MultiNoiseBiomeSourceParameterList> preset;
     private final MultiNoiseBiomeSource base;
     private final Holder<Biome> subalpine, meadow, tundra, scree, glacier, volcanic, frostCaves, sandCaves;
+    private final Options options;
 
-    private TcwBiomeSource(Holder<MultiNoiseBiomeSourceParameterList> preset, HolderGetter<Biome> biomes) {
+    private TcwBiomeSource(TcwBiomeSource o, Options options) {
+        preset = o.preset; base = o.base; subalpine = o.subalpine; meadow = o.meadow; tundra = o.tundra; scree = o.scree;
+        glacier = o.glacier; volcanic = o.volcanic; frostCaves = o.frostCaves; sandCaves = o.sandCaves;
+        this.options = options;
+    }
+
+    /** Тот же источник с другими настройками мира. */
+    public TcwBiomeSource withOptions(Options o) { return new TcwBiomeSource(this, o); }
+
+    public Options options() { return options; }
+
+    private TcwBiomeSource(Holder<MultiNoiseBiomeSourceParameterList> preset, HolderGetter<Biome> biomes, Options options) {
         this.preset = preset;
+        this.options = options;
         base = MultiNoiseBiomeSource.createFromPreset(preset);
         subalpine = own(biomes, "subalpine_forest");
         meadow = own(biomes, "alpine_meadow");
