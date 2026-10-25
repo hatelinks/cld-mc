@@ -13,6 +13,7 @@ public final class Terrain {
     static final int CACHE = Integer.getInteger("tcw.hydroCache", 6);
     public final Macro macro;
     public final Caves caves;
+    public final Rocks rocks;
     final long seed;
     final Simplex fine, rough, meanderA, meanderB, snowN;
     private final Map<Long, CompletableFuture<Hydro>> hydros = new LinkedHashMap<>(16, 0.75f, true) {
@@ -35,6 +36,7 @@ public final class Terrain {
         fine = new Simplex(s + 1); rough = new Simplex(s + 2); meanderA = new Simplex(s + 3); meanderB = new Simplex(s + 4);
         snowN = new Simplex(s + 5);
         caves = new Caves(this);
+        rocks = new Rocks(this);
     }
 
     public long seed() { return seed; }
