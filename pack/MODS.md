@@ -15,14 +15,14 @@ Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на ст�
 | Caelus API | caelus | 7.0.1+1.21.1 | caelus-neoforge-7.0.1+1.21.1.jar | e4c2e1af4e3082d68f7df75f7c8ce30116d71515 |
 | Carry On | carryon | 2.2.6 | carryon-neoforge-1.21.1-2.2.6.13.jar | 2ceb0d9284525b6cb2a214c88cf6511cab91f601 |
 | Cirrus | cirrus | 1.4.1 | cirrus-neoforge-1.21.1-1.4.1.jar | b34bb9e8698306778f927341ccc57f3101b13145 |
-| Предпросмотр мира | cld_pregen | 1.2.0 | cld_pregen-neoforge-1.21.1-1.2.0.jar | 461b109bd718c6b46b0f4b1eea04ef529e2077df |
+| Предпросмотр мира | cld_pregen | 1.3.2 | cld_pregen-neoforge-1.21.1-1.3.2.jar | acce55f857735d585410b778367bd95f01070da1 |
 | Структуры без наложений | cld_structures | 1.0.0 | cld_structures-neoforge-1.21.1-1.0.0.jar | 42174174a7d5d89f2beaaa052d9fcd59431b8a08 |
 | Climbable Ropes for Create Aeronautics | climbable_ropes | 1.8.0 | climbable_ropes-1.8.0.jar | fe34ba9684530700583893db9118e293d038a30f |
 | Cloth Config v15 API | cloth_config | 15.0.140 | cloth-config-15.0.140-neoforge.jar | c3e5733ba4503b102589a026000fd5ce0212f6f2 |
 | Create Compact Flap | compactflap | 1.0.4 | compactflap-neoforge-1.21.1-1.0.4.1.jar | 0018b99ee0a82e066d1acad4de389aae2426b812 |
 | Configured | configured | 2.6.3 | configured-neoforge-1.21.1-2.6.3.jar | e977d86eec39d49295df4e2c4265d6710ae065e8 |
 | Create | create | 6.0.10 | create-1.21.1-6.0.10.jar | 0e97e49837bed766e6f28a4c95b04885d6acc353 |
-| Create Aeronautics | aeronautics_bundled | 1.2.1 | create-aeronautics-bundled-1.21.1-1.2.1.jar | fdf1ae69e8b6437e0196b3a35dd2325aa904aba9 |
+| Create Aeronautics | aeronautics_bundled | 1.3.2 | create-aeronautics-bundled-1.21.1-1.3.2.jar | ddbe9cbc25e8f663218aa1e9fdfc4b99f0e11e4b |
 | Create: Dragons Plus | create_dragons_plus | 1.8.7 | create-dragons-plus-1.8.7.jar | 3e53b26e850f9d2a995868b0d7c012ba8e9d373b |
 | Create: Enchantment Industry | create_enchantment_industry | 2.2.5b | create-enchantment-industry-2.2.5b.jar | 22a01df0317ab4d9207cf1c8724ec73d262ceec7 |
 | Create: Structures Arise | create_structures_arise | 176.49.49 | Create-Structures-Arise-1.21.1-NeoForge-176.49.49.jar | 05d47e5f723456ebe2058f39dd6baab1f9516f87 |
@@ -57,7 +57,7 @@ Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на ст�
 | Jade-VS | jade_vs | 2.0.0 | Jade-VS-neoforge-1.21.1-2.0.0.jar | da3df30da4293e8e13a37178aa072aedc2b0becc |
 | Jade Addons | jadeaddons | 6.1.1+neoforge | JadeAddons-1.21.1-NeoForge-6.1.1.jar | 6c50a845ac3d336fa88e6466c36aa8b3815ca5c5 |
 | Just Enough Items | jei | 19.27.0.340 | jei-1.21.1-neoforge-19.27.0.340.jar | 27d0d85e7e32e926fc3664ab6815df5cdabb7941 |
-| JJThunder To The Max | jjthunder_to_the_max | 0.3.3-1.21.1-h1024-fast | jjtm-neoforge-1.21.1-0.3.3-h1024-fast.jar | 95130f2a428839033c4a07bbe202ca3f3f54d02a |
+| Горы до небес (JJThunder To The Max) | jjthunder_to_the_max | 1.0.0 (gdn) | gdn-neoforge-1.21.1-1.0.0.jar | 580384cf6619e389db583062a7b055ca66fe3eb9 |
 | Journeymap | journeymap | 1.21.1-6.0.7 | journeymap-neoforge-1.21.1-6.0.7.jar | cecb19e67cb5d9023057c1a94bab328723ba30dc |
 | Just Enough Resources | jeresources | 1.6.0.17 | JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar | e739d69b2de31ca8c0cb4691ab08e823f153bc44 |
 | KeyBind Bundles | keybindbundles | 1.4.0 | keybindbundles-1.4.0.jar | 02a9c2a3faf06eb46a0ec56cc2df7302e568ce27 |
@@ -90,11 +90,13 @@ Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на ст�
 | Veil | veil | 4.5.0 | veil-neoforge-1.21.1-4.5.0.jar | 1c506b969143edb0054986bd4f3401af98f60e15 |
 | WarNTaxes | minecolonytax | 5.0.9 | WarNTaxes-NeoForge-5.0.9.jar | 6718f70251c698ea307bc6e3bab89376d49d460e |
 | Waystones | waystones | 21.1.32 | waystones-neoforge-1.21.1-21.1.32.jar | 450e6605c38b4089e77d2ab2a4af7d72ead4249c |
-| WaystonesSable | waystonessable | 1.0.2 | waystonessable-1.0.2.jar | e5fd0ae3acdcb0d42b8ef05cf79b959bbccda4f3 |
 | William Wythers' Overhauled Overworld | wwoo | 2.6.7 | wwoo-neoforge-2.6.7.jar | bfc20e94b4a8ad630654993d5799bcca36fe238d |
 | YetAnotherConfigLib | yet_another_config_lib_v3 | 3.8.2+1.21.1-neoforge | yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar | fe270c9f6e0a8142cf316944087f5109cef08bbb |
 | YUNG's API | yungsapi | 1.21.1-NeoForge-5.1.9 | YungsApi-1.21.1-NeoForge-5.1.9.jar | 2c4b740c8ad27bbcb2a21b85b64f011b809aed91 |
-| YUNG's Better Caves | bettercaves | 1.21.1-NeoForge-3.1.6 | YungsBetterCaves-1.21.1-NeoForge-3.1.6.jar | 6420fdb345b5e33b3a51254799dc281c9c53d3c5 |
 | YUNG's Cave Biomes | yungscavebiomes | 1.21.1-NeoForge-3.1.1 | YungsCaveBiomes-1.21.1-NeoForge-3.1.1.jar | bcab81f578b3cb31e599ae327c6634b9fa8d0f04 |
 | YUNG's Extras | yungsextras | 1.21.1-NeoForge-5.1.1 | YungsExtras-1.21.1-NeoForge-5.1.1.jar | 62833733aaf407f36bdacf648ed4b2ef9940662b |
 | Zeta | zeta | 1.1-40 | Zeta-1.1-40.jar | 72f6efe421cfc0547c774ae8241d727b7d996754 |
+| Свой экран загрузки | cld_earlywindow | 1.0.0 | cld_earlywindow-1.21.1-1.0.0.jar | 2ddbdfe848515fe83b8ed680c9fcb09a128e0f9a |
+| Своё главное меню | cld_menu | 1.0.1 | cld_menu-neoforge-1.21.1-1.0.1.jar | 459537d5d6c1f26dced90f2b8d8d332b896625cc |
+| Spark | spark | 1.10.124 | spark-1.10.124-neoforge.jar | 9430cc2ab64ff89d698be593769fb9f9ee4efae6 |
+| TelipailoCraft: мир | tcw | 0.4.3 (в репозитории 0.5.0) | tcw-neoforge-1.21.1-0.4.3.jar | 7db4335735cb8aead60fb96efff241b9ba7b48a3 |

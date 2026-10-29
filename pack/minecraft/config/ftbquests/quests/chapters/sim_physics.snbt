@@ -4,7 +4,10 @@
 	filename: "sim_physics"
 	group: "246BC345C62FA335"
 	icon: {
-		id: "simulated:physics_assembler"
+		components: {
+			"ftbquests:missing_item": "simulated:physics_assembler"
+		}
+		id: "ftbquests:missing_item"
 	}
 	id: "083B9947057EBD6A"
 	images: [ ]
@@ -14,7 +17,10 @@
 	quests: [
 		{
 			icon: {
-				id: "simulated:physics_assembler"
+				components: {
+					"ftbquests:missing_item": "simulated:physics_assembler"
+				}
+				id: "ftbquests:missing_item"
 			}
 			id: "554F32E50B1E804D"
 			rewards: [{
@@ -45,7 +51,7 @@
 			tasks: [{
 				consume_items: false
 				id: "185CE962F6D63AA6"
-				item: { count: 1, id: "simulated:physics_assembler" }
+				item: { components: { "ftbquests:missing_item": "simulated:physics_assembler" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -93,7 +99,7 @@
 			tasks: [{
 				consume_items: false
 				id: "2E0271469BB66467"
-				item: { count: 1, id: "simulated:honey_glue" }
+				item: { components: { "ftbquests:missing_item": "simulated:honey_glue" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -128,7 +134,7 @@
 			tasks: [{
 				consume_items: false
 				id: "134A8AFCD557CB68"
-				item: { count: 1, id: "simulated:contraption_diagram" }
+				item: { components: { "ftbquests:missing_item": "simulated:contraption_diagram" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 4.5d
@@ -166,7 +172,7 @@
 			tasks: [{
 				consume_items: false
 				id: "081FDE08B25A3DD4"
-				item: { count: 1, id: "simulated:white_nameplate" }
+				item: { components: { "ftbquests:missing_item": "simulated:white_nameplate" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -183,7 +189,7 @@
 			tasks: [{
 				consume_items: false
 				id: "5CDAC9F364C557D2"
-				item: { count: 1, id: "simulated:iron_handle" }
+				item: { components: { "ftbquests:missing_item": "simulated:iron_handle" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -234,7 +240,7 @@
 			tasks: [{
 				consume_items: false
 				id: "626B7DDE00D8A407"
-				item: { count: 1, id: "simulated:steering_wheel" }
+				item: { components: { "ftbquests:missing_item": "simulated:steering_wheel" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 6.5d
@@ -254,7 +260,7 @@
 			tasks: [{
 				consume_items: false
 				id: "73D2B6D11D2E50B2"
-				item: { count: 1, id: "simulated:throttle_lever" }
+				item: { components: { "ftbquests:missing_item": "simulated:throttle_lever" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 6.5d
@@ -292,7 +298,7 @@
 			tasks: [{
 				consume_items: false
 				id: "6ACA1A2E6A72CCB5"
-				item: { count: 1, id: "simulated:swivel_bearing" }
+				item: { components: { "ftbquests:missing_item": "simulated:swivel_bearing" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 6.5d
@@ -331,8 +337,11 @@
 				{
 					id: "1E371B521DD191F5"
 					item: {
+						components: {
+							"ftbquests:missing_item": "simulated:honey_glue"
+						}
 						count: 1
-						id: "simulated:honey_glue"
+						id: "ftbquests:missing_item"
 					}
 					type: "item"
 				}
@@ -340,7 +349,7 @@
 			tasks: [{
 				consume_items: false
 				id: "402EE32FD7B316D2"
-				item: { count: 1, id: "simulated:spring" }
+				item: { components: { "ftbquests:missing_item": "simulated:spring" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 6.5d
@@ -359,7 +368,7 @@
 			tasks: [{
 				consume_items: false
 				id: "34EBB049A6361676"
-				item: { count: 1, id: "simulated:torsion_spring" }
+				item: { components: { "ftbquests:missing_item": "simulated:torsion_spring" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 8.5d
@@ -377,19 +386,19 @@
 				{
 					consume_items: false
 					id: "0E1CF7E71E67A22E"
-					item: { count: 1, id: "simulated:rope_coupling" }
+					item: { components: { "ftbquests:missing_item": "simulated:rope_coupling" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 				{
 					consume_items: false
 					id: "0F94043035875408"
-					item: { count: 1, id: "simulated:rope_connector" }
+					item: { components: { "ftbquests:missing_item": "simulated:rope_connector" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 				{
 					consume_items: false
 					id: "01D16BD997C70D14"
-					item: { count: 1, id: "simulated:rope_winch" }
+					item: { components: { "ftbquests:missing_item": "simulated:rope_winch" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 			]
@@ -440,7 +449,7 @@
 			tasks: [{
 				consume_items: false
 				id: "444A60C2B345099D"
-				item: { count: 1, id: "simulated:docking_connector" }
+				item: { components: { "ftbquests:missing_item": "simulated:docking_connector" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 10.5d
@@ -478,7 +487,7 @@
 			tasks: [{
 				consume_items: false
 				id: "74516471D9A12940"
-				item: { count: 1, id: "simulated:engine_assembly" }
+				item: { components: { "ftbquests:missing_item": "simulated:engine_assembly" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 10.5d
@@ -495,7 +504,7 @@
 			tasks: [{
 				consume_items: false
 				id: "021BE1C243B502BE"
-				item: { count: 1, id: "simulated:white_portable_engine" }
+				item: { components: { "ftbquests:missing_item": "simulated:white_portable_engine" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 10.5d
@@ -547,7 +556,7 @@
 			tasks: [{
 				consume_items: false
 				id: "35087F6163F99F2B"
-				item: { count: 1, id: "simulated:gyroscopic_mechanism" }
+				item: { components: { "ftbquests:missing_item": "simulated:gyroscopic_mechanism" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 14.75d
@@ -568,7 +577,7 @@
 			tasks: [{
 				consume_items: false
 				id: "173D707D8513318D"
-				item: { count: 1, id: "simulated:gimbal_sensor" }
+				item: { components: { "ftbquests:missing_item": "simulated:gimbal_sensor" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 17.0d
@@ -588,7 +597,7 @@
 			tasks: [{
 				consume_items: false
 				id: "67DC2FAFF40832A5"
-				item: { count: 1, id: "simulated:altitude_sensor" }
+				item: { components: { "ftbquests:missing_item": "simulated:altitude_sensor" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 14.75d
@@ -608,7 +617,7 @@
 			tasks: [{
 				consume_items: false
 				id: "289FAC3A98E91832"
-				item: { count: 1, id: "simulated:velocity_sensor" }
+				item: { components: { "ftbquests:missing_item": "simulated:velocity_sensor" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 14.75d
@@ -630,8 +639,11 @@
 				{
 					id: "543CABE0D8108005"
 					item: {
+						components: {
+							"ftbquests:missing_item": "simulated:honey_glue"
+						}
 						count: 1
-						id: "simulated:honey_glue"
+						id: "ftbquests:missing_item"
 					}
 					type: "item"
 				}
@@ -641,7 +653,7 @@
 			tasks: [{
 				consume_items: false
 				id: "4D94FE59A39DA28D"
-				item: { count: 1, id: "simulated:optical_sensor" }
+				item: { components: { "ftbquests:missing_item": "simulated:optical_sensor" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 14.75d
@@ -662,13 +674,13 @@
 				{
 					consume_items: false
 					id: "0463EACF66D5CD2B"
-					item: { count: 1, id: "simulated:laser_pointer" }
+					item: { components: { "ftbquests:missing_item": "simulated:laser_pointer" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 				{
 					consume_items: false
 					id: "38CBC23FCFBA10B0"
-					item: { count: 1, id: "simulated:laser_sensor" }
+					item: { components: { "ftbquests:missing_item": "simulated:laser_sensor" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 			]
@@ -690,7 +702,7 @@
 			tasks: [{
 				consume_items: false
 				id: "633648C15B77537C"
-				item: { count: 1, id: "simulated:navigation_table" }
+				item: { components: { "ftbquests:missing_item": "simulated:navigation_table" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 17.0d
@@ -711,7 +723,7 @@
 			tasks: [{
 				consume_items: false
 				id: "4D273066E964902F"
-				item: { count: 1, id: "simulated:redstone_magnet" }
+				item: { components: { "ftbquests:missing_item": "simulated:redstone_magnet" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 17.0d
@@ -746,13 +758,13 @@
 				{
 					consume_items: false
 					id: "418607ADC7D40BA0"
-					item: { count: 1, id: "simulated:redstone_accumulator" }
+					item: { components: { "ftbquests:missing_item": "simulated:redstone_accumulator" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 				{
 					consume_items: false
 					id: "07642280700B0E61"
-					item: { count: 1, id: "simulated:redstone_inductor" }
+					item: { components: { "ftbquests:missing_item": "simulated:redstone_inductor" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 			]
@@ -775,13 +787,13 @@
 				{
 					consume_items: false
 					id: "59C064A0A1E4719B"
-					item: { count: 1, id: "simulated:directional_linked_receiver" }
+					item: { components: { "ftbquests:missing_item": "simulated:directional_linked_receiver" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 				{
 					consume_items: false
 					id: "23EF26A73CF00DF2"
-					item: { count: 1, id: "simulated:modulating_linked_receiver" }
+					item: { components: { "ftbquests:missing_item": "simulated:modulating_linked_receiver" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 			]
@@ -803,7 +815,7 @@
 			tasks: [{
 				consume_items: false
 				id: "0BCCCB5CD1284910"
-				item: { count: 1, id: "simulated:linked_typewriter" }
+				item: { components: { "ftbquests:missing_item": "simulated:linked_typewriter" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 19.0d
@@ -825,13 +837,13 @@
 				{
 					consume_items: false
 					id: "639FC509A330B3A3"
-					item: { count: 1, id: "simulated:analog_transmission" }
+					item: { components: { "ftbquests:missing_item": "simulated:analog_transmission" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 				{
 					consume_items: false
 					id: "38AA6FE35752BF98"
-					item: { count: 1, id: "simulated:directional_gearshift" }
+					item: { components: { "ftbquests:missing_item": "simulated:directional_gearshift" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 			]
@@ -861,13 +873,13 @@
 				{
 					consume_items: false
 					id: "55E3A942FEDC2A72"
-					item: { count: 1, id: "simulated:auger_shaft" }
+					item: { components: { "ftbquests:missing_item": "simulated:auger_shaft" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 				{
 					consume_items: false
 					id: "15103A27E291462F"
-					item: { count: 1, id: "simulated:auger_cog" }
+					item: { components: { "ftbquests:missing_item": "simulated:auger_cog" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 			]
@@ -889,7 +901,7 @@
 			tasks: [{
 				consume_items: false
 				id: "2D211C69DC6FEE52"
-				item: { count: 1, id: "simulated:plunger_launcher" }
+				item: { components: { "ftbquests:missing_item": "simulated:plunger_launcher" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 12.5d
@@ -909,7 +921,7 @@
 			tasks: [{
 				consume_items: false
 				id: "5D99736DFBE8E878"
-				item: { count: 1, id: "simulated:white_symmetric_sail" }
+				item: { components: { "ftbquests:missing_item": "simulated:white_symmetric_sail" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 14.75d
@@ -933,8 +945,11 @@
 					count: 2
 					id: "1AF5AB6A58108D13"
 					item: {
+						components: {
+							"ftbquests:missing_item": "simulated:honey_glue"
+						}
 						count: 1
-						id: "simulated:honey_glue"
+						id: "ftbquests:missing_item"
 					}
 					type: "item"
 				}
@@ -944,7 +959,7 @@
 			tasks: [{
 				consume_items: false
 				id: "18AA9F54D70FE246"
-				item: { count: 1, id: "simulated:physics_assembler" }
+				item: { components: { "ftbquests:missing_item": "simulated:physics_assembler" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 19.0d
