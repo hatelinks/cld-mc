@@ -49,6 +49,7 @@
 - Сборка без Gradle: `LIBS=<jar NeoForge 21.1.248> <мод>/build.sh` (javac против `neoforge-*-client.jar` + `client-*-srg.jar`; `-proc:none`). Подробно — `CLAUDE.md`.
 
 ## 7. Дальняя прорисовка и конфиги
+- 29.10 (оптимизация, `pack/OPTIMIZATION.md`): DH решено заменить на cld_far, в копии на Маке DH, EMF и ETF уже выключены. В мирах gdn дальней прорисовки без DH не будет, cld_far работает только в tcw.
 - Distant Horizons 3.3.3: дальность LOD 256 на Маке (на телефоне ~64), обычная прорисовка 16 (`options.txt`), автообновление DH выключено. `guiScale:6` выставлен специально — не менять. Cirrus: совместимость с DH и «Sync Cloud Distance» включены.
 - Предупреждение DH про WWOO: возможны линии сетки в LOD, которые DH генерирует сам; нормальные чанки рисуются без них.
 - Логи: сообщения про `alexsmobs`, `iceandfire`, `ars_nouveau`, `quark`, `mowziesmobs` — из построек IDAS (мобы и предметы модов, которых нет), безвредны. Ошибки тегов IDAS bop/byg — нет BOP/BYG.
