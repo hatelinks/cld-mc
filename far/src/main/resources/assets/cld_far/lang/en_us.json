@@ -22,5 +22,9 @@
   "cld_far.configuration.spyglass.tooltip": "Through a spyglass, terrain in view becomes blocky like real chunks",
   "cld_far.configuration.spyglassRange": "Spyglass: range",
   "cld_far.configuration.spyglassRange.tooltip": "How far the spyglass shows blocky terrain",
-  "cld_far.button": "Distant terrain"
+  "cld_far.button": "Distant terrain",
+  "cld_far.configuration.smooth": "Smoothing",
+  "cld_far.configuration.smooth.tooltip": "How soft distant terrain looks. 0: raw, sharp peaks, 1: soft",
+  "cld_far.configuration.pixel": "Pixelation",
+  "cld_far.configuration.pixel.tooltip": "0: smooth slopes, 1: flat facets, 2: blocky steps like the game"
 }

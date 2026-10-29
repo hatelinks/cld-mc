@@ -22,5 +22,9 @@
   "cld_far.configuration.spyglass.tooltip": "В подзорную трубу рельеф в направлении взгляда становится блочным, как обычные чанки",
   "cld_far.configuration.spyglassRange": "Подзорная труба: дальность",
   "cld_far.configuration.spyglassRange.tooltip": "До какого расстояния рельеф в трубе блочный. Больше — дольше считать",
-  "cld_far.button": "Дальний рельеф"
+  "cld_far.button": "Дальний рельеф",
+  "cld_far.configuration.smooth": "Сглаживание",
+  "cld_far.configuration.smooth.tooltip": "Насколько мягко сглажен дальний рельеф. 0: как есть, острые пики, 1: мягко и мыльно",
+  "cld_far.configuration.pixel": "Пикселизация",
+  "cld_far.configuration.pixel.tooltip": "0: гладкие склоны, 1: плоские грани, 2: ступеньки-блоки, как в самой игре"
 }

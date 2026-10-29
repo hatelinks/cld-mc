@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.IntStream;
 
 // Проверка дальней прорисовки вне игры: какие тайлы выбираются, сколько их считать и как это выглядит.
-// java FarPreview <seed> <x> <y> <z> <yaw град.> <дальность> <шаг> <split> <clip> <out.png> [threads] [горы 1..3]
+// java FarPreview <seed> <x> <y> <z> <yaw град.> <дальность> <шаг> <split> <clip> <out.png> [threads] [горы 1..3] [сглаживание 0..1] [пикселизация 0..2]
 // Рисует сетки тайлов программным растеризатором (z-буфер) с той же перспективой и туманом, что в игре.
 public class FarPreview {
     public static void main(String[] a) throws Exception {
@@ -25,6 +25,8 @@ public class FarPreview {
         double dist = Double.parseDouble(a[5]), step = Double.parseDouble(a[6]), split = Double.parseDouble(a[7]), clip = Double.parseDouble(a[8]);
         int threads = a.length > 10 ? Integer.parseInt(a[10]) : 1;
         int mountains = a.length > 11 ? Integer.parseInt(a[11]) : 2;
+        double smooth = a.length > 12 ? Double.parseDouble(a[12]) : 0.15;
+        int pixel = a.length > 13 ? Integer.parseInt(a[13]) : 2;
         double tile0 = TileMesh.N * step;
         List<long[]> want = new ArrayList<>();
         LodTree.select(cx, cy, cz, dist, clip, split, tile0, new LodTree.Sink() {
@@ -44,7 +46,7 @@ public class FarPreview {
         pool.submit(() -> IntStream.range(0, want.size()).parallel().forEach(i -> {
             long[] w = want.get(i);
             double s = tile0 * (1L << w[0]);
-            meshes[i] = TileMesh.build(t, TileMesh.Palette.MODEL, w[1] * s, w[2] * s, s, mountains, false, () -> false);
+            meshes[i] = TileMesh.build(t, TileMesh.Palette.MODEL, w[1] * s, w[2] * s, s, mountains, false, smooth, pixel, () -> false);
             verts.addAndGet(meshes[i].vertices());
         })).get();
         double sec = (System.nanoTime() - t0) / 1e9;

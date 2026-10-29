@@ -44,8 +44,9 @@ public final class TileMesh {
     // Тайл со стороной size от (x0, z0); null, если отменён. Обычно сетка NxN, но в горах (большой перепад высот)
     // в mountainDetail раз мельче: на равнинах лишние треугольники не видны, а хребты без них выходят пирамидами.
     // clearWater: дно и вода отдельно (вода полупрозрачная, как в игре), иначе вода, непрозрачная поверхность.
+    // smooth от 0 до 1: насколько вдали сглаживать пики и гребни. pixel: 0 гладкая сетка, 1 гранями, 2 блоками.
     public static TileMesh build(Terrain t, Palette palette, double x0, double z0, double size, int mountainDetail, boolean clearWater,
-            BooleanSupplier cancelled) {
+            double smooth, int pixel, BooleanSupplier cancelled) {
         int n = mountainDetail > 1 && mountainous(t, x0, z0, size) ? N * mountainDetail : N;
         double step = size / n;
         int m = n + 3;
@@ -54,7 +55,7 @@ public final class TileMesh {
         int[] ground = new int[m * m], wcol = new int[m * m];
         // вдали отдельные пики и гребни при точечной выборке выходят тонкими зубцами ("график"):
         // чем грубее сетка, тем ближе высота суши к крупному рельефу без мелких деталей
-        double keep = Math.max(0.25, Math.min(1, 12 / step));
+        double keep = 1 - smooth * (1 - Math.max(0.25, Math.min(1, 12 / step)));
         Terrain.Column c = new Terrain.Column();
         Macro.Sample ms = new Macro.Sample();
         for (int j = 0; j < m; j++) {
@@ -87,7 +88,7 @@ public final class TileMesh {
         }
         // одиночные выборки на тонких столбах и шпилях (уже шага сетки) дают иглы-"график": срезаем вершину,
         // торчащую над всеми четырьмя соседями, до самого высокого соседа (плюс полшага)
-        if (step >= 6) {
+        if (step >= 6 && smooth >= 0.5) {
             float[] o = h.clone();
             for (int j = 1; j < m - 1; j++)
                 for (int i = 1; i < m - 1; i++) {
@@ -98,9 +99,9 @@ public final class TileMesh {
                 }
         }
         // вдали ещё и лёгкое сглаживание суши: горы массивнее, без пилы из соседних зубцов
-        if (step >= 12) {
+        if (step >= 12 && smooth > 0) {
             float[] o = h.clone();
-            float k = (float) Math.min(0.6, (step - 8) / 40);
+            float k = (float) (smooth * Math.min(0.6, (step - 8) / 40));
             for (int j = 1; j < m - 1; j++)
                 for (int i = 1; i < m - 1; i++) {
                     int id = j * m + i;
@@ -111,7 +112,7 @@ public final class TileMesh {
         }
         // цвета вершин 0..n с отмывкой от фиксированного солнца
         int n1 = n + 1;
-        int[] col = new int[n1 * n1];
+        int[] col = new int[n1 * n1], flat = new int[n1 * n1];
         for (int j = 0; j < n1; j++)
             for (int i = 0; i < n1; i++) {
                 int id = (j + 1) * m + i + 1;
@@ -130,7 +131,10 @@ public final class TileMesh {
                     shade = 0.5 + 0.55 * Math.max(0, dot);
                 }
                 col[j * n1 + i] = 0xFF000000 | MapRender.rgb(rgb[0] * shade, rgb[1] * shade, rgb[2] * shade);
+                flat[j * n1 + i] = MapRender.rgb(rgb[0], rgb[1], rgb[2]);
             }
+        if (pixel >= 2) return blocks(x0, z0, step, n, m, top, flat, clearWater ? water(n, m, step, h, wl, wcol) : null);
+        if (pixel == 1) facets(n, m, step, top, flat, col);
         int quads = n * n + 4 * n;
         float[] pos = new float[quads * 12];
         int[] argb = new int[quads * 4];
@@ -152,7 +156,87 @@ public final class TileMesh {
             skirt(pos, argb, q, n * s, k * s, n * s, (k + 1) * s, top[(k + 1) * m + n + 1], top[(k + 2) * m + n + 1], col[k * n1 + n], col[(k + 1) * n1 + n], drop);
         }
         if (!clearWater) return new TileMesh(x0, z0, step, pos, argb, quads, null, null, 0);
+        Water w = water(n, m, step, h, wl, wcol);
+        return new TileMesh(x0, z0, step, pos, argb, quads, w.pos, w.argb, w.pos.length / 12);
+    }
 
+    private record Water(float[] pos, int[] argb) {}
+
+    // Гранями: у каждой клетки один цвет, затенение по наклону самой клетки. Меняет col на месте:
+    // цвет вершины берётся по клетке, для которой она левый верхний угол, поэтому грани видны чётко.
+    private static void facets(int n, int m, double step, float[] top, int[] flat, int[] col) {
+        int n1 = n + 1;
+        for (int j = 0; j < n; j++)
+            for (int i = 0; i < n; i++) {
+                int a = (j + 1) * m + i + 1;
+                double hx = ((top[a + 1] + top[a + 1 + m]) - (top[a] + top[a + m])) / (2 * step);
+                double hz = ((top[a + m] + top[a + m + 1]) - (top[a] + top[a + 1])) / (2 * step);
+                double nl = Math.sqrt(hx * hx + 1 + hz * hz);
+                double sh = 0.5 + 0.55 * Math.max(0, (-hx * LX + LY - hz * LZ) / (nl * LL));
+                int c = flat[j * n1 + i];
+                col[j * n1 + i] = 0xFF000000 | MapRender.rgb(((c >> 16) & 255) * sh, ((c >> 8) & 255) * sh, (c & 255) * sh);
+            }
+    }
+
+    // Блоками: клетка сетки становится столбом с плоским верхом на высоте самого высокого угла,
+    // с боками к более низким соседям, как у блоков в игре (верх ярче, бока темнее).
+    private static TileMesh blocks(double x0, double z0, double step, int n, int m, float[] top, int[] flat, Water water) {
+        int k = n + 2;
+        int[] ct = new int[k * k];
+        int[] cc = new int[k * k];
+        int n1 = n + 1;
+        for (int cj = -1; cj <= n; cj++)
+            for (int ci = -1; ci <= n; ci++) {
+                int a = (cj + 1) * m + ci + 1;
+                float hi = Math.max(Math.max(top[a], top[a + 1]), Math.max(top[a + m], top[a + m + 1]));
+                ct[(cj + 1) * k + ci + 1] = (int) Math.ceil(hi);
+                if (ci < 0 || cj < 0 || ci >= n || cj >= n) continue;
+                // цвет угла с наибольшей высотой
+                int best = j1(ci, cj, n1);
+                float bh = top[a];
+                if (top[a + 1] > bh) { bh = top[a + 1]; best = j1(ci + 1, cj, n1); }
+                if (top[a + m] > bh) { bh = top[a + m]; best = j1(ci, cj + 1, n1); }
+                if (top[a + m + 1] > bh) best = j1(ci + 1, cj + 1, n1);
+                cc[(cj + 1) * k + ci + 1] = flat[best];
+            }
+        float s = (float) step, drop = 8 + 3 * s;
+        float[] pos = new float[(n * n * 5 + 4 * n) * 12];
+        int[] argb = new int[pos.length / 3];
+        int[] q = { 0 };
+        int[] nb = { -1, 1, -k, k };
+        for (int cj = 0; cj < n; cj++)
+            for (int ci = 0; ci < n; ci++) {
+                int id = (cj + 1) * k + ci + 1;
+                float y = ct[id], x = ci * s, z = cj * s;
+                int c = cc[id];
+                vertex(pos, argb, q, x, y, z, 0xFF000000 | c);
+                vertex(pos, argb, q, x, y, z + s, 0xFF000000 | c);
+                vertex(pos, argb, q, x + s, y, z + s, 0xFF000000 | c);
+                vertex(pos, argb, q, x + s, y, z, 0xFF000000 | c);
+                for (int d = 0; d < 4; d++) {
+                    int o = id + nb[d];
+                    boolean edge = d == 0 && ci == 0 || d == 1 && ci == n - 1 || d == 2 && cj == 0 || d == 3 && cj == n - 1;
+                    float lo = edge ? Math.min(ct[o], y) - drop : ct[o];
+                    if (lo >= y) continue;
+                    int sc = shadeRgb(c, d < 2 ? 0.6 : 0.8);
+                    // бок по x идёт вдоль z, бок по z вдоль x
+                    float ax = d == 1 ? x + s : x, az = d == 3 ? z + s : z;
+                    float bx = d < 2 ? ax : x + s, bz = d < 2 ? z + s : az;
+                    side(pos, argb, q, ax, az, bx, bz, lo, y, sc);
+                }
+            }
+        int quads = q[0] / 4;
+        float[] p2 = java.util.Arrays.copyOf(pos, quads * 12);
+        int[] a2 = java.util.Arrays.copyOf(argb, quads * 4);
+        if (water == null) return new TileMesh(x0, z0, step, p2, a2, quads, null, null, 0);
+        return new TileMesh(x0, z0, step, p2, a2, quads, water.pos, water.argb, water.pos.length / 12);
+    }
+
+    private static int j1(int i, int j, int n1) { return j * n1 + i; }
+
+    // Вода отдельным полупрозрачным слоем над дном.
+    private static Water water(int n, int m, double step, float[] h, float[] wl, int[] wcol) {
+        float s = (float) step;
         // вода: квад в каждой клетке, где мокрый хоть один угол; у сухих углов вода прозрачна (мягкий берег)
         int wq = 0;
         boolean[] cellWet = new boolean[n * n];
@@ -189,7 +273,7 @@ public final class TileMesh {
                     vertex(wpos, wargb, w, (i + cxz[k][0]) * s, wet ? wl[id] : level, (j + cxz[k][1]) * s, a << 24 | rgb);
                 }
             }
-        return new TileMesh(x0, z0, step, pos, argb, quads, wpos, wargb, wq);
+        return new Water(wpos, wargb);
     }
 
     // Дно: песок на мелководье, гравий и глина глубже.
