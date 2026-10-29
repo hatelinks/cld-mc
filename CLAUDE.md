@@ -17,7 +17,7 @@
 
 | Папка | Что это | Версия | Сборка |
 |---|---|---|---|
-| `tcw/` | Свой тип мира **TelipailoCraft** (modId `tcw`): рельеф, реки, ледники, пещеры, горные биомы, `/locate tcw`, `/tcwmap`, карта и настройки на экране создания мира. Тип мира по умолчанию, высота 768 (−128…640). | 0.5.0 | `tcw/build.sh` (версия зашита в скрипте). Данные мира генерирует `tools/build_data.py` из `client-*-extra.jar`. |
+| `tcw/` | Свой тип мира **TelipailoCraft** (modId `tcw`): рельеф, реки, ледники, пещеры, горные биомы, `/locate tcw`, `/tcwmap`, карта и настройки на экране создания мира. Тип мира по умолчанию, высота 768 (−128…640). | 0.5.1 | `tcw/build.sh` (версия зашита в скрипте). Данные мира генерирует `tools/build_data.py` из `client-*-extra.jar`. |
 | `pregen/` | **cld_pregen** «Предпросмотр мира»: прегенерация с живой картой на экране создания мира. | 1.3.2 | `pregen/build.sh` |
 | `structures/` | **cld_structures** «Структуры без наложений»: структуры разных модов не появляются друг в друге. Конфиг `config/cld_structures.properties`. | 1.0.0 | `structures/build.sh` |
 | `jjtm/` | Порт датапака JJThunder To The Max 1.20.1 → 1.21.1 (modId `jjthunder_to_the_max`, личное использование). Варианты высоты h2096/h1024/h512, `-fast` = ячейка шума 8 блоков. Сейчас в игре вместо него стоит gdn. | 0.3.3 | `jjtm/build.sh` (Python, без Java): `original/` → `src/` → `dist/` |
@@ -30,13 +30,13 @@
 
 Свои датапаки сборки (`pack_fixes.zip`, `colony_guard.zip`) лежат у владельца в `moonlight-global-datapacks`, описаны в `HANDOFF.md` §3.
 
-`pack/MODS.md` — что реально стоит в игре (обновлять по jar из папки `mods` владельца). Сейчас в игре tcw 0.4.3, в репозитории 0.5.0.
+`pack/MODS.md` — что реально стоит в игре (обновлять по jar из папки `mods` владельца). Сейчас в игре tcw 0.4.3, в репозитории 0.5.1.
 
 ## Как собирать Java-моды
 Gradle не используется. Каждый `build.sh` вызывает `javac --release 21` против библиотек NeoForge 21.1.248 из папки `LIBS` (по умолчанию `../../libs`, то есть рядом с клоном репозитория):
 
 ```sh
-LIBS=/путь/к/libs tcw/build.sh      # → tcw/dist/tcw-neoforge-1.21.1-0.5.0.jar
+LIBS=/путь/к/libs tcw/build.sh      # → tcw/dist/tcw-neoforge-1.21.1-0.5.1.jar
 VERSION=1.3.3 LIBS=... pregen/build.sh
 ```
 
