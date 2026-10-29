@@ -63,6 +63,16 @@ final class BiomePalette implements TileMesh.Palette {
 
     @Override
     public int ground(Terrain t, Terrain.Column c, double x, double z) {
+        return look.computeIfAbsent(biome(t, c, x, z), this::look);
+    }
+
+    @Override
+    public int water(Terrain t, Terrain.Column c, double x, double z) {
+        Biome b = biomes.get(biome(t, c, x, z));
+        return b != null ? b.getWaterColor() & 0xFFFFFF : -1;
+    }
+
+    private ResourceKey<Biome> biome(Terrain t, Terrain.Column c, double x, double z) {
         ResourceKey<Biome> k = pick(t, c, x, z);
         if (k == null) {
             double y = c.height;
@@ -70,7 +80,7 @@ final class BiomePalette implements TileMesh.Palette {
                     (float) t.climate(c, Terrain.P_CONTINENTS, x, y, z), (float) t.climate(c, Terrain.P_EROSION, x, y, z),
                     (float) t.climate(c, Terrain.P_DEPTH, x, y, z), (float) t.climate(c, Terrain.P_RIDGES, x, y, z)));
         }
-        return look.computeIfAbsent(k, this::look);
+        return k;
     }
 
     /** Свои биомы tcw у поверхности (повторяет TcwBiomeSource.pick при y ≈ высота). */
