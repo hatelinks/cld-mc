@@ -1,6 +1,6 @@
 package dev.cld.tcw.mixin;
 
-import net.minecraft.world.level.block.Blocks;
+import dev.cld.tcw.DeepFluidPicker;
 import net.minecraft.world.level.levelgen.Aquifer;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
@@ -19,10 +19,6 @@ public class FluidPickerMixin {
     private static void tcw$deepLava(NoiseGeneratorSettings settings, CallbackInfoReturnable<Aquifer.FluidPicker> cir) {
         int minY = settings.noiseSettings().minY();
         if (minY >= -64) return;
-        int lavaLevel = minY + 10, sea = settings.seaLevel();
-        Aquifer.FluidStatus lava = new Aquifer.FluidStatus(lavaLevel, Blocks.LAVA.defaultBlockState());
-        Aquifer.FluidStatus water = new Aquifer.FluidStatus(sea, settings.defaultFluid());
-        int limit = Math.min(lavaLevel, sea);
-        cir.setReturnValue((x, y, z) -> y < limit ? lava : water);
+        cir.setReturnValue(new DeepFluidPicker(minY + 10, settings.seaLevel(), settings.defaultFluid()));
     }
 }

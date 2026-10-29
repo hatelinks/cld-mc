@@ -70,11 +70,58 @@ public final class Terrain {
         }
     }
 
+    // кэш макро-образцов на поток. Столбец берёт образцы в (x, z), (x + 6, z) и (x, z + 6),
+    // а соседние столбцы (их считают для каждого блока) переиспользуют те же точки, так что образец
+    // считается примерно один раз вместо трёх. Только для целых координат, значения те же
+    private static final int MSIZE = 4096;
+
+    private static final class MCache {
+        final long[] keys = new long[MSIZE];
+        final Terrain[] owners = new Terrain[MSIZE];
+        final Macro.Sample[] v = new Macro.Sample[MSIZE];
+    }
+
+    private static final ThreadLocal<MCache> MC = ThreadLocal.withInitial(MCache::new);
+
+    private Macro.Sample sampleC(MCache mc, double x, double z, Macro.Sample out) {
+        if (mc == null) return macro.sample(x, z, out);
+        long key = ((long) x << 32) ^ ((long) z & 0xffffffffL);
+        long h = key * 0x9E3779B97F4A7C15L;
+        int slot = (int) (h >>> 52) & (MSIZE - 1);
+        Macro.Sample m = mc.v[slot];
+        if (m == null) mc.v[slot] = m = new Macro.Sample();
+        else if (mc.keys[slot] == key && mc.owners[slot] == this) {
+            copy(m, out);
+            return out;
+        }
+        macro.sample(x, z, m);
+        mc.keys[slot] = key;
+        mc.owners[slot] = this;
+        copy(m, out);
+        return out;
+    }
+
+    private static void copy(Macro.Sample a, Macro.Sample b) {
+        b.height = a.height;
+        b.coast = a.coast;
+        b.mountain = a.mountain;
+        b.temp = a.temp;
+        b.humid = a.humid;
+        System.arraycopy(a.style, 0, b.style, 0, a.style.length);
+        b.cont.ci = a.cont.ci;
+        b.cont.cj = a.cont.cj;
+        b.cont.landCell = a.cont.landCell;
+        b.cont.coast = a.cont.coast;
+        b.cont.qx = a.cont.qx;
+        b.cont.qz = a.cont.qz;
+    }
+
     public Column column(double x, double z, Column c) {
         c.peakBase = Double.NaN;
-        Macro.Sample s = macro.sample(x, z, c.s);
+        MCache mc = x == Math.rint(x) && z == Math.rint(z) ? MC.get() : null;
+        Macro.Sample s = sampleC(mc, x, z, c.s);
         double h0 = s.height;
-        double gx = (macro.sample(x + 6, z, c.sx).height - h0) / 6, gz = (macro.sample(x, z + 6, c.sz).height - h0) / 6;
+        double gx = (sampleC(mc, x + 6, z, c.sx).height - h0) / 6, gz = (sampleC(mc, x, z + 6, c.sz).height - h0) / 6;
         double slope = Math.sqrt(gx * gx + gz * gz);
         c.macroHeight = h0;
         c.temp = s.temp;
