@@ -8,7 +8,7 @@ public final class FarConfig {
     public static final boolean ANDROID = new java.io.File("/system/build.prop").exists();
 
     public static final ModConfigSpec SPEC;
-    public static final ModConfigSpec.BooleanValue ENABLED;
+    public static final ModConfigSpec.BooleanValue ENABLED, CLEAR_WATER;
     public static final ModConfigSpec.IntValue DISTANCE, STEP, MOUNTAINS, THREADS;
     public static final ModConfigSpec.DoubleValue DETAIL, FOG;
 
@@ -18,6 +18,8 @@ public final class FarConfig {
         DISTANCE = b.comment("Дальность, блоков").defineInRange("distance", ANDROID ? 2048 : 8192, 512, 32768);
         STEP = b.comment("Шаг сетки у ближнего края, блоков (меньше — подробнее и дольше считать)").defineInRange("step", 8, 2, 64);
         MOUNTAINS = b.comment("Во сколько раз мельче сетка у горных тайлов (1 — как у равнин)").defineInRange("mountains", ANDROID ? 1 : 2, 1, 3);
+        CLEAR_WATER = b.comment("Прозрачная дальняя вода с дном, как в игре (без резкого среза на стыке с чанками). Выкл — дешевле: непрозрачная вода")
+                .define("clearWater", !ANDROID);
         DETAIL = b.comment("Детальность: тайл делится, пока до него ближе detail × его размер (больше — подробнее вдали)")
                 .defineInRange("detail", 2.5, 1.0, 6.0);
         THREADS = b.comment("Фоновых потоков для расчёта рельефа").defineInRange("threads", ANDROID ? 1 : 2, 1, 8);

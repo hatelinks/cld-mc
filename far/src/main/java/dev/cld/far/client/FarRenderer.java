@@ -44,8 +44,43 @@ final class FarRenderer {
     /** Сколько готовых тайлов загружать в видеокарту за кадр (без рывков). */
     private static final int UPLOADS_PER_FRAME = 4;
 
-    private record Tile(VertexBuffer vb, double x0, double z0) {}
-    private record Built(long key, int gen, double x0, double z0, MeshData mesh, ByteBufferBuilder buf) {}
+    /** water — полупрозрачная вода отдельным буфером (режим clearWater) или null. */
+    private record Tile(VertexBuffer vb, VertexBuffer water, double x0, double z0) {
+        void close() {
+            vb.close();
+            if (water != null) water.close();
+        }
+    }
+    private record Part(MeshData mesh, ByteBufferBuilder buf) {
+        void free() {
+            mesh.close();
+            buf.close();
+        }
+
+        VertexBuffer upload() {
+            VertexBuffer vb = new VertexBuffer(VertexBuffer.Usage.STATIC);
+            vb.bind();
+            vb.upload(mesh); // закрывает MeshData
+            VertexBuffer.unbind();
+            buf.close();
+            return vb;
+        }
+
+        /** null, если вершин нет. */
+        static Part of(float[] pos, int[] argb, int vertices) {
+            if (vertices == 0) return null;
+            ByteBufferBuilder buf = new ByteBufferBuilder(vertices * DefaultVertexFormat.POSITION_COLOR.getVertexSize());
+            BufferBuilder bb = new BufferBuilder(buf, VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+            for (int v = 0; v < vertices; v++) bb.addVertex(pos[v * 3], pos[v * 3 + 1], pos[v * 3 + 2]).setColor(argb[v]);
+            MeshData md = bb.build();
+            if (md == null) {
+                buf.close();
+                return null;
+            }
+            return new Part(md, buf);
+        }
+    }
+    private record Built(long key, int gen, double x0, double z0, Part ground, Part water) {}
 
     private final Map<Long, Tile> tiles = new HashMap<>();
     private final Map<Long, Integer> lastUsed = new HashMap<>();
@@ -57,10 +92,14 @@ final class FarRenderer {
     private TileMesh.Palette palette;
     private ThreadPoolExecutor pool;
     private int poolThreads, step, mountains, frame;
+    private boolean clearWater;
     private boolean active;
     private volatile boolean failed;
 
     boolean active() { return active; }
+
+    /** Кадр без дальнего рельефа: туман игры остаётся обычным. */
+    void idle() { active = false; }
 
     /** Новый мир (или выход из мира при null): всё посчитанное сбрасывается. Вызывается в потоке рендера. */
     void setWorld(SeedPayload p) {
@@ -70,7 +109,7 @@ final class FarRenderer {
 
     private void reset() {
         gen++;
-        tiles.values().forEach(t -> t.vb.close());
+        tiles.values().forEach(Tile::close);
         tiles.clear();
         lastUsed.clear();
         pending.clear();
@@ -81,8 +120,8 @@ final class FarRenderer {
     }
 
     private static void free(Built b) {
-        b.mesh.close();
-        b.buf.close();
+        b.ground.free();
+        if (b.water != null) b.water.free();
     }
 
     void render(Minecraft mc, RenderLevelStageEvent e) {
@@ -90,9 +129,11 @@ final class FarRenderer {
         active = false;
         if (t == null || !FarConfig.ENABLED.get() || failed) return;
         int st = FarConfig.STEP.get(), mo = FarConfig.MOUNTAINS.get();
-        if (st != step || mo != mountains) {
+        boolean cw = FarConfig.CLEAR_WATER.get();
+        if (st != step || mo != mountains || cw != clearWater) {
             step = st;
             mountains = mo;
+            clearWater = cw;
             reset();
         }
         ensurePool(FarConfig.THREADS.get());
@@ -126,7 +167,7 @@ final class FarRenderer {
             @Override
             public void want(long key, int level, int tx, int tz, double priority) {
                 want.add(key);
-                if (pending.add(key)) pool.execute(new Job(key, g, t, pal, level, tx, tz, priority, tile0, mo));
+                if (pending.add(key)) pool.execute(new Job(key, g, t, pal, level, tx, tz, priority, tile0, mo, cw));
             }
         });
         wanted = want;
@@ -139,7 +180,7 @@ final class FarRenderer {
     private void draw(Minecraft mc, RenderLevelStageEvent e, Vec3 cam, List<Tile> draw, double dist, double clip) {
         ShaderInstance sh = FarClient.shader;
         float fogStart = RenderSystem.getShaderFogStart(), fogEnd = RenderSystem.getShaderFogEnd();
-        float b = mc.level.getSkyDarken(e.getPartialTick().getGameTimeDeltaPartialTick(false));
+        float b = brightness(mc, mc.level.getSkyDarken(e.getPartialTick().getGameTimeDeltaPartialTick(false)));
         RenderSystem.setShaderFogStart((float) (dist * FarConfig.FOG.get()));
         RenderSystem.setShaderFogEnd((float) dist);
         RenderSystem.setShaderColor(b, b, b, 1);
@@ -163,6 +204,21 @@ final class FarRenderer {
             t.vb.bind();
             t.vb.draw();
         }
+        // полупрозрачная вода поверх дна, без записи глубины (как вода в игре)
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.depthMask(false);
+        for (Tile t : draw) {
+            if (t.water == null) continue;
+            if (off != null) {
+                off.set((float) (t.x0 - cam.x), (float) -cam.y, (float) (t.z0 - cam.z));
+                off.upload();
+            }
+            t.water.bind();
+            t.water.draw();
+        }
+        RenderSystem.depthMask(true);
+        RenderSystem.disableBlend();
         VertexBuffer.unbind();
         sh.clear();
 
@@ -172,6 +228,15 @@ final class FarRenderer {
         RenderSystem.setShaderFogEnd(fogEnd);
         // чанки игры рисуются поверх: они всегда ближе дальнего рельефа
         RenderSystem.clear(GL11.GL_DEPTH_BUFFER_BIT, Minecraft.ON_OSX);
+    }
+
+    /**
+     * Яркость как у блоков под открытым небом в игре (карта освещения при небесном свете 15): иначе ночью дальний рельеф
+     * и вода заметно темнее ближних чанков. Учитывает настройку «Яркость».
+     */
+    static float brightness(Minecraft mc, float skyDarken) {
+        double x = skyDarken * 0.95 + 0.05, ng = 1 - Math.pow(1 - x, 4);
+        return (float) Math.min(1, x + (ng - x) * mc.options.gamma().get());
     }
 
     /**
@@ -197,12 +262,7 @@ final class FarRenderer {
                 free(b);
                 continue;
             }
-            VertexBuffer vb = new VertexBuffer(VertexBuffer.Usage.STATIC);
-            vb.bind();
-            vb.upload(b.mesh); // закрывает MeshData
-            VertexBuffer.unbind();
-            b.buf.close();
-            tiles.put(b.key, new Tile(vb, b.x0, b.z0));
+            tiles.put(b.key, new Tile(b.ground.upload(), b.water != null ? b.water.upload() : null, b.x0, b.z0));
             lastUsed.put(b.key, frame);
         }
     }
@@ -214,7 +274,7 @@ final class FarRenderer {
             Map.Entry<Long, Tile> en = it.next();
             Integer used = lastUsed.get(en.getKey());
             if ((used == null || frame - used > 600) && !w.contains(en.getKey())) {
-                en.getValue().vb.close();
+                en.getValue().close();
                 lastUsed.remove(en.getKey());
                 it.remove();
             }
@@ -243,9 +303,11 @@ final class FarRenderer {
         final TileMesh.Palette pal;
         final double priority, tile0;
         final int mountains;
+        final boolean clearWater;
 
-        Job(long key, int gen, Terrain t, TileMesh.Palette pal, int level, int tx, int tz, double priority, double tile0, int mountains) {
+        Job(long key, int gen, Terrain t, TileMesh.Palette pal, int level, int tx, int tz, double priority, double tile0, int mountains, boolean clearWater) {
             this.mountains = mountains;
+            this.clearWater = clearWater;
             this.key = key; this.gen = gen; this.t = t; this.pal = pal; this.level = level; this.tx = tx; this.tz = tz; this.priority = priority; this.tile0 = tile0;
         }
 
@@ -262,22 +324,13 @@ final class FarRenderer {
             }
             try {
                 double size = tile0 * (1L << level), x0 = tx * size, z0 = tz * size;
-                TileMesh m = TileMesh.build(t, pal, x0, z0, size, mountains, this::stale);
-                if (m == null) {
+                TileMesh m = TileMesh.build(t, pal, x0, z0, size, mountains, clearWater, this::stale);
+                Part ground = m == null ? null : Part.of(m.pos, m.argb, m.vertices());
+                if (ground == null) {
                     pending.remove(key);
                     return;
                 }
-                ByteBufferBuilder buf = new ByteBufferBuilder(m.vertices() * DefaultVertexFormat.POSITION_COLOR.getVertexSize());
-                BufferBuilder bb = new BufferBuilder(buf, VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-                for (int v = 0, nv = m.vertices(); v < nv; v++)
-                    bb.addVertex(m.pos[v * 3], m.pos[v * 3 + 1], m.pos[v * 3 + 2]).setColor(m.argb[v]);
-                MeshData md = bb.build();
-                if (md == null) {
-                    buf.close();
-                    pending.remove(key);
-                    return;
-                }
-                done.add(new Built(key, gen, x0, z0, md, buf));
+                done.add(new Built(key, gen, x0, z0, ground, Part.of(m.waterPos, m.waterArgb, m.waterVertices())));
             } catch (Throwable ex) {
                 pending.remove(key);
                 if (!failed) LOG.error("Дальний рельеф: ошибка расчёта тайла, отключаюсь до перезахода", ex);

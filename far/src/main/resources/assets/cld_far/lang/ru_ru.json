@@ -10,6 +10,8 @@
   "cld_far.configuration.step.tooltip": "Шаг у ближнего края: меньше — подробнее, но дольше считать. Смена шага пересчитывает всё",
   "cld_far.configuration.mountains": "Горы: детальность",
   "cld_far.configuration.mountains.tooltip": "Во сколько раз мельче сетка в горах (1 — как на равнинах). Больше — красивее хребты, дольше считать",
+  "cld_far.configuration.clearWater": "Прозрачная вода",
+  "cld_far.configuration.clearWater.tooltip": "Дальняя вода полупрозрачная, с дном, как в игре: нет резкого среза на стыке с чанками. Выкл — дешевле (для слабых ПК)",
   "cld_far.configuration.detail": "Детальность вдали",
   "cld_far.configuration.detail.tooltip": "Больше — мелкая сетка держится дальше от игрока (больше тайлов)",
   "cld_far.configuration.threads": "Потоков расчёта",

@@ -64,7 +64,21 @@ public final class FarClient {
         if (e.getStage() != RenderLevelStageEvent.Stage.AFTER_SKY) return;
         Minecraft mc = Minecraft.getInstance();
         if (shader == null || mc.level == null || mc.level.dimension() != Level.OVERWORLD) return;
+        if (!clearView(mc, e.getCamera())) {
+            RENDERER.idle();
+            return;
+        }
         RENDERER.render(mc, e);
+    }
+
+    /**
+     * Под водой, в лаве, в порошковом снеге, со слепотой или темнотой игра сама сужает видимость своим туманом;
+     * дальний рельеф там не нужен (снизу он виден как тёмные плиты поверхности моря), поэтому не рисуется.
+     */
+    private static boolean clearView(Minecraft mc, net.minecraft.client.Camera cam) {
+        if (cam.getFluidInCamera() != FogType.NONE) return false;
+        return !(cam.getEntity() instanceof net.minecraft.world.entity.LivingEntity le)
+                || !le.hasEffect(net.minecraft.world.effect.MobEffects.BLINDNESS) && !le.hasEffect(net.minecraft.world.effect.MobEffects.DARKNESS);
     }
 
     /** Туман игры уносится к краю дальнего рельефа, иначе на границе прорисовки виден светлый обод. */
