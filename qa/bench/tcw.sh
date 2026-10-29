@@ -7,4 +7,4 @@ rm -rf "$OUT" && mkdir -p "$OUT"
 javac -nowarn -d "$OUT" "$ROOT"/tcw/src/main/java/dev/cld/tcw/gen/*.java "$ROOT"/qa/bench/TcwChunkBench.java
 J=""
 [ -n "${JFR:-}" ] && J="-XX:StartFlightRecording=filename=$OUT/tcw.jfr,settings=profile"
-java -Dstdout.encoding=UTF-8 $J -cp "$OUT" TcwChunkBench "$@"
+java -Dstdout.encoding=UTF-8 ${JOPTS:-} $J -cp "$OUT" TcwChunkBench "$@"

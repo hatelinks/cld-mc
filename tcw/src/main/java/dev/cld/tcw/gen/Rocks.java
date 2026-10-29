@@ -112,14 +112,17 @@ public final class Rocks {
     static final class Cache {
         final Col[] cols = new Col[CACHE];
         Col last;
+        /** Последний блок combined(). */
+        int rx, ry = Integer.MIN_VALUE, rz;
+        Object rOwner;
+        double rv;
         { for (int k = 0; k < CACHE; k++) cols[k] = new Col(); }
     }
 
     private static final ThreadLocal<Cache> COLS = ThreadLocal.withInitial(Cache::new);
 
-    private Col col(int x, int z, Columns cols) {
+    private Col col(int x, int z, Columns cols, Cache cache) {
         long key = ((long) x << 32) ^ (z & 0xffffffffL);
-        Cache cache = COLS.get();
         Col c = cache.last;
         if (c != null && c.key == key && c.owner == this) return c;
         long m = key * 0x9E3779B97F4A7C15L;
@@ -192,15 +195,30 @@ public final class Rocks {
      */
     public double combined(int x, int y, int z, Columns cols) {
         if (OFF) return 0;
-        double a = add(x, y, z, cols);
-        if (a > NONE_ADD) return a + 2;
-        double c = cut(x, y, z, cols);
-        return c < NONE_CUT ? c - 2 : 0;
+        // rock дважды входит в final_density (max(min(F, R + 2), R - 2)) и спрашивается для одного блока подряд
+        Cache cache = COLS.get();
+        if (cache.rx == x && cache.ry == y && cache.rz == z && cache.rOwner == this) return cache.rv;
+        Col c = col(x, z, cols, cache);
+        double v = 0;
+        // вне [lo, hi] столбец ничего не меняет: ни камня, ни подрезки (подрезка тоже только при c.lo <= y)
+        if (y >= c.lo && y <= c.hi) {
+            double a = add(c, x, y, z, cols);
+            if (a > NONE_ADD) v = a + 2;
+            else {
+                double u = cut(c, x, y, z, cols);
+                v = u < NONE_CUT ? u - 2 : 0;
+            }
+        }
+        cache.rx = x; cache.ry = y; cache.rz = z; cache.rOwner = this; cache.rv = v;
+        return v;
     }
 
     public double add(int x, int y, int z, Columns cols) {
         if (OFF) return NONE_ADD;
-        Col c = col(x, z, cols);
+        return add(col(x, z, cols, COLS.get()), x, y, z, cols);
+    }
+
+    private double add(Col c, int x, int y, int z, Columns cols) {
         if (y < c.lo || y > c.hi) return NONE_ADD;
         double best = NONE_ADD;
         if (c.ledges && y > c.h - 1) {
@@ -220,7 +238,10 @@ public final class Rocks {
 
     public double cut(int x, int y, int z, Columns cols) {
         if (OFF) return NONE_CUT;
-        Col c = col(x, z, cols);
+        return cut(col(x, z, cols, COLS.get()), x, y, z, cols);
+    }
+
+    private double cut(Col c, int x, int y, int z, Columns cols) {
         if (!c.ledges || y > c.h + 1 || y < c.lo) return NONE_CUT;
         // подрезка: под карнизом склон отступает внутрь — высота чуть ниже по склону
         double b = band(c, y);
