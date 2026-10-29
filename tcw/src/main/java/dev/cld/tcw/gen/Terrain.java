@@ -59,6 +59,8 @@ public final class Terrain {
     public static final class Column {
         public double height, macroHeight, water, temp, humid, mountain, coast, riverDist, slope;
         public int waterKind;
+        // высота, выше которой столбец выше всех соседей (тонкий пик), считается лениво
+        public double peakBase = Double.NaN;
         public final double[] style = new double[Macro.STYLES.length];
         final Macro.Sample s = new Macro.Sample(), sx = new Macro.Sample(), sz = new Macro.Sample();
         public Macro.Style dominant() {
@@ -69,6 +71,7 @@ public final class Terrain {
     }
 
     public Column column(double x, double z, Column c) {
+        c.peakBase = Double.NaN;
         Macro.Sample s = macro.sample(x, z, c.s);
         double h0 = s.height;
         double gx = (macro.sample(x + 6, z, c.sx).height - h0) / 6, gz = (macro.sample(x, z + 6, c.sz).height - h0) / 6;
