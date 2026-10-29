@@ -153,7 +153,7 @@ final class FarRenderer {
         List<Tile> draw = new ArrayList<>();
         Set<Long> want = new HashSet<>();
         int g = gen;
-        LodTree.select(cam.x, cam.z, dist, clip, FarConfig.DETAIL.get(), tile0, new LodTree.Sink() {
+        LodTree.select(cam.x, cam.y, cam.z, dist, clip, FarConfig.DETAIL.get(), tile0, new LodTree.Sink() {
             @Override
             public boolean ready(long key) {
                 if (!tiles.containsKey(key)) return false;
@@ -170,14 +170,52 @@ final class FarRenderer {
                 if (pending.add(key)) pool.execute(new Job(key, g, t, pal, level, tx, tz, priority, tile0, mo, cw));
             }
         });
+        // подзорная труба: блочный рельеф в конусе взгляда, ближние тайлы первыми
+        List<Tile> scopeDraw = new ArrayList<>();
+        double scopeFar = 0;
+        boolean scoping = FarConfig.SCOPE.get() && mc.player != null && mc.player.isScoping();
+        if (scoping) scopeFar = scope(cam, e.getCamera().getYRot(), clip, FarConfig.SCOPE_RANGE.get(), scopeDraw, want, g, t, pal);
         wanted = want;
         if (frame % 120 == 0) evict();
         if (draw.isEmpty()) return;
         active = true;
-        draw(mc, e, cam, draw, dist, clip);
+        draw(mc, e, cam, draw, dist, clip, scoping ? scopeDraw : null, scopeFar, e.getCamera().getYRot());
     }
 
-    private void draw(Minecraft mc, RenderLevelStageEvent e, Vec3 cam, List<Tile> draw, double dist, double clip) {
+    static final int SCOPE_LEVEL = 63, SCOPE_TILE = 32;
+    /** Полуугол конуса подзорной трубы: с запасом к её полю зрения, чтобы край конуса не попадал в кадр. */
+    static final double SCOPE_HALF = Math.toRadians(14);
+
+    /**
+     * Тайлы 32×32 блока в конусе взгляда от clip до range. Возвращает дальность, до которой все тайлы конуса готовы:
+     * ближе неё вместо гладкого рельефа рисуются блоки, дальше — как обычно.
+     */
+    private double scope(Vec3 cam, float yaw, double clip, double range, List<Tile> out, Set<Long> want, int g, Terrain t, TileMesh.Palette pal) {
+        double dx = -Math.sin(Math.toRadians(yaw)), dz = Math.cos(Math.toRadians(yaw));
+        double half = SCOPE_TILE * 0.71, ready = range;
+        int ax = (int) Math.floor((cam.x - range) / SCOPE_TILE), bx = (int) Math.floor((cam.x + range) / SCOPE_TILE);
+        int az = (int) Math.floor((cam.z - range) / SCOPE_TILE), bz = (int) Math.floor((cam.z + range) / SCOPE_TILE);
+        for (int tz = az; tz <= bz; tz++)
+            for (int tx = ax; tx <= bx; tx++) {
+                double vx = (tx + 0.5) * SCOPE_TILE - cam.x, vz = (tz + 0.5) * SCOPE_TILE - cam.z, d = Math.sqrt(vx * vx + vz * vz);
+                if (d > range + half || d + half < clip || d < 1) continue;
+                if ((vx * dx + vz * dz) / d < Math.cos(SCOPE_HALF + Math.atan(half / d))) continue;
+                long key = LodTree.key(SCOPE_LEVEL, tx, tz);
+                Tile tile = tiles.get(key);
+                if (tile != null) {
+                    lastUsed.put(key, frame);
+                    out.add(tile);
+                } else {
+                    ready = Math.min(ready, Math.max(clip, d - half));
+                    want.add(key);
+                    if (pending.add(key)) pool.execute(new Job(key, g, t, pal, SCOPE_LEVEL, tx, tz, -1e9 + d, SCOPE_TILE, 1, false));
+                }
+            }
+        return ready;
+    }
+
+    private void draw(Minecraft mc, RenderLevelStageEvent e, Vec3 cam, List<Tile> draw, double dist, double clip, List<Tile> scope, double scopeFar,
+            float yaw) {
         ShaderInstance sh = FarClient.shader;
         float fogStart = RenderSystem.getShaderFogStart(), fogEnd = RenderSystem.getShaderFogEnd();
         float b = brightness(mc, mc.level.getSkyDarken(e.getPartialTick().getGameTimeDeltaPartialTick(false)));
@@ -194,6 +232,13 @@ final class FarRenderer {
         sh.setDefaultUniforms(VertexFormat.Mode.QUADS, e.getModelViewMatrix(), proj, mc.getWindow());
         Uniform clipU = sh.getUniform("ClipRadius");
         if (clipU != null) clipU.set((float) clip);
+        Uniform mode = sh.getUniform("ScopeMode");
+        if (mode != null) {
+            mode.set(scope != null ? 1f : 0f);
+            sh.getUniform("ScopeDir").set((float) -Math.sin(Math.toRadians(yaw)), (float) Math.cos(Math.toRadians(yaw)));
+            sh.getUniform("ScopeCos").set((float) Math.cos(SCOPE_HALF));
+            sh.getUniform("ScopeFar").set((float) scopeFar);
+        }
         sh.apply();
         Uniform off = sh.CHUNK_OFFSET;
         for (Tile t : draw) {
@@ -203,6 +248,18 @@ final class FarRenderer {
             }
             t.vb.bind();
             t.vb.draw();
+        }
+        if (scope != null && !scope.isEmpty() && mode != null) {
+            mode.set(2f);
+            mode.upload();
+            for (Tile t : scope) {
+                off.set((float) (t.x0 - cam.x), (float) -cam.y, (float) (t.z0 - cam.z));
+                off.upload();
+                t.vb.bind();
+                t.vb.draw();
+            }
+            mode.set(1f);
+            mode.upload();
         }
         // полупрозрачная вода поверх дна, без записи глубины (как вода в игре)
         RenderSystem.enableBlend();
@@ -323,8 +380,9 @@ final class FarRenderer {
                 return;
             }
             try {
-                double size = tile0 * (1L << level), x0 = tx * size, z0 = tz * size;
-                TileMesh m = TileMesh.build(t, pal, x0, z0, size, mountains, clearWater, this::stale);
+                double size = level == SCOPE_LEVEL ? SCOPE_TILE : tile0 * (1L << level), x0 = tx * size, z0 = tz * size;
+                TileMesh m = level == SCOPE_LEVEL ? TileMesh.buildBlocky(t, pal, x0, z0, SCOPE_TILE, this::stale)
+                        : TileMesh.build(t, pal, x0, z0, size, mountains, clearWater, this::stale);
                 Part ground = m == null ? null : Part.of(m.pos, m.argb, m.vertices());
                 if (ground == null) {
                     pending.remove(key);
