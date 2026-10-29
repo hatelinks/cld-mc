@@ -1104,6 +1104,136 @@
       "nightDensity": 1.25,
       "nightColor": 1973807,
       "nightSkyDarken": 1.0
+    },
+    "minecraft:swamp": {
+      "start": 0.0,
+      "end": 128.0,
+      "density": 1.0,
+      "transitionSpeed": 1.0,
+      "color": 12638463,
+      "skyColor": 7907327,
+      "nightStart": 0.0,
+      "nightEnd": 96.0,
+      "nightDensity": 1.25,
+      "nightColor": 1973807,
+      "nightSkyDarken": 1.0
+    },
+    "minecraft:warm_ocean": {
+      "start": 0.0,
+      "end": 128.0,
+      "density": 1.0,
+      "transitionSpeed": 1.0,
+      "color": 12638463,
+      "skyColor": 6269917,
+      "nightStart": 0.0,
+      "nightEnd": 96.0,
+      "nightDensity": 1.25,
+      "nightColor": 1973807,
+      "nightSkyDarken": 1.0
+    },
+    "minecraft:deep_dark": {
+      "start": 0.0,
+      "end": 128.0,
+      "density": 1.0,
+      "transitionSpeed": 1.0,
+      "color": 12638463,
+      "skyColor": 7907327,
+      "nightStart": 0.0,
+      "nightEnd": 96.0,
+      "nightDensity": 1.25,
+      "nightColor": 1973807,
+      "nightSkyDarken": 1.0
+    },
+    "tcw:subalpine_forest": {
+      "start": 0.0,
+      "end": 128.0,
+      "density": 1.0,
+      "transitionSpeed": 1.0,
+      "color": 12638463,
+      "skyColor": 8233983,
+      "nightStart": 0.0,
+      "nightEnd": 96.0,
+      "nightDensity": 1.25,
+      "nightColor": 1973807,
+      "nightSkyDarken": 1.0
+    },
+    "tcw:scree_slopes": {
+      "start": 0.0,
+      "end": 128.0,
+      "density": 1.0,
+      "transitionSpeed": 1.0,
+      "color": 12638463,
+      "skyColor": 7776511,
+      "nightStart": 0.0,
+      "nightEnd": 96.0,
+      "nightDensity": 1.25,
+      "nightColor": 1973807,
+      "nightSkyDarken": 1.0
+    },
+    "tcw:alpine_tundra": {
+      "start": 0.0,
+      "end": 128.0,
+      "density": 1.0,
+      "transitionSpeed": 1.0,
+      "color": 12638463,
+      "skyColor": 8103167,
+      "nightStart": 0.0,
+      "nightEnd": 96.0,
+      "nightDensity": 1.25,
+      "nightColor": 1973807,
+      "nightSkyDarken": 1.0
+    },
+    "minecraft:ice_spikes": {
+      "start": 0.0,
+      "end": 128.0,
+      "density": 1.0,
+      "transitionSpeed": 1.0,
+      "color": 13224393,
+      "skyColor": 16777215,
+      "nightStart": 0.0,
+      "nightEnd": 96.0,
+      "nightDensity": 1.25,
+      "nightColor": 1973807,
+      "nightSkyDarken": 1.0
+    },
+    "minecraft:deep_ocean": {
+      "start": 0.0,
+      "end": 128.0,
+      "density": 1.0,
+      "transitionSpeed": 1.0,
+      "color": 12638463,
+      "skyColor": 6269917,
+      "nightStart": 0.0,
+      "nightEnd": 96.0,
+      "nightDensity": 1.25,
+      "nightColor": 1973807,
+      "nightSkyDarken": 1.0
+    },
+    "minecraft:deep_frozen_ocean": {
+      "start": 0.0,
+      "end": 128.0,
+      "density": 1.0,
+      "transitionSpeed": 1.0,
+      "color": 13224393,
+      "skyColor": 16777215,
+      "nightStart": 0.0,
+      "nightEnd": 96.0,
+      "nightDensity": 1.25,
+      "nightColor": 1973807,
+      "nightSkyDarken": 1.0
+    },
+    "minecraft:deep_lukewarm_ocean": {
+      "start": 0.0,
+      "end": 128.0,
+      "density": 1.0,
+      "transitionSpeed": 1.0,
+      "color": 12638463,
+      "skyColor": 8103167,
+      "nightStart": 0.0,
+      "nightEnd": 96.0,
+      "nightDensity": 1.25,
+      "nightColor": 1973807,
+      "nightSkyDarken": 1.0
     }
   },
   "weatherByBiome": {
@@ -2284,6 +2414,146 @@
       }
     },
     "minecraft:flower_forest": {
+      "rain": {
+        "fog": 0.15,
+        "sky": 0.15,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      },
+      "thunder": {
+        "fog": 0.18,
+        "sky": 0.18,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      }
+    },
+    "minecraft:swamp": {
+      "rain": {
+        "fog": 0.15,
+        "sky": 0.15,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      },
+      "thunder": {
+        "fog": 0.18,
+        "sky": 0.18,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      }
+    },
+    "minecraft:warm_ocean": {
+      "rain": {
+        "fog": 0.15,
+        "sky": 0.15,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      },
+      "thunder": {
+        "fog": 0.18,
+        "sky": 0.18,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      }
+    },
+    "minecraft:deep_dark": {
+      "rain": {
+        "fog": 0.15,
+        "sky": 0.15,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      },
+      "thunder": {
+        "fog": 0.18,
+        "sky": 0.18,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      }
+    },
+    "tcw:subalpine_forest": {
+      "rain": {
+        "fog": 0.15,
+        "sky": 0.15,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      },
+      "thunder": {
+        "fog": 0.18,
+        "sky": 0.18,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      }
+    },
+    "tcw:scree_slopes": {
+      "rain": {
+        "fog": 0.15,
+        "sky": 0.15,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      },
+      "thunder": {
+        "fog": 0.18,
+        "sky": 0.18,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      }
+    },
+    "tcw:alpine_tundra": {
+      "rain": {
+        "fog": 0.15,
+        "sky": 0.15,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      },
+      "thunder": {
+        "fog": 0.18,
+        "sky": 0.18,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      }
+    },
+    "minecraft:ice_spikes": {
+      "rain": {
+        "fog": 0.15,
+        "sky": 0.15,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      },
+      "thunder": {
+        "fog": 0.18,
+        "sky": 0.18,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      }
+    },
+    "minecraft:deep_ocean": {
+      "rain": {
+        "fog": 0.15,
+        "sky": 0.15,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      },
+      "thunder": {
+        "fog": 0.18,
+        "sky": 0.18,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      }
+    },
+    "minecraft:deep_frozen_ocean": {
+      "rain": {
+        "fog": 0.15,
+        "sky": 0.15,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      },
+      "thunder": {
+        "fog": 0.18,
+        "sky": 0.18,
+        "fogStart": 1.0,
+        "fogEnd": 1.0
+      }
+    },
+    "minecraft:deep_lukewarm_ocean": {
       "rain": {
         "fog": 0.15,
         "sky": 0.15,
