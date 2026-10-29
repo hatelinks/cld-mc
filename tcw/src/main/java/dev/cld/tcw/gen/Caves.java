@@ -41,7 +41,7 @@ public final class Caves {
     private static final Hall NO_HALL = new Hall(0, 0, 0, 0, 0, 0, 0, NONE, 0);
 
     public Hall hall(int i, int j) {
-        long key = ((long) i << 32) ^ (j & 0xffffffffL);
+        long key = Macro.cellKey(i, j);
         Hall h = halls.get(key);
         if (h == null) {
             if (halls.size() > 4096) halls.clear();
@@ -183,7 +183,7 @@ public final class Caves {
     private static final Sink NO_SINK = new Sink(0, 0, 0, 0, 0, 0, 0);
 
     public Sink sink(int i, int j) {
-        long key = ((long) i << 32) ^ (j & 0xffffffffL);
+        long key = Macro.cellKey(i, j);
         Sink s = sinks.get(key);
         if (s == null) {
             if (sinks.size() > 16384) sinks.clear();
