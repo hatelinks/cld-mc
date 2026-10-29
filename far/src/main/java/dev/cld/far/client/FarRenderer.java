@@ -89,7 +89,8 @@ final class FarRenderer {
     private volatile Terrain terrain;
     private TileMesh.Palette palette;
     private ThreadPoolExecutor pool;
-    private int poolThreads, step, mountains, frame;
+    private int poolThreads, step, mountains, pixel, frame;
+    private double smooth = -1;
     private boolean clearWater;
     private boolean active;
     private volatile boolean failed;
@@ -128,10 +129,14 @@ final class FarRenderer {
         if (t == null || !FarConfig.ENABLED.get() || failed) return;
         int st = FarConfig.STEP.get(), mo = FarConfig.MOUNTAINS.get();
         boolean cw = FarConfig.CLEAR_WATER.get();
-        if (st != step || mo != mountains || cw != clearWater) {
+        int px = FarConfig.PIXEL.get();
+        double sm = FarConfig.SMOOTH.get();
+        if (st != step || mo != mountains || cw != clearWater || px != pixel || sm != smooth) {
             step = st;
             mountains = mo;
             clearWater = cw;
+            pixel = px;
+            smooth = sm;
             reset();
         }
         ensurePool(FarConfig.THREADS.get());
@@ -165,7 +170,7 @@ final class FarRenderer {
             @Override
             public void want(long key, int level, int tx, int tz, double priority) {
                 want.add(key);
-                if (pending.add(key)) pool.execute(new Job(key, g, t, pal, level, tx, tz, priority, tile0, mo, cw));
+                if (pending.add(key)) pool.execute(new Job(key, g, t, pal, level, tx, tz, priority, tile0, mo, cw, sm, px));
             }
         });
         // подзорная труба: блочный рельеф в конусе взгляда, ближние тайлы первыми
@@ -204,7 +209,7 @@ final class FarRenderer {
                 } else {
                     ready = Math.min(ready, Math.max(clip, d - half));
                     want.add(key);
-                    if (pending.add(key)) pool.execute(new Job(key, g, t, pal, SCOPE_LEVEL, tx, tz, -1e9 + d, SCOPE_TILE, 1, false));
+                    if (pending.add(key)) pool.execute(new Job(key, g, t, pal, SCOPE_LEVEL, tx, tz, -1e9 + d, SCOPE_TILE, 1, false, 0, 0));
                 }
             }
         return ready;
@@ -214,10 +219,10 @@ final class FarRenderer {
             float yaw) {
         ShaderInstance sh = FarClient.shader;
         float fogStart = RenderSystem.getShaderFogStart(), fogEnd = RenderSystem.getShaderFogEnd();
-        float b = brightness(mc, mc.level.getSkyDarken(e.getPartialTick().getGameTimeDeltaPartialTick(false)));
+        float[] b = light(mc, e.getPartialTick().getGameTimeDeltaPartialTick(false));
         RenderSystem.setShaderFogStart((float) (dist * FarConfig.FOG.get()));
         RenderSystem.setShaderFogEnd((float) dist);
-        RenderSystem.setShaderColor(b, b, b, 1);
+        RenderSystem.setShaderColor(b[0], b[1], b[2], 1);
         RenderSystem.enableDepthTest();
         RenderSystem.depthFunc(GL11.GL_LEQUAL);
         RenderSystem.depthMask(true);
@@ -283,11 +288,28 @@ final class FarRenderer {
         RenderSystem.clear(GL11.GL_DEPTH_BUFFER_BIT, Minecraft.ON_OSX);
     }
 
-    // Яркость как у блоков под открытым небом в игре (карта освещения при небесном свете 15): иначе ночью дальний рельеф
-    // и вода заметно темнее ближних чанков. Учитывает настройку "Яркость".
-    static float brightness(Minecraft mc, float skyDarken) {
-        double x = skyDarken * 0.95 + 0.05, ng = 1 - Math.pow(1 - x, 4);
-        return (float) Math.min(1, x + (ng - x) * mc.options.gamma().get());
+    // Свет как у блоков под открытым небом: повторяет карту освещения игры (LightTexture) при небесном свете 15
+    // и без света от блоков. Ночью свет тусклый и синеватый, учитываются молнии, ночное зрение и настройка "Яркость".
+    // Раньше бралась одна яркость без синего оттенка, и ночью дальний рельеф выходил заметно светлее чанков.
+    static float[] light(Minecraft mc, float partial) {
+        float sky = mc.level.getSkyDarken(partial);
+        float f1 = mc.level.getSkyFlashTime() > 0 ? 1 : sky * 0.95f + 0.05f;
+        float[] c = { (sky + (1 - sky) * 0.35f) * f1, (sky + (1 - sky) * 0.35f) * f1, f1 };
+        for (int i = 0; i < 3; i++) c[i] += (0.75f - c[i]) * 0.04f;
+        if (mc.player != null && mc.player.hasEffect(net.minecraft.world.effect.MobEffects.NIGHT_VISION)) {
+            float nv = net.minecraft.client.renderer.GameRenderer.getNightVisionScale(mc.player, partial);
+            float max = Math.max(c[0], Math.max(c[1], c[2]));
+            if (max < 1) for (int i = 0; i < 3; i++) c[i] += (c[i] / max - c[i]) * nv;
+        }
+        float gamma = mc.options.gamma().get().floatValue();
+        for (int i = 0; i < 3; i++) {
+            float x = Math.max(0, Math.min(1, c[i]));
+            float ng = 1 - (float) Math.pow(1 - x, 4);
+            x += (ng - x) * gamma;
+            x += (0.75f - x) * 0.04f;
+            c[i] = Math.max(0, Math.min(1, x));
+        }
+        return c;
     }
 
     // Та же проекция (поле зрения, покачивание камеры), но с другими ближней и дальней плоскостями.
@@ -351,11 +373,14 @@ final class FarRenderer {
         final Terrain t;
         final TileMesh.Palette pal;
         final double priority, tile0;
-        final int mountains;
+        final int mountains, pixel;
         final boolean clearWater;
+        final double smooth;
 
-        Job(long key, int gen, Terrain t, TileMesh.Palette pal, int level, int tx, int tz, double priority, double tile0, int mountains, boolean clearWater) {
+        Job(long key, int gen, Terrain t, TileMesh.Palette pal, int level, int tx, int tz, double priority, double tile0, int mountains, boolean clearWater, double smooth, int pixel) {
             this.mountains = mountains;
+            this.smooth = smooth;
+            this.pixel = pixel;
             this.clearWater = clearWater;
             this.key = key; this.gen = gen; this.t = t; this.pal = pal; this.level = level; this.tx = tx; this.tz = tz; this.priority = priority; this.tile0 = tile0;
         }
@@ -374,7 +399,7 @@ final class FarRenderer {
             try {
                 double size = level == SCOPE_LEVEL ? SCOPE_TILE : tile0 * (1L << level), x0 = tx * size, z0 = tz * size;
                 TileMesh m = level == SCOPE_LEVEL ? TileMesh.buildBlocky(t, pal, x0, z0, SCOPE_TILE, this::stale)
-                        : TileMesh.build(t, pal, x0, z0, size, mountains, clearWater, this::stale);
+                        : TileMesh.build(t, pal, x0, z0, size, mountains, clearWater, smooth, pixel, this::stale);
                 Part ground = m == null ? null : Part.of(m.pos, m.argb, m.vertices());
                 if (ground == null) {
                     pending.remove(key);
