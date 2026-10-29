@@ -17,5 +17,10 @@
   "cld_far.configuration.threads": "Потоков расчёта",
   "cld_far.configuration.threads.tooltip": "Фоновые потоки для расчёта рельефа. Меньше — меньше нагрев, дольше появляется",
   "cld_far.configuration.fog": "Начало тумана",
-  "cld_far.configuration.fog.tooltip": "С какой доли дальности рельеф уходит в туман"
+  "cld_far.configuration.fog.tooltip": "С какой доли дальности рельеф уходит в туман",
+  "cld_far.configuration.spyglass": "Подзорная труба: блоки",
+  "cld_far.configuration.spyglass.tooltip": "В подзорную трубу рельеф в направлении взгляда становится блочным, как обычные чанки",
+  "cld_far.configuration.spyglassRange": "Подзорная труба: дальность",
+  "cld_far.configuration.spyglassRange.tooltip": "До какого расстояния рельеф в трубе блочный. Больше — дольше считать",
+  "cld_far.button": "Дальний рельеф"
 }

@@ -13,7 +13,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
-/** Дальняя прорисовка рельефа TelipailoCraft: сервер сообщает клиенту сид генератора, клиент сам считает дальний рельеф. */
+// Дальняя прорисовка рельефа TelipailoCraft: сервер сообщает клиенту сид генератора, клиент сам считает дальний рельеф.
 @Mod(FarMod.NS)
 public final class FarMod {
     public static final String NS = "cld_far";
@@ -32,7 +32,7 @@ public final class FarMod {
                 (p, ctx) -> ctx.enqueueWork(() -> dev.cld.far.client.FarClient.onSeed(p)));
     }
 
-    /** Сид генератора (не сид мира: он выводится из сида через шум tcw:seed) и настройки мира. */
+    // Сид генератора (не сид мира: он выводится из сида через шум tcw:seed) и настройки мира.
     private static void onLogin(PlayerEvent.PlayerLoggedInEvent e) {
         if (!(e.getEntity() instanceof ServerPlayer sp)) return;
         var server = sp.server;

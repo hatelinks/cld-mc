@@ -34,17 +34,15 @@ import org.lwjgl.opengl.GL11;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Тайлы дальнего рельефа: считаются в фоновых потоках по модели генератора, один раз загружаются в видеокарту
- * и рисуются после неба своей проекцией с дальней плоскостью за дальностью. Затем буфер глубины очищается,
- * и обычные чанки рисуются поверх; внутри радиуса прорисовки игры тайлы отбрасываются в шейдере.
- */
+// Тайлы дальнего рельефа: считаются в фоновых потоках по модели генератора, один раз загружаются в видеокарту
+// и рисуются после неба своей проекцией с дальней плоскостью за дальностью. Затем буфер глубины очищается,
+// и обычные чанки рисуются поверх; внутри радиуса прорисовки игры тайлы отбрасываются в шейдере.
 final class FarRenderer {
     private static final Logger LOG = LoggerFactory.getLogger("cld_far");
-    /** Сколько готовых тайлов загружать в видеокарту за кадр (без рывков). */
+    // Сколько готовых тайлов загружать в видеокарту за кадр (без рывков).
     private static final int UPLOADS_PER_FRAME = 4;
 
-    /** water — полупрозрачная вода отдельным буфером (режим clearWater) или null. */
+    // water, полупрозрачная вода отдельным буфером (режим clearWater) или null.
     private record Tile(VertexBuffer vb, VertexBuffer water, double x0, double z0) {
         void close() {
             vb.close();
@@ -66,7 +64,7 @@ final class FarRenderer {
             return vb;
         }
 
-        /** null, если вершин нет. */
+        // null, если вершин нет.
         static Part of(float[] pos, int[] argb, int vertices) {
             if (vertices == 0) return null;
             ByteBufferBuilder buf = new ByteBufferBuilder(vertices * DefaultVertexFormat.POSITION_COLOR.getVertexSize());
@@ -98,10 +96,10 @@ final class FarRenderer {
 
     boolean active() { return active; }
 
-    /** Кадр без дальнего рельефа: туман игры остаётся обычным. */
+    // Кадр без дальнего рельефа: туман игры остаётся обычным.
     void idle() { active = false; }
 
-    /** Новый мир (или выход из мира при null): всё посчитанное сбрасывается. Вызывается в потоке рендера. */
+    // Новый мир (или выход из мира при null): всё посчитанное сбрасывается. Вызывается в потоке рендера.
     void setWorld(SeedPayload p) {
         terrain = p == null ? null : new Terrain(p.seed(), p.options());
         reset();
@@ -153,7 +151,7 @@ final class FarRenderer {
         List<Tile> draw = new ArrayList<>();
         Set<Long> want = new HashSet<>();
         int g = gen;
-        LodTree.select(cam.x, cam.z, dist, clip, FarConfig.DETAIL.get(), tile0, new LodTree.Sink() {
+        LodTree.select(cam.x, cam.y, cam.z, dist, clip, FarConfig.DETAIL.get(), tile0, new LodTree.Sink() {
             @Override
             public boolean ready(long key) {
                 if (!tiles.containsKey(key)) return false;
@@ -170,14 +168,50 @@ final class FarRenderer {
                 if (pending.add(key)) pool.execute(new Job(key, g, t, pal, level, tx, tz, priority, tile0, mo, cw));
             }
         });
+        // подзорная труба: блочный рельеф в конусе взгляда, ближние тайлы первыми
+        List<Tile> scopeDraw = new ArrayList<>();
+        double scopeFar = 0;
+        boolean scoping = FarConfig.SCOPE.get() && mc.player != null && mc.player.isScoping();
+        if (scoping) scopeFar = scope(cam, e.getCamera().getYRot(), clip, FarConfig.SCOPE_RANGE.get(), scopeDraw, want, g, t, pal);
         wanted = want;
         if (frame % 120 == 0) evict();
         if (draw.isEmpty()) return;
         active = true;
-        draw(mc, e, cam, draw, dist, clip);
+        draw(mc, e, cam, draw, dist, clip, scoping ? scopeDraw : null, scopeFar, e.getCamera().getYRot());
     }
 
-    private void draw(Minecraft mc, RenderLevelStageEvent e, Vec3 cam, List<Tile> draw, double dist, double clip) {
+    static final int SCOPE_LEVEL = 63, SCOPE_TILE = 32;
+    // Полуугол конуса подзорной трубы: с запасом к её полю зрения, чтобы край конуса не попадал в кадр.
+    static final double SCOPE_HALF = Math.toRadians(14);
+
+    // Тайлы 32x32 блока в конусе взгляда от clip до range. Возвращает дальность, до которой все тайлы конуса готовы:
+    // ближе неё вместо гладкого рельефа рисуются блоки, дальше, как обычно.
+    private double scope(Vec3 cam, float yaw, double clip, double range, List<Tile> out, Set<Long> want, int g, Terrain t, TileMesh.Palette pal) {
+        double dx = -Math.sin(Math.toRadians(yaw)), dz = Math.cos(Math.toRadians(yaw));
+        double half = SCOPE_TILE * 0.71, ready = range;
+        int ax = (int) Math.floor((cam.x - range) / SCOPE_TILE), bx = (int) Math.floor((cam.x + range) / SCOPE_TILE);
+        int az = (int) Math.floor((cam.z - range) / SCOPE_TILE), bz = (int) Math.floor((cam.z + range) / SCOPE_TILE);
+        for (int tz = az; tz <= bz; tz++)
+            for (int tx = ax; tx <= bx; tx++) {
+                double vx = (tx + 0.5) * SCOPE_TILE - cam.x, vz = (tz + 0.5) * SCOPE_TILE - cam.z, d = Math.sqrt(vx * vx + vz * vz);
+                if (d > range + half || d + half < clip || d < 1) continue;
+                if ((vx * dx + vz * dz) / d < Math.cos(SCOPE_HALF + Math.atan(half / d))) continue;
+                long key = LodTree.key(SCOPE_LEVEL, tx, tz);
+                Tile tile = tiles.get(key);
+                if (tile != null) {
+                    lastUsed.put(key, frame);
+                    out.add(tile);
+                } else {
+                    ready = Math.min(ready, Math.max(clip, d - half));
+                    want.add(key);
+                    if (pending.add(key)) pool.execute(new Job(key, g, t, pal, SCOPE_LEVEL, tx, tz, -1e9 + d, SCOPE_TILE, 1, false));
+                }
+            }
+        return ready;
+    }
+
+    private void draw(Minecraft mc, RenderLevelStageEvent e, Vec3 cam, List<Tile> draw, double dist, double clip, List<Tile> scope, double scopeFar,
+            float yaw) {
         ShaderInstance sh = FarClient.shader;
         float fogStart = RenderSystem.getShaderFogStart(), fogEnd = RenderSystem.getShaderFogEnd();
         float b = brightness(mc, mc.level.getSkyDarken(e.getPartialTick().getGameTimeDeltaPartialTick(false)));
@@ -194,6 +228,13 @@ final class FarRenderer {
         sh.setDefaultUniforms(VertexFormat.Mode.QUADS, e.getModelViewMatrix(), proj, mc.getWindow());
         Uniform clipU = sh.getUniform("ClipRadius");
         if (clipU != null) clipU.set((float) clip);
+        Uniform mode = sh.getUniform("ScopeMode");
+        if (mode != null) {
+            mode.set(scope != null ? 1f : 0f);
+            sh.getUniform("ScopeDir").set((float) -Math.sin(Math.toRadians(yaw)), (float) Math.cos(Math.toRadians(yaw)));
+            sh.getUniform("ScopeCos").set((float) Math.cos(SCOPE_HALF));
+            sh.getUniform("ScopeFar").set((float) scopeFar);
+        }
         sh.apply();
         Uniform off = sh.CHUNK_OFFSET;
         for (Tile t : draw) {
@@ -203,6 +244,18 @@ final class FarRenderer {
             }
             t.vb.bind();
             t.vb.draw();
+        }
+        if (scope != null && !scope.isEmpty() && mode != null) {
+            mode.set(2f);
+            mode.upload();
+            for (Tile t : scope) {
+                off.set((float) (t.x0 - cam.x), (float) -cam.y, (float) (t.z0 - cam.z));
+                off.upload();
+                t.vb.bind();
+                t.vb.draw();
+            }
+            mode.set(1f);
+            mode.upload();
         }
         // полупрозрачная вода поверх дна, без записи глубины (как вода в игре)
         RenderSystem.enableBlend();
@@ -230,19 +283,15 @@ final class FarRenderer {
         RenderSystem.clear(GL11.GL_DEPTH_BUFFER_BIT, Minecraft.ON_OSX);
     }
 
-    /**
-     * Яркость как у блоков под открытым небом в игре (карта освещения при небесном свете 15): иначе ночью дальний рельеф
-     * и вода заметно темнее ближних чанков. Учитывает настройку «Яркость».
-     */
+    // Яркость как у блоков под открытым небом в игре (карта освещения при небесном свете 15): иначе ночью дальний рельеф
+    // и вода заметно темнее ближних чанков. Учитывает настройку "Яркость".
     static float brightness(Minecraft mc, float skyDarken) {
         double x = skyDarken * 0.95 + 0.05, ng = 1 - Math.pow(1 - x, 4);
         return (float) Math.min(1, x + (ng - x) * mc.options.gamma().get());
     }
 
-    /**
-     * Та же проекция (поле зрения, покачивание камеры), но с другими ближней и дальней плоскостями.
-     * Проекция игры = перспектива × аффинное покачивание B, поэтому строка глубины пересчитывается через строку w.
-     */
+    // Та же проекция (поле зрения, покачивание камеры), но с другими ближней и дальней плоскостями.
+    // Проекция игры = перспектива x аффинное покачивание B, поэтому строка глубины пересчитывается через строку w.
     static Matrix4f withDepth(Matrix4f p, float n, float f) {
         Matrix4f m = new Matrix4f(p);
         float a = -(f + n) / (f - n), b = -2 * f * n / (f - n);
@@ -267,7 +316,7 @@ final class FarRenderer {
         }
     }
 
-    /** Выгрузить тайлы, которые давно не нужны ни для рисования, ни как запасные. */
+    // Выгрузить тайлы, которые давно не нужны ни для рисования, ни как запасные.
     private void evict() {
         Set<Long> w = wanted;
         for (Iterator<Map.Entry<Long, Tile>> it = tiles.entrySet().iterator(); it.hasNext(); ) {
@@ -323,8 +372,9 @@ final class FarRenderer {
                 return;
             }
             try {
-                double size = tile0 * (1L << level), x0 = tx * size, z0 = tz * size;
-                TileMesh m = TileMesh.build(t, pal, x0, z0, size, mountains, clearWater, this::stale);
+                double size = level == SCOPE_LEVEL ? SCOPE_TILE : tile0 * (1L << level), x0 = tx * size, z0 = tz * size;
+                TileMesh m = level == SCOPE_LEVEL ? TileMesh.buildBlocky(t, pal, x0, z0, SCOPE_TILE, this::stale)
+                        : TileMesh.build(t, pal, x0, z0, size, mountains, clearWater, this::stale);
                 Part ground = m == null ? null : Part.of(m.pos, m.argb, m.vertices());
                 if (ground == null) {
                     pending.remove(key);

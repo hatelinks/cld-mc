@@ -10,11 +10,9 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.IntStream;
 
-/**
- * Проверка дальней прорисовки вне игры: какие тайлы выбираются, сколько их считать и как это выглядит.
- * java FarPreview <seed> <x> <y> <z> <yaw°> <дальность> <шаг> <split> <clip> <out.png> [threads] [горы 1..3]
- * Рисует сетки тайлов программным растеризатором (z-буфер) с той же перспективой и туманом, что в игре.
- */
+// Проверка дальней прорисовки вне игры: какие тайлы выбираются, сколько их считать и как это выглядит.
+// java FarPreview <seed> <x> <y> <z> <yaw град.> <дальность> <шаг> <split> <clip> <out.png> [threads] [горы 1..3]
+// Рисует сетки тайлов программным растеризатором (z-буфер) с той же перспективой и туманом, что в игре.
 public class FarPreview {
     public static void main(String[] a) throws Exception {
         long seed = Long.parseLong(a[0]);
@@ -29,7 +27,7 @@ public class FarPreview {
         int mountains = a.length > 11 ? Integer.parseInt(a[11]) : 2;
         double tile0 = TileMesh.N * step;
         List<long[]> want = new ArrayList<>();
-        LodTree.select(cx, cz, dist, clip, split, tile0, new LodTree.Sink() {
+        LodTree.select(cx, cy, cz, dist, clip, split, tile0, new LodTree.Sink() {
             public boolean ready(long key) { return true; }
             public void draw(long key, int l, int tx, int tz) { want.add(new long[] { l, tx, tz }); }
             public void want(long key, int l, int tx, int tz, double p) {}
