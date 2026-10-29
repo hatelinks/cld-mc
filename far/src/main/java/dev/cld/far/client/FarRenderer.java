@@ -56,7 +56,7 @@ final class FarRenderer {
     private volatile Terrain terrain;
     private TileMesh.Palette palette;
     private ThreadPoolExecutor pool;
-    private int poolThreads, step, frame;
+    private int poolThreads, step, mountains, frame;
     private boolean active;
     private volatile boolean failed;
 
@@ -89,9 +89,10 @@ final class FarRenderer {
         Terrain t = terrain;
         active = false;
         if (t == null || !FarConfig.ENABLED.get() || failed) return;
-        int st = FarConfig.STEP.get();
-        if (st != step) {
+        int st = FarConfig.STEP.get(), mo = FarConfig.MOUNTAINS.get();
+        if (st != step || mo != mountains) {
             step = st;
+            mountains = mo;
             reset();
         }
         ensurePool(FarConfig.THREADS.get());
@@ -125,7 +126,7 @@ final class FarRenderer {
             @Override
             public void want(long key, int level, int tx, int tz, double priority) {
                 want.add(key);
-                if (pending.add(key)) pool.execute(new Job(key, g, t, pal, level, tx, tz, priority, tile0));
+                if (pending.add(key)) pool.execute(new Job(key, g, t, pal, level, tx, tz, priority, tile0, mo));
             }
         });
         wanted = want;
@@ -241,8 +242,10 @@ final class FarRenderer {
         final Terrain t;
         final TileMesh.Palette pal;
         final double priority, tile0;
+        final int mountains;
 
-        Job(long key, int gen, Terrain t, TileMesh.Palette pal, int level, int tx, int tz, double priority, double tile0) {
+        Job(long key, int gen, Terrain t, TileMesh.Palette pal, int level, int tx, int tz, double priority, double tile0, int mountains) {
+            this.mountains = mountains;
             this.key = key; this.gen = gen; this.t = t; this.pal = pal; this.level = level; this.tx = tx; this.tz = tz; this.priority = priority; this.tile0 = tile0;
         }
 
@@ -259,7 +262,7 @@ final class FarRenderer {
             }
             try {
                 double size = tile0 * (1L << level), x0 = tx * size, z0 = tz * size;
-                TileMesh m = TileMesh.build(t, pal, x0, z0, size / TileMesh.N, this::stale);
+                TileMesh m = TileMesh.build(t, pal, x0, z0, size, mountains, this::stale);
                 if (m == null) {
                     pending.remove(key);
                     return;
