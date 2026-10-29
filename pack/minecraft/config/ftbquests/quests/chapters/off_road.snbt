@@ -4,7 +4,10 @@
 	filename: "off_road"
 	group: "246BC345C62FA335"
 	icon: {
-		id: "offroad:tire"
+		components: {
+			"ftbquests:missing_item": "offroad:tire"
+		}
+		id: "ftbquests:missing_item"
 	}
 	id: "4DBF09082EABF9C7"
 	images: [ ]
@@ -15,7 +18,10 @@
 		{
 			dependencies: ["7A4867FC76D52080"]
 			icon: {
-				id: "offroad:tire"
+				components: {
+					"ftbquests:missing_item": "offroad:tire"
+				}
+				id: "ftbquests:missing_item"
 			}
 			id: "60F5CA864284F2DD"
 			rewards: [{
@@ -46,7 +52,7 @@
 			tasks: [{
 				consume_items: false
 				id: "7B0A90B22112954B"
-				item: { count: 1, id: "offroad:wheel_mount" }
+				item: { components: { "ftbquests:missing_item": "offroad:wheel_mount" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -66,7 +72,7 @@
 			tasks: [{
 				consume_items: false
 				id: "3C265578C0A548BD"
-				item: { count: 1, id: "offroad:small_tire" }
+				item: { components: { "ftbquests:missing_item": "offroad:small_tire" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -87,7 +93,7 @@
 			tasks: [{
 				consume_items: false
 				id: "70580E8485B42BE0"
-				item: { count: 1, id: "offroad:monstrous_tire" }
+				item: { components: { "ftbquests:missing_item": "offroad:monstrous_tire" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -121,7 +127,7 @@
 			tasks: [{
 				consume_items: false
 				id: "71AE7706413F3918"
-				item: { count: 1, id: "offroad:rockcutting_wheel" }
+				item: { components: { "ftbquests:missing_item": "offroad:rockcutting_wheel" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -142,7 +148,7 @@
 			tasks: [{
 				consume_items: false
 				id: "15ACD3AFEE492F22"
-				item: { count: 1, id: "offroad:borehead_bearing" }
+				item: { components: { "ftbquests:missing_item": "offroad:borehead_bearing" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 4.5d
@@ -163,7 +169,7 @@
 			tasks: [{
 				consume_items: false
 				id: "26EB7000775561CA"
-				item: { count: 1, id: "tracks:track_mount" }
+				item: { components: { "ftbquests:missing_item": "tracks:track_mount" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 4.5d
@@ -183,7 +189,7 @@
 			tasks: [{
 				consume_items: false
 				id: "215BA76128623D12"
-				item: { count: 1, id: "tracks:small_track_drive_wheel" }
+				item: { components: { "ftbquests:missing_item": "tracks:small_track_drive_wheel" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 4.5d
@@ -211,7 +217,7 @@
 			tasks: [{
 				consume_items: false
 				id: "1029894998BC94E6"
-				item: { count: 1, id: "tracks:small_suspension_track" }
+				item: { components: { "ftbquests:missing_item": "tracks:small_suspension_track" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 6.5d
@@ -232,7 +238,7 @@
 			tasks: [{
 				consume_items: false
 				id: "1746AF098AAA86F0"
-				item: { count: 1, id: "tracks:suspension_key" }
+				item: { components: { "ftbquests:missing_item": "tracks:suspension_key" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 4.5d
@@ -255,7 +261,7 @@
 			tasks: [{
 				consume_items: false
 				id: "1F5FBD52DE7EFF27"
-				item: { count: 1, id: "tracks:track_mount" }
+				item: { components: { "ftbquests:missing_item": "tracks:track_mount" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 8.5d

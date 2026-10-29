@@ -4,7 +4,10 @@
 	filename: "aero_fleet"
 	group: "246BC345C62FA335"
 	icon: {
-		id: "aeronautics:propeller_bearing"
+		components: {
+			"ftbquests:missing_item": "aeronautics:propeller_bearing"
+		}
+		id: "ftbquests:missing_item"
 	}
 	id: "0D695C2300F75F3A"
 	images: [ ]
@@ -15,7 +18,10 @@
 		{
 			dependencies: ["7A4867FC76D52080"]
 			icon: {
-				id: "aeronautics:propeller_bearing"
+				components: {
+					"ftbquests:missing_item": "aeronautics:propeller_bearing"
+				}
+				id: "ftbquests:missing_item"
 			}
 			id: "709382271BD3AA4F"
 			rewards: [{
@@ -46,7 +52,7 @@
 			tasks: [{
 				consume_items: false
 				id: "2C6846F49AAA0901"
-				item: { count: 1, id: "aeronautics:aviators_goggles" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:aviators_goggles" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -81,7 +87,7 @@
 			tasks: [{
 				consume_items: false
 				id: "5A5B72C34A061DD8"
-				item: { count: 1, id: "aeronautics:white_envelope" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:white_envelope" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -99,7 +105,7 @@
 			tasks: [{
 				consume_items: false
 				id: "1EE23F84B5AADB9F"
-				item: { count: 1, id: "aeronautics:white_envelope_encased_shaft" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:white_envelope_encased_shaft" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -130,7 +136,7 @@
 			tasks: [{
 				consume_items: false
 				id: "51FFCFDC80EA7CFC"
-				item: { count: 1, id: "aeronautics:adjustable_burner" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:adjustable_burner" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 2.5d
@@ -172,7 +178,7 @@
 			tasks: [{
 				consume_items: false
 				id: "6827D7C3B46BE94D"
-				item: { count: 1, id: "aeronautics:steam_vent" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:steam_vent" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 6.5d
@@ -189,7 +195,7 @@
 			tasks: [{
 				consume_items: false
 				id: "4C0782A63DB9BC36"
-				item: { count: 1, id: "aeronautics:wooden_propeller" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:wooden_propeller" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 6.5d
@@ -217,7 +223,7 @@
 			tasks: [{
 				consume_items: false
 				id: "72479FF9FB6B7DB7"
-				item: { count: 1, id: "aeronautics:andesite_propeller" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:andesite_propeller" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 8.5d
@@ -255,7 +261,7 @@
 			tasks: [{
 				consume_items: false
 				id: "1B669CFEA464F322"
-				item: { count: 1, id: "aeronautics:propeller_bearing" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:propeller_bearing" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 6.5d
@@ -295,8 +301,11 @@
 					count: 2
 					id: "0ACA6E7F33A114B5"
 					item: {
+						components: {
+							"ftbquests:missing_item": "createpropulsion:platinum_ingot"
+						}
 						count: 1
-						id: "createpropulsion:platinum_ingot"
+						id: "ftbquests:missing_item"
 					}
 					type: "item"
 				}
@@ -306,7 +315,7 @@
 			tasks: [{
 				consume_items: false
 				id: "78B0D070FEAB5AEB"
-				item: { count: 1, id: "aeronautics:gyroscopic_propeller_bearing" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:gyroscopic_propeller_bearing" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 6.5d
@@ -328,7 +337,7 @@
 			tasks: [{
 				consume_items: false
 				id: "6D1C8761B2556833"
-				item: { count: 1, id: "aeronautics:smart_propeller" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:smart_propeller" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 8.5d
@@ -345,7 +354,7 @@
 			tasks: [{
 				consume_items: false
 				id: "040ADE7480B25D89"
-				item: { count: 1, id: "aeronautics:end_stone_powder" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:end_stone_powder" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 8.5d
@@ -388,7 +397,7 @@
 			tasks: [{
 				consume_items: false
 				id: "1CB67FA364CEBC91"
-				item: { count: 1, id: "aeronautics:levitite" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:levitite" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 8.5d
@@ -425,7 +434,7 @@
 			tasks: [{
 				consume_items: false
 				id: "0315B553AA55B9F1"
-				item: { count: 1, id: "aeronautics:pearlescent_levitite" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:pearlescent_levitite" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 8.5d
@@ -446,7 +455,7 @@
 			tasks: [{
 				consume_items: false
 				id: "3B08DA588535F50E"
-				item: { count: 1, id: "aeronautics:mounted_potato_cannon" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:mounted_potato_cannon" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 12.75d
@@ -481,7 +490,7 @@
 			tasks: [{
 				consume_items: false
 				id: "25EF78640E830556"
-				item: { count: 1, id: "createpropulsion:platinum_ore" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:platinum_ore" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 12.75d
@@ -509,7 +518,7 @@
 			tasks: [{
 				consume_items: false
 				id: "23A36DBE7754FEC4"
-				item: { count: 1, id: "createpropulsion:raw_platinum" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:raw_platinum" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 12.75d
@@ -526,7 +535,7 @@
 			tasks: [{
 				consume_items: false
 				id: "5CE290CFB4BC7D75"
-				item: { count: 1, id: "createpropulsion:platinum_ingot" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:platinum_ingot" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 12.75d
@@ -545,7 +554,7 @@
 			tasks: [{
 				consume_items: false
 				id: "62818BC9B209291C"
-				item: { count: 1, id: "createpropulsion:platinum_sheet" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:platinum_sheet" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 14.75d
@@ -565,7 +574,7 @@
 			tasks: [{
 				consume_items: false
 				id: "303F569A618FD896"
-				item: { count: 1, id: "createpropulsion:platinum_casing" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:platinum_casing" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 14.75d
@@ -587,8 +596,11 @@
 					count: 2
 					id: "442623944EA8C9BB"
 					item: {
+						components: {
+							"ftbquests:missing_item": "createpropulsion:platinum_ingot"
+						}
 						count: 1
-						id: "createpropulsion:platinum_ingot"
+						id: "ftbquests:missing_item"
 					}
 					type: "item"
 				}
@@ -598,7 +610,7 @@
 			tasks: [{
 				consume_items: false
 				id: "5F60C0E187475990"
-				item: { count: 1, id: "createpropulsion:platinum_fluid_tank" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:platinum_fluid_tank" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 17.0d
@@ -615,7 +627,7 @@
 			tasks: [{
 				consume_items: false
 				id: "0BBBC8ED977FB08E"
-				item: { count: 1, id: "createpropulsion:pine_resin" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:pine_resin" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 19.0d
@@ -680,7 +692,7 @@
 			tasks: [{
 				consume_items: false
 				id: "1F971CBC780C907A"
-				item: { count: 1, id: "createpropulsion:solid_burner" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:solid_burner" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 19.0d
@@ -702,7 +714,7 @@
 			tasks: [{
 				consume_items: false
 				id: "1275588FB56EA338"
-				item: { count: 1, id: "createpropulsion:liquid_burner" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:liquid_burner" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 19.0d
@@ -723,7 +735,7 @@
 			tasks: [{
 				consume_items: false
 				id: "1FB348534A1CF917"
-				item: { count: 1, id: "createpropulsion:stirling_engine" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:stirling_engine" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 21.0d
@@ -745,7 +757,7 @@
 			tasks: [{
 				consume_items: false
 				id: "58BB00B01FFBE1CC"
-				item: { count: 1, id: "createpropulsion:thruster" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:thruster" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 21.0d
@@ -793,7 +805,7 @@
 			tasks: [{
 				consume_items: false
 				id: "7776FF534EC42704"
-				item: { count: 1, id: "createpropulsion:vector_thruster" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:vector_thruster" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 17.0d
@@ -831,7 +843,7 @@
 			tasks: [{
 				consume_items: false
 				id: "0565295D5F54CE52"
-				item: { count: 1, id: "createpropulsion:liquid_vector_thruster" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:liquid_vector_thruster" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 23.25d
@@ -848,7 +860,7 @@
 			tasks: [{
 				consume_items: false
 				id: "2372FABA6CD2F00B"
-				item: { count: 1, id: "createpropulsion:cable" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:cable" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 17.0d
@@ -867,8 +879,11 @@
 					count: 2
 					id: "4858C4B1E44E3FDE"
 					item: {
+						components: {
+							"ftbquests:missing_item": "createpropulsion:platinum_ingot"
+						}
 						count: 1
-						id: "createpropulsion:platinum_ingot"
+						id: "ftbquests:missing_item"
 					}
 					type: "item"
 				}
@@ -876,7 +891,7 @@
 			tasks: [{
 				consume_items: false
 				id: "71B3055B34BC7DEF"
-				item: { count: 1, id: "createpropulsion:cable_hub" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:cable_hub" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 21.0d
@@ -896,7 +911,7 @@
 			tasks: [{
 				consume_items: false
 				id: "795239D12899EB37"
-				item: { count: 1, id: "createpropulsion:cable_relay" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:cable_relay" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 19.0d
@@ -920,7 +935,7 @@
 			tasks: [{
 				consume_items: false
 				id: "54CB1218FCF7791E"
-				item: { count: 1, id: "createpropulsion:ion_thruster" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:ion_thruster" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 21.0d
@@ -958,7 +973,7 @@
 			tasks: [{
 				consume_items: false
 				id: "62E9BA56252CF019"
-				item: { count: 1, id: "createpropulsion:wing" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:wing" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 23.25d
@@ -986,7 +1001,7 @@
 			tasks: [{
 				consume_items: false
 				id: "75A9793528024859"
-				item: { count: 1, id: "createpropulsion:tempered_wing" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:tempered_wing" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 25.5d
@@ -1021,7 +1036,7 @@
 			tasks: [{
 				consume_items: false
 				id: "56EAB6CA482EE2A2"
-				item: { count: 1, id: "createpropulsion:copycat_wing" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:copycat_wing" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 25.5d
@@ -1043,7 +1058,7 @@
 			tasks: [{
 				consume_items: false
 				id: "222636D0013C41EE"
-				item: { count: 1, id: "createpropulsion:tilt_adapter" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:tilt_adapter" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 23.25d
@@ -1063,7 +1078,7 @@
 			tasks: [{
 				consume_items: false
 				id: "60C814BCF9629540"
-				item: { count: 1, id: "createpropulsion:redstone_converter" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:redstone_converter" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 17.0d
@@ -1097,7 +1112,7 @@
 			tasks: [{
 				consume_items: false
 				id: "231CA093DB4066AC"
-				item: { count: 1, id: "createpropulsion:redstone_transmission" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:redstone_transmission" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 23.25d
@@ -1114,7 +1129,7 @@
 			tasks: [{
 				consume_items: false
 				id: "0BA6FD86CF87FB1A"
-				item: { count: 1, id: "createpropulsion:auto_glue" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:auto_glue" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 25.5d
@@ -1133,7 +1148,7 @@
 			tasks: [{
 				consume_items: false
 				id: "48A08D52EBEF124B"
-				item: { count: 1, id: "createpropulsion:assembler_stick" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:assembler_stick" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 25.5d
@@ -1151,7 +1166,7 @@
 			tasks: [{
 				consume_items: false
 				id: "533B7C1B233A80F1"
-				item: { count: 1, id: "createpropulsion:glued_contraption_mover" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:glued_contraption_mover" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 25.5d
@@ -1169,7 +1184,7 @@
 			tasks: [{
 				consume_items: false
 				id: "5EC5BF8B613EAB48"
-				item: { count: 1, id: "createpropulsion:glued_contraption_cloner" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:glued_contraption_cloner" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 25.5d
@@ -1187,7 +1202,7 @@
 			tasks: [{
 				consume_items: false
 				id: "44A8D29A167A6D69"
-				item: { count: 1, id: "createpropulsion:contraption_remover" }
+				item: { components: { "ftbquests:missing_item": "createpropulsion:contraption_remover" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 27.5d
@@ -1208,7 +1223,7 @@
 			tasks: [{
 				consume_items: false
 				id: "0C6FEB8E457CFFE4"
-				item: { count: 1, id: "aeroworks:gyroscope" }
+				item: { components: { "ftbquests:missing_item": "aeroworks:gyroscope" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 27.5d
@@ -1231,8 +1246,11 @@
 					count: 2
 					id: "509FA270DF62C145"
 					item: {
+						components: {
+							"ftbquests:missing_item": "createpropulsion:platinum_ingot"
+						}
 						count: 1
-						id: "createpropulsion:platinum_ingot"
+						id: "ftbquests:missing_item"
 					}
 					type: "item"
 				}
@@ -1240,7 +1258,7 @@
 			tasks: [{
 				consume_items: false
 				id: "219746611A98D19B"
-				item: { count: 1, id: "aeroworks:joystick" }
+				item: { components: { "ftbquests:missing_item": "aeroworks:joystick" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 27.5d
@@ -1262,7 +1280,7 @@
 			tasks: [{
 				consume_items: false
 				id: "605B59F3F0DAC7CD"
-				item: { count: 1, id: "compactflap:compact_flap_bearing" }
+				item: { components: { "ftbquests:missing_item": "compactflap:compact_flap_bearing" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 27.5d
@@ -1283,7 +1301,7 @@
 			tasks: [{
 				consume_items: false
 				id: "0A18A213D975E6B0"
-				item: { count: 1, id: "compactflap:analog_compact_flap_bearing" }
+				item: { components: { "ftbquests:missing_item": "compactflap:analog_compact_flap_bearing" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 29.5d
@@ -1305,13 +1323,13 @@
 				{
 					consume_items: false
 					id: "022D4C8CC97EDA66"
-					item: { count: 1, id: "compactflap:compact_swivel_flap" }
+					item: { components: { "ftbquests:missing_item": "compactflap:compact_swivel_flap" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 				{
 					consume_items: false
 					id: "450983FDC18DD359"
-					item: { count: 1, id: "compactflap:analog_swivel_bearing" }
+					item: { components: { "ftbquests:missing_item": "compactflap:analog_swivel_bearing" }, count: 1, id: "ftbquests:missing_item" }
 					type: "item"
 				}
 			]
@@ -1416,8 +1434,11 @@
 					count: 8
 					id: "5CAC69CD4D945021"
 					item: {
+						components: {
+							"ftbquests:missing_item": "createpropulsion:platinum_ingot"
+						}
 						count: 1
-						id: "createpropulsion:platinum_ingot"
+						id: "ftbquests:missing_item"
 					}
 					type: "item"
 				}
@@ -1427,7 +1448,7 @@
 			tasks: [{
 				consume_items: false
 				id: "23CFA49C05B82C61"
-				item: { count: 1, id: "aeronautics:propeller_bearing" }
+				item: { components: { "ftbquests:missing_item": "aeronautics:propeller_bearing" }, count: 1, id: "ftbquests:missing_item" }
 				type: "item"
 			}]
 			x: 35.5d
