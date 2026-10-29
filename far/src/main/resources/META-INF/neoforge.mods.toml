@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="cld_far"
+version="${version}"
+displayName="Дальний рельеф"
+authors="D, Claude"
+description='''Лёгкая дальняя прорисовка для миров TelipailoCraft: рельеф за пределами прорисовки считается прямо по сиду генератора, без загрузки чанков. Настройки — клавиша F7.'''
+
+[[dependencies.cld_far]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.cld_far]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.cld_far]]
+modId="tcw"
+type="required"
+versionRange="[0.5.0,)"
+ordering="AFTER"
+side="BOTH"
