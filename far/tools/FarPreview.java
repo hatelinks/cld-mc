@@ -10,11 +10,9 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.IntStream;
 
-/**
- * Проверка дальней прорисовки вне игры: какие тайлы выбираются, сколько их считать и как это выглядит.
- * java FarPreview <seed> <x> <y> <z> <yaw°> <дальность> <шаг> <split> <clip> <out.png> [threads] [горы 1..3]
- * Рисует сетки тайлов программным растеризатором (z-буфер) с той же перспективой и туманом, что в игре.
- */
+// Проверка дальней прорисовки вне игры: какие тайлы выбираются, сколько их считать и как это выглядит.
+// java FarPreview <seed> <x> <y> <z> <yaw град.> <дальность> <шаг> <split> <clip> <out.png> [threads] [горы 1..3]
+// Рисует сетки тайлов программным растеризатором (z-буфер) с той же перспективой и туманом, что в игре.
 public class FarPreview {
     public static void main(String[] a) throws Exception {
         long seed = Long.parseLong(a[0]);

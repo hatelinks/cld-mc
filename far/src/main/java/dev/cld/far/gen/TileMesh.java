@@ -5,19 +5,19 @@ import dev.cld.tcw.gen.MapRender;
 import dev.cld.tcw.gen.Terrain;
 import java.util.function.BooleanSupplier;
 
-/** Сетка одного тайла дальнего рельефа по модели TelipailoCraft: квады по 4 вершины с цветом, координаты от угла тайла. */
+// Сетка одного тайла дальнего рельефа по модели TelipailoCraft: квады по 4 вершины с цветом, координаты от угла тайла.
 public final class TileMesh {
-    /** Клеток по стороне тайла. */
+    // Клеток по стороне тайла.
     public static final int N = 32;
     static final double LX = -0.45, LY = 0.8, LZ = -0.35, LL = Math.sqrt(LX * LX + LY * LY + LZ * LZ);
 
     public final double x0, z0, step;
-    /** x, y, z на вершину; y абсолютный. */
+    // x, y, z на вершину; y абсолютный.
     public final float[] pos;
-    /** 0xAARRGGBB на вершину. */
+    // 0xAARRGGBB на вершину.
     public final int[] argb;
     public final int quads;
-    /** Прозрачная вода отдельными квадами (только в режиме clearWater, иначе waterQuads = 0). */
+    // Прозрачная вода отдельными квадами (только в режиме clearWater, иначе waterQuads = 0).
     public final float[] waterPos;
     public final int[] waterArgb;
     public final int waterQuads;
@@ -30,22 +30,20 @@ public final class TileMesh {
     public int vertices() { return quads * 4; }
     public int waterVertices() { return waterQuads * 4; }
 
-    /** Цвет воды в ванильной игре по умолчанию (океан). */
+    // Цвет воды в ванильной игре по умолчанию (океан).
     static final int WATER = 0x3F76E4;
 
-    /** Цвет земли по биому (в игре — по настоящему выбору биомов); -1 — цвет из модели рельефа, как у карты /tcwmap. */
+    // Цвет земли по биому (в игре, по настоящему выбору биомов); -1, цвет из модели рельефа, как у карты /tcwmap.
     public interface Palette {
         Palette MODEL = (t, c, x, z) -> -1;
         int ground(Terrain t, Terrain.Column c, double x, double z);
-        /** Оттенок воды биома (0xRRGGBB); -1 — ванильный океанский. */
+        // Оттенок воды биома (0xRRGGBB); -1, ванильный океанский.
         default int water(Terrain t, Terrain.Column c, double x, double z) { return -1; }
     }
 
-    /**
-     * Тайл со стороной size от (x0, z0); null, если отменён. Обычно сетка N×N, но в горах (большой перепад высот)
-     * в mountainDetail раз мельче: на равнинах лишние треугольники не видны, а хребты без них выходят пирамидами.
-     * clearWater: дно и вода отдельно (вода полупрозрачная, как в игре), иначе вода — непрозрачная поверхность.
-     */
+    // Тайл со стороной size от (x0, z0); null, если отменён. Обычно сетка NxN, но в горах (большой перепад высот)
+    // в mountainDetail раз мельче: на равнинах лишние треугольники не видны, а хребты без них выходят пирамидами.
+    // clearWater: дно и вода отдельно (вода полупрозрачная, как в игре), иначе вода, непрозрачная поверхность.
     public static TileMesh build(Terrain t, Palette palette, double x0, double z0, double size, int mountainDetail, boolean clearWater,
             BooleanSupplier cancelled) {
         int n = mountainDetail > 1 && mountainous(t, x0, z0, size) ? N * mountainDetail : N;
@@ -54,7 +52,7 @@ public final class TileMesh {
         float[] h = new float[m * m], top = new float[m * m], wl = new float[m * m], tmp = new float[m * m], hum = new float[m * m], mnt = new float[m * m];
         byte[] wk = new byte[m * m], st = new byte[m * m];
         int[] ground = new int[m * m], wcol = new int[m * m];
-        // вдали отдельные пики и гребни при точечной выборке выходят тонкими зубцами («график»):
+        // вдали отдельные пики и гребни при точечной выборке выходят тонкими зубцами ("график"):
         // чем грубее сетка, тем ближе высота суши к крупному рельефу без мелких деталей
         double keep = Math.max(0.25, Math.min(1, 12 / step));
         Terrain.Column c = new Terrain.Column();
@@ -87,7 +85,7 @@ public final class TileMesh {
                 }
             }
         }
-        // одиночные выборки на тонких столбах и шпилях (уже шага сетки) дают иглы-«график»: срезаем вершину,
+        // одиночные выборки на тонких столбах и шпилях (уже шага сетки) дают иглы-"график": срезаем вершину,
         // торчащую над всеми четырьмя соседями, до самого высокого соседа (плюс полшага)
         if (step >= 6) {
             float[] o = h.clone();
@@ -194,22 +192,20 @@ public final class TileMesh {
         return new TileMesh(x0, z0, step, pos, argb, quads, wpos, wargb, wq);
     }
 
-    /** Дно: песок на мелководье, гравий и глина глубже. */
+    // Дно: песок на мелководье, гравий и глина глубже.
     static double[] seabed(double depth) {
         return mix(new double[] { 200, 190, 150 }, new double[] { 110, 108, 100 }, Macro.ss(3, 25, depth));
     }
 
-    /** Непрозрачная вода как смесь дна и оттенка воды: на мелководье видно дно, в глубине темнее. */
+    // Непрозрачная вода как смесь дна и оттенка воды: на мелководье видно дно, в глубине темнее.
     static double[] waterOver(double[] bed, int tint, double depth) {
         double a = Math.min(1, 0.55 + depth / 14), dark = 1 - 0.45 * Macro.ss(4, 40, depth);
         double[] w = { ((tint >> 16) & 255) * dark, ((tint >> 8) & 255) * dark, (tint & 255) * dark };
         return mix(new double[] { bed[0] * 0.8, bed[1] * 0.8, bed[2] * 0.8 }, w, a);
     }
 
-    /**
-     * «Блочный» тайл n×n блоков с шагом 1 (для подзорной трубы): у каждого столбца плоский верх на высоте блока
-     * и боковые грани к более низким соседям — похоже на обычные чанки, но без пещер, деревьев и построек.
-     */
+    // "Блочный" тайл nxn блоков с шагом 1 (для подзорной трубы): у каждого столбца плоский верх на высоте блока
+    // и боковые грани к более низким соседям, похоже на обычные чанки, но без пещер, деревьев и построек.
     public static TileMesh buildBlocky(Terrain t, Palette palette, double x0, double z0, int n, BooleanSupplier cancelled) {
         int m = n + 2;
         int[] top = new int[m * m], col = new int[m * m];
@@ -238,7 +234,7 @@ public final class TileMesh {
                 col[id] = MapRender.rgb(rgb[0], rgb[1], rgb[2]);
             }
         }
-        // считаем грани: верх у каждого столбца, бок — где сосед ниже
+        // считаем грани: верх у каждого столбца, бок, где сосед ниже
         int quads = 0;
         int[] nb = { -1, 1, -m, m };
         for (int j = 1; j <= n; j++)
@@ -259,7 +255,7 @@ public final class TileMesh {
                 vertex(pos, argb, q, x, y, z + 1, ct);
                 vertex(pos, argb, q, x + 1, y, z + 1, ct);
                 vertex(pos, argb, q, x + 1, y, z, ct);
-                // бока с освещением как у блоков в игре: x — 0.6, z — 0.8
+                // бока с освещением как у блоков в игре: x, 0.6, z, 0.8
                 if (top[id - 1] < top[id]) side(pos, argb, q, x, z, x, z + 1, top[id - 1], y, shadeRgb(cc, 0.6));
                 if (top[id + 1] < top[id]) side(pos, argb, q, x + 1, z, x + 1, z + 1, top[id + 1], y, shadeRgb(cc, 0.6));
                 if (top[id - m] < top[id]) side(pos, argb, q, x, z, x + 1, z, top[id - m], y, shadeRgb(cc, 0.8));
@@ -279,7 +275,7 @@ public final class TileMesh {
         return 0xFF000000 | MapRender.rgb(((c >> 16) & 255) * k, ((c >> 8) & 255) * k, (c & 255) * k);
     }
 
-    /** Горы в тайле: перепад высот или горная маска по сетке 5×5. */
+    // Горы в тайле: перепад высот или горная маска по сетке 5x5.
     static boolean mountainous(Terrain t, double x0, double z0, double size) {
         Terrain.Column c = new Terrain.Column();
         double lo = Double.MAX_VALUE, hi = -Double.MAX_VALUE, mnt = 0;
@@ -293,7 +289,7 @@ public final class TileMesh {
         return hi - lo > Math.min(160, 48 + size / 24) && mnt > 0.2;
     }
 
-    /** Земля цвета биома, но снег выше снеговой линии и скалы на крутых склонах — как ставит их генератор. */
+    // Земля цвета биома, но снег выше снеговой линии и скалы на крутых склонах, как ставит их генератор.
     static double[] land(Terrain t, double x, double z, double h, double temp, int st, double slope, int ground) {
         double snow = t.snowLine(x, z, temp);
         if (h > snow && slope < 1.1) return new double[] { 245, 248, 252 };

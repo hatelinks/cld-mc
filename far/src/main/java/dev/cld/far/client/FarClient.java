@@ -24,7 +24,7 @@ import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 
-/** Клиент: шейдер, клавиша настроек, сид от сервера, рендер после неба и туман. */
+// Клиент: шейдер, клавиша настроек, сид от сервера, рендер после неба и туман.
 public final class FarClient {
     static ShaderInstance shader;
     private static ModContainer container;
@@ -57,10 +57,8 @@ public final class FarClient {
         NeoForge.EVENT_BUS.addListener(FarClient::onScreen);
     }
 
-    /**
-     * Кнопка настроек: в «Настройках» справа от строки с полем зрения (Distant Horizons ставит свою слева),
-     * и в «Настройках графики» в правом верхнем углу.
-     */
+    // Кнопка настроек: в "Настройках" справа от строки с полем зрения (Distant Horizons ставит свою слева),
+    // и в "Настройках графики" в правом верхнем углу.
     private static void onScreen(net.neoforged.neoforge.client.event.ScreenEvent.Init.Post e) {
         net.minecraft.client.gui.screens.Screen screen = e.getScreen();
         int x, y;
@@ -100,17 +98,15 @@ public final class FarClient {
         RENDERER.render(mc, e);
     }
 
-    /**
-     * Под водой, в лаве, в порошковом снеге, со слепотой или темнотой игра сама сужает видимость своим туманом;
-     * дальний рельеф там не нужен (снизу он виден как тёмные плиты поверхности моря), поэтому не рисуется.
-     */
+    // Под водой, в лаве, в порошковом снеге, со слепотой или темнотой игра сама сужает видимость своим туманом;
+    // дальний рельеф там не нужен (снизу он виден как тёмные плиты поверхности моря), поэтому не рисуется.
     private static boolean clearView(Minecraft mc, net.minecraft.client.Camera cam) {
         if (cam.getFluidInCamera() != FogType.NONE) return false;
         return !(cam.getEntity() instanceof net.minecraft.world.entity.LivingEntity le)
                 || !le.hasEffect(net.minecraft.world.effect.MobEffects.BLINDNESS) && !le.hasEffect(net.minecraft.world.effect.MobEffects.DARKNESS);
     }
 
-    /** Туман игры уносится к краю дальнего рельефа, иначе на границе прорисовки виден светлый обод. */
+    // Туман игры уносится к краю дальнего рельефа, иначе на границе прорисовки виден светлый обод.
     private static void onFog(ViewportEvent.RenderFog e) {
         if (!RENDERER.active() || e.getMode() != FogRenderer.FogMode.FOG_TERRAIN || e.getType() != FogType.NONE) return;
         Minecraft mc = Minecraft.getInstance();
