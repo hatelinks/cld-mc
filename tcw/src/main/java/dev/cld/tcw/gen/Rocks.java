@@ -16,13 +16,13 @@ public final class Rocks {
 
     final Terrain t;
     final long seed;
-    final Simplex mask, phase, rough;
+    final Simplex mask, phase, rough, pick;
     private final ConcurrentHashMap<Long, Arch> arches = new ConcurrentHashMap<>();
 
     Rocks(Terrain t) {
         this.t = t;
         seed = t.seed * 0xC2B2AE3D27D4EB4FL + 91;
-        mask = new Simplex(seed + 1); phase = new Simplex(seed + 2); rough = new Simplex(seed + 3);
+        mask = new Simplex(seed + 1); phase = new Simplex(seed + 2); rough = new Simplex(seed + 3); pick = new Simplex(seed + 4);
     }
 
     // ---------- арки
@@ -100,6 +100,9 @@ public final class Rocks {
         Object owner;
         double h, s, depth, period, ph, dx, dz;
         boolean ledges;
+        // последняя спрошенная полоса и её вес
+        int pk = Integer.MIN_VALUE;
+        double pw;
         Arch arch;
         double u, v;
         /** Высоты, вне которых столбец ничего не меняет. */
@@ -142,20 +145,29 @@ public final class Rocks {
         boolean dry = tc.waterKind == Terrain.WATER_NONE && tc.riverDist > 30;
         double rocky = Math.max(Macro.ss(0.1, 0.35, tc.mountain), Math.max(tc.style[Macro.Style.MESA.ordinal()], tc.style[Macro.Style.KARST.ordinal()]));
         if (dry && rocky > 0.3 && !NO_LEDGES) {
-            double gx = (cols.at(x + 4, z).height - cols.at(x - 4, z).height) / 8;
-            double gz = (cols.at(x, z + 4).height - cols.at(x, z - 4).height) / 8;
-            c.s = Math.sqrt(gx * gx + gz * gz);
-            c.dx = gx / Math.max(1e-6, c.s);
-            c.dz = gz / Math.max(1e-6, c.s);
+            // маску смотрим до градиента: так меньше столбцов считают соседей
             double mk = mask.noise(x / 160.0, z / 160.0);
-            if (c.s > 1.2 && mk > -0.2) {
+            if (mk > -0.2) {
+                double gx = (cols.at(x + 4, z).height - cols.at(x - 4, z).height) / 8;
+                double gz = (cols.at(x, z + 4).height - cols.at(x, z - 4).height) / 8;
+                c.s = Math.sqrt(gx * gx + gz * gz);
+                c.dx = gx / Math.max(1e-6, c.s);
+                c.dz = gz / Math.max(1e-6, c.s);
+            } else c.s = 0;
+            if (c.s > 1.2) {
                 c.depth = 3 + 5 * Macro.ss(-0.2, 0.6, mk);
-                // только на ровном склоне: и выше, и ниже по склону рельеф идёт так же (не гребень, не дно)
-                double up = shifted(c, x, z, c.depth + 2, cols), down = shifted(c, x, z, -c.depth - 2, cols);
-                c.ledges = up - h > c.depth && h - down > c.depth;
-                if (c.ledges) { c.lo = down - 1; c.hi = Math.max(up, h) + 2; }
+                c.pk = Integer.MIN_VALUE;
                 c.period = 22 + 14 * (phase.noise(x / 3000.0 + 30, z / 3000.0) + 1) / 2;
                 c.ph = 120 * phase.noise(x / 2500.0, z / 2500.0) + 3 * phase.noise(x / 40.0, z / 40.0);
+                // только на ровном склоне: и выше, и ниже по склону рельеф идёт так же (не гребень, не дно)
+                double up = shifted(c, x, z, c.depth + 2, cols), down = shifted(c, x, z, -c.depth - 2, cols);
+                c.ledges = up - h > c.depth && h - down > c.depth && anyBand(c, x, z, down - 1, Math.max(up, h) + 2);
+                if (c.ledges) {
+                    // склон без ям и бугров посередине, иначе карниз отрывается от склона и висит в воздухе
+                    double um = shifted(c, x, z, (c.depth + 2) / 2, cols), dm = shifted(c, x, z, -(c.depth + 2) / 2, cols);
+                    c.ledges = um >= h && um <= up && dm <= h && dm >= down;
+                }
+                if (c.ledges) { c.lo = down - 1; c.hi = Math.max(up, h) + 2; }
             }
         }
         // арка своей ячейки
@@ -175,12 +187,34 @@ public final class Rocks {
         return c;
     }
 
+    // карниз есть не в каждой полосе, а пятнами: на гору выходит один-два
+    static final double PICK = 0.68;
+
+    private double pickWeight(Col c, int x, int z, int k) {
+        if (c.pk == k) return c.pw;
+        double w = Macro.ss(PICK, PICK + 0.12, pick.noise(x / 350.0 + 31.7 * k, z / 350.0 - 17.3 * k));
+        c.pk = k;
+        c.pw = w;
+        return w;
+    }
+
+    // есть ли хоть один карниз в высотах lo..hi (подрезка под карнизом лежит в полосе ниже)
+    private boolean anyBand(Col c, int x, int z, double lo, double hi) {
+        int k0 = (int) Math.floor((lo + c.ph) / c.period), k1 = (int) Math.floor((hi + c.ph) / c.period) + 1;
+        for (int k = k0; k <= k1; k++) if (pickWeight(c, x, z, k) > 0) return true;
+        return false;
+    }
+
     /** Доля полосы: 1 — карниз, -1 — подрезка под ним, 0 — обычный склон. */
-    private static double band(Col c, int y) {
+    private double band(Col c, int x, int y, int z) {
         double f = (y + c.ph) / c.period;
-        f -= Math.floor(f);
-        if (f < 0.2) return Macro.ss(0, 0.03, f) * Macro.ss(0.2, 0.15, f);
-        if (f > 0.74) return -Macro.ss(0.74, 0.8, f);
+        double k = Math.floor(f);
+        f -= k;
+        if (f < 0.2) {
+            double b = Macro.ss(0, 0.03, f) * Macro.ss(0.2, 0.15, f);
+            return b > 0 ? b * pickWeight(c, x, z, (int) k) : 0;
+        }
+        if (f > 0.74) return -Macro.ss(0.74, 0.8, f) * pickWeight(c, x, z, (int) k + 1);
         return 0;
     }
 
@@ -223,7 +257,7 @@ public final class Rocks {
         double best = NONE_ADD;
         if (c.ledges && y > c.h - 1) {
             // карниз: в полосе склон выдвинут наружу — берём высоту чуть выше по склону
-            double b = band(c, y);
+            double b = band(c, x, y, z);
             if (b > 0) {
                 double he = shifted(c, x, z, c.depth * b, cols);
                 if (y < he) best = Math.min(0.3, (he - y) * SLOPE);
@@ -244,7 +278,7 @@ public final class Rocks {
     private double cut(Col c, int x, int y, int z, Columns cols) {
         if (!c.ledges || y > c.h + 1 || y < c.lo) return NONE_CUT;
         // подрезка: под карнизом склон отступает внутрь — высота чуть ниже по склону
-        double b = band(c, y);
+        double b = band(c, x, y, z);
         if (b >= 0) return NONE_CUT;
         double he = shifted(c, x, z, c.depth * 0.8 * b, cols);
         return y > he ? Math.max(-0.3, (he - y) * SLOPE) : NONE_CUT;
