@@ -42,7 +42,10 @@ public final class AutoTest {
     private long gcCount0, gcTime0, cpu0, wall0;
     private int ticks;
     private long quitAt;
-    private boolean leaving, shot;
+    private boolean setup, shot;
+    // одинаковые условия на каждый прогон: день, ясно, без мобов, игрок-наблюдатель над точкой спавна
+    private static final String SETUP = "difficulty peaceful;gamerule doDaylightCycle false;gamerule doWeatherCycle false;"
+            + "gamerule doMobSpawning false;time set 6000;weather clear;gamemode spectator @a;tp @a ~ ~40 ~ 0 0";
 
     public AutoTest() {
         Path p = FMLPaths.CONFIGDIR.get().resolve("cld_autotest.properties");
@@ -122,6 +125,10 @@ public final class AutoTest {
                 enter(Phase.WARMUP);
             }
             case WARMUP -> {
+                if (!setup) {
+                    setup = true;
+                    for (String c : cfg.getProperty("setup", SETUP).split(";")) if (!c.isBlank()) command(mc, c.trim());
+                }
                 spin(mc);
                 if (sec(now - phaseStart) < num("warmup", 40)) return;
                 gcCount0 = gcCount();
@@ -129,7 +136,7 @@ public final class AutoTest {
                 cpu0 = cpuNs();
                 wall0 = now;
                 if (Boolean.parseBoolean(cfg.getProperty("jfr", "false"))) jfrStart();
-                if (Boolean.parseBoolean(cfg.getProperty("spark", "true"))) spark(mc, "spark profiler start --thread * --timeout " + num("measure", 60));
+                if (Boolean.parseBoolean(cfg.getProperty("spark", "true"))) command(mc, "spark profiler start --thread * --timeout " + num("measure", 60));
                 enter(Phase.MEASURE);
             }
             case MEASURE -> {
@@ -190,10 +197,10 @@ public final class AutoTest {
                 a[a.length / 2] / 1e6, a[(int) (a.length * 0.99)] / 1e6, a[a.length - 1] / 1e6));
     }
 
-    private void spark(Minecraft mc, String cmd) {
+    private void command(Minecraft mc, String cmd) {
         MinecraftServer s = mc.getSingleplayerServer();
         if (s == null) return;
-        line("spark: " + cmd);
+        line("cmd: " + cmd);
         s.execute(() -> s.getCommands().performPrefixedCommand(s.createCommandSourceStack(), cmd));
     }
 
@@ -229,25 +236,15 @@ public final class AutoTest {
         dog.start();
     }
 
-    // выход как кнопкой "Сохранить и выйти", потом из главного меню
+    // выход через System.exit: обычный выход из мира у нас зависал в ожидании встроенного сервера,
+    // мир тестовый, сохранять его не нужно
     private void quit(Minecraft mc) {
         if (quitAt == 0 || System.nanoTime() < quitAt) return;
-        if (mc.level != null) {
-            if (!leaving) {
-                leaving = true;
-                line("quit: выход из мира");
-                boolean local = mc.isLocalServer();
-                mc.level.disconnect();
-                if (local) mc.disconnect(new net.minecraft.client.gui.screens.GenericMessageScreen(net.minecraft.network.chat.Component.literal("Сохранение")));
-                else mc.disconnect();
-                mc.setScreen(new TitleScreen());
-            }
-            return;
-        }
-        if (mc.getSingleplayerServer() != null) return;
         quitAt = 0;
-        LOG.info("AUTOTEST quit: закрываю игру");
-        mc.stop();
+        line("quit: закрываю игру");
+        Thread t = new Thread(() -> System.exit(0), "cld_autotest-exit");
+        t.setDaemon(true);
+        t.start();
     }
 
     private jdk.jfr.Recording rec;
