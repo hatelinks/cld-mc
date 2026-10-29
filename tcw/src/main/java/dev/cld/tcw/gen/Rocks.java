@@ -43,7 +43,7 @@ public final class Rocks {
     private double hd(long salt, int i, int j) { return Macro.hashD(seed ^ salt, i, j); }
 
     public Arch arch(int i, int j, Columns cols) {
-        long key = ((long) i << 32) ^ (j & 0xffffffffL);
+        long key = Macro.cellKey(i, j);
         Arch a = arches.get(key);
         if (a == null) {
             if (arches.size() > 8192) arches.clear();
