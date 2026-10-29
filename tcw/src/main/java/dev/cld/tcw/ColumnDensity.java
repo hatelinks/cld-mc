@@ -38,7 +38,7 @@ public final class ColumnDensity implements DensityFunction {
 
     public enum Value implements StringRepresentable {
         SURFACE("surface"), CONTINENTS("continents"), EROSION("erosion"), RIDGES("ridges"),
-        TEMPERATURE("temperature"), VEGETATION("vegetation"), DEPTH("depth"), CAVES("caves"), ROCK("rock");
+        TEMPERATURE("temperature"), VEGETATION("vegetation"), DEPTH("depth"), CAVES("caves"), ROCK("rock"), PEAK("peak");
         public static final Codec<Value> CODEC = StringRepresentable.fromEnum(Value::values);
         private final String name;
         Value(String name) { this.name = name; }
@@ -56,6 +56,7 @@ public final class ColumnDensity implements DensityFunction {
         if (t == null) return 0;
         int x = ctx.blockX(), y = ctx.blockY(), z = ctx.blockZ();
         if (value == Value.ROCK) return t.rocks.combined(x, y, z, cols);
+        if (value == Value.PEAK) return peak(t, x, y, z);
         Terrain.Column c = Worlds.column(t, x, z);
         return switch (value) {
             case SURFACE -> (c.height - y) * SLOPE;
@@ -68,6 +69,27 @@ public final class ColumnDensity implements DensityFunction {
             case CAVES -> t.caves.density(x, y, z, c);
             default -> 0;
         };
+    }
+
+    // верх тонкого пика (выше всех соседей вокруг) пещеры не режут, иначе от иглы остаются висящие куски.
+    // Возвращает плотность поверхности там, где столбец защищён, и NO_PEAK в остальных местах
+    public static final double NO_PEAK = -1000;
+    static final int PEAK_R = 6;
+    static final int[] RING = { PEAK_R, 0, -PEAK_R, 0, 0, PEAK_R, 0, -PEAK_R, 4, 4, 4, -4, -4, 4, -4, -4 };
+
+    static double peak(Terrain t, int x, int y, int z) {
+        Terrain.Column c = Worlds.column(t, x, z);
+        double h = c.height;
+        if (y >= h) return NO_PEAK;
+        double base = c.peakBase;
+        if (Double.isNaN(base)) {
+            base = -Double.MAX_VALUE;
+            for (int i = 0; i < RING.length; i += 2) base = Math.max(base, Worlds.column(t, x + RING[i], z + RING[i + 1]).height);
+            // соседи могли вытеснить столбец из кэша, берём заново
+            c = Worlds.column(t, x, z);
+            c.peakBase = base;
+        }
+        return y > base ? (h - y) * SLOPE : NO_PEAK;
     }
 
     @Override
@@ -85,6 +107,7 @@ public final class ColumnDensity implements DensityFunction {
         return switch (value) {
             case SURFACE -> -800 * SLOPE;
             case ROCK -> -2.5;
+            case PEAK -> NO_PEAK;
             case DEPTH -> -7;
             case CAVES -> -3;
             default -> -2;
@@ -94,7 +117,7 @@ public final class ColumnDensity implements DensityFunction {
     @Override
     public double maxValue() {
         return switch (value) {
-            case SURFACE -> 800 * SLOPE;
+            case SURFACE, PEAK -> 800 * SLOPE;
             case ROCK -> 2.5;
             case DEPTH -> 7;
             case CAVES -> Caves.SOLID;
