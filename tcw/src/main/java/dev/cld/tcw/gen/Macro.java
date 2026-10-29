@@ -72,6 +72,20 @@ public final class Macro {
         h = (h ^ (h >>> 29)) * 0x94D049BB133111EBL;
         return h ^ (h >>> 32);
     }
+    /**
+     * Ключ ячейки для ConcurrentHashMap: перемешанный (биекция, ключи не совпадают). Без перемешивания
+     * Long.hashCode = i ^ j, соседние ячейки попадают в одну корзину и поиск идёт по дереву.
+     */
+    public static long cellKey(int i, int j) {
+        long h = ((long) i << 32) ^ (j & 0xffffffffL);
+        h ^= h >>> 33;
+        h *= 0xff51afd7ed558ccdL;
+        h ^= h >>> 33;
+        h *= 0xc4ceb9fe1a85ec53L;
+        h ^= h >>> 33;
+        return h;
+    }
+
     public static double hashD(long seed, long a, long b) { return (hash(seed, a, b) >>> 11) * 0x1.0p-53; }
 
     // ---------- климат, [-1, 1]
@@ -127,7 +141,7 @@ public final class Macro {
     private final java.util.concurrent.ConcurrentHashMap<Long, Style> styleCache = new java.util.concurrent.ConcurrentHashMap<>();
 
     public Style cellStyle(int i, int j) {
-        long key = ((long) i << 32) ^ (j & 0xffffffffL);
+        long key = Macro.cellKey(i, j);
         Style st = styleCache.get(key);
         if (st == null) {
             if (styleCache.size() > 4096) styleCache.clear();
