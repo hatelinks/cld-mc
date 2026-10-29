@@ -30,9 +30,14 @@ public final class TileMesh {
         int ground(Terrain t, Terrain.Column c, double x, double z);
     }
 
-    /** Тайл со стороной N*step от (x0, z0); null, если отменён. */
-    public static TileMesh build(Terrain t, Palette palette, double x0, double z0, double step, BooleanSupplier cancelled) {
-        int m = N + 3;
+    /**
+     * Тайл со стороной size от (x0, z0); null, если отменён. Обычно сетка N×N, но в горах (большой перепад высот)
+     * в mountainDetail раз мельче: на равнинах лишние треугольники не видны, а хребты без них выходят пирамидами.
+     */
+    public static TileMesh build(Terrain t, Palette palette, double x0, double z0, double size, int mountainDetail, BooleanSupplier cancelled) {
+        int n = mountainDetail > 1 && mountainous(t, x0, z0, size) ? N * mountainDetail : N;
+        double step = size / n;
+        int m = n + 3;
         float[] h = new float[m * m], top = new float[m * m], wl = new float[m * m], tmp = new float[m * m], hum = new float[m * m], mnt = new float[m * m];
         byte[] wk = new byte[m * m], st = new byte[m * m];
         int[] ground = new int[m * m];
@@ -52,8 +57,8 @@ public final class TileMesh {
                 ground[id] = inner && wk[id] == 0 ? palette.ground(t, c, x0 + (i - 1) * step, z0 + (j - 1) * step) : -1;
             }
         }
-        // цвета вершин 0..N с отмывкой от фиксированного солнца
-        int n1 = N + 1;
+        // цвета вершин 0..n с отмывкой от фиксированного солнца
+        int n1 = n + 1;
         int[] col = new int[n1 * n1];
         for (int j = 0; j < n1; j++)
             for (int i = 0; i < n1; i++) {
@@ -71,13 +76,13 @@ public final class TileMesh {
                 }
                 col[j * n1 + i] = 0xFF000000 | MapRender.rgb(rgb[0] * shade, rgb[1] * shade, rgb[2] * shade);
             }
-        int quads = N * N + 4 * N;
+        int quads = n * n + 4 * n;
         float[] pos = new float[quads * 12];
         int[] argb = new int[quads * 4];
         int[] q = { 0 };
         float s = (float) step;
-        for (int j = 0; j < N; j++)
-            for (int i = 0; i < N; i++) {
+        for (int j = 0; j < n; j++)
+            for (int i = 0; i < n; i++) {
                 vertex(pos, argb, q, i * s, top[(j + 1) * m + i + 1], j * s, col[j * n1 + i]);
                 vertex(pos, argb, q, i * s, top[(j + 2) * m + i + 1], (j + 1) * s, col[(j + 1) * n1 + i]);
                 vertex(pos, argb, q, (i + 1) * s, top[(j + 2) * m + i + 2], (j + 1) * s, col[(j + 1) * n1 + i + 1]);
@@ -85,13 +90,27 @@ public final class TileMesh {
             }
         // юбки по краям: закрывают щели на стыке с тайлом другого уровня
         float drop = 8 + 3 * s;
-        for (int k = 0; k < N; k++) {
+        for (int k = 0; k < n; k++) {
             skirt(pos, argb, q, k * s, 0, (k + 1) * s, 0, top[m + k + 1], top[m + k + 2], col[k], col[k + 1], drop);
-            skirt(pos, argb, q, k * s, N * s, (k + 1) * s, N * s, top[(N + 1) * m + k + 1], top[(N + 1) * m + k + 2], col[N * n1 + k], col[N * n1 + k + 1], drop);
+            skirt(pos, argb, q, k * s, n * s, (k + 1) * s, n * s, top[(n + 1) * m + k + 1], top[(n + 1) * m + k + 2], col[n * n1 + k], col[n * n1 + k + 1], drop);
             skirt(pos, argb, q, 0, k * s, 0, (k + 1) * s, top[(k + 1) * m + 1], top[(k + 2) * m + 1], col[k * n1], col[(k + 1) * n1], drop);
-            skirt(pos, argb, q, N * s, k * s, N * s, (k + 1) * s, top[(k + 1) * m + N + 1], top[(k + 2) * m + N + 1], col[k * n1 + N], col[(k + 1) * n1 + N], drop);
+            skirt(pos, argb, q, n * s, k * s, n * s, (k + 1) * s, top[(k + 1) * m + n + 1], top[(k + 2) * m + n + 1], col[k * n1 + n], col[(k + 1) * n1 + n], drop);
         }
         return new TileMesh(x0, z0, step, pos, argb, quads);
+    }
+
+    /** Горы в тайле: перепад высот или горная маска по сетке 5×5. */
+    static boolean mountainous(Terrain t, double x0, double z0, double size) {
+        Terrain.Column c = new Terrain.Column();
+        double lo = Double.MAX_VALUE, hi = -Double.MAX_VALUE, mnt = 0;
+        for (int j = 0; j <= 4; j++)
+            for (int i = 0; i <= 4; i++) {
+                t.column(x0 + size * i / 4, z0 + size * j / 4, c);
+                lo = Math.min(lo, c.height);
+                hi = Math.max(hi, c.height);
+                mnt = Math.max(mnt, c.mountain);
+            }
+        return hi - lo > Math.min(160, 48 + size / 24) && mnt > 0.2;
     }
 
     /** Земля цвета биома, но снег выше снеговой линии и скалы на крутых склонах — как ставит их генератор. */
