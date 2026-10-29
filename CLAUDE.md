@@ -56,6 +56,7 @@ VERSION=1.3.3 LIBS=... pregen/build.sh
 
 ## Грабли, которые легко повторить
 - `guiScale:6` в `pack/minecraft/options.txt` выставлен владельцем специально — не менять.
+- Java на Маке: Zulu 21.0.13, обычный G1 без аргументов, память 2048–6144 МБ (`pack/instance.cfg`). ZGC и 8 ГБ давали крэши — не возвращать.
 - Android: Sodium не ставить; для Sable нужен свой `sable-android-support` (на Маке не нужен).
 - improvedmobs: не писать `"Feature Blacklist" = ["minecolonies"]` — ломает загрузку.
 - Вылет Veil «renderer is null» — выключен `mod_resources` в options.txt.
