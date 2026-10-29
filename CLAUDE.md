@@ -22,7 +22,7 @@
 | `jjtm/` | Порт датапака JJThunder To The Max 1.20.1 → 1.21.1 (modId `jjthunder_to_the_max`, личное использование). Варианты высоты h2096/h1024/h512, `-fast` = ячейка шума 8 блоков. В игре стоит **h1024-fast**. | 0.3.3 | `jjtm/build.sh` (Python, без Java): `original/` → `src/` → `dist/` |
 | `gdn/` | «Горы до небес»: тот же рельеф jjtm как отдельные типы мира `gdn:h1024`, `gdn:h512`. **Тот же modId `jjthunder_to_the_max`**, что у jjtm, — вместе с jjtm не ставить. | 1.0.0 | `gdn/build.sh` (берёт данные из `../jjtm/src`) |
 | `menu/` | **cld_menu** «Главное меню сборки»: пиксельный пейзаж вместо панорамы, логотип TelipailoCraft, без Realms и «Моды». | 1.0.1 | `menu/build.sh` |
-| `earlywindow/` | **cld_earlywindow**: свой экран загрузки (провайдер `cldwindow`). Не мод, а сервис FML; jar кладётся в `mods/`. Включается в `config/fml.toml`: `earlyWindowProvider = "cldwindow"` (сейчас в `pack/` стоит стандартный `fmlearlywindow`). | 1.0.0 | `earlywindow/build.sh` |
+| `earlywindow/` | **cld_earlywindow**: свой экран загрузки (провайдер `cldwindow`). Не мод, а сервис FML; jar кладётся в `mods/`. Включается в `config/fml.toml`: `earlyWindowProvider = "cldwindow"` — в `pack/` (экземпляр ПК) включён. На Android пока оставить `fmlearlywindow`, пока не проверено там отдельно. | 1.0.0 | `earlywindow/build.sh` |
 | `quest_builder/` | Генератор квестов FTB Quests (36 глав, ~1300 квестов). | — | `python3 -I quest_builder/make.py` → `out/ftbquests_config.zip` + `out/checklist.md` |
 | `pack/` | Конфиги экземпляра Prism (`minecraft/config`, `defaultconfigs`, `options.txt`, `instance.cfg`, `mmc-pack.json`) и `MODS.md` — список модов с SHA-1. Полный архив с jar — в Releases (`cld-mc-pack.zip`). | — | — |
 
@@ -54,6 +54,7 @@ VERSION=1.3.3 LIBS=... pregen/build.sh
 - В игре владелец проверяет только на новых мирах/чанках: изменения генерации не трогают уже созданные чанки.
 
 ## Грабли, которые легко повторить
+- `guiScale:6` в `pack/minecraft/options.txt` выставлен владельцем специально — не менять.
 - Android: Sodium не ставить; для Sable нужен свой `sable-android-support` (на Маке не нужен).
 - improvedmobs: не писать `"Feature Blacklist" = ["minecolonies"]` — ломает загрузку.
 - Вылет Veil «renderer is null» — выключен `mod_resources` в options.txt.
