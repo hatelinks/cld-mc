@@ -2,6 +2,8 @@
 
 Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на странице Releases.
 
+Список совпадает с копией сборки на Маке (`original-mc-pack`) после оптимизации 29.10: Distant Horizons, Entity Model Features и Entity Texture Features убраны (в копии переименованы в `.disabled`), вместо DH стоит cld_far, tcw обновлён до 0.5.2 (cld_far нужен tcw 0.5.0 или новее). В экземпляр Prism это переносит владелец, см. `pack/OPTIMIZATION.md`.
+
 | Мод | modId | Версия | Файл | SHA-1 |
 |---|---|---|---|---|
 | Create: Aeroworks | aeroworks | 1.2.9 | aeroworks-1.2.9.jar | f6f48e509202dca5443904ae077ade67e7f89d70 |
@@ -38,10 +40,7 @@ Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на ст�
 | Cristel Lib | cristellib | 3.1.7 | cristellib-neoforge-1.21.1-3.1.7.jar | d250804b7ecea365bc736ec36ec6fc3f933917f1 |
 | Cucumber Library | cucumber | 8.0.16 | Cucumber-1.21.1-8.0.16.jar | 0e97553af44d39d1976fe6feb4baf1c30c6b2f06 |
 | Curios API | curios | 9.5.1+1.21.1 | curios-neoforge-9.5.1+1.21.1.jar | 418fcd42e3a7844c9bdc71c9b6401fdb3894e0c4 |
-| Distant Horizons | distanthorizons | 3.3.3 | DistantHorizons-3.3.3-1.21.1-fabric-neoforge.jar | 4357b4d19fab818780c94f0e43dad1cc931634b2 |
 | Domum Ornamentum | domum_ornamentum | 1.0.228 | domum-ornamentum-1.0.228-main.jar | 6ab4c505b3adb81b3576074a548e21a4bb780a7a |
-| Entity Model Features | entity_model_features | 3.2.4 | entity_model_features-3.2.4-1.21-neoforge.jar | fcc0d7cfee5ace4dba159225edd151d90dd924b9 |
-| Entity Texture Features | entity_texture_features | 7.1 | entity_texture_features_1.21-neoforge-7.1.jar | 56de40b237ff44dbf1bb68844e0f118607902684 |
 | Explorer's Compass | explorerscompass | 1.21.1-3.4.0-neoforge | ExplorersCompass-1.21.1-3.4.0-neoforge.jar | 9f62af344988a6e2d855b113e61cf0e1611c7e0f |
 | Farmer's Delight | farmersdelight | 1.3.4 | FarmersDelight-1.21.1-1.3.4.jar | 27675ddfcb8cc37e6ea1ab6c15051c7949d94657 |
 | FarmersStructures | farmers_structures | 1.0.6 | FarmersStructures-1.0.6-1.21.1_neoforge.jar | 94262398153d7ca5dc9ffb93e49acdbad85af223 |
@@ -99,4 +98,5 @@ Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на ст�
 | Свой экран загрузки | cld_earlywindow | 1.0.0 | cld_earlywindow-1.21.1-1.0.0.jar | 2ddbdfe848515fe83b8ed680c9fcb09a128e0f9a |
 | Своё главное меню | cld_menu | 1.0.1 | cld_menu-neoforge-1.21.1-1.0.1.jar | 459537d5d6c1f26dced90f2b8d8d332b896625cc |
 | Spark | spark | 1.10.124 | spark-1.10.124-neoforge.jar | 9430cc2ab64ff89d698be593769fb9f9ee4efae6 |
-| TelipailoCraft: мир | tcw | 0.4.3 (в репозитории 0.5.0) | tcw-neoforge-1.21.1-0.4.3.jar | 7db4335735cb8aead60fb96efff241b9ba7b48a3 |
+| TelipailoCraft: мир | tcw | 0.5.2 | tcw-neoforge-1.21.1-0.5.2.jar | 15bc6c4f2789fa0ae8a918e144a93ffe88c0d4f0 |
+| Дальний рельеф | cld_far | 0.5.0 | cld_far-neoforge-1.21.1-0.5.0.jar | 95f899f6281228b049509523630397f72d7fc6b6 |
