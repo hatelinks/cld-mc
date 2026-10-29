@@ -23,6 +23,7 @@
 | `gdn/` | «Горы до небес»: тот же рельеф jjtm как отдельные типы мира `gdn:h1024`, `gdn:h512`. **Тот же modId `jjthunder_to_the_max`**, что у jjtm, — вместе с jjtm не ставить. | 1.0.0 | `gdn/build.sh` (берёт данные из `../jjtm/src`) |
 | `menu/` | **cld_menu** «Главное меню сборки»: пиксельный пейзаж вместо панорамы, логотип TelipailoCraft, без Realms и «Моды». | 1.0.1 | `menu/build.sh` |
 | `earlywindow/` | **cld_earlywindow**: свой экран загрузки (провайдер `cldwindow`). Не мод, а сервис FML; jar кладётся в `mods/`. Включается в `config/fml.toml`: `earlyWindowProvider = "cldwindow"` — в `pack/` (экземпляр ПК) включён. На Android пока оставить `fmlearlywindow`, пока не проверено там отдельно. | 1.0.0 | `earlywindow/build.sh` |
+| `far/` | **cld_far** «Дальний рельеф»: лёгкая замена Distant Horizons для миров TelipailoCraft. Рельеф за прорисовкой считается по сиду генератора tcw (без чанков), тайлы LOD, цвета по биомам, настройки — F7. Нужен tcw; на сервере тоже ставить (передаёт сид). Вне игры: `far/tools/FarPreview`. | 0.1.0 | `far/build.sh` (компилирует и `../tcw`) |
 | `quest_builder/` | Генератор квестов FTB Quests (36 глав, ~1300 квестов). | — | `python3 -I quest_builder/make.py` → `out/ftbquests_config.zip` + `out/checklist.md` |
 | `pack/` | Конфиги экземпляра Prism (`minecraft/config`, `defaultconfigs`, `options.txt`, `instance.cfg`, `mmc-pack.json`) и `MODS.md` — список модов с SHA-1. Полный архив с jar — в Releases (`cld-mc-pack.zip`). | — | — |
 
@@ -38,6 +39,7 @@ LIBS=/путь/к/libs tcw/build.sh      # → tcw/dist/tcw-neoforge-1.21.1-0.5.
 VERSION=1.3.3 LIBS=... pregen/build.sh
 ```
 
+Собрать `LIBS` можно и в облаке, если открыта сеть: `tools/fetch_libs.sh [папка]` (установщик NeoForge + библиотеки ванили); готовая копия лежит в `/mnt/project-files/libs/`.
 В `LIBS` нужны `neoforge-21.1.248-client.jar`, `client-1.21.1-*-srg.jar`, `client-1.21.1-*-extra.jar` и остальные jar из `libraries` Prism (их кладёт владелец). В облаке хосты maven.neoforged.net и mojang.com закрыты, скачать их нельзя; если libs нет в `/mnt/project-files/libs/`, попросить владельца положить их туда.
 
 Версию мода поднимать в `build.sh` (переменная `VERSION`) при каждом выпуске; в `neoforge.mods.toml` стоит `${version}`.
@@ -54,6 +56,7 @@ VERSION=1.3.3 LIBS=... pregen/build.sh
 - В игре владелец проверяет только на новых мирах/чанках: изменения генерации не трогают уже созданные чанки.
 
 ## Грабли, которые легко повторить
+- В `build.sh` `ls a b` сортирует по алфавиту, и `client-*-srg.jar` (ваниль) оказывается в classpath раньше `neoforge-*-client.jar` (пропатченные классы): методы из патчей NeoForge не находятся. Перечислять отдельными `ls`, как в `far/build.sh`.
 - `guiScale:6` в `pack/minecraft/options.txt` выставлен владельцем специально — не менять.
 - Android: Sodium не ставить; для Sable нужен свой `sable-android-support` (на Маке не нужен).
 - improvedmobs: не писать `"Feature Blacklist" = ["minecolonies"]` — ломает загрузку.
