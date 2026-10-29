@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "sable_android"
+version = "${version}"
+displayName = "Sable Android Support"
+description = '''
+Adds Android (PojavLauncher / Mojo) support to the Sable physics mod
+by loading an Android-compiled Rapier native library.
+Also includes configurable tick throttling for Sable-integrated block entities.
+'''
+authors = "D, Claude"
+
+[[dependencies.sable_android]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.219,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.sable_android]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.sable_android]]
+modId = "sable"
+type = "required"
+versionRange = "[2.0.0,)"
+ordering = "BEFORE"
+side = "BOTH"
+
+[[mixins]]
+config = "sable_android.mixins.json"
