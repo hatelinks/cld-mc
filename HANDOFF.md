@@ -29,7 +29,7 @@
 ## 4. Авиация и оптимизация (сделано)
 - Авиация обновлена: Sable **2.0.6**, Create Aeronautics bundled **1.3.2**. Для Android — свой `sable-android-support 2.0.0` (пересобранная нативка Rapier под новый JNI Sable 2; скрипт сборки `~/Claude/sable-android-2.0/build_android_native.sh`). На Маке этот jar не нужен.
 - На Маке стоят Sodium 0.8.13, FerriteCore 7.0.3, ModernFix 5.27.27, Lithium 0.15.4, Noisium(ed) 3.0.6. На Android Sodium не ставить (краши Aeronautics+Sodium на мобильных рендерерах).
-- Java на Маке: **Azul Zulu 21.0.13**. С Java от Mojang (Microsoft 21.0.7) + G1 было два крэша JVM (SIGSEGV в C2 `Chunk::chop`, порча `G1MonotonicArena`) сразу после старта рендера DH. Потом на ZGC пошли крэши в самом ZGC (см. §7), поэтому итог: Zulu + обычный G1, память 2048–6144 МБ.
+- Java на Маке: **Azul Zulu 21.0.13**. С Java от Mojang (Microsoft 21.0.7) + G1 было два крэша JVM (SIGSEGV в C2 `Chunk::chop`, порча `G1MonotonicArena`) сразу после старта рендера DH. Потом на ZGC пошли крэши в самом ZGC (см. §7), поэтому итог: Zulu 21.0.13 (Java от Prism) + обычный G1 (аргументы Java пустые), память 2048–6144 МБ, PermGen 128. Так стоит в Prism (экземпляр «tc», сверено по скриншоту 29.10) и в `pack/instance.cfg`.
 - Профилировать — Spark; свои оптимизации писать только против конкретного тормоза из отчёта.
 
 ## 5. Рельеф JJThunder To The Max (jjtm, папка `jjtm/`; в игре — gdn)
