@@ -1,0 +1,17 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="cld_qabench"
+version="1.0.0"
+displayName="QA: замер прегенерации"
+authors="D, Claude"
+description='''Только для отдела тестирования: команда /qabench <cx> <cz> <радиус> [в работе] генерирует квадрат чанков и пишет время, чанки/с, MSPT и heap.'''
+
+[[dependencies.cld_qabench]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
