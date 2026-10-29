@@ -29,7 +29,7 @@ public class FarPreview {
         int mountains = a.length > 11 ? Integer.parseInt(a[11]) : 2;
         double tile0 = TileMesh.N * step;
         List<long[]> want = new ArrayList<>();
-        LodTree.select(cx, cz, dist, clip, split, tile0, new LodTree.Sink() {
+        LodTree.select(cx, cy, cz, dist, clip, split, tile0, new LodTree.Sink() {
             public boolean ready(long key) { return true; }
             public void draw(long key, int l, int tx, int tz) { want.add(new long[] { l, tx, tz }); }
             public void want(long key, int l, int tx, int tz, double p) {}

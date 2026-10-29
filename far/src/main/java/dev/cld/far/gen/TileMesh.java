@@ -206,6 +206,79 @@ public final class TileMesh {
         return mix(new double[] { bed[0] * 0.8, bed[1] * 0.8, bed[2] * 0.8 }, w, a);
     }
 
+    /**
+     * «Блочный» тайл n×n блоков с шагом 1 (для подзорной трубы): у каждого столбца плоский верх на высоте блока
+     * и боковые грани к более низким соседям — похоже на обычные чанки, но без пещер, деревьев и построек.
+     */
+    public static TileMesh buildBlocky(Terrain t, Palette palette, double x0, double z0, int n, BooleanSupplier cancelled) {
+        int m = n + 2;
+        int[] top = new int[m * m], col = new int[m * m];
+        boolean[] wet = new boolean[m * m];
+        Terrain.Column c = new Terrain.Column();
+        for (int j = 0; j < m; j++) {
+            if (cancelled.getAsBoolean()) return null;
+            for (int i = 0; i < m; i++) {
+                int id = j * m + i;
+                double x = x0 + i - 1, z = z0 + j - 1;
+                t.column(x, z, c);
+                boolean w = c.waterKind != Terrain.WATER_NONE && c.water > c.height;
+                wet[id] = w;
+                top[id] = w ? (int) Math.floor(c.water) : (int) Math.ceil(c.height);
+                if (i == 0 || j == 0 || i == m - 1 || j == m - 1) continue;
+                double slope = c.slope;
+                double[] rgb;
+                if (w) {
+                    int tint = palette.water(t, c, x, z);
+                    rgb = waterOver(seabed(c.water - c.height), tint >= 0 ? tint : WATER, c.water - c.height);
+                } else {
+                    int g = palette.ground(t, c, x, z);
+                    rgb = g >= 0 ? land(t, x, z, c.height, c.temp, c.dominant().ordinal(), slope, g)
+                            : MapRender.color(t, x, z, c.height, c.water, c.waterKind, c.temp, c.humid, c.mountain, c.dominant().ordinal(), slope);
+                }
+                col[id] = MapRender.rgb(rgb[0], rgb[1], rgb[2]);
+            }
+        }
+        // считаем грани: верх у каждого столбца, бок — где сосед ниже
+        int quads = 0;
+        int[] nb = { -1, 1, -m, m };
+        for (int j = 1; j <= n; j++)
+            for (int i = 1; i <= n; i++) {
+                int id = j * m + i;
+                quads++;
+                for (int d : nb) if (top[id + d] < top[id]) quads++;
+            }
+        float[] pos = new float[quads * 12];
+        int[] argb = new int[quads * 4];
+        int[] q = { 0 };
+        for (int j = 1; j <= n; j++)
+            for (int i = 1; i <= n; i++) {
+                int id = j * m + i, cc = col[id];
+                float x = i - 1, z = j - 1, y = top[id] + (wet[id] ? -0.1f : 0);
+                int ct = 0xFF000000 | cc;
+                vertex(pos, argb, q, x, y, z, ct);
+                vertex(pos, argb, q, x, y, z + 1, ct);
+                vertex(pos, argb, q, x + 1, y, z + 1, ct);
+                vertex(pos, argb, q, x + 1, y, z, ct);
+                // бока с освещением как у блоков в игре: x — 0.6, z — 0.8
+                if (top[id - 1] < top[id]) side(pos, argb, q, x, z, x, z + 1, top[id - 1], y, shadeRgb(cc, 0.6));
+                if (top[id + 1] < top[id]) side(pos, argb, q, x + 1, z, x + 1, z + 1, top[id + 1], y, shadeRgb(cc, 0.6));
+                if (top[id - m] < top[id]) side(pos, argb, q, x, z, x + 1, z, top[id - m], y, shadeRgb(cc, 0.8));
+                if (top[id + m] < top[id]) side(pos, argb, q, x, z + 1, x + 1, z + 1, top[id + m], y, shadeRgb(cc, 0.8));
+            }
+        return new TileMesh(x0, z0, 1, pos, argb, quads, null, null, 0);
+    }
+
+    private static void side(float[] pos, int[] argb, int[] q, float ax, float az, float bx, float bz, float lo, float hi, int c) {
+        vertex(pos, argb, q, ax, hi, az, c);
+        vertex(pos, argb, q, ax, lo, az, c);
+        vertex(pos, argb, q, bx, lo, bz, c);
+        vertex(pos, argb, q, bx, hi, bz, c);
+    }
+
+    private static int shadeRgb(int c, double k) {
+        return 0xFF000000 | MapRender.rgb(((c >> 16) & 255) * k, ((c >> 8) & 255) * k, (c & 255) * k);
+    }
+
     /** Горы в тайле: перепад высот или горная маска по сетке 5×5. */
     static boolean mountainous(Terrain t, double x0, double z0, double size) {
         Terrain.Column c = new Terrain.Column();

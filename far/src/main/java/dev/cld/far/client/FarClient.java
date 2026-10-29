@@ -54,6 +54,35 @@ public final class FarClient {
             }
         });
         NeoForge.EVENT_BUS.addListener((ClientPlayerNetworkEvent.LoggingOut e) -> RENDERER.setWorld(null));
+        NeoForge.EVENT_BUS.addListener(FarClient::onScreen);
+    }
+
+    /**
+     * Кнопка настроек: в «Настройках» справа от строки с полем зрения (Distant Horizons ставит свою слева),
+     * и в «Настройках графики» в правом верхнем углу.
+     */
+    private static void onScreen(net.neoforged.neoforge.client.event.ScreenEvent.Init.Post e) {
+        net.minecraft.client.gui.screens.Screen screen = e.getScreen();
+        int x, y;
+        if (screen instanceof net.minecraft.client.gui.screens.options.OptionsScreen) {
+            String fov = net.minecraft.client.resources.language.I18n.get("options.fov");
+            net.minecraft.client.gui.components.AbstractWidget row = null;
+            for (var l : e.getListenersList())
+                if (l instanceof net.minecraft.client.gui.components.AbstractWidget w && w.getMessage().getString().startsWith(fov)) row = w;
+            if (row == null) return;
+            int right = row.getX() + row.getWidth();
+            for (var l : e.getListenersList())
+                if (l instanceof net.minecraft.client.gui.components.AbstractWidget w && w.getY() == row.getY()) right = Math.max(right, w.getX() + w.getWidth());
+            x = Math.min(right + 4, screen.width - 22);
+            y = row.getY();
+        } else if (screen instanceof net.minecraft.client.gui.screens.options.VideoSettingsScreen) {
+            x = screen.width - 26;
+            y = 6;
+        } else return;
+        net.minecraft.network.chat.Component name = net.minecraft.network.chat.Component.translatable("cld_far.button");
+        e.addListener(net.minecraft.client.gui.components.Button.builder(net.minecraft.network.chat.Component.literal("⛰"),
+                        b -> Minecraft.getInstance().setScreen(new ConfigurationScreen(container, screen)))
+                .bounds(x, y, 20, 20).tooltip(net.minecraft.client.gui.components.Tooltip.create(name)).build());
     }
 
     public static void onSeed(SeedPayload p) {
