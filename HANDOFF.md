@@ -1,9 +1,9 @@
 # Передача контекста: сборка «Create + MineColonies + Mystical Agriculture» (Minecraft 1.21.1, NeoForge 21.1.248)
 
-Этот файл — сжатая память предыдущего диалога. Вставьте его в новый диалог (или приложите вместе с `quest_builder.zip`) и напишите, с чего продолжить.
+Этот файл — история и подробные грабли сборки. Краткая карта проекта (что где лежит, версии, как собирать и тестировать) — в `CLAUDE.md`; при расхождении верить `CLAUDE.md` и `pack/MODS.md`.
 
 ## 1. Кто я и что за сборка
-- Русскоязычный игрок, сборка ~96 модов, Prism Launcher на Mac (Java 21, 8 ГБ).
+- Русскоязычный игрок, сборка 96 модов (список — `pack/MODS.md`), Prism Launcher на Mac (Java 21).
 - Также играю на Android-телефоне, лаунчер **Amethyst**, рендерер **Kopper Zink (Vulkan)**, Java external 21.0.1. Для работы Sable на Android я написал свой мод **sable-android-support** (подменяет загрузку нативной библиотеки Rapier на Android-сборку + прореживает тики 16 блоков Simulated через coremod JS).
 - Позже сборка пойдёт на сервер.
 - Стабильно работает только **NeoForge 21.1.248** — менять его не хочу.
@@ -14,12 +14,12 @@
 - Все предметные задачи `consume_items: false` (автозасчёт, награду забираю вручную). Во всех главах `progression_mode: "flexible"` (тропы сохраняются, прогресс копится заранее).
 - Вариантные квесты («любой цвет») засчитывают только базовый вариант — FTB Filter System в сборке нет.
 - Награды: тематические ресурсы на ~каждом 4-м квесте, финал-шестерёнка в 28 главах (галочка + 200 XP + награда).
-- Генератор квестов — Python-проект (архив `quest_builder.zip`): `make.py` (data_base → specs/*.py → data → build.py → `out/ftbquests_config.zip` + `checklist.md`), `tools/lex.py` (рус. названия, подсказки, рецепты из jar), `tools/gen.py` (добавление квестов, автозависимости), `tools/layout.py` (автосетка), `jars_new/*.json` (ID предметов, модели, рецепты, теги, достижения, структуры — извлечены из jar сборки). Важные правила сборщика: ID должен иметь модель предмета (`_valid.json`), lang-строки без переносов (иначе все названия «Безымянный»), ID без старшего бита.
+- Генератор квестов — Python-проект (папка `quest_builder/` в репозитории): `make.py` (data_base → specs/*.py → data → build.py → `out/ftbquests_config.zip` + `checklist.md`), `tools/lex.py` (рус. названия, подсказки, рецепты из jar), `tools/gen.py` (добавление квестов, автозависимости), `tools/layout.py` (автосетка), `jars_new/*.json` (ID предметов, модели, рецепты, теги, достижения, структуры — извлечены из jar сборки). Важные правила сборщика: ID должен иметь модель предмета (`_valid.json`), lang-строки без переносов (иначе все названия «Безымянный»), ID без старшего бита.
 - `checklist.md`: 12 квестов-галочек вместо несуществующих предметов, ~360 описаний «по общим знаниям» для проверки.
 
 ## 3. Исправления сборки (сделано)
 - Из `config` убраны в `_to_delete` 24 лишних файла (Sodium/Iris/Xaero/ImmediatelyFast/Explosion Overhaul/Better Mineshafts, MineColonies Tweaks/Compatibility, *.bak).
-- Датапаки в `moonlight-global-datapacks` (Moonlight подключает их ко всем мирам):
+- Датапаки в `moonlight-global-datapacks` (Moonlight подключает их ко всем мирам; копии в репозитории: `pack/minecraft/moonlight-global-datapacks/`):
   - `pack_fixes.zip` — исправляет Tracks (ID `Tracks:` с заглавной → лут и добыча киркой; записи тегов `required:false`, иначе ломается весь `mineable/pickaxe`) и лут Veggies Delight (`lootTable` → `table`).
   - `colony_guard.zip` — Improved Mobs не трогает мобов MineColonies (`data/colony_guard/improvedmobs/entity_configs/minecolonies.json`, `features: []`) и не ворует из 58 хранилищ колонии (тег `improvedmobs:non_steal`). Проверено: в логе `Following entity overrides are loaded: [colony_guard:minecolonies]`.
 - НЕ писать `"Feature Blacklist" = ["minecolonies"]` в improvedmobs/common.toml — это ломает загрузку (там имена функций, не модов).
@@ -29,24 +29,27 @@
 ## 4. Авиация и оптимизация (сделано)
 - Авиация обновлена: Sable **2.0.6**, Create Aeronautics bundled **1.3.2**. Для Android — свой `sable-android-support 2.0.0` (пересобранная нативка Rapier под новый JNI Sable 2; скрипт сборки `~/Claude/sable-android-2.0/build_android_native.sh`). На Маке этот jar не нужен.
 - На Маке стоят Sodium 0.8.13, FerriteCore 7.0.3, ModernFix 5.27.27, Lithium 0.15.4, Noisium(ed) 3.0.6. На Android Sodium не ставить (краши Aeronautics+Sodium на мобильных рендерерах).
-- Java на Маке: **Azul Zulu 21.0.13**, аргументы `-XX:+UseZGC -XX:+ZGenerational`, память 6–8 ГБ. С Java от Mojang (Microsoft 21.0.7) + G1 было два крэша JVM (SIGSEGV в C2 `Chunk::chop`, порча `G1MonotonicArena`) сразу после старта рендера DH; после смены Java и GC крэшей нет.
+- Java на Маке: **Azul Zulu 21.0.13**. С Java от Mojang (Microsoft 21.0.7) + G1 было два крэша JVM (SIGSEGV в C2 `Chunk::chop`, порча `G1MonotonicArena`) сразу после старта рендера DH. Потом на ZGC пошли крэши в самом ZGC (см. §7), поэтому итог: Zulu + обычный G1, память 2048–6144 МБ.
 - Профилировать — Spark; свои оптимизации писать только против конкретного тормоза из отчёта.
 
-## 5. Рельеф JJThunder To The Max (jjtm, папка `jjtm/`)
-- Порт датапака 1.20.1 → 1.21.1, мод lowcodefml `jjthunder_to_the_max`, сейчас **0.3.3**. Варианты высоты мира: h2096 (оригинал), h1024, h512 — рельеф выше Y 63 сжимается сплайном поверх суммы offset+factor+jagged, корка над пещерами не истончается. В игре стоит **h1024-fast**.
+## 5. Рельеф JJThunder To The Max (jjtm, папка `jjtm/`; в игре — gdn)
+- Порт датапака 1.20.1 → 1.21.1, мод lowcodefml `jjthunder_to_the_max`, сейчас **0.3.3**. Варианты высоты мира: h2096 (оригинал), h1024, h512 — рельеф выше Y 63 сжимается сплайном поверх суммы offset+factor+jagged, корка над пещерами не истончается.
+- Сейчас в игре стоит не jjtm, а **«Горы до небес» (gdn 1.0.0, папка `gdn/`)**: тот же рельеф jjtm как отдельные типы мира `gdn:h1024` и `gdn:h512` (fast-вариант), обычный мир остаётся ванильным, DH генерирует только в них. У gdn тот же modId `jjthunder_to_the_max` — jjtm вместе с ним не ставить.
 - `-fast`: `size_vertical 2` (ячейка шума 8 блоков по высоте, как в ванилле) — вдвое меньше расчётов; во всех вариантах `overworld_determiner` обёрнут в `flat_cache`, пещерные 3D-шумы — в `cache_once` (результат тот же). Генерация стала «на порядок» быстрее.
-- Пещеры: толще корка (сплайн 0.045/0.09) и условный biome modifier убирает карвер `bettercaves:surface_cave` (главный источник дыр в поверхности).
+- Пещеры: толще корка (сплайн 0.045/0.09) и условный biome modifier убирает карвер `bettercaves:surface_cave` (главный источник дыр в поверхности). Сейчас Better Caves в `pack/MODS.md` нет (в `config/` осталась только папка `bettercaves`).
 - Структуры: теги `has_structure` (replace:false) добавляют 39 наземным биомам деревни, аванпосты, особняки и т.п. по климату.
 - Облака Cirrus: `assets/minecraft/cirrus/cloud_dimensions/overworld.json` с `cloud_height` 1051/513/256 (пропорционально высоте мира); jjtm грузится после cirrus (optional dependency, ordering AFTER). Caelus — это API элитр, к облакам отношения не имеет.
 - Сборка: `jjtm/build.sh` (port.py → tweaks.py → variant.py) → `jjtm/dist/`.
 
 ## 6. Свои моды
-- **cld_pregen 1.2.0** (`pregen/`): кнопка «Предпросмотр» на вкладке «Мир» над «Тип мира». Создаёт мир, замораживает его и прегенерирует по спирали с живой картой; «Применить сид» пересоздаёт мир, «Оставить мир»/«Назад». На время карты: прорисовка 2, DH на паузе через его API (генерация и рендер выкл., 1 поток), всё возвращается при выходе. Важные грабли: в замороженном мире не снимаются тикеты `UNKNOWN` от `getChunkFuture` — мод снимает их сам (иначе утечка памяти и остановка генерации); перед `mc.disconnect()` нужен `level.disconnect()` (иначе зависание).
+- **cld_pregen 1.3.2** (`pregen/`): кнопка «Предпросмотр» на вкладке «Мир» над «Тип мира». Создаёт мир, замораживает его и прегенерирует по спирали с живой картой; «Применить сид» пересоздаёт мир, «Оставить мир»/«Назад». На время карты: прорисовка 2, DH на паузе через его API (генерация и рендер выкл., 1 поток), всё возвращается при выходе. Важные грабли: в замороженном мире не снимаются тикеты `UNKNOWN` от `getChunkFuture` — мод снимает их сам (иначе утечка памяти и остановка генерации); перед `mc.disconnect()` нужен `level.disconnect()` (иначе зависание).
 - **cld_structures 1.0.0** (`structures/`): mixin в лямбду `ChunkGenerator.createStructures` — набор структур пропускает чанк, если рядом может появиться структура более редкого набора (больше spacing) того же этапа генерации с подходящим биомом. Детерминированно (зависит только от сида и координат). Настройки: `config/cld_structures.properties`.
-- Сборка обоих без Gradle: `LIBS=<jar NeoForge 21.1.248> <мод>/build.sh` (javac против `neoforge-*-client.jar` + `client-*-srg.jar`; у cld_structures `-proc:none`).
+- **cld_menu 1.0.1** (`menu/`): своё главное меню (пиксельный пейзаж, логотип TelipailoCraft, без Realms и «Моды»). **cld_earlywindow 1.0.0** (`earlywindow/`): свой экран загрузки, включён на ПК (`earlyWindowProvider = "cldwindow"` в `fml.toml`); на Android пока стандартный, пока не проверен там.
+- tcw и gdn — см. §5 и §10.
+- Сборка без Gradle: `LIBS=<jar NeoForge 21.1.248> <мод>/build.sh` (javac против `neoforge-*-client.jar` + `client-*-srg.jar`; `-proc:none`). Подробно — `CLAUDE.md`.
 
 ## 7. Дальняя прорисовка и конфиги
-- Distant Horizons 3.3.3: дальность LOD 256 на Маке (на телефоне ~64), обычная прорисовка 32, автообновление DH выключено. Cirrus: совместимость с DH и «Sync Cloud Distance» включены.
+- Distant Horizons 3.3.3: дальность LOD 256 на Маке (на телефоне ~64), обычная прорисовка 16 (`options.txt`), автообновление DH выключено. `guiScale:6` выставлен специально — не менять. Cirrus: совместимость с DH и «Sync Cloud Distance» включены.
 - Предупреждение DH про WWOO: возможны линии сетки в LOD, которые DH генерирует сам; нормальные чанки рисуются без них.
 - Логи: сообщения про `alexsmobs`, `iceandfire`, `ars_nouveau`, `quark`, `mowziesmobs` — из построек IDAS (мобы и предметы модов, которых нет), безвредны. Ошибки тегов IDAS bop/byg — нет BOP/BYG.
 
@@ -56,7 +59,7 @@
 ## 8. Репозиторий и сборка на GitHub
 - `pack/` — конфиги экземпляра (Prism): `minecraft/config`, `defaultconfigs`, `options.txt`, `instance.cfg`, `mmc-pack.json`, `MODS.md` (список модов, версии, SHA-1). Полный архив с jar модов, ресурспаками и шейдером — в GitHub Releases (`cld-mc-pack.zip`, импорт в Prism).
 - Перед заливкой сборки убирать: логи, крэши, hs_err/replay, сохранения, journeymap, baritone, blueprints, usercache/usernamecache, servers.dat, command_history, кэши, `.sable`, `pregen`, `config/sodium-fingerprint.json`, `*.bak`, отключённые jar; в options.txt — lastServer и размер окна; в instance.cfg — путь к Java. Затем искать ники, UUID, пути `/Users/…`, модель компьютера, почту, токены — в т.ч. внутри jar/zip.
-- Разрешение владельца: после каждого готового изменения сразу заливать на GitHub (в `main`), предварительно проверив новые файлы на личные данные.
+- После каждого готового изменения сразу заливать на GitHub, предварительно проверив новые файлы на личные данные. Сейчас: каждый тред работает в своей ветке `claude/*` и отдаёт результат через PR в `main`; в коммитах и PR не писать `Claude-Session` и ссылки на сессии Claude.
 
 ## 9. Дальше
 - Отдельный серверный набор (без клиентских модов).
@@ -67,7 +70,7 @@
 ## 10. Свой тип мира TelipailoCraft (папка `tcw/`)
 - Анкета: https://claude.ai/artifact/137rSpH4xjY4DQUgefVCuh (ответы в db `answers/latest`).
 - Кратко: свой генератор с нуля; добавляется рядом с «Горы до небес»; высота 768 (от -128 до 640); хребты с равнинами, горные системы 1–3 тыс. блоков; характер гор зависит от климата/биома; континенты с океанами; реки от гор до океана; снег по склонам, снеговая линия по климату; ледники с трещинами, ледяными пещерами, ледопадами; свои пещеры вместо Better Caves; биомы WWOO + свои горные; структуры только на ровном; DH генерирует; скорость на Android не важна.
-- Сделано (tcw 0.4.1, `tcw/build.sh`, данные мира генерирует `tcw/tools/build_data.py`): тип мира по умолчанию; свой рельеф (`gen/Macro`, `gen/Terrain`, сток рек `gen/Hydro`); реки, озёра, водопады (`WaterFeature`), скалы и слои (`RockFeature`), снег и ледники (`SnowFeature`); свои пещеры: гигантские залы, подземные реки, ледяные ходы, сеноты (`gen/Caves`, `CaveFeature`), Better Caves в этом мире выключен; свой источник биомов `TcwBiomeSource`: ванильные биомы по климату + горные пояса (subalpine_forest, alpine_meadow, alpine_tundra, scree_slopes, glacier, volcanic_slopes) и пещерные биомы YUNG; спавн в долине (`Spawn`); `/locate tcw …` (`LocateCommand`); карта мира на экране создания мира и `/tcwmap` (`client/MapScreen`); «Настроить» с 6 настройками (`gen/Options`, хранятся в level.dat в источнике биомов); WWOO-«заплатки» из мёртвых кораллов, бетона и терракоты вне бэдлендса убраны во всех мирах.
-- Проверка вне игры: генерация чанков без запуска игры (свой тест на классах Minecraft), превью карт `tcw/tools/Preview.java`.
-- Ещё не сделано: «живые» горы (животные, туман, звуки), опасности (рыхлый снег, мобы), структуры только на ровном и свои горные структуры, нависания и арки.
+- Сделано (tcw 0.5.0, в игре пока 0.4.3; `tcw/build.sh`, данные мира генерирует `tcw/tools/build_data.py`): тип мира по умолчанию; свой рельеф (`gen/Macro`, `gen/Terrain`, сток рек `gen/Hydro`); реки, озёра, водопады (`WaterFeature`), скалы и слои (`RockFeature`), снег и ледники (`SnowFeature`); свои пещеры: гигантские залы, подземные реки, ледяные ходы, сеноты (`gen/Caves`, `CaveFeature`), Better Caves в этом мире выключен; свой источник биомов `TcwBiomeSource`: ванильные биомы по климату + горные пояса (subalpine_forest, alpine_meadow, alpine_tundra, scree_slopes, glacier, volcanic_slopes) и пещерные биомы YUNG; спавн в долине (`Spawn`); `/locate tcw …` (`LocateCommand`); карта мира на экране создания мира и `/tcwmap` (`client/MapScreen`); «Настроить» с 6 настройками (`gen/Options`, хранятся в level.dat в источнике биомов); WWOO-«заплатки» из мёртвых кораллов, бетона и терракоты вне бэдлендса убраны во всех мирах; горные озёра не стоят стеной над склоном (0.4.2); спам CSA в логе заглушён (0.4.3); каменные арки и карнизы с навесами, `/locate tcw arch` (0.5.0).
+- Проверка вне игры: генерация чанков без запуска игры (свой тест на классах Minecraft), превью карт `tcw/tools/Preview.java` (работает в облаке без libs, см. `CLAUDE.md`), нагрузочный тест `qa/bench`.
+- Ещё не сделано: «живые» горы (животные, туман, звуки), опасности (рыхлый снег, мобы), структуры только на ровном и свои горные структуры.
 - **На потом (просьба запомнить):** лавины, камнепады, разреженный воздух на пиках, холод на высоте.
