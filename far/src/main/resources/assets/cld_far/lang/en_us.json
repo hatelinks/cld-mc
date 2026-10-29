@@ -8,6 +8,8 @@
   "cld_far.configuration.distance.tooltip": "How far to draw terrain",
   "cld_far.configuration.step": "Grid step, blocks",
   "cld_far.configuration.step.tooltip": "Step at the near edge: smaller is finer but slower. Changing it rebuilds everything",
+  "cld_far.configuration.mountains": "Mountain detail",
+  "cld_far.configuration.mountains.tooltip": "How many times finer the grid is in mountains (1 = same as plains)",
   "cld_far.configuration.detail": "Far detail",
   "cld_far.configuration.detail.tooltip": "Higher keeps the fine grid further from the player (more tiles)",
   "cld_far.configuration.threads": "Worker threads",
