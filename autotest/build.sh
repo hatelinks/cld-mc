@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 LIBS=${LIBS:-../../libs}
-VERSION=${VERSION:-0.1.1}
+VERSION=${VERSION:-0.1.2}
 # neoforge-client первым: ls сортирует по алфавиту, поэтому отдельными вызовами
 CP=$(ls "$LIBS"/neoforge-*-client.jar; ls "$LIBS"/client-*-srg.jar; ls "$LIBS"/*.jar | grep -v -e '-client.jar$' -e '-srg.jar$')
 CP=$(echo "$CP" | tr '\n' ':')
