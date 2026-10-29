@@ -17,3 +17,6 @@ far/build/
 far/dist/
 qa/bench/cldbench/build/
 qa/bench/cldbench/dist/
+sable_android/build/
+sable_android/dist/
+sable_android/native/work/
