@@ -1,10 +1,28 @@
 # Сборка Minecraft 1.21.1 (NeoForge 21.1.248)
 
-Рабочий репозиторий сборки «Create + MineColonies + Mystical Agriculture» для ПК (Prism) и Android (Amethyst).
+Рабочий репозиторий сборки «Create + MineColonies + Mystical Agriculture» для ПК (Prism Launcher) и Android (Amethyst).
 
-- `HANDOFF.md` — контекст и текущие задачи.
-- `quest_builder/` — генератор квестов FTB Quests: `python3 -I quest_builder/make.py` → `out/ftbquests_config.zip` + `out/checklist.md`.
-- `jjtm/` — неофициальный порт датапака JJThunder To The Max (1.20.1) на 1.21.1 для личного использования (лицензия оригинала: All Rights Reserved). `jjtm/build.sh` пересобирает `jjtm/dist/` из оригинального jar в трёх вариантах высоты мира: h2096 (оригинал), h1024 и h512 (`tools/variant.py`: ниже Y 63 без изменений, выше рельеф сжат линейно); `vanilla-1.21.1/` — ванильные файлы для сверки (спавны биомов).
-- `pregen/` — свой мод «Предпросмотр мира» (cld_pregen): кнопка «Предпросмотр» на экране создания мира, прегенерация с живой картой (блоки/биомы/высоты), сид, радиус, форма, слизни, структуры, скриншот, «Оставить мир»/«Назад». Сборка без Gradle: `LIBS=<папка с jar NeoForge 21.1.248 из Prism> pregen/build.sh` → `pregen/dist/`.
-- `structures/` — свой мод «Структуры без наложений» (cld_structures): структуры разных модов не генерируются друг в друге.
-- `pack/` — конфиги экземпляра и `MODS.md` (список модов). Полная сборка с jar — архив в Releases.
+- `CLAUDE.md` — карта проекта: версии, где что лежит, как собирать и тестировать.
+- `HANDOFF.md` — история сборки и подробные грабли.
+- `pack/` — конфиги экземпляра Prism и `MODS.md` (что стоит в игре, с SHA-1). Полная сборка с jar — архив в Releases.
+
+## Свои моды и данные
+
+| Папка | Что это |
+|---|---|
+| `tcw/` | Тип мира TelipailoCraft (tcw): свой рельеф, реки, ледники, пещеры, горные биомы, карта мира. Мир по умолчанию. |
+| `far/` | Дальний рельеф (cld_far): лёгкая дальняя прорисовка для миров TelipailoCraft вместо Distant Horizons. |
+| `pregen/` | Предпросмотр мира (cld_pregen): прегенерация с живой картой на экране создания мира. |
+| `structures/` | Структуры без наложений (cld_structures): структуры разных модов не появляются друг в друге. |
+| `gdn/` | «Горы до небес»: рельеф jjtm как отдельные типы мира. Стоит в игре вместо jjtm. |
+| `jjtm/` | Неофициальный порт датапака JJThunder To The Max (1.20.1) на 1.21.1 для личного использования (лицензия оригинала: All Rights Reserved). Источник данных для gdn. |
+| `menu/` | Главное меню сборки (cld_menu). |
+| `earlywindow/` | Свой экран загрузки (cld_earlywindow, провайдер `cldwindow`). |
+| `quest_builder/` | Генератор квестов FTB Quests: `python3 -I quest_builder/make.py` → `out/ftbquests_config.zip`. |
+| `qa/` | Проверки перед выдачей: статическая проверка jar и датапаков, смоук-тест сервера, разбор логов, бенчмарк генератора. |
+| `tools/` | `fetch_libs.sh` — собрать библиотеки NeoForge для сборки модов без Prism. |
+
+Java-моды собираются без Gradle: `LIBS=<папка с jar NeoForge 21.1.248> <мод>/build.sh` → `<мод>/dist/`. Подробнее — в `CLAUDE.md`.
+
+## Настройки Prism (Mac)
+Java Azul Zulu 21.0.13, аргументы Java пустые (обычный G1), память 2048–6144 МБ. ZGC и 8 ГБ давали крэши.
