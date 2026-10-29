@@ -1,9 +1,10 @@
 name: prerelease
-# Публикует готовые jar как ПРЕРЕЛИЗ (не релиз). Запускается пушем тега вида
-# <мод>-<версия> (например cld_far-0.2.0); jar берутся из releases/<тег>/.
+# Публикует готовые jar как ПРЕРЕЛИЗ (не релиз). Источник — каталог releases/<мод>-<версия>/
+# (jar/zip + NOTES.md). Запускается пушем коммита с новым каталогом releases/<тег>/;
+# тег создаётся автоматически на этом коммите. Уже опубликованные теги пропускаются.
 on:
   push:
-    tags: ['*-[0-9]*']
+    paths: ['releases/**']
 permissions:
   contents: write
 jobs:
@@ -11,14 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Publish prerelease
+      - name: Publish prereleases
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.ref_name }}
         run: |
           shopt -s nullglob
-          files=(releases/"$TAG"/*.jar releases/"$TAG"/*.zip)
-          [ ${#files[@]} -gt 0 ] || { echo "нет файлов в releases/$TAG"; exit 1; }
-          notes=releases/"$TAG"/NOTES.md
-          [ -f "$notes" ] || echo "Тестовая сборка $TAG." > "$notes"
-          gh release create "$TAG" "${files[@]}" --prerelease --title "$TAG" --notes-file "$notes" --verify-tag
+          for dir in releases/*/; do
+            tag=$(basename "$dir")
+            if gh release view "$tag" >/dev/null 2>&1; then continue; fi
+            files=("$dir"*.jar "$dir"*.zip)
+            [ ${#files[@]} -gt 0 ] || continue
+            notes="$dir"NOTES.md
+            [ -f "$notes" ] || echo "Тестовая сборка $tag." > "$notes"
+            gh release create "$tag" "${files[@]}" --prerelease --title "$tag" --notes-file "$notes" --target "$GITHUB_SHA"
+          done
