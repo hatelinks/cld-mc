@@ -15,3 +15,5 @@ tcw/build/
 tcw/dist/
 far/build/
 far/dist/
+qa/bench/cldbench/build/
+qa/bench/cldbench/dist/
