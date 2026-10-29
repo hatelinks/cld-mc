@@ -17,45 +17,99 @@ public final class TileMesh {
     /** 0xAARRGGBB на вершину. */
     public final int[] argb;
     public final int quads;
+    /** Прозрачная вода отдельными квадами (только в режиме clearWater, иначе waterQuads = 0). */
+    public final float[] waterPos;
+    public final int[] waterArgb;
+    public final int waterQuads;
 
-    private TileMesh(double x0, double z0, double step, float[] pos, int[] argb, int quads) {
+    private TileMesh(double x0, double z0, double step, float[] pos, int[] argb, int quads, float[] waterPos, int[] waterArgb, int waterQuads) {
         this.x0 = x0; this.z0 = z0; this.step = step; this.pos = pos; this.argb = argb; this.quads = quads;
+        this.waterPos = waterPos; this.waterArgb = waterArgb; this.waterQuads = waterQuads;
     }
 
     public int vertices() { return quads * 4; }
+    public int waterVertices() { return waterQuads * 4; }
+
+    /** Цвет воды в ванильной игре по умолчанию (океан). */
+    static final int WATER = 0x3F76E4;
 
     /** Цвет земли по биому (в игре — по настоящему выбору биомов); -1 — цвет из модели рельефа, как у карты /tcwmap. */
     public interface Palette {
         Palette MODEL = (t, c, x, z) -> -1;
         int ground(Terrain t, Terrain.Column c, double x, double z);
+        /** Оттенок воды биома (0xRRGGBB); -1 — ванильный океанский. */
+        default int water(Terrain t, Terrain.Column c, double x, double z) { return -1; }
     }
 
     /**
      * Тайл со стороной size от (x0, z0); null, если отменён. Обычно сетка N×N, но в горах (большой перепад высот)
      * в mountainDetail раз мельче: на равнинах лишние треугольники не видны, а хребты без них выходят пирамидами.
+     * clearWater: дно и вода отдельно (вода полупрозрачная, как в игре), иначе вода — непрозрачная поверхность.
      */
-    public static TileMesh build(Terrain t, Palette palette, double x0, double z0, double size, int mountainDetail, BooleanSupplier cancelled) {
+    public static TileMesh build(Terrain t, Palette palette, double x0, double z0, double size, int mountainDetail, boolean clearWater,
+            BooleanSupplier cancelled) {
         int n = mountainDetail > 1 && mountainous(t, x0, z0, size) ? N * mountainDetail : N;
         double step = size / n;
         int m = n + 3;
         float[] h = new float[m * m], top = new float[m * m], wl = new float[m * m], tmp = new float[m * m], hum = new float[m * m], mnt = new float[m * m];
         byte[] wk = new byte[m * m], st = new byte[m * m];
-        int[] ground = new int[m * m];
+        int[] ground = new int[m * m], wcol = new int[m * m];
+        // вдали отдельные пики и гребни при точечной выборке выходят тонкими зубцами («график»):
+        // чем грубее сетка, тем ближе высота суши к крупному рельефу без мелких деталей
+        double keep = Math.max(0.25, Math.min(1, 12 / step));
         Terrain.Column c = new Terrain.Column();
+        Macro.Sample ms = new Macro.Sample();
         for (int j = 0; j < m; j++) {
             if (cancelled.getAsBoolean()) return null;
             for (int i = 0; i < m; i++) {
                 int id = j * m + i;
                 t.column(x0 + (i - 1) * step, z0 + (j - 1) * step, c);
-                h[id] = (float) c.height;
+                double hh = c.height;
+                if (keep < 1 && c.waterKind == Terrain.WATER_NONE && hh > Macro.SEA + 2) {
+                    // крупный рельеф сглаживается по клетке (среднее 5 точек), мелкие детали ослабляются
+                    double x = x0 + (i - 1) * step, z = z0 + (j - 1) * step, r = step * 0.5, mac = c.macroHeight;
+                    mac += t.macro.sample(x - r, z - r, ms).height + t.macro.sample(x + r, z - r, ms).height
+                            + t.macro.sample(x - r, z + r, ms).height + t.macro.sample(x + r, z + r, ms).height;
+                    hh = Math.max(Macro.SEA + 2, mac / 5 + (hh - c.macroHeight) * keep);
+                }
+                h[id] = (float) hh;
                 wl[id] = (float) c.water;
                 wk[id] = (byte) c.waterKind;
-                top[id] = wk[id] != 0 && c.water > c.height ? (float) c.water : h[id];
+                boolean wet = wk[id] != 0 && c.water > hh;
+                top[id] = wet && !clearWater ? (float) c.water : h[id];
                 tmp[id] = (float) c.temp; hum[id] = (float) c.humid; mnt[id] = (float) c.mountain;
                 st[id] = (byte) c.dominant().ordinal();
                 boolean inner = i > 0 && j > 0 && i < m - 1 && j < m - 1;
                 ground[id] = inner && wk[id] == 0 ? palette.ground(t, c, x0 + (i - 1) * step, z0 + (j - 1) * step) : -1;
+                if (inner && wet) {
+                    int w = palette.water(t, c, x0 + (i - 1) * step, z0 + (j - 1) * step);
+                    wcol[id] = w >= 0 ? w : WATER;
+                }
             }
+        }
+        // одиночные выборки на тонких столбах и шпилях (уже шага сетки) дают иглы-«график»: срезаем вершину,
+        // торчащую над всеми четырьмя соседями, до самого высокого соседа (плюс полшага)
+        if (step >= 6) {
+            float[] o = h.clone();
+            for (int j = 1; j < m - 1; j++)
+                for (int i = 1; i < m - 1; i++) {
+                    int id = j * m + i;
+                    if (wk[id] != 0) continue;
+                    float nb = Math.max(Math.max(o[id - 1], o[id + 1]), Math.max(o[id - m], o[id + m]));
+                    if (o[id] > nb + step * 0.5) h[id] = top[id] = (float) (nb + step * 0.5);
+                }
+        }
+        // вдали ещё и лёгкое сглаживание суши: горы массивнее, без пилы из соседних зубцов
+        if (step >= 12) {
+            float[] o = h.clone();
+            float k = (float) Math.min(0.6, (step - 8) / 40);
+            for (int j = 1; j < m - 1; j++)
+                for (int i = 1; i < m - 1; i++) {
+                    int id = j * m + i;
+                    if (wk[id] != 0 || wk[id - 1] != 0 || wk[id + 1] != 0 || wk[id - m] != 0 || wk[id + m] != 0) continue;
+                    float avg = (o[id - 1] + o[id + 1] + o[id - m] + o[id + m]) / 4;
+                    h[id] = top[id] = o[id] + (avg - o[id]) * k;
+                }
         }
         // цвета вершин 0..n с отмывкой от фиксированного солнца
         int n1 = n + 1;
@@ -65,10 +119,13 @@ public final class TileMesh {
                 int id = (j + 1) * m + i + 1;
                 double sx = (h[id + 1] - h[id - 1]) / (2 * step), sz = (h[id + m] - h[id - m]) / (2 * step);
                 double slope = Math.sqrt(sx * sx + sz * sz);
+                boolean wet = wk[id] != 0 && wl[id] > h[id];
+                double depth = wet ? wl[id] - h[id] : 0;
                 double[] rgb = ground[id] >= 0 ? land(t, x0 + i * step, z0 + j * step, h[id], tmp[id], st[id], slope, ground[id])
-                        : MapRender.color(t, x0 + i * step, z0 + j * step, h[id], wl[id], wk[id], tmp[id], hum[id], mnt[id], st[id], slope);
+                        : wet ? seabed(depth) : MapRender.color(t, x0 + i * step, z0 + j * step, h[id], wl[id], wk[id], tmp[id], hum[id], mnt[id], st[id], slope);
+                if (wet && !clearWater) rgb = waterOver(rgb, wcol[id], depth);
                 double shade = 0.97;
-                if (wk[id] == 0 || wl[id] <= h[id]) {
+                if (!wet || clearWater) {
                     double hx = (top[id + 1] - top[id - 1]) / (2 * step), hz = (top[id + m] - top[id - m]) / (2 * step);
                     double nl = Math.sqrt(hx * hx + 1 + hz * hz);
                     double dot = (-hx * LX + LY - hz * LZ) / (nl * LL);
@@ -96,7 +153,57 @@ public final class TileMesh {
             skirt(pos, argb, q, 0, k * s, 0, (k + 1) * s, top[(k + 1) * m + 1], top[(k + 2) * m + 1], col[k * n1], col[(k + 1) * n1], drop);
             skirt(pos, argb, q, n * s, k * s, n * s, (k + 1) * s, top[(k + 1) * m + n + 1], top[(k + 2) * m + n + 1], col[k * n1 + n], col[(k + 1) * n1 + n], drop);
         }
-        return new TileMesh(x0, z0, step, pos, argb, quads);
+        if (!clearWater) return new TileMesh(x0, z0, step, pos, argb, quads, null, null, 0);
+
+        // вода: квад в каждой клетке, где мокрый хоть один угол; у сухих углов вода прозрачна (мягкий берег)
+        int wq = 0;
+        boolean[] cellWet = new boolean[n * n];
+        for (int j = 0; j < n; j++)
+            for (int i = 0; i < n; i++) {
+                for (int k = 0; k < 4; k++) {
+                    int id = (j + 1 + (k >> 1)) * m + i + 1 + (k & 1);
+                    if (wcol[id] != 0) cellWet[j * n + i] = true;
+                }
+                if (cellWet[j * n + i]) wq++;
+            }
+        float[] wpos = new float[wq * 12];
+        int[] wargb = new int[wq * 4];
+        int[] w = { 0 };
+        int[] corner = { 0, m, m + 1, 1 };
+        int[][] cxz = { { 0, 0 }, { 0, 1 }, { 1, 1 }, { 1, 0 } };
+        for (int j = 0; j < n; j++)
+            for (int i = 0; i < n; i++) {
+                if (!cellWet[j * n + i]) continue;
+                int base = (j + 1) * m + i + 1;
+                float level = -Float.MAX_VALUE;
+                int tint = WATER;
+                for (int k = 0; k < 4; k++) {
+                    int id = base + corner[k];
+                    if (wcol[id] != 0 && wl[id] > level) { level = wl[id]; tint = wcol[id]; }
+                }
+                for (int k = 0; k < 4; k++) {
+                    int id = base + corner[k];
+                    boolean wet = wcol[id] != 0;
+                    double depth = wet ? wl[id] - h[id] : 0;
+                    int a = wet ? (int) (255 * Math.min(0.92, 0.5 + depth / 16)) : 0;
+                    double dark = 1 - 0.45 * Macro.ss(4, 40, depth);
+                    int rgb = MapRender.rgb(((tint >> 16) & 255) * dark, ((tint >> 8) & 255) * dark, (tint & 255) * dark);
+                    vertex(wpos, wargb, w, (i + cxz[k][0]) * s, wet ? wl[id] : level, (j + cxz[k][1]) * s, a << 24 | rgb);
+                }
+            }
+        return new TileMesh(x0, z0, step, pos, argb, quads, wpos, wargb, wq);
+    }
+
+    /** Дно: песок на мелководье, гравий и глина глубже. */
+    static double[] seabed(double depth) {
+        return mix(new double[] { 200, 190, 150 }, new double[] { 110, 108, 100 }, Macro.ss(3, 25, depth));
+    }
+
+    /** Непрозрачная вода как смесь дна и оттенка воды: на мелководье видно дно, в глубине темнее. */
+    static double[] waterOver(double[] bed, int tint, double depth) {
+        double a = Math.min(1, 0.55 + depth / 14), dark = 1 - 0.45 * Macro.ss(4, 40, depth);
+        double[] w = { ((tint >> 16) & 255) * dark, ((tint >> 8) & 255) * dark, (tint & 255) * dark };
+        return mix(new double[] { bed[0] * 0.8, bed[1] * 0.8, bed[2] * 0.8 }, w, a);
     }
 
     /** Горы в тайле: перепад высот или горная маска по сетке 5×5. */
