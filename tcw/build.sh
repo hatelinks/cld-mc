@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 LIBS=${LIBS:-../../libs}
-VERSION=0.5.0
+VERSION=0.5.1
 rm -rf build/classes && mkdir -p build/classes dist
 cp -r src/main/resources/. build/classes/
 python3 -I tools/build_data.py "$(ls "$LIBS"/client-*-extra.jar)" build/classes
