@@ -41,6 +41,8 @@ public final class AutoTest {
     private final StringBuilder out = new StringBuilder();
     private long gcCount0, gcTime0, cpu0, wall0;
     private int ticks;
+    private long quitAt;
+    private boolean leaving, shot;
 
     public AutoTest() {
         Path p = FMLPaths.CONFIGDIR.get().resolve("cld_autotest.properties");
@@ -91,6 +93,13 @@ public final class AutoTest {
                 line("heap_menu_mb=" + usedMb());
                 // окно может быть не в фокусе, пусть игра не уходит в паузу сама
                 mc.options.pauseOnLostFocus = false;
+                int fps = num("maxfps", 0);
+                if (fps > 0) {
+                    // только на этот запуск: options.txt не сохраняется, пока не открыть настройки
+                    mc.options.framerateLimit().set(fps);
+                    mc.getWindow().setFramerateLimit(fps);
+                    line("maxfps=" + fps);
+                }
                 String world = cfg.getProperty("world", "").trim();
                 if (world.isEmpty() || !mc.getLevelSource().levelExists(world)) {
                     line("world_missing=" + world);
@@ -119,6 +128,7 @@ public final class AutoTest {
                 gcTime0 = gcTime();
                 cpu0 = cpuNs();
                 wall0 = now;
+                if (Boolean.parseBoolean(cfg.getProperty("jfr", "false"))) jfrStart();
                 if (Boolean.parseBoolean(cfg.getProperty("spark", "true"))) spark(mc, "spark profiler start --thread * --timeout " + num("measure", 60));
                 enter(Phase.MEASURE);
             }
@@ -127,8 +137,14 @@ public final class AutoTest {
                 if (ticks % 20 == 0) samples.add(String.format("t=%.0f fps=%d heap=%d chunks=%s entities=%d active=%b",
                         sec(now - phaseStart), mc.getFps(), usedMb(), mc.level.getChunkSource().getLoadedChunksCount(),
                         mc.level.getEntityCount(), mc.isWindowActive()));
+                if (!shot && sec(now - phaseStart) > num("measure", 60) / 2.0) {
+                    shot = true;
+                    net.minecraft.client.Screenshot.grab(mc.gameDirectory, "autotest-" + System.currentTimeMillis() + ".png", mc.getMainRenderTarget(),
+                            c -> line("screenshot " + c.getString()));
+                }
                 if (sec(now - phaseStart) < num("measure", 60)) return;
                 long wall = now - wall0;
+                jfrStop();
                 line("window_active=" + mc.isWindowActive());
                 line("render_distance=" + mc.options.getEffectiveRenderDistance());
                 stats("world", frames);
@@ -148,7 +164,7 @@ public final class AutoTest {
                 stats("pause", pauseFrames);
                 finish(mc);
             }
-            case DONE -> {}
+            case DONE -> quit(mc);
         }
     }
 
@@ -195,20 +211,71 @@ public final class AutoTest {
             LOG.error("не записать результат", ex);
         }
         if (!Boolean.parseBoolean(cfg.getProperty("quit", "true"))) return;
-        // Spark сам выгружает отчёт по таймауту, даём ему время
-        int wait = Boolean.parseBoolean(cfg.getProperty("spark", "true")) ? 15 : 0;
-        new Thread(() -> {
+        quitAt = System.nanoTime() + (Boolean.parseBoolean(cfg.getProperty("spark", "true")) ? 15_000_000_000L : 0);
+        // если игра не закрылась сама, пишем стеки потоков в лог и завершаем процесс (мир тестовый)
+        Thread dog = new Thread(() -> {
             try {
-                Thread.sleep(wait * 1000L);
+                Thread.sleep(120_000);
             } catch (InterruptedException ignored) {}
-            mc.execute(() -> {
-                if (mc.level != null) {
-                    mc.level.disconnect();
-                    mc.disconnect();
-                }
-                mc.stop();
-            });
-        }, "cld_autotest-quit").start();
+            StringBuilder sb = new StringBuilder("AUTOTEST игра не закрылась, стеки потоков:\n");
+            for (var en : Thread.getAllStackTraces().entrySet()) {
+                sb.append(en.getKey().getName()).append(" ").append(en.getKey().getState()).append('\n');
+                for (StackTraceElement el : en.getValue()) sb.append("    at ").append(el).append('\n');
+            }
+            LOG.warn(sb.toString());
+            Runtime.getRuntime().halt(0);
+        }, "cld_autotest-watchdog");
+        dog.setDaemon(true);
+        dog.start();
+    }
+
+    // выход как кнопкой "Сохранить и выйти", потом из главного меню
+    private void quit(Minecraft mc) {
+        if (quitAt == 0 || System.nanoTime() < quitAt) return;
+        if (mc.level != null) {
+            if (!leaving) {
+                leaving = true;
+                line("quit: выход из мира");
+                boolean local = mc.isLocalServer();
+                mc.level.disconnect();
+                if (local) mc.disconnect(new net.minecraft.client.gui.screens.GenericMessageScreen(net.minecraft.network.chat.Component.literal("Сохранение")));
+                else mc.disconnect();
+                mc.setScreen(new TitleScreen());
+            }
+            return;
+        }
+        if (mc.getSingleplayerServer() != null) return;
+        quitAt = 0;
+        LOG.info("AUTOTEST quit: закрываю игру");
+        mc.stop();
+    }
+
+    private jdk.jfr.Recording rec;
+
+    // JFR на время замера: потом qa/jfr_top.py разбирает, где тратится CPU
+    private void jfrStart() {
+        try {
+            rec = new jdk.jfr.Recording(jdk.jfr.Configuration.getConfiguration("profile"));
+            rec.start();
+            line("jfr start");
+        } catch (Exception ex) {
+            line("jfr error " + ex);
+        }
+    }
+
+    private void jfrStop() {
+        if (rec == null) return;
+        try {
+            Path p = FMLPaths.GAMEDIR.get().resolve("cld_autotest").resolve("rec-" + System.currentTimeMillis() + ".jfr");
+            Files.createDirectories(p.getParent());
+            rec.stop();
+            rec.dump(p);
+            line("jfr " + p);
+        } catch (Exception ex) {
+            line("jfr error " + ex);
+        }
+        rec.close();
+        rec = null;
     }
 
     private static long usedMb() {
