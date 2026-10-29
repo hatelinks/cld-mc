@@ -1,0 +1,17 @@
+{
+  "key.categories.cld_far": "Distant terrain",
+  "key.cld_far.settings": "Distant terrain settings",
+  "cld_far.configuration.title": "Distant terrain",
+  "cld_far.configuration.enabled": "Enabled",
+  "cld_far.configuration.enabled.tooltip": "Draw terrain beyond render distance (TelipailoCraft worlds only)",
+  "cld_far.configuration.distance": "Distance, blocks",
+  "cld_far.configuration.distance.tooltip": "How far to draw terrain",
+  "cld_far.configuration.step": "Grid step, blocks",
+  "cld_far.configuration.step.tooltip": "Step at the near edge: smaller is finer but slower. Changing it rebuilds everything",
+  "cld_far.configuration.detail": "Far detail",
+  "cld_far.configuration.detail.tooltip": "Higher keeps the fine grid further from the player (more tiles)",
+  "cld_far.configuration.threads": "Worker threads",
+  "cld_far.configuration.threads.tooltip": "Background threads computing terrain. Fewer means less heat, slower to appear",
+  "cld_far.configuration.fog": "Fog start",
+  "cld_far.configuration.fog.tooltip": "Fraction of the distance where terrain starts fading into fog"
+}
