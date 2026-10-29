@@ -9,13 +9,14 @@ public class TcwChunkBench {
     static final int MIN_Y = -128, H = 768;
 
     /** Кэш столбцов на поток, как Worlds.column. */
+    static final int N = Integer.getInteger("cols", 1024);
     static final class Cols {
-        final long[] keys = new long[1024]; final Terrain.Column[] cols = new Terrain.Column[1024];
+        final long[] keys = new long[N]; final Terrain.Column[] cols = new Terrain.Column[N];
         { java.util.Arrays.fill(keys, Long.MIN_VALUE); }
         Terrain.Column at(Terrain t, int x, int z) {
             long key = ((long) x << 32) ^ (z & 0xffffffffL);
             long h = key; h ^= h >>> 33; h *= 0xff51afd7ed558ccdL; h ^= h >>> 33;
-            int s = (int) (h & 1023);
+            int s = (int) (h & (N - 1));
             if (keys[s] == key) return cols[s];
             if (cols[s] == null) cols[s] = new Terrain.Column();
             t.column(x, z, cols[s]); keys[s] = key; return cols[s];
@@ -65,8 +66,8 @@ public class TcwChunkBench {
         long seed = a.length > 0 ? Long.parseLong(a[0]) : 12345;
         int n = a.length > 1 ? Integer.parseInt(a[1]) : 400;
         int threads = a.length > 2 ? Integer.parseInt(a[2]) : 1;
-        Terrain t = new Terrain(seed);
-        Macro m = t.macro;
+        Terrain t0 = new Terrain(seed);
+        Macro m = t0.macro;
         // место: самая «горная» точка около центра первого континента
         double ox = m.cellCenterX(0, 0), oz = m.cellCenterZ(0, 0), best = -1;
         Macro.Sample s = new Macro.Sample();
@@ -75,12 +76,15 @@ public class TcwChunkBench {
             m.sample(x, z, s);
             if (s.mountain > best) { best = s.mountain; ox = x; oz = z; }
         }
-        long h0 = System.nanoTime(); t.hydro(0, 0);
+        long h0 = System.nanoTime(); t0.hydro(0, 0);
         System.out.printf("сид %d, место %.0f %.0f (горы %.2f), сток рек континента: %.0f мс%n", seed, ox, oz, best, (System.nanoTime() - h0) / 1e6);
         int side = (int) Math.ceil(Math.sqrt(n));
         int ccx = (int) Math.floor(ox / 16) - side / 2, ccz = (int) Math.floor(oz / 16) - side / 2;
-        for (int pass = 0; pass < 2; pass++) {   // 0 — прогрев JIT на соседнем участке
+        int passes = Integer.getInteger("passes", 4);
+        for (int pass = 0; pass < passes; pass++) {   // 0 — прогрев JIT на соседнем участке; дальше тот же участок заново (новый Terrain — холодные кэши)
             int offx = pass == 0 ? side + 4 : 0;
+            final Terrain t = pass == 0 ? t0 : new Terrain(seed);
+            t.hydro(0, 0);
             long[][] ns = new long[threads][5];
             double[] sums = new double[threads];
             java.util.concurrent.atomic.AtomicInteger next = new java.util.concurrent.atomic.AtomicInteger();
