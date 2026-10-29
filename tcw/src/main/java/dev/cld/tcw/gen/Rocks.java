@@ -227,6 +227,12 @@ public final class Rocks {
      * Одно значение на блок вместо двух (так генерация быстрее): 0 — ничего, A + 2 — добавленный камень A,
      * C - 2 — подрезка C. Итоговая плотность: max(min(F, R + 2), R - 2).
      */
+    // верх влияния камня в столбце: выше него combined() всегда 0 (для пропуска пустого неба при заполнении чанка)
+    public double top(int x, int z, Columns cols) {
+        if (OFF) return -Double.MAX_VALUE;
+        return col(x, z, cols, COLS.get()).hi;
+    }
+
     public double combined(int x, int y, int z, Columns cols) {
         if (OFF) return 0;
         // rock дважды входит в final_density (max(min(F, R + 2), R - 2)) и спрашивается для одного блока подряд

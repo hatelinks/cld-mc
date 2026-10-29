@@ -38,7 +38,7 @@ public final class ColumnDensity implements DensityFunction {
 
     public enum Value implements StringRepresentable {
         SURFACE("surface"), CONTINENTS("continents"), EROSION("erosion"), RIDGES("ridges"),
-        TEMPERATURE("temperature"), VEGETATION("vegetation"), DEPTH("depth"), CAVES("caves"), ROCK("rock"), PEAK("peak");
+        TEMPERATURE("temperature"), VEGETATION("vegetation"), DEPTH("depth"), CAVES("caves"), ROCK("rock"), PEAK("peak"), SKY("sky");
         public static final Codec<Value> CODEC = StringRepresentable.fromEnum(Value::values);
         private final String name;
         Value(String name) { this.name = name; }
@@ -57,6 +57,7 @@ public final class ColumnDensity implements DensityFunction {
         int x = ctx.blockX(), y = ctx.blockY(), z = ctx.blockZ();
         if (value == Value.ROCK) return t.rocks.combined(x, y, z, cols);
         if (value == Value.PEAK) return peak(t, x, y, z);
+        if (value == Value.SKY) return skyTop(t, x, z) - y;
         Terrain.Column c = Worlds.column(t, x, z);
         return switch (value) {
             case SURFACE -> (c.height - y) * SLOPE;
@@ -84,12 +85,32 @@ public final class ColumnDensity implements DensityFunction {
         double base = c.peakBase;
         if (Double.isNaN(base)) {
             base = -Double.MAX_VALUE;
-            for (int i = 0; i < RING.length; i += 2) base = Math.max(base, Worlds.column(t, x + RING[i], z + RING[i + 1]).height);
+            // как только сосед не ниже h, защиты нет (y < h всегда <= base), остальных соседей не считаем
+            for (int i = 0; i < RING.length && base < h; i += 2) base = Math.max(base, Worlds.column(t, x + RING[i], z + RING[i + 1]).height);
             // соседи могли вытеснить столбец из кэша, берём заново
             c = Worlds.column(t, x, z);
             c.peakBase = base;
         }
         return y > base ? (h - y) * SLOPE : NO_PEAK;
+    }
+
+    // верх, выше которого в узлах сетки шума можно не считать ванильные пещеры: самый высокий из 9 столбцов
+    // вокруг (шаг 4, весь соседний узел ячейки) плюс SKY_MARGIN. Ниже значение положительное, выше отрицательное.
+    // Ячейки, у которых все углы выше поверхности, остаются воздухом и с упрощённым значением
+    public static final int SKY_MARGIN = 24;
+
+    private record Sky(long key, double top) {}
+    private volatile Sky sky;
+
+    private double skyTop(Terrain t, int x, int z) {
+        long key = ((long) x << 32) ^ (z & 0xffffffffL);
+        Sky s = sky;
+        if (s != null && s.key == key) return s.top;
+        double m = -Double.MAX_VALUE;
+        for (int dx = -4; dx <= 4; dx += 4)
+            for (int dz = -4; dz <= 4; dz += 4) m = Math.max(m, Worlds.column(t, x + dx, z + dz).height);
+        sky = new Sky(key, m + SKY_MARGIN);
+        return m + SKY_MARGIN;
     }
 
     @Override
@@ -108,6 +129,7 @@ public final class ColumnDensity implements DensityFunction {
             case SURFACE -> -800 * SLOPE;
             case ROCK -> -2.5;
             case PEAK -> NO_PEAK;
+            case SKY -> -2000;
             case DEPTH -> -7;
             case CAVES -> -3;
             default -> -2;
@@ -118,6 +140,7 @@ public final class ColumnDensity implements DensityFunction {
     public double maxValue() {
         return switch (value) {
             case SURFACE, PEAK -> 800 * SLOPE;
+            case SKY -> 2000;
             case ROCK -> 2.5;
             case DEPTH -> 7;
             case CAVES -> Caves.SOLID;
