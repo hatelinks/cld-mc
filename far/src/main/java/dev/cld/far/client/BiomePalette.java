@@ -22,11 +22,9 @@ import net.minecraft.world.level.biome.OverworldBiomeBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Цвет земли по биому без чанков. Все параметры климата у TelipailoCraft берутся из модели рельефа (Terrain.climate),
- * поэтому выбор биома повторяется на клиенте: сначала свои горные биомы tcw (как TcwBiomeSource.pick у поверхности),
- * иначе ванильная таблица OverworldBiomeBuilder. Цвет травы и воды — из реестра биомов, который сервер присылает клиенту.
- */
+// Цвет земли по биому без чанков. Все параметры климата у TelipailoCraft берутся из модели рельефа (Terrain.climate),
+// поэтому выбор биома повторяется на клиенте: сначала свои горные биомы tcw (как TcwBiomeSource.pick у поверхности),
+// иначе ванильная таблица OverworldBiomeBuilder. Цвет травы и воды, из реестра биомов, который сервер присылает клиенту.
 final class BiomePalette implements TileMesh.Palette {
     private static final Logger LOG = LoggerFactory.getLogger("cld_far");
     private static final Simplex N = new Simplex(4242);
@@ -42,7 +40,7 @@ final class BiomePalette implements TileMesh.Palette {
         this.biomes = biomes;
     }
 
-    /** null, если ванильную таблицу биомов достать не удалось (тогда цвета из модели). */
+    // null, если ванильную таблицу биомов достать не удалось (тогда цвета из модели).
     static TileMesh.Palette create(RegistryAccess access) {
         try {
             List<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> list = new ArrayList<>();
@@ -83,7 +81,7 @@ final class BiomePalette implements TileMesh.Palette {
         return k;
     }
 
-    /** Свои биомы tcw у поверхности (повторяет TcwBiomeSource.pick при y ≈ высота). */
+    // Свои биомы tcw у поверхности (повторяет TcwBiomeSource.pick при y ~ высота).
     private ResourceKey<Biome> pick(Terrain t, Terrain.Column c, double x, double z) {
         double h = c.height;
         if (c.waterKind != Terrain.WATER_NONE || c.riverDist < 6) return null;
@@ -102,7 +100,7 @@ final class BiomePalette implements TileMesh.Palette {
         return c.temp > -0.55 ? subalpine : null;
     }
 
-    /** Цвет поверхности биома: песок, снег, камень или трава/листва с его оттенком. */
+    // Цвет поверхности биома: песок, снег, камень или трава/листва с его оттенком.
     private int look(ResourceKey<Biome> k) {
         String p = k.location().getPath();
         Biome b = biomes.get(k);

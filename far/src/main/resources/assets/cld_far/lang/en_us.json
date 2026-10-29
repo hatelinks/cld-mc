@@ -17,5 +17,10 @@
   "cld_far.configuration.threads": "Worker threads",
   "cld_far.configuration.threads.tooltip": "Background threads computing terrain. Fewer means less heat, slower to appear",
   "cld_far.configuration.fog": "Fog start",
-  "cld_far.configuration.fog.tooltip": "Fraction of the distance where terrain starts fading into fog"
+  "cld_far.configuration.fog.tooltip": "Fraction of the distance where terrain starts fading into fog",
+  "cld_far.configuration.spyglass": "Spyglass: blocks",
+  "cld_far.configuration.spyglass.tooltip": "Through a spyglass, terrain in view becomes blocky like real chunks",
+  "cld_far.configuration.spyglassRange": "Spyglass: range",
+  "cld_far.configuration.spyglassRange.tooltip": "How far the spyglass shows blocky terrain",
+  "cld_far.button": "Distant terrain"
 }
