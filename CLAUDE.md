@@ -41,7 +41,7 @@ VERSION=1.3.3 LIBS=... pregen/build.sh
 ```
 
 Собрать `LIBS` можно и в облаке, если открыта сеть: `tools/fetch_libs.sh [папка]` (установщик NeoForge + библиотеки ванили); готовая копия лежит в `/mnt/project-files/libs/`.
-В `LIBS` нужны `neoforge-21.1.248-client.jar`, `client-1.21.1-*-srg.jar`, `client-1.21.1-*-extra.jar` и остальные jar из `libraries` Prism (их кладёт владелец). В облаке хосты maven.neoforged.net и mojang.com закрыты, скачать их нельзя; если libs нет в `/mnt/project-files/libs/`, попросить владельца положить их туда.
+В `LIBS` нужны `neoforge-21.1.248-client.jar`, `client-1.21.1-*-srg.jar`, `client-1.21.1-*-extra.jar` и остальные jar из `libraries` Prism (готовая копия — `/mnt/project-files/libs/`). Если её нет, а сеть до maven.neoforged.net и mojang.com закрыта, попросить владельца положить libs туда.
 
 Версию мода поднимать в `build.sh` (переменная `VERSION`) при каждом выпуске; в `neoforge.mods.toml` стоит `${version}`.
 
