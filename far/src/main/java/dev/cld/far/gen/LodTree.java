@@ -1,10 +1,8 @@
 package dev.cld.far.gen;
 
-/**
- * Выбор тайлов дальнего рельефа: дерево квадрантов вокруг камеры, ближе — мельче.
- * Тайл делится на 4, пока до него ближе split × его размер. Пока не готовы все 4 потомка, рисуется сам тайл,
- * поэтому дыр не бывает: сначала считаются грубые уровни, потом мельче.
- */
+// Выбор тайлов дальнего рельефа: дерево квадрантов вокруг камеры, чем ближе, тем мельче.
+// Тайл делится на 4, пока до него ближе split x его размер. Пока не готовы все 4 потомка, рисуется сам тайл,
+// поэтому дыр не бывает: сначала считаются грубые уровни, потом мельче.
 public final class LodTree {
     public interface Sink {
         boolean ready(long key);
@@ -22,7 +20,7 @@ public final class LodTree {
     public static int tx(long key) { return (int) (key << 6 >> 35); }
     public static int tz(long key) { return (int) (key << 35 >> 35); }
 
-    /** Верхний уровень: самый крупный тайл не меньше половины дальности. */
+    // Верхний уровень: самый крупный тайл не меньше половины дальности.
     public static int maxLevel(double tile0, double dist) {
         int l = 0;
         while (tile0 * (1L << l) * 2 < dist && l < 20) l++;
@@ -88,15 +86,13 @@ public final class LodTree {
             if (wantsSplit(l, d)) for (int k = 0; k < 4; k++) request(l - 1, tx * 2 + (k & 1), tz * 2 + (k >> 1));
         }
 
-        /** Сначала грубые уровни (быстро закрыть весь горизонт), внутри уровня — ближние. */
+        // Сначала грубые уровни (быстро закрыть весь горизонт), внутри уровня сначала ближние.
         double priority(int l, double d) { return (maxLevel - l) * 1e7 + d; }
     }
 
-    /**
-     * @param tile0 сторона тайла нижнего уровня, блоков
-     * @param clip  радиус, внутри которого рисует сама игра (тайлы целиком внутри пропускаются)
-     * @param cy    высота камеры: высоко над землёй тайлы грубее
-     */
+    // tile0: сторона тайла нижнего уровня, блоков
+    // clip: радиус, внутри которого рисует сама игра (тайлы целиком внутри пропускаются)
+    // cy: высота камеры: высоко над землёй тайлы грубее
     public static void select(double cx, double cy, double cz, double dist, double clip, double split, double tile0, Sink sink) {
         Q q = new Q(cx, cy, cz, dist, clip, split, tile0, sink);
         double s = q.size(q.maxLevel);

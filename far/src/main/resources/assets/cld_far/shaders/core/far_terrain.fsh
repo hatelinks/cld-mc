@@ -17,12 +17,12 @@ out vec4 fragColor;
 
 void main() {
     // внутри прорисовки игры рисуют обычные чанки; расстояние с высотой: высоко над землёй игра чанки под
-    // игроком не рисует, а дальний рельеф — рисует (по настоящей высоте, грубо)
+    // игроком не рисует, а дальний рельеф, рисует (по настоящей высоте, грубо)
     float d = length(relPos.xz);
     if (length(relPos) < ClipRadius) discard;
     vec2 dir = relPos.xz / max(d, 0.001);
     bool cone = d < ScopeFar && dot(dir, ScopeDir) > ScopeCos;
-    // подзорная труба: 1 — гладкий рельеф уступает блочному в конусе, 2 — блочный рисуется только в конусе
+    // подзорная труба: 1, гладкий рельеф уступает блочному в конусе, 2, блочный рисуется только в конусе
     if (ScopeMode > 0.5 && ScopeMode < 1.5 && cone) discard;
     if (ScopeMode > 1.5 && !cone) discard;
     vec3 c = vertexColor.rgb * ColorModulator.rgb;
