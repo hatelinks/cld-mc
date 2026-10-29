@@ -33,9 +33,9 @@
 
 Свои датапаки сборки (`pack_fixes.zip`, `colony_guard.zip`) лежат у владельца в `moonlight-global-datapacks`, описаны в `HANDOFF.md` §3.
 
-`pack/OPTIMIZATION.md` — разбор производительности клиента (29.10): какие конфиги ускорены (lambdynlights fast, Flywheel TRI_LINEAR, без проверки обновлений, JourneyMap без топо-слоя) и что владельцу поставить или убрать (cld_far вместо DH, Dynamic FPS, Entity Culling, ImmediatelyFast; убрать EMF/ETF).
+`pack/OPTIMIZATION.md` — разбор производительности клиента (29.10): какие конфиги ускорены (lambdynlights fast, Flywheel TRI_LINEAR, без проверки обновлений, JourneyMap без топо-слоя) и какие моды сменены: DH, EMF, ETF убраны, вместо DH cld_far (нужен tcw 0.5.x). Dynamic FPS, Entity Culling, ImmediatelyFast владелец качает сам: modrinth и github из облака закрыты (403).
 
-`pack/MODS.md` — что реально стоит в игре (обновлять по jar из папки `mods` владельца). Сейчас в игре tcw 0.4.3, в репозитории 0.5.2.
+`pack/MODS.md` — что реально стоит в игре (обновлять по jar из папки `mods` владельца). В копии на Маке после оптимизации tcw 0.5.2 и cld_far 0.5.0 без DH; в экземпляре Prism пока tcw 0.4.3 и DH, пока владелец не перенесёт.
 
 Исходники всех наших модов есть в репозитории и собираются (проверено 29.10: размеры jar совпадают с выданными). jjtm оставлен как архив и не развивается: его заменили gdn и tcw.
 
