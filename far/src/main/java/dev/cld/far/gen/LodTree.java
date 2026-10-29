@@ -56,11 +56,12 @@ public final class LodTree {
         boolean covered(int l, int tx, int tz) {
             double d = near(l, tx, tz);
             if (skip(l, tx, tz, d)) return true;
-            if (wantsSplit(l, d)) {
-                return covered(l - 1, tx * 2, tz * 2) && covered(l - 1, tx * 2 + 1, tz * 2)
-                        && covered(l - 1, tx * 2, tz * 2 + 1) && covered(l - 1, tx * 2 + 1, tz * 2 + 1);
-            }
-            return sink.ready(key(l, tx, tz));
+            // готовый тайл закрывает свой квадрат сам, даже если для него уже хочется мельче.
+            // Раньше требовались все внуки, и при движении один новый мелкий тайл на миг возвращал весь
+            // крупный родитель (мигание и смена качества)
+            if (sink.ready(key(l, tx, tz))) return true;
+            return wantsSplit(l, d) && covered(l - 1, tx * 2, tz * 2) && covered(l - 1, tx * 2 + 1, tz * 2)
+                    && covered(l - 1, tx * 2, tz * 2 + 1) && covered(l - 1, tx * 2 + 1, tz * 2 + 1);
         }
 
         void visit(int l, int tx, int tz) {
