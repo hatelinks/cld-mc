@@ -27,12 +27,15 @@
 | `menu/` | **cld_menu** «Главное меню сборки»: пиксельный пейзаж вместо панорамы, логотип TelipailoCraft, без Realms и «Моды». | 1.0.1 | `menu/build.sh` |
 | `earlywindow/` | **cld_earlywindow**: свой экран загрузки (провайдер `cldwindow`). Не мод, а сервис FML; jar кладётся в `mods/`. Включается в `config/fml.toml`: `earlyWindowProvider = "cldwindow"` — в `pack/` (экземпляр ПК) включён. На Android пока оставить `fmlearlywindow`, пока не проверено там отдельно. | 1.0.0 | `earlywindow/build.sh` |
 | `far/` | **cld_far** «Дальний рельеф»: лёгкая замена Distant Horizons для миров TelipailoCraft. Рельеф за прорисовкой считается по сиду генератора tcw (без чанков), тайлы LOD, цвета по биомам, настройки — F7. Нужен tcw; на сервере тоже ставить (передаёт сид). Вне игры: `far/tools/FarPreview`. | 0.4.0 | `far/build.sh` (компилирует и `../tcw`) |
+| `sable_android/` | **sable-android-support** (modId `sable_android`): нативка Rapier для Sable на Android + прореживание тиков блоков Simulated (coremod JS). Только для Android, на Маке не нужен. Исходники восстановлены из jar. | 2.0.0 | `sable_android/build.sh`; нативку пересобирать `sable_android/native/build_android_native.sh` (на Маке) |
 | `quest_builder/` | Генератор квестов FTB Quests (36 глав, ~1300 квестов). | — | `python3 -I quest_builder/make.py` → `out/ftbquests_config.zip` + `out/checklist.md` |
 | `pack/` | Конфиги экземпляра Prism (`minecraft/config`, `defaultconfigs`, `options.txt`, `instance.cfg`, `mmc-pack.json`) и `MODS.md` — список модов с SHA-1. Полный архив с jar — в Releases (`cld-mc-pack.zip`). | — | — |
 
 Свои датапаки сборки (`pack_fixes.zip`, `colony_guard.zip`) лежат у владельца в `moonlight-global-datapacks`, описаны в `HANDOFF.md` §3.
 
 `pack/MODS.md` — что реально стоит в игре (обновлять по jar из папки `mods` владельца). Сейчас в игре tcw 0.4.3, в репозитории 0.5.1.
+
+Исходники всех наших модов есть в репозитории и собираются (проверено 29.10: размеры jar совпадают с выданными). jjtm оставлен как архив и не развивается: его заменили gdn и tcw.
 
 ## Как собирать Java-моды
 Gradle не используется. Каждый `build.sh` вызывает `javac --release 21` против библиотек NeoForge 21.1.248 из папки `LIBS` (по умолчанию `../../libs`, то есть рядом с клоном репозитория):
@@ -66,4 +69,5 @@ VERSION=1.3.3 LIBS=... pregen/build.sh
 - improvedmobs: не писать `"Feature Blacklist" = ["minecolonies"]` — ломает загрузку.
 - Вылет Veil «renderer is null» — выключен `mod_resources` в options.txt.
 - cld_pregen: в замороженном мире самому снимать тикеты `UNKNOWN`; перед `mc.disconnect()` вызывать `level.disconnect()`.
+- Нативки Rust (sable_android) по умолчанию содержат пути `/Users/<имя>/.cargo`: собирать с `--remap-path-prefix`, перед коммитом проверять `strings`.
 - Квесты: ID предмета должен иметь модель (`_valid.json`), lang-строки без переносов.
