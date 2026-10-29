@@ -1,0 +1,17 @@
+{
+  "key.categories.cld_far": "Дальний рельеф",
+  "key.cld_far.settings": "Настройки дальнего рельефа",
+  "cld_far.configuration.title": "Дальний рельеф",
+  "cld_far.configuration.enabled": "Включено",
+  "cld_far.configuration.enabled.tooltip": "Рисовать рельеф за пределами прорисовки (только мир TelipailoCraft)",
+  "cld_far.configuration.distance": "Дальность, блоков",
+  "cld_far.configuration.distance.tooltip": "До какого расстояния рисовать рельеф",
+  "cld_far.configuration.step": "Шаг сетки, блоков",
+  "cld_far.configuration.step.tooltip": "Шаг у ближнего края: меньше — подробнее, но дольше считать. Смена шага пересчитывает всё",
+  "cld_far.configuration.detail": "Детальность вдали",
+  "cld_far.configuration.detail.tooltip": "Больше — мелкая сетка держится дальше от игрока (больше тайлов)",
+  "cld_far.configuration.threads": "Потоков расчёта",
+  "cld_far.configuration.threads.tooltip": "Фоновые потоки для расчёта рельефа. Меньше — меньше нагрев, дольше появляется",
+  "cld_far.configuration.fog": "Начало тумана",
+  "cld_far.configuration.fog.tooltip": "С какой доли дальности рельеф уходит в туман"
+}
