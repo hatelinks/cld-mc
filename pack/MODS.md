@@ -99,7 +99,10 @@ Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на ст�
 | Своё главное меню | cld_menu | 1.0.1 | cld_menu-neoforge-1.21.1-1.0.1.jar | 459537d5d6c1f26dced90f2b8d8d332b896625cc |
 | Spark | spark | 1.10.124 | spark-1.10.124-neoforge.jar | 9430cc2ab64ff89d698be593769fb9f9ee4efae6 |
 | TelipailoCraft: мир | tcw | 0.5.2 | tcw-neoforge-1.21.1-0.5.2.jar | 15bc6c4f2789fa0ae8a918e144a93ffe88c0d4f0 |
-| Дальний рельеф | cld_far | 0.5.0 | cld_far-neoforge-1.21.1-0.5.0.jar | 95f899f6281228b049509523630397f72d7fc6b6 |
+| Дальний рельеф | cld_far | 0.5.2 | cld_far-neoforge-1.21.1-0.5.2.jar | 98a7800e852de74c5016e57a9bb2312e24e64d7d |
 | Dynamic FPS | dynamic_fps | 3.11.4 | dynamic-fps-3.11.4+minecraft-1.21.0-neoforge.jar | 35b17e95b2b65930116ccc83e0cc358ac1bfcf9e |
 | Entity Culling | entityculling | 1.11.3 | entityculling-neoforge-1.11.3-mc1.21.1.jar | f122f84f329793675b2625d51b77f990d7de3579 |
 | ImmediatelyFast | immediatelyfast | 1.6.15 | ImmediatelyFast-NeoForge-1.6.15+1.21.1.jar | f991166f7c82b493481c876e3c83c9fac4159671 |
+| BadOptimizations | badoptimizations | 2.4.1 | BadOptimizations-2.4.1-1.21.1.jar | 1461d8e46391efd32a3085150e86094c9f6f5c9d |
+| Clumps | clumps | 19.0.0.1 | Clumps-neoforge-1.21.1-19.0.0.1.jar | fa2576297c7bd12b28aa7070e8141792bd66da4c |
+| Packet Fixer | packetfixer | 3.3.1 | packetfixer-3.3.1-1.20.5-1.21.X-merged.jar | a8bb6e25807682e72c23bf4065f3cd5f6373ece3 |

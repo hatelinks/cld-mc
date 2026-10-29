@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # Сводка JFR-профиля по потокам: где тратится CPU, по методам и по пакетам (модам).
-# jfr print --events jdk.ExecutionSample rec.jfr > samples.txt
+# jfr print --stack-depth 64 --events jdk.ExecutionSample rec.jfr > samples.txt (без --stack-depth стек режется до 5 кадров)
+# jdk.NativeMethodSample: где поток стоит в нативном коде (OpenGL, драйвер), разбирается так же
 # python3 -I qa/jfr_top.py samples.txt [сколько строк, 25] [поток, по умолчанию Render thread и Server thread]
 import collections
 import re
@@ -48,7 +49,7 @@ def main():
     with open(path, encoding='utf-8', errors='replace') as fh:
         for line in fh:
             s = line.strip()
-            if s.startswith('jdk.ExecutionSample'):
+            if s.startswith('jdk.ExecutionSample') or s.startswith('jdk.NativeMethodSample'):
                 flush()
                 thread, stack, in_stack = None, [], False
             elif s.startswith('sampledThread'):
