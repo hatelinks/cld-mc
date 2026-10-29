@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="cld_autotest"
+version="${version}"
+displayName="Автотест производительности"
+authors="D, Claude"
+description='''Только для проверки сборки: сам заходит в мир, меряет FPS, память и нагрузку, запускает Spark и выходит. Без файла config/cld_autotest.properties ничего не делает.'''
+
+[[dependencies.cld_autotest]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.cld_autotest]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="CLIENT"

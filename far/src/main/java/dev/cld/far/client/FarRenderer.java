@@ -29,6 +29,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import org.joml.FrustumIntersection;
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
 import org.slf4j.Logger;
@@ -43,7 +44,13 @@ final class FarRenderer {
     private static final int UPLOADS_PER_FRAME = 4;
 
     // water, полупрозрачная вода отдельным буфером (режим clearWater) или null.
-    private record Tile(VertexBuffer vb, VertexBuffer water, double x0, double z0) {
+    // x1, z1 и y0, y1: границы тайла для отсечения по полю зрения.
+    private record Tile(VertexBuffer vb, VertexBuffer water, double x0, double z0, double x1, double z1, float y0, float y1) {
+        boolean visible(FrustumIntersection f, Vec3 cam) {
+            return f.testAab((float) (x0 - cam.x) - 1, (float) (y0 - cam.y) - 1, (float) (z0 - cam.z) - 1,
+                    (float) (x1 - cam.x) + 1, (float) (y1 - cam.y) + 1, (float) (z1 - cam.z) + 1);
+        }
+
         void close() {
             vb.close();
             if (water != null) water.close();
@@ -78,7 +85,7 @@ final class FarRenderer {
             return new Part(md, buf);
         }
     }
-    private record Built(long key, int gen, double x0, double z0, Part ground, Part water) {}
+    private record Built(long key, int gen, double x0, double z0, double size, float y0, float y1, Part ground, Part water) {}
 
     private final Map<Long, Tile> tiles = new HashMap<>();
     private final Map<Long, Integer> lastUsed = new HashMap<>();
@@ -242,6 +249,9 @@ final class FarRenderer {
         }
         sh.apply();
         Uniform off = sh.CHUNK_OFFSET;
+        // тайлы за спиной и сбоку не рисуются: раньше в кадр шли все тайлы вокруг игрока
+        FrustumIntersection fr = new FrustumIntersection(new Matrix4f(proj).mul(e.getModelViewMatrix()), false);
+        draw.removeIf(t -> !t.visible(fr, cam));
         for (Tile t : draw) {
             if (off != null) {
                 off.set((float) (t.x0 - cam.x), (float) -cam.y, (float) (t.z0 - cam.z));
@@ -333,7 +343,7 @@ final class FarRenderer {
                 free(b);
                 continue;
             }
-            tiles.put(b.key, new Tile(b.ground.upload(), b.water != null ? b.water.upload() : null, b.x0, b.z0));
+            tiles.put(b.key, new Tile(b.ground.upload(), b.water != null ? b.water.upload() : null, b.x0, b.z0, b.x0 + b.size, b.z0 + b.size, b.y0, b.y1));
             lastUsed.put(b.key, frame);
         }
     }
@@ -405,7 +415,16 @@ final class FarRenderer {
                     pending.remove(key);
                     return;
                 }
-                done.add(new Built(key, gen, x0, z0, ground, Part.of(m.waterPos, m.waterArgb, m.waterVertices())));
+                float y0 = Float.MAX_VALUE, y1 = -Float.MAX_VALUE;
+                for (int v = 0; v < m.vertices(); v++) {
+                    y0 = Math.min(y0, m.pos[v * 3 + 1]);
+                    y1 = Math.max(y1, m.pos[v * 3 + 1]);
+                }
+                for (int v = 0; v < m.waterVertices(); v++) {
+                    y0 = Math.min(y0, m.waterPos[v * 3 + 1]);
+                    y1 = Math.max(y1, m.waterPos[v * 3 + 1]);
+                }
+                done.add(new Built(key, gen, x0, z0, size, y0, y1, ground, Part.of(m.waterPos, m.waterArgb, m.waterVertices())));
             } catch (Throwable ex) {
                 pending.remove(key);
                 if (!failed) LOG.error("Дальний рельеф: ошибка расчёта тайла, отключаюсь до перезахода", ex);
