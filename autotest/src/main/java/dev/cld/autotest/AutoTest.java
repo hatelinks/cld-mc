@@ -177,8 +177,16 @@ public final class AutoTest {
 
     // медленный поворот камеры, чтобы в кадр попадало всё вокруг
     private void spin(Minecraft mc) {
+        if (mc.player == null) return;
+        // fly: полёт по прямой на север с заданной скоростью (блоков за тик), новые чанки грузятся на ходу
+        double fly = Double.parseDouble(cfg.getProperty("fly", "0"));
+        if (fly > 0) {
+            mc.player.setYRot(180);
+            mc.player.setPos(mc.player.getX(), mc.player.getY(), mc.player.getZ() - fly);
+            return;
+        }
         double yaw = Double.parseDouble(cfg.getProperty("yaw", "0.5"));
-        if (mc.player != null && yaw != 0) mc.player.setYRot(mc.player.getYRot() + (float) yaw);
+        if (yaw != 0) mc.player.setYRot(mc.player.getYRot() + (float) yaw);
     }
 
     private void stats(String name, List<Long> f) {
