@@ -58,6 +58,8 @@ public final class QaBench {
         AtomicInteger done = new AtomicInteger(), failed = new AtomicInteger();
         int total = (2 * r + 1) * (2 * r + 1);
         long t0 = System.nanoTime();
+        FeatureTimes.reset();
+        FeatureTimes.on = true;
         System.out.println("QABENCH start epochMs=" + System.currentTimeMillis() + " r=" + r);
         try {
             for (int dx = -r; dx <= r; dx++)
@@ -79,6 +81,8 @@ public final class QaBench {
         }
         double sec = (System.nanoTime() - t0) / 1e9;
         running = false;
+        FeatureTimes.on = false;
+        FeatureTimes.print(40);
         double mspt = ticks == 0 ? 0 : tickNanos / 1e6 / ticks;
         System.gc();
         long heap = ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getUsed() >> 20;
