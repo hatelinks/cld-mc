@@ -9,8 +9,10 @@ public final class FarConfig {
 
     public static final ModConfigSpec SPEC;
     public static final ModConfigSpec.BooleanValue ENABLED, CLEAR_WATER, SCOPE, PILLARS, PEAKS, NEAR_BLOCKS, BLOCK_SIDES, MESA_BANDS, SKY_HAZE, SUNSET, WEATHER,
-            TREES, ICE, SHORE, RIVERS, WAVES;
-    public static final ModConfigSpec.IntValue DISTANCE, STEP, MOUNTAINS, THREADS, SCOPE_RANGE, PIXEL, BLOCK_SIZE, UPLOADS;
+            TREES, ICE, SHORE, RIVERS, WAVES,
+            DISK_CACHE, ADAPTIVE_UPLOADS, LOOK_AHEAD, PAUSE;
+    public static final ModConfigSpec.IntValue DISTANCE, STEP, MOUNTAINS, THREADS, SCOPE_RANGE, PIXEL, BLOCK_SIZE, UPLOADS,
+            SAMPLE_CACHE, DISK_CACHE_MB, MAX_VRAM;
     public static final ModConfigSpec.DoubleValue DETAIL, FOG, SMOOTH, SUN_SHADE, VALLEY_SHADE, COLOR_NOISE, BRIGHTNESS, SATURATION, HAZE,
             GLINT, REFLECT, CLOUD_SHADOWS, MIST, CURVATURE;
 
@@ -82,7 +84,17 @@ public final class FarConfig {
         b.pop();
 
         b.comment("Производительность").push("performance");
-        THREADS = b.comment("Фоновых потоков для расчёта рельефа").defineInRange("threads", ANDROID ? 1 : 2, 1, 8);
+        THREADS = b.comment("Фоновых потоков для расчёта рельефа (0, по числу ядер)").defineInRange("threads", ANDROID ? 1 : 0, 0, 8);
+        PAUSE = b.comment("На паузе и в свёрнутом окне расчёт рельефа ждёт").define("pauseInMenu", true);
+        LOOK_AHEAD = b.comment("Сначала считать то, что впереди по взгляду, потом за спиной").define("lookAhead", true);
+        ADAPTIVE_UPLOADS = b.comment("При просадке кадров загружать в видеокарту по одному тайлу за кадр").define("adaptiveUploads", true);
+        MAX_VRAM = b.comment("Лимит видеопамяти под дальний рельеф, МБ: сверх него выгружается то, что давно не видно")
+                .defineInRange("maxVramMb", ANDROID ? 256 : 1024, 64, 8192);
+        SAMPLE_CACHE = b.comment("Кэш рельефа в памяти, МБ: с ним смена вида и возврат на место не считают рельеф заново")
+                .defineInRange("sampleCacheMb", ANDROID ? 64 : 256, 0, 4096);
+        DISK_CACHE = b.comment("Кэш рельефа на диске (папка cld_far_cache): при повторном входе в мир рельеф появляется сразу")
+                .define("diskCache", !ANDROID);
+        DISK_CACHE_MB = b.comment("Лимит кэша на диске для одного мира, МБ").defineInRange("diskCacheMb", 1024, 64, 65536);
         UPLOADS = b.comment("Сколько готовых тайлов загружать в видеокарту за кадр (больше, быстрее появляется, но возможны рывки)")
                 .defineInRange("uploadsPerFrame", 4, 1, 32);
         b.pop();
