@@ -3,28 +3,30 @@
 in vec4 vertexColor;
 in vec3 relPos;
 
+uniform sampler2D Mask;
 uniform vec4 ColorModulator;
 uniform float FogStart;
 uniform float FogEnd;
 uniform vec4 FogColor;
 uniform float ClipRadius;
-uniform float ScopeMode;
-uniform vec2 ScopeDir;
-uniform float ScopeCos;
-uniform float ScopeFar;
+uniform vec2 MaskOrigin;
+uniform float MaskSize;
+uniform float VertRange;
+uniform float Pass;
 
 out vec4 fragColor;
 
 void main() {
-    // внутри прорисовки игры рисуют обычные чанки; расстояние с высотой: высоко над землёй игра чанки под
-    // игроком не рисует, а дальний рельеф, рисует (по настоящей высоте, грубо)
     float d = length(relPos.xz);
-    if (length(relPos) < ClipRadius) discard;
-    vec2 dir = relPos.xz / max(d, 0.001);
-    bool cone = d < ScopeFar && dot(dir, ScopeDir) > ScopeCos;
-    // подзорная труба: 1, гладкий рельеф уступает блочному в конусе, 2, блочный рисуется только в конусе
-    if (ScopeMode > 0.5 && ScopeMode < 1.5 && cone) discard;
-    if (ScopeMode > 1.5 && !cone) discard;
+    if (MaskSize > 0.5) {
+        // маска по чанкам: где игра уже нарисовала чанк (и по высоте он в её прорисовке), дальний рельеф не нужен;
+        // где готов блочный тайл, грубый рельеф под ним не рисуется (Pass 0, грубый, 1, блочный)
+        ivec2 cell = ivec2(floor((relPos.xz - MaskOrigin) / 16.0));
+        int m = 0;
+        if (cell.x >= 0 && cell.y >= 0 && cell.x < int(MaskSize) && cell.y < int(MaskSize)) m = int(texelFetch(Mask, cell, 0).r * 255.0 + 0.5);
+        if ((m & 1) != 0 && abs(relPos.y) < VertRange) discard;
+        if (Pass < 0.5 && (m & 2) != 0) discard;
+    } else if (length(relPos) < ClipRadius) discard;
     vec3 c = vertexColor.rgb * ColorModulator.rgb;
     // туман у края плюс лёгкая дымка с расстоянием (воздушная перспектива: дальние горы светлее и мягче)
     float haze = 0.3 * smoothstep(ClipRadius, FogEnd, d);

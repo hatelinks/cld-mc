@@ -28,14 +28,12 @@ public final class LodTree {
     }
 
     final static class Q {
-        final double cx, cz, dist, clip, split, tile0, dy, dy0;
+        final double cx, cz, dist, clip, split, tile0, dy;
         final int maxLevel;
         final Sink sink;
         Q(double cx, double cy, double cz, double dist, double clip, double split, double tile0, Sink sink) {
             // высоко над землёй мелкая сетка не нужна: деление считается по расстоянию с учётом высоты
             this.dy = Math.max(0, cy - 320);
-            // игра не рисует чанки дальше прорисовки и по вертикали: высоко над землёй под игроком рисуем свой рельеф
-            this.dy0 = Math.max(0, cy - 200);
             this.cx = cx; this.cz = cz; this.dist = dist; this.clip = clip; this.split = split; this.tile0 = tile0; this.sink = sink;
             maxLevel = maxLevel(tile0, dist);
         }
@@ -45,11 +43,15 @@ public final class LodTree {
             double dx = Math.max(0, Math.max(x0 - cx, cx - x0 - s)), dz = Math.max(0, Math.max(z0 - cz, cz - z0 - s));
             return Math.sqrt(dx * dx + dz * dz);
         }
-        boolean skip(int l, int tx, int tz, double d) {
-            if (d > dist) return true;
+        // Тайлы внутри прорисовки игры не пропускаются: там рисуется то, чего игра не нарисовала (чанк ещё не
+        // загружен, скала выше прорисовки по высоте), остальное отрезает маска чанков в шейдере.
+        boolean skip(int l, int tx, int tz, double d) { return d > dist; }
+
+        // Тайл целиком внутри прорисовки игры.
+        boolean inside(int l, int tx, int tz) {
             double s = size(l), x0 = tx * s, z0 = tz * s;
             double fx = Math.max(Math.abs(x0 - cx), Math.abs(x0 + s - cx)), fz = Math.max(Math.abs(z0 - cz), Math.abs(z0 + s - cz));
-            return fx * fx + fz * fz + dy0 * dy0 < clip * clip;
+            return fx * fx + fz * fz < clip * clip;
         }
         boolean wantsSplit(int l, double d) { return l > 0 && Math.sqrt(d * d + dy * dy) < split * size(l); }
 
@@ -75,7 +77,7 @@ public final class LodTree {
             }
             long key = key(l, tx, tz);
             if (sink.ready(key)) sink.draw(key, l, tx, tz);
-            else sink.want(key, l, tx, tz, priority(l, d));
+            else sink.want(key, l, tx, tz, priority(l, tx, tz, d));
             if (split) for (int k = 0; k < 4; k++) request(l - 1, tx * 2 + (k & 1), tz * 2 + (k >> 1));
         }
 
@@ -83,16 +85,17 @@ public final class LodTree {
             double d = near(l, tx, tz);
             if (skip(l, tx, tz, d)) return;
             long key = key(l, tx, tz);
-            if (!sink.ready(key)) sink.want(key, l, tx, tz, priority(l, d));
+            if (!sink.ready(key)) sink.want(key, l, tx, tz, priority(l, tx, tz, d));
             if (wantsSplit(l, d)) for (int k = 0; k < 4; k++) request(l - 1, tx * 2 + (k & 1), tz * 2 + (k >> 1));
         }
 
         // Сначала грубые уровни (быстро закрыть весь горизонт), внутри уровня сначала ближние.
-        double priority(int l, double d) { return (maxLevel - l) * 1e7 + d; }
+        // Тайлы внутри прорисовки игры в самом конце: там почти всё рисуют чанки.
+        double priority(int l, int tx, int tz, double d) { return (maxLevel - l) * 1e7 + d + (inside(l, tx, tz) ? 5e8 : 0); }
     }
 
     // tile0: сторона тайла нижнего уровня, блоков
-    // clip: радиус, внутри которого рисует сама игра (тайлы целиком внутри пропускаются)
+    // clip: радиус, внутри которого рисует сама игра (тайлы целиком внутри считаются последними)
     // cy: высота камеры: высоко над землёй тайлы грубее
     public static void select(double cx, double cy, double cz, double dist, double clip, double split, double tile0, Sink sink) {
         Q q = new Q(cx, cy, cz, dist, clip, split, tile0, sink);

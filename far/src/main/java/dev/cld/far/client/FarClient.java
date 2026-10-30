@@ -29,6 +29,8 @@ public final class FarClient {
     static ShaderInstance shader;
     private static ModContainer container;
     private static final KeyMapping SETTINGS = new KeyMapping("key.cld_far.settings", InputConstants.KEY_F7, "key.categories.cld_far");
+    // быстро включить и выключить дальний рельеф (по умолчанию без клавиши, назначается в "Управлении")
+    private static final KeyMapping TOGGLE = new KeyMapping("key.cld_far.toggle", InputConstants.UNKNOWN.getValue(), "key.categories.cld_far");
     private static final FarRenderer RENDERER = new FarRenderer();
 
     private FarClient() {}
@@ -44,13 +46,24 @@ public final class FarClient {
                 throw new RuntimeException(ex);
             }
         });
-        modBus.addListener((RegisterKeyMappingsEvent e) -> e.register(SETTINGS));
+        modBus.addListener((RegisterKeyMappingsEvent e) -> {
+            e.register(SETTINGS);
+            e.register(TOGGLE);
+        });
         NeoForge.EVENT_BUS.addListener(FarClient::onStage);
         NeoForge.EVENT_BUS.addListener(FarClient::onFog);
         NeoForge.EVENT_BUS.addListener((ClientTickEvent.Post e) -> {
             while (SETTINGS.consumeClick()) {
                 Minecraft mc = Minecraft.getInstance();
                 mc.setScreen(new ConfigurationScreen(container, mc.screen));
+            }
+            while (TOGGLE.consumeClick()) {
+                boolean on = !FarConfig.ENABLED.get();
+                FarConfig.ENABLED.set(on);
+                FarConfig.ENABLED.save();
+                Minecraft mc = Minecraft.getInstance();
+                if (mc.player != null)
+                    mc.player.displayClientMessage(net.minecraft.network.chat.Component.translatable(on ? "cld_far.toggle.on" : "cld_far.toggle.off"), true);
             }
         });
         NeoForge.EVENT_BUS.addListener((ClientPlayerNetworkEvent.LoggingOut e) -> RENDERER.setWorld(null));
