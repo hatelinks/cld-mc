@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "yungscavebiomes"
+    }
+  ],
+  "type": "neoforge:remove_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "yungscavebiomes:lost_caves/lost_caves_surface_replace",
+    "yungscavebiomes:lost_caves/lost_caves_surface_replace_2"
+  ]
+}

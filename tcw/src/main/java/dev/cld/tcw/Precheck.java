@@ -31,7 +31,16 @@ public final class Precheck {
     private static final Map<BlockPredicate, Precheck> CACHE = new ConcurrentHashMap<>();
 
     public static boolean test(BlockPredicate p, WorldGenLevel level, BlockPos pos) {
-        Precheck c = CACHE.computeIfAbsent(p, Precheck::of);
+        Precheck c;
+        if (p instanceof PrecheckSlot slot) {
+            c = (Precheck) slot.tcw$precheck();
+            if (c == null) {
+                c = CACHE.computeIfAbsent(p, Precheck::of);
+                slot.tcw$setPrecheck(c);
+            }
+        } else {
+            c = CACHE.computeIfAbsent(p, Precheck::of);
+        }
         if (c == NONE) return p.test(level, pos);
         boolean ok = c.on(level.getBlockState(pos));
         if (!ok || c.exact) return ok;
