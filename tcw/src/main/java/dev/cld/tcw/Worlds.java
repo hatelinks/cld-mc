@@ -68,12 +68,16 @@ public final class Worlds {
         return terrain(seedFrom(rs.getOrCreateNoise(SEED_NOISE)));
     }
 
+    public static Terrain terrain(net.minecraft.world.level.levelgen.RandomState rs) {
+        return terrain(seedFrom(rs.getOrCreateNoise(SEED_NOISE)));
+    }
+
     public static Terrain terrain(net.minecraft.server.level.ServerLevel level) {
         return terrain(seedFrom(level.getChunkSource().randomState().getOrCreateNoise(SEED_NOISE)));
     }
 
-    /** Размер кэша столбцов на поток (степень двойки), -Dtcw.columnCache=N для замеров. */
-    private static final int CACHE = Integer.highestOneBit(Math.max(256, Integer.getInteger("tcw.columnCache", 1024)));
+    /** Размер кэша столбцов на поток (степень двойки), -Dtcw.columnCache=N для замеров (по умолчанию 4096). */
+    private static final int CACHE = Integer.highestOneBit(Math.max(256, Integer.getInteger("tcw.columnCache", 4096)));
 
     private static final class Cache {
         final long[] keys = new long[CACHE];
