@@ -29,7 +29,14 @@ public final class FarClient {
     static ShaderInstance shader;
     private static ModContainer container;
     private static final KeyMapping SETTINGS = new KeyMapping("key.cld_far.settings", InputConstants.KEY_F7, "key.categories.cld_far");
+    // быстро включить и выключить дальний рельеф (по умолчанию без клавиши, назначается в "Управлении")
+    private static final KeyMapping TOGGLE = new KeyMapping("key.cld_far.toggle", InputConstants.UNKNOWN.getValue(), "key.categories.cld_far");
+    // дальность больше и меньше (по умолчанию без клавиш)
+    private static final KeyMapping FARTHER = new KeyMapping("key.cld_far.farther", InputConstants.UNKNOWN.getValue(), "key.categories.cld_far");
+    private static final KeyMapping NEARER = new KeyMapping("key.cld_far.nearer", InputConstants.UNKNOWN.getValue(), "key.categories.cld_far");
     private static final FarRenderer RENDERER = new FarRenderer();
+    private static FarConfig.Preset lastPreset;
+    private static int joinTicks = -1;
 
     private FarClient() {}
 
@@ -44,16 +51,44 @@ public final class FarClient {
                 throw new RuntimeException(ex);
             }
         });
-        modBus.addListener((RegisterKeyMappingsEvent e) -> e.register(SETTINGS));
+        modBus.addListener((RegisterKeyMappingsEvent e) -> {
+            e.register(SETTINGS);
+            e.register(TOGGLE);
+            e.register(FARTHER);
+            e.register(NEARER);
+        });
         NeoForge.EVENT_BUS.addListener(FarClient::onStage);
         NeoForge.EVENT_BUS.addListener(FarClient::onFog);
+        NeoForge.EVENT_BUS.addListener((net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent.DebugText e) -> RENDERER.debug(e.getRight()));
         NeoForge.EVENT_BUS.addListener((ClientTickEvent.Post e) -> {
+            Minecraft m = Minecraft.getInstance();
+            FarRenderer.paused = FarConfig.PAUSE.get() && m.level != null && (m.isPaused() || !m.isWindowActive());
+            // набор выбран в настройках: выставить его значения
+            FarConfig.Preset p = FarConfig.PRESET.get();
+            if (lastPreset != null && p != lastPreset) FarConfig.apply(p);
+            lastPreset = p;
+            hint(m);
+            while (FARTHER.consumeClick()) distance(m, 1.25);
+            while (NEARER.consumeClick()) distance(m, 0.8);
             while (SETTINGS.consumeClick()) {
                 Minecraft mc = Minecraft.getInstance();
                 mc.setScreen(new ConfigurationScreen(container, mc.screen));
             }
+            while (TOGGLE.consumeClick()) {
+                boolean on = !FarConfig.ENABLED.get();
+                FarConfig.ENABLED.set(on);
+                FarConfig.ENABLED.save();
+                Minecraft mc = Minecraft.getInstance();
+                if (mc.player != null)
+                    mc.player.displayClientMessage(net.minecraft.network.chat.Component.translatable(on ? "cld_far.toggle.on" : "cld_far.toggle.off"), true);
+            }
         });
-        NeoForge.EVENT_BUS.addListener((ClientPlayerNetworkEvent.LoggingOut e) -> RENDERER.setWorld(null));
+        NeoForge.EVENT_BUS.addListener((ClientPlayerNetworkEvent.LoggingOut e) -> {
+            RENDERER.setWorld(null);
+            joinTicks = -1;
+        });
+        NeoForge.EVENT_BUS.addListener((ClientPlayerNetworkEvent.LoggingIn e) -> joinTicks = 0);
+        NeoForge.EVENT_BUS.addListener((net.neoforged.neoforge.client.event.RegisterClientCommandsEvent e) -> commands(e.getDispatcher()));
         NeoForge.EVENT_BUS.addListener(FarClient::onScreen);
     }
 
@@ -73,6 +108,9 @@ public final class FarClient {
                 if (l instanceof net.minecraft.client.gui.components.AbstractWidget w && w.getY() == row.getY()) right = Math.max(right, w.getX() + w.getWidth());
             x = Math.min(right + 4, screen.width - 22);
             y = row.getY();
+        } else if (screen instanceof net.minecraft.client.gui.screens.PauseScreen ps && ps.showsPauseMenu() && FarConfig.PAUSE_BUTTON.get()) {
+            x = screen.width - 26;
+            y = 6;
         } else if (screen instanceof net.minecraft.client.gui.screens.options.VideoSettingsScreen) {
             x = screen.width - 26;
             y = 6;
@@ -85,6 +123,48 @@ public final class FarClient {
 
     public static void onSeed(SeedPayload p) {
         RENDERER.setWorld(p);
+    }
+
+    // Через 10 секунд после входа без данных от сервера: подсказка в чате (один раз за вход).
+    private static void hint(Minecraft m) {
+        if (joinTicks < 0 || m.level == null || m.player == null) return;
+        if (RENDERER.hasWorld() || !FarConfig.HINTS.get() || !FarConfig.ENABLED.get()) {
+            joinTicks = -1;
+            return;
+        }
+        if (++joinTicks < 200) return;
+        joinTicks = -1;
+        if (m.level.dimension() == Level.OVERWORLD) m.player.displayClientMessage(net.minecraft.network.chat.Component.translatable("cld_far.hint.noseed"), false);
+    }
+
+    private static void distance(Minecraft m, double k) {
+        int d = (int) Math.round(Math.max(512, Math.min(32768, FarConfig.DISTANCE.get() * k)) / 256) * 256;
+        FarConfig.DISTANCE.set(d);
+        FarConfig.DISTANCE.save();
+        FarConfig.PRESET.set(FarConfig.Preset.CUSTOM);
+        if (m.player != null) m.player.displayClientMessage(net.minecraft.network.chat.Component.translatable("cld_far.distance", d), true);
+    }
+
+    // /cldfar reload: пересчитать всё; /cldfar stats: статистика; /cldfar cache clear: удалить кэш мира на диске.
+    private static void commands(com.mojang.brigadier.CommandDispatcher<net.minecraft.commands.CommandSourceStack> d) {
+        d.register(net.minecraft.commands.Commands.literal("cldfar")
+                .then(net.minecraft.commands.Commands.literal("reload").executes(c -> {
+                    RENDERER.reload(false);
+                    c.getSource().sendSuccess(() -> net.minecraft.network.chat.Component.translatable("cld_far.cmd.reload"), false);
+                    return 1;
+                }))
+                .then(net.minecraft.commands.Commands.literal("stats").executes(c -> {
+                    java.util.List<String> lines = new java.util.ArrayList<>();
+                    RENDERER.debug(lines);
+                    if (lines.isEmpty()) lines.add("cld_far: нет данных мира");
+                    for (String l : lines) c.getSource().sendSuccess(() -> net.minecraft.network.chat.Component.literal(l), false);
+                    return 1;
+                }))
+                .then(net.minecraft.commands.Commands.literal("cache").then(net.minecraft.commands.Commands.literal("clear").executes(c -> {
+                    RENDERER.reload(true);
+                    c.getSource().sendSuccess(() -> net.minecraft.network.chat.Component.translatable("cld_far.cmd.cache"), false);
+                    return 1;
+                }))));
     }
 
     private static void onStage(RenderLevelStageEvent e) {
@@ -102,6 +182,12 @@ public final class FarClient {
     // дальний рельеф там не нужен (снизу он виден как тёмные плиты поверхности моря), поэтому не рисуется.
     private static boolean clearView(Minecraft mc, net.minecraft.client.Camera cam) {
         if (cam.getFluidInCamera() != FogType.NONE) return false;
+        // под землёй: неба над головой нет и камера заметно ниже поверхности
+        if (FarConfig.HIDE_UNDERGROUND.get()) {
+            net.minecraft.core.BlockPos bp = net.minecraft.core.BlockPos.containing(cam.getPosition());
+            if (mc.level.getBrightness(net.minecraft.world.level.LightLayer.SKY, bp) == 0
+                    && bp.getY() < mc.level.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE, bp.getX(), bp.getZ()) - 4) return false;
+        }
         return !(cam.getEntity() instanceof net.minecraft.world.entity.LivingEntity le)
                 || !le.hasEffect(net.minecraft.world.effect.MobEffects.BLINDNESS) && !le.hasEffect(net.minecraft.world.effect.MobEffects.DARKNESS);
     }

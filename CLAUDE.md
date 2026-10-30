@@ -29,6 +29,7 @@
 | `earlywindow/` | **cld_earlywindow**: свой экран загрузки (провайдер `cldwindow`). Не мод, а сервис FML; jar кладётся в `mods/`. Включается в `config/fml.toml`: `earlyWindowProvider = "cldwindow"` — в `pack/` (экземпляр ПК) включён. На Android пока оставить `fmlearlywindow`, пока не проверено там отдельно. | 1.0.0 | `earlywindow/build.sh` |
 | `far/` | **cld_far** «Дальний рельеф»: лёгкая замена Distant Horizons для миров TelipailoCraft. Рельеф за прорисовкой считается по сиду генератора tcw (без чанков), тайлы LOD, цвета по биомам, настройки — F7. Нужен tcw; на сервере тоже ставить (передаёт сид). Вне игры: `far/tools/FarPreview`. С 0.5.1 тайлы вне поля зрения не рисуются, с 0.5.2 тайлы в fastutil-картах (в `HashMap<Long>` ключи сталкивались). | 0.5.2 | `far/build.sh` (компилирует и `../tcw`) |
 | `deepcull/` | **cld_deepcull** (эксперимент, jar и тег с `-exwip`): пока игрок на поверхности, глубокие секции чанков не строятся и не рисуются, при спуске подгружаются. Только клиент, Sodium и ванила. F8 вкл/выкл. В main без согласия владельца не мёржить. | 0.1.0 | `deepcull/build.sh` (Sodium для компиляции в `/mnt/project-files/libs-extra/`) |
+| `far/` | **cld_far** «Дальний рельеф»: лёгкая замена Distant Horizons для миров TelipailoCraft. Рельеф за прорисовкой считается по сиду генератора tcw (без чанков), тайлы LOD, цвета по биомам, настройки — F7. Нужен tcw; на сервере тоже ставить (передаёт сид). Вне игры: `far/tools/FarPreview`. С 0.6.0 стык с чанками по маске (с учётом Sodium), каменные столбы tcw рисуются отдельно, настройки по разделам; 0.7.0 свет и цвет (солнце, впадины, бока блоков, слои мезы, погода); 0.8.0 вода, леса, небо (волны, блики, лёд, кроны, тени облаков, туман в низинах); 0.9.0 скорость (выборка и сетка раздельно, кэш рельефа в памяти и на диске `cld_far_cache/`, лимит видеопамяти, статистика в F3); 1.0.0 пресеты, команды `/cldfar`, клавиши дальности, без рельефа в пещерах. Карта мода для работы: `docs/cld_far.md`. | 1.0.0 | `far/build.sh` (компилирует и `../tcw`) |
 | `perf/` | **cld_perf** «Ускорения клиента сборки»: ровный ограничитель кадров (ванильный на Mac терял 12-15% кадров). Место для мелких клиентских правок по замерам. | 0.1.0 | `perf/build.sh` |
 | `autotest/` | **cld_autotest**, служебный, в игру не ставить: с `config/cld_autotest.properties` сам заходит в мир, меряет FPS, CPU, память, пишет JFR и выходит. Свойства: `world`, `warmup`, `measure`, `pause`, `yaw`, `fly`, `maxfps`, `jfr`, `spark`, `setup`, `quit`. | 0.1.3 | `autotest/build.sh` |
 | `sable_android/` | **sable-android-support** (modId `sable_android`): нативка Rapier для Sable на Android + прореживание тиков блоков Simulated (coremod JS). Только для Android, на Маке не нужен. Исходники восстановлены из jar. | 2.0.0 | `sable_android/build.sh`; нативку пересобирать `sable_android/native/build_android_native.sh` (на Маке) |
@@ -49,7 +50,7 @@
 | Мод | Карта |
 |---|---|
 | tcw (TelipailoCraft) | `docs/tcw.md` |
-| cld_far | `docs/far.md` (пишет тред «Улучшить cld_far») |
+| cld_far | `docs/cld_far.md` |
 | cld_pregen | `docs/pregen.md` |
 | cld_structures | `docs/structures.md` |
 | gdn (Горы до небес) | `docs/gdn.md` |
