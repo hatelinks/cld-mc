@@ -14,7 +14,12 @@
     "DiskFeatureMixin",
     "StateTestingAccessor",
     "CombiningAccessor",
-    "NotAccessor"
+    "NotAccessor",
+    "OreFeatureMixin",
+    "RuleTestAccessors$Tag",
+    "RuleTestAccessors$Block",
+    "RuleTestAccessors$State",
+    "ReplaceBlobsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
