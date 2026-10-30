@@ -146,6 +146,18 @@ def final(d):
             d = dict(d, argument1=0.22)
     return refs(d)
 
+# ускорение: высоко над поверхностью (sky < 0, см. ColumnDensity.skyTop) узлы сетки шума не считают
+# ванильные входы в пещеры, берут сразу плотность поверхности. Там всё равно воздух
+def sky_cut(o):
+    if isinstance(o, dict):
+        if o.get("type") == "minecraft:range_choice" and o.get("max_exclusive") == 1.5625 and o.get("input") == surface:
+            return {"type": "minecraft:range_choice", "input": col("sky"), "min_inclusive": -1000000.0, "max_exclusive": 0.0,
+                    "when_in_range": surface, "when_out_of_range": o}
+        return {k: sky_cut(v) for k, v in o.items()}
+    if isinstance(o, list):
+        return [sky_cut(v) for v in o]
+    return o
+
 # верх тонких пиков пещеры не режут (peak, см. ColumnDensity.peak), иначе остаются летающие куски
 # арки и карнизы, подрезки под карнизами — одно значение rock без интерполяции, с точностью до блока:
 # max(min(F, rock + 2), rock - 2), см. Rocks.combined
@@ -153,7 +165,7 @@ rock = col("rock")  # cache_once здесь портит разрешение (�
 r["final_density"] = {"type": "minecraft:max", "argument2": {"type": "minecraft:add", "argument1": rock, "argument2": -2}, "argument1": {
     "type": "minecraft:min", "argument2": {"type": "minecraft:add", "argument1": rock, "argument2": 2}, "argument1": {
         "type": "minecraft:max", "argument2": col("peak"), "argument1": {
-            "type": "minecraft:min", "argument1": walk(r["final_density"], final),
+            "type": "minecraft:min", "argument1": sky_cut(walk(r["final_density"], final)),
             "argument2": {"type": "minecraft:interpolated", "argument": col("caves")}}}}}
 # предварительная поверхность (водоносные слои, правила поверхности): без пещер
 r["initial_density_without_jaggedness"] = surface
