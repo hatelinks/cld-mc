@@ -14,13 +14,7 @@ import dev.cld.far.gen.LodTree;
 import dev.cld.far.gen.TileMesh;
 import dev.cld.tcw.gen.Terrain;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -29,6 +23,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap;
+import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
+import org.joml.FrustumIntersection;
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
 import org.slf4j.Logger;
@@ -43,7 +41,13 @@ final class FarRenderer {
     private static final int UPLOADS_PER_FRAME = 4;
 
     // water, полупрозрачная вода отдельным буфером (режим clearWater) или null.
-    private record Tile(VertexBuffer vb, VertexBuffer water, double x0, double z0) {
+    // x1, z1 и y0, y1: границы тайла для отсечения по полю зрения.
+    private record Tile(long key, VertexBuffer vb, VertexBuffer water, double x0, double z0, double x1, double z1, float y0, float y1) {
+        boolean visible(FrustumIntersection f, Vec3 cam) {
+            return f.testAab((float) (x0 - cam.x) - 1, (float) (y0 - cam.y) - 1, (float) (z0 - cam.z) - 1,
+                    (float) (x1 - cam.x) + 1, (float) (y1 - cam.y) + 1, (float) (z1 - cam.z) + 1);
+        }
+
         void close() {
             vb.close();
             if (water != null) water.close();
@@ -78,13 +82,21 @@ final class FarRenderer {
             return new Part(md, buf);
         }
     }
-    private record Built(long key, int gen, double x0, double z0, Part ground, Part water) {}
+    private record Built(long key, int gen, double x0, double z0, double size, float y0, float y1, Part ground, Part water) {}
 
-    private final Map<Long, Tile> tiles = new HashMap<>();
-    private final Map<Long, Integer> lastUsed = new HashMap<>();
-    private final Set<Long> pending = ConcurrentHashMap.newKeySet();
+    // Ключи тайлов long. В HashMap<Long> они давали много коллизий (Long.hashCode склеивает половины ключа),
+    // корзины превращались в деревья, и выбор тайлов съедал до 13% потока рендера. У fastutil хеш перемешивается.
+    private final Long2ObjectOpenHashMap<Tile> tiles = new Long2ObjectOpenHashMap<>();
+    private final Long2IntOpenHashMap lastUsed = new Long2IntOpenHashMap();
+    // только поток рендера: фоновые потоки сообщают о снятых задачах через done
+    private final LongOpenHashSet pending = new LongOpenHashSet();
     private final ConcurrentLinkedQueue<Built> done = new ConcurrentLinkedQueue<>();
-    private volatile Set<Long> wanted = Set.of();
+    // после публикации не меняется, фоновые потоки только читают
+    private volatile LongOpenHashSet wanted = new LongOpenHashSet();
+    // Прошлый выбор тайлов: пока камера почти на месте и набор тайлов не менялся, дерево не обходится заново.
+    private List<Tile> lastDraw = List.of();
+    private double selX = Double.NaN, selY, selZ, selClip, selDist, selDetail;
+    private int tilesVer, selVer;
     private volatile int gen;
     private volatile Terrain terrain;
     private TileMesh.Palette palette;
@@ -112,6 +124,9 @@ final class FarRenderer {
         tiles.clear();
         lastUsed.clear();
         pending.clear();
+        lastDraw = List.of();
+        selX = Double.NaN;
+        tilesVer++;
         for (Built b; (b = done.poll()) != null; ) free(b);
         active = false;
         failed = false;
@@ -119,6 +134,7 @@ final class FarRenderer {
     }
 
     private static void free(Built b) {
+        if (b.ground == null) return;
         b.ground.free();
         if (b.water != null) b.water.free();
     }
@@ -153,10 +169,20 @@ final class FarRenderer {
         // игра рисует чанки до getRenderDistance(); край на чанк ближе, чтобы не было щели, пока крайние чанки не загружены
         double clip = Math.max(0, mc.gameRenderer.getRenderDistance() - 16);
         double tile0 = TileMesh.N * step;
-        List<Tile> draw = new ArrayList<>();
-        Set<Long> want = new HashSet<>();
         int g = gen;
-        LodTree.select(cam.x, cam.y, cam.z, dist, clip, FarConfig.DETAIL.get(), tile0, new LodTree.Sink() {
+        double detail = FarConfig.DETAIL.get();
+        boolean scoping = FarConfig.SCOPE.get() && mc.player != null && mc.player.isScoping();
+        double mx = cam.x - selX, my = cam.y - selY, mz = cam.z - selZ;
+        if (!scoping && selVer == tilesVer && clip == selClip && dist == selDist && detail == selDetail && mx * mx + my * my + mz * mz < 16) {
+            if (frame % 120 == 0) evict();
+            if (lastDraw.isEmpty()) return;
+            active = true;
+            draw(mc, e, cam, new ArrayList<>(lastDraw), dist, clip, null, 0, e.getCamera().getYRot());
+            return;
+        }
+        List<Tile> draw = new ArrayList<>();
+        LongOpenHashSet want = new LongOpenHashSet();
+        LodTree.select(cam.x, cam.y, cam.z, dist, clip, detail, tile0, new LodTree.Sink() {
             @Override
             public boolean ready(long key) {
                 if (!tiles.containsKey(key)) return false;
@@ -176,13 +202,21 @@ final class FarRenderer {
         // подзорная труба: блочный рельеф в конусе взгляда, ближние тайлы первыми
         List<Tile> scopeDraw = new ArrayList<>();
         double scopeFar = 0;
-        boolean scoping = FarConfig.SCOPE.get() && mc.player != null && mc.player.isScoping();
         if (scoping) scopeFar = scope(cam, e.getCamera().getYRot(), clip, FarConfig.SCOPE_RANGE.get(), scopeDraw, want, g, t, pal);
         wanted = want;
+        lastDraw = draw;
+        selX = cam.x;
+        selY = cam.y;
+        selZ = cam.z;
+        selClip = clip;
+        selDist = dist;
+        selDetail = detail;
+        selVer = tilesVer;
+        if (scoping) selX = Double.NaN; // с трубой выбор каждый кадр, конус зависит от взгляда
         if (frame % 120 == 0) evict();
         if (draw.isEmpty()) return;
         active = true;
-        draw(mc, e, cam, draw, dist, clip, scoping ? scopeDraw : null, scopeFar, e.getCamera().getYRot());
+        draw(mc, e, cam, new ArrayList<>(draw), dist, clip, scoping ? scopeDraw : null, scopeFar, e.getCamera().getYRot());
     }
 
     static final int SCOPE_LEVEL = 63, SCOPE_TILE = 32;
@@ -191,7 +225,7 @@ final class FarRenderer {
 
     // Тайлы 32x32 блока в конусе взгляда от clip до range. Возвращает дальность, до которой все тайлы конуса готовы:
     // ближе неё вместо гладкого рельефа рисуются блоки, дальше, как обычно.
-    private double scope(Vec3 cam, float yaw, double clip, double range, List<Tile> out, Set<Long> want, int g, Terrain t, TileMesh.Palette pal) {
+    private double scope(Vec3 cam, float yaw, double clip, double range, List<Tile> out, LongOpenHashSet want, int g, Terrain t, TileMesh.Palette pal) {
         double dx = -Math.sin(Math.toRadians(yaw)), dz = Math.cos(Math.toRadians(yaw));
         double half = SCOPE_TILE * 0.71, ready = range;
         int ax = (int) Math.floor((cam.x - range) / SCOPE_TILE), bx = (int) Math.floor((cam.x + range) / SCOPE_TILE);
@@ -242,6 +276,9 @@ final class FarRenderer {
         }
         sh.apply();
         Uniform off = sh.CHUNK_OFFSET;
+        // тайлы за спиной и сбоку не рисуются: раньше в кадр шли все тайлы вокруг игрока
+        FrustumIntersection fr = new FrustumIntersection(new Matrix4f(proj).mul(e.getModelViewMatrix()), false);
+        draw.removeIf(t -> !t.visible(fr, cam));
         for (Tile t : draw) {
             if (off != null) {
                 off.set((float) (t.x0 - cam.x), (float) -cam.y, (float) (t.z0 - cam.z));
@@ -325,29 +362,34 @@ final class FarRenderer {
     }
 
     private void upload() {
-        for (int i = 0; i < UPLOADS_PER_FRAME; i++) {
+        for (int i = 0; i < UPLOADS_PER_FRAME; ) {
             Built b = done.poll();
             if (b == null) return;
-            pending.remove(b.key);
+            if (b.gen == gen) pending.remove(b.key);
+            if (b.ground == null) continue; // задача снята или тайл пустой
+            i++;
             if (b.gen != gen || tiles.containsKey(b.key)) {
                 free(b);
                 continue;
             }
-            tiles.put(b.key, new Tile(b.ground.upload(), b.water != null ? b.water.upload() : null, b.x0, b.z0));
+            tilesVer++;
+            tiles.put(b.key, new Tile(b.key, b.ground.upload(), b.water != null ? b.water.upload() : null, b.x0, b.z0, b.x0 + b.size, b.z0 + b.size, b.y0, b.y1));
             lastUsed.put(b.key, frame);
         }
     }
 
     // Выгрузить тайлы, которые давно не нужны ни для рисования, ни как запасные.
     private void evict() {
-        Set<Long> w = wanted;
-        for (Iterator<Map.Entry<Long, Tile>> it = tiles.entrySet().iterator(); it.hasNext(); ) {
-            Map.Entry<Long, Tile> en = it.next();
-            Integer used = lastUsed.get(en.getKey());
-            if ((used == null || frame - used > 600) && !w.contains(en.getKey())) {
+        LongOpenHashSet w = wanted;
+        for (Tile t : lastDraw) lastUsed.put(t.key, frame);
+        for (var it = tiles.long2ObjectEntrySet().fastIterator(); it.hasNext(); ) {
+            var en = it.next();
+            long k = en.getLongKey();
+            if ((!lastUsed.containsKey(k) || frame - lastUsed.get(k) > 600) && !w.contains(k)) {
                 en.getValue().close();
-                lastUsed.remove(en.getKey());
+                lastUsed.remove(k);
                 it.remove();
+                tilesVer++;
             }
         }
     }
@@ -388,12 +430,14 @@ final class FarRenderer {
         @Override
         public int compareTo(Job o) { return Double.compare(priority, o.priority); }
 
+        private void drop() { done.add(new Built(key, gen, 0, 0, 0, 0, 0, null, null)); }
+
         private boolean stale() { return gen != FarRenderer.this.gen || !wanted.contains(key) && !wanted.isEmpty(); }
 
         @Override
         public void run() {
             if (stale()) {
-                pending.remove(key);
+                drop();
                 return;
             }
             try {
@@ -402,12 +446,21 @@ final class FarRenderer {
                         : TileMesh.build(t, pal, x0, z0, size, mountains, clearWater, smooth, pixel, this::stale);
                 Part ground = m == null ? null : Part.of(m.pos, m.argb, m.vertices());
                 if (ground == null) {
-                    pending.remove(key);
+                    drop();
                     return;
                 }
-                done.add(new Built(key, gen, x0, z0, ground, Part.of(m.waterPos, m.waterArgb, m.waterVertices())));
+                float y0 = Float.MAX_VALUE, y1 = -Float.MAX_VALUE;
+                for (int v = 0; v < m.vertices(); v++) {
+                    y0 = Math.min(y0, m.pos[v * 3 + 1]);
+                    y1 = Math.max(y1, m.pos[v * 3 + 1]);
+                }
+                for (int v = 0; v < m.waterVertices(); v++) {
+                    y0 = Math.min(y0, m.waterPos[v * 3 + 1]);
+                    y1 = Math.max(y1, m.waterPos[v * 3 + 1]);
+                }
+                done.add(new Built(key, gen, x0, z0, size, y0, y1, ground, Part.of(m.waterPos, m.waterArgb, m.waterVertices())));
             } catch (Throwable ex) {
-                pending.remove(key);
+                drop();
                 if (!failed) LOG.error("Дальний рельеф: ошибка расчёта тайла, отключаюсь до перезахода", ex);
                 failed = true;
             }
