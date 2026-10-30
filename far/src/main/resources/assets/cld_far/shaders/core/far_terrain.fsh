@@ -28,6 +28,7 @@ uniform float CloudShadows;
 uniform vec2 CloudOffset;
 uniform float Mist;
 uniform float MistTop;
+uniform vec3 LodTint;
 
 float hash(vec2 p) {
     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
@@ -96,6 +97,8 @@ void main() {
     // туман у края плюс дымка с расстоянием (воздушная перспектива: дальние горы светлее и мягче) цвета неба
     float haze = Haze * smoothstep(ClipRadius, FogEnd, d);
     c = mix(c, HazeColor, haze);
+    // отладка: тайлы раскрашены по уровню детальности
+    if (LodTint.r >= 0.0) c = mix(c, LodTint, 0.45);
     float f = smoothstep(FogStart, FogEnd, d) * FogColor.a;
     fragColor = vec4(mix(c, FogColor.rgb, f), alpha);
 }

@@ -116,6 +116,13 @@ final class TileCache {
 
     long memBytes() { return memBytes; }
 
+    // Удалить файлы кэша текущего мира.
+    void clearDisk() {
+        File d = dir;
+        File[] fs = d == null ? null : d.listFiles();
+        if (fs != null) for (File f : fs) f.delete();
+    }
+
     // Старые файлы удаляются, пока кэш мира больше лимита (сначала самые давние).
     private void prune(File d) {
         File[] fs = d.listFiles((x, n) -> n.endsWith(".bin"));
