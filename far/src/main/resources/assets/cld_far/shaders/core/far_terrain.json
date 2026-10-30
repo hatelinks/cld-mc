@@ -20,6 +20,17 @@
         { "name": "Saturation", "type": "float", "count": 1, "values": [ 1.0 ] },
         { "name": "Haze", "type": "float", "count": 1, "values": [ 0.3 ] },
         { "name": "HazeColor", "type": "float", "count": 3, "values": [ 0.7, 0.8, 1.0 ] },
-        { "name": "Tint", "type": "float", "count": 3, "values": [ 1.0, 1.0, 1.0 ] }
+        { "name": "Tint", "type": "float", "count": 3, "values": [ 1.0, 1.0, 1.0 ] },
+        { "name": "Curv", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "GameTime", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "WorldXZ", "type": "float", "count": 2, "values": [ 0.0, 0.0 ] },
+        { "name": "Waves", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "Glint", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "Reflect", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "CloudShadows", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "CloudOffset", "type": "float", "count": 2, "values": [ 0.0, 0.0 ] },
+        { "name": "Mist", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "MistTop", "type": "float", "count": 1, "values": [ 0.0 ] },
+        { "name": "LodTint", "type": "float", "count": 3, "values": [ -1.0, -1.0, -1.0 ] }
     ]
 }
