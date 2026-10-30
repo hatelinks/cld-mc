@@ -8,9 +8,9 @@ public final class FarConfig {
     public static final boolean ANDROID = new java.io.File("/system/build.prop").exists();
 
     public static final ModConfigSpec SPEC;
-    public static final ModConfigSpec.BooleanValue ENABLED, CLEAR_WATER, SCOPE, PILLARS, PEAKS, NEAR_BLOCKS;
+    public static final ModConfigSpec.BooleanValue ENABLED, CLEAR_WATER, SCOPE, PILLARS, PEAKS, NEAR_BLOCKS, BLOCK_SIDES, MESA_BANDS, SKY_HAZE, SUNSET, WEATHER;
     public static final ModConfigSpec.IntValue DISTANCE, STEP, MOUNTAINS, THREADS, SCOPE_RANGE, PIXEL, BLOCK_SIZE, UPLOADS;
-    public static final ModConfigSpec.DoubleValue DETAIL, FOG, SMOOTH;
+    public static final ModConfigSpec.DoubleValue DETAIL, FOG, SMOOTH, SUN_SHADE, VALLEY_SHADE, COLOR_NOISE, BRIGHTNESS, SATURATION, HAZE;
 
     static {
         ModConfigSpec.Builder b = new ModConfigSpec.Builder();
@@ -34,8 +34,25 @@ public final class FarConfig {
                 .define("pillars", true);
         PEAKS = b.comment("Острые пики: одиночная вершина в режиме блоков сужается ступенями кверху, а не стоит широкой коробкой")
                 .define("peaks", true);
+        BLOCK_SIDES = b.comment("Бока блоков как в игре: под травой земля, под снегом камень (в режиме блоков и в подзорной трубе)")
+                .define("blockSides", true);
+        MESA_BANDS = b.comment("Полосы терракоты на обрывах пустошей (мезы), разноцветными слоями по высоте").define("mesaBands", true);
         CLEAR_WATER = b.comment("Прозрачная дальняя вода с дном, как в игре (без резкого среза на стыке с чанками). Выкл, дешевле: непрозрачная вода")
                 .define("clearWater", !ANDROID);
+        b.pop();
+
+        b.comment("Свет и цвет: солнце, тени, дымка, погода").push("light");
+        SUN_SHADE = b.comment("Освещение от солнца: склоны к солнцу ярче, от него темнее, меняется в течение дня (0, выкл)")
+                .defineInRange("sunShade", 0.35, 0.0, 1.0);
+        VALLEY_SHADE = b.comment("Затенение впадин: дно долин и ущелий темнее, рельеф объёмнее (0, выкл)").defineInRange("valleyShade", 0.35, 0.0, 1.0);
+        COLOR_NOISE = b.comment("Пестрота цвета: соседние клетки чуть разной яркости, как текстуры блоков (0, ровный цвет)")
+                .defineInRange("colorNoise", 0.5, 0.0, 1.0);
+        BRIGHTNESS = b.comment("Яркость дальнего рельефа (1, как у блоков)").defineInRange("brightness", 1.0, 0.5, 1.5);
+        SATURATION = b.comment("Насыщенность цвета (1, как есть, 0, серый)").defineInRange("saturation", 1.0, 0.0, 2.0);
+        HAZE = b.comment("Дымка вдали: насколько дальние горы светлеют к горизонту (0, выкл)").defineInRange("haze", 0.3, 0.0, 1.0);
+        SKY_HAZE = b.comment("Цвет дымки от неба: днём голубая, на закате тёплая, ночью тёмная").define("skyHaze", true);
+        SUNSET = b.comment("Тёплый свет на рассвете и закате").define("sunset", true);
+        WEATHER = b.comment("Погода: в дождь и грозу рельеф темнее, а туман ближе").define("weather", true);
         b.pop();
 
         b.comment("Стык с чанками и блочный рельеф рядом").push("blocks");
