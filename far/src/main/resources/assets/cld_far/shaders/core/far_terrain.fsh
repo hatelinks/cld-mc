@@ -13,6 +13,12 @@ uniform vec2 MaskOrigin;
 uniform float MaskSize;
 uniform float VertRange;
 uniform float Pass;
+uniform vec3 SunDir;
+uniform float SunShade;
+uniform float Saturation;
+uniform float Haze;
+uniform vec3 HazeColor;
+uniform vec3 Tint;
 
 out vec4 fragColor;
 
@@ -27,9 +33,20 @@ void main() {
         if ((m & 1) != 0 && abs(relPos.y) < VertRange) discard;
         if (Pass < 0.5 && (m & 2) != 0) discard;
     } else if (length(relPos) < ClipRadius) discard;
-    vec3 c = vertexColor.rgb * ColorModulator.rgb;
-    // туман у края плюс лёгкая дымка с расстоянием (воздушная перспектива: дальние горы светлее и мягче)
-    float haze = 0.3 * smoothstep(ClipRadius, FogEnd, d);
-    float f = (1.0 - (1.0 - smoothstep(FogStart, FogEnd, d)) * (1.0 - haze)) * FogColor.a;
+    vec3 c = vertexColor.rgb;
+    // солнце: нормаль грани по производным позиции, повёрнута к камере
+    if (SunShade > 0.0) {
+        vec3 n = normalize(cross(dFdx(relPos), dFdy(relPos)));
+        if (dot(n, relPos) > 0.0) n = -n;
+        float lit = 0.55 + 0.6 * max(dot(n, SunDir), 0.0);
+        c *= mix(1.0, lit, SunShade);
+    }
+    c *= ColorModulator.rgb * Tint;
+    float grey = dot(c, vec3(0.299, 0.587, 0.114));
+    c = max(mix(vec3(grey), c, Saturation), 0.0);
+    // туман у края плюс дымка с расстоянием (воздушная перспектива: дальние горы светлее и мягче) цвета неба
+    float haze = Haze * smoothstep(ClipRadius, FogEnd, d);
+    c = mix(c, HazeColor, haze);
+    float f = smoothstep(FogStart, FogEnd, d) * FogColor.a;
     fragColor = vec4(mix(c, FogColor.rgb, f), vertexColor.a);
 }

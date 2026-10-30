@@ -33,8 +33,67 @@ public final class TileMesh {
     }
 
     // Настройки вида тайла. pillars: столбы генератора отдельной сеткой; peaks: острые пики в режиме блоков.
-    public record Style(int mountains, boolean clearWater, double smooth, int pixel, boolean pillars, boolean peaks) {
-        public static final Style DEFAULT = new Style(2, false, 0.15, 2, true, true);
+    // valleyShade: затенение впадин, colorNoise: пестрота, blockSides: бока блоков (земля, камень), mesaBands: полосы мезы.
+    public record Style(int mountains, boolean clearWater, double smooth, int pixel, boolean pillars, boolean peaks,
+            double valleyShade, double colorNoise, boolean blockSides, boolean mesaBands) {
+        public static final Style DEFAULT = new Style(2, false, 0.15, 2, true, true, 0.35, 0.5, true, true);
+    }
+
+    // Что за верх у клетки: от этого зависят её бока в режиме блоков.
+    static final int PLAIN = 0, GRASS = 1, SNOW = 2, MESA = 3;
+    static final int DIRT = 0x86603F;
+    // слои терракоты в пустошах: оранжевая, белая, красная, светло-серая, жёлтая, бурая, коричневая
+    static final int[] BANDS = { 0xA0573A, 0xD1B2A1, 0x8F3D2E, 0x876A61, 0xBA8523, 0x9A5E44, 0x4D3323 };
+
+    // Цвет слоя мезы на высоте y: слои по 4 блока, порядок по хешу (одинаковый во всех тайлах).
+    static int band(double y) {
+        long k = (long) Math.floor(y / 4) * 0x9E3779B97F4A7C15L;
+        k ^= k >>> 29;
+        return BANDS[(int) ((k >>> 33) % BANDS.length)];
+    }
+
+    // Пестрота: множитель яркости от 1 - a до 1 + a по хешу клетки.
+    static double speck(long x, long z, double a) {
+        long k = x * 0x632BE59BD9B4E019L ^ z * 0x9E3779B97F4A7C15L;
+        k ^= k >>> 31;
+        k *= 0xBF58476D1CE4E5B9L;
+        return 1 + a * (((k >>> 40) & 0xFFFF) / 32767.5 - 1);
+    }
+
+    static int kind(int rgb, int st, boolean mesaBands) {
+        int r = (rgb >> 16) & 255, g = (rgb >> 8) & 255, b = rgb & 255;
+        if (r > 225 && g > 225 && b > 225) return SNOW;
+        if (mesaBands && Macro.STYLES[st] == Macro.Style.MESA) return MESA;
+        return g > r + 8 && g >= b ? GRASS : PLAIN;
+    }
+
+    static int scale(int c, double k) {
+        return MapRender.rgb(((c >> 16) & 255) * k, ((c >> 8) & 255) * k, (c & 255) * k);
+    }
+
+    // Бок блока от lo до hi: у травы сверху полоска травы и земля ниже, у снега полоска снега и камень,
+    // у мезы слои терракоты по высоте. shade, освещение бока (0.6 и 0.8, как у блоков в игре).
+    static void sideFaces(Quads q, float ax, float az, float bx, float bz, float lo, float hi, int top, int kind, int rock, double shade, float strip) {
+        // низкие ступеньки (пол пустоши) без слоёв, иначе пол рябит полосами
+        if (kind == PLAIN || hi - lo <= 0 || kind == MESA && hi - lo < 3) {
+            side(q, ax, az, bx, bz, lo, hi, shadeRgb(top, shade));
+            return;
+        }
+        if (kind == MESA) {
+            float bh = 4;
+            while ((hi - lo) / bh > 24) bh *= 2;
+            float y = hi;
+            while (y > lo) {
+                float y2 = Math.max(lo, (float) (Math.ceil(y / bh) - 1) * bh);
+                if (y2 >= y) y2 = Math.max(lo, y - bh);
+                side(q, ax, az, bx, bz, y2, y, shadeRgb(band(y2 + 0.5), shade));
+                y = y2;
+            }
+            return;
+        }
+        float s = Math.min(hi - lo, strip);
+        side(q, ax, az, bx, bz, hi - s, hi, shadeRgb(top, shade));
+        if (hi - s > lo) side(q, ax, az, bx, bz, lo, hi - s, shadeRgb(kind == GRASS ? DIRT : rock, shade));
     }
 
     // Растущий список квадов: 4 вершины, x y z и цвет на вершину.
@@ -170,7 +229,20 @@ public final class TileMesh {
                 double depth = wet ? wl[id] - h[id] : 0;
                 double[] rgb = ground[id] >= 0 ? land(t, x0 + i * step, z0 + j * step, h[id], tmp[id], st[id], slope, ground[id])
                         : wet ? seabed(depth) : MapRender.color(t, x0 + i * step, z0 + j * step, h[id], wl[id], wk[id], tmp[id], hum[id], mnt[id], st[id], slope);
+                if (o.mesaBands() && !wet && Macro.STYLES[st[id]] == Macro.Style.MESA && slope > 0.4)
+                    rgb = mix(rgb, unpack(band(h[id])), Macro.ss(0.4, 0.9, slope));
                 if (wet && !clearWater) rgb = waterOver(rgb, wcol[id], depth);
+                // впадины темнее: вершина ниже среднего восьми соседей
+                double light = 1;
+                if (o.valleyShade() > 0 && !wet) {
+                    double avg = 0;
+                    for (int dj = -1; dj <= 1; dj++)
+                        for (int di = -1; di <= 1; di++) avg += top[id + dj * m + di];
+                    avg = (avg - top[id]) / 8;
+                    light -= o.valleyShade() * 0.45 * Macro.ss(0, step * 1.5, avg - top[id]);
+                }
+                if (o.colorNoise() > 0) light *= speck(Math.round((x0 + i * step) / step), Math.round((z0 + j * step) / step), 0.07 * o.colorNoise());
+                rgb = new double[] { rgb[0] * light, rgb[1] * light, rgb[2] * light };
                 double shade = 0.97;
                 if (!wet || clearWater) {
                     double hx = (top[id + 1] - top[id - 1]) / (2 * step), hz = (top[id + m] - top[id - m]) / (2 * step);
@@ -183,7 +255,7 @@ public final class TileMesh {
             }
         Quads q = new Quads();
         Quads water = clearWater ? water(n, m, step, h, wl, wcol) : null;
-        if (pixel >= 2) blocks(q, n, m, step, top, wk, flat, o.peaks());
+        if (pixel >= 2) blocks(q, n, m, step, top, wk, st, flat, o);
         else {
             if (pixel == 1) facets(n, m, step, top, flat, col);
             float s = (float) step;
@@ -303,7 +375,8 @@ public final class TileMesh {
     // с боками к более низким соседям, как у блоков в игре (верх ярче, бока темнее).
     // peaks: вершина выше всех восьми соседей не поднимает четыре клетки вокруг себя (из неё выходила широкая
     // коробка), а рисуется отдельной иглой, которая ступенями сужается кверху.
-    private static void blocks(Quads q, int n, int m, double step, float[] top, byte[] wk, int[] flat, boolean peaks) {
+    private static void blocks(Quads q, int n, int m, double step, float[] top, byte[] wk, byte[] st, int[] flat, Style o) {
+        boolean peaks = o.peaks();
         float[] th = top;
         int n1 = n + 1;
         List<int[]> spikes = new ArrayList<>();
@@ -326,6 +399,7 @@ public final class TileMesh {
         int k = n + 2;
         int[] ct = new int[k * k];
         int[] cc = new int[k * k];
+        byte[] ck = new byte[k * k], cs = new byte[k * k];
         for (int cj = -1; cj <= n; cj++)
             for (int ci = -1; ci <= n; ci++) {
                 int a = (cj + 1) * m + ci + 1;
@@ -335,10 +409,13 @@ public final class TileMesh {
                 // цвет угла с наибольшей высотой
                 int best = j1(ci, cj, n1);
                 float bh = th[a];
-                if (th[a + 1] > bh) { bh = th[a + 1]; best = j1(ci + 1, cj, n1); }
-                if (th[a + m] > bh) { bh = th[a + m]; best = j1(ci, cj + 1, n1); }
-                if (th[a + m + 1] > bh) best = j1(ci + 1, cj + 1, n1);
+                int ba = a;
+                if (th[a + 1] > bh) { bh = th[a + 1]; best = j1(ci + 1, cj, n1); ba = a + 1; }
+                if (th[a + m] > bh) { bh = th[a + m]; best = j1(ci, cj + 1, n1); ba = a + m; }
+                if (th[a + m + 1] > bh) { best = j1(ci + 1, cj + 1, n1); ba = a + m + 1; }
                 cc[(cj + 1) * k + ci + 1] = flat[best];
+                cs[(cj + 1) * k + ci + 1] = st[ba];
+                ck[(cj + 1) * k + ci + 1] = (byte) (o.blockSides() && wk[ba] == 0 ? kind(flat[best], st[ba], o.mesaBands()) : PLAIN);
             }
         float s = (float) step, drop = 8 + 3 * s;
         int[] nb = { -1, 1, -k, k };
@@ -352,15 +429,14 @@ public final class TileMesh {
                 q.vertex(x + s, y, z + s, 0xFF000000 | c);
                 q.vertex(x + s, y, z, 0xFF000000 | c);
                 for (int d = 0; d < 4; d++) {
-                    int o = id + nb[d];
+                    int nid = id + nb[d];
                     boolean edge = d == 0 && ci == 0 || d == 1 && ci == n - 1 || d == 2 && cj == 0 || d == 3 && cj == n - 1;
-                    float lo = edge ? Math.min(ct[o], y) - drop : ct[o];
+                    float lo = edge ? Math.min(ct[nid], y) - drop : ct[nid];
                     if (lo >= y) continue;
-                    int sc = shadeRgb(c, d < 2 ? 0.6 : 0.8);
                     // бок по x идёт вдоль z, бок по z вдоль x
                     float ax = d == 1 ? x + s : x, az = d == 3 ? z + s : z;
                     float bx = d < 2 ? ax : x + s, bz = d < 2 ? z + s : az;
-                    side(q, ax, az, bx, bz, lo, y, sc);
+                    sideFaces(q, ax, az, bx, bz, lo, y, c, ck[id], pack(rock(Macro.STYLES[cs[id]])), d < 2 ? 0.6 : 0.8, Math.max(1, s * 0.15f));
                 }
             }
         for (int[] sp : spikes) spike(q, sp[0] * s, sp[1] * s, th[sp[2]], top[sp[2]], s, flat[j1(sp[0], sp[1], n1)]);
@@ -435,8 +511,10 @@ public final class TileMesh {
 
     // "Блочный" тайл nxn столбиков по b блоков (для подзорной трубы и скал рядом): у каждого столбика плоский верх
     // на высоте блока и боковые грани к более низким соседям, похоже на обычные чанки, но без пещер, деревьев и построек.
-    public static TileMesh buildBlocky(Terrain t, Palette palette, double x0, double z0, int n, int b, BooleanSupplier cancelled) {
+    public static TileMesh buildBlocky(Terrain t, Palette palette, double x0, double z0, int n, int b, Style o, BooleanSupplier cancelled) {
         int m = n + 2;
+        double colorNoise = o.colorNoise();
+        byte[] st = new byte[m * m];
         int[] top = new int[m * m], col = new int[m * m];
         boolean[] wet = new boolean[m * m];
         Terrain.Column c = new Terrain.Column();
@@ -460,7 +538,9 @@ public final class TileMesh {
                     rgb = g >= 0 ? land(t, x, z, c.height, c.temp, c.dominant().ordinal(), slope, g)
                             : MapRender.color(t, x, z, c.height, c.water, c.waterKind, c.temp, c.humid, c.mountain, c.dominant().ordinal(), slope);
                 }
-                col[id] = MapRender.rgb(rgb[0], rgb[1], rgb[2]);
+                double sp = colorNoise > 0 ? speck((long) Math.floor(x / b), (long) Math.floor(z / b), 0.07 * colorNoise) : 1;
+                col[id] = MapRender.rgb(rgb[0] * sp, rgb[1] * sp, rgb[2] * sp);
+                st[id] = (byte) c.dominant().ordinal();
             }
         }
         Quads q = new Quads();
@@ -474,10 +554,12 @@ public final class TileMesh {
                 q.vertex(x + b, y, z + b, ct);
                 q.vertex(x + b, y, z, ct);
                 // бока с освещением как у блоков в игре: x, 0.6, z, 0.8
-                if (top[id - 1] < top[id]) side(q, x, z, x, z + b, top[id - 1], y, shadeRgb(cc, 0.6));
-                if (top[id + 1] < top[id]) side(q, x + b, z, x + b, z + b, top[id + 1], y, shadeRgb(cc, 0.6));
-                if (top[id - m] < top[id]) side(q, x, z, x + b, z, top[id - m], y, shadeRgb(cc, 0.8));
-                if (top[id + m] < top[id]) side(q, x, z + b, x + b, z + b, top[id + m], y, shadeRgb(cc, 0.8));
+                int kd = o.blockSides() && !wet[id] ? kind(cc, st[id], o.mesaBands()) : PLAIN, rk = pack(rock(Macro.STYLES[st[id]]));
+                float strip = 0.2f * b;
+                if (top[id - 1] < top[id]) sideFaces(q, x, z, x, z + b, top[id - 1], y, cc, kd, rk, 0.6, strip);
+                if (top[id + 1] < top[id]) sideFaces(q, x + b, z, x + b, z + b, top[id + 1], y, cc, kd, rk, 0.6, strip);
+                if (top[id - m] < top[id]) sideFaces(q, x, z, x + b, z, top[id - m], y, cc, kd, rk, 0.8, strip);
+                if (top[id + m] < top[id]) sideFaces(q, x, z + b, x + b, z + b, top[id + m], y, cc, kd, rk, 0.8, strip);
             }
         return new TileMesh(x0, z0, b, q, null);
     }
@@ -526,6 +608,10 @@ public final class TileMesh {
         if (h > snow - 50) g = mix(g, rock, Macro.ss(snow - 50, snow - 10, h));
         return mix(g, rock, Macro.ss(0.6, 1.0, slope));
     }
+
+    static int pack(double[] c) { return MapRender.rgb(c[0], c[1], c[2]); }
+
+    static double[] unpack(int c) { return new double[] { (c >> 16) & 255, (c >> 8) & 255, c & 255 }; }
 
     static double[] mix(double[] a, double[] b, double k) {
         return new double[] { a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k };

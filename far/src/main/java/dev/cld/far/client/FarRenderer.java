@@ -147,7 +147,8 @@ final class FarRenderer {
         if (t == null || !FarConfig.ENABLED.get() || failed) return;
         int st = FarConfig.STEP.get(), bs = FarConfig.BLOCK_SIZE.get();
         TileMesh.Style sty = new TileMesh.Style(FarConfig.MOUNTAINS.get(), FarConfig.CLEAR_WATER.get(), FarConfig.SMOOTH.get(), FarConfig.PIXEL.get(),
-                FarConfig.PILLARS.get(), FarConfig.PEAKS.get());
+                FarConfig.PILLARS.get(), FarConfig.PEAKS.get(), FarConfig.VALLEY_SHADE.get(), FarConfig.COLOR_NOISE.get(),
+                FarConfig.BLOCK_SIDES.get(), FarConfig.MESA_BANDS.get());
         if (st != step || !sty.equals(style) || bs != blockSize) {
             step = st;
             style = sty;
@@ -303,8 +304,13 @@ final class FarRenderer {
         int maskTex = mask.upload();
 
         float fogStart = RenderSystem.getShaderFogStart(), fogEnd = RenderSystem.getShaderFogEnd();
-        float[] b = light(mc, e.getPartialTick().getGameTimeDeltaPartialTick(false));
-        RenderSystem.setShaderFogStart((float) (dist * FarConfig.FOG.get()));
+        float partial = e.getPartialTick().getGameTimeDeltaPartialTick(false);
+        float[] b = light(mc, partial);
+        // погода: в дождь и грозу темнее, туман и дымка ближе
+        float rain = FarConfig.WEATHER.get() ? mc.level.getRainLevel(partial) : 0, thunder = FarConfig.WEATHER.get() ? mc.level.getThunderLevel(partial) : 0;
+        float dim = (float) (FarConfig.BRIGHTNESS.get() * (1 - 0.18 * rain - 0.15 * thunder));
+        for (int i = 0; i < 3; i++) b[i] *= dim;
+        RenderSystem.setShaderFogStart((float) (dist * FarConfig.FOG.get() * (1 - 0.35 * rain)));
         RenderSystem.setShaderFogEnd((float) dist);
         RenderSystem.setShaderColor(b[0], b[1], b[2], 1);
         RenderSystem.enableDepthTest();
@@ -321,6 +327,7 @@ final class FarRenderer {
         if (mo != null) mo.set((float) (mask.originX * 16 - cam.x), (float) (mask.originZ * 16 - cam.z));
         set(sh, "VertRange", (float) vert);
         set(sh, "Pass", 0);
+        lighting(mc, sh, cam, partial, rain);
         sh.apply();
         Uniform off = sh.CHUNK_OFFSET;
         Uniform pass = sh.getUniform("Pass");
@@ -350,6 +357,37 @@ final class FarRenderer {
         RenderSystem.setShaderFogEnd(fogEnd);
         // чанки игры рисуются поверх: они всегда ближе дальнего рельефа
         RenderSystem.clear(GL11.GL_DEPTH_BUFFER_BIT, Minecraft.ON_OSX);
+    }
+
+    // Солнце, закат, дымка и насыщенность для шейдера.
+    private static void lighting(Minecraft mc, ShaderInstance sh, Vec3 cam, float partial, float rain) {
+        double a = mc.level.getSunAngle(partial);
+        double sx = -Math.sin(a), sy = Math.cos(a), sz = 0.25;
+        // ночью светит луна с другой стороны
+        if (sy < 0) { sx = -sx; sy = -sy; }
+        double l = Math.sqrt(sx * sx + sy * sy + sz * sz);
+        Uniform sun = sh.getUniform("SunDir");
+        if (sun != null) sun.set((float) (sx / l), (float) (sy / l), (float) (sz / l));
+        set(sh, "SunShade", FarConfig.SUN_SHADE.get().floatValue());
+        set(sh, "Saturation", FarConfig.SATURATION.get().floatValue());
+        set(sh, "Haze", (float) Math.min(1, FarConfig.HAZE.get() + 0.3 * rain));
+        // тёплый свет, когда солнце у горизонта (только днём)
+        float[] tint = { 1, 1, 1 };
+        double cy = Math.cos(a);
+        if (FarConfig.SUNSET.get() && cy > -0.2) {
+            double k = 0.45 * (1 - Math.min(1, Math.abs(cy) / 0.35));
+            tint = new float[] { 1, (float) (1 - 0.18 * k), (float) (1 - 0.38 * k) };
+        }
+        Uniform tu = sh.getUniform("Tint");
+        if (tu != null) tu.set(tint[0], tint[1], tint[2]);
+        float[] fog = RenderSystem.getShaderFogColor();
+        float[] hz = { fog[0], fog[1], fog[2] };
+        if (FarConfig.SKY_HAZE.get()) {
+            Vec3 sky = mc.level.getSkyColor(cam, partial);
+            hz = new float[] { (float) (fog[0] + sky.x) / 2, (float) (fog[1] + sky.y) / 2, (float) (fog[2] + sky.z) / 2 };
+        }
+        Uniform hu = sh.getUniform("HazeColor");
+        if (hu != null) hu.set(hz[0], hz[1], hz[2]);
     }
 
     private static void drawTile(Uniform off, Tile t, VertexBuffer vb, Vec3 cam) {
@@ -481,7 +519,7 @@ final class FarRenderer {
             }
             try {
                 double size = level == SCOPE_LEVEL ? tile0 : tile0 * (1L << level), x0 = tx * size, z0 = tz * size;
-                TileMesh m = level == SCOPE_LEVEL ? TileMesh.buildBlocky(t, pal, x0, z0, SCOPE_TILE, blockSize, this::stale)
+                TileMesh m = level == SCOPE_LEVEL ? TileMesh.buildBlocky(t, pal, x0, z0, SCOPE_TILE, blockSize, style, this::stale)
                         : TileMesh.build(t, pal, x0, z0, size, style, this::stale);
                 Part ground = m == null ? null : Part.of(m.pos, m.argb, m.vertices());
                 if (ground == null) {

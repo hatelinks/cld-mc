@@ -47,7 +47,7 @@ public class FarPreview {
         pool.submit(() -> IntStream.range(0, want.size()).parallel().forEach(i -> {
             long[] w = want.get(i);
             double s = tile0 * (1L << w[0]);
-            meshes[i] = TileMesh.build(t, TileMesh.Palette.MODEL, w[1] * s, w[2] * s, s, new TileMesh.Style(mountains, false, smooth, pixel, pillars, true), () -> false);
+            meshes[i] = TileMesh.build(t, TileMesh.Palette.MODEL, w[1] * s, w[2] * s, s, new TileMesh.Style(mountains, false, smooth, pixel, pillars, true, 0.35, 0.5, true, true), () -> false);
             verts.addAndGet(meshes[i].vertices());
         })).get();
         double sec = (System.nanoTime() - t0) / 1e9;
