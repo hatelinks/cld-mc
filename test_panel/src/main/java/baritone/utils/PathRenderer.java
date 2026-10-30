@@ -38,7 +38,6 @@ import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -224,7 +223,7 @@ public final class PathRenderer implements IRenderer {
         drawGoal(null, stack, ctx, goal, partialTicks, color, true);
     }
 
-    private static void drawGoal(@Nullable BufferBuilder bufferBuilder, PoseStack stack, IPlayerContext ctx, Goal goal, float partialTicks, Color color, boolean setupRender) {
+    private static void drawGoal(BufferBuilder bufferBuilder, PoseStack stack, IPlayerContext ctx, Goal goal, float partialTicks, Color color, boolean setupRender) {
         if (!setupRender && bufferBuilder == null) {
             throw new RuntimeException("BufferBuilder must not be null if setupRender is false");
         }

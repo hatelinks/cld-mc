@@ -20,6 +20,6 @@ package baritone.launch;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.Mod;
 
-@Mod(value = "baritoe", dist = Dist.CLIENT)
+@Mod(value = "cld_test_panel", dist = Dist.CLIENT)
 public class BaritoneForgeModXD {
 }
