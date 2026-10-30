@@ -19,7 +19,7 @@ rm -f in; mkfifo in; sleep 100000 > in & SL=$!
 until grep -q 'Done (' console.log; do sleep 5; kill -0 $SRV 2>/dev/null || { echo "СЕРВЕР УПАЛ"; exit 1; }; done
 echo "qabench -200 -200 10 64" > in
 until grep -q 'QABENCH done' console.log; do sleep 5; done
-echo "qabench 128 373 32 64" > in
+echo "qabench 128 373 ${SIZE:-32} 64" > in
 until [ "$(grep -c 'QABENCH done' console.log)" -ge 2 ]; do sleep 5; done
 echo "save-all flush" > in; sleep 10; echo stop > in
 wait $SRV; kill $SL 2>/dev/null
