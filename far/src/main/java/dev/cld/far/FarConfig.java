@@ -7,7 +7,19 @@ public final class FarConfig {
     // На Android (Amethyst/Pojav) по умолчанию выключено.
     public static final boolean ANDROID = new java.io.File("/system/build.prop").exists();
 
+    // Готовые наборы настроек. CUSTOM: свои, остальные при выборе выставляют главные настройки разом.
+    public enum Preset implements net.neoforged.neoforge.common.TranslatableEnum {
+        CUSTOM, LOW, MEDIUM, HIGH, ULTRA;
+
+        @Override
+        public net.minecraft.network.chat.Component getTranslatedName() {
+            return net.minecraft.network.chat.Component.translatable("cld_far.preset." + name().toLowerCase(java.util.Locale.ROOT));
+        }
+    }
+
     public static final ModConfigSpec SPEC;
+    public static final ModConfigSpec.EnumValue<Preset> PRESET;
+    public static final ModConfigSpec.BooleanValue HIDE_UNDERGROUND, HINTS, PAUSE_BUTTON, DEBUG_LOD;
     public static final ModConfigSpec.BooleanValue ENABLED, CLEAR_WATER, SCOPE, PILLARS, PEAKS, NEAR_BLOCKS, BLOCK_SIDES, MESA_BANDS, SKY_HAZE, SUNSET, WEATHER,
             TREES, ICE, SHORE, RIVERS, WAVES,
             DISK_CACHE, ADAPTIVE_UPLOADS, LOOK_AHEAD, PAUSE;
@@ -20,6 +32,7 @@ public final class FarConfig {
         ModConfigSpec.Builder b = new ModConfigSpec.Builder();
         b.comment("Основное: включение, дальность, туман").push("general");
         ENABLED = b.comment("Рисовать дальний рельеф").define("enabled", !ANDROID);
+        PRESET = b.comment("Готовый набор: LOW, MEDIUM, HIGH, ULTRA выставляют главные настройки разом, CUSTOM, свои").defineEnum("preset", Preset.CUSTOM);
         DISTANCE = b.comment("Дальность, блоков").defineInRange("distance", ANDROID ? 2048 : 8192, 512, 32768);
         FOG = b.comment("Начало тумана, доля дальности").defineInRange("fog", 0.55, 0.0, 0.95);
         b.pop();
@@ -98,7 +111,44 @@ public final class FarConfig {
         UPLOADS = b.comment("Сколько готовых тайлов загружать в видеокарту за кадр (больше, быстрее появляется, но возможны рывки)")
                 .defineInRange("uploadsPerFrame", 4, 1, 32);
         b.pop();
+        b.comment("Удобство и отладка").push("extras");
+        HIDE_UNDERGROUND = b.comment("Под землёй (нет неба над головой) дальний рельеф не рисуется: в пещерах он не нужен").define("hideUnderground", true);
+        HINTS = b.comment("Подсказка в чате, если сервер не прислал данные для дальнего рельефа").define("hints", true);
+        PAUSE_BUTTON = b.comment("Кнопка настроек дальнего рельефа в меню паузы").define("pauseButton", true);
+        DEBUG_LOD = b.comment("Отладка: тайлы раскрашены по уровню детальности (зелёный, мелкие, красный, крупные)").define("debugLod", false);
+        b.pop();
         SPEC = b.build();
+    }
+
+    // Выставить настройки набора и сохранить.
+    public static void apply(Preset p) {
+        switch (p) {
+            case LOW -> set(2048, 16, 1, 1.5, 2, false, false, false, false, 0.0, 0.0, 0.0, 1);
+            case MEDIUM -> set(4096, 12, 1, 2.0, 2, true, true, false, true, 0.35, 0.0, 0.3, 1);
+            case HIGH -> set(8192, 8, 2, 2.5, 2, true, true, true, true, 0.35, 0.3, 0.4, 1);
+            case ULTRA -> set(16384, 6, 3, 3.5, 2, true, true, true, true, 0.35, 0.3, 0.4, 1);
+            default -> { return; }
+        }
+        SPEC.save();
+    }
+
+    private static void set(int dist, int step, int mountains, double detail, int pixel, boolean water, boolean trees, boolean near, boolean scope,
+            double sun, double clouds, double mist, int block) {
+        DISTANCE.set(dist);
+        STEP.set(step);
+        MOUNTAINS.set(mountains);
+        DETAIL.set(detail);
+        PIXEL.set(pixel);
+        CLEAR_WATER.set(water);
+        WAVES.set(water);
+        TREES.set(trees);
+        NEAR_BLOCKS.set(near);
+        SCOPE.set(scope);
+        SUN_SHADE.set(sun);
+        CLOUD_SHADOWS.set(clouds);
+        MIST.set(mist);
+        BLOCK_SIZE.set(block);
+        if (dist >= 16384) SCOPE_RANGE.set(2048);
     }
 
     private FarConfig() {}
