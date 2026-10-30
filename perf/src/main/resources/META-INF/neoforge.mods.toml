@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="cld_perf"
+version="${version}"
+displayName="Ускорения клиента сборки"
+authors="D, Claude"
+description='''Мелкие правки клиента по замерам. Ровный ограничитель кадров: на Mac обычный терял 12-15% кадров и давал рывки.'''
+
+[[mixins]]
+config="cld_perf.mixins.json"
+
+[[dependencies.cld_perf]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.cld_perf]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="CLIENT"
