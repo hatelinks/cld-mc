@@ -26,7 +26,9 @@
 | `gdn/` | «Горы до небес»: тот же рельеф jjtm как отдельные типы мира `gdn:h1024`, `gdn:h512`. **Стоит в игре.** Тот же modId `jjthunder_to_the_max`, что у jjtm, — вместе с jjtm не ставить. | 1.0.0 | `gdn/build.sh` (берёт данные из `../jjtm/src`) |
 | `menu/` | **cld_menu** «Главное меню сборки»: пиксельный пейзаж вместо панорамы, логотип TelipailoCraft, без Realms и «Моды». | 1.0.1 | `menu/build.sh` |
 | `earlywindow/` | **cld_earlywindow**: свой экран загрузки (провайдер `cldwindow`). Не мод, а сервис FML; jar кладётся в `mods/`. Включается в `config/fml.toml`: `earlyWindowProvider = "cldwindow"` — в `pack/` (экземпляр ПК) включён. На Android пока оставить `fmlearlywindow`, пока не проверено там отдельно. | 1.0.0 | `earlywindow/build.sh` |
-| `far/` | **cld_far** «Дальний рельеф»: лёгкая замена Distant Horizons для миров TelipailoCraft. Рельеф за прорисовкой считается по сиду генератора tcw (без чанков), тайлы LOD, цвета по биомам, настройки — F7. Нужен tcw; на сервере тоже ставить (передаёт сид). Вне игры: `far/tools/FarPreview`. | 0.5.0 | `far/build.sh` (компилирует и `../tcw`) |
+| `far/` | **cld_far** «Дальний рельеф»: лёгкая замена Distant Horizons для миров TelipailoCraft. Рельеф за прорисовкой считается по сиду генератора tcw (без чанков), тайлы LOD, цвета по биомам, настройки — F7. Нужен tcw; на сервере тоже ставить (передаёт сид). Вне игры: `far/tools/FarPreview`. С 0.5.1 тайлы вне поля зрения не рисуются, с 0.5.2 тайлы в fastutil-картах (в `HashMap<Long>` ключи сталкивались). | 0.5.2 | `far/build.sh` (компилирует и `../tcw`) |
+| `perf/` | **cld_perf** «Ускорения клиента сборки»: ровный ограничитель кадров (ванильный на Mac терял 12-15% кадров). Место для мелких клиентских правок по замерам. | 0.1.0 | `perf/build.sh` |
+| `autotest/` | **cld_autotest**, служебный, в игру не ставить: с `config/cld_autotest.properties` сам заходит в мир, меряет FPS, CPU, память, пишет JFR и выходит. Свойства: `world`, `warmup`, `measure`, `pause`, `yaw`, `fly`, `maxfps`, `jfr`, `spark`, `setup`, `quit`. | 0.1.3 | `autotest/build.sh` |
 | `sable_android/` | **sable-android-support** (modId `sable_android`): нативка Rapier для Sable на Android + прореживание тиков блоков Simulated (coremod JS). Только для Android, на Маке не нужен. Исходники восстановлены из jar. | 2.0.0 | `sable_android/build.sh`; нативку пересобирать `sable_android/native/build_android_native.sh` (на Маке) |
 | `quest_builder/` | Генератор квестов FTB Quests (36 глав, ~1300 квестов). | — | `python3 -I quest_builder/make.py` → `out/ftbquests_config.zip` + `out/checklist.md` |
 | `pack/` | Конфиги экземпляра Prism (`minecraft/config`, `defaultconfigs`, `options.txt`, `instance.cfg`, `mmc-pack.json`) и `MODS.md` — список модов с SHA-1. Полный архив с jar — в Releases (`cld-mc-pack.zip`). | — | — |
@@ -34,6 +36,8 @@
 Свои датапаки сборки (`pack_fixes.zip`, `colony_guard.zip`) лежат у владельца в `moonlight-global-datapacks`, описаны в `HANDOFF.md` §3.
 
 `pack/OPTIMIZATION.md` — разбор производительности клиента (29.10): какие конфиги ускорены (lambdynlights fast, Flywheel TRI_LINEAR, без проверки обновлений, JourneyMap без топо-слоя) и какие моды сменены: DH, EMF, ETF убраны, вместо DH cld_far (нужен tcw 0.5.x). Dynamic FPS, Entity Culling, ImmediatelyFast владелец качает сам: modrinth и github из облака закрыты (403).
+
+Замеры 30.10 (`pack/OPTIMIZATION.md`, третий заход): в копии добавлены Dynamic FPS, Entity Culling, ImmediatelyFast, BadOptimizations, Clumps, Packet Fixer, cld_far 0.5.2, cld_perf. Видеокарта не узкое место; при полёте нагрузка в генерации и в растекании воды новых чанков океана (передано треду генерации).
 
 `pack/MODS.md` — что реально стоит в игре (обновлять по jar из папки `mods` владельца). В копии на Маке после оптимизации tcw 0.5.2 и cld_far 0.5.0 без DH; в экземпляре Prism пока tcw 0.4.3 и DH, пока владелец не перенесёт.
 
@@ -73,4 +77,6 @@ VERSION=1.3.3 LIBS=... pregen/build.sh
 - cld_pregen: в замороженном мире самому снимать тикеты `UNKNOWN`; перед `mc.disconnect()` вызывать `level.disconnect()`.
 - Нативки Rust (sable_android) по умолчанию содержат пути `/Users/<имя>/.cargo`: собирать с `--remap-path-prefix`, перед коммитом проверять `strings`.
 - tcw: карнизы (`gen/Rocks`) появляются не в каждой полосе склона, а пятнами (шум `pick`, порог `PICK`): владелец хочет 1-2 на гору. Верх тонких пиков защищён от ванильных пещер (`ColumnDensity.peak`, `max` в final_density), иначе entrances/noodle отрезают куски и они висят в воздухе (0.5.2).
+- Запуск игры на Маке из облака: Remote Control, экземпляр Prism `cld-test` (симлинк на копию), `prismlauncher --launch cld-test -o tester` (офлайн). В имени папки копии `tc — копия` перед тире неразрывный пробел. Мак качает пререлизы только из открытого репозитория.
+- JFR: `jfr print` режет стек до 5 кадров, нужен `--stack-depth 64`. `ServerChunkCache.getChunk` в потоке рендера из `ClientLevel.animateTick` это ошибка атрибуции JFR, не настоящий заход в серверный кеш. Сравнивать FPS только без лимита: ванильный лимит на Mac сам срезает кадры (с cld_perf уже нет).
 - Квесты: ID предмета должен иметь модель (`_valid.json`), lang-строки без переносов.
