@@ -52,7 +52,10 @@ public final class FarClient {
         });
         NeoForge.EVENT_BUS.addListener(FarClient::onStage);
         NeoForge.EVENT_BUS.addListener(FarClient::onFog);
+        NeoForge.EVENT_BUS.addListener((net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent.DebugText e) -> RENDERER.debug(e.getRight()));
         NeoForge.EVENT_BUS.addListener((ClientTickEvent.Post e) -> {
+            Minecraft m = Minecraft.getInstance();
+            FarRenderer.paused = FarConfig.PAUSE.get() && m.level != null && (m.isPaused() || !m.isWindowActive());
             while (SETTINGS.consumeClick()) {
                 Minecraft mc = Minecraft.getInstance();
                 mc.setScreen(new ConfigurationScreen(container, mc.screen));

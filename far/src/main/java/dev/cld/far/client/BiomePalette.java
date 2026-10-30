@@ -94,7 +94,26 @@ final class BiomePalette implements TileMesh.Palette {
         return 0;
     }
 
+    // Последний биом потока: земля, вода, лес и лёд спрашиваются подряд в одной точке, биом считается один раз.
+    private static final class Last {
+        double x = Double.NaN, z;
+        Terrain t;
+        ResourceKey<Biome> k;
+    }
+    private final ThreadLocal<Last> last = ThreadLocal.withInitial(Last::new);
+
     private ResourceKey<Biome> biome(Terrain t, Terrain.Column c, double x, double z) {
+        Last l = last.get();
+        if (l.x == x && l.z == z && l.t == t) return l.k;
+        ResourceKey<Biome> k = find(t, c, x, z);
+        l.x = x;
+        l.z = z;
+        l.t = t;
+        l.k = k;
+        return k;
+    }
+
+    private ResourceKey<Biome> find(Terrain t, Terrain.Column c, double x, double z) {
         ResourceKey<Biome> k = pick(t, c, x, z);
         if (k == null) {
             double y = c.height;

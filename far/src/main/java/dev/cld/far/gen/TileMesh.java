@@ -138,84 +138,182 @@ public final class TileMesh {
         default boolean frozen(Terrain t, Terrain.Column c, double x, double z) { return false; }
     }
 
-    // Тайл со стороной size от (x0, z0); null, если отменён. Обычно сетка NxN, но в горах (большой перепад высот)
-    // в mountains раз мельче: на равнинах лишние треугольники не видны, а хребты без них выходят пирамидами.
-    // clearWater: дно и вода отдельно (вода полупрозрачная, как в игре), иначе вода, непрозрачная поверхность.
-    // smooth от 0 до 1: насколько вдали сглаживать пики и гребни. pixel: 0 гладкая сетка, 1 гранями, 2 блоками.
-    public static TileMesh build(Terrain t, Palette palette, double x0, double z0, double size, Style o, BooleanSupplier cancelled) {
-        boolean clearWater = o.clearWater();
-        double smooth = o.smooth();
-        int pixel = o.pixel();
-        int n = o.mountains() > 1 && mountainous(t, x0, z0, size) ? N * o.mountains() : N;
+    // Выборка рельефа для тайла: всё, что считается генератором и палитрой (дорого), без настроек вида.
+    // Из неё сетка строится за миллисекунды (mesh), поэтому смена вида не пересчитывает рельеф, а выборку можно
+    // держать в памяти и на диске (TileCache).
+    public static final class Samples {
+        public final double x0, z0, size, step;
+        public final int n, m;
+        // высота, крупный рельеф, среднее крупного рельефа по клетке (только вдали, иначе NaN), вода, климат,
+        // расстояние до реки, густота леса и шум крон
+        public final float[] h, mac, mac5, wl, tmp, hum, mnt, river, slope, dens;
+        // вид воды, стиль рельефа, флаги (1, замерзает)
+        public final byte[] wk, st, fl;
+        public final int[] ground, wcol;
+        public final List<Pillars.P> pillars;
+
+        Samples(double x0, double z0, double size, int n, List<Pillars.P> pillars) {
+            this.x0 = x0; this.z0 = z0; this.size = size; this.n = n; this.m = n + 3; this.step = size / n;
+            int k = m * m;
+            h = new float[k]; mac = new float[k]; mac5 = new float[k]; wl = new float[k]; tmp = new float[k]; hum = new float[k];
+            mnt = new float[k]; river = new float[k]; slope = new float[k]; dens = new float[k];
+            wk = new byte[k]; st = new byte[k]; fl = new byte[k];
+            ground = new int[k]; wcol = new int[k];
+            this.pillars = pillars;
+        }
+
+        public long bytes() { return (long) m * m * (10 * 4 + 3 + 8) + pillars.size() * 64L + 64; }
+
+        public void write(java.io.DataOutputStream out) throws java.io.IOException {
+            out.writeDouble(x0); out.writeDouble(z0); out.writeDouble(size); out.writeInt(n);
+            for (float[] a : new float[][] { h, mac, mac5, wl, tmp, hum, mnt, river, slope, dens }) for (float v : a) out.writeFloat(v);
+            out.write(wk); out.write(st); out.write(fl);
+            for (int v : ground) out.writeInt(v);
+            for (int v : wcol) out.writeInt(v);
+            out.writeInt(pillars.size());
+            for (Pillars.P p : pillars) {
+                out.writeDouble(p.x()); out.writeDouble(p.z()); out.writeDouble(p.r()); out.writeDouble(p.base()); out.writeDouble(p.top());
+                out.writeDouble(p.ph()); out.writeInt(p.style());
+            }
+        }
+
+        public static Samples read(java.io.DataInputStream in) throws java.io.IOException {
+            double x0 = in.readDouble(), z0 = in.readDouble(), size = in.readDouble();
+            int n = in.readInt();
+            if (n <= 0 || n > 4096) throw new java.io.IOException("bad tile");
+            Samples s = new Samples(x0, z0, size, n, new ArrayList<>());
+            for (float[] a : new float[][] { s.h, s.mac, s.mac5, s.wl, s.tmp, s.hum, s.mnt, s.river, s.slope, s.dens })
+                for (int i = 0; i < a.length; i++) a[i] = in.readFloat();
+            in.readFully(s.wk); in.readFully(s.st); in.readFully(s.fl);
+            for (int i = 0; i < s.ground.length; i++) s.ground[i] = in.readInt();
+            for (int i = 0; i < s.wcol.length; i++) s.wcol[i] = in.readInt();
+            int np = in.readInt();
+            for (int i = 0; i < np; i++)
+                s.pillars.add(new Pillars.P(in.readDouble(), in.readDouble(), in.readDouble(), in.readDouble(), in.readDouble(), in.readDouble(), in.readInt()));
+            return s;
+        }
+    }
+
+    // Выборка тайла со стороной size от (x0, z0); null, если отменена. Обычно сетка NxN, но в горах (большой перепад
+    // высот) в mountains раз мельче: на равнинах лишние треугольники не видны, а хребты без них выходят пирамидами.
+    public static Samples sample(Terrain t, Palette palette, double x0, double z0, double size, int mountains, BooleanSupplier cancelled) {
+        int n = mountains > 1 && mountainous(t, x0, z0, size) ? N * mountains : N;
         double step = size / n;
         int m = n + 3;
-        float[] h = new float[m * m], top = new float[m * m], wl = new float[m * m], tmp = new float[m * m], hum = new float[m * m], mnt = new float[m * m];
-        byte[] wk = new byte[m * m], st = new byte[m * m], tr = new byte[m * m];
-        float[] canopy = new float[m * m];
-        int[] ground = new int[m * m], wcol = new int[m * m];
         double[] pillarW = new double[3];
-        // вдали отдельные пики и гребни при точечной выборке выходят тонкими зубцами ("график"):
-        // чем грубее сетка, тем ближе высота суши к крупному рельефу без мелких деталей
-        double keep = 1 - smooth * (1 - Math.max(0.25, Math.min(1, 12 / step)));
         Terrain.Column c = new Terrain.Column();
         Macro.Sample ms = new Macro.Sample();
+        float[] h = new float[m * m], mac = new float[m * m], mac5 = new float[m * m], wl = new float[m * m], tmp = new float[m * m],
+                hum = new float[m * m], mnt = new float[m * m], river = new float[m * m], slope = new float[m * m], dens = new float[m * m];
+        byte[] wk = new byte[m * m], st = new byte[m * m], fl = new byte[m * m];
+        int[] ground = new int[m * m], wcol = new int[m * m];
         for (int j = 0; j < m; j++) {
             if (cancelled.getAsBoolean()) return null;
             for (int i = 0; i < m; i++) {
                 int id = j * m + i;
-                t.column(x0 + (i - 1) * step, z0 + (j - 1) * step, c);
+                double gx = x0 + (i - 1) * step, gz = z0 + (j - 1) * step;
+                t.column(gx, gz, c);
                 for (int k = 0; k < 3; k++) pillarW[k] = Math.max(pillarW[k], Pillars.weight(k, c));
-                double hh = c.height;
-                if (keep < 1 && c.waterKind == Terrain.WATER_NONE && hh > Macro.SEA + 2) {
-                    // крупный рельеф сглаживается по клетке (среднее 5 точек), мелкие детали ослабляются
-                    double x = x0 + (i - 1) * step, z = z0 + (j - 1) * step, r = step * 0.5, mac = c.macroHeight;
-                    mac += t.macro.sample(x - r, z - r, ms).height + t.macro.sample(x + r, z - r, ms).height
-                            + t.macro.sample(x - r, z + r, ms).height + t.macro.sample(x + r, z + r, ms).height;
-                    hh = Math.max(Macro.SEA + 2, mac / 5 + (hh - c.macroHeight) * keep);
+                h[id] = (float) c.height;
+                mac[id] = (float) c.macroHeight;
+                // среднее крупного рельефа по клетке нужно только для сглаживания вдали (шаг больше 12)
+                mac5[id] = Float.NaN;
+                if (step > 12 && c.waterKind == Terrain.WATER_NONE && c.height > Macro.SEA + 2) {
+                    double r = step * 0.5;
+                    mac5[id] = (float) ((c.macroHeight + t.macro.sample(gx - r, gz - r, ms).height + t.macro.sample(gx + r, gz - r, ms).height
+                            + t.macro.sample(gx - r, gz + r, ms).height + t.macro.sample(gx + r, gz + r, ms).height) / 5);
                 }
+                wl[id] = (float) c.water;
+                wk[id] = (byte) c.waterKind;
+                tmp[id] = (float) c.temp; hum[id] = (float) c.humid; mnt[id] = (float) c.mountain;
+                river[id] = (float) Math.min(1e6, c.riverDist);
+                slope[id] = (float) c.slope;
+                st[id] = (byte) c.dominant().ordinal();
+                boolean inner = i > 0 && j > 0 && i < m - 1 && j < m - 1;
+                boolean wet = c.waterKind != Terrain.WATER_NONE && c.water > c.height;
+                if (!inner) continue;
+                if (wet) {
+                    int w = palette.water(t, c, gx, gz);
+                    wcol[id] = w >= 0 ? w : WATER;
+                    if (palette.frozen(t, c, gx, gz)) fl[id] |= 1;
+                }
+                ground[id] = palette.ground(t, c, gx, gz);
+                if (!wet && c.slope < 0.9) dens[id] = (float) palette.trees(t, c, gx, gz);
+            }
+        }
+        // столбы генератора: рисуются отдельно. Вдали (шаг больше 64) их уже не различить
+        List<Pillars.P> pillars = step <= 64 ? Pillars.find(t, x0, z0, size, 16 + step, pillarW) : List.of();
+        Samples s = new Samples(x0, z0, size, n, pillars);
+        System.arraycopy(h, 0, s.h, 0, h.length); System.arraycopy(mac, 0, s.mac, 0, h.length); System.arraycopy(mac5, 0, s.mac5, 0, h.length);
+        System.arraycopy(wl, 0, s.wl, 0, h.length); System.arraycopy(tmp, 0, s.tmp, 0, h.length); System.arraycopy(hum, 0, s.hum, 0, h.length);
+        System.arraycopy(mnt, 0, s.mnt, 0, h.length); System.arraycopy(river, 0, s.river, 0, h.length); System.arraycopy(slope, 0, s.slope, 0, h.length);
+        System.arraycopy(dens, 0, s.dens, 0, h.length); System.arraycopy(wk, 0, s.wk, 0, h.length); System.arraycopy(st, 0, s.st, 0, h.length);
+        System.arraycopy(fl, 0, s.fl, 0, h.length); System.arraycopy(ground, 0, s.ground, 0, h.length); System.arraycopy(wcol, 0, s.wcol, 0, h.length);
+        return s;
+    }
+
+    public static TileMesh build(Terrain t, Palette palette, double x0, double z0, double size, Style o, BooleanSupplier cancelled) {
+        Samples s = sample(t, palette, x0, z0, size, o.mountains(), cancelled);
+        return s == null ? null : mesh(t, s, o);
+    }
+
+    // Сетка тайла из выборки по настройкам вида.
+    // clearWater: дно и вода отдельно (вода полупрозрачная, как в игре), иначе вода, непрозрачная поверхность.
+    // smooth от 0 до 1: насколько вдали сглаживать пики и гребни. pixel: 0 гладкая сетка, 1 гранями, 2 блоками.
+    public static TileMesh mesh(Terrain t, Samples sm, Style o) {
+        boolean clearWater = o.clearWater();
+        double smooth = o.smooth();
+        int pixel = o.pixel();
+        int n = sm.n, m = sm.m;
+        double step = sm.step, x0 = sm.x0, z0 = sm.z0, size = sm.size;
+        float[] h = new float[m * m], top = new float[m * m], wl = new float[m * m], tmp = sm.tmp, hum = sm.hum, mnt = sm.mnt;
+        byte[] wk = new byte[m * m], st = sm.st, tr = new byte[m * m];
+        float[] canopy = new float[m * m];
+        int[] ground = new int[m * m], wcol = new int[m * m];
+        // вдали отдельные пики и гребни при точечной выборке выходят тонкими зубцами ("график"):
+        // чем грубее сетка, тем ближе высота суши к крупному рельефу без мелких деталей
+        double keep = 1 - smooth * (1 - Math.max(0.25, Math.min(1, 12 / step)));
+        for (int j = 0; j < m; j++)
+            for (int i = 0; i < m; i++) {
+                int id = j * m + i;
+                double hh = sm.h[id], water = sm.wl[id];
+                int kind = sm.wk[id];
+                // крупный рельеф сглаживается по клетке (среднее 5 точек), мелкие детали ослабляются
+                if (keep < 1 && !Float.isNaN(sm.mac5[id])) hh = Math.max(Macro.SEA + 2, sm.mac5[id] + (hh - sm.mac[id]) * keep);
                 double gx = x0 + (i - 1) * step, gz = z0 + (j - 1) * step;
                 boolean inner = i > 0 && j > 0 && i < m - 1 && j < m - 1;
-                boolean wet0 = c.waterKind != Terrain.WATER_NONE && c.water > hh;
+                boolean wet0 = kind != Terrain.WATER_NONE && water > hh;
                 // замёрзшая вода: сплошной лёд на уровне воды
-                if (o.ice() && wet0 && palette.frozen(t, c, gx, gz)) {
-                    hh = Math.floor(c.water);
-                    c.waterKind = Terrain.WATER_NONE;
+                if (o.ice() && wet0 && (sm.fl[id] & 1) != 0) {
+                    hh = Math.floor(water);
+                    kind = Terrain.WATER_NONE;
                     tr[id] = 2;
                 }
                 // река уже клетки сетки: точка рядом с руслом становится водой, иначе вдали реки рвутся на куски
-                if (o.rivers() && !wet0 && step > 4 && c.waterKind == Terrain.WATER_NONE && c.riverDist < step * 0.5 && tr[id] != 2) {
-                    c.water = hh + 0.6;
-                    c.waterKind = Terrain.WATER_RIVER;
+                if (o.rivers() && !wet0 && step > 4 && kind == Terrain.WATER_NONE && sm.river[id] < step * 0.5 && tr[id] != 2) {
+                    water = hh + 0.6;
+                    kind = Terrain.WATER_RIVER;
                 }
                 h[id] = (float) hh;
-                wl[id] = (float) c.water;
-                wk[id] = (byte) c.waterKind;
-                boolean wet = wk[id] != 0 && c.water > hh;
+                wl[id] = (float) water;
+                wk[id] = (byte) kind;
+                boolean wet = kind != 0 && water > hh;
                 // кроны леса: бугор над землёй, выше и гуще в джунглях
-                if (o.trees() && !wet && inner && tr[id] == 0 && c.slope < 0.9) {
-                    double dens = palette.trees(t, c, gx, gz);
-                    if (dens > 0) {
-                        double cell = Math.max(4, step);
-                        double r1 = speck(Math.round(gx / cell), Math.round(gz / cell), 1) / 2, r2 = speck(Math.round(gz / cell) + 77, Math.round(gx / cell), 1) / 2;
-                        // вдали деревья сливаются: ровный полог, рядом отдельные кроны с прогалинами
-                        double cover = step >= 24 ? 1 : r2 < Math.min(1, dens) ? 1 : 0;
-                        canopy[id] = (float) (cover * Math.min(1.3, dens) * (4 + 5 * r1) * (step >= 24 ? 0.7 : 1));
-                        if (canopy[id] > 0) tr[id] = 1;
-                    }
+                if (o.trees() && !wet && inner && tr[id] == 0 && sm.dens[id] > 0) {
+                    double dens = sm.dens[id];
+                    double cell = Math.max(4, step);
+                    double r1 = speck(Math.round(gx / cell), Math.round(gz / cell), 1) / 2, r2 = speck(Math.round(gz / cell) + 77, Math.round(gx / cell), 1) / 2;
+                    // вдали деревья сливаются: ровный полог, рядом отдельные кроны с прогалинами
+                    double cover = step >= 24 ? 1 : r2 < Math.min(1, dens) ? 1 : 0;
+                    canopy[id] = (float) (cover * Math.min(1.3, dens) * (4 + 5 * r1) * (step >= 24 ? 0.7 : 1));
+                    if (canopy[id] > 0) tr[id] = 1;
                 }
-                top[id] = wet && !clearWater ? (float) c.water : h[id];
-                tmp[id] = (float) c.temp; hum[id] = (float) c.humid; mnt[id] = (float) c.mountain;
-                st[id] = (byte) c.dominant().ordinal();
-                ground[id] = tr[id] == 2 ? ICE : inner && wk[id] == 0 ? palette.ground(t, c, x0 + (i - 1) * step, z0 + (j - 1) * step) : -1;
-                if (inner && wet) {
-                    int w = palette.water(t, c, x0 + (i - 1) * step, z0 + (j - 1) * step);
-                    wcol[id] = w >= 0 ? w : WATER;
-                }
+                top[id] = wet && !clearWater ? (float) water : h[id];
+                ground[id] = tr[id] == 2 ? ICE : inner && kind == 0 ? sm.ground[id] : -1;
+                if (inner && wet) wcol[id] = sm.wcol[id] != 0 ? sm.wcol[id] : WATER;
             }
-        }
-        // столбы генератора: точки сетки, попавшие в столб, опускаются к его основанию, сам столб рисуется отдельно.
-        // Вдали (шаг больше 64) столбы уже не различить, там всё как было
-        List<Pillars.P> pillars = o.pillars() && step <= 64 ? Pillars.find(t, x0, z0, size, 16 + step, pillarW) : List.of();
+        // столбы генератора: точки сетки, попавшие в столб, опускаются к его основанию, сам столб рисуется отдельно
+        List<Pillars.P> pillars = o.pillars() ? sm.pillars : List.of();
         for (Pillars.P p : pillars) {
             int ia = Math.max(0, (int) Math.floor((p.x() - p.r() - x0) / step) + 1), ib = Math.min(m - 1, (int) Math.ceil((p.x() + p.r() - x0) / step) + 1);
             int ja = Math.max(0, (int) Math.floor((p.z() - p.r() - z0) / step) + 1), jb = Math.min(m - 1, (int) Math.ceil((p.z() + p.r() - z0) / step) + 1);
