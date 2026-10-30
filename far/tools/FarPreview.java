@@ -11,9 +11,15 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.IntStream;
 
 // Проверка дальней прорисовки вне игры: какие тайлы выбираются, сколько их считать и как это выглядит.
-// java FarPreview <seed> <x> <y> <z> <yaw град.> <дальность> <шаг> <split> <clip> <out.png> [threads] [горы 1..3] [сглаживание 0..1] [пикселизация 0..2]
+// java FarPreview <seed> <x> <y> <z> <yaw град.> <дальность> <шаг> <split> <clip> <out.png> [threads] [горы 1..3] [сглаживание 0..1] [пикселизация 0..2] [столбы 0|1]
 // Рисует сетки тайлов программным растеризатором (z-буфер) с той же перспективой и туманом, что в игре.
 public class FarPreview {
+    // цвета из модели рельефа, леса там, где влажно (в игре лес берётся по биому)
+    static final TileMesh.Palette PREVIEW = new TileMesh.Palette() {
+        public int ground(Terrain t, Terrain.Column c, double x, double z) { return -1; }
+        public double trees(Terrain t, Terrain.Column c, double x, double z) { return c.humid > 0.1 && c.temp > -0.3 && c.mountain < 0.5 ? 1 : 0; }
+    };
+
     public static void main(String[] a) throws Exception {
         long seed = Long.parseLong(a[0]);
         double cx = Double.parseDouble(a[1]), cz = Double.parseDouble(a[3]);
@@ -27,6 +33,7 @@ public class FarPreview {
         int mountains = a.length > 11 ? Integer.parseInt(a[11]) : 2;
         double smooth = a.length > 12 ? Double.parseDouble(a[12]) : 0.15;
         int pixel = a.length > 13 ? Integer.parseInt(a[13]) : 2;
+        boolean pillars = a.length <= 14 || !a[14].equals("0");
         double tile0 = TileMesh.N * step;
         List<long[]> want = new ArrayList<>();
         LodTree.select(cx, cy, cz, dist, clip, split, tile0, new LodTree.Sink() {
@@ -46,7 +53,7 @@ public class FarPreview {
         pool.submit(() -> IntStream.range(0, want.size()).parallel().forEach(i -> {
             long[] w = want.get(i);
             double s = tile0 * (1L << w[0]);
-            meshes[i] = TileMesh.build(t, TileMesh.Palette.MODEL, w[1] * s, w[2] * s, s, mountains, false, smooth, pixel, () -> false);
+            meshes[i] = TileMesh.build(t, PREVIEW, w[1] * s, w[2] * s, s, new TileMesh.Style(mountains, true, smooth, pixel, pillars, true, 0.35, 0.5, true, true, true, true, true, true), () -> false);
             verts.addAndGet(meshes[i].vertices());
         })).get();
         double sec = (System.nanoTime() - t0) / 1e9;
