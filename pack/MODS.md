@@ -2,7 +2,7 @@
 
 Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на странице Releases.
 
-Список совпадает с копией сборки на Маке (`original-mc-pack`) после оптимизации 29.10: Distant Horizons, Entity Model Features и Entity Texture Features убраны (в копии переименованы в `.disabled`), вместо DH стоит cld_far, tcw обновлён до 0.5.2 (cld_far нужен tcw 0.5.0 или новее). В экземпляр Prism это переносит владелец, см. `pack/OPTIMIZATION.md`.
+Список совпадает с копией сборки на Маке (`original-mc-pack`) после оптимизации 29.10 (второй заход 30.10: Dynamic FPS, Entity Culling, ImmediatelyFast, BadOptimizations, Clumps, Packet Fixer, cld_far 0.5.2, cld_perf): Distant Horizons, Entity Model Features и Entity Texture Features убраны (в копии переименованы в `.disabled`), вместо DH стоит cld_far, tcw обновлён до 0.5.2 (cld_far нужен tcw 0.5.0 или новее). В экземпляр Prism это переносит владелец, см. `pack/OPTIMIZATION.md`.
 
 | Мод | modId | Версия | Файл | SHA-1 |
 |---|---|---|---|---|
@@ -106,3 +106,4 @@ Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на ст�
 | BadOptimizations | badoptimizations | 2.4.1 | BadOptimizations-2.4.1-1.21.1.jar | 1461d8e46391efd32a3085150e86094c9f6f5c9d |
 | Clumps | clumps | 19.0.0.1 | Clumps-neoforge-1.21.1-19.0.0.1.jar | fa2576297c7bd12b28aa7070e8141792bd66da4c |
 | Packet Fixer | packetfixer | 3.3.1 | packetfixer-3.3.1-1.20.5-1.21.X-merged.jar | a8bb6e25807682e72c23bf4065f3cd5f6373ece3 |
+| Ускорения клиента сборки | cld_perf | 0.1.0 | cld_perf-neoforge-1.21.1-0.1.0.jar | 1fe35e204d10e2e34d44b4867b0b1285ab99282c |
