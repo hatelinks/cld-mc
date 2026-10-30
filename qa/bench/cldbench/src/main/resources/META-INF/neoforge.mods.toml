@@ -15,3 +15,6 @@ type="required"
 versionRange="[21.1,)"
 ordering="NONE"
 side="BOTH"
+
+[[mixins]]
+config="cld_qabench.mixins.json"

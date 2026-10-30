@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.cld.qabench.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": ["PlacedFeatureMixin", "AquiferDebugMixin"],
+  "injectors": {"defaultRequire": 1}
+}

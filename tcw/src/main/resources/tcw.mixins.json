@@ -9,7 +9,8 @@
     "BeardifierMixin",
     "RingPositionsMixin",
     "NoiseFillMixin",
-    "NoiseChunkAccessor"
+    "NoiseChunkAccessor",
+    "FluidPostProcessMixin"
   ],
   "injectors": {
     "defaultRequire": 1
