@@ -41,9 +41,12 @@ final class FarRenderer {
     // water, полупрозрачная вода отдельным буфером (режим clearWater) или null.
     // x1, z1 и y0, y1: границы тайла для отсечения по полю зрения.
     // lo, hi: высоты по сетке 8x8 частей тайла (для выбора блочных тайлов рядом).
-    private record Tile(long key, VertexBuffer vb, VertexBuffer water, double x0, double z0, double x1, double z1, float y0, float y1, float[] lo, float[] hi) {
-        boolean visible(FrustumIntersection f, Vec3 cam) {
-            return f.testAab((float) (x0 - cam.x) - 1, (float) (y0 - cam.y) - 1, (float) (z0 - cam.z) - 1,
+    // look: версия настроек вида, с которой тайл собран (при смене вида тайл рисуется, пока не готов новый). bytes: видеопамять.
+    private record Tile(long key, VertexBuffer vb, VertexBuffer water, double x0, double z0, double x1, double z1, float y0, float y1, float[] lo, float[] hi,
+            int look, long bytes) {
+        // drop: насколько тайл может уйти вниз из-за кривизны земли
+        boolean visible(FrustumIntersection f, Vec3 cam, float drop) {
+            return f.testAab((float) (x0 - cam.x) - 1, (float) (y0 - cam.y) - 1 - drop, (float) (z0 - cam.z) - 1,
                     (float) (x1 - cam.x) + 1, (float) (y1 - cam.y) + 1, (float) (z1 - cam.z) + 1);
         }
 
@@ -81,7 +84,7 @@ final class FarRenderer {
             return new Part(md, buf);
         }
     }
-    private record Built(long key, int gen, double x0, double z0, double size, float y0, float y1, float[] lo, float[] hi, Part ground, Part water) {}
+    private record Built(long key, int gen, int look, double x0, double z0, double size, float y0, float y1, float[] lo, float[] hi, Part ground, Part water, long bytes) {}
     static final int SUB = 8;
 
     // Ключи тайлов long. В HashMap<Long> они давали много коллизий (Long.hashCode склеивает половины ключа),
@@ -104,10 +107,28 @@ final class FarRenderer {
     private ThreadPoolExecutor pool;
     private int poolThreads, step, frame, blockSize;
     private TileMesh.Style style;
+    // версия вида: растёт при смене настроек, которые меняют только сетку (рельеф берётся из кэша выборок)
+    private volatile int look;
+    private final TileCache cache = new TileCache();
+    private String worldId;
+    private long vram;
+    private long lastFrameNs;
+    private double frameMs;
+    // фоновые потоки ждут, пока игра на паузе
+    static volatile boolean paused;
     private boolean active;
     private volatile boolean failed;
 
     boolean active() { return active; }
+
+    boolean hasWorld() { return terrain != null; }
+
+    // Пересчитать всё (команда); disk: заодно удалить кэш мира на диске.
+    void reload(boolean disk) {
+        cache.clear();
+        if (disk) cache.clearDisk();
+        reset();
+    }
 
     // Кадр без дальнего рельефа: туман игры остаётся обычным.
     void idle() { active = false; }
@@ -115,6 +136,10 @@ final class FarRenderer {
     // Новый мир (или выход из мира при null): всё посчитанное сбрасывается. Вызывается в потоке рендера.
     void setWorld(SeedPayload p) {
         terrain = p == null ? null : new Terrain(p.seed(), p.options());
+        // рельеф задают сид, настройки мира и версия генератора
+        String tcw = net.neoforged.fml.ModList.get().getModContainerById("tcw").map(c -> c.getModInfo().getVersion().toString()).orElse("?");
+        worldId = p == null ? null : Long.toHexString(p.seed()) + "/" + p.options() + "/" + tcw;
+        cache.clear();
         reset();
         if (p == null) mask.close();
     }
@@ -123,6 +148,7 @@ final class FarRenderer {
         gen++;
         tiles.values().forEach(Tile::close);
         tiles.clear();
+        vram = 0;
         lastUsed.clear();
         pending.clear();
         lastDraw = List.of();
@@ -147,21 +173,35 @@ final class FarRenderer {
         if (t == null || !FarConfig.ENABLED.get() || failed) return;
         int st = FarConfig.STEP.get(), bs = FarConfig.BLOCK_SIZE.get();
         TileMesh.Style sty = new TileMesh.Style(FarConfig.MOUNTAINS.get(), FarConfig.CLEAR_WATER.get(), FarConfig.SMOOTH.get(), FarConfig.PIXEL.get(),
-                FarConfig.PILLARS.get(), FarConfig.PEAKS.get());
-        if (st != step || !sty.equals(style) || bs != blockSize) {
+                FarConfig.PILLARS.get(), FarConfig.PEAKS.get(), FarConfig.VALLEY_SHADE.get(), FarConfig.COLOR_NOISE.get(),
+                FarConfig.BLOCK_SIDES.get(), FarConfig.MESA_BANDS.get(), FarConfig.TREES.get(), FarConfig.ICE.get(), FarConfig.SHORE.get(),
+                FarConfig.RIVERS.get());
+        if (st != step || bs != blockSize || style == null || sty.mountains() != style.mountains()) {
             step = st;
             style = sty;
             blockSize = bs;
             reset();
+        } else if (!sty.equals(style)) {
+            // только вид: старые тайлы остаются на экране, новые собираются из кэша выборок без расчёта рельефа
+            style = sty;
+            look++;
+            selX = Double.NaN;
         }
-        ensurePool(FarConfig.THREADS.get());
+        cache.configure(worldId, FarConfig.SAMPLE_CACHE.get(), FarConfig.DISK_CACHE.get(), FarConfig.DISK_CACHE_MB.get());
+        long now = System.nanoTime();
+        if (lastFrameNs != 0) frameMs = frameMs * 0.9 + (now - lastFrameNs) / 1e6 * 0.1;
+        lastFrameNs = now;
+        ensurePool(threads());
         if (palette == null) {
             TileMesh.Palette p = BiomePalette.create(mc.level.registryAccess());
             palette = p != null ? p : TileMesh.Palette.MODEL;
         }
         TileMesh.Palette pal = palette;
         frame++;
-        upload(FarConfig.UPLOADS.get());
+        // при просадке кадров (дольше 25 мс) в видеокарту по одному тайлу за кадр
+        int up = FarConfig.UPLOADS.get();
+        if (FarConfig.ADAPTIVE_UPLOADS.get() && frameMs > 25) up = 1;
+        upload(up);
 
         Vec3 cam = e.getCamera().getPosition();
         double dist = FarConfig.DISTANCE.get();
@@ -188,11 +228,20 @@ final class FarRenderer {
         }
         List<Tile> draw = new ArrayList<>();
         LongOpenHashSet want = new LongOpenHashSet();
+        boolean lookAhead = FarConfig.LOOK_AHEAD.get();
+        double fx = -Math.sin(Math.toRadians(e.getCamera().getYRot())), fz = Math.cos(Math.toRadians(e.getCamera().getYRot()));
         LodTree.select(cam.x, cam.y, cam.z, dist, clip, detail, tile0, new LodTree.Sink() {
             @Override
             public boolean ready(long key) {
-                if (!tiles.containsKey(key)) return false;
+                Tile tile = tiles.get(key);
+                if (tile == null) return false;
                 lastUsed.put(key, frame);
+                // собран со старым видом: рисуется, пока не готов новый
+                if (tile.look != look) {
+                    want.add(key);
+                    int l = LodTree.level(key);
+                    if (pending.add(key)) pool.execute(new Job(key, g, t, pal, l, LodTree.tx(key), LodTree.tz(key), 1e8 + tileDist(tile, cam), tile0, sty, bs));
+                }
                 return true;
             }
 
@@ -202,6 +251,11 @@ final class FarRenderer {
             @Override
             public void want(long key, int level, int tx, int tz, double priority) {
                 want.add(key);
+                // сначала то, что впереди: тайлы за спиной в конце своего уровня
+                if (lookAhead) {
+                    double s = tile0 * (1L << level), vx = (tx + 0.5) * s - cam.x, vz = (tz + 0.5) * s - cam.z;
+                    if (vx * fx + vz * fz < -s) priority += 4e6;
+                }
                 if (pending.add(key)) pool.execute(new Job(key, g, t, pal, level, tx, tz, priority, tile0, sty, bs));
             }
         });
@@ -270,6 +324,10 @@ final class FarRenderer {
             if (tile != null) {
                 lastUsed.put(key, frame);
                 out.add(tile);
+                if (tile.look != look) {
+                    want.add(key);
+                    if (pending.add(key)) pool.execute(new Job(key, g, t, pal, SCOPE_LEVEL, tx, tz, prio + c[0], side, style, bs));
+                }
             } else {
                 want.add(key);
                 if (pending.add(key)) pool.execute(new Job(key, g, t, pal, SCOPE_LEVEL, tx, tz, prio + c[0], side, style, bs));
@@ -303,8 +361,13 @@ final class FarRenderer {
         int maskTex = mask.upload();
 
         float fogStart = RenderSystem.getShaderFogStart(), fogEnd = RenderSystem.getShaderFogEnd();
-        float[] b = light(mc, e.getPartialTick().getGameTimeDeltaPartialTick(false));
-        RenderSystem.setShaderFogStart((float) (dist * FarConfig.FOG.get()));
+        float partial = e.getPartialTick().getGameTimeDeltaPartialTick(false);
+        float[] b = light(mc, partial);
+        // погода: в дождь и грозу темнее, туман и дымка ближе
+        float rain = FarConfig.WEATHER.get() ? mc.level.getRainLevel(partial) : 0, thunder = FarConfig.WEATHER.get() ? mc.level.getThunderLevel(partial) : 0;
+        float dim = (float) (FarConfig.BRIGHTNESS.get() * (1 - 0.18 * rain - 0.15 * thunder));
+        for (int i = 0; i < 3; i++) b[i] *= dim;
+        RenderSystem.setShaderFogStart((float) (dist * FarConfig.FOG.get() * (1 - 0.35 * rain)));
         RenderSystem.setShaderFogEnd((float) dist);
         RenderSystem.setShaderColor(b[0], b[1], b[2], 1);
         RenderSystem.enableDepthTest();
@@ -321,16 +384,23 @@ final class FarRenderer {
         if (mo != null) mo.set((float) (mask.originX * 16 - cam.x), (float) (mask.originZ * 16 - cam.z));
         set(sh, "VertRange", (float) vert);
         set(sh, "Pass", 0);
+        lighting(mc, sh, cam, partial, rain);
+        atmosphere(mc, sh, cam, partial, dist);
         sh.apply();
         Uniform off = sh.CHUNK_OFFSET;
         Uniform pass = sh.getUniform("Pass");
+        lodTint = FarConfig.DEBUG_LOD.get() ? sh.getUniform("LodTint") : null;
+        if (lodTint == null && sh.getUniform("LodTint") != null) {
+            sh.getUniform("LodTint").set(-1f, -1f, -1f);
+            sh.getUniform("LodTint").upload();
+        }
         // тайлы за спиной и сбоку не рисуются
-        draw.removeIf(t -> !t.visible(fr, cam));
+        draw.removeIf(t -> !t.visible(fr, cam, curvDrop(dist)));
         for (Tile t : draw) drawTile(off, t, t.vb, cam);
         if (!blocky.isEmpty() && pass != null) {
             pass.set(1f);
             pass.upload();
-            for (Tile t : blocky) if (t.visible(fr, cam)) drawTile(off, t, t.vb, cam);
+            for (Tile t : blocky) if (t.visible(fr, cam, 0)) drawTile(off, t, t.vb, cam);
             pass.set(0f);
             pass.upload();
         }
@@ -338,6 +408,10 @@ final class FarRenderer {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.depthMask(false);
+        if (pass != null) {
+            pass.set(2f);
+            pass.upload();
+        }
         for (Tile t : draw) if (t.water != null) drawTile(off, t, t.water, cam);
         RenderSystem.depthMask(true);
         RenderSystem.disableBlend();
@@ -352,7 +426,71 @@ final class FarRenderer {
         RenderSystem.clear(GL11.GL_DEPTH_BUFFER_BIT, Minecraft.ON_OSX);
     }
 
+    // Солнце, закат, дымка и насыщенность для шейдера.
+    private static void lighting(Minecraft mc, ShaderInstance sh, Vec3 cam, float partial, float rain) {
+        double a = mc.level.getSunAngle(partial);
+        double sx = -Math.sin(a), sy = Math.cos(a), sz = 0.25;
+        // ночью светит луна с другой стороны
+        if (sy < 0) { sx = -sx; sy = -sy; }
+        double l = Math.sqrt(sx * sx + sy * sy + sz * sz);
+        Uniform sun = sh.getUniform("SunDir");
+        if (sun != null) sun.set((float) (sx / l), (float) (sy / l), (float) (sz / l));
+        set(sh, "SunShade", FarConfig.SUN_SHADE.get().floatValue());
+        set(sh, "Saturation", FarConfig.SATURATION.get().floatValue());
+        set(sh, "Haze", (float) Math.min(1, FarConfig.HAZE.get() + 0.3 * rain));
+        // тёплый свет, когда солнце у горизонта (только днём)
+        float[] tint = { 1, 1, 1 };
+        double cy = Math.cos(a);
+        if (FarConfig.SUNSET.get() && cy > -0.2) {
+            double k = 0.45 * (1 - Math.min(1, Math.abs(cy) / 0.35));
+            tint = new float[] { 1, (float) (1 - 0.18 * k), (float) (1 - 0.38 * k) };
+        }
+        Uniform tu = sh.getUniform("Tint");
+        if (tu != null) tu.set(tint[0], tint[1], tint[2]);
+        float[] fog = RenderSystem.getShaderFogColor();
+        float[] hz = { fog[0], fog[1], fog[2] };
+        if (FarConfig.SKY_HAZE.get()) {
+            Vec3 sky = mc.level.getSkyColor(cam, partial);
+            hz = new float[] { (float) (fog[0] + sky.x) / 2, (float) (fog[1] + sky.y) / 2, (float) (fog[2] + sky.z) / 2 };
+        }
+        Uniform hu = sh.getUniform("HazeColor");
+        if (hu != null) hu.set(hz[0], hz[1], hz[2]);
+    }
+
+    private static float curvDrop(double dist) { return (float) (FarConfig.CURVATURE.get() * 100); }
+
+    // Вода, тени облаков, туман в низинах и кривизна земли.
+    private static void atmosphere(Minecraft mc, ShaderInstance sh, Vec3 cam, float partial, double dist) {
+        set(sh, "Curv", (float) (FarConfig.CURVATURE.get() * 100 / (dist * dist)));
+        double secs = ((mc.level.getGameTime() % 72000) + partial) / 20.0;
+        set(sh, "GameTime", (float) secs);
+        Uniform w = sh.getUniform("WorldXZ");
+        if (w != null) w.set((float) Math.floorMod((long) Math.floor(cam.x), 16384) + (float) (cam.x - Math.floor(cam.x)),
+                (float) Math.floorMod((long) Math.floor(cam.z), 16384) + (float) (cam.z - Math.floor(cam.z)));
+        set(sh, "Waves", FarConfig.WAVES.get() ? 1 : 0);
+        boolean day = Math.cos(mc.level.getSunAngle(partial)) > 0;
+        set(sh, "Glint", (float) (FarConfig.GLINT.get() * (day ? 1 : 0.3)));
+        set(sh, "Reflect", FarConfig.REFLECT.get().floatValue());
+        set(sh, "CloudShadows", (float) (day ? FarConfig.CLOUD_SHADOWS.get() : 0));
+        Uniform co = sh.getUniform("CloudOffset");
+        if (co != null) co.set((float) (secs * 2.0 % 16384), (float) (secs * 0.7 % 16384));
+        // утром туман гуще: время суток 0, рассвет (в тиках 0 это утро, 6000 полдень)
+        long tod = mc.level.getDayTime() % 24000;
+        double morning = tod > 22500 || tod < 2500 ? 1 : 0.5;
+        set(sh, "Mist", (float) (FarConfig.MIST.get() * morning));
+        set(sh, "MistTop", (float) (dev.cld.tcw.gen.Macro.SEA + 22 - cam.y));
+    }
+
+    private static Uniform lodTint;
+
     private static void drawTile(Uniform off, Tile t, VertexBuffer vb, Vec3 cam) {
+        if (lodTint != null) {
+            // отладка: цвет по уровню, от зелёного (мелкие) к красному (крупные), блочные синие
+            int l = LodTree.level(t.key);
+            if (l == SCOPE_LEVEL) lodTint.set(0.2f, 0.4f, 1f);
+            else lodTint.set(Math.min(1, l / 5f), Math.max(0, 1 - l / 5f), 0.1f);
+            lodTint.upload();
+        }
         if (off != null) {
             off.set((float) (t.x0 - cam.x), (float) -cam.y, (float) (t.z0 - cam.z));
             off.upload();
@@ -409,12 +547,19 @@ final class FarRenderer {
             if (b.gen == gen) pending.remove(b.key);
             if (b.ground == null) continue; // задача снята или тайл пустой
             i++;
-            if (b.gen != gen || tiles.containsKey(b.key)) {
+            Tile old = tiles.get(b.key);
+            if (b.gen != gen || old != null && old.look >= b.look) {
                 free(b);
                 continue;
             }
+            if (old != null) {
+                old.close();
+                vram -= old.bytes;
+            }
             tilesVer++;
-            tiles.put(b.key, new Tile(b.key, b.ground.upload(), b.water != null ? b.water.upload() : null, b.x0, b.z0, b.x0 + b.size, b.z0 + b.size, b.y0, b.y1, b.lo, b.hi));
+            tiles.put(b.key, new Tile(b.key, b.ground.upload(), b.water != null ? b.water.upload() : null, b.x0, b.z0, b.x0 + b.size, b.z0 + b.size, b.y0, b.y1, b.lo, b.hi,
+                    b.look, b.bytes));
+            vram += b.bytes;
             lastUsed.put(b.key, frame);
         }
     }
@@ -422,17 +567,41 @@ final class FarRenderer {
     // Выгрузить тайлы, которые давно не нужны ни для рисования, ни как запасные.
     private void evict() {
         LongOpenHashSet w = wanted;
+        long budget = (long) FarConfig.MAX_VRAM.get() << 20;
         for (Tile t : lastDraw) lastUsed.put(t.key, frame);
         for (var it = tiles.long2ObjectEntrySet().fastIterator(); it.hasNext(); ) {
             var en = it.next();
             long k = en.getLongKey();
-            if ((!lastUsed.containsKey(k) || frame - lastUsed.get(k) > 600) && !w.contains(k)) {
+            boolean old = !lastUsed.containsKey(k) || frame - lastUsed.get(k) > 600;
+            // сверх лимита видеопамяти выгружается всё, что не рисовалось хотя бы пару секунд
+            boolean over = vram > budget && (!lastUsed.containsKey(k) || frame - lastUsed.get(k) > 120);
+            if ((old || over) && !w.contains(k)) {
                 en.getValue().close();
+                vram -= en.getValue().bytes;
                 lastUsed.remove(k);
                 it.remove();
                 tilesVer++;
             }
         }
+    }
+
+    // 0 в настройке: по числу ядер (треть, от 1 до 4)
+    private static int threads() {
+        int t = FarConfig.THREADS.get();
+        return t > 0 ? t : Math.max(1, Math.min(4, Runtime.getRuntime().availableProcessors() / 3));
+    }
+
+    private static double tileDist(Tile t, Vec3 cam) {
+        double dx = Math.max(0, Math.max(t.x0 - cam.x, cam.x - t.x1)), dz = Math.max(0, Math.max(t.z0 - cam.z, cam.z - t.z1));
+        return Math.sqrt(dx * dx + dz * dz);
+    }
+
+    // Строки для экрана F3.
+    void debug(List<String> out) {
+        if (terrain == null) return;
+        out.add(String.format("cld_far: тайлов %d, в очереди %d, видеопамять %d МБ", tiles.size(), pending.size(), vram >> 20));
+        int h = cache.hits, m = cache.misses;
+        out.add(String.format("cld_far: кэш рельефа %d МБ, попаданий %d%%, потоков %d", cache.memBytes() >> 20, h + m == 0 ? 0 : h * 100 / (h + m), poolThreads));
     }
 
     private void ensurePool(int threads) {
@@ -457,7 +626,7 @@ final class FarRenderer {
         final TileMesh.Palette pal;
         final double priority, tile0;
         final TileMesh.Style style;
-        final int blockSize;
+        final int blockSize, myLook = look;
 
         // tile0: сторона тайла нижнего уровня (у блочного тайла, его сторона), blockSize: размер блока блочного тайла
         Job(long key, int gen, Terrain t, TileMesh.Palette pal, int level, int tx, int tz, double priority, double tile0, TileMesh.Style style, int blockSize) {
@@ -469,20 +638,39 @@ final class FarRenderer {
         @Override
         public int compareTo(Job o) { return Double.compare(priority, o.priority); }
 
-        private void drop() { done.add(new Built(key, gen, 0, 0, 0, 0, 0, null, null, null, null)); }
+        private void drop() { done.add(new Built(key, gen, look, 0, 0, 0, 0, 0, null, null, null, null, 0)); }
 
         private boolean stale() { return gen != FarRenderer.this.gen || !wanted.contains(key) && !wanted.isEmpty(); }
 
         @Override
         public void run() {
+            // на паузе ждём (меню паузы, свернутое окно): кадры и батарея важнее
+            while (paused && !stale()) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ex) {
+                    return;
+                }
+            }
             if (stale()) {
                 drop();
                 return;
             }
             try {
                 double size = level == SCOPE_LEVEL ? tile0 : tile0 * (1L << level), x0 = tx * size, z0 = tz * size;
-                TileMesh m = level == SCOPE_LEVEL ? TileMesh.buildBlocky(t, pal, x0, z0, SCOPE_TILE, blockSize, this::stale)
-                        : TileMesh.build(t, pal, x0, z0, size, style, this::stale);
+                TileMesh m;
+                if (level == SCOPE_LEVEL) m = TileMesh.buildBlocky(t, pal, x0, z0, SCOPE_TILE, blockSize, style, this::stale);
+                else {
+                    // выборка рельефа из кэша (память или диск), иначе считается и кладётся в кэш
+                    long ck = TileCache.key(key, tile0, style.mountains());
+                    String name = (long) tile0 + "_" + style.mountains() + "_" + level + "_" + tx + "_" + tz + ".bin";
+                    TileMesh.Samples sm = cache.get(ck, name);
+                    if (sm == null) {
+                        sm = TileMesh.sample(t, pal, x0, z0, size, style.mountains(), this::stale);
+                        if (sm != null) cache.put(ck, sm, name);
+                    }
+                    m = sm == null ? null : TileMesh.mesh(t, sm, style);
+                }
                 Part ground = m == null ? null : Part.of(m.pos, m.argb, m.vertices());
                 if (ground == null) {
                     drop();
@@ -504,7 +692,8 @@ final class FarRenderer {
                     y0 = Math.min(y0, m.waterPos[v * 3 + 1]);
                     y1 = Math.max(y1, m.waterPos[v * 3 + 1]);
                 }
-                done.add(new Built(key, gen, x0, z0, size, y0, y1, lo, hi, ground, Part.of(m.waterPos, m.waterArgb, m.waterVertices())));
+                done.add(new Built(key, gen, myLook, x0, z0, size, y0, y1, lo, hi, ground, Part.of(m.waterPos, m.waterArgb, m.waterVertices()),
+                        (long) (m.vertices() + m.waterVertices()) * DefaultVertexFormat.POSITION_COLOR.getVertexSize()));
             } catch (Throwable ex) {
                 drop();
                 if (!failed) LOG.error("Дальний рельеф: ошибка расчёта тайла, отключаюсь до перезахода", ex);
