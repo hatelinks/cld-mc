@@ -81,7 +81,7 @@ public final class Precheck {
         return NONE;
     }
 
-    // Для "или" необходимое условие есть, только если оно есть у каждой ветки.
+    // Для ветвления или необходимое условие есть, только если оно есть у каждой ветки.
     private static boolean allNecessary(List<Precheck> got, int total) {
         return !got.isEmpty() && got.size() == total;
     }
