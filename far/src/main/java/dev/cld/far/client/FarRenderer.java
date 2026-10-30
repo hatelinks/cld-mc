@@ -121,6 +121,15 @@ final class FarRenderer {
 
     boolean active() { return active; }
 
+    boolean hasWorld() { return terrain != null; }
+
+    // Пересчитать всё (команда); disk: заодно удалить кэш мира на диске.
+    void reload(boolean disk) {
+        cache.clear();
+        if (disk) cache.clearDisk();
+        reset();
+    }
+
     // Кадр без дальнего рельефа: туман игры остаётся обычным.
     void idle() { active = false; }
 
@@ -380,6 +389,11 @@ final class FarRenderer {
         sh.apply();
         Uniform off = sh.CHUNK_OFFSET;
         Uniform pass = sh.getUniform("Pass");
+        lodTint = FarConfig.DEBUG_LOD.get() ? sh.getUniform("LodTint") : null;
+        if (lodTint == null && sh.getUniform("LodTint") != null) {
+            sh.getUniform("LodTint").set(-1f, -1f, -1f);
+            sh.getUniform("LodTint").upload();
+        }
         // тайлы за спиной и сбоку не рисуются
         draw.removeIf(t -> !t.visible(fr, cam, curvDrop(dist)));
         for (Tile t : draw) drawTile(off, t, t.vb, cam);
@@ -467,7 +481,16 @@ final class FarRenderer {
         set(sh, "MistTop", (float) (dev.cld.tcw.gen.Macro.SEA + 22 - cam.y));
     }
 
+    private static Uniform lodTint;
+
     private static void drawTile(Uniform off, Tile t, VertexBuffer vb, Vec3 cam) {
+        if (lodTint != null) {
+            // отладка: цвет по уровню, от зелёного (мелкие) к красному (крупные), блочные синие
+            int l = LodTree.level(t.key);
+            if (l == SCOPE_LEVEL) lodTint.set(0.2f, 0.4f, 1f);
+            else lodTint.set(Math.min(1, l / 5f), Math.max(0, 1 - l / 5f), 0.1f);
+            lodTint.upload();
+        }
         if (off != null) {
             off.set((float) (t.x0 - cam.x), (float) -cam.y, (float) (t.z0 - cam.z));
             off.upload();
