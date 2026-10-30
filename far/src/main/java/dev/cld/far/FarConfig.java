@@ -8,9 +8,11 @@ public final class FarConfig {
     public static final boolean ANDROID = new java.io.File("/system/build.prop").exists();
 
     public static final ModConfigSpec SPEC;
-    public static final ModConfigSpec.BooleanValue ENABLED, CLEAR_WATER, SCOPE, PILLARS, PEAKS, NEAR_BLOCKS, BLOCK_SIDES, MESA_BANDS, SKY_HAZE, SUNSET, WEATHER;
+    public static final ModConfigSpec.BooleanValue ENABLED, CLEAR_WATER, SCOPE, PILLARS, PEAKS, NEAR_BLOCKS, BLOCK_SIDES, MESA_BANDS, SKY_HAZE, SUNSET, WEATHER,
+            TREES, ICE, SHORE, RIVERS, WAVES;
     public static final ModConfigSpec.IntValue DISTANCE, STEP, MOUNTAINS, THREADS, SCOPE_RANGE, PIXEL, BLOCK_SIZE, UPLOADS;
-    public static final ModConfigSpec.DoubleValue DETAIL, FOG, SMOOTH, SUN_SHADE, VALLEY_SHADE, COLOR_NOISE, BRIGHTNESS, SATURATION, HAZE;
+    public static final ModConfigSpec.DoubleValue DETAIL, FOG, SMOOTH, SUN_SHADE, VALLEY_SHADE, COLOR_NOISE, BRIGHTNESS, SATURATION, HAZE,
+            GLINT, REFLECT, CLOUD_SHADOWS, MIST, CURVATURE;
 
     static {
         ModConfigSpec.Builder b = new ModConfigSpec.Builder();
@@ -37,8 +39,18 @@ public final class FarConfig {
         BLOCK_SIDES = b.comment("Бока блоков как в игре: под травой земля, под снегом камень (в режиме блоков и в подзорной трубе)")
                 .define("blockSides", true);
         MESA_BANDS = b.comment("Полосы терракоты на обрывах пустошей (мезы), разноцветными слоями по высоте").define("mesaBands", true);
+        TREES = b.comment("Леса вдали: кроны бугром над землёй, гуще и выше в джунглях, с прогалинами рядом").define("trees", true);
+        b.pop();
+
+        b.comment("Вода: волны, блики, лёд, берега").push("water");
         CLEAR_WATER = b.comment("Прозрачная дальняя вода с дном, как в игре (без резкого среза на стыке с чанками). Выкл, дешевле: непрозрачная вода")
                 .define("clearWater", !ANDROID);
+        WAVES = b.comment("Волны: дальняя вода чуть рябит и переливается").define("waves", true);
+        GLINT = b.comment("Блики солнца на воде (0, выкл)").defineInRange("sunGlint", 0.6, 0.0, 1.0);
+        REFLECT = b.comment("Отражение неба: под острым углом вода светлеет цветом неба (0, выкл)").defineInRange("waterReflect", 0.5, 0.0, 1.0);
+        ICE = b.comment("Лёд: вода в холодных биомах рисуется сплошным льдом").define("ice", true);
+        SHORE = b.comment("Берега: светлая пена у берега, бирюзовое мелководье в тёплых морях").define("shore", true);
+        RIVERS = b.comment("Узкие реки видны и вдали, где сетка грубее самой реки (иначе рвутся на куски)").define("rivers", true);
         b.pop();
 
         b.comment("Свет и цвет: солнце, тени, дымка, погода").push("light");
@@ -53,6 +65,12 @@ public final class FarConfig {
         SKY_HAZE = b.comment("Цвет дымки от неба: днём голубая, на закате тёплая, ночью тёмная").define("skyHaze", true);
         SUNSET = b.comment("Тёплый свет на рассвете и закате").define("sunset", true);
         WEATHER = b.comment("Погода: в дождь и грозу рельеф темнее, а туман ближе").define("weather", true);
+        b.pop();
+
+        b.comment("Небо и воздух: тени облаков, туман в долинах, горизонт").push("atmosphere");
+        CLOUD_SHADOWS = b.comment("Тени облаков: по дальнему рельефу плывут тёмные пятна (0, выкл)").defineInRange("cloudShadows", 0.3, 0.0, 1.0);
+        MIST = b.comment("Туман в низинах: над водой и в долинах вдали белая дымка, гуще утром (0, выкл)").defineInRange("valleyMist", 0.4, 0.0, 1.0);
+        CURVATURE = b.comment("Кривизна земли: дальний край чуть уходит вниз за горизонт (0, плоско)").defineInRange("curvature", 0.25, 0.0, 1.0);
         b.pop();
 
         b.comment("Стык с чанками и блочный рельеф рядом").push("blocks");

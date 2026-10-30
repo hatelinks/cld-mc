@@ -42,8 +42,9 @@ final class FarRenderer {
     // x1, z1 и y0, y1: границы тайла для отсечения по полю зрения.
     // lo, hi: высоты по сетке 8x8 частей тайла (для выбора блочных тайлов рядом).
     private record Tile(long key, VertexBuffer vb, VertexBuffer water, double x0, double z0, double x1, double z1, float y0, float y1, float[] lo, float[] hi) {
-        boolean visible(FrustumIntersection f, Vec3 cam) {
-            return f.testAab((float) (x0 - cam.x) - 1, (float) (y0 - cam.y) - 1, (float) (z0 - cam.z) - 1,
+        // drop: насколько тайл может уйти вниз из-за кривизны земли
+        boolean visible(FrustumIntersection f, Vec3 cam, float drop) {
+            return f.testAab((float) (x0 - cam.x) - 1, (float) (y0 - cam.y) - 1 - drop, (float) (z0 - cam.z) - 1,
                     (float) (x1 - cam.x) + 1, (float) (y1 - cam.y) + 1, (float) (z1 - cam.z) + 1);
         }
 
@@ -148,7 +149,8 @@ final class FarRenderer {
         int st = FarConfig.STEP.get(), bs = FarConfig.BLOCK_SIZE.get();
         TileMesh.Style sty = new TileMesh.Style(FarConfig.MOUNTAINS.get(), FarConfig.CLEAR_WATER.get(), FarConfig.SMOOTH.get(), FarConfig.PIXEL.get(),
                 FarConfig.PILLARS.get(), FarConfig.PEAKS.get(), FarConfig.VALLEY_SHADE.get(), FarConfig.COLOR_NOISE.get(),
-                FarConfig.BLOCK_SIDES.get(), FarConfig.MESA_BANDS.get());
+                FarConfig.BLOCK_SIDES.get(), FarConfig.MESA_BANDS.get(), FarConfig.TREES.get(), FarConfig.ICE.get(), FarConfig.SHORE.get(),
+                FarConfig.RIVERS.get());
         if (st != step || !sty.equals(style) || bs != blockSize) {
             step = st;
             style = sty;
@@ -328,16 +330,17 @@ final class FarRenderer {
         set(sh, "VertRange", (float) vert);
         set(sh, "Pass", 0);
         lighting(mc, sh, cam, partial, rain);
+        atmosphere(mc, sh, cam, partial, dist);
         sh.apply();
         Uniform off = sh.CHUNK_OFFSET;
         Uniform pass = sh.getUniform("Pass");
         // тайлы за спиной и сбоку не рисуются
-        draw.removeIf(t -> !t.visible(fr, cam));
+        draw.removeIf(t -> !t.visible(fr, cam, curvDrop(dist)));
         for (Tile t : draw) drawTile(off, t, t.vb, cam);
         if (!blocky.isEmpty() && pass != null) {
             pass.set(1f);
             pass.upload();
-            for (Tile t : blocky) if (t.visible(fr, cam)) drawTile(off, t, t.vb, cam);
+            for (Tile t : blocky) if (t.visible(fr, cam, 0)) drawTile(off, t, t.vb, cam);
             pass.set(0f);
             pass.upload();
         }
@@ -345,6 +348,10 @@ final class FarRenderer {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.depthMask(false);
+        if (pass != null) {
+            pass.set(2f);
+            pass.upload();
+        }
         for (Tile t : draw) if (t.water != null) drawTile(off, t, t.water, cam);
         RenderSystem.depthMask(true);
         RenderSystem.disableBlend();
@@ -388,6 +395,30 @@ final class FarRenderer {
         }
         Uniform hu = sh.getUniform("HazeColor");
         if (hu != null) hu.set(hz[0], hz[1], hz[2]);
+    }
+
+    private static float curvDrop(double dist) { return (float) (FarConfig.CURVATURE.get() * 100); }
+
+    // Вода, тени облаков, туман в низинах и кривизна земли.
+    private static void atmosphere(Minecraft mc, ShaderInstance sh, Vec3 cam, float partial, double dist) {
+        set(sh, "Curv", (float) (FarConfig.CURVATURE.get() * 100 / (dist * dist)));
+        double secs = ((mc.level.getGameTime() % 72000) + partial) / 20.0;
+        set(sh, "GameTime", (float) secs);
+        Uniform w = sh.getUniform("WorldXZ");
+        if (w != null) w.set((float) Math.floorMod((long) Math.floor(cam.x), 16384) + (float) (cam.x - Math.floor(cam.x)),
+                (float) Math.floorMod((long) Math.floor(cam.z), 16384) + (float) (cam.z - Math.floor(cam.z)));
+        set(sh, "Waves", FarConfig.WAVES.get() ? 1 : 0);
+        boolean day = Math.cos(mc.level.getSunAngle(partial)) > 0;
+        set(sh, "Glint", (float) (FarConfig.GLINT.get() * (day ? 1 : 0.3)));
+        set(sh, "Reflect", FarConfig.REFLECT.get().floatValue());
+        set(sh, "CloudShadows", (float) (day ? FarConfig.CLOUD_SHADOWS.get() : 0));
+        Uniform co = sh.getUniform("CloudOffset");
+        if (co != null) co.set((float) (secs * 2.0 % 16384), (float) (secs * 0.7 % 16384));
+        // утром туман гуще: время суток 0, рассвет (в тиках 0 это утро, 6000 полдень)
+        long tod = mc.level.getDayTime() % 24000;
+        double morning = tod > 22500 || tod < 2500 ? 1 : 0.5;
+        set(sh, "Mist", (float) (FarConfig.MIST.get() * morning));
+        set(sh, "MistTop", (float) (dev.cld.tcw.gen.Macro.SEA + 22 - cam.y));
     }
 
     private static void drawTile(Uniform off, Tile t, VertexBuffer vb, Vec3 cam) {

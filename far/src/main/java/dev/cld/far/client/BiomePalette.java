@@ -32,6 +32,7 @@ final class BiomePalette implements TileMesh.Palette {
     private final Climate.ParameterList<ResourceKey<Biome>> params;
     private final Registry<Biome> biomes;
     private final Map<ResourceKey<Biome>, Integer> look = new ConcurrentHashMap<>();
+    private final Map<ResourceKey<Biome>, Double> forest = new ConcurrentHashMap<>();
     private final ResourceKey<Biome> subalpine = tcw("subalpine_forest"), meadow = tcw("alpine_meadow"), tundra = tcw("alpine_tundra"),
             scree = tcw("scree_slopes"), glacier = tcw("glacier"), volcanic = tcw("volcanic_slopes");
 
@@ -68,6 +69,29 @@ final class BiomePalette implements TileMesh.Palette {
     public int water(Terrain t, Terrain.Column c, double x, double z) {
         Biome b = biomes.get(biome(t, c, x, z));
         return b != null ? b.getWaterColor() & 0xFFFFFF : -1;
+    }
+
+    @Override
+    public double trees(Terrain t, Terrain.Column c, double x, double z) {
+        return forest.computeIfAbsent(biome(t, c, x, z), BiomePalette::density);
+    }
+
+    @Override
+    public boolean frozen(Terrain t, Terrain.Column c, double x, double z) {
+        Biome b = biomes.get(biome(t, c, x, z));
+        return b != null && b.getBaseTemperature() < 0.15f;
+    }
+
+    // Густота леса по имени биома (у модовых биомов тоже обычно forest, jungle, taiga в имени).
+    private static double density(ResourceKey<Biome> k) {
+        String p = k.location().getPath();
+        if (p.contains("jungle")) return p.contains("sparse") ? 0.5 : 1.3;
+        if (p.contains("dark_forest") || p.contains("mangrove")) return 1.2;
+        if (p.contains("forest") || p.contains("taiga") || p.contains("grove") || p.contains("woodland")) return p.contains("sparse") ? 0.4 : 1.0;
+        if (p.contains("swamp")) return 0.7;
+        if (p.contains("savanna") || p.contains("wooded")) return 0.3;
+        if (p.contains("plains") || p.contains("meadow")) return 0.06;
+        return 0;
     }
 
     private ResourceKey<Biome> biome(Terrain t, Terrain.Column c, double x, double z) {
