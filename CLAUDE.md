@@ -48,7 +48,7 @@
 | Мод | Карта |
 |---|---|
 | tcw (TelipailoCraft) | `docs/tcw.md` |
-| cld_far | `docs/far.md` (пишет тред «Улучшить cld_far») |
+| cld_far | `docs/cld_far.md` |
 | cld_pregen | `docs/pregen.md` |
 | cld_structures | `docs/structures.md` |
 | gdn (Горы до небес) | `docs/gdn.md` |
