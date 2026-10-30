@@ -42,7 +42,8 @@ final class ChunkMask {
     static boolean sodium() { return SODIUM_READY != null; }
 
     private int tex = -1, texSize;
-    private byte[] cells = new byte[0], uploaded = new byte[0];
+    private byte[] cells = new byte[0], uploaded = new byte[0], chunks = new byte[0];
+    private int calls, chunkOX = Integer.MIN_VALUE, chunkOZ;
     private ByteBuffer buf;
     int size, originX, originZ; // клетки, угол маски в чанках
     private boolean sodiumFailed;
@@ -52,8 +53,22 @@ final class ChunkMask {
         size = half * 2 + 1;
         originX = (int) Math.floor(camX / 16) - half;
         originZ = (int) Math.floor(camZ / 16) - half;
+        // чанки опрашиваются раз в 4 кадра или когда камера перешла в другой чанк, блочные метки каждый кадр
+        boolean again = calls++ % 4 == 0 || chunks.length != size * size || originX != chunkOX || originZ != chunkOZ;
+        if (!again) {
+            if (cells.length != chunks.length) cells = new byte[chunks.length];
+            System.arraycopy(chunks, 0, cells, 0, chunks.length);
+            return;
+        }
+        chunkOX = originX;
+        chunkOZ = originZ;
         if (cells.length != size * size) cells = new byte[size * size];
         else java.util.Arrays.fill(cells, (byte) 0);
+        fill(camX, camY, camZ, rd);
+        chunks = cells.clone();
+    }
+
+    private void fill(double camX, double camY, double camZ, double rd) {
         Minecraft mc = Minecraft.getInstance();
         ClientLevel level = mc.level;
         if (level == null) return;
