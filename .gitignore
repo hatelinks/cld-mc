@@ -20,3 +20,7 @@ qa/bench/cldbench/dist/
 sable_android/build/
 sable_android/dist/
 sable_android/native/work/
+autotest/build/
+autotest/dist/
+perf/build/
+perf/dist/
