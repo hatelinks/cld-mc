@@ -1,8 +1,0 @@
-{
-  "required": false,
-  "minVersion": "0.8",
-  "package": "dev.cld.gdn.mixin.cirrus",
-  "compatibilityLevel": "JAVA_21",
-  "client": ["CirrusCloudHeightMixin"],
-  "injectors": {"defaultRequire": 0}
-}
