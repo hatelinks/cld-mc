@@ -10,7 +10,11 @@
     "RingPositionsMixin",
     "NoiseFillMixin",
     "NoiseChunkAccessor",
-    "FluidPostProcessMixin"
+    "FluidPostProcessMixin",
+    "DiskFeatureMixin",
+    "StateTestingAccessor",
+    "CombiningAccessor",
+    "NotAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
