@@ -1,0 +1,3 @@
+This branch of Baritone is deprecated. It will no longer recieve updates. Updates to older versions of Minecraft will not be merged into this branch, even if a newer branch is not deprecated (this branch will be skipped). Bug reports that only affect deprecated branches will not be addressed.
+
+Baritone's primary development branch is now [`1.21.4`](https://github.com/cabaletta/baritone/tree/1.21.4). Click [here](https://github.com/cabaletta/baritone) to go to the current Baritone readme.
