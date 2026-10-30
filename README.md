@@ -16,13 +16,11 @@
 | Дальний рельеф (`cld_far`) | [`far/`](far/) | Лёгкая замена Distant Horizons для миров TelipailoCraft: рельеф за прорисовкой считается по сиду, без чанков. Свет, вода, леса, пресеты, настройки на F7, команды `/cldfar`. Нужен tcw, на сервере тоже ставить. | 1.0.0 | [docs/cld_far.md](docs/cld_far.md) |
 | Предпросмотр мира (`cld_pregen`) | [`pregen/`](pregen/) | Прегенерация с живой картой на экране создания мира. | 1.3.2 | [docs/pregen.md](docs/pregen.md) |
 | Структуры без наложений (`cld_structures`) | [`structures/`](structures/) | Структуры разных модов не появляются друг в друге. Конфиг `config/cld_structures.properties`. | 1.0.0 | [docs/structures.md](docs/structures.md) |
-| Горы до небес (`gdn`) | [`gdn/`](gdn/) | Рельеф jjtm как отдельные типы мира `gdn:h1024` и `gdn:h512`. modId тот же, что у jjtm, вместе не ставить. | 1.0.0 | [docs/gdn.md](docs/gdn.md) |
 | Главное меню (`cld_menu`) | [`menu/`](menu/) | Пиксельный пейзаж вместо панорамы, логотип TelipailoCraft, без Realms и «Моды». | 1.0.1 | [docs/menu.md](docs/menu.md) |
 | Экран загрузки (`cld_earlywindow`) | [`earlywindow/`](earlywindow/) | Свой экран загрузки, провайдер `cldwindow` в `config/fml.toml`. Сервис FML, jar кладётся в `mods/`. | 1.0.0 | [docs/earlywindow.md](docs/earlywindow.md) |
 | Ускорения клиента (`cld_perf`) | [`perf/`](perf/) | Ровный ограничитель кадров и мелкие клиентские правки по замерам. | 0.1.0 | [docs/perf.md](docs/perf.md) |
 | Sable для Android (`sable_android`) | [`sable_android/`](sable_android/) | Нативка Rapier для Sable на Android и прореживание тиков блоков Simulated. Только для Android. | 2.0.0 | [docs/sable_android.md](docs/sable_android.md) |
 | Автотест (`cld_autotest`) | [`autotest/`](autotest/) | Служебный, в игру не ставить: сам заходит в мир, меряет FPS, CPU, память, пишет JFR и выходит. | 0.1.3 | [docs/autotest.md](docs/autotest.md) |
-| JJThunder To The Max (порт) | [`jjtm/`](jjtm/) | Архив: неофициальный порт датапака 1.20.1 на 1.21.1 для личного использования (лицензия оригинала All Rights Reserved). Источник данных для gdn, не развивается. | 0.3.3 | [docs/jjtm.md](docs/jjtm.md) |
 
 ## Остальное
 

@@ -80,7 +80,7 @@ java -cp /tmp/tcw Dbg out.png  # маска суша/море/берег кру�
 | `DiskFeatureMixin` + `PrecheckSlotMixin`, `StateTestingAccessor`, `CombiningAccessor`, `NotAccessor` | `DiskFeature.placeColumn` | Сначала проверка условия по одному блоку (`Precheck`). Удешевило wythers stone_cliffs. |
 | `OreFeatureMixin` + `RuleTestAccessors` | `OreFeature.doPlace` | Не проверяет блоки облака руды, если рядом нечего заменять (`OreSkip`). |
 | `ReplaceBlobsMixin` | `ReplaceBlobsFeature.findTarget` | Пропускает секции без нужного блока в палитре. |
-| `client/CreateWorldScreenMixin` | `CreateWorldScreen.openFresh` TAIL | Тип мира tcw выбран по умолчанию (срабатывает позже, чем у gdn, поэтому выигрывает). |
+| `client/CreateWorldScreenMixin` | `CreateWorldScreen.openFresh` TAIL | Тип мира tcw выбран по умолчанию (срабатывает в TAIL, позже других модов с тем же хуком, поэтому выигрывает). |
 | `client/WorldTabMixin` | `CreateWorldScreen$WorldTab` init | Широкая кнопка «Карта мира» под «Тип мира». |
 | `cirrus/CirrusCloudHeightMixin` | Cirrus `cloudHeight` (необязательный) | Облака выше пропорционально высоте мира. |
 
