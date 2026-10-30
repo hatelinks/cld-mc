@@ -24,3 +24,5 @@ autotest/build/
 autotest/dist/
 perf/build/
 perf/dist/
+test_panel/build/
+test_panel/dist/
