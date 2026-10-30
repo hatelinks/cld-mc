@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.cld.deepcull.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": ["SectionOcclusionGraphMixin"],
+  "injectors": {"defaultRequire": 1}
+}
