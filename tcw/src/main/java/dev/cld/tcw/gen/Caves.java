@@ -98,10 +98,14 @@ public final class Caves {
     private final ThreadLocal<Gallery> galTL = ThreadLocal.withInitial(Gallery::new);
 
     Gallery gallery(double x, double z, Terrain.Column c, Gallery g) {
+        return gallery(x, z, () -> c, g);
+    }
+
+    // столбец нужен только там, где шум уже пропустил ход, поэтому его берём в самом конце
+    Gallery gallery(double x, double z, java.util.function.Supplier<Terrain.Column> cs, Gallery g) {
         if (g.lx == x && g.lz == z && g.owner == this) return g;
         g.lx = x; g.lz = z; g.owner = this;
         g.on = false;
-        if (c.height < Macro.SEA - 6) return g;
         double wx = x + 140 * galWx.noise(x / 650, z / 650), wz = z + 140 * galWz.noise(x / 650, z / 650);
         double f = 1.0 / 1100;
         double n = gal.noise(wx * f, wz * f);
@@ -113,6 +117,8 @@ public final class Caves {
         double wide = 0.5 + 0.5 * galWide.noise(x / 420, z / 420);
         double rw = 4 + 5 * wide;
         if (dist > rw * 1.6 || galWide.noise(x / 3100 + 40, z / 3100) < -0.45) return g;
+        Terrain.Column c = cs.get();
+        if (c.height < Macro.SEA - 6) return g;
         double rv = 3.5 + 0.4 * rw;
         double y = 10 + 45 * galBase.noise(x / 2500, z / 2500);
         y = Math.min(y, Math.min(c.macroHeight - 28, c.height - 12) - rv);
@@ -246,6 +252,10 @@ public final class Caves {
      * out[0] — уровень (верхний блок жидкости) для этого столбца, если есть.
      */
     public int fluid(int x, int y, int z, Terrain.Column c) {
+        return fluid(x, y, z, () -> c);
+    }
+
+    public int fluid(int x, int y, int z, java.util.function.Supplier<Terrain.Column> c) {
         Hall h = hall((int) Math.floor(x / HALL_CELL), (int) Math.floor(z / HALL_CELL));
         if (h != null && h.fluid != NONE && y <= h.level && hallShape(h, x, y, z) < 1.05) return h.fluid;
         Gallery g = gallery(x, z, c, galTL.get());
@@ -257,6 +267,10 @@ public final class Caves {
 
     /** Самый высокий уровень жидкости наших пещер в столбце (или MIN_Y - 1). */
     public int topFluidLevel(int x, int z, Terrain.Column c) {
+        return topFluidLevel(x, z, () -> c);
+    }
+
+    public int topFluidLevel(int x, int z, java.util.function.Supplier<Terrain.Column> c) {
         double top = MIN_Y - 1;
         Hall h = hall((int) Math.floor(x / HALL_CELL), (int) Math.floor(z / HALL_CELL));
         if (h != null && h.fluid != NONE) top = Math.max(top, h.level);

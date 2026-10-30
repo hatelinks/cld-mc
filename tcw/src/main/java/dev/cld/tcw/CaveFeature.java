@@ -28,7 +28,9 @@ public final class CaveFeature extends Feature<NoneFeatureConfiguration> {
         for (int j = 0; j < 16; j++)
             for (int i = 0; i < 16; i++) {
                 int x = o.getX() + i, z = o.getZ() + j;
-                Terrain.Column c = Worlds.column(t, x, z);
+                // столбец рельефа дорогой и нужен редко, считаем его только по запросу
+                Terrain.Column[] got = new Terrain.Column[1];
+                java.util.function.Supplier<Terrain.Column> c = () -> got[0] != null ? got[0] : (got[0] = Worlds.column(t, x, z));
                 int top = t.caves.topFluidLevel(x, z, c);
                 if (top < minY) continue;
                 for (int y = top; y > Math.max(minY, top - 64); y--) {
