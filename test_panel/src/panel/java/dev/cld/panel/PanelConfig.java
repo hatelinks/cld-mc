@@ -29,6 +29,12 @@ public final class PanelConfig {
     // Бинды как в Nodus: кнопка окна (id окна.номер строки) или команда Baritone на клавишу
     public Map<String, Integer> binds = new LinkedHashMap<>();
     public Map<String, Integer> commandBinds = new LinkedHashMap<>();
+    // Функции: скорость полёта (во сколько раз быстрее обычного), скорость свободной камеры (блоков за тик)
+    public int flySpeed = 2;
+    public double camSpeed = 1.0;
+    // Xray и поиск блоков: радиус в блоках и запросы поиска
+    public int espRadius = 64;
+    public List<String> search = new ArrayList<>();
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static PanelConfig instance;
@@ -53,6 +59,10 @@ public final class PanelConfig {
                     if (c.history == null) c.history = new ArrayList<>();
                     if (c.binds == null) c.binds = new LinkedHashMap<>();
                     if (c.commandBinds == null) c.commandBinds = new LinkedHashMap<>();
+                    if (c.search == null) c.search = new ArrayList<>();
+                    if (c.flySpeed < 1 || c.flySpeed > 10) c.flySpeed = 2;
+                    if (c.camSpeed < 0.25 || c.camSpeed > 5) c.camSpeed = 1.0;
+                    if (c.espRadius < 16 || c.espRadius > 160) c.espRadius = 64;
                     if (c.size < 0.5 || c.size > 2) c.size = 1.0;
                     return c;
                 }

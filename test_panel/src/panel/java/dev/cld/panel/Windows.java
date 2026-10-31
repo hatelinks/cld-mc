@@ -31,6 +31,8 @@ final class Windows {
         list.add(ToolWindows.settings(c));
         list.add(ToolWindows.waypoints(c));
         list.add(ToolWindows.radar(c));
+        list.add(FunctionWindows.functions(c));
+        list.add(FunctionWindows.search(c));
         return list;
     }
 

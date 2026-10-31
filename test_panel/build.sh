@@ -4,7 +4,7 @@
 set -e
 cd "$(dirname "$0")"
 LIBS=${LIBS:-../../libs}
-VERSION=${VERSION:-0.4.0}
+VERSION=${VERSION:-0.5.0}
 # nether-pathfinder (поиск пути на элитрах, с нативками) берём из официального jar Baritone без ProGuard
 NP_JAR=${NP_JAR:-$LIBS/baritone-unoptimized-neoforge-1.11.3.jar}
 if [ ! -f "$NP_JAR" ]; then
@@ -28,7 +28,7 @@ cp LICENSE build/classes/LICENSE-baritone
 sed -i.bak "s/\${version}/$VERSION/" build/classes/META-INF/neoforge.mods.toml && rm build/classes/META-INF/neoforge.mods.toml.bak
 cat > build/MANIFEST.MF <<EOF
 Manifest-Version: 1.0
-MixinConfigs: mixins.baritone.json
+MixinConfigs: mixins.baritone.json,mixins.cld_test_panel.json
 MixinConnector: baritone.launch.BaritoneMixinConnector
 Implementation-Title: cld_test_panel
 Implementation-Version: $VERSION

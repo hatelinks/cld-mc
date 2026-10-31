@@ -18,6 +18,8 @@ public abstract class Element {
     public String bindId;
     // Где мышь при отрисовке окна (в координатах панели), ставит Window.render
     static int mouseX = -1, mouseY = -1;
+    // Подсказка строки под мышью, рисует PanelScreen поверх окон
+    public static String tooltip;
 
     public int height() {
         return H;
@@ -180,7 +182,11 @@ public abstract class Element {
 
     // Список со своей прокруткой: настройки, путевые точки, радар
     public static class ListView extends Element {
-        public record Row(String text, int color, Consumer<Integer> click) {}
+        public record Row(String text, int color, Consumer<Integer> click, Supplier<String> tip) {
+            public Row(String text, int color, Consumer<Integer> click) {
+                this(text, color, click, null);
+            }
+        }
 
         final Supplier<List<Row>> rows;
         final int visible;
@@ -206,7 +212,10 @@ public abstract class Element {
             for (int i = 0; i < visible && offset + i < list.size(); i++) {
                 Row r = list.get(offset + i);
                 int ry = y + i * H;
-                if (hover && mouseY >= ry && mouseY < ry + H && mouseX < x + tw) g.fill(x + 1, ry, x + tw - 1, ry + H, 0x30FFFFFF);
+                if (hover && mouseY >= ry && mouseY < ry + H && mouseX < x + tw) {
+                    g.fill(x + 1, ry, x + tw - 1, ry + H, 0x30FFFFFF);
+                    if (r.tip() != null) tooltip = r.tip().get();
+                }
                 String s = r.text();
                 if (font.width(s) > tw - 6) s = font.plainSubstrByWidth(s, tw - 10) + "..";
                 g.drawString(font, s, x + 4, ry + 2, r.color(), true);

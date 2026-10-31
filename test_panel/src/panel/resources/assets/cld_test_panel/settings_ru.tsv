@@ -1,0 +1,246 @@
+allowBreak	Разрешить ломать блоки на пути
+allowBreakAnyway	Блоки, которые можно ломать, даже если allowBreak выключен
+allowSprint	Разрешить бег
+allowPlace	Разрешить ставить блоки (столбы, мосты)
+allowPlaceInFluidsSource	Разрешить ставить блоки в источники воды и лавы
+allowPlaceInFluidsFlow	Разрешить ставить блоки в текущую жидкость
+allowInventory	Разрешить перекладывать вещи из инвентаря на панель быстрого доступа
+ticksBetweenInventoryMoves	Пауза в тиках между перекладываниями в инвентаре
+inventoryMoveOnlyIfStationary	Перекладывать вещи только стоя на месте
+assumeExternalAutoTool	Не выбирать инструмент самому, считать, что это делает другой мод
+autoTool	Сам выбирать лучший инструмент
+blockPlacementPenalty	Штраф пути за установку блока, чтобы беречь блоки
+blockBreakAdditionalPenalty	Небольшой штраф за ломание, чтобы реже ломать без нужды
+jumpPenalty	Штраф за прыжки (тратят голод)
+walkOnWaterOnePenalty	Штраф за ходьбу по воде (быстро тратит голод)
+strictLiquidCheck	Не ломать блоки рядом с жидкостью
+allowWaterBucketFall	Разрешить прыгать с любой высоты и ставить воду под себя
+assumeWalkOnWater	Считать, что по стоячей воде можно ходить как по блокам
+assumeWalkOnLava	Считать, что по лаве можно ходить (нужна огнестойкость и мод)
+assumeStep	Считать, что есть автоподъём на ступень (не прыгать)
+assumeSafeWalk	Считать, что есть безопасная ходьба у края (не приседать)
+allowJumpAtBuildLimit	Разрешить паркур на высоте предела строительства
+allowJumpAt256	Старое имя предыдущей настройки, ничего не делает
+allowParkourAscend	Паркур с подъёмом на блок (нужен allowParkour)
+allowDiagonalDescend	Спуск по диагонали (быстрее, но чуть опаснее)
+allowDiagonalAscend	Подъём по диагонали
+allowDownward	Разрешить копать блок прямо под ногами
+acceptableThrowawayItems	Блоки, которые можно тратить на столбы и мосты
+blocksToAvoid	Блоки, которые обходить стороной
+blocksToDisallowBreaking	Блоки, которые нельзя ломать
+blocksToAvoidBreaking	Блоки, которые лучше не ломать, но можно при нужде
+avoidBreakingMultiplier	Множитель цены ломания тех блоков (больше 1 значит охотнее ломать)
+buildIgnoreBlocks	При постройке считать эти блоки воздухом
+buildSkipBlocks	При постройке считать эти блоки уже правильными
+buildValidSubstitutes	Какие блоки подходят вместо нужного в схеме
+buildSubstitutes	Чем заменять блоки схемы при постройке
+okIfAir	Блоки схемы, вместо которых нужен только воздух
+buildIgnoreExisting	Считать любые уже стоящие блоки правильными
+buildIgnoreDirection	Не обращать внимание на поворот блоков (например, глазурованной керамики)
+buildIgnoreProperties	Свойства блоков, которые не проверять при постройке
+avoidUpdatingFallingBlocks	Не ломать блок рядом с висящим песком или гравием
+allowVines	Лазать по лианам
+allowWalkOnBottomSlab	Ходить по нижним плитам (выключить, если путь сбоит)
+allowParkour	Прыжки через ямы (ненадёжно, может падать)
+allowParkourPlace	Паркур с установкой блока
+considerPotionEffects	Учитывать эффекты (спешка, усталость) при оценке ломания
+sprintAscends	Бежать и прыгать заранее на подъёмах
+overshootTraverse	Засчитывать шаг, даже если проскочил на блок дальше
+pauseMiningForFallingBlocks	Ждать, пока упадёт песок или гравий, перед следующим шагом
+rightClickSpeed	Тиков между кликами правой кнопкой
+randomLooking113	Случайный поворот головы по горизонтали каждый тик, в градусах
+blockReachDistance	Дальность, с которой ломает и ставит блоки
+blockBreakSpeed	Тиков между блоками при ломании
+randomLooking	Случайный поворот головы каждый тик, в градусах
+costHeuristic	Главная настройка поиска пути A*: больше значит быстрее, но путь хуже
+pathingMaxChunkBorderFetch	Сколько раз заглядывать за загруженные чанки, прежде чем считать путь законченным
+backtrackCostFavoringCoefficient	Предпочитать уже пройденные места (1.0 выключает)
+avoidance	Обходить мобов и спавнеры (заметно нагружает)
+mobSpawnerAvoidanceCoefficient	Насколько обходить спавнеры (1.0 не обходить)
+mobSpawnerAvoidanceRadius	Радиус обхода спавнеров
+mobAvoidanceCoefficient	Насколько обходить мобов (1.0 не обходить)
+mobAvoidanceRadius	Радиус обхода мобов
+rightClickContainerOnArrival	Открывать сундук или печь, когда дошёл до него
+enterPortal	Заходить в портал целиком, а не останавливаться перед ним
+minimumImprovementRepropagation	Не пересчитывать мелкие улучшения пути
+cutoffAtLoadBoundary	Обрезать путь на границе загруженных чанков
+maxCostIncrease	Насколько может подорожать шаг, прежде чем путь пересчитают
+costVerificationLookahead	За сколько шагов до непроходимого места остановиться
+pathCutoffFactor	Какую часть длинного пути проходить до пересчёта
+pathCutoffMinimumLength	Обрезать путь только если он длиннее этого числа шагов
+planningTickLookahead	Когда до конца участка осталось столько тиков, считать следующий
+pathingMapDefaultSize	Начальный размер таблицы поиска пути
+pathingMapLoadFactor	Заполненность таблицы поиска пути (меньше быстрее, но больше памяти)
+maxFallHeightNoWater	С какой высоты можно падать без ведра воды
+maxFallHeightBucket	С какой высоты можно падать с ведром воды
+allowOvershootDiagonalDescend	Бежать через спуск с диагональю
+simplifyUnloadedYCoord	Для далёкой цели в незагруженных чанках не учитывать высоту
+repackOnAnyBlockChange	Пересохранять кэш чанка при любом изменении блока
+movementTimeoutTicks	Отменить шаг, если он идёт дольше оценки на столько тиков
+primaryTimeoutMS	Сколько мс искать путь, если какой-то уже найден
+failureTimeoutMS	Сколько мс искать путь максимум
+planAheadPrimaryTimeoutMS	То же для расчёта следующего участка на ходу
+planAheadFailureTimeoutMS	Максимум для расчёта следующего участка на ходу
+slowPath	Медленный поиск пути для отладки
+slowPathTimeDelayMS	Пауза между узлами в медленном поиске, мс
+slowPathTimeoutMS	Таймаут медленного поиска, мс
+doBedWaypoints	Сохранять точку у кровати, когда на ней спишь
+doDeathWaypoints	Сохранять точку смерти
+chunkCaching	Запоминать чанки на диске, чтобы искать путь далеко
+pruneRegionsFromRAM	Выгружать из памяти кэш дальше 1024 блоков
+chunkPackerQueueMaxSize	Максимум чанков в очереди на сохранение в кэш
+backfill	Засыпать за собой выкопанное
+logAsToast	Показывать сообщения всплывающим окном справа сверху
+toastTimer	Сколько мс висит всплывающее сообщение
+chatDebug	Писать в чат отладочные сообщения
+chatControl	Управление Baritone командами в чате
+chatControlAnyway	То же, на случай если другой клиент его выключает
+renderPath	Рисовать путь
+renderPathAsLine	Рисовать путь линией
+renderGoal	Рисовать цель
+renderGoalAnimated	Анимированная цель вместо простой коробки
+renderSelectionBoxes	Рисовать блоки, которые сломает, поставит или пройдёт
+renderGoalIgnoreDepth	Цель видно сквозь блоки
+renderGoalXZBeacon	Цель по X Z рисовать лучом маяка
+renderSelectionBoxesIgnoreDepth	Блоки пути видно сквозь стены
+renderPathIgnoreDepth	Путь видно сквозь блоки
+pathRenderLineWidthPixels	Толщина линии пути, пиксели
+goalRenderLineWidthPixels	Толщина линии цели, пиксели
+fadePath	Путь бледнеет вдали и пропадает через 30 шагов
+freeLook	Можно крутить камерой, пока Baritone идёт
+blockFreeLook	Ломать и ставить блоки, не поворачивая камеру
+elytraFreeLook	Лететь на элитрах, не поворачивая камеру
+smoothLook	Плавный поворот головы
+elytraSmoothLook	Плавный поворот на элитрах
+smoothLookTicks	За сколько тиков сглаживать поворот
+remainWithExistingLookDirection	По возможности не менять направление взгляда
+antiCheatCompatibility	Вести себя аккуратнее ради серверных античитов
+pathThroughCachedOnly	Искать путь только по кэшу (не включать)
+sprintInWater	Плыть бегом
+blacklistClosestOnFailure	Если к блоку не пройти, пометить его и искать другой
+renderCachedChunks	Рисовать кэшированные чанки полупрозрачными
+cachedChunksOpacity	Прозрачность кэшированных чанков, от 0 до 1
+prefixControl	Разрешить команды с префиксом в чате
+prefix	Префикс команд в чате
+shortBaritonePrefix	Короткая подпись [B] в чате вместо [Baritone]
+useMessageTag	Метка сообщения вместо подписи в чате
+echoCommands	Повторять в чате выполненные команды
+censorCoordinates	Скрывать координаты в сообщениях
+censorRanCommands	Скрывать аргументы выполненных команд
+itemSaver	Не доламывать инструмент до конца
+itemSaverThreshold	Сколько прочности оставлять инструменту
+preferSilkTouch	Предпочитать инструмент с шёлковым касанием
+walkWhileBreaking	Не останавливаться, пока ломает блок на пути
+splicePath	Склеивать новый участок пути с текущим
+maxPathHistoryLength	Сколько шагов пройденного пути помнить
+pathHistoryCutoffAmount	Сколько шагов отрезать от длинной истории пути
+mineGoalUpdateInterval	Раз в сколько тиков заново искать руду при копании
+maxCachedWorldScanCount	Сколько найденных блоков в кэше хватает, чтобы перестать искать
+mineMaxOreLocationsCount	Сколько мест руды искать и помнить максимум
+minYLevelWhileMining	Не копать ниже этой высоты (0 выключает)
+maxYLevelWhileMining	Не копать выше этой высоты
+allowOnlyExposedOres	Копать только открытую руду (видимую с воздуха)
+allowOnlyExposedOresDistance	Радиус проверки открытой руды
+exploreForBlocks	Если блок не найден, бродить и искать, а не сдаваться
+worldExploringChunkOffset	Сдвиг ближайшего незагруженного чанка при исследовании
+exploreChunkSetMinimumSize	Сколько ближних чанков брать при исследовании
+exploreMaintainY	Держать высоту при исследовании (-1 выключает)
+replantCrops	Пересаживать урожай на ферме
+replantNetherWart	Пересаживать адский нарост
+farmMaxScanSize	Сколько блоков фермы искать максимум
+farmWaitForGrowth	Ждать, пока урожай дозреет, а не заканчивать
+extendCacheOnThreshold	Если в кэше нашлось мало блоков, искать и в мире
+buildInLayers	Строить по слоям
+layerOrder	Порядок слоёв: выкл снизу вверх, вкл сверху вниз
+layerHeight	Высота одного слоя
+startAtLayer	С какого слоя начинать постройку
+skipFailedLayers	Пропускать слой, который не получается построить
+buildOnlySelection	Строить только выделенную часть схемы
+buildRepeat	На сколько сдвигаться для повтора постройки
+buildRepeatCount	Сколько раз повторять постройку
+buildRepeatSneaky	Не сообщать схеме о сдвиге при повторе
+breakFromAbove	Разрешить ломать блок, стоя на нём (опытное)
+goalBreakFromAbove	Ставить цель сверху и сбоку от блоков на слом
+mapArtMode	Режим картины на карте: важен только верхний блок
+okIfWater	Не трогать блоки, где сейчас вода
+incorrectSize	Сколько неправильных блоков помнить максимум
+breakCorrectBlockPenaltyMultiplier	Штраф за ломание уже правильного блока схемы
+placeIncorrectBlockPenaltyMultiplier	Штраф за установку неправильного блока
+schematicOrientationX	Начало схемы с большего X
+schematicOrientationY	Начало схемы с большего Y
+schematicOrientationZ	Начало схемы с большего Z
+buildSchematicRotation	Повернуть схему перед постройкой
+buildSchematicMirror	Отразить схему перед постройкой
+schematicFallbackExtension	Расширение файла схемы, если не указано
+builderTickScanRadius	Радиус проверки изменений каждый тик при постройке
+mineScanDroppedItems	При копании собирать выпавшие нужные предметы
+mineDropLoiterDurationMSThanksLouca	Сколько мс ждать выпадения предмета после руды
+distanceTrim	Отбрасывать далёкие неправильные блоки (быстрее, но менее надёжно)
+cancelOnGoalInvalidation	Отменять путь, если цель изменилась
+axisHeight	Высота для команды axis
+disconnectOnArrival	Выйти с сервера, когда дошёл до цели
+legitMine	Копать честно, без знания, где руда
+legitMineYLevel	Высота для честной шахты
+legitMineIncludeDiagonals	Видеть руду по диагонали от найденной
+forceInternalMining	Стараться ломать два нужных блока сразу
+internalMiningAirException	Только если рядом воздух (для предыдущей настройки)
+followOffsetDistance	На каком расстоянии держаться от того, за кем следуешь
+followOffsetDirection	С какой стороны держаться от того, за кем следуешь, в градусах
+followRadius	Насколько близко нужно подойти к точке следования
+followTargetMaxDistance	Максимальное расстояние до того, за кем следуешь
+disableCompletionCheck	Не проверять, закончено ли исследование
+cachedChunksExpirySeconds	Через сколько секунд удалять кэш чанков (-1 никогда)
+verboseCommandExceptions	Печатать все ошибки команд целиком в лог
+yLevelBoxSize	Размер коробки для цели по высоте
+colorCurrentPath	Цвет текущего пути
+colorNextPath	Цвет следующего участка пути
+colorBlocksToBreak	Цвет блоков на слом
+colorBlocksToPlace	Цвет блоков на установку
+colorBlocksToWalkInto	Цвет блоков, через которые пройдёт
+colorBestPathSoFar	Цвет лучшего пути при поиске
+colorMostRecentConsidered	Цвет последнего рассмотренного пути
+colorGoalBox	Цвет коробки цели
+colorInvertedGoalBox	Цвет обратной цели
+colorSelection	Цвет выделений
+colorSelectionPos1	Цвет первой точки выделения
+colorSelectionPos2	Цвет второй точки выделения
+selectionOpacity	Прозрачность выделения
+selectionLineWidth	Толщина линии выделения, пиксели
+renderSelection	Рисовать выделения
+renderSelectionIgnoreDepth	Выделения видно сквозь блоки
+renderSelectionCorners	Рисовать углы выделения
+useSwordToMine	Копать мечом
+desktopNotifications	Уведомления на рабочем столе
+notificationOnPathComplete	Уведомлять, когда путь пройден
+notificationOnFarmFail	Уведомлять о сбое фермы
+notificationOnBuildFinished	Уведомлять об окончании постройки
+notificationOnExploreFinished	Уведомлять об окончании исследования
+notificationOnMineFail	Уведомлять о сбое копания
+elytraSimulationTicks	Сколько тиков полёта на элитрах просчитывать без ракеты
+elytraPitchRange	Насколько можно отклоняться по высоте от прямой к цели
+elytraFireworkSpeed	Ниже какой скорости запускать ракету
+elytraFireworkSetbackUseDelay	Пауза перед ракетой после отката сервером
+elytraMinimumAvoidance	Запас вокруг игрока при выборе точки полёта
+elytraConserveFireworks	Не тратить ракеты на снижении
+elytraRenderRaytraces	Рисовать лучи расчёта полёта
+elytraRenderHitboxRaytraces	Рисовать лучи по хитбоксу при расчёте полёта
+elytraRenderSimulation	Рисовать лучший просчитанный путь полёта
+elytraAutoJump	Самому дойти до обрыва и прыгнуть, чтобы взлететь
+elytraNetherSeed	Сид Незера для дальнего полёта на элитрах
+elytraPredictTerrain	Угадывать рельеф Незера по сиду
+elytraAutoSwap	Менять элитры, когда кончается прочность
+elytraMinimumDurability	При какой прочности менять элитры
+elytraMinFireworksBeforeLanding	Сколько ракет оставить, прежде чем садиться
+elytraAllowEmergencyLand	Садиться, если кончаются прочность или ракеты
+elytraTimeBetweenCacheCullSecs	Раз в сколько секунд чистить кэш дальних чанков Незера
+elytraCacheCullDistance	Дальше какого расстояния чистить этот кэш
+elytraAllowLandOnNetherFortress	Можно садиться на адский кирпич
+elytraTermsAccepted	Условия полёта на элитрах прочитаны
+elytraChatSpam	Подробные сообщения в чате при полёте
+elytraCustomAllocator	Свой распределитель памяти для поиска пути (меньше памяти)
+elytraAllowTightSpaces	Разрешить лететь в тесных местах (опасно)
+elytraAllowAboveRoof	Разрешить летать выше потолка Незера
+elytraUseCache	Брать кэш Baritone для полёта
+elytraAllowAboveBuildLimit	Разрешить летать выше предела строительства
+elytraLongDistanceThreshold	С какой дальности полёта подниматься выше предела
+allowWalkOnMagmaBlocks	Ходить по магме, приседая

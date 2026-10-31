@@ -57,6 +57,8 @@ public final class Panel {
     private static void tick() {
         Minecraft mc = Minecraft.getInstance();
         if (!hooked && mc.player != null) hookLogger();
+        Cheats.tick();
+        BlockEsp.tick();
         while (OPEN.consumeClick()) if (mc.screen == null) mc.setScreen(new PanelScreen());
         while (CONSOLE.consumeClick()) if (mc.screen == null) mc.setScreen(new ConsoleScreen(null));
     }
@@ -64,6 +66,7 @@ public final class Panel {
     // Сообщения Baritone идут и в чат, и в консоль панели
     private static void hookLogger() {
         hooked = true;
+        BlockEsp.register();
         Consumer<Component> old = BaritoneAPI.getSettings().logger.value;
         BaritoneAPI.getSettings().logger.value = old.andThen(Panel::log);
     }

@@ -23,7 +23,13 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 import java.util.Locale;
 
@@ -31,6 +37,8 @@ import java.util.Locale;
 final class ToolWindows {
     private static final String[] RADAR_MODES = {"все", "враги", "игроки", "мирные"};
     private static int radarMode;
+    // Краткие описания настроек Baritone по-русски: имя, табуляция, текст
+    private static Map<String, String> descriptions;
 
     private ToolWindows() {}
 
@@ -70,6 +78,11 @@ final class ToolWindows {
         int color = bool ? (Boolean.TRUE.equals(st.value) ? 0xFF70E070 : 0xFFA0A0A0) : changed ? 0xFFFFD060 : 0xFFE0E0E0;
         String name = st.getName();
         String shown = val;
+        // текст подсказки собирается только для строки под мышью
+        java.util.function.Supplier<String> tip = () -> {
+            String d = describe(name);
+            return name + (d == null ? "" : ": " + d) + "\nПо умолчанию: " + defaultText(st);
+        };
         return new Row(name + " = " + shown, color, b -> {
             if (b == 1) {
                 st.reset();
@@ -82,7 +95,34 @@ final class ToolWindows {
             } else {
                 edit.edit(name + " " + shown);
             }
-        });
+        }, tip);
+    }
+
+    private static String defaultText(Settings.Setting<?> st) {
+        try {
+            return SettingsUtil.settingDefaultToString(st);
+        } catch (Exception e) {
+            return String.valueOf(st.defaultValue);
+        }
+    }
+
+    static String describe(String name) {
+        if (descriptions == null) {
+            Map<String, String> m = new HashMap<>();
+            try (InputStream in = ToolWindows.class.getResourceAsStream("/assets/cld_test_panel/settings_ru.tsv")) {
+                if (in != null) {
+                    BufferedReader r = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+                    for (String line; (line = r.readLine()) != null; ) {
+                        int t = line.indexOf('\t');
+                        if (t > 0) m.put(line.substring(0, t).trim(), line.substring(t + 1).trim());
+                    }
+                }
+            } catch (Exception e) {
+                Panel.log("Нет описаний настроек: " + e);
+            }
+            descriptions = m;
+        }
+        return descriptions.get(name);
     }
 
     // Путевые точки Baritone для текущего мира

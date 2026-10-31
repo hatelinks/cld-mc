@@ -1,6 +1,7 @@
 package dev.cld.panel;
 
 import dev.cld.panel.ui.Element;
+import dev.cld.panel.ui.Theme;
 import dev.cld.panel.ui.Window;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -49,12 +50,31 @@ public class PanelScreen extends Screen {
         }
         g.drawString(font, "cld_test_panel  Y закрыть, U консоль, средний клик по кнопке: бинд" + (Panel.full() ? "" : "  (чужой сервер: только Baritone)"), 4, (int) (height / s) - 11, 0xA0FFFFFF, true);
         int sw = (int) (width / s), sh = (int) (height / s);
+        Element.tooltip = null;
         for (Window w : Panel.windows()) {
             // после смены размера интерфейса окно не должно уехать за край
             w.state.x = Math.max(0, Math.min(sw - w.width, w.state.x));
             w.state.y = Math.max(0, Math.min(sh - Window.TITLE, w.state.y));
             w.render(g, font, mx, my, false);
         }
+        if (Element.tooltip != null && drag == null) tip(g, Element.tooltip, mx, my, sw, sh);
+        g.pose().popPose();
+    }
+
+    // Тёмная рамка с текстом у мыши, длинный текст переносится
+    private void tip(GuiGraphics g, String text, int mx, int my, int sw, int sh) {
+        var lines = font.split(Component.literal(text), 200);
+        int w = 0;
+        for (var l : lines) w = Math.max(w, font.width(l));
+        int h = lines.size() * 10;
+        int x = mx + 10, y = my + 10;
+        if (x + w + 6 > sw) x = Math.max(0, mx - w - 10);
+        if (y + h + 6 > sh) y = Math.max(0, sh - h - 6);
+        g.pose().pushPose();
+        g.pose().translate(0, 0, 400);
+        g.fill(x - 3, y - 3, x + w + 3, y + h + 1, 0xF0101018);
+        g.renderOutline(x - 3, y - 3, w + 6, h + 4, Theme.accent(0xFF));
+        for (int i = 0; i < lines.size(); i++) g.drawString(font, lines.get(i), x, y + i * 10, 0xFFE8E8E8, false);
         g.pose().popPose();
     }
 
