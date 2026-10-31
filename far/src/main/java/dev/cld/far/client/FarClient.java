@@ -92,8 +92,8 @@ public final class FarClient {
         NeoForge.EVENT_BUS.addListener(FarClient::onScreen);
     }
 
-    // Кнопка настроек: в "Настройках" справа от строки с полем зрения (Distant Horizons ставит свою слева),
-    // и в "Настройках графики" в правом верхнем углу.
+    // кнопка настроек: в Настройках справа от строки с полем зрения, в меню паузы над шестерёнкой у Открыть для сети,
+    // в Настройках графики в правом верхнем углу
     private static void onScreen(net.neoforged.neoforge.client.event.ScreenEvent.Init.Post e) {
         net.minecraft.client.gui.screens.Screen screen = e.getScreen();
         int x, y;
@@ -109,8 +109,24 @@ public final class FarClient {
             x = Math.min(right + 4, screen.width - 22);
             y = row.getY();
         } else if (screen instanceof net.minecraft.client.gui.screens.PauseScreen ps && ps.showsPauseMenu() && FarConfig.PAUSE_BUTTON.get()) {
-            x = screen.width - 26;
-            y = 6;
+            // над кнопкой справа от Открыть для сети (шестерёнка), чтобы не лезть на TC Моды в углу
+            String lan = net.minecraft.client.resources.language.I18n.get("menu.shareToLan");
+            net.minecraft.client.gui.components.AbstractWidget row = null;
+            for (var l : e.getListenersList())
+                if (l instanceof net.minecraft.client.gui.components.AbstractWidget w && w.getMessage().getString().equals(lan)) row = w;
+            if (row != null) {
+                int right = row.getX() + row.getWidth();
+                // ровно над ближайшей кнопкой справа в том же ряду, а если её нет, на её обычном месте
+                x = Integer.MAX_VALUE;
+                for (var l : e.getListenersList())
+                    if (l instanceof net.minecraft.client.gui.components.AbstractWidget w && w.getY() == row.getY() && w.getX() >= right) x = Math.min(x, w.getX());
+                if (x == Integer.MAX_VALUE) x = right + 4;
+                y = row.getY() - 24;
+            } else {
+                // по сети кнопки Открыть для сети нет: под TC Моды в правом углу
+                x = screen.width - 26;
+                y = 30;
+            }
         } else if (screen instanceof net.minecraft.client.gui.screens.options.VideoSettingsScreen) {
             x = screen.width - 26;
             y = 6;

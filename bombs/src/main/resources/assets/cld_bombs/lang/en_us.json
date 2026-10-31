@@ -2,6 +2,8 @@
   "item.cld_bombs.leveled": "%s, level %s",
   "tooltip.cld_bombs.radius": "Blast radius: %s",
   "tooltip.cld_bombs.obsidian": "Breaks obsidian",
-  "tooltip.cld_bombs.upgrade": "Next level at a crafting table: bomb and %s gunpowder (TNT = %s)",
-  "cld_bombs.configuration.title": "Leveled Bombs"
+  "tooltip.cld_bombs.upgrade": "Upgrade at a crafting table: bomb plus any gunpowder or TNT. Next level costs %s gunpowder, TNT = %s",
+  "cld_bombs.configuration.title": "Leveled Bombs",
+  "tooltip.cld_bombs.water": "Clears water",
+  "tooltip.cld_bombs.fluids": "Clears lava and other fluids"
 }

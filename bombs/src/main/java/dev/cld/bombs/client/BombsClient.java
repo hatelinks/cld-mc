@@ -27,6 +27,8 @@ public final class BombsClient {
         int l = Levels.of(s);
         double r = Levels.radius(bomb.getType(), l);
         e.getToolTip().add(Component.translatable("tooltip.cld_bombs.radius", String.format("%.1f", r)).withStyle(ChatFormatting.GRAY));
+        if (l >= Cfg.i(Cfg.WATER_LEVEL)) e.getToolTip().add(Component.translatable("tooltip.cld_bombs.water").withStyle(ChatFormatting.BLUE));
+        if (l >= Cfg.i(Cfg.FLUID_LEVEL)) e.getToolTip().add(Component.translatable("tooltip.cld_bombs.fluids").withStyle(ChatFormatting.GOLD));
         if (Levels.breaksObsidian(l)) e.getToolTip().add(Component.translatable("tooltip.cld_bombs.obsidian").withStyle(ChatFormatting.DARK_PURPLE));
         if (l < Levels.max()) {
             e.getToolTip().add(Component.translatable("tooltip.cld_bombs.upgrade", Levels.cost(l + 1), Cfg.i(Cfg.TNT_POWDER)).withStyle(ChatFormatting.DARK_GRAY));

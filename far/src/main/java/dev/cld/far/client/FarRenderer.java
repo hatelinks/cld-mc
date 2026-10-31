@@ -401,6 +401,17 @@ final class FarRenderer {
             pass.set(1f);
             pass.upload();
             for (Tile t : blocky) if (t.visible(fr, cam, 0)) drawTile(off, t, t.vb, cam);
+            // грубые тайлы ещё раз под блочными, на дальней плоскости и без записи глубины: заполняют только пиксели,
+            // где блочный тайл ничего не нарисовал (на его краю грубый рельеф снаружи бывает выше, стенки нет, видно небо)
+            pass.set(3f);
+            pass.upload();
+            RenderSystem.depthMask(false);
+            for (Tile t : draw) {
+                boolean under = false;
+                for (Tile bt : blocky) if (t.x0 < bt.x1 && bt.x0 < t.x1 && t.z0 < bt.z1 && bt.z0 < t.z1) { under = true; break; }
+                if (under) drawTile(off, t, t.vb, cam);
+            }
+            RenderSystem.depthMask(true);
             pass.set(0f);
             pass.upload();
         }
