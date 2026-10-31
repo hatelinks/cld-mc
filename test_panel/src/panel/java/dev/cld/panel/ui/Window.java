@@ -51,7 +51,8 @@ public class Window {
         int color = Theme.color(state.color);
         Theme.current = color;
         int h = height();
-        g.fill(x, y, x + w, y + h, Theme.BODY);
+        // на экране панели фон плотный, чтобы окно сверху не просвечивало; на HUD полупрозрачный
+        g.fill(x, y, x + w, y + h, hud ? Theme.BODY : 0xFF141414);
         g.fill(x, y, x + w, y + TITLE, 0xE0000000 | color);
         g.drawString(font, title, x + 4, y + 3, 0xFFFFFFFF, true);
         if (!hud) {

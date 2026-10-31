@@ -92,7 +92,10 @@ public final class Panel {
         double s = scale();
         g.pose().pushPose();
         g.pose().scale((float) s, (float) s, 1);
-        for (Window w : windows()) if (w.state.pinned) w.render(g, mc.font, -1, -1, true);
+        for (Window w : windows()) if (w.state.pinned) {
+            w.render(g, mc.font, -1, -1, true);
+            g.flush();
+        }
         g.pose().popPose();
     }
 

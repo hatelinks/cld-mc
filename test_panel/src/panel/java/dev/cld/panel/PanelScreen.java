@@ -68,6 +68,8 @@ public class PanelScreen extends Screen {
             // раскрытое окно целиком на экране: если не влезает снизу, поднимаем
             w.state.y = Math.max(0, Math.min(sh - Math.min(w.height(), sh), w.state.y));
             w.render(g, font, mx, my, false);
+            // текст копится в буфере и рисуется в конце; сбрасываем после каждого окна, иначе текст нижнего окна проступает сквозь верхнее
+            g.flush();
         }
         if (Element.tooltip != null && drag == null) tip(g, Element.tooltip, mx, my, sw, sh);
         g.pose().popPose();
