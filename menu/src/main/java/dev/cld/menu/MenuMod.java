@@ -27,7 +27,8 @@ public final class MenuMod {
         bus.addListener(FMLClientSetupEvent.class, e -> StartupTimer.setup());
         bus.addListener(FMLLoadCompleteEvent.class, e -> StartupTimer.loaded());
         mod.registerExtensionPoint(IConfigScreenFactory.class, (c, parent) -> new OurModsScreen(parent));
-        NeoForge.EVENT_BUS.addListener(MenuMod::ourModsButton);
+        // последним, чтобы видеть кнопки других модов и не лечь на них
+        NeoForge.EVENT_BUS.addListener(net.neoforged.bus.api.EventPriority.LOWEST, false, ScreenEvent.Init.Post.class, MenuMod::ourModsButton);
         bus.addListener(RegisterClientReloadListenersEvent.class,
                 e -> e.registerReloadListener((ResourceManagerReloadListener) rm -> Landscape.texturesChanged()));
         NeoForge.EVENT_BUS.addListener(TitleButtons::onInit);
@@ -40,8 +41,19 @@ public final class MenuMod {
     private static void ourModsButton(ScreenEvent.Init.Post e) {
         Screen s = e.getScreen();
         if (!(s instanceof OptionsScreen) && !(s instanceof PauseScreen p && p.showsPauseMenu())) return;
+        int w = 100, y = 6, x = s.width - w - 8;
+        // если в углу уже есть чужая кнопка, сдвигаемся левее неё с зазором
+        for (boolean moved = true; moved; ) {
+            moved = false;
+            for (var l : e.getListenersList())
+                if (l instanceof net.minecraft.client.gui.components.AbstractWidget o && o.visible
+                        && o.getX() < x + w + 2 && o.getX() + o.getWidth() + 2 > x && o.getY() < y + 20 && o.getY() + o.getHeight() > y) {
+                    x = o.getX() - w - 4;
+                    moved = true;
+                }
+        }
         e.addListener(Button.builder(Component.translatable("cld_menu.ourmods.title"), b -> OurModsScreen.open())
-                .bounds(s.width - 108, 6, 100, 20).build());
+                .bounds(x, y, w, 20).build());
     }
 
     // в главном меню F9 переключает погоду, чтобы посмотреть все виды

@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 LIBS=${LIBS:-../../libs}
-VERSION=${VERSION:-1.5.0}
+VERSION=${VERSION:-1.5.2}
 # neoforge-client раньше client-srg, иначе javac видит классы без патчей NeoForge
 CP=$(ls "$LIBS"/neoforge-*-client.jar; ls "$LIBS"/client-*-srg.jar; ls "$LIBS"/*.jar | grep -v -e '-client.jar$' -e '-srg.jar$')
 CP=$(echo "$CP" | tr '\n' ':')
