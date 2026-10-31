@@ -7,7 +7,7 @@ modId="cld_menu"
 version="${version}"
 displayName="Главное меню сборки"
 authors="D, Claude"
-description='''Живой пиксельный пейзаж вместо панорамы, свой логотип, без кнопок Realms и «Моды».'''
+description='''Живой пиксельный пейзаж вместо панорамы: погода меняется при каждом запуске, время суток по часам компьютера. Свой логотип, без кнопок Realms и «Моды».'''
 
 [[mixins]]
 config="cld_menu.mixins.json"

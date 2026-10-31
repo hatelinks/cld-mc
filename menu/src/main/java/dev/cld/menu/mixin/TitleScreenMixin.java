@@ -14,15 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class TitleScreenMixin {
     @Shadow private RealmsNotificationsScreen realmsNotificationsScreen;
 
-    /** Без строк версий в левом нижнем углу. */
+    // без строк версий в левом нижнем углу
     @Redirect(method = "render", at = @At(value = "INVOKE",
             target = "Lnet/neoforged/neoforge/internal/BrandingControl;forEachLine(ZZLjava/util/function/BiConsumer;)V"))
     private void cld$noBranding(boolean includeMC, boolean reverse, BiConsumer<Integer, String> lineConsumer) {}
 
-    /**
-     * Значки уведомлений Realms рисовались у убранной кнопки Realms.
-     * Экран уведомлений обнуляем после init: все обращения к нему в TitleScreen проверяют null.
-     */
+    // значки уведомлений Realms рисовались у убранной кнопки; обнуляем экран после init, все обращения к нему проверяют null
     @Inject(method = "init", at = @At("TAIL"))
     private void cld$noRealms(CallbackInfo ci) {
         realmsNotificationsScreen = null;
