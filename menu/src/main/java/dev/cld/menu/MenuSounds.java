@@ -21,7 +21,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 
 // Звуки главного меню: фон природы (синтез), гром рядом и вдалеке, капли дождя, приглушение музыки в непогоду.
-// Громкость задаёт ползунок «Звуки меню», общая громкость игры тоже действует.
+// Громкость задаёт ползунок Звуки меню, общая громкость игры тоже действует.
 public final class MenuSounds {
     private static final ResourceLocation AMBIENT_ID = ResourceLocation.fromNamespaceAndPath("cld_menu", "menu.ambient");
     private static final RandomSource RND = RandomSource.create();

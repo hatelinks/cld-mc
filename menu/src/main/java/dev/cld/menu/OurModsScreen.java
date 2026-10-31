@@ -19,8 +19,8 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
-// Экран «Наши моды»: слева разделы по модам и датапакам сборки, справа их настройки.
-// Открывается из настроек и из меню паузы. У каждой настройки своя кнопка «по умолчанию».
+// Экран Наши моды: слева разделы по модам и датапакам сборки, справа их настройки.
+// Открывается из настроек и из меню паузы. У каждой настройки своя кнопка по умолчанию.
 public final class OurModsScreen extends Screen {
     private static final int ROW = 24;
     private static String lastSection = "cld_menu";
