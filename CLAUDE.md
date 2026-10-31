@@ -29,6 +29,8 @@
 | `perf/` | **cld_perf** «Ускорения клиента сборки»: ровный ограничитель кадров (ванильный на Mac терял 12-15% кадров). Место для мелких клиентских правок по замерам. | 0.1.0 | `perf/build.sh` |
 | `autotest/` | **cld_autotest**, служебный, в игру не ставить: с `config/cld_autotest.properties` сам заходит в мир, меряет FPS, CPU, память, пишет JFR и выходит. Свойства: `world`, `warmup`, `measure`, `pause`, `yaw`, `fly`, `maxfps`, `jfr`, `spark`, `setup`, `quit`. | 0.1.3 | `autotest/build.sh` |
 | `sable_android/` | **sable-android-support** (modId `sable_android`): нативка Rapier для Sable на Android + прореживание тиков блоков Simulated (coremod JS). Только для Android, на Маке не нужен. Исходники восстановлены из jar. | 2.0.0 | `sable_android/build.sh`; нативку пересобирать `sable_android/native/build_android_native.sh` (на Маке) |
+| `bombs/` | **cld_bombs** «Бомбы с уровнями»: дополнение к бомбам Supplementaries, уровни 1-10, прокачка порохом, кратер за несколько тиков, уровни в сундуках. Нужен Supplementaries 4.0. | 1.0.0 | `MODS=/mnt/project-files/libs-mods bombs/build.sh` |
+| `datapacks/` | Свои датапаки сборки (сейчас `cld_hourglass`: гравипесок Quark в песочных часах). | — | `datapacks/build.sh` → `datapacks/dist/*.zip` |
 | `quest_builder/` | Генератор квестов FTB Quests (36 глав, ~1300 квестов). | — | `python3 -I quest_builder/make.py` → `out/ftbquests_config.zip` + `out/checklist.md` |
 | `pack/` | Конфиги экземпляра Prism (`minecraft/config`, `defaultconfigs`, `options.txt`, `instance.cfg`, `mmc-pack.json`) и `MODS.md` — список модов с SHA-1. Полный архив с jar — в Releases (`cld-mc-pack.zip`). | — | — |
 
@@ -54,6 +56,7 @@
 | cld_perf | `docs/perf.md` |
 | cld_autotest | `docs/autotest.md` |
 | sable-android-support | `docs/sable_android.md` |
+| cld_bombs | `docs/bombs.md` |
 | quest_builder | `docs/quest_builder.md` |
 | qa и cld_qabench | `docs/qa.md` |
 

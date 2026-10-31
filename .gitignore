@@ -22,3 +22,6 @@ autotest/build/
 autotest/dist/
 perf/build/
 perf/dist/
+bombs/build/
+bombs/dist/
+datapacks/dist/

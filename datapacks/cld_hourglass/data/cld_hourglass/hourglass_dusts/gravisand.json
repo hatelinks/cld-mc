@@ -1,0 +1,8 @@
+{
+  "neoforge:conditions": [
+    {"type": "neoforge:mod_loaded", "modid": "quark"},
+    {"type": "neoforge:mod_loaded", "modid": "supplementaries"}
+  ],
+  "items": ["quark:gravisand"],
+  "duration": 140
+}
