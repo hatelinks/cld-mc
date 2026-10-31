@@ -56,7 +56,7 @@ Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на ст�
 | Jade-VS | jade_vs | 2.0.0 | Jade-VS-neoforge-1.21.1-2.0.0.jar | da3df30da4293e8e13a37178aa072aedc2b0becc |
 | Jade Addons | jadeaddons | 6.1.1+neoforge | JadeAddons-1.21.1-NeoForge-6.1.1.jar | 6c50a845ac3d336fa88e6466c36aa8b3815ca5c5 |
 | Just Enough Items | jei | 19.27.0.340 | jei-1.21.1-neoforge-19.27.0.340.jar | 27d0d85e7e32e926fc3664ab6815df5cdabb7941 |
-| Горы до небес (JJThunder To The Max), исходники удалены, из игры убрать | jjthunder_to_the_max | 1.0.0 (gdn) | gdn-neoforge-1.21.1-1.0.0.jar | 580384cf6619e389db583062a7b055ca66fe3eb9 |
+| Горы до небес (JJThunder To The Max) | jjthunder_to_the_max | 1.0.0 (gdn) | gdn-neoforge-1.21.1-1.0.0.jar | 580384cf6619e389db583062a7b055ca66fe3eb9 |
 | Journeymap | journeymap | 1.21.1-6.0.7 | journeymap-neoforge-1.21.1-6.0.7.jar | cecb19e67cb5d9023057c1a94bab328723ba30dc |
 | Just Enough Resources | jeresources | 1.6.0.17 | JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar | e739d69b2de31ca8c0cb4691ab08e823f153bc44 |
 | KeyBind Bundles | keybindbundles | 1.4.0 | keybindbundles-1.4.0.jar | 02a9c2a3faf06eb46a0ec56cc2df7302e568ce27 |
