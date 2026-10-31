@@ -2,6 +2,7 @@ import dev.cld.menu.scene.Raster;
 import dev.cld.menu.scene.Scene;
 import dev.cld.menu.scene.Season;
 import dev.cld.menu.scene.Sky;
+import dev.cld.menu.scene.Tex;
 import dev.cld.menu.scene.Weather;
 import dev.cld.menu.scene.WeatherKind;
 import java.awt.image.BufferedImage;
@@ -9,10 +10,12 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.zip.ZipFile;
 import javax.imageio.ImageIO;
 
 // Превью пейзажа меню без игры.
 // java -cp out MenuPreview out.png [ширина высота погода сезон ЧЧ:ММ секунда]
+// текстуры блоков берутся из client-*-extra.jar, путь в -Dmc.jar=...
 // погода grid рисует сетку всех видов погоды; можно перечислить через запятую, например thunder,snow
 public class MenuPreview {
     public static void main(String[] a) throws Exception {
@@ -36,6 +39,7 @@ public class MenuPreview {
         for (int i = 0; i < list.length; i++) {
             Raster r = new Raster(w, h);
             Scene s = new Scene();
+            if (JAR != null) s.textures(MenuPreview::texture);
             Weather wx = new Weather(list[i], 7, 0);
             // догоняем время, чтобы молнии и радуга успели появиться
             double tt = list[i] == WeatherKind.THUNDER ? findStrike(wx, t) : t;
@@ -48,6 +52,31 @@ public class MenuPreview {
         }
         ImageIO.write(img, "png", new File(out));
         System.out.printf("кадр %dx%d: %.2f мс%n", w, h, total / 1e6 / list.length);
+    }
+
+    private static final ZipFile JAR = open();
+
+    private static ZipFile open() {
+        try {
+            String p = System.getProperty("mc.jar");
+            return p == null || p.isEmpty() ? null : new ZipFile(p);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    // minecraft:textures/block/dirt.png из jar
+    static Tex texture(String id) {
+        try {
+            String path = "assets/" + id.replace(":", "/");
+            var e = JAR.getEntry(path);
+            if (e == null) return null;
+            BufferedImage im = ImageIO.read(JAR.getInputStream(e));
+            int[] px = im.getRGB(0, 0, im.getWidth(), im.getHeight(), null, 0, im.getWidth());
+            return new Tex(im.getWidth(), im.getHeight(), px);
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     private static double findStrike(Weather wx, double from) {
