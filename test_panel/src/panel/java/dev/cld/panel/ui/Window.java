@@ -25,6 +25,7 @@ public class Window {
     }
 
     public Window add(Element e) {
+        if (e instanceof Element.Button) e.bindId = id + "." + rows.size();
         rows.add(e);
         return this;
     }
@@ -64,6 +65,8 @@ public class Window {
         g.renderOutline(x, y, w, h, 0x80000000);
         if (state.collapsed) return;
         int ry = y + TITLE + 1;
+        Element.mouseX = mx;
+        Element.mouseY = my;
         for (Element e : rows) {
             boolean hover = !hud && mx >= x && mx < x + w && my >= ry && my < ry + e.height();
             e.render(g, font, x, ry, w, hover);
@@ -92,6 +95,16 @@ public class Window {
             return true;
         }
         return false;
+    }
+
+    public Element at(int mx, int my) {
+        if (state.collapsed || !inside(mx, my)) return null;
+        int ry = state.y + TITLE + 1;
+        for (Element e : rows) {
+            if (my >= ry && my < ry + e.height()) return e;
+            ry += e.height();
+        }
+        return null;
     }
 
     public boolean clickBody(int mx, int my, int button) {

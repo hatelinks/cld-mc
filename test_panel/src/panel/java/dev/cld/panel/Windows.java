@@ -28,6 +28,13 @@ final class Windows {
         list.add(baritone(c));
         list.add(info(c));
         list.add(panel(c));
+        list.add(ToolWindows.settings(c));
+        list.add(ToolWindows.waypoints(c));
+        list.add(ToolWindows.radar(c));
+        list.add(FunctionWindows.functions(c));
+        list.add(FunctionWindows.search(c));
+        list.add(FunctionWindows.movement(c));
+        list.add(FunctionWindows.world(c));
         return list;
     }
 
@@ -84,9 +91,9 @@ final class Windows {
         Window w = new Window("panel", "Панель", 140, c.win("panel", 296, 4, 6));
         w.add(new Label(() -> Minecraft.getInstance().level == null ? "Не в мире"
                 : Panel.full() ? "Режим: всё доступно" : "Чужой сервер: Baritone и инфо"));
-        w.add(new Button(() -> String.format("Масштаб %.1f (ЛКМ +, ПКМ -)", c.scale), () -> false, b -> {
-            c.scale = Math.max(1, Math.min(6, c.scale + (b == 1 ? -0.5 : 0.5)));
-        }));
+        w.add(new Button(() -> String.format("Размер x%.2f", c.size), () -> false, b -> {
+            c.size = Math.max(0.5, Math.min(2, c.size + (b == 1 ? -0.25 : 0.25)));
+        }).tip("Размер панели к размеру интерфейса игры. ЛКМ больше, ПКМ меньше"));
         w.add(new Button(() -> {
             String a = Panel.serverAddress();
             if (a == null) return Minecraft.getInstance().hasSingleplayerServer() ? "Одиночная игра" : "Свой сервер: нет связи";
@@ -103,6 +110,7 @@ final class Windows {
         w.add(new Button("Консоль (U)", () -> Minecraft.getInstance().setScreen(new ConsoleScreen(Minecraft.getInstance().screen))));
         w.add(new Button("Сбросить раскладку", () -> {
             c.windows.clear();
+            c.layout = 0;
             Panel.resetWindows();
         }));
         return w;
