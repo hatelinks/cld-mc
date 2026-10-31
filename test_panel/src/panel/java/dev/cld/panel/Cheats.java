@@ -75,11 +75,9 @@ public final class Cheats {
         return !now;
     }
 
-    // В консоль панели и над хотбаром, чтобы было видно и при включении клавишей
+    // Только в консоль панели, без надписей на экране (так хочет владелец)
     private static void say(String s) {
         Panel.log(s);
-        LocalPlayer p = Minecraft.getInstance().player;
-        if (p != null) p.displayClientMessage(net.minecraft.network.chat.Component.literal(s), true);
     }
 
     static void tick() {
