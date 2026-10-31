@@ -4,7 +4,7 @@
 set -e
 cd "$(dirname "$0")"
 LIBS=${LIBS:-../../libs}
-VERSION=${VERSION:-0.2.0}
+VERSION=${VERSION:-0.3.0}
 # nether-pathfinder (поиск пути на элитрах, с нативками) берём из официального jar Baritone без ProGuard
 NP_JAR=${NP_JAR:-$LIBS/baritone-unoptimized-neoforge-1.11.3.jar}
 if [ ! -f "$NP_JAR" ]; then

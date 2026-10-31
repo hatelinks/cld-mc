@@ -1,5 +1,7 @@
 package dev.cld.panel.ui;
 
+import dev.cld.panel.Keys;
+import dev.cld.panel.PanelConfig;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import org.lwjgl.glfw.GLFW;
@@ -11,6 +13,8 @@ import java.util.function.Supplier;
 // Строка внутри окна: кнопка, надпись или поле ввода.
 public abstract class Element {
     public static final int H = 12;
+    // Для кнопок: под этим именем хранится бинд клавиши, ставит Window.add
+    public String bindId;
 
     public int height() {
         return H;
@@ -59,6 +63,11 @@ public abstract class Element {
             int bg = active ? Theme.accent(0xC0) : hover ? 0x40FFFFFF : 0x20FFFFFF;
             g.fill(x + 1, y + 1, x + w - 1, y + H - 1, bg);
             g.drawString(font, label.get(), x + 4, y + 2, active ? 0xFFFFFFFF : 0xFFD0D0D0, true);
+            Integer key = PanelConfig.get().binds.get(bindId);
+            if (key != null) {
+                String k = "[" + Keys.name(key) + "]";
+                g.drawString(font, k, x + w - 4 - font.width(k), y + 2, 0xFF909090, false);
+            }
         }
 
         @Override

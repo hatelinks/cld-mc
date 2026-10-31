@@ -46,6 +46,7 @@ public final class Panel {
         NeoForge.EVENT_BUS.addListener((ClientTickEvent.Post e) -> tick());
         NeoForge.EVENT_BUS.addListener(Panel::onScreen);
         NeoForge.EVENT_BUS.addListener(Panel::onHud);
+        NeoForge.EVENT_BUS.addListener(Keys::onKey);
     }
 
     public static List<Window> windows() {
@@ -103,9 +104,9 @@ public final class Panel {
         g.pose().popPose();
     }
 
-    // Во сколько раз растянуть панель относительно текущего масштаба интерфейса игры
+    // Панель меняется вместе с "Размером интерфейса" игры, size только подстраивает
     static double scale() {
-        return PanelConfig.get().scale / Minecraft.getInstance().getWindow().getGuiScale();
+        return PanelConfig.get().size;
     }
 
     // Всё разрешено в одиночной игре и на своих серверах из настроек, на чужих только Baritone и инфо

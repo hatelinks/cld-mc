@@ -20,12 +20,15 @@ public final class PanelConfig {
         public int color;
     }
 
-    // Размер панели как при этом масштабе интерфейса, независимо от guiScale игры
-    public double scale = 2.0;
+    // Размер панели относительно "Размера интерфейса" игры: 1 значит как у остального меню
+    public double size = 1.0;
     // Свои серверы (адрес как в списке серверов), на них работает всё
     public List<String> servers = new ArrayList<>();
     public Map<String, Win> windows = new LinkedHashMap<>();
     public List<String> history = new ArrayList<>();
+    // Бинды как в Nodus: кнопка окна (id окна.номер строки) или команда Baritone на клавишу
+    public Map<String, Integer> binds = new LinkedHashMap<>();
+    public Map<String, Integer> commandBinds = new LinkedHashMap<>();
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static PanelConfig instance;
@@ -48,7 +51,9 @@ public final class PanelConfig {
                     if (c.servers == null) c.servers = new ArrayList<>();
                     if (c.windows == null) c.windows = new LinkedHashMap<>();
                     if (c.history == null) c.history = new ArrayList<>();
-                    if (c.scale < 0.5 || c.scale > 6) c.scale = 2.0;
+                    if (c.binds == null) c.binds = new LinkedHashMap<>();
+                    if (c.commandBinds == null) c.commandBinds = new LinkedHashMap<>();
+                    if (c.size < 0.5 || c.size > 2) c.size = 1.0;
                     return c;
                 }
             }

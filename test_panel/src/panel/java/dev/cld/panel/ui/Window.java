@@ -25,6 +25,7 @@ public class Window {
     }
 
     public Window add(Element e) {
+        if (e instanceof Element.Button) e.bindId = id + "." + rows.size();
         rows.add(e);
         return this;
     }
@@ -92,6 +93,16 @@ public class Window {
             return true;
         }
         return false;
+    }
+
+    public Element at(int mx, int my) {
+        if (state.collapsed || !inside(mx, my)) return null;
+        int ry = state.y + TITLE + 1;
+        for (Element e : rows) {
+            if (my >= ry && my < ry + e.height()) return e;
+            ry += e.height();
+        }
+        return null;
     }
 
     public boolean clickBody(int mx, int my, int button) {

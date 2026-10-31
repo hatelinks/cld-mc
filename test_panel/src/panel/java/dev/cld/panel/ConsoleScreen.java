@@ -47,7 +47,7 @@ public class ConsoleScreen extends Screen {
             String s = lines.get(i);
             g.drawString(font, s, 4, y, s.startsWith("> ") ? 0xFF80C0FF : 0xFFE0E0E0, true);
         }
-        g.drawString(font, "Команды Baritone без #: goto x y z, mine diamond_ore, explore, stop, help", 4, 2, 0xFF909090, true);
+        g.drawString(font, "Команды Baritone без #: goto x y z, mine diamond_ore, stop, help. Бинды: .bind g goto 0 100 0, .unbind g, .binds", 4, 2, 0xFF909090, true);
         super.render(g, mx, my, pt);
     }
 
@@ -65,7 +65,7 @@ public class ConsoleScreen extends Screen {
                 h.remove(cmd);
                 h.add(cmd);
                 while (h.size() > 50) h.remove(0);
-                Panel.run(cmd);
+                if (!Keys.dotCommand(cmd)) Panel.run(cmd);
             }
             box.setValue("");
             hist = -1;

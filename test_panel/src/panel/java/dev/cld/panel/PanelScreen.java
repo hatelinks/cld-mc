@@ -12,6 +12,8 @@ import java.util.List;
 // Экран панели: все окна, перетаскивание за заголовок. Игру не ставит на паузу.
 public class PanelScreen extends Screen {
     private Window drag;
+    // Кнопка, которой назначаем клавишу (средний клик по кнопке)
+    private Element binding;
     private int dx, dy;
 
     public PanelScreen() {
@@ -38,8 +40,21 @@ public class PanelScreen extends Screen {
         int mx = (int) (mouseX / s), my = (int) (mouseY / s);
         g.pose().pushPose();
         g.pose().scale((float) s, (float) s, 1);
-        g.drawString(font, "cld_test_panel  Y закрыть, U консоль" + (Panel.full() ? "" : "  (чужой сервер: только Baritone)"), 4, (int) (height / s) - 11, 0xA0FFFFFF, true);
-        for (Window w : Panel.windows()) w.render(g, font, mx, my, false);
+        if (binding != null) {
+            String t = "Нажми клавишу для кнопки, Esc или Backspace убрать бинд";
+            int tw = font.width(t);
+            int cx = (int) (width / s) / 2;
+            g.fill(cx - tw / 2 - 6, 20, cx + tw / 2 + 6, 36, 0xE0000000);
+            g.drawString(font, t, cx - tw / 2, 24, 0xFFFFFF60, true);
+        }
+        g.drawString(font, "cld_test_panel  Y закрыть, U консоль, средний клик по кнопке: бинд" + (Panel.full() ? "" : "  (чужой сервер: только Baritone)"), 4, (int) (height / s) - 11, 0xA0FFFFFF, true);
+        int sw = (int) (width / s), sh = (int) (height / s);
+        for (Window w : Panel.windows()) {
+            // после смены размера интерфейса окно не должно уехать за край
+            w.state.x = Math.max(0, Math.min(sw - w.width, w.state.x));
+            w.state.y = Math.max(0, Math.min(sh - Window.TITLE, w.state.y));
+            w.render(g, font, mx, my, false);
+        }
         g.pose().popPose();
     }
 
@@ -49,6 +64,7 @@ public class PanelScreen extends Screen {
         int mx = (int) (mouseX / s), my = (int) (mouseY / s);
         List<Window> ws = Panel.windows();
         for (Window w : ws) for (Element e : w.rows) e.unfocus();
+        binding = null;
         for (int i = ws.size() - 1; i >= 0; i--) {
             Window w = ws.get(i);
             if (!w.inside(mx, my)) continue;
@@ -61,6 +77,9 @@ public class PanelScreen extends Screen {
                     dx = mx - w.state.x;
                     dy = my - w.state.y;
                 }
+            } else if (button == 2) {
+                Element e = w.at(mx, my);
+                if (e != null && e.bindId != null) binding = e;
             } else {
                 w.clickBody(mx, my, button);
             }
@@ -89,6 +108,14 @@ public class PanelScreen extends Screen {
 
     @Override
     public boolean keyPressed(int key, int scan, int mods) {
+        if (binding != null) {
+            PanelConfig c = PanelConfig.get();
+            if (key == GLFW.GLFW_KEY_ESCAPE || key == GLFW.GLFW_KEY_BACKSPACE) c.binds.remove(binding.bindId);
+            else c.binds.put(binding.bindId, key);
+            c.save();
+            binding = null;
+            return true;
+        }
         for (Window w : Panel.windows()) for (Element e : w.rows) if (e.focused()) return e.key(key);
         if (Panel.OPEN.matches(key, scan)) {
             onClose();

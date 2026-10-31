@@ -84,8 +84,8 @@ final class Windows {
         Window w = new Window("panel", "Панель", 140, c.win("panel", 296, 4, 6));
         w.add(new Label(() -> Minecraft.getInstance().level == null ? "Не в мире"
                 : Panel.full() ? "Режим: всё доступно" : "Чужой сервер: Baritone и инфо"));
-        w.add(new Button(() -> String.format("Масштаб %.1f (ЛКМ +, ПКМ -)", c.scale), () -> false, b -> {
-            c.scale = Math.max(1, Math.min(6, c.scale + (b == 1 ? -0.5 : 0.5)));
+        w.add(new Button(() -> String.format("Размер x%.2f (ЛКМ +, ПКМ -)", c.size), () -> false, b -> {
+            c.size = Math.max(0.5, Math.min(2, c.size + (b == 1 ? -0.25 : 0.25)));
         }));
         w.add(new Button(() -> {
             String a = Panel.serverAddress();
