@@ -7,12 +7,15 @@ import dev.cld.panel.ui.Window;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.PauseScreen;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.chat.Component;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RenderGuiEvent;
+import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +25,7 @@ import java.util.Deque;
 import java.util.List;
 import java.util.function.Consumer;
 
-// Панель тестирования поверх Baritone: клавиши, закреплённые окна на HUD.
+// Панель тестирования поверх Baritone: клавиши, кнопка в Esc, закреплённые окна на HUD.
 public final class Panel {
     public static final Logger LOG = LoggerFactory.getLogger("cld_test_panel");
     static final KeyMapping OPEN = new KeyMapping("key.cld_test_panel.open", InputConstants.KEY_Y, "key.categories.cld_test_panel");
@@ -41,6 +44,7 @@ public final class Panel {
             e.register(CONSOLE);
         });
         NeoForge.EVENT_BUS.addListener((ClientTickEvent.Post e) -> tick());
+        NeoForge.EVENT_BUS.addListener(Panel::onScreen);
         NeoForge.EVENT_BUS.addListener(Panel::onHud);
     }
 
@@ -76,6 +80,13 @@ public final class Panel {
             for (String line : s.split("\n")) LOG_LINES.addLast(line);
             while (LOG_LINES.size() > 200) LOG_LINES.removeFirst();
         }
+    }
+
+    // Кнопка "Панель" в левом верхнем углу меню Esc (справа сверху стоит кнопка cld_far)
+    private static void onScreen(ScreenEvent.Init.Post e) {
+        if (!(e.getScreen() instanceof PauseScreen ps) || !ps.showsPauseMenu()) return;
+        e.addListener(Button.builder(Component.translatable("cld_test_panel.button"), b -> Minecraft.getInstance().setScreen(new PanelScreen()))
+                .bounds(6, 6, 60, 20).build());
     }
 
     private static void onHud(RenderGuiEvent.Post e) {
