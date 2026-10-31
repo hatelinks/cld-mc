@@ -1,0 +1,21 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="LGPL-3.0-or-later"
+issueTrackerURL="https://github.com/hatelinks/cld-mc/issues"
+
+[[mods]]
+modId="cld_test_panel"
+version="${version}"
+displayName="CLD Test Panel"
+authors="leijurv, Brady (Baritone); сборка cld-mc"
+credits="Форк Baritone 1.11.3 (github.com/cabaletta/baritone), лицензия LGPL-3.0"
+description='''
+Панель тестирования сборки: Baritone с окнами в стиле Nodus. Только клиент, только для одиночной игры. Вместе с обычным Baritone не ставить.
+'''
+
+[[dependencies.cld_test_panel]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="CLIENT"

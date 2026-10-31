@@ -22,6 +22,8 @@ autotest/build/
 autotest/dist/
 perf/build/
 perf/dist/
+test_panel/build/
+test_panel/dist/
 bombs/build/
 bombs/dist/
 datapacks/dist/
