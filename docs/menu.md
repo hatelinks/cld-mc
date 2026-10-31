@@ -48,7 +48,7 @@ LIBS=/mnt/project-files/libs menu/build.sh   # menu/dist/cld_menu-neoforge-1.21.
 В главном меню F9 следующая погода, Shift+F9 время года, Ctrl+F9 плюс два часа (для проверки, не сохраняется).
 
 ## Превью вне игры
-Пакет `scene` не зависит от Minecraft: `LIBS=/mnt/project-files/libs menu/tools/shots.sh папка` (текстуры из `client-*-extra.jar` в LIBS) собирает `tools/MenuPreview` и рисует сетки погоды в PNG (и пишет время кадра). Он же пишет WAV звуков меню (`tools/AmbientWav`, без грома и капель игры). Один вызов: `java -cp out MenuPreview out.png 480 270 thunder,snow winter 22:30 30`. Замер времени кадра по всем погодам с разогревом: `tools/MenuBench` (`java -Dmc.jar=... -cp out MenuBench 480 270 600`), на облачной машине 1.5.2 около 5 мс на кадр 480x270, облака из них около 0.6 мс.
+Пакет `scene` не зависит от Minecraft: `LIBS=/mnt/project-files/libs menu/tools/shots.sh папка` (текстуры из `client-*-extra.jar` в LIBS) собирает `tools/MenuPreview` и рисует сетки погоды в PNG (и пишет время кадра). Он же пишет WAV звуков меню (`tools/AmbientWav`, без грома и капель игры). Один вызов: `java -cp out MenuPreview out.png 480 270 thunder,snow winter 22:30 30`. Замер времени кадра по всем погодам с разогревом: `tools/MenuBench` (`java -Dmc.jar=... -cp out MenuBench 480 270 600`), на облачной машине 1.5.2 около 5 мс на кадр 480x270, облака из них около 1 мс (по профилю JFR пятая часть кадра; дальше по времени blend, Blocks.draw, виньетка, полосы тумана).
 
 Ближний слой (1.5.2): блоки 12 пикселей эталона вместо 16, ниже и медленнее, лёгкая дымка; между травой кусты из листвы, высокая трава, папоротник, замшелый булыжник, осенью тыквы (`decor`).
 
