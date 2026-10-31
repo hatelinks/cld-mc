@@ -4,11 +4,11 @@ package dev.cld.menu.scene;
 // Рисует в Raster без Minecraft, поэтому то же самое собирается в превью вне игры.
 public final class Scene {
     // слои гор от дальнего к ближнему, размеры в долях высоты экрана
-    private static final float[] BASE = {0.50f, 0.585f, 0.68f, 0.81f};
+    private static final float[] BASE = {0.50f, 0.585f, 0.68f, 0.84f};
     private static final float[] AMP = {0.30f, 0.17f, 0.12f, 0.07f};
-    private static final float[] SPEED = {0.9f, 2.6f, 6f, 12f};
+    private static final float[] SPEED = {0.9f, 2.6f, 6f, 9f};
     private static final float[] FREQ = {0.008f, 0.013f, 0.02f, 0.032f};
-    private static final float[] HAZE = {0.42f, 0.30f, 0.16f, 0.04f};
+    private static final float[] HAZE = {0.42f, 0.30f, 0.16f, 0.08f};
 
     private static final int DAY_TOP = 0x6F9EF2, DAY_LOW = 0xBCD6F5;
     private static final int NIGHT_TOP = 0x03050C, NIGHT_LOW = 0x121A30;
@@ -29,6 +29,7 @@ public final class Scene {
         sun = env(src, "sun");
         moon = env(src, "moon_phases");
         cloudMap = env(src, "clouds");
+        java.util.Arrays.fill(masks, null);
     }
 
     private static Tex env(Tex.Source src, String name) {
@@ -239,54 +240,59 @@ public final class Scene {
         }
     }
 
-    // облака как в Minecraft: плоские прямоугольные, ряды ближе к горизонту мельче и медленнее
+    // облака как в Minecraft: плоский слой высоко над головой в перспективе, клетка карты облаков 12 блоков,
+    // толщина 4 блока, снизу видно дно и бока ближних облаков, вдали слой уходит в дымку
+    private static final float CLOUD_H = 75, CLOUD_T = 4, CLOUD_CELL = 12;
+
     private void clouds(Raster r, Sky sky, Weather wx, double t, float u, int low, float light, int horizon) {
-        float cover = 0.22f + wx.cloud * 0.6f;
+        if (cloudMap == null || horizon < 2) return;
         int base = Col.mix(0xF6F8FA, 0x5E636B, wx.dark);
         if (wx.kind.snowy()) base = Col.mix(base, 0xD8DEE6, 0.5f);
         base = Col.scale(base, Math.max(0.16f, light));
-        base = Col.mix(base, low, 0.12f);
-        int under = Col.mix(Col.scale(base, 0.8f), 0xF29A6A, sky.glow * 0.5f * (1 - wx.dark));
-        int a = (int) (215 + wx.cloud * 40);
-        int rows = 5;
-        for (int i = 0; i < rows; i++) {
-            float depth = i / (float) (rows - 1);
-            float scale = 1f / (1 + depth * 2.2f);
-            int y0 = (int) (horizon * (0.04f + 0.6f * (float) Math.pow(depth, 0.75)));
-            int th = Math.max(1, Math.round(8 * u * scale));
-            int cw = Math.max(2, Math.round(12 * u * scale));
-            double scroll = t * (2.5 + wx.wind * 9) * u * scale + i * 977;
-            long c0 = (long) Math.floor(scroll / cw);
-            int off = (int) (scroll - c0 * (double) cw);
-            int ca = (int) (a * (1 - depth * 0.3f));
-            int cc = Col.mix(base, low, depth * 0.5f), cu = Col.mix(under, low, depth * 0.5f);
-            int top = Col.mix(Col.scale(cc, 1.06f), 0xFFFFFF, 0.1f * sky.day * (1 - wx.dark));
-            for (int j = -1; j <= r.w / cw + 1; j++) {
-                long cell = c0 + j;
-                // облако это отдельные кучки клеток, а не сплошная полоса
-                double n = Noise.noise(cell * 0.18, 600 + i) * 0.75 + Noise.noise(cell * 0.6, 650 + i) * 0.25;
-                if (cloudMap != null) {
-                    // настоящая карта облаков Minecraft, в пасмурную погоду берём несколько строк сразу
-                    if (!cloudAt(cell, i * 37 + 11, (int) (wx.cloud * wx.cloud * 7))) continue;
-                    n = 1 - cover * (Noise.hash(cell, 640 + i) < 0.4 ? 0.2 : 0.9);
-                } else if (n < 1 - cover) continue;
-                int x = j * cw - off;
-                double core = (n - (1 - cover)) / Math.max(0.05, cover);
-                int extra = core > 0.35 ? th / 2 : 0;
-                int y = y0 + (int) ((Noise.noise(cell * 0.07, 690 + i) - 0.5) * 10 * u * scale);
-                r.blend(x, y - extra, x + cw, y - extra + Math.max(1, th / 4), top, ca);
-                r.blend(x, y - extra + Math.max(1, th / 4), x + cw, y + th, cc, ca);
-                r.blend(x, y + th, x + cw, y + th + Math.max(1, th / 3), cu, ca);
+        // дно темнее, на закате подсвечено снизу, бока светлее дна
+        int bottom = Col.mix(Col.scale(base, 0.78f), 0xF29A6A, sky.glow * 0.45f * (1 - wx.dark));
+        int side = Col.mix(Col.scale(base, 0.92f), 0xFFC89A, sky.glow * 0.3f * (1 - wx.dark));
+        int a = (int) (225 + wx.cloud * 30);
+        // в пасмурную погоду карта накладывается на себя со сдвигом, облаков больше
+        int layers = wx.cloud > 0.8f ? 3 : wx.cloud > 0.5f ? 2 : 1;
+        boolean[] mask = cloudMask(layers);
+        int mw = cloudMap.w, mh = cloudMap.h;
+        float f = r.w * 0.62f; // фокус, поле зрения около 80 градусов
+        float cx = r.w * 0.5f + parallax * 6 * u;
+        // ветер несёт облака вдоль x, как в игре; большой сдвиг держит координаты положительными
+        double drift = t * (1.6 + wx.wind * 7) + 1e6;
+        double ahead = 400; // слой сдвинут вперёд, чтобы над головой не стояла одна клетка
+        for (int y = 0; y < horizon; y++) {
+            float dy = horizon - y + 0.5f;
+            double zb = CLOUD_H * f / dy, zt = (CLOUD_H + CLOUD_T) * f / dy;
+            // дальше 250 блоков облака тают в дымке, мелкие клетки там иначе мерцают
+            float fade = 1 - Col.smooth((float) ((zb - 250) / 900));
+            if (fade <= 0.02f) continue;
+            int alpha = (int) (a * fade);
+            // строка дна и строка верха слоя: по x клетка меняется линейно, считаем приращением
+            int rowB = (int) ((zb + ahead) / CLOUD_CELL) % mh * mw, rowT = (int) ((zt + ahead) / CLOUD_CELL) % mh * mw;
+            double xb = (drift - cx / f * zb) / CLOUD_CELL, xt = (drift - cx / f * zt) / CLOUD_CELL;
+            double sb = zb / f / CLOUD_CELL, st = zt / f / CLOUD_CELL;
+            for (int x = 0; x < r.w; x++, xb += sb, xt += st) {
+                // снизу видно дно; если луч прошёл толщину слоя (4 блока против клетки 12) и вышел в облаке, видим бок
+                if (mask[rowB + (int) xb % mw]) r.dot(x, y, bottom, alpha);
+                else if (mask[rowT + (int) xt % mw]) r.dot(x, y, side, alpha);
             }
         }
     }
 
-    private boolean cloudAt(long cell, int row, int extra) {
-        int x = (int) Math.floorMod(cell, (long) cloudMap.w);
-        for (int k = 0; k <= extra; k++) {
-            if ((cloudMap.px[((row + k) % cloudMap.h) * cloudMap.w + x] >>> 24) > 0) return true;
-        }
-        return false;
+    // карта облаков как массив да или нет, в пасмурную погоду наложена на себя со сдвигом
+    private final boolean[][] masks = new boolean[4][];
+
+    private boolean[] cloudMask(int layers) {
+        if (masks[layers] != null) return masks[layers];
+        int w = cloudMap.w, h = cloudMap.h;
+        boolean[] m = new boolean[w * h];
+        for (int z = 0; z < h; z++)
+            for (int x = 0; x < w; x++)
+                for (int l = 0; l < layers && !m[z * w + x]; l++)
+                    m[z * w + x] = (cloudMap.px[Math.floorMod(z + l * 61, h) * w + Math.floorMod(x + l * 97, w)] >>> 24) > 0;
+        return masks[layers] = m;
     }
 
     // далёкая молния: подсветка облаков у горизонта за горами
@@ -418,7 +424,7 @@ public final class Scene {
         boolean winter = se == Season.WINTER;
         float haze = Math.min(0.92f, HAZE[k] + wx.fog * (0.32f - k * 0.06f));
         blocks.frame(lightCol, low, haze);
-        int bs = Math.max(4, Math.round((k == 3 ? 16 : 8) * u));
+        int bs = Math.max(4, Math.round((k == 3 ? 12 : 8) * u));
         double scroll = scrollOf(k, t, u);
         int sea = (int) Math.round(r.h * (1 - BASE[k]) / bs) - (k == 3 ? 2 : 3);
         long b0 = (long) Math.floor(scroll / bs) - 3, b1 = (long) Math.floor((scroll + r.w) / bs) + 3;
@@ -464,6 +470,7 @@ public final class Scene {
             }
             if (beach) continue;
             double p = Noise.hash(bx, 1400 + k);
+            if (k == 3 && p >= 0.38 && !treeAt(bx, k) && decor(r, se, wx, t, bx, p, sx, top, bs, grass)) continue;
             if (p < 0.38 && !treeAt(bx, k)) {
                 String plant = p < 0.04 ? "poppy" : p < 0.08 ? "dandelion" : p < 0.1 && se != Season.AUTUMN ? "cornflower" : "short_grass";
                 if (se == Season.AUTUMN && !plant.equals("short_grass") && p > 0.06) plant = "short_grass";
@@ -483,6 +490,30 @@ public final class Scene {
             tree(r, se, bx, k, sx, r.h - hb * bs, bs);
         }
         if (rain > 0.3f && k == 3) puddleShine(r, wx, t, u);
+    }
+
+    // на ближних слоях между травой кусты из листвы, высокая трава, камни с мхом, осенью тыквы
+    private boolean decor(Raster r, Season se, Weather wx, double t, long bx, double p, int sx, int top, int bs, int grass) {
+        String name = null;
+        int tint = 0xFFFFFF;
+        if (p < 0.45) {
+            name = "oak_leaves";
+            tint = se == Season.AUTUMN ? 0xC9A23A : 0x4E9A2A;
+        } else if (p < 0.5) {
+            int sway = (int) Math.round(Math.sin(t * 2.2 + bx) * wx.wind * bs / 16.0);
+            int[] lo = blocks.shade("tall_grass_bottom", grass, 0, 0), hi = blocks.shade("tall_grass_top", grass, 0, 0);
+            if (lo == null || hi == null) return false;
+            Blocks.draw(r, lo, sx + sway / 2, top - bs, bs, 255);
+            Blocks.draw(r, hi, sx + sway, top - 2 * bs, bs, 255);
+            return true;
+        } else if (p < 0.53) name = se == Season.AUTUMN ? "pumpkin_side" : "fern";
+        else if (p < 0.55) name = "mossy_cobblestone";
+        if (name == null) return false;
+        if (name.equals("fern")) tint = grass;
+        int[] tx = blocks.shade(name, tint, 0, 0);
+        if (tx == null) return false;
+        Blocks.draw(r, tx, sx, top - bs, bs, 255);
+        return true;
     }
 
     private boolean treeAt(long bx, int k) {
