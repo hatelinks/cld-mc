@@ -10,7 +10,7 @@ import net.minecraft.sounds.SoundSource;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 
-// Ползунок «Звуки меню» в конце настроек звука
+// Ползунок Звуки меню в конце настроек звука
 final class SoundSlider {
     private SoundSlider() {}
 

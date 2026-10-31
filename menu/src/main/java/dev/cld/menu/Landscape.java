@@ -14,6 +14,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -33,7 +36,17 @@ public final class Landscape {
     private static Weather weather;
     private static Season season;
     private static int hourShift;
-    private static Raster raster;
+    // пейзаж считается в отдельном потоке, поток игры только загружает готовый кадр в текстуру
+    private static final ExecutorService WORKER = Executors.newSingleThreadExecutor(r -> {
+        Thread th = new Thread(r, "cld_menu landscape");
+        th.setDaemon(true);
+        th.setPriority(Thread.NORM_PRIORITY - 1);
+        return th;
+    });
+    private static Raster front, back;
+    private static Future<?> job;
+    private static boolean firstShown;
+    private static float parallax;
     private static DynamicTexture texture;
     private static long lastFrame;
     private static boolean texturesReady;
@@ -81,23 +94,50 @@ public final class Landscape {
         // один пиксель пейзажа примерно 1/270 высоты окна
         int px = Math.max(1, Math.round(winH / 270f));
         int rw = (winW + px - 1) / px, rh = (winH + px - 1) / px;
-        if (raster == null || raster.w != rw || raster.h != rh) resize(rw, rh);
-        if (!texturesReady) {
+        boolean idle = job == null || job.isDone();
+        if (idle && (front == null || front.w != rw || front.h != rh)) resize(rw, rh);
+        if (idle && !texturesReady) {
             texturesReady = true;
             scene.textures(Landscape::texture);
         }
         long ms = Util.getMillis();
         lastShown = ms;
-        if (ms - lastFrame >= 1000L / config().fps) {
+        if (idle && job != null) {
+            // кадр из фонового потока готов: показываем его, следующий рисуем в другой буфер
+            job = null;
+            Raster done = back;
+            back = front;
+            front = done;
+            upload(front);
+        }
+        // свёрнутое или неактивное окно: пейзаж почти стоит, процессор свободен
+        int fps = mc.isWindowActive() ? config().fps : 5;
+        if (job == null && front != null && ms - lastFrame >= 1000L / fps) {
             lastFrame = ms;
             double t = now();
             Weather wx = weather();
-            wx.update(t);
             sky = new Sky(clock(), season());
-            scene.render(raster, sky, wx, t);
-            upload();
+            Sky sk = sky;
+            float mouse = (float) (mc.mouseHandler.xpos() / winW * 2 - 1);
+            parallax += (Math.max(-1, Math.min(1, mouse)) - parallax) * 0.08f;
+            scene.parallax = parallax;
+            Raster target = back;
+            Runnable draw = () -> {
+                wx.update(t);
+                scene.render(target, sk, wx, t);
+            };
+            if (!firstShown) {
+                // самый первый кадр рисуем сразу, чтобы не было пустого экрана
+                draw.run();
+                back = front;
+                front = target;
+                upload(front);
+                firstShown = true;
+            } else {
+                job = WORKER.submit(draw);
+            }
         }
-        g.blit(ID, 0, 0, w, h, 0f, 0f, rw, rh, rw, rh);
+        if (front != null) g.blit(ID, 0, 0, w, h, 0f, 0f, front.w, front.h, front.w, front.h);
         if (note != null && ms < noteUntil) {
             int a = (int) Math.min(255, (noteUntil - ms) / 4);
             if (a > 8) g.drawString(mc.font, note, 4, h - 10, (a << 24) | 0xFFFFFF, true);
@@ -108,19 +148,21 @@ public final class Landscape {
     private static void resize(int rw, int rh) {
         var tm = Minecraft.getInstance().getTextureManager();
         if (texture != null) tm.release(ID);
-        raster = new Raster(rw, rh);
+        front = new Raster(rw, rh);
+        back = new Raster(rw, rh);
         texture = new DynamicTexture(rw, rh, false);
         tm.register(ID, texture);
         lastFrame = 0;
+        firstShown = false;
     }
 
-    private static void upload() {
+    private static void upload(Raster r) {
         NativeImage img = texture.getPixels();
         if (img == null) return;
-        int[] p = raster.px;
-        for (int y = 0; y < raster.h; y++) {
-            int o = y * raster.w;
-            for (int x = 0; x < raster.w; x++) {
+        int[] p = r.px;
+        for (int y = 0; y < r.h; y++) {
+            int o = y * r.w;
+            for (int x = 0; x < r.w; x++) {
                 int c = p[o + x];
                 // в NativeImage порядок ABGR
                 img.setPixelRGBA(x, y, 0xFF000000 | (c & 0xFF) << 16 | (c & 0xFF00) | (c >> 16 & 0xFF));

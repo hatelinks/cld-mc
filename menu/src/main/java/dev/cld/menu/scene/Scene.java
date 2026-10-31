@@ -17,6 +17,8 @@ public final class Scene {
     private static final int[] BAYER = {0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5};
 
     private int[] ground = new int[0];
+    // сдвиг слоёв за мышью от -1 до 1, ближние слои сдвигаются сильнее
+    public float parallax;
     private Blocks blocks;
     private Tex sun, moon, cloudMap;
 
@@ -71,6 +73,7 @@ public final class Scene {
         sunAndMoon(r, sky, wx, u, horizon);
         if (wx.rainbow > 0) rainbow(r, sky, wx, u, horizon);
         clouds(r, sky, wx, t, u, low, light, horizon);
+        birds(r, sky, wx, t, u, horizon, lightCol);
         for (Weather.Strike s : wx.strikes) if (!s.near()) farGlow(r, s, t, u, horizon);
 
         for (int k = 0; k < 4; k++) {
@@ -85,6 +88,7 @@ public final class Scene {
                 for (Weather.Strike s : wx.strikes) if (s.near()) bolt(r, s, t, u);
             }
         }
+        critters(r, sky, wx, t, u);
         precip(r, wx, t, u, true);
         if (wx.fog > 0.2f) r.blend(0, 0, w, h, low, (int) ((wx.fog - 0.2f) * 70));
         if (flash > 0.05f) r.blend(0, 0, w, h, 0xF0F4FF, (int) (flash * 60));
@@ -312,12 +316,77 @@ public final class Scene {
         return y - Math.floorMod(y, step);
     }
 
+    private double scrollOf(int k, double t, float u) {
+        return t * SPEED[k] * u + k * 5000 + parallax * (k + 1) * (k + 1) * 1.5f * u;
+    }
+
+    // стайка птиц раз в полминуты в хорошую погоду днём
+    private void birds(Raster r, Sky sky, Weather wx, double t, float u, int horizon, int lightCol) {
+        if (sky.day < 0.5f || wx.rain > 0.1f || wx.snow > 0.1f || wx.kind == WeatherKind.THUNDER) return;
+        double period = 34;
+        long slot = (long) Math.floor(t / period);
+        double p = (t - slot * period) / 18.0;
+        if (p > 1 || Noise.hash(slot, 2000) < 0.25) return;
+        int count = 4 + (int) (Noise.hash(slot, 2001) * 6);
+        boolean rightward = Noise.hash(slot, 2002) < 0.6;
+        float y0 = (float) (horizon * (0.2 + Noise.hash(slot, 2003) * 0.35));
+        int c = Col.mul(0x1E2228, lightCol);
+        int px = Math.max(1, Math.round(u));
+        for (int i = 0; i < count; i++) {
+            // клин: каждая следующая птица чуть сзади и в сторону
+            float back = (i + 1) / 2 * 9 * u, side = (i % 2 == 0 ? 1 : -1) * ((i + 1) / 2) * 4 * u;
+            float x = (float) (-30 * u + p * (r.w + 60 * u)) - back;
+            if (!rightward) x = r.w - x;
+            int bx = (int) x, by = (int) (y0 + side + Math.sin(t * 1.3 + i) * 2 * u);
+            boolean up = Math.sin(t * 9 + i * 1.7) > 0;
+            r.blend(bx - px, by + (up ? -px : 0), bx, by + (up ? 0 : px), c, 220);
+            r.blend(bx, by, bx + px, by + px, c, 220);
+            r.blend(bx + px, by + (up ? -px : 0), bx + 2 * px, by + (up ? 0 : px), c, 220);
+        }
+    }
+
+    // светлячки летними ночами, листопад осенью, лепестки весной
+    private void critters(Raster r, Sky sky, Weather wx, double t, float u) {
+        Season se = sky.season;
+        int px = Math.max(1, Math.round(u));
+        if ((se == Season.SUMMER || se == Season.SPRING) && sky.day < 0.3f && wx.rain < 0.1f && wx.kind != WeatherKind.THUNDER) {
+            int n = (int) (26 * r.w / (480f * u));
+            float vis = (0.3f - sky.day) / 0.3f;
+            for (int i = 0; i < n; i++) {
+                double x = Noise.hash(i, 2100) * r.w + Math.sin(t * 0.4 + i) * 14 * u + Noise.noise(t * 0.2 + i, 2101) * 20 * u;
+                int gx = (int) Math.floorMod((long) x, (long) r.w);
+                double y = ground[gx] - (6 + Noise.hash(i, 2102) * 40) * u + Math.cos(t * 0.5 + i * 2) * 6 * u;
+                float blink = (float) Math.max(0, Math.sin(t * (0.8 + Noise.hash(i, 2103)) + i * 3));
+                int a = (int) (vis * blink * 255);
+                if (a < 10) continue;
+                r.blend(gx - px, (int) y - px, gx + 2 * px, (int) y + 2 * px, 0xC8F060, a / 3);
+                r.blend(gx, (int) y, gx + px, (int) y + px, 0xF2FF9A, a);
+            }
+        }
+        boolean autumn = se == Season.AUTUMN, spring = se == Season.SPRING;
+        if ((autumn || spring) && wx.snow < 0.1f) {
+            int n = (int) ((autumn ? 34 : 18) * r.w / (480f * u));
+            int[] cols = autumn ? new int[] {0xE0822B, 0xD9A23A, 0xC4452A, 0xB8862E} : new int[] {0xF6B8D0, 0xF9D2E1, 0xEFA0C0};
+            float light = 0.4f + 0.6f * sky.day;
+            for (int i = 0; i < n; i++) {
+                double fall = (12 + Noise.hash(i, 2200) * 10) * u * (1 + wx.rain);
+                double y = Noise.hash(i, 2201) * r.h + t * fall;
+                int yy = (int) (y % (r.h + 10)) - 5;
+                double x = Noise.hash(i, 2202) * r.w + t * (6 + wx.wind * 40) * u + Math.sin(t * 1.6 + i) * 8 * u;
+                int xx = (int) Math.floorMod((long) x, (long) r.w);
+                int c = Col.scale(cols[i % cols.length], light);
+                boolean flat = Math.sin(t * 3 + i) > 0;
+                r.blend(xx, yy, xx + (flat ? 2 * px : px), yy + (flat ? px : 2 * px), c, 230);
+            }
+        }
+    }
+
     private void hills(Raster r, Sky sky, Weather wx, double t, float u, int k, int low, int lightCol, float flash) {
         Season se = sky.season;
         boolean winter = se == Season.WINTER;
         int col = palette(se, k);
         float haze = Math.min(0.92f, HAZE[k] + wx.fog * (0.32f - k * 0.06f));
-        double scroll = t * SPEED[k] * u + k * 5000;
+        double scroll = scrollOf(k, t, u);
         int step = Math.max(1, Math.round(u));
         int capCol = shadeLit(winter ? 0xEEF3F8 : 0xD8E0EA, lightCol, low, haze);
         int snowLine = (int) (r.h * (winter ? 0.62f : 0.43f));
@@ -350,7 +419,7 @@ public final class Scene {
         float haze = Math.min(0.92f, HAZE[k] + wx.fog * (0.32f - k * 0.06f));
         blocks.frame(lightCol, low, haze);
         int bs = Math.max(4, Math.round((k == 3 ? 16 : 8) * u));
-        double scroll = t * SPEED[k] * u + k * 5000;
+        double scroll = scrollOf(k, t, u);
         int sea = (int) Math.round(r.h * (1 - BASE[k]) / bs) - (k == 3 ? 2 : 3);
         long b0 = (long) Math.floor(scroll / bs) - 3, b1 = (long) Math.floor((scroll + r.w) / bs) + 3;
         int grass = grassTint(se), water = winter ? 0 : (int) (t * 8);
@@ -693,7 +762,7 @@ public final class Scene {
         if (f <= 0.05f) return;
         java.util.Random rnd = new java.util.Random(s.seed);
         int x = (int) (s.x * r.w);
-        int groundY = height(r, x + t * SPEED[2] * u + 2 * 5000, t, 2, u);
+        int groundY = height(r, x + scrollOf(2, t, u), t, 2, u);
         int a = (int) (Math.min(1, f) * 255);
         int px = Math.max(1, Math.round(u));
         segment(r, rnd, x, 0, groundY, px, a, u, 3);

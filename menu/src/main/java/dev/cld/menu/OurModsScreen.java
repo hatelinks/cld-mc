@@ -20,7 +20,7 @@ import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 // Экран TC Моды: слева разделы по модам и датапакам сборки, справа их настройки.
-// Открывается из настроек и из меню паузы. У каждой настройки своя кнопка «по умолчанию».
+// Открывается из настроек и из меню паузы. У каждой настройки своя кнопка по умолчанию.
 public final class OurModsScreen extends Screen {
     private static final int ROW = 24;
     private static String lastSection = "cld_menu";
@@ -45,6 +45,7 @@ public final class OurModsScreen extends Screen {
             if (id.equals("cld_menu") || !(id.startsWith("cld_") || id.equals("tcw") || id.equals("sable_android"))) continue;
             sections.add(new Section(id, info.getDisplayName(), () -> modSection(id)));
         }
+        sections.add(new Section("startup", Component.translatable("cld_menu.ourmods.startup_title").getString(), this::startupSection));
         sections.add(new Section("datapacks", Component.translatable("cld_menu.ourmods.datapacks").getString(), this::datapackSection));
         current = sections.stream().filter(s -> s.id.equals(lastSection)).findFirst().orElse(sections.get(0));
         int y = 32;
@@ -114,8 +115,8 @@ public final class OurModsScreen extends Screen {
         List<Integer> fps = List.of(20, 30, 60, 120);
         row(5, tr("fps"), cycle(fps, fps.contains(c.fps) ? c.fps : 60, v -> v + " " + tr("per_second"),
                 v -> { c.fps = v; Landscape.applyConfig(false); }), () -> { c.fps = d.fps; Landscape.applyConfig(false); });
-        hint(7, tr("hint_f9"));
-        hint(8, tr("hint_file"));
+        hint(6, tr("hint_f9"));
+        if (StartupTimer.summary() != null) hint(7, tr("startup") + " " + StartupTimer.summary());
     }
 
     private void modSection(String id) {
@@ -142,6 +143,14 @@ public final class OurModsScreen extends Screen {
             hint(6, tr("no_settings"));
         }
         if (id.equals("cld_far")) hint(7, tr("hint_far"));
+    }
+
+    private void startupSection() {
+        List<String> h = StartupTimer.history(8);
+        if (h.isEmpty()) hint(0, tr("startup_none"));
+        for (int i = 0; i < h.size(); i++) hint(i, h.get(i));
+        hint(Math.max(1, h.size()) + 1, tr("startup_file"));
+        hint(Math.max(1, h.size()) + 2, tr("hint_file"));
     }
 
     private void datapackSection() {
@@ -199,7 +208,9 @@ public final class OurModsScreen extends Screen {
         g.drawString(font, current.title, rightX(), 22, 0x8FE3A8);
         for (String[] l : lines) {
             int color = l.length > 2 ? 0xC8CCD0 : 0xFFFFFF;
-            g.drawString(font, l[0], rightX(), Integer.parseInt(l[1]), color);
+            // подписи настроек не залезают на кнопки, подсказки обрезаются по ширине колонки
+            int max = l.length > 2 ? rightW() : rightW() - Math.max(90, Math.min(170, rightW() - 150)) - 60;
+            g.drawString(font, font.plainSubstrByWidth(l[0], max), rightX(), Integer.parseInt(l[1]), color);
         }
     }
 

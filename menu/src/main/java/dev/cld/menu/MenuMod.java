@@ -6,6 +6,8 @@ import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.PauseScreen;
@@ -21,6 +23,9 @@ import org.lwjgl.glfw.GLFW;
 @Mod(value = "cld_menu", dist = Dist.CLIENT)
 public final class MenuMod {
     public MenuMod(IEventBus bus, ModContainer mod) {
+        StartupTimer.constructed();
+        bus.addListener(FMLClientSetupEvent.class, e -> StartupTimer.setup());
+        bus.addListener(FMLLoadCompleteEvent.class, e -> StartupTimer.loaded());
         mod.registerExtensionPoint(IConfigScreenFactory.class, (c, parent) -> new OurModsScreen(parent));
         NeoForge.EVENT_BUS.addListener(MenuMod::ourModsButton);
         bus.addListener(RegisterClientReloadListenersEvent.class,

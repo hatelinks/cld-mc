@@ -4,7 +4,7 @@
 set -e
 cd "$(dirname "$0")"
 LIBS=${LIBS:-../../libs}
-VERSION=${VERSION:-1.0.0}
+VERSION=${VERSION:-1.0.1}
 CP=$(ls "$LIBS"/*.jar | tr '\n' ':')
 rm -rf build && mkdir -p build/classes dist
 javac -proc:none --release 21 -encoding UTF-8 -nowarn -cp "$CP" -d build/classes $(find src/main/java -name '*.java')
