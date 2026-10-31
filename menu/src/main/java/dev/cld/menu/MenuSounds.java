@@ -44,9 +44,10 @@ public final class MenuSounds {
 
     static void tick() {
         Minecraft mc = Minecraft.getInstance();
+        for (Weather.Strike s; (s = STRIKES.poll()) != null; ) thunder(s);
         boolean on = active() && volume() > 0;
         Weather wx = Landscape.currentWeather();
-        if (on && wx != null) {
+        if (on && wx != null && Landscape.currentSky() != null) {
             AMBIENT.target(wx, Landscape.currentSky());
             if (playing == null || playing.isStopped()) {
                 playing = new AmbientSound();
@@ -73,7 +74,14 @@ public final class MenuSounds {
     }
 
     // удар молнии: рядом гром громкий и сразу, вдалеке тихий, ниже и с задержкой по расстоянию
+    // молния приходит из потока пейзажа, звук запускаем в тике игры
+    private static final java.util.Queue<Weather.Strike> STRIKES = new java.util.concurrent.ConcurrentLinkedQueue<>();
+
     static void strike(Weather.Strike s) {
+        STRIKES.add(s);
+    }
+
+    private static void thunder(Weather.Strike s) {
         if (!active() || volume() <= 0) return;
         if (s.near()) {
             play(SoundEvents.LIGHTNING_BOLT_IMPACT, 0.7f, 0.9f + RND.nextFloat() * 0.2f, 0);

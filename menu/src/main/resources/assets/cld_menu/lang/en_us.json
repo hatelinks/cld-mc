@@ -19,12 +19,16 @@
   "cld_menu.ourmods.off": "Off",
   "cld_menu.ourmods.on": "On",
   "cld_menu.ourmods.hint_f9": "In the main menu F9 cycles weather, Shift+F9 season, Ctrl+F9 time.",
-  "cld_menu.ourmods.hint_file": "Stored in config/cld_menu.properties.",
+  "cld_menu.ourmods.hint_file": "Menu settings are stored in config/cld_menu.properties.",
   "cld_menu.ourmods.version": "Version",
   "cld_menu.ourmods.open": "Open mod settings",
   "cld_menu.ourmods.no_settings": "This mod has no in-game settings.",
   "cld_menu.ourmods.hint_far": "In game the same settings open with F7.",
   "cld_menu.ourmods.datapacks_world": "Datapacks are listed while a world is open.",
   "cld_menu.ourmods.datapacks_none": "No pack datapacks found in this world.",
-  "cld_menu.ourmods.datapacks_later": "Toggles and options for datapacks will come later."
+  "cld_menu.ourmods.datapacks_later": "Toggles and options for datapacks will come later.",
+  "cld_menu.ourmods.startup": "Game start:",
+  "cld_menu.ourmods.startup_title": "Startup time",
+  "cld_menu.ourmods.startup_none": "No measurements yet, they appear after the next launch.",
+  "cld_menu.ourmods.startup_file": "Full lines are in logs/cld_startup.log."
 }

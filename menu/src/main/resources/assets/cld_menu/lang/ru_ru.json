@@ -19,12 +19,16 @@
   "cld_menu.ourmods.off": "Выкл.",
   "cld_menu.ourmods.on": "Вкл.",
   "cld_menu.ourmods.hint_f9": "В главном меню F9 листает погоду, Shift+F9 время года, Ctrl+F9 время.",
-  "cld_menu.ourmods.hint_file": "Всё хранится в config/cld_menu.properties.",
+  "cld_menu.ourmods.hint_file": "Настройки меню хранятся в config/cld_menu.properties.",
   "cld_menu.ourmods.version": "Версия",
   "cld_menu.ourmods.open": "Открыть настройки мода",
   "cld_menu.ourmods.no_settings": "У этого мода нет настроек в игре.",
   "cld_menu.ourmods.hint_far": "В игре те же настройки открываются клавишей F7.",
   "cld_menu.ourmods.datapacks_world": "Список датапаков виден, когда открыт мир.",
   "cld_menu.ourmods.datapacks_none": "Датапаки сборки в этом мире не найдены.",
-  "cld_menu.ourmods.datapacks_later": "Включение и параметры датапаков появятся здесь позже."
+  "cld_menu.ourmods.datapacks_later": "Включение и параметры датапаков появятся здесь позже.",
+  "cld_menu.ourmods.startup": "Запуск игры:",
+  "cld_menu.ourmods.startup_title": "Скорость запуска",
+  "cld_menu.ourmods.startup_none": "Замеров пока нет, они появятся после следующего запуска.",
+  "cld_menu.ourmods.startup_file": "Полные строки в logs/cld_startup.log, пришлите файл, если запуск медленный."
 }

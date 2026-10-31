@@ -19,6 +19,7 @@ final class TitleButtons {
 
     static void onInit(ScreenEvent.Init.Post e) {
         if (!(e.getScreen() instanceof TitleScreen)) return;
+        StartupTimer.title();
         List<AbstractWidget> removed = new ArrayList<>();
         for (GuiEventListener l : List.copyOf(e.getListenersList())) {
             if (l instanceof AbstractWidget w && w.getMessage().getContents() instanceof TranslatableContents tc
