@@ -2,9 +2,10 @@
 
 Карта кода. Читать вместо разбора исходников; кто меняет мод, обновляет эту страницу в своём PR.
 
-- modId `cld_bombs`, папка `bombs/`, версия **1.0.1** (`VERSION` в `bombs/build.sh`). Ставится и на клиент, и на сервер.
+- modId `cld_bombs`, папка `bombs/`, версия **1.0.2** (`VERSION` в `bombs/build.sh`). Ставится и на клиент, и на сервер.
 - Дополнение к бомбам Supplementaries (проверено против 4.0.2). Сам Supplementaries не меняется, всё через миксины в его классы.
 - Уровни 1-10. Радиус растёт по кривой от радиуса 1 уровня до радиуса последнего: бомба 5 -> 50, синяя 4 -> 40, осколок синей 1.5 -> 12. Обсидиан и блоки прочностью до 1200 ломаются с 8 уровня, бедрок и тег `cld_bombs:immune` никогда.
+- Жидкости: с 5 уровня кратер убирает воду (и воду внутри блоков), с 8 уровня ещё лаву и жидкости модов (`water_level`, `fluid_level`, с 1.0.2). Раньше жидкость остаётся. Вода и лава снаружи кратера затекают обратно, потому что край обновляет соседей.
 - Кратер вырезается от центра наружу за несколько тиков (`blocks_per_tick`), урон и отбрасывание сразу. Часть блоков выпадает (`drop_chance`), добыча собирается в стопки и выпадает в конце. Колонии MineColonies не трогаются.
 - Прокачка на верстаке: бомба и сколько угодно пороха и TNT в любых клетках (TNT = 5 пороха). Уровень растёт, пока хватает пороха (уровень N стоит N), лишний порох возвращается. С 1.0.1, в 1.0.0 нужно было ровно N+1 пороха на один уровень.
 - Бомбы в сундуках и прочей добыче получают случайный уровень 1-3.
@@ -12,7 +13,7 @@
 
 ## Сборка
 ```sh
-LIBS=/mnt/project-files/libs MODS=/mnt/project-files/libs-mods bombs/build.sh   # bombs/dist/cld_bombs-neoforge-1.21.1-1.0.1.jar
+LIBS=/mnt/project-files/libs MODS=/mnt/project-files/libs-mods bombs/build.sh   # bombs/dist/cld_bombs-neoforge-1.21.1-1.0.2.jar
 ```
 В `MODS` jar Supplementaries, Moonlight, MineColonies и `mixinextras-neoforge` (из jarjar NeoForge). В репозиторий их не класть.
 
@@ -31,7 +32,7 @@ LIBS=/mnt/project-files/libs MODS=/mnt/project-files/libs-mods bombs/build.sh   
 | `mixin/BombEntityMixin` | Подмена `BombExplosion.createExplosion` в `createExplosion`, уровень осколкам (`spawnCluster`), уровень у подобранной бомбы (`playerTouch`). |
 
 ## Настройки
-- `serverconfig/cld_bombs-server.toml` в папке мира (на сервере меняет оператор): `enabled`, `max_level`, `radius_curve`, радиусы в разделе `radius`, `obsidian_level`, урон, `drop_chance`, `max_drop_stacks`, `edge_jitter`, `protect_colonies`, `powder_per_level`, `tnt_powder`, уровни в сундуках, `glint_level`.
+- `serverconfig/cld_bombs-server.toml` в папке мира (на сервере меняет оператор): `enabled`, `max_level`, `radius_curve`, радиусы в разделе `radius`, `obsidian_level`, `water_level`, `fluid_level`, урон, `drop_chance`, `max_drop_stacks`, `edge_jitter`, `protect_colonies`, `powder_per_level`, `tnt_powder`, уровни в сундуках, `glint_level`.
 - `config/cld_bombs-common.toml` у каждого устройства: `radius_cap` (на Android 20-25), `blocks_per_tick`.
 - В игре: экран настроек NeoForge этого мода. Общий экран «Наши моды» (отдел меню) должен открывать его же.
 

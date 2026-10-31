@@ -32,5 +32,9 @@
   "cld_bombs.configuration.loot_level_max": "Уровень в сундуках: до",
   "cld_bombs.configuration.glint_level": "Блеск с уровня",
   "cld_bombs.configuration.radius_cap": "Предел радиуса на устройстве",
-  "cld_bombs.configuration.blocks_per_tick": "Блоков кратера за тик"
+  "cld_bombs.configuration.blocks_per_tick": "Блоков кратера за тик",
+  "tooltip.cld_bombs.water": "Убирает воду",
+  "tooltip.cld_bombs.fluids": "Убирает лаву и другие жидкости",
+  "cld_bombs.configuration.water_level": "Вода убирается с уровня",
+  "cld_bombs.configuration.fluid_level": "Лава и жидкости модов с уровня"
 }

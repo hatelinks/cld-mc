@@ -6,7 +6,7 @@ set -e
 cd "$(dirname "$0")"
 LIBS=${LIBS:-../../libs}
 MODS=${MODS:-../../libs-mods}
-VERSION=${VERSION:-1.0.1}
+VERSION=${VERSION:-1.0.2}
 CP=$(ls "$LIBS"/neoforge-*-client.jar; ls "$LIBS"/client-*-srg.jar; ls "$LIBS"/*.jar | grep -v -e '-client.jar$' -e '-srg.jar$'; ls "$MODS"/*.jar)
 CP=$(echo "$CP" | tr '\n' ':')
 rm -rf build && mkdir -p build/classes dist
