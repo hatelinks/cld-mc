@@ -14,7 +14,7 @@ import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLPaths;
 
 // Замер запуска игры: сколько ушло до загрузки модов, до конца загрузки и до главного меню.
-// Пишет строку в logs/cld_startup.log при каждом запуске, последние запуски видны в Наших модах.
+// Пишет строку в logs/cld_startup.log при каждом запуске, последние запуски видны в TC Модах.
 public final class StartupTimer {
     private static final long JVM = ManagementFactory.getRuntimeMXBean().getStartTime();
     private static long constructed, setup, loaded, title;

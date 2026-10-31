@@ -36,7 +36,7 @@ public final class MenuMod {
         NeoForge.EVENT_BUS.addListener(SoundSlider::onInit);
     }
 
-    // кнопка Наши моды в правом верхнем углу настроек и меню паузы
+    // кнопка TC Моды в правом верхнем углу настроек и меню паузы
     private static void ourModsButton(ScreenEvent.Init.Post e) {
         Screen s = e.getScreen();
         if (!(s instanceof OptionsScreen) && !(s instanceof PauseScreen p && p.showsPauseMenu())) return;
