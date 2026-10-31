@@ -42,22 +42,38 @@ float vnoise(vec2 p) {
 
 out vec4 fragColor;
 
+int maskAt(vec2 xz) {
+    ivec2 cell = ivec2(floor((xz - MaskOrigin) / 16.0));
+    if (cell.x < 0 || cell.y < 0 || cell.x >= int(MaskSize) || cell.y >= int(MaskSize)) return 0;
+    return int(texelFetch(Mask, cell, 0).r * 255.0 + 0.5);
+}
+
 void main() {
     float d = length(relPos.xz);
+    // нормаль грани (в вершинах нормалей нет)
+    vec3 fn = normalize(cross(dFdx(relPos), dFdy(relPos)));
     if (MaskSize > 0.5) {
         // маска по чанкам: где игра уже нарисовала чанк (и по высоте он в её прорисовке), дальний рельеф не нужен;
         // где готов блочный тайл, грубый рельеф под ним не рисуется (Pass 0, грубый, 1, блочный)
-        ivec2 cell = ivec2(floor((relPos.xz - MaskOrigin) / 16.0));
-        int m = 0;
-        if (cell.x >= 0 && cell.y >= 0 && cell.x < int(MaskSize) && cell.y < int(MaskSize)) m = int(texelFetch(Mask, cell, 0).r * 255.0 + 0.5);
+        int m = maskAt(relPos.xz);
+        // стенка ровно на границе чанка закрывает ступеньку между чанком игры и дальним рельефом:
+        // отбрасывается, только если чанки игры с обеих её сторон, иначе вдоль границы просвечивало небо
+        if (abs(fn.y) < 0.5) {
+            vec2 side = normalize(fn.xz) * 0.5;
+            m = maskAt(relPos.xz + side) & maskAt(relPos.xz - side);
+        }
         if ((m & 1) != 0 && abs(relPos.y) < VertRange) discard;
-        if (abs(Pass - 1.0) > 0.5 && (m & 2) != 0) discard;
+        if (Pass > 2.5) {
+            // Pass 3 (грубый под блочными): только в клетках блочных тайлов, закрывает щели на их краю,
+            // где грубый рельеф снаружи выше блочного и между ними не было стенки
+            if ((maskAt(relPos.xz) & 2) == 0) discard;
+        } else if (abs(Pass - 1.0) > 0.5 && (m & 2) != 0) discard;
     } else if (length(relPos) < ClipRadius) discard;
     vec3 c = vertexColor.rgb;
     float alpha = vertexColor.a;
     // мировые координаты (по модулю, чтобы хватало точности): для волн и теней облаков
     vec2 wp = relPos.xz + WorldXZ;
-    if (Pass > 1.5) {
+    if (abs(Pass - 2.0) < 0.5) {
         // вода (Pass 2): рябь, отражение неба под острым углом, блик солнца
         vec3 n = vec3(0.0, 1.0, 0.0);
         if (Waves > 0.0) {
@@ -74,7 +90,7 @@ void main() {
         c += vec3(1.0, 0.95, 0.82) * spec * 1.5;
         alpha = max(alpha, min(1.0, spec));
     } else if (SunShade > 0.0) {
-        vec3 n = normalize(cross(dFdx(relPos), dFdy(relPos)));
+        vec3 n = fn;
         if (dot(n, relPos) > 0.0) n = -n;
         float lit = 0.55 + 0.6 * max(dot(n, SunDir), 0.0);
         c *= mix(1.0, lit, SunShade);
