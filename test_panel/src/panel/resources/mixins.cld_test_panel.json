@@ -6,7 +6,14 @@
     "defaultRequire": 1
   },
   "client": [
-    "EntityTurnMixin",
+    "GameModeMixin",
     "LightTextureMixin"
+  ],
+  "mixins": [
+    "EntityMixin",
+    "FishingHookAccessor",
+    "LivingEntityMixin",
+    "MovePacketMixin",
+    "PlayerMixin"
   ]
 }

@@ -183,6 +183,7 @@ public final class BlockEsp implements AbstractGameEventListener {
 
     @Override
     public void onRenderPass(RenderEvent e) {
+        EntityEsp.render(e);
         if (found.isEmpty()) return;
         BufferBuilder bb = IRenderer.startLines(Color.WHITE, 0.9f, 2f, true);
         for (Found f : found.values()) {

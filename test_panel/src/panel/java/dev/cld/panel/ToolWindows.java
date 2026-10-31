@@ -36,7 +36,7 @@ import java.util.Locale;
 // Окна второго этапа: все настройки Baritone, путевые точки, радар.
 final class ToolWindows {
     private static final String[] RADAR_MODES = {"все", "враги", "игроки", "мирные"};
-    private static int radarMode;
+    static int radarMode;
     // Краткие описания настроек Baritone по-русски: имя, табуляция, текст
     private static Map<String, String> descriptions;
 
@@ -197,14 +197,13 @@ final class ToolWindows {
             for (Entity e : mc.level.entitiesForRendering()) {
                 if (!(e instanceof LivingEntity le) || e == mc.player || !e.isAlive()) continue;
                 if (e.distanceToSqr(mc.player) > 128 * 128) continue;
-                boolean enemy = e instanceof Enemy, player = e instanceof Player;
-                if (radarMode == 1 && !enemy || radarMode == 2 && !player || radarMode == 3 && (enemy || player)) continue;
+                if (!radarMatch(e)) continue;
                 near.add(le);
             }
             near.sort(Comparator.comparingDouble(e -> e.distanceToSqr(mc.player)));
             for (LivingEntity e : near) {
                 int dist = (int) Math.sqrt(e.distanceToSqr(mc.player));
-                int color = e instanceof Player ? 0xFF60A0FF : e instanceof Enemy ? 0xFFFF6060 : e instanceof Animal ? 0xFF80E080 : 0xFFE0E0A0;
+                int color = entityColor(e);
                 String text = e.getName().getString() + "  " + dist + "м " + compass(e.getX() - mc.player.getX(), e.getZ() - mc.player.getZ());
                 rows.add(new Row(text, color, b -> {
                     if (b == 0) Panel.baritone().getCustomGoalProcess().setGoalAndPath(new GoalBlock(e.blockPosition()));
@@ -215,6 +214,16 @@ final class ToolWindows {
         }));
         w.add(new Label(() -> "ЛКМ идти к нему, ПКМ телепорт"));
         return w;
+    }
+
+    // Фильтр радара, им же пользуются ESP и Tracers
+    static boolean radarMatch(Entity e) {
+        boolean enemy = e instanceof Enemy, player = e instanceof Player;
+        return !(radarMode == 1 && !enemy || radarMode == 2 && !player || radarMode == 3 && (enemy || player));
+    }
+
+    static int entityColor(Entity e) {
+        return e instanceof Player ? 0xFF60A0FF : e instanceof Enemy ? 0xFFFF6060 : e instanceof Animal ? 0xFF80E080 : 0xFFE0E0A0;
     }
 
     // Сторона света по смещению: в Minecraft север это -Z

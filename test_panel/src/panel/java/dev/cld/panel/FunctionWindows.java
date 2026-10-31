@@ -29,7 +29,37 @@ final class FunctionWindows {
         w.add(new Button(() -> String.format("Скорость камеры %.2f (ЛКМ +, ПКМ -)", c.camSpeed), () -> false, b -> {
             c.camSpeed = Math.max(0.25, Math.min(5, c.camSpeed + (b == 1 ? -0.25 : 0.25)));
         }));
+        w.add(new Button(() -> "ESP: рамки существ", () -> EntityEsp.esp, b -> EntityEsp.esp = Cheats.toggle(EntityEsp.esp, "ESP")));
+        w.add(new Button(() -> "Tracers: линии к существам", () -> EntityEsp.tracers, b -> EntityEsp.tracers = Cheats.toggle(EntityEsp.tracers, "Tracers")));
         w.add(new Label(() -> Panel.full() ? "Камера: WASD, прыжок, присед, бег x3" : "Только одиночная игра и свой сервер"));
+        return w;
+    }
+
+    // Движение из Nodus
+    static Window movement(PanelConfig c) {
+        Window w = new Window("movement", "Движение", 150, c.win("movement", 310, 230, 0));
+        w.add(new Button(() -> "NoFall", () -> Cheats.noFall, b -> Cheats.noFall = Cheats.toggle(Cheats.noFall, "NoFall")));
+        w.add(new Button(() -> "Step: шаг на блок", () -> Cheats.step, b -> Cheats.step = Cheats.toggle(Cheats.step, "Step")));
+        w.add(new Button(() -> "Jesus: по воде и лаве", () -> Cheats.jesus, b -> Cheats.jesus = Cheats.toggle(Cheats.jesus, "Jesus")));
+        w.add(new Button(() -> "Spider: по стенам", () -> Cheats.spider, b -> Cheats.spider = Cheats.toggle(Cheats.spider, "Spider")));
+        w.add(new Button(() -> "Phase: сквозь блоки", () -> Cheats.phase, b -> Cheats.phase = Cheats.toggle(Cheats.phase, "Phase")));
+        w.add(new Button(() -> "Timer: тики x" + Cheats.TIMER[Cheats.timer] + " (ЛКМ +, ПКМ -)", () -> Cheats.timer > 0, b -> {
+            if (!Panel.full()) {
+                Panel.log("Timer: только в одиночной игре и на своём сервере");
+                return;
+            }
+            Cheats.timer = Math.max(0, Math.min(Cheats.TIMER.length - 1, Cheats.timer + (b == 1 ? -1 : 1)));
+            Panel.log("Timer: x" + Cheats.TIMER[Cheats.timer]);
+        }));
+        w.add(new Label(() -> "Присед опускает в воду, Phase летает"));
+        return w;
+    }
+
+    static Window world(PanelConfig c) {
+        Window w = new Window("world", "Мир", 150, c.win("world", 466, 230, 4));
+        w.add(new Button(() -> "FastBreak", () -> Cheats.fastBreak, b -> Cheats.fastBreak = Cheats.toggle(Cheats.fastBreak, "FastBreak")));
+        w.add(new Button(() -> "AutoTool", () -> Cheats.autoTool, b -> Cheats.autoTool = Cheats.toggle(Cheats.autoTool, "AutoTool")));
+        w.add(new Button(() -> "AutoFish", () -> Cheats.autoFish, b -> Cheats.autoFish = Cheats.toggle(Cheats.autoFish, "AutoFish")));
         return w;
     }
 

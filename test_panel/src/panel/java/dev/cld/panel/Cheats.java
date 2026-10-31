@@ -18,7 +18,17 @@ import java.util.function.Consumer;
 // Функции из Nodus: яркость, полёт, свободная камера. Работают только в одиночной игре и на своих серверах.
 public final class Cheats {
     public static boolean fullbright, flight, freecam;
-    private static boolean brightNow, flyApplied;
+    public static boolean noFall, fastBreak, step, jesus, spider, phase, autoTool, autoFish;
+    // Скорость тиков мира: 1 обычная
+    static final int[] TIMER = {1, 2, 3, 5, 10};
+    static int timer;
+    private static int timerApplied;
+    private static boolean brightNow, flyApplied, ok;
+    // Phase на встроенном сервере: тот же игрок по UUID
+    private static volatile boolean phaseServer;
+    private static volatile UUID phaseId;
+    private static int fishWait;
+    private static final net.minecraft.resources.ResourceLocation STEP_ID = net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("cld_test_panel", "step");
     private static RemotePlayer cam;
     private static ClientLevel camLevel;
 
@@ -27,6 +37,32 @@ public final class Cheats {
     // Для миксина LightTexture, считается раз в тик
     public static boolean bright() {
         return brightNow;
+    }
+
+    public static boolean jesus() {
+        return jesus && ok;
+    }
+
+    public static boolean spider() {
+        return spider && ok;
+    }
+
+    public static boolean fastBreak() {
+        return fastBreak && ok;
+    }
+
+    // Для пакета движения: падаем больше 2 блоков, полёт выключен
+    public static boolean noFallNow() {
+        Minecraft mc = Minecraft.getInstance();
+        LocalPlayer p = mc.player;
+        return noFall && ok && p != null && mc.isSameThread() && p.fallDistance > 2 && !p.getAbilities().flying;
+    }
+
+    // Игрок с Phase: на клиенте наш LocalPlayer, на встроенном сервере игрок с тем же UUID
+    public static boolean phased(Entity e) {
+        if (e == null) return false;
+        if (e instanceof LocalPlayer) return phase && ok && e == Minecraft.getInstance().player;
+        return phaseServer && e instanceof ServerPlayer && e.getUUID().equals(phaseId);
     }
 
     // Включить с проверкой, где можно
@@ -49,14 +85,22 @@ public final class Cheats {
     static void tick() {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer p = mc.player;
-        boolean ok = p != null && mc.level != null && Panel.full();
+        ok = p != null && mc.level != null && Panel.full();
         brightNow = fullbright && ok;
+        phaseServer = phase && ok && mc.hasSingleplayerServer();
         if (p == null || mc.level == null) {
             cam = null;
             flyApplied = false;
+            timerApplied = 0;
             return;
         }
-        fly(p, flight && ok);
+        phaseId = p.getUUID();
+        // Phase вместе с полётом, иначе игрок провалится сквозь пол
+        fly(p, (flight || phase) && ok);
+        step(p, step && ok);
+        tickRate(mc, p);
+        if (autoTool && ok) autoTool(mc, p);
+        if (autoFish && ok) autoFish(mc, p);
         // после смерти или смены мира игра сама ставит камеру на игрока, тогда выключаем свою
         if (cam != null && (!freecam || !ok || camLevel != mc.level || mc.getCameraEntity() != cam)) stopCam(mc, p);
         else if (cam == null && freecam && ok) startCam(mc, p);
@@ -91,6 +135,68 @@ public final class Cheats {
                 }
                 sp.onUpdateAbilities();
             });
+        }
+    }
+
+    // Step: шаг на целый блок, атрибут и на клиенте, и на встроенном сервере
+    private static void step(LocalPlayer p, boolean on) {
+        var a = p.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.STEP_HEIGHT);
+        if (a == null || a.hasModifier(STEP_ID) == on) return;
+        if (on) a.addTransientModifier(stepMod());
+        else a.removeModifier(STEP_ID);
+        server(p, sp -> {
+            var sa = sp.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.STEP_HEIGHT);
+            if (sa == null) return;
+            sa.removeModifier(STEP_ID);
+            if (on) sa.addTransientModifier(stepMod());
+        });
+    }
+
+    private static net.minecraft.world.entity.ai.attributes.AttributeModifier stepMod() {
+        return new net.minecraft.world.entity.ai.attributes.AttributeModifier(STEP_ID, 0.4, net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_VALUE);
+    }
+
+    // Timer: скорость тиков всего мира (как /tick rate), фермы и машины работают быстрее
+    private static void tickRate(Minecraft mc, LocalPlayer p) {
+        int want = ok ? TIMER[timer] : 1;
+        if (timerApplied == 0) timerApplied = 1;
+        if (want == timerApplied || !ok) return;
+        timerApplied = want;
+        float rate = 20f * want;
+        var s = mc.getSingleplayerServer();
+        if (s != null) s.execute(() -> s.tickRateManager().setTickRate(rate));
+        else p.connection.sendCommand("tick rate " + (int) rate);
+    }
+
+    // AutoTool: пока держишь атаку по блоку, в руке лучший инструмент из хотбара
+    private static void autoTool(Minecraft mc, LocalPlayer p) {
+        if (mc.screen != null || !mc.options.keyAttack.isDown()) return;
+        if (!(mc.hitResult instanceof net.minecraft.world.phys.BlockHitResult hit) || hit.getType() != net.minecraft.world.phys.HitResult.Type.BLOCK) return;
+        var state = mc.level.getBlockState(hit.getBlockPos());
+        var inv = p.getInventory();
+        int best = inv.selected;
+        float bestSpeed = inv.getItem(best).getDestroySpeed(state);
+        for (int i = 0; i < 9; i++) {
+            float sp = inv.getItem(i).getDestroySpeed(state);
+            if (sp > bestSpeed) {
+                bestSpeed = sp;
+                best = i;
+            }
+        }
+        inv.selected = best;
+    }
+
+    // AutoFish: клюёт, вытаскиваем, через полсекунды снова забрасываем
+    private static void autoFish(Minecraft mc, LocalPlayer p) {
+        var hand = net.minecraft.world.InteractionHand.MAIN_HAND;
+        if (!(p.getItemInHand(hand).getItem() instanceof net.minecraft.world.item.FishingRodItem)) return;
+        if (fishWait > 0) {
+            if (--fishWait == 0 && p.fishing == null) mc.gameMode.useItem(p, hand);
+            return;
+        }
+        if (p.fishing != null && ((dev.cld.panel.mixin.FishingHookAccessor) p.fishing).cld$biting()) {
+            mc.gameMode.useItem(p, hand);
+            fishWait = 10;
         }
     }
 

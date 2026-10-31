@@ -33,6 +33,8 @@ final class Windows {
         list.add(ToolWindows.radar(c));
         list.add(FunctionWindows.functions(c));
         list.add(FunctionWindows.search(c));
+        list.add(FunctionWindows.movement(c));
+        list.add(FunctionWindows.world(c));
         return list;
     }
 
