@@ -2,7 +2,7 @@
   "item.cld_bombs.leveled": "%s, уровень %s",
   "tooltip.cld_bombs.radius": "Радиус взрыва: %s",
   "tooltip.cld_bombs.obsidian": "Ломает обсидиан",
-  "tooltip.cld_bombs.upgrade": "Следующий уровень на верстаке: бомба и %s пороха (TNT = %s)",
+  "tooltip.cld_bombs.upgrade": "Прокачка на верстаке: бомба и порох или TNT в любом количестве. Следующий уровень стоит %s пороха, TNT = %s",
   "cld_bombs.configuration.title": "Бомбы с уровнями",
   "cld_bombs.configuration.section.cld.bombs.server.toml": "Настройки мира",
   "cld_bombs.configuration.section.cld.bombs.server.toml.title": "Бомбы: настройки мира",
