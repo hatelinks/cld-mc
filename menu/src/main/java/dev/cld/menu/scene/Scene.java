@@ -71,7 +71,7 @@ public final class Scene {
         vignette(r);
     }
 
-    // ---------------------------------------------------------------- небо
+    // небо
 
     // градиент полосами с узором Байера, как в старых играх
     private static void skyGradient(Raster r, int top, int low, int horizon) {
@@ -241,7 +241,7 @@ public final class Scene {
         }
     }
 
-    // ---------------------------------------------------------------- горы
+    // горы
 
     private int height(Raster r, double wx, double t, int k, float u) {
         double f = FREQ[k] / u;
@@ -412,7 +412,7 @@ public final class Scene {
         }
     }
 
-    // ---------------------------------------------------------------- осадки и молния
+    // осадки и молния
 
     private void precip(Raster r, Weather wx, double t, float u, boolean near) {
         float area = r.w * r.h / (u * u * 480f * 270f);
