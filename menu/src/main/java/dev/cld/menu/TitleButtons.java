@@ -10,7 +10,7 @@ import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 
-/** Убирает кнопки Realms и «Моды» и подтягивает остальные кнопки вверх. */
+// Убирает кнопки Realms и Моды и подтягивает остальные кнопки вверх.
 final class TitleButtons {
     private static final Set<String> REMOVE = Set.of("menu.online", "fml.menu.mods");
     private static final int ROW = 24;
@@ -19,6 +19,7 @@ final class TitleButtons {
 
     static void onInit(ScreenEvent.Init.Post e) {
         if (!(e.getScreen() instanceof TitleScreen)) return;
+        StartupTimer.title();
         List<AbstractWidget> removed = new ArrayList<>();
         for (GuiEventListener l : List.copyOf(e.getListenersList())) {
             if (l instanceof AbstractWidget w && w.getMessage().getContents() instanceof TranslatableContents tc
@@ -28,7 +29,7 @@ final class TitleButtons {
             }
         }
         if (removed.isEmpty()) return;
-        // Освободившиеся ряды; Realms и «Моды» могут стоять в одном ряду
+        // Освободившиеся ряды; Realms и Моды могут стоять в одном ряду
         TreeSet<Integer> rows = new TreeSet<>();
         removed.forEach(w -> rows.add(w.getY()));
         int bottom = e.getScreen().height - 12; // копирайт внизу не трогаем

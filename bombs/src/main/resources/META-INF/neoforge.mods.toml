@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="cld_bombs"
+version="${version}"
+displayName="Бомбы с уровнями"
+authors="D, Claude"
+description='''Дополнение к бомбам Supplementaries: уровни 1-10, прокачка порохом на верстаке, большой кратер, свой радиус у каждого вида, бомбы с уровнем в сундуках. Сам Supplementaries не меняется.'''
+
+[[mixins]]
+config="cld_bombs.mixins.json"
+
+[[dependencies.cld_bombs]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.cld_bombs]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.cld_bombs]]
+modId="supplementaries"
+type="required"
+versionRange="[1.21.1-4.0,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.cld_bombs]]
+modId="minecolonies"
+type="optional"
+versionRange="*"
+ordering="NONE"
+side="BOTH"

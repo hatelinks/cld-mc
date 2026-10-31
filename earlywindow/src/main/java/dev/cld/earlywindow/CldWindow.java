@@ -24,14 +24,12 @@ import net.neoforged.fml.earlydisplay.SimpleFont;
 import net.neoforged.fml.loading.progress.ProgressMeter;
 import net.neoforged.fml.loading.progress.StartupNotificationManager;
 
-/**
- * Экран запуска сборки: тёмный фон, две пиксельные полоски (память и прогресс)
- * и вращающийся уроборос вместо лисы. Логотип Mojang, лог и версия убраны.
- * Подключается через config/fml.toml: earlyWindowProvider = "cldwindow".
- */
+// Экран запуска сборки: тёмный фон, две пиксельные полоски (память и прогресс)
+// и вращающийся уроборос вместо лисы. Логотип Mojang, лог и версия убраны.
+// Подключается через config/fml.toml: earlyWindowProvider = "cldwindow".
 public class CldWindow extends DisplayWindow {
     private static final int WHITE = 0xFFFFFFFF;
-    // packedint у FML — ABGR: #3fbf6a
+    // packedint у FML, ABGR: #3fbf6a
     private static final int EMERALD = 0xFF6ABF3F;
     private static final int BG_R = 0x12, BG_G = 0x12, BG_B = 0x12;
 
@@ -61,11 +59,11 @@ public class CldWindow extends DisplayWindow {
         return tick;
     }
 
-    /** Без логотипа Mojang. */
+    // Без логотипа Mojang.
     @Override
     public void addMojangTexture(int textureId) {}
 
-    /** Родитель вызывает addReads от имени своего модуля для getClass() — для подкласса это запрещено, делаем сами. */
+    // Родитель вызывает addReads от имени своего модуля для getClass(), для подкласса это запрещено, делаем сами.
     @Override
     public void updateModuleReads(ModuleLayer layer) {
         try {
@@ -131,7 +129,7 @@ public class CldWindow extends DisplayWindow {
         void draw(SimpleBufferBuilder bb, RenderElement.DisplayContext ctx, int frame) throws Exception;
     }
 
-    /** RenderElement принимает пакетные интерфейсы Initializer/Renderer — создаём их через Proxy. */
+    // RenderElement принимает пакетные интерфейсы Initializer/Renderer, создаём их через Proxy.
     private static RenderElement element(Draw draw) throws Exception {
         ClassLoader cl = RenderElement.class.getClassLoader();
         Class<?> rendererI = Class.forName("net.neoforged.fml.earlydisplay.RenderElement$Renderer", false, cl);
@@ -165,13 +163,22 @@ public class CldWindow extends DisplayWindow {
 
     // ---------------------------------------------------------------- drawing
 
+    // поле прозрачности ищем один раз, а не на каждый элемент каждого кадра
+    private static Field globalAlpha;
+    private static boolean alphaMissing;
+
     private static int alpha(int colour) {
-        Field f;
         int a = 255;
+        if (globalAlpha == null && !alphaMissing) {
+            try {
+                globalAlpha = RenderElement.class.getDeclaredField("globalAlpha");
+                globalAlpha.setAccessible(true);
+            } catch (Throwable t) {
+                alphaMissing = true;
+            }
+        }
         try {
-            f = RenderElement.class.getDeclaredField("globalAlpha");
-            f.setAccessible(true);
-            a = f.getInt(null);
+            if (globalAlpha != null) a = globalAlpha.getInt(null);
         } catch (Throwable ignored) {}
         return (colour & 0x00FFFFFF) | ((((colour >>> 24) * a) / 255) << 24);
     }
@@ -180,7 +187,7 @@ public class CldWindow extends DisplayWindow {
         QuadHelper.loadQuad(bb, x0, x1, y0, y1, 0f, 0f, 0f, 0f, c);
     }
 
-    /** Произвольный четырёхугольник (для наклонных линий). */
+    // Произвольный четырёхугольник (для наклонных линий).
     private static void poly(SimpleBufferBuilder bb, float[] p, int c) {
         for (int i = 0; i < 8; i += 2) bb.pos(p[i], p[i + 1]).tex(0f, 0f).colour(c).endVertex();
     }
@@ -207,7 +214,7 @@ public class CldWindow extends DisplayWindow {
         bb.begin(SimpleBufferBuilder.Format.POS_TEX_COLOR, SimpleBufferBuilder.Mode.QUADS);
     }
 
-    /** Пиксельная полоска: белая рамка и блоки. from..to — заполненная доля. */
+    // Пиксельная полоска: белая рамка и блоки. from..to, заполненная доля.
     private static void pixelBar(SimpleBufferBuilder bb, RenderElement.DisplayContext ctx, int x, int y, float from, float to) {
         int s = ctx.scale();
         int w = 400 * s, h = 20 * s, b = 2 * s, gap = 2 * s;
@@ -268,10 +275,8 @@ public class CldWindow extends DisplayWindow {
         }
     }
 
-    /**
-     * Контурный уроборос в пиксельной сетке: змея, кусающая хвост, медленно вращается.
-     * Фигура растеризуется каждый кадр в клетки по 2 пикселя, рисуется только граница.
-     */
+    // Контурный уроборос в пиксельной сетке: змея, кусающая хвост, медленно вращается.
+    // Фигура растеризуется каждый кадр в клетки по 2 пикселя, рисуется только граница.
     private void ouroboros(SimpleBufferBuilder bb, RenderElement.DisplayContext ctx, int frame) {
         int s = ctx.scale();
         int cell = 2 * s;

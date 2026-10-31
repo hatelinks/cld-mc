@@ -1,0 +1,18 @@
+#!/bin/sh
+# Скриншоты пейзажа для отчёта: tools/shots.sh папка
+set -e
+cd "$(dirname "$0")/.."
+OUT=${1:-/tmp/menu-shots}
+mkdir -p "$OUT" /tmp/menu-preview
+javac -d /tmp/menu-preview src/main/java/dev/cld/menu/scene/*.java tools/MenuPreview.java
+JAR=$(ls ${LIBS:-../../libs}/client-*-extra.jar 2>/dev/null | head -1)
+P="java -Dmc.jar=$JAR -cp /tmp/menu-preview MenuPreview"
+$P "$OUT/day.png" 480 270 clear,rain,thunder,fog autumn 14:00 30
+$P "$OUT/day2.png" 480 270 snow,blizzard,rainbow,clear summer 11:00 30
+$P "$OUT/winter-night.png" 480 270 clear,snow,blizzard,fog winter 22:30 30
+$P "$OUT/evening.png" 480 270 clear,rainbow,thunder,rain summer 20:50 30
+# звуки меню без грома и капель игры (они в игре): WAV по 20 секунд
+javac -d /tmp/menu-preview src/main/java/dev/cld/menu/scene/*.java tools/AmbientWav.java
+java -cp /tmp/menu-preview AmbientWav "$OUT/day-birds.wav" clear summer 12:00
+java -cp /tmp/menu-preview AmbientWav "$OUT/night-crickets.wav" clear summer 23:00
+java -cp /tmp/menu-preview AmbientWav "$OUT/blizzard.wav" blizzard winter 13:00

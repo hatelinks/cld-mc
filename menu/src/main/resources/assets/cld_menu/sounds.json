@@ -1,0 +1,5 @@
+{
+  "menu.ambient": {
+    "sounds": [{"name": "minecraft:ambient/weather/rain1", "stream": true}]
+  }
+}

@@ -7,7 +7,7 @@ Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на ст�
 | Мод | modId | Версия | Файл | SHA-1 |
 |---|---|---|---|---|
 | Create: Aeroworks | aeroworks | 1.2.9 | aeroworks-1.2.9.jar | f6f48e509202dca5443904ae077ade67e7f89d70 |
-| All The Leaks | alltheleaks | 1.1.12+1.21.1-neoforge | alltheleaks-1.1.12+1.21.1-neoforge.jar | d69b9e98e957418ca0ab768b79983e68ffbfcd49 |
+| All The Leaks | alltheleaks | 1.1.12+1.21.1-neoforge | alltheleaks-1.1.12+1.21.1-neoforge.jar | d69b9e98e957418ca0ab768b79983e68ffbfcd49 | убран 30.10: крашит JEI 19.70 |
 | AppleSkin | appleskin | 3.0.9+mc1.21 | appleskin-neoforge-mc1.21-3.0.9.jar | 81cf0e668f991f83ac8820c386fbd6c9c3602246 |
 | Architectury | architectury | 13.0.11 | architectury-13.0.11-neoforge.jar | 008656a0702801174b8ec245ed7aad1921d6e9f1 |
 | AtmosphericA | atmospherica | 1.0.0 | atmospherica-1.0.0.jar | 1add8d491005b3b5bf628b17c8e3008a693a5d7b |

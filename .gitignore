@@ -9,8 +9,6 @@ menu/build/
 menu/dist/
 earlywindow/build/
 earlywindow/dist/
-gdn/build/
-gdn/dist/
 tcw/build/
 tcw/dist/
 far/build/
@@ -26,3 +24,6 @@ perf/build/
 perf/dist/
 test_panel/build/
 test_panel/dist/
+bombs/build/
+bombs/dist/
+datapacks/dist/
