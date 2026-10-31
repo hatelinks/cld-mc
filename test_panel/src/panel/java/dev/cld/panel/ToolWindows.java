@@ -127,7 +127,7 @@ final class ToolWindows {
 
     // Путевые точки Baritone для текущего мира
     static Window waypoints(PanelConfig c) {
-        Window w = new Window("waypoints", "Путевые точки", 170, c.win("waypoints", 140, 110, 4));
+        Window w = new Window("waypoints", "Waypoints", 170, c.win("waypoints", 140, 110, 4));
         w.add(new Input("имя, Enter: точка здесь", false, name -> {
             IWaypointCollection wc = collection();
             Player p = Minecraft.getInstance().player;
@@ -187,7 +187,7 @@ final class ToolWindows {
 
     // Радар как Text Radar в Nodus: существа рядом, ближние сверху
     static Window radar(PanelConfig c) {
-        Window w = new Window("radar", "Радар", 170, c.win("radar", 296, 90, 2));
+        Window w = new Window("radar", "Radar", 170, c.win("radar", 296, 90, 2));
         w.add(new Button(() -> "Показывать: " + RADAR_MODES[radarMode], () -> false, b -> radarMode = Math.floorMod(radarMode + (b == 1 ? -1 : 1), RADAR_MODES.length)));
         w.add(new ListView(10, () -> {
             Minecraft mc = Minecraft.getInstance();

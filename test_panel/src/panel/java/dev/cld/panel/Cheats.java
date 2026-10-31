@@ -1,15 +1,16 @@
 package dev.cld.panel;
 
-import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.Input;
 import net.minecraft.client.player.KeyboardInput;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.player.RemotePlayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Marker;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.player.Abilities;
 
 import java.util.UUID;
@@ -29,7 +30,7 @@ public final class Cheats {
     private static volatile UUID phaseId;
     private static int fishWait;
     private static final net.minecraft.resources.ResourceLocation STEP_ID = net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("cld_test_panel", "step");
-    private static RemotePlayer cam;
+    private static Entity cam;
     private static ClientLevel camLevel;
 
     private Cheats() {}
@@ -208,10 +209,14 @@ public final class Cheats {
         });
     }
 
-    // Камера отдельной сущностью вне мира, игрок стоит на месте (или идёт по Baritone)
+    // Камера отдельной сущностью вне мира, игрок стоит на месте (или идёт по Baritone).
+    // Marker, а не игрок: у живых сущностей камера берёт поворот головы (yHeadRot), а turn его не меняет
     private static void startCam(Minecraft mc, LocalPlayer p) {
-        cam = new RemotePlayer(mc.level, new GameProfile(UUID.randomUUID(), "cld_cam"));
-        cam.copyPosition(p);
+        cam = new Marker(EntityType.MARKER, mc.level);
+        Vec3 eye = p.getEyePosition();
+        cam.setPos(eye.x, eye.y, eye.z);
+        cam.setYRot(p.getYRot());
+        cam.setXRot(p.getXRot());
         cam.setOldPosAndRot();
         cam.noPhysics = true;
         camLevel = mc.level;
@@ -222,7 +227,7 @@ public final class Cheats {
     }
 
     private static void stopCam(Minecraft mc, LocalPlayer p) {
-        RemotePlayer old = cam;
+        Entity old = cam;
         cam = null;
         if (mc.getCameraEntity() == old || mc.getCameraEntity() == null) mc.setCameraEntity(p);
         mc.gameRenderer.setRenderHand(true);

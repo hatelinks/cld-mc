@@ -56,6 +56,13 @@ public abstract class Element {
         final Supplier<String> label;
         final BooleanSupplier on;
         final Consumer<Integer> action;
+        // Подсказка при наведении: что делает функция
+        String tip;
+
+        public Button tip(String t) {
+            tip = t;
+            return this;
+        }
 
         public Button(Supplier<String> label, BooleanSupplier on, Consumer<Integer> action) {
             this.label = label;
@@ -70,6 +77,7 @@ public abstract class Element {
         @Override
         public void render(GuiGraphics g, Font font, int x, int y, int w, boolean hover) {
             boolean active = on.getAsBoolean();
+            if (hover && tip != null) tooltip = tip;
             int bg = active ? Theme.accent(0xC0) : hover ? 0x40FFFFFF : 0x20FFFFFF;
             g.fill(x + 1, y + 1, x + w - 1, y + H - 1, bg);
             g.drawString(font, label.get(), x + 4, y + 2, active ? 0xFFFFFFFF : 0xFFD0D0D0, true);
