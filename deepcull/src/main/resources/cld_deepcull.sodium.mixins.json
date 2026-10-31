@@ -1,0 +1,8 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "dev.cld.deepcull.mixin.sodium",
+  "compatibilityLevel": "JAVA_21",
+  "client": ["OcclusionCullerMixin"],
+  "injectors": {"defaultRequire": 0}
+}

@@ -1,0 +1,37 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="cld_deepcull"
+version="${version}"
+displayName="Глубина по требованию (эксперимент exwip)"
+authors="D, Claude"
+description='''Эксперимент. Пока игрок на поверхности, секции чанков глубоко под землёй не строятся и не рисуются. Когда игрок спускается ниже поверхности, они подгружаются. Генерацию мира не меняет. F8 включает и выключает.'''
+
+[[mixins]]
+config="cld_deepcull.mixins.json"
+
+[[mixins]]
+config="cld_deepcull.sodium.mixins.json"
+
+[[dependencies.cld_deepcull]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.cld_deepcull]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.cld_deepcull]]
+modId="sodium"
+type="optional"
+versionRange="[0.8,)"
+ordering="AFTER"
+side="CLIENT"

@@ -22,3 +22,5 @@ autotest/build/
 autotest/dist/
 perf/build/
 perf/dist/
+deepcull/build/
+deepcull/dist/

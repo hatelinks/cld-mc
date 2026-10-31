@@ -1,0 +1,6 @@
+{
+  "key.categories.cld_deepcull": "Глубина по требованию",
+  "key.cld_deepcull.toggle": "Вкл/выкл отсечку глубины",
+  "cld_deepcull.on": "Отсечка глубины включена",
+  "cld_deepcull.off": "Отсечка глубины выключена"
+}
