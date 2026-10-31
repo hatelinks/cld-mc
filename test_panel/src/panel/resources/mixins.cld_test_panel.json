@@ -12,6 +12,7 @@
   "mixins": [
     "EntityMixin",
     "FishingHookAccessor",
+    "LiquidBlockMixin",
     "LivingEntityMixin",
     "MovePacketMixin",
     "PlayerMixin"

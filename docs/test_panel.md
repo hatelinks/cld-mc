@@ -2,7 +2,7 @@
 
 Карта кода. Читать вместо разбора исходников; кто меняет мод, обновляет эту страницу в своём PR.
 
-- modId `cld_test_panel`, папка `test_panel/`, версия **0.6.2** (`VERSION` в `test_panel/build.sh`). Только клиент.
+- modId `cld_test_panel`, папка `test_panel/`, версия **0.6.3** (`VERSION` в `test_panel/build.sh`). Только клиент.
 - Полный форк Baritone 1.11.3 (ветка `1.21.1`), откуда и что взято: `test_panel/UPSTREAM.md`. Лицензия LGPL-3.0, наши правки под ней же.
 - Цель: Baritone с интерфейсом в стиле старого клиента Nodus (окна по категориям, перетаскивание, закрепление на HUD, консоль), открывается только клавишей в игре (кнопку в меню Esc владелец попросил убрать в 0.3.1). Только для тестирования сборки: боевых функций нет, функции, меняющие мир и игрока, включаются только в одиночной игре и на своём сервере владельца.
 - Правки владельца к плану (31.10), обязательны:
@@ -15,7 +15,7 @@
 
 ## Сборка
 ```sh
-LIBS=/mnt/project-files/libs test_panel/build.sh   # test_panel/dist/cld_test_panel-neoforge-1.21.1-0.6.2.jar
+LIBS=/mnt/project-files/libs test_panel/build.sh   # test_panel/dist/cld_test_panel-neoforge-1.21.1-0.6.3.jar
 ```
 Gradle у Baritone (unimined) в облаке не работает, его maven отвечают 403, поэтому `javac` как у остальных модов. Миксинам refmap не нужен: NeoForge 1.21.1 в игре на mojmap.
 nether-pathfinder (элитры в Незере, нативки внутри) достаётся из официального `baritone-unoptimized-neoforge-1.11.3.jar`: лежит в `/mnt/project-files/libs/`, если нет, скрипт скачивает его с GitHub. Брать именно unoptimized: в обычных jar он прогнан ProGuard и методы переименованы.
@@ -47,7 +47,8 @@ nether-pathfinder (элитры в Незере, нативки внутри) д
 | `mixin/LightTextureMixin` | Яркость: второй `OptionInstance.get` в `updateLightTexture` (гамма) отдаёт 16. `require = 0`: если не встал, игра не падает. |
 | `mixin/EntityMixin` | Свободная камера: `Entity.turn` игрока уходит камере. Phase: `move` без столкновений, `isInWall` ложь. |
 | `mixin/PlayerMixin` | Phase: сразу после `noPhysics = isSpectator()` в `Player.tick` ставит `noPhysics`, и для `LocalPlayer`, и для игрока встроенного сервера (по UUID). |
-| `mixin/LivingEntityMixin` | Jesus: `canStandOnFluid` (стоять на источниках воды и лавы, присед опускает). Spider: `onClimbable` при упоре в стену. |
+| `mixin/LivingEntityMixin` | Spider: `onClimbable` при упоре в стену. |
+| `mixin/LiquidBlockMixin` | Jesus (0.6.3): у воды и лавы целиком ниже ног игрока форма столкновения целый блок. Не для приседа и не при падении больше 3 блоков (тогда в воду, без урона). |
 | `mixin/GameModeMixin` | FastBreak: `destroyDelay = 0`, с 80% прогресса сразу ломает и шлёт пакет; сервер принимает с 70%. |
 | `mixin/MovePacketMixin` | NoFall: в `ServerboundMovePlayerPacket` при падении больше 2 блоков `onGround = true`, сервер не копит высоту падения. |
 | `mixin/FishingHookAccessor` | Поле `biting` поплавка для AutoFish. |
@@ -76,3 +77,4 @@ nether-pathfinder (элитры в Незере, нативки внутри) д
 - Включение и выключение функций пишется только в консоль панели (U), на экран ничего не выводится: владелец не хочет уведомлений (0.6.1).
 - Названия функций как в Nodus, по-английски (Fullbright, Xray, Fly, Freecam, ESP, Tracers, Search, Radar, Waypoints, NoFall, Step, Jesus, Spider, Phase, Timer, FastBreak, AutoTool, AutoFish), что делает функция, видно в подсказке при наведении (`Button.tip`). Правило владельца (0.6.2).
 - Freecam: камерой должна быть не живая сущность. У `LivingEntity` камера берёт поворот головы (`getViewYRot` читает `yHeadRot`), а `Entity.turn` его не меняет, поэтому с `RemotePlayer` в 0.5.0-0.6.1 камера не поворачивалась вбок и управление шло задом наперёд. С 0.6.2 камера это `Marker`. Пока камера не игрок, хотбар и полоски здоровья не рисуются, как при наблюдении.
+- Jesus через `canStandOnFluid` (как у страйдера, 0.6.0-0.6.2) работал странно: та форма высотой полблока, игрок стоял внутри воды, игра считала его плывущим и подбрасывала, на течении проваливался. С 0.6.3 жидкость под ногами твёрдая на целый блок.

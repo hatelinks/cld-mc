@@ -40,8 +40,9 @@ public final class Cheats {
         return brightNow;
     }
 
-    public static boolean jesus() {
-        return jesus && ok;
+    // Jesus держит над жидкостью: присед опускает в воду, падение с высоты уходит в воду (без урона)
+    public static boolean jesusStands(Entity e) {
+        return jesus && ok && e != null && e == Minecraft.getInstance().player && !e.isShiftKeyDown() && e.fallDistance <= 3;
     }
 
     public static boolean spider() {
