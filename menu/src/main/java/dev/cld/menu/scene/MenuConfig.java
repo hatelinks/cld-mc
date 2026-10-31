@@ -15,6 +15,8 @@ public final class MenuConfig {
     public String season = "auto";
     public String time = "auto";
     public int fps = 60;
+    public float sounds = 0.7f;
+    public float musicInStorm = 0.45f;
 
     public static MenuConfig load(Path file) {
         MenuConfig c = new MenuConfig();
@@ -25,6 +27,8 @@ public final class MenuConfig {
                 c.weather = p.getProperty("weather", c.weather).trim();
                 c.season = p.getProperty("season", c.season).trim();
                 c.time = p.getProperty("time", c.time).trim();
+                c.sounds = Math.max(0, Math.min(1, Float.parseFloat(p.getProperty("sounds", "" + c.sounds).trim())));
+                c.musicInStorm = Math.max(0, Math.min(1, Float.parseFloat(p.getProperty("musicInStorm", "" + c.musicInStorm).trim())));
                 c.fps = Math.max(10, Math.min(240, Integer.parseInt(p.getProperty("fps", "" + c.fps).trim())));
             } catch (IOException | RuntimeException e) {
                 System.err.println("[cld_menu] config: " + e);
@@ -47,6 +51,10 @@ public final class MenuConfig {
                 out.write("time=" + time + "\n");
                 out.write("# сколько раз в секунду перерисовывать пейзаж\n");
                 out.write("fps=" + fps + "\n");
+                out.write("# громкость звуков меню от 0 до 1 (тот же ползунок есть в настройках звука)\n");
+                out.write("sounds=" + sounds + "\n");
+                out.write("# громкость музыки в меню в грозу, дождь и метель (доля от обычной)\n");
+                out.write("musicInStorm=" + musicInStorm + "\n");
             }
         } catch (IOException e) {
             System.err.println("[cld_menu] config save: " + e);

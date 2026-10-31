@@ -37,6 +37,8 @@ public final class Landscape {
     private static DynamicTexture texture;
     private static long lastFrame;
     private static boolean texturesReady;
+    private static long lastShown;
+    private static Sky sky;
     private static String note;
     private static long noteUntil;
 
@@ -61,6 +63,7 @@ public final class Landscape {
             WeatherKind k = config().fixedWeather();
             if (k == null) k = Weather.pick(season(), RND);
             weather = new Weather(k, RND.nextLong(), now());
+            weather.listener = MenuSounds::strike;
         }
         return weather;
     }
@@ -84,12 +87,14 @@ public final class Landscape {
             scene.textures(Landscape::texture);
         }
         long ms = Util.getMillis();
+        lastShown = ms;
         if (ms - lastFrame >= 1000L / config().fps) {
             lastFrame = ms;
             double t = now();
             Weather wx = weather();
             wx.update(t);
-            scene.render(raster, new Sky(clock(), season()), wx, t);
+            sky = new Sky(clock(), season());
+            scene.render(raster, sky, wx, t);
             upload();
         }
         g.blit(ID, 0, 0, w, h, 0f, 0f, rw, rh, rw, rh);
@@ -122,6 +127,18 @@ public final class Landscape {
             }
         }
         texture.upload();
+    }
+
+    static boolean shownRecently() {
+        return Util.getMillis() - lastShown < 500;
+    }
+
+    static Weather currentWeather() {
+        return weather;
+    }
+
+    static Sky currentSky() {
+        return sky;
     }
 
     // после смены ресурс-паков текстуры блоков перечитываются
@@ -160,6 +177,7 @@ public final class Landscape {
         } else {
             WeatherKind[] v = WeatherKind.values();
             weather = new Weather(v[(weather().kind.ordinal() + 1) % v.length], RND.nextLong(), now());
+            weather.listener = MenuSounds::strike;
             show("Погода: " + weather.kind.title);
         }
         lastFrame = 0;
