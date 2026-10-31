@@ -2,7 +2,7 @@
 
 Карта кода. Читать вместо разбора исходников; кто меняет мод, обновляет эту страницу в своём PR.
 
-- modId `cld_menu`, папка `menu/`, версия **1.5.0** (`VERSION` в `menu/build.sh`). Только клиент.
+- modId `cld_menu`, папка `menu/`, версия **1.5.1** (`VERSION` в `menu/build.sh`). Только клиент.
 - Живой пиксельный пейзаж вместо кубической панорамы (во всех меню, где она была), логотип «TelipailoCraft» шрифтом Minecraft, без кнопок Realms и «Моды», без строк версий внизу слева.
 - С 1.1.0 пейзаж рисуется в память (`scene/`, без Minecraft) и одной текстурой выводится на экран. Погода выбирается при каждом запуске (7 видов, зимой снег 4 запуска из 5), время суток и фаза луны по часам компьютера, время года по календарю.
 - С 1.2.0 два ближних слоя собраны из настоящих блоков Minecraft (текстуры текущего ресурс-пака): трава, земля, камень, вода и лёд, дуб, берёза, ель, весной вишня, трава и цветы; зимой всё заметено. Солнце, луна и облака из текстур игры (`sun.png`, `moon_phases.png`, `clouds.png`).
@@ -12,7 +12,7 @@
 
 ## Сборка
 ```sh
-LIBS=/mnt/project-files/libs menu/build.sh   # menu/dist/cld_menu-neoforge-1.21.1-1.5.0.jar
+LIBS=/mnt/project-files/libs menu/build.sh   # menu/dist/cld_menu-neoforge-1.21.1-1.5.1.jar
 ```
 
 ## Файлы
@@ -31,7 +31,7 @@ LIBS=/mnt/project-files/libs menu/build.sh   # menu/dist/cld_menu-neoforge-1.21.
 | `mixin/SoundEngineMixin` | `calculateVolume(SoundInstance)` RETURN: музыка умножается на `MenuSounds.musicFactor()`. |
 | `assets/cld_menu/sounds.json` | Событие `cld_menu:menu.ambient` ссылается на ванильный `ambient/weather/rain1` (stream), чтобы прошла проверка файла; сам звук берётся из `getStream`. |
 | `OurModsScreen` | Экран «TC Моды». Разделы: «Главное меню» (погода, время года, время суток, звуки, музыка в грозу, частота пейзажа; применяется сразу через `Landscape.applyConfig`), по разделу на каждый наш мод из `ModList` (modId `cld_*`, `tcw`, `sable_android`: версия, описание, кнопка «Открыть настройки мода», если мод дал `IConfigScreenFactory`, как cld_far и cld_bombs), «Датапаки сборки» (в мире показывает, включены ли `pack_fixes`, `colony_guard`). Последний раздел запоминается. При узком экране (guiScale 6) колонки сжимаются. |
-| `MenuMod` | Кроме событий: `IConfigScreenFactory` для cld_menu (открывает «TC Моды»), кнопка «TC Моды» в `OptionsScreen` и `PauseScreen` через `ScreenEvent.Init.Post`, F9 в главном меню. |
+| `MenuMod` | Кроме событий: `IConfigScreenFactory` для cld_menu (открывает «TC Моды»), кнопка «TC Моды» в `OptionsScreen` и `PauseScreen` через `ScreenEvent.Init.Post` с приоритетом LOWEST: если в углу уже стоит чужая кнопка, «TC Моды» сдвигается левее неё (1.5.1), F9 в главном меню. |
 | `StartupTimer` | Время от старта JVM до конструктора, `FMLClientSetupEvent`, `FMLLoadCompleteEvent` и первого главного меню; строка в `logs/cld_startup.log`. |
 | `Splashes`, `mixin/SplashManagerMixin` | В половине запусков своя жёлтая надпись по-русски, праздничные ванильные не трогает. |
 | `scene/MenuConfig` | `config/cld_menu.properties`: `weather`, `season`, `time`, `fps`. |
