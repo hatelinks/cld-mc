@@ -1,1 +1,5 @@
-{"cld_menu.title": "TelipailoCraft"}
+{
+  "cld_menu.title": "TelipailoCraft",
+  "cld_menu.options.sounds": "Menu sounds",
+  "cld_menu.options.sounds.tooltip": "Nature sounds and thunder in the main menu"
+}

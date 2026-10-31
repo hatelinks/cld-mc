@@ -6,6 +6,7 @@ import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -18,6 +19,8 @@ public final class MenuMod {
                 e -> e.registerReloadListener((ResourceManagerReloadListener) rm -> Landscape.texturesChanged()));
         NeoForge.EVENT_BUS.addListener(TitleButtons::onInit);
         NeoForge.EVENT_BUS.addListener(MenuMod::onKey);
+        NeoForge.EVENT_BUS.addListener(ClientTickEvent.Post.class, e -> MenuSounds.tick());
+        NeoForge.EVENT_BUS.addListener(SoundSlider::onInit);
     }
 
     // в главном меню F9 переключает погоду, чтобы посмотреть все виды
