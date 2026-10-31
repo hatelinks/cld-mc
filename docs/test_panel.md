@@ -2,7 +2,7 @@
 
 Карта кода. Читать вместо разбора исходников; кто меняет мод, обновляет эту страницу в своём PR.
 
-- modId `cld_test_panel`, папка `test_panel/`, версия **0.1.0** (`VERSION` в `test_panel/build.sh`). Только клиент.
+- modId `cld_test_panel`, папка `test_panel/`, версия **0.2.0** (`VERSION` в `test_panel/build.sh`). Только клиент.
 - Полный форк Baritone 1.11.3 (ветка `1.21.1`), откуда и что взято: `test_panel/UPSTREAM.md`. Лицензия LGPL-3.0, наши правки под ней же.
 - Цель: Baritone с интерфейсом в стиле старого клиента Nodus (окна по категориям, перетаскивание, закрепление на HUD, консоль), открывается клавишей и кнопкой в меню Esc. Только для тестирования сборки: боевых функций нет, функции, меняющие мир и игрока, включаются только в одиночной игре и на своём сервере владельца.
 - Правки владельца к плану (31.10), обязательны:
@@ -15,7 +15,7 @@
 
 ## Сборка
 ```sh
-LIBS=/mnt/project-files/libs test_panel/build.sh   # test_panel/dist/cld_test_panel-neoforge-1.21.1-0.1.0.jar
+LIBS=/mnt/project-files/libs test_panel/build.sh   # test_panel/dist/cld_test_panel-neoforge-1.21.1-0.2.0.jar
 ```
 Gradle у Baritone (unimined) в облаке не работает, его maven отвечают 403, поэтому `javac` как у остальных модов. Миксинам refmap не нужен: NeoForge 1.21.1 в игре на mojmap.
 nether-pathfinder (элитры в Незере, нативки внутри) достаётся из официального `baritone-unoptimized-neoforge-1.11.3.jar`: лежит в `/mnt/project-files/libs/`, если нет, скрипт скачивает его с GitHub. Брать именно unoptimized: в обычных jar он прогнан ProGuard и методы переименованы.
@@ -28,10 +28,27 @@ nether-pathfinder (элитры в Незере, нативки внутри) д
 | `src/main` | Сам Baritone: поиск пути, процессы, команды (`command/defaults`), рендер пути. |
 | `src/launch` | Миксины (`mixins.baritone.json`) и `BaritoneMixinConnector`. |
 | `src/neoforge` | Класс мода `BaritoneForgeModXD` (`@Mod("cld_test_panel")`) и `neoforge.mods.toml`. |
+| `src/panel` | Наша панель, пакет `dev.cld.panel` (см. ниже). |
 | `src/schematica_api` | Заглушки Schematica, только для компиляции, в jar не идут. |
+
+## Панель (`src/panel/java/dev/cld/panel`)
+| Файл | За что отвечает |
+|---|---|
+| `Panel` | Вход из `BaritoneForgeModXD`: клавиши Y (панель) и U (консоль), кнопка «Панель» в меню Esc слева сверху, закреплённые окна на HUD (`RenderGuiEvent.Post`), `full()` (всё можно: одиночная игра или свой сервер из списка), `run(cmd)` выполняет команду Baritone без `#`. Сообщения Baritone дублируются в консоль через `Settings.logger`. |
+| `PanelScreen` | Экран окон без паузы и без затемнения: перетаскивание за заголовок, клик поднимает окно наверх, ввод в поля. |
+| `ConsoleScreen` | Консоль: строка команд Baritone, история стрелками (хранится в конфиге), Tab дописывает слово через `tabComplete`. |
+| `Windows` | Сборка окон: Baritone (статус, цель, время, идти, копать, исследовать, подбирать, ферма, поверхность, пауза, стоп, переключатели ломать/ставить/паркур/бег), Инфо (координаты, чанк, биом, взгляд, свет, мир, время, FPS), Панель (режим, масштаб, свой сервер, консоль, сброс раскладки). |
+| `PanelConfig` | `config/cld_test_panel.json`: `scale` (размер панели как при этом guiScale, по умолчанию 2), `servers` (свои серверы), положение, цвет, свёрнуто и закреплено для каждого окна, история консоли. |
+| `ui/Window` | Окно: заголовок с кнопками c (цвет: ЛКМ следующий, ПКМ предыдущий), p (закрепить на HUD), свернуть. |
+| `ui/Element` | Строки окна: `Button` (действие или переключатель), `Label` (текст каждый кадр), `Input` (Enter отдаёт текст, ПКМ очищает). |
+| `ui/Theme` | Цвета окон. |
+
+Панель рисуется со своим масштабом (`scale / guiScale`), поэтому при `guiScale:6` у владельца окна не огромные.
+Новое окно: собрать в `Windows.build`, id окна это ключ в `windows` конфига.
 
 ## Наши правки поверх Baritone
 - modId `baritoe` стал `cld_test_panel`, версия Minecraft только 1.21.1, сторона CLIENT.
+- `BaritoneForgeModXD` принимает `IEventBus` и запускает `Panel.init`.
 - `PathRenderer`: убрана аннотация `@Nullable` из `org.jetbrains.annotations` (её нет в libs).
 
 ## Грабли

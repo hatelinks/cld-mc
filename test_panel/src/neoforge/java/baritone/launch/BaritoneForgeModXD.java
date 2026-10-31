@@ -17,9 +17,15 @@
 
 package baritone.launch;
 
+import dev.cld.panel.Panel;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
 @Mod(value = "cld_test_panel", dist = Dist.CLIENT)
 public class BaritoneForgeModXD {
+    // cld_test_panel: панель в стиле Nodus поверх Baritone
+    public BaritoneForgeModXD(IEventBus modBus) {
+        Panel.init(modBus);
+    }
 }

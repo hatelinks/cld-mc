@@ -4,7 +4,7 @@
 set -e
 cd "$(dirname "$0")"
 LIBS=${LIBS:-../../libs}
-VERSION=${VERSION:-0.1.0}
+VERSION=${VERSION:-0.2.0}
 # nether-pathfinder (поиск пути на элитрах, с нативками) берём из официального jar Baritone без ProGuard
 NP_JAR=${NP_JAR:-$LIBS/baritone-unoptimized-neoforge-1.11.3.jar}
 if [ ! -f "$NP_JAR" ]; then
@@ -21,8 +21,8 @@ NP_JAR=$(cd "$(dirname "$NP_JAR")" && pwd)/$(basename "$NP_JAR")
 # заглушки Schematica нужны только для компиляции
 javac -proc:none --release 21 -encoding UTF-8 -nowarn -cp "$CP" -d build/sch $(find src/schematica_api -name '*.java')
 javac -proc:none --release 21 -encoding UTF-8 -nowarn -cp "$CP:build/sch:build/np" -d build/classes \
-  $(find src/api src/main src/launch src/neoforge -name '*.java')
-cp -r src/launch/resources/. src/neoforge/resources/. build/classes/
+  $(find src/api src/main src/launch src/neoforge src/panel -name '*.java')
+cp -r src/launch/resources/. src/neoforge/resources/. src/panel/resources/. build/classes/
 cp -r build/np/. build/classes/
 cp LICENSE build/classes/LICENSE-baritone
 sed -i.bak "s/\${version}/$VERSION/" build/classes/META-INF/neoforge.mods.toml && rm build/classes/META-INF/neoforge.mods.toml.bak
