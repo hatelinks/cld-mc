@@ -80,12 +80,14 @@ public abstract class Element {
             if (hover && tip != null) tooltip = tip;
             int bg = active ? Theme.accent(0xC0) : hover ? 0x40FFFFFF : 0x20FFFFFF;
             g.fill(x + 1, y + 1, x + w - 1, y + H - 1, bg);
-            g.drawString(font, label.get(), x + 4, y + 2, active ? 0xFFFFFFFF : 0xFFD0D0D0, true);
             Integer key = PanelConfig.get().binds.get(bindId);
-            if (key != null) {
-                String k = "[" + Keys.name(key) + "]";
-                g.drawString(font, k, x + w - 4 - font.width(k), y + 2, 0xFF909090, false);
-            }
+            String k = key == null ? null : "[" + Keys.name(key) + "]";
+            // текст не вылезает за окно: обрезаем с учётом бинда справа
+            int max = w - 8 - (k == null ? 0 : font.width(k) + 4);
+            String s = label.get();
+            if (font.width(s) > max) s = font.plainSubstrByWidth(s, max - font.width("..")) + "..";
+            g.drawString(font, s, x + 4, y + 2, active ? 0xFFFFFFFF : 0xFFD0D0D0, true);
+            if (k != null) g.drawString(font, k, x + w - 4 - font.width(k), y + 2, 0xFF909090, false);
         }
 
         @Override

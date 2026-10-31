@@ -65,6 +65,17 @@ public final class Layout {
         return true;
     }
 
+    // Окно только что раскрыли: если оно налезает на другие, переносим на свободное место, если такое есть
+    public static void fitOpened(Window w, List<Window> all, int sw, int bottom) {
+        List<int[]> others = new ArrayList<>();
+        for (Window o : all) if (o != w) others.add(new int[]{o.state.x, o.state.y, o.width, o.height()});
+        if (w.state.y + w.height() <= bottom && free(others, w.state.x, w.state.y, w.width, w.height())) return;
+        int[] at = find(others, w.width, w.height(), sw, bottom);
+        if (at == null) return;
+        w.state.x = at[0];
+        w.state.y = at[1];
+    }
+
     // Первое свободное место: сначала вниз по колонке, потом следующая колонка
     private static int[] find(List<int[]> placed, int w, int h, int sw, int bottom) {
         for (int x = GAP; x + w <= sw - GAP; x += GAP) {

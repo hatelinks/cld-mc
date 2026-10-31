@@ -91,9 +91,9 @@ final class Windows {
         Window w = new Window("panel", "Панель", 140, c.win("panel", 296, 4, 6));
         w.add(new Label(() -> Minecraft.getInstance().level == null ? "Не в мире"
                 : Panel.full() ? "Режим: всё доступно" : "Чужой сервер: Baritone и инфо"));
-        w.add(new Button(() -> String.format("Размер x%.2f (ЛКМ +, ПКМ -)", c.size), () -> false, b -> {
+        w.add(new Button(() -> String.format("Размер x%.2f", c.size), () -> false, b -> {
             c.size = Math.max(0.5, Math.min(2, c.size + (b == 1 ? -0.25 : 0.25)));
-        }));
+        }).tip("Размер панели к размеру интерфейса игры. ЛКМ больше, ПКМ меньше"));
         w.add(new Button(() -> {
             String a = Panel.serverAddress();
             if (a == null) return Minecraft.getInstance().hasSingleplayerServer() ? "Одиночная игра" : "Свой сервер: нет связи";

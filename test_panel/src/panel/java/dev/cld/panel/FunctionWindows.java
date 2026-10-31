@@ -22,13 +22,13 @@ final class FunctionWindows {
             BlockEsp.changed();
         }).tip("Рамки вокруг руд сквозь стены, радиус как у Search"));
         w.add(new Button(() -> "Fly", () -> Cheats.flight, b -> Cheats.flight = Cheats.toggle(Cheats.flight, "Fly")).tip("Полёт как в творческом режиме"));
-        w.add(new Button(() -> "Скорость Fly x" + c.flySpeed + " (ЛКМ +, ПКМ -)", () -> false, b -> {
+        w.add(new Button(() -> "Скорость Fly x" + c.flySpeed, () -> false, b -> {
             c.flySpeed = Math.max(1, Math.min(10, c.flySpeed + (b == 1 ? -1 : 1)));
-        }));
+        }).tip("ЛКМ больше, ПКМ меньше"));
         w.add(new Button(() -> "Freecam", () -> Cheats.freecam, b -> Cheats.freecam = Cheats.toggle(Cheats.freecam, "Freecam")).tip("Камера летает отдельно от игрока: WASD, прыжок вверх, присед вниз, бег x3"));
-        w.add(new Button(() -> String.format("Скорость Freecam %.2f (ЛКМ +, ПКМ -)", c.camSpeed), () -> false, b -> {
+        w.add(new Button(() -> String.format("Скорость Freecam %.2f", c.camSpeed), () -> false, b -> {
             c.camSpeed = Math.max(0.25, Math.min(5, c.camSpeed + (b == 1 ? -0.25 : 0.25)));
-        }));
+        }).tip("ЛКМ больше, ПКМ меньше"));
         w.add(new Button(() -> "ESP", () -> EntityEsp.esp, b -> EntityEsp.esp = Cheats.toggle(EntityEsp.esp, "ESP")).tip("Рамки вокруг существ сквозь стены, кого показывать выбирается в Radar"));
         w.add(new Button(() -> "Tracers", () -> EntityEsp.tracers, b -> EntityEsp.tracers = Cheats.toggle(EntityEsp.tracers, "Tracers")).tip("Линии от прицела к существам, кого показывать выбирается в Radar"));
         w.add(new Label(() -> Panel.full() ? "Наведи на функцию: подсказка" : "Только одиночная игра и свой сервер"));
@@ -43,14 +43,14 @@ final class FunctionWindows {
         w.add(new Button(() -> "Jesus", () -> Cheats.jesus, b -> Cheats.jesus = Cheats.toggle(Cheats.jesus, "Jesus")).tip("Ходить по воде и лаве, присед опускает вниз"));
         w.add(new Button(() -> "Spider", () -> Cheats.spider, b -> Cheats.spider = Cheats.toggle(Cheats.spider, "Spider")).tip("Забираться по любой стене, как по лестнице"));
         w.add(new Button(() -> "Phase", () -> Cheats.phase, b -> Cheats.phase = Cheats.toggle(Cheats.phase, "Phase")).tip("Проходить сквозь блоки, вместе с Fly"));
-        w.add(new Button(() -> "Timer x" + Cheats.TIMER[Cheats.timer] + " (ЛКМ +, ПКМ -)", () -> Cheats.timer > 0, b -> {
+        w.add(new Button(() -> "Timer x" + Cheats.TIMER[Cheats.timer], () -> Cheats.timer > 0, b -> {
             if (!Panel.full()) {
                 Panel.log("Timer: только в одиночной игре и на своём сервере");
                 return;
             }
             Cheats.timer = Math.max(0, Math.min(Cheats.TIMER.length - 1, Cheats.timer + (b == 1 ? -1 : 1)));
             Panel.log("Timer: x" + Cheats.TIMER[Cheats.timer]);
-        }).tip("Скорость тиков всего мира: фермы, машины и мобы быстрее"));
+        }).tip("Скорость тиков всего мира: фермы, машины и мобы быстрее. ЛКМ больше, ПКМ меньше"));
         w.add(new Label(() -> "Наведи на функцию: подсказка"));
         return w;
     }
@@ -92,10 +92,10 @@ final class FunctionWindows {
             }
             return rows;
         }));
-        w.add(new Button(() -> "Радиус " + c.espRadius + " блоков (ЛКМ +, ПКМ -)", () -> false, b -> {
+        w.add(new Button(() -> "Радиус " + c.espRadius + " блоков", () -> false, b -> {
             c.espRadius = Math.max(16, Math.min(160, c.espRadius + (b == 1 ? -16 : 16)));
             BlockEsp.changed();
-        }));
+        }).tip("ЛКМ больше, ПКМ меньше"));
         w.add(new Label(() -> BlockEsp.xray || BlockEsp.search ? "Найдено: " + BlockEsp.count() : "Search и Xray выключены"));
         return w;
     }

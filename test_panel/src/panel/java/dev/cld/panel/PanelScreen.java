@@ -65,7 +65,8 @@ public class PanelScreen extends Screen {
         for (Window w : Panel.windows()) {
             // после смены размера интерфейса окно не должно уехать за край
             w.state.x = Math.max(0, Math.min(sw - w.width, w.state.x));
-            w.state.y = Math.max(0, Math.min(sh - Window.TITLE, w.state.y));
+            // раскрытое окно целиком на экране: если не влезает снизу, поднимаем
+            w.state.y = Math.max(0, Math.min(sh - Math.min(w.height(), sh), w.state.y));
             w.render(g, font, mx, my, false);
         }
         if (Element.tooltip != null && drag == null) tip(g, Element.tooltip, mx, my, sw, sh);
@@ -103,7 +104,10 @@ public class PanelScreen extends Screen {
             ws.remove(i);
             ws.add(w);
             if (w.onTitle(mx, my)) {
-                if (!w.clickTitle(mx, button) && button == 0) {
+                boolean was = w.state.collapsed;
+                boolean hit = w.clickTitle(mx, button);
+                if (was && !w.state.collapsed) Layout.fitOpened(w, ws, (int) (width / s), (int) (height / s) - 13);
+                if (!hit && button == 0) {
                     drag = w;
                     dx = mx - w.state.x;
                     dy = my - w.state.y;
