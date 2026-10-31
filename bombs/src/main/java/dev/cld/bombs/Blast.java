@@ -14,6 +14,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.util.Mth;
@@ -162,6 +163,8 @@ public final class Blast {
         double drop = Cfg.d(Cfg.DROP_CHANCE);
         boolean protect = COLONIES && Cfg.b(Cfg.PROTECT_COLONIES);
         boolean obsidian = Levels.breaksObsidian(lvl);
+        boolean water = lvl >= Cfg.i(Cfg.WATER_LEVEL);
+        boolean otherFluids = lvl >= Cfg.i(Cfg.FLUID_LEVEL);
         // смещения считаются от блока центра, сам центр внутри блока
         double fx = cx - center.getX() - 0.5, fy = cy - center.getY() - 0.5, fz = cz - center.getZ() - 0.5;
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
@@ -180,8 +183,10 @@ public final class Blast {
             if (!breakable(st, pos, obsidian)) continue;
             if (protect && colony(pos)) continue;
             FluidState fs = st.getFluidState();
-            if (!fs.isEmpty() && st.getBlock() instanceof LiquidBlock) continue;
-            BlockState repl = fs.isEmpty() ? Blocks.AIR.defaultBlockState() : fs.createLegacyBlock();
+            // вода уходит с 5 уровня, лава и жидкости модов с 8; до этого жидкость остаётся, а блок с водой внутри становится водой
+            boolean dry = fs.isEmpty() || (fs.is(FluidTags.WATER) ? water : otherFluids);
+            if (!fs.isEmpty() && st.getBlock() instanceof LiquidBlock && !dry) continue;
+            BlockState repl = dry ? Blocks.AIR.defaultBlockState() : fs.createLegacyBlock();
             if (drop > 0 && level.getRandom().nextDouble() < drop) {
                 BlockEntity be = st.hasBlockEntity() ? level.getBlockEntity(pos) : null;
                 for (ItemStack s : Block.getDrops(st, level, pos, be, source, ItemStack.EMPTY)) add(s);

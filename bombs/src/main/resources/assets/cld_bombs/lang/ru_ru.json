@@ -2,7 +2,7 @@
   "item.cld_bombs.leveled": "%s, уровень %s",
   "tooltip.cld_bombs.radius": "Радиус взрыва: %s",
   "tooltip.cld_bombs.obsidian": "Ломает обсидиан",
-  "tooltip.cld_bombs.upgrade": "Следующий уровень на верстаке: бомба и %s пороха (TNT = %s)",
+  "tooltip.cld_bombs.upgrade": "Прокачка на верстаке: бомба и порох или TNT в любом количестве. Следующий уровень стоит %s пороха, TNT = %s",
   "cld_bombs.configuration.title": "Бомбы с уровнями",
   "cld_bombs.configuration.section.cld.bombs.server.toml": "Настройки мира",
   "cld_bombs.configuration.section.cld.bombs.server.toml.title": "Бомбы: настройки мира",
@@ -32,5 +32,9 @@
   "cld_bombs.configuration.loot_level_max": "Уровень в сундуках: до",
   "cld_bombs.configuration.glint_level": "Блеск с уровня",
   "cld_bombs.configuration.radius_cap": "Предел радиуса на устройстве",
-  "cld_bombs.configuration.blocks_per_tick": "Блоков кратера за тик"
+  "cld_bombs.configuration.blocks_per_tick": "Блоков кратера за тик",
+  "tooltip.cld_bombs.water": "Убирает воду",
+  "tooltip.cld_bombs.fluids": "Убирает лаву и другие жидкости",
+  "cld_bombs.configuration.water_level": "Вода убирается с уровня",
+  "cld_bombs.configuration.fluid_level": "Лава и жидкости модов с уровня"
 }
