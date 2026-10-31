@@ -3,7 +3,7 @@ package dev.cld.panel.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-// Раскладка окон без наложений: колонками слева направо, что не влезает, сворачивается до заголовка.
+// Раскладка окон без наложений: колонками слева направо, а на маленьком экране ряды заголовков как в Nodus.
 // Нужна при крупном размере интерфейса (guiScale 6), где экран в координатах GUI маленький.
 public final class Layout {
     private static final int GAP = 2;
@@ -12,19 +12,57 @@ public final class Layout {
 
     // bottom: нижняя граница, под ней строка подсказки панели
     public static void arrange(List<Window> windows, int sw, int bottom) {
-        List<int[]> placed = new ArrayList<>();
+        if (allOpen(windows, sw, bottom)) return;
+        // Все раскрытыми не влезают (маленький экран в координатах GUI): как в Nodus, сверху ряды
+        // заголовков свёрнутых окон, под ними раскрытые. Раскрываем по порядку те, кому хватает места
+        List<Window> open = new ArrayList<>();
         for (Window w : windows) {
+            List<Window> trial = new ArrayList<>(open);
+            trial.add(w);
+            if (place(windows, trial, sw, bottom)) open = trial;
+        }
+        place(windows, open, sw, bottom);
+    }
+
+    // Ряды заголовков для свёрнутых, свободные места для раскрытых; false, если раскрытым места не хватило
+    private static boolean place(List<Window> windows, List<Window> open, int sw, int bottom) {
+        List<int[]> placed = new ArrayList<>();
+        int x = GAP, y = GAP;
+        for (Window w : windows) {
+            if (open.contains(w)) continue;
+            w.state.collapsed = true;
+            if (x + w.width > sw - GAP && x > GAP) {
+                x = GAP;
+                y += Window.TITLE + GAP;
+            }
+            w.state.x = x;
+            w.state.y = y;
+            placed.add(new int[]{x, y, w.width, Window.TITLE});
+            x += w.width + GAP;
+        }
+        for (Window w : open) {
             w.state.collapsed = false;
             int[] at = find(placed, w.width, w.height(), sw, bottom);
-            if (at == null) {
-                w.state.collapsed = true;
-                at = find(placed, w.width, w.height(), sw, bottom);
-            }
-            if (at == null) at = new int[]{GAP, GAP};
+            if (at == null) return false;
             w.state.x = at[0];
             w.state.y = at[1];
             placed.add(new int[]{at[0], at[1], w.width, w.height()});
         }
+        return true;
+    }
+
+    // Пробуем разложить всё раскрытым; если хоть одно не влезло, false
+    private static boolean allOpen(List<Window> windows, int sw, int bottom) {
+        List<int[]> placed = new ArrayList<>();
+        for (Window w : windows) {
+            w.state.collapsed = false;
+            int[] at = find(placed, w.width, w.height(), sw, bottom);
+            if (at == null) return false;
+            w.state.x = at[0];
+            w.state.y = at[1];
+            placed.add(new int[]{at[0], at[1], w.width, w.height()});
+        }
+        return true;
     }
 
     // Первое свободное место: сначала вниз по колонке, потом следующая колонка

@@ -35,7 +35,7 @@ public final class PanelConfig {
     // Xray и поиск блоков: радиус в блоках и запросы поиска
     public int espRadius = 64;
     public List<String> search = new ArrayList<>();
-    // Версия раскладки окон: меньше 1 значит разложить окна заново при открытии панели
+    // Версия раскладки окон: меньше 2 значит разложить окна заново при открытии панели
     public int layout;
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();

@@ -53,13 +53,13 @@ public class PanelScreen extends Screen {
         int sw = (int) (width / s), sh = (int) (height / s);
         Element.tooltip = null;
         PanelConfig c = PanelConfig.get();
-        if (c.layout < 1) {
+        if (c.layout < 2) {
             // главные окна первыми, большие и редкие в конце
             List<Window> order = new java.util.ArrayList<>(Panel.windows());
             List<String> pri = List.of("baritone", "functions", "movement", "world", "info", "panel", "search", "radar", "waypoints", "settings");
             order.sort(java.util.Comparator.comparingInt(w -> pri.indexOf(w.id) < 0 ? 99 : pri.indexOf(w.id)));
             Layout.arrange(order, sw, sh - 13);
-            c.layout = 1;
+            c.layout = 2;
             c.save();
         }
         for (Window w : Panel.windows()) {
