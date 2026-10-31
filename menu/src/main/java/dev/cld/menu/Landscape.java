@@ -129,7 +129,7 @@ public final class Landscape {
         texture.upload();
     }
 
-    // настройки поменяли на экране «Наши моды»: сохранить и, если надо, заново выбрать погоду
+    // настройки поменяли на экране TC Моды: сохранить и, если надо, заново выбрать погоду
     static void applyConfig(boolean resetScene) {
         config().save(FMLPaths.CONFIGDIR.get().resolve("cld_menu.properties"));
         if (resetScene) {

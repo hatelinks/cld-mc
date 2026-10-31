@@ -19,7 +19,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
-// Экран «Наши моды»: слева разделы по модам и датапакам сборки, справа их настройки.
+// Экран TC Моды: слева разделы по модам и датапакам сборки, справа их настройки.
 // Открывается из настроек и из меню паузы. У каждой настройки своя кнопка «по умолчанию».
 public final class OurModsScreen extends Screen {
     private static final int ROW = 24;
