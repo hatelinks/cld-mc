@@ -5,7 +5,8 @@ cd "$(dirname "$0")/.."
 OUT=${1:-/tmp/menu-shots}
 mkdir -p "$OUT" /tmp/menu-preview
 javac -d /tmp/menu-preview src/main/java/dev/cld/menu/scene/*.java tools/MenuPreview.java
-P="java -cp /tmp/menu-preview MenuPreview"
+JAR=$(ls ${LIBS:-../../libs}/client-*-extra.jar 2>/dev/null | head -1)
+P="java -Dmc.jar=$JAR -cp /tmp/menu-preview MenuPreview"
 $P "$OUT/day.png" 480 270 clear,rain,thunder,fog autumn 14:00 30
 $P "$OUT/day2.png" 480 270 snow,blizzard,rainbow,clear summer 11:00 30
 $P "$OUT/winter-night.png" 480 270 clear,snow,blizzard,fog winter 22:30 30

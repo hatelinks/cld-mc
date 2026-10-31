@@ -17,6 +17,25 @@ public final class Scene {
     private static final int[] BAYER = {0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5};
 
     private int[] ground = new int[0];
+    private Blocks blocks;
+    private Tex sun, moon, cloudMap;
+
+    // текстуры игры: блоки, солнце, луна, карта облаков; без них рисуются простые силуэты
+    public void textures(Tex.Source src) {
+        blocks = new Blocks(src);
+        if (!blocks.ok) blocks = null;
+        sun = env(src, "sun");
+        moon = env(src, "moon_phases");
+        cloudMap = env(src, "clouds");
+    }
+
+    private static Tex env(Tex.Source src, String name) {
+        try {
+            return src.get("minecraft:textures/environment/" + name + ".png");
+        } catch (RuntimeException e) {
+            return null;
+        }
+    }
     private float[] vignette = new float[0];
     private int vw, vh;
 
@@ -26,7 +45,7 @@ public final class Scene {
         if (ground.length != w) ground = new int[w];
         float flash = wx.flash(t);
         float over = Col.smooth((wx.cloud - 0.35f) / 0.65f); // насколько небо затянуто
-        float light = (0.22f + 0.78f * sky.day) * (1 - wx.dark * 0.45f);
+        float light = (0.3f + 0.7f * sky.day) * (1 - wx.dark * 0.45f);
         // снег ночью светлее, отражает луну
         if (sky.season == Season.WINTER) light = Math.max(light, 0.36f);
         light = Math.min(1.15f, light + flash * 0.55f);
@@ -55,7 +74,8 @@ public final class Scene {
         for (Weather.Strike s : wx.strikes) if (!s.near()) farGlow(r, s, t, u, horizon);
 
         for (int k = 0; k < 4; k++) {
-            hills(r, sky, wx, t, u, k, low, lightCol, flash);
+            if (k >= 2 && blocks != null) blockLayer(r, sky, wx, t, u, k, low, lightCol);
+            else hills(r, sky, wx, t, u, k, low, lightCol, flash);
             if (k == 1) {
                 fogBand(r, wx, t, u, k, low);
                 precip(r, wx, t, u, false);
@@ -122,7 +142,7 @@ public final class Scene {
     }
 
     // квадратные солнце и луна, как в Minecraft; у луны настоящая фаза
-    private static void sunAndMoon(Raster r, Sky sky, Weather wx, float u, int horizon) {
+    private void sunAndMoon(Raster r, Sky sky, Weather wx, float u, int horizon) {
         float vis = 1 - Col.smooth((wx.cloud - 0.5f) / 0.5f) * 0.92f;
         vis *= 1 - wx.fog * 0.5f;
         if (vis < 0.03f) return;
@@ -134,9 +154,13 @@ public final class Scene {
             int g1 = s / 2, g2 = s;
             r.blend(x - g2, y - g2, x + s + g2, y + s + g2, core, a / 12);
             r.blend(x - g1, y - g1, x + s + g1, y + s + g1, core, a / 6);
-            r.blend(x, y, x + s, y + s, core, a);
-            int in = Math.max(1, s / 4);
-            r.blend(x + in, y + in, x + s - in, y + s - in, 0xFFFFF0, a);
+            if (sun != null) {
+                additive(r, sun, x - s / 2, y - s / 2, s * 2, vis);
+            } else {
+                r.blend(x, y, x + s, y + s, core, a);
+                int in = Math.max(1, s / 4);
+                r.blend(x + in, y + in, x + s - in, y + s - in, 0xFFFFF0, a);
+            }
         }
         if (sky.moonQ > -0.1 && sky.moonQ < 1.1 && (sky.sunQ < 0 || sky.sunQ > 1)) {
             int s = Math.round(9 * u);
@@ -144,6 +168,13 @@ public final class Scene {
             int a = (int) (vis * 255);
             r.blend(x - s / 2, y - s / 2, x + s + s / 2, y + s + s / 2, 0xC8D4F0, a / 14);
             double p = sky.moonPhase;
+            if (moon != null) {
+                // в Minecraft 0 это полнолуние, 4 новолуние
+                int ph = ((int) Math.round(p * 8) + 4) % 8;
+                int fw = moon.w / 4, fh = moon.h / 2;
+                additive(r, moon.region((ph % 4) * fw, (ph / 4) * fh, fw, fh), x - s / 2, y - s / 2, s * 2, vis);
+                return;
+            }
             for (int i = 0; i < s; i++) {
                 float xn = (i + 0.5f) / s;
                 boolean lit = p < 0.5 ? xn > 1 - p * 2 : xn < 2 - p * 2;
@@ -152,6 +183,22 @@ public final class Scene {
                     int c = lit ? (crater ? 0xBFC6D4 : 0xE8ECF4) : 0x23283A;
                     r.dot(x + i, y + j, c, lit ? a : a / 2);
                 }
+            }
+        }
+    }
+
+    // солнце и луна в игре складываются со светом неба, чёрный фон текстуры не виден
+    private static void additive(Raster r, Tex t, int sx, int sy, int size, float k) {
+        for (int y = Math.max(0, sy); y < Math.min(r.h, sy + size); y++) {
+            int ty = (y - sy) * t.h / size;
+            for (int x = Math.max(0, sx); x < Math.min(r.w, sx + size); x++) {
+                int c = t.px[ty * t.w + (x - sx) * t.w / size];
+                if ((c >>> 24) == 0) continue;
+                int d = r.px[y * r.w + x];
+                int rr = Math.min(255, (d >> 16 & 255) + (int) ((c >> 16 & 255) * k));
+                int gg = Math.min(255, (d >> 8 & 255) + (int) ((c >> 8 & 255) * k));
+                int bb = Math.min(255, (d & 255) + (int) ((c & 255) * k));
+                r.px[y * r.w + x] = rr << 16 | gg << 8 | bb;
             }
         }
     }
@@ -189,7 +236,7 @@ public final class Scene {
     }
 
     // облака как в Minecraft: плоские прямоугольные, ряды ближе к горизонту мельче и медленнее
-    private static void clouds(Raster r, Sky sky, Weather wx, double t, float u, int low, float light, int horizon) {
+    private void clouds(Raster r, Sky sky, Weather wx, double t, float u, int low, float light, int horizon) {
         float cover = 0.22f + wx.cloud * 0.6f;
         int base = Col.mix(0xF6F8FA, 0x5E636B, wx.dark);
         if (wx.kind.snowy()) base = Col.mix(base, 0xD8DEE6, 0.5f);
@@ -214,7 +261,11 @@ public final class Scene {
                 long cell = c0 + j;
                 // облако это отдельные кучки клеток, а не сплошная полоса
                 double n = Noise.noise(cell * 0.18, 600 + i) * 0.75 + Noise.noise(cell * 0.6, 650 + i) * 0.25;
-                if (n < 1 - cover) continue;
+                if (cloudMap != null) {
+                    // настоящая карта облаков Minecraft, в пасмурную погоду берём несколько строк сразу
+                    if (!cloudAt(cell, i * 37 + 11, (int) (wx.cloud * wx.cloud * 7))) continue;
+                    n = 1 - cover * (Noise.hash(cell, 640 + i) < 0.4 ? 0.2 : 0.9);
+                } else if (n < 1 - cover) continue;
                 int x = j * cw - off;
                 double core = (n - (1 - cover)) / Math.max(0.05, cover);
                 int extra = core > 0.35 ? th / 2 : 0;
@@ -224,6 +275,14 @@ public final class Scene {
                 r.blend(x, y + th, x + cw, y + th + Math.max(1, th / 3), cu, ca);
             }
         }
+    }
+
+    private boolean cloudAt(long cell, int row, int extra) {
+        int x = (int) Math.floorMod(cell, (long) cloudMap.w);
+        for (int k = 0; k <= extra; k++) {
+            if ((cloudMap.px[((row + k) % cloudMap.h) * cloudMap.w + x] >>> 24) > 0) return true;
+        }
+        return false;
     }
 
     // далёкая молния: подсветка облаков у горизонта за горами
@@ -282,6 +341,156 @@ public final class Scene {
         }
         if (k >= 1) trees(r, sky, wx, t, u, k, scroll, low, lightCol, haze);
         if (k == 3 && (se == Season.SPRING || se == Season.SUMMER)) flowers(r, u, scroll, lightCol, low, haze);
+    }
+
+    // ближние слои из блоков: столбцы травы, земли и камня, вода в низинах, деревья и цветы
+    private void blockLayer(Raster r, Sky sky, Weather wx, double t, float u, int k, int low, int lightCol) {
+        Season se = sky.season;
+        boolean winter = se == Season.WINTER;
+        float haze = Math.min(0.92f, HAZE[k] + wx.fog * (0.32f - k * 0.06f));
+        blocks.frame(lightCol, low, haze);
+        int bs = Math.max(4, Math.round((k == 3 ? 16 : 8) * u));
+        double scroll = t * SPEED[k] * u + k * 5000;
+        int sea = (int) Math.round(r.h * (1 - BASE[k]) / bs) - (k == 3 ? 2 : 3);
+        long b0 = (long) Math.floor(scroll / bs) - 3, b1 = (long) Math.floor((scroll + r.w) / bs) + 3;
+        int grass = grassTint(se), water = winter ? 0 : (int) (t * 8);
+        float rain = Math.max(wx.rain, wx.rainbow * 0.5f);
+        int flowFrame = (int) (t * 6);
+        for (long bx = b0; bx <= b1; bx++) {
+            int sx = (int) Math.round(bx * bs - scroll);
+            int hb = blockHeight(r, bx, t, k, u, bs);
+            boolean beach = hb <= sea + (k == 3 ? 0 : 1) && !winter || hb < sea;
+            for (int rb = 0; rb < hb; rb++) {
+                int sy = r.h - (rb + 1) * bs;
+                if (sy >= r.h || sy + bs <= 0) continue;
+                int d = hb - 1 - rb;
+                String name;
+                int tint = 0xFFFFFF;
+                if (d == 0) {
+                    if (beach) name = "sand";
+                    else if (winter) name = Noise.hash(bx, 1350 + k) < 0.55 ? "snow" : "grass_block_snow";
+                    else {
+                        name = "grass_block_side";
+                        tint = grass;
+                    }
+                } else if (d <= 2) name = beach ? (d == 1 ? "sand" : "sandstone") : "dirt";
+                else name = Noise.hash(bx * 131 + rb, 1300 + k) < 0.07 && blocks.tex("coal_ore") != null ? "coal_ore" : "stone";
+                Blocks.draw(r, blocks.shade(name, tint, 0, Math.min(d, 4) * 0.07f), sx, sy, bs, 255);
+            }
+            int top = r.h - hb * bs;
+            for (int rb = hb; rb < sea; rb++) {
+                int sy = r.h - (rb + 1) * bs;
+                boolean surface = rb == sea - 1;
+                if (winter && surface) Blocks.draw(r, blocks.shade("ice", 0xFFFFFF, 0, 0), sx, sy, bs, 220);
+                else Blocks.draw(r, blocks.shade("water_still", 0x3F76E4, water, 0), sx, sy, bs, 200);
+                if (surface) top = sy;
+            }
+            if (k == 3) for (int x = Math.max(0, sx); x < Math.min(r.w, sx + bs); x++) ground[x] = top;
+            if (hb < sea) continue;
+            if (winter) {
+                // снег лежит слоем поверх блоков, местами сугробы
+                int layer = Noise.hash(bx, 1360 + k) < 0.3 ? 6 : 3;
+                Blocks.drawTop(r, blocks.shade("snow", 0xFFFFFF, 0, 0), sx, top - bs * layer / 16, bs, layer);
+                continue;
+            }
+            if (beach) continue;
+            double p = Noise.hash(bx, 1400 + k);
+            if (p < 0.38 && !treeAt(bx, k)) {
+                String plant = p < 0.04 ? "poppy" : p < 0.08 ? "dandelion" : p < 0.1 && se != Season.AUTUMN ? "cornflower" : "short_grass";
+                if (se == Season.AUTUMN && !plant.equals("short_grass") && p > 0.06) plant = "short_grass";
+                int[] tx = blocks.shade(plant, plant.equals("short_grass") ? grass : 0xFFFFFF, 0, 0);
+                if (tx == null) tx = blocks.shade("short_grass", grass, 0, 0);
+                // трава качается под ветром: сдвиг на пиксель
+                int sway = (int) Math.round(Math.sin(t * 2.2 + bx) * wx.wind * bs / 16.0);
+                Blocks.draw(r, tx, sx + sway, top - bs, bs, 255);
+            }
+        }
+        // деревья поверх, чтобы листва перекрывала соседние столбцы
+        for (long bx = b0; bx <= b1; bx++) {
+            if (!treeAt(bx, k)) continue;
+            int hb = blockHeight(r, bx, t, k, u, bs);
+            if (hb <= sea) continue;
+            int sx = (int) Math.round(bx * bs - scroll);
+            tree(r, se, bx, k, sx, r.h - hb * bs, bs);
+        }
+        if (rain > 0.3f && k == 3) puddleShine(r, wx, t, u);
+    }
+
+    private boolean treeAt(long bx, int k) {
+        double dens = k == 3 ? 0.07 : 0.2;
+        if (Noise.hash(bx, 1500 + k) >= dens) return false;
+        // не два дерева подряд
+        return Noise.hash(bx - 1, 1500 + k) >= dens && Noise.hash(bx - 2, 1500 + k) >= dens;
+    }
+
+    private int blockHeight(Raster r, long bx, double t, int k, float u, int bs) {
+        double f = FREQ[k] / u * bs;
+        double n = Noise.fbm(bx * f * 0.9, k * 17 + 3);
+        return (int) Math.round((r.h * (1 - BASE[k]) + (n - 0.45) * r.h * AMP[k] * 1.4) / bs);
+    }
+
+    private static int grassTint(Season se) {
+        return switch (se) {
+            case SPRING -> 0x79C05A;
+            case SUMMER -> 0x91BD59;
+            case AUTUMN -> 0xB5B550;
+            case WINTER -> 0x80B497;
+        };
+    }
+
+    private void tree(Raster r, Season se, long bx, int k, int sx, int ground, int bs) {
+        double kind = Noise.hash(bx, 1600 + k);
+        String log, leaves;
+        int tint, trunk;
+        int[][] crown;
+        boolean cherry = se == Season.SPRING && kind > 0.75 && blocks.tex("cherry_leaves") != null;
+        if (cherry) {
+            log = "cherry_log"; leaves = "cherry_leaves"; tint = 0xFFFFFF; trunk = 4;
+            crown = new int[][] {{-2, 2, 3}, {-2, 2, 4}, {-1, 1, 5}};
+        } else if (kind < 0.35 || se == Season.WINTER && kind < 0.6) {
+            log = "spruce_log"; leaves = "spruce_leaves"; tint = 0x619961; trunk = 6;
+            crown = new int[][] {{-2, 2, 2}, {-1, 1, 3}, {-2, 2, 4}, {-1, 1, 5}, {0, 0, 6}, {0, 0, 7}};
+        } else if (kind < 0.6) {
+            log = "birch_log"; leaves = "birch_leaves"; tint = se == Season.AUTUMN ? 0xE8C33A : 0x80A755; trunk = 5;
+            crown = new int[][] {{-2, 2, 3}, {-2, 2, 4}, {-1, 1, 5}, {0, 0, 6}};
+        } else {
+            log = "oak_log"; leaves = "oak_leaves"; trunk = 4;
+            tint = se == Season.AUTUMN ? new int[] {0xE0822B, 0xD9A23A, 0xC4452A, 0x9AAF3A}[(int) (Noise.hash(bx, 1700) * 4)]
+                    : se == Season.SPRING ? 0x6BBF3A : 0x59AE30;
+            crown = new int[][] {{-2, 2, 2}, {-2, 2, 3}, {-1, 1, 4}, {-1, 1, 5}};
+        }
+        int[] wood = blocks.shade(log, 0xFFFFFF, 0, 0);
+        for (int i = 0; i < trunk; i++) Blocks.draw(r, wood, sx, ground - (i + 1) * bs, bs, 255);
+        int[] leaf = blocks.shade(leaves, tint, 0, 0), leafDark = blocks.shade(leaves, tint, 0, 0.18f);
+        int[] snow = se == Season.WINTER ? blocks.shade("snow", 0xFFFFFF, 0, 0) : null;
+        int topRow = 0;
+        for (int[] row : crown) topRow = Math.max(topRow, row[2]);
+        for (int[] row : crown) {
+            int y = ground - (row[2] + 1) * bs;
+            for (int dx = row[0]; dx <= row[1]; dx++) {
+                // углы кроны срезаны случайно, как у дубов в игре
+                if ((dx == row[0] || dx == row[1]) && Math.abs(dx) == 2 && Noise.hash(bx * 7 + row[2] * 3 + dx, 1800) < 0.5) continue;
+                Blocks.draw(r, row[2] < 3 ? leafDark : leaf, sx + dx * bs, y, bs, 255);
+                if (snow != null && isTop(crown, row[2], dx)) Blocks.drawTop(r, snow, sx + dx * bs, y - Math.max(1, bs / 8), bs, 3);
+            }
+        }
+    }
+
+    private static boolean isTop(int[][] crown, int level, int dx) {
+        for (int[] row : crown) if (row[2] == level + 1 && dx >= row[0] && dx <= row[1]) return false;
+        return true;
+    }
+
+    // после дождя по ближней земле пробегают блики
+    private void puddleShine(Raster r, Weather wx, double t, float u) {
+        int step = Math.max(2, Math.round(7 * u));
+        for (int x = 0; x < r.w; x += step) {
+            double p = Noise.noise(x / (40.0 * u) + t * 0.3, 1900);
+            if (p < 0.72) continue;
+            int y = ground[x];
+            if (y <= 0 || y >= r.h) continue;
+            r.blend(x, y, x + step / 2, y + Math.max(1, Math.round(u)), 0xDDE8F4, (int) ((p - 0.72) * 300));
+        }
     }
 
     private static int shadeLit(int c, int lightCol, int low, float haze) {

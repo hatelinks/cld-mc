@@ -6,8 +6,10 @@ import dev.cld.menu.scene.Raster;
 import dev.cld.menu.scene.Scene;
 import dev.cld.menu.scene.Season;
 import dev.cld.menu.scene.Sky;
+import dev.cld.menu.scene.Tex;
 import dev.cld.menu.scene.Weather;
 import dev.cld.menu.scene.WeatherKind;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -34,6 +36,7 @@ public final class Landscape {
     private static Raster raster;
     private static DynamicTexture texture;
     private static long lastFrame;
+    private static boolean texturesReady;
     private static String note;
     private static long noteUntil;
 
@@ -76,6 +79,10 @@ public final class Landscape {
         int px = Math.max(1, Math.round(winH / 270f));
         int rw = (winW + px - 1) / px, rh = (winH + px - 1) / px;
         if (raster == null || raster.w != rw || raster.h != rh) resize(rw, rh);
+        if (!texturesReady) {
+            texturesReady = true;
+            scene.textures(Landscape::texture);
+        }
         long ms = Util.getMillis();
         if (ms - lastFrame >= 1000L / config().fps) {
             lastFrame = ms;
@@ -115,6 +122,30 @@ public final class Landscape {
             }
         }
         texture.upload();
+    }
+
+    // после смены ресурс-паков текстуры блоков перечитываются
+    static void texturesChanged() {
+        texturesReady = false;
+    }
+
+    // текстура из ресурс-паков игры, NativeImage хранит ABGR
+    private static Tex texture(String id) {
+        var res = Minecraft.getInstance().getResourceManager().getResource(ResourceLocation.parse(id));
+        if (res.isEmpty()) return null;
+        try (InputStream in = res.get().open(); NativeImage img = NativeImage.read(in)) {
+            int w = img.getWidth(), h = img.getHeight();
+            int[] px = new int[w * h];
+            for (int y = 0; y < h; y++) {
+                for (int x = 0; x < w; x++) {
+                    int c = img.getPixelRGBA(x, y);
+                    px[y * w + x] = (c & 0xFF00FF00) | (c & 0xFF) << 16 | (c >> 16 & 0xFF);
+                }
+            }
+            return new Tex(w, h, px);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     // F9 следующая погода, Shift+F9 следующее время года, Ctrl+F9 плюс два часа
