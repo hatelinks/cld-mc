@@ -65,6 +65,8 @@ public class Window {
         g.renderOutline(x, y, w, h, 0x80000000);
         if (state.collapsed) return;
         int ry = y + TITLE + 1;
+        Element.mouseX = mx;
+        Element.mouseY = my;
         for (Element e : rows) {
             boolean hover = !hud && mx >= x && mx < x + w && my >= ry && my < ry + e.height();
             e.render(g, font, x, ry, w, hover);

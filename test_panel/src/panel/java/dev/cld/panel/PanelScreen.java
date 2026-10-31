@@ -133,6 +133,19 @@ public class PanelScreen extends Screen {
     }
 
     @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double sx, double sy) {
+        double s = s();
+        int mx = (int) (mouseX / s), my = (int) (mouseY / s);
+        List<Window> ws = Panel.windows();
+        for (int i = ws.size() - 1; i >= 0; i--) {
+            Element e = ws.get(i).at(mx, my);
+            if (e != null && e.scroll(sy)) return true;
+            if (ws.get(i).inside(mx, my)) return true;
+        }
+        return super.mouseScrolled(mouseX, mouseY, sx, sy);
+    }
+
+    @Override
     public boolean charTyped(char c, int mods) {
         for (Window w : Panel.windows()) for (Element e : w.rows) if (e.chr(c)) return true;
         return super.charTyped(c, mods);

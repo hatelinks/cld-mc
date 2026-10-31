@@ -6,6 +6,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import org.lwjgl.glfw.GLFW;
 
+import java.util.List;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -15,6 +16,8 @@ public abstract class Element {
     public static final int H = 12;
     // Для кнопок: под этим именем хранится бинд клавиши, ставит Window.add
     public String bindId;
+    // Где мышь при отрисовке окна (в координатах панели), ставит Window.render
+    static int mouseX = -1, mouseY = -1;
 
     public int height() {
         return H;
@@ -34,6 +37,11 @@ public abstract class Element {
     public void unfocus() {}
 
     public boolean key(int key) {
+        return false;
+    }
+
+    // Колёсико мыши над строкой
+    public boolean scroll(double amount) {
         return false;
     }
 
@@ -101,6 +109,16 @@ public abstract class Element {
         String text = "";
         boolean focus;
 
+        public String value() {
+            return text;
+        }
+
+        // Подставить текст и сразу дать печатать дальше
+        public void edit(String t) {
+            text = t;
+            focus = true;
+        }
+
         public Input(String hint, boolean keep, Consumer<String> onEnter) {
             this.hint = hint;
             this.keep = keep;
@@ -156,6 +174,64 @@ public abstract class Element {
         public boolean chr(char c) {
             if (!focus || c < 32) return false;
             if (text.length() < 200) text += c;
+            return true;
+        }
+    }
+
+    // Список со своей прокруткой: настройки, путевые точки, радар
+    public static class ListView extends Element {
+        public record Row(String text, int color, Consumer<Integer> click) {}
+
+        final Supplier<List<Row>> rows;
+        final int visible;
+        int offset;
+
+        public ListView(int visible, Supplier<List<Row>> rows) {
+            this.visible = visible;
+            this.rows = rows;
+        }
+
+        @Override
+        public int height() {
+            return visible * H;
+        }
+
+        @Override
+        public void render(GuiGraphics g, Font font, int x, int y, int w, boolean hover) {
+            List<Row> list = rows.get();
+            offset = Math.max(0, Math.min(offset, list.size() - visible));
+            boolean bar = list.size() > visible;
+            int tw = w - (bar ? 4 : 0);
+            if (list.isEmpty()) g.drawString(font, "пусто", x + 4, y + 2, 0xFF808080, true);
+            for (int i = 0; i < visible && offset + i < list.size(); i++) {
+                Row r = list.get(offset + i);
+                int ry = y + i * H;
+                if (hover && mouseY >= ry && mouseY < ry + H && mouseX < x + tw) g.fill(x + 1, ry, x + tw - 1, ry + H, 0x30FFFFFF);
+                String s = r.text();
+                if (font.width(s) > tw - 6) s = font.plainSubstrByWidth(s, tw - 10) + "..";
+                g.drawString(font, s, x + 4, ry + 2, r.color(), true);
+            }
+            if (bar) {
+                int h = visible * H;
+                int th = Math.max(6, h * visible / list.size());
+                int ty = y + (h - th) * offset / Math.max(1, list.size() - visible);
+                g.fill(x + w - 3, y, x + w - 1, y + h, 0x40FFFFFF);
+                g.fill(x + w - 3, ty, x + w - 1, ty + th, 0xC0FFFFFF);
+            }
+        }
+
+        @Override
+        public boolean click(int mx, int my, int x, int y, int w, int button) {
+            List<Row> list = rows.get();
+            int i = offset + (my - y) / H;
+            if (i >= 0 && i < list.size() && list.get(i).click() != null) list.get(i).click().accept(button);
+            return true;
+        }
+
+        @Override
+        public boolean scroll(double amount) {
+            offset -= (int) Math.signum(amount) * 3;
+            if (offset < 0) offset = 0;
             return true;
         }
     }

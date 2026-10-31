@@ -28,6 +28,9 @@ final class Windows {
         list.add(baritone(c));
         list.add(info(c));
         list.add(panel(c));
+        list.add(ToolWindows.settings(c));
+        list.add(ToolWindows.waypoints(c));
+        list.add(ToolWindows.radar(c));
         return list;
     }
 
