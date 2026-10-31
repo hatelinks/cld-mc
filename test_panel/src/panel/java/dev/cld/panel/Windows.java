@@ -110,6 +110,7 @@ final class Windows {
         w.add(new Button("Консоль (U)", () -> Minecraft.getInstance().setScreen(new ConsoleScreen(Minecraft.getInstance().screen))));
         w.add(new Button("Сбросить раскладку", () -> {
             c.windows.clear();
+            c.layout = 0;
             Panel.resetWindows();
         }));
         return w;

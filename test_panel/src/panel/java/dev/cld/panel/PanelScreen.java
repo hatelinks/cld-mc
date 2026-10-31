@@ -1,6 +1,7 @@
 package dev.cld.panel;
 
 import dev.cld.panel.ui.Element;
+import dev.cld.panel.ui.Layout;
 import dev.cld.panel.ui.Theme;
 import dev.cld.panel.ui.Window;
 import net.minecraft.client.gui.GuiGraphics;
@@ -51,6 +52,16 @@ public class PanelScreen extends Screen {
         g.drawString(font, "cld_test_panel  Y закрыть, U консоль, средний клик по кнопке: бинд" + (Panel.full() ? "" : "  (чужой сервер: только Baritone)"), 4, (int) (height / s) - 11, 0xA0FFFFFF, true);
         int sw = (int) (width / s), sh = (int) (height / s);
         Element.tooltip = null;
+        PanelConfig c = PanelConfig.get();
+        if (c.layout < 1) {
+            // главные окна первыми, большие и редкие в конце
+            List<Window> order = new java.util.ArrayList<>(Panel.windows());
+            List<String> pri = List.of("baritone", "functions", "movement", "world", "info", "panel", "search", "radar", "waypoints", "settings");
+            order.sort(java.util.Comparator.comparingInt(w -> pri.indexOf(w.id) < 0 ? 99 : pri.indexOf(w.id)));
+            Layout.arrange(order, sw, sh - 13);
+            c.layout = 1;
+            c.save();
+        }
         for (Window w : Panel.windows()) {
             // после смены размера интерфейса окно не должно уехать за край
             w.state.x = Math.max(0, Math.min(sw - w.width, w.state.x));

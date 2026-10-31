@@ -14,6 +14,12 @@ public class PlayerMixin {
     @Inject(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/player/Player;noPhysics:Z", opcode = org.objectweb.asm.Opcodes.PUTFIELD, shift = At.Shift.AFTER))
     private void cld$tick(CallbackInfo ci) {
         Player self = (Player) (Object) this;
-        if (Cheats.phased(self)) self.noPhysics = true;
+        if (!Cheats.phased(self)) return;
+        self.noPhysics = true;
+        // без столкновений игра не снимает "на земле", и LocalPlayer.aiStep выключает полёт: держим полёт сами
+        if (self.level().isClientSide) {
+            self.setOnGround(false);
+            self.getAbilities().flying = true;
+        }
     }
 }

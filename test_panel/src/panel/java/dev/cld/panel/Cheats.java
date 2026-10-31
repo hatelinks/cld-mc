@@ -29,6 +29,7 @@ public final class Cheats {
     private static volatile boolean phaseServer;
     private static volatile UUID phaseId;
     private static int fishWait;
+    private static double gammaBack = -1;
     private static final net.minecraft.resources.ResourceLocation STEP_ID = net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("cld_test_panel", "step");
     private static Entity cam;
     private static ClientLevel camLevel;
@@ -86,7 +87,13 @@ public final class Cheats {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer p = mc.player;
         ok = p != null && mc.level != null && Panel.full();
-        brightNow = fullbright && ok;
+        boolean bright = fullbright && ok;
+        if (bright != brightNow) nudgeGamma(mc);
+        else if (gammaBack >= 0) {
+            mc.options.gamma().set(gammaBack);
+            gammaBack = -1;
+        }
+        brightNow = bright;
         phaseServer = phase && ok && mc.hasSingleplayerServer();
         if (p == null || mc.level == null) {
             cam = null;
@@ -107,6 +114,15 @@ public final class Cheats {
         if (cam != null) moveCam(mc);
     }
 
+    // BadOptimizations пересчитывает карту освещения не каждый кадр, а когда что-то поменялось (например гамма).
+    // Чуть сдвигаем гамму на один тик и возвращаем, так Fullbright включается и выключается сразу
+    private static void nudgeGamma(Minecraft mc) {
+        var g = mc.options.gamma();
+        double v = gammaBack >= 0 ? gammaBack : g.get();
+        gammaBack = v;
+        g.set(v > 0.5 ? v - 0.01 : v + 0.01);
+    }
+
     private static void fly(LocalPlayer p, boolean on) {
         Abilities a = p.getAbilities();
         if (on) {
@@ -116,6 +132,11 @@ public final class Cheats {
                 server(p, sp -> sp.getAbilities().mayfly = true);
                 a.mayfly = true;
                 a.flying = true;
+                // на земле игра сразу снимает полёт, поэтому чуть подбрасываем, как двойной пробел
+                if (p.onGround()) {
+                    p.setOnGround(false);
+                    p.setDeltaMovement(p.getDeltaMovement().x, 0.42, p.getDeltaMovement().z);
+                }
                 p.onUpdateAbilities();
             }
             a.mayfly = true;
