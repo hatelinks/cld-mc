@@ -10,7 +10,7 @@ import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 
-/** Убирает кнопки Realms и «Моды» и подтягивает остальные кнопки вверх. */
+// Убирает кнопки Realms и «Моды» и подтягивает остальные кнопки вверх.
 final class TitleButtons {
     private static final Set<String> REMOVE = Set.of("menu.online", "fml.menu.mods");
     private static final int ROW = 24;

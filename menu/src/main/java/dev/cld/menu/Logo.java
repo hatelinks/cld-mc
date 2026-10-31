@@ -5,7 +5,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
-/** Название сборки шрифтом Minecraft: объёмные изумрудные «бока» и тёмная обводка. */
+// Название сборки шрифтом Minecraft: объёмные изумрудные «бока» и тёмная обводка.
 public final class Logo {
     private static final int[] DEPTH = {0x173D26, 0x1C4A2E, 0x215736, 0x27653F};
     private static final int OUTLINE = 0x0B0F0C;

@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Вместо кубической панорамы рисуем живой пейзаж (во всех меню, где она была). */
+// Вместо кубической панорамы рисуем живой пейзаж (во всех меню, где она была).
 @Mixin(PanoramaRenderer.class)
 public class PanoramaRendererMixin {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
