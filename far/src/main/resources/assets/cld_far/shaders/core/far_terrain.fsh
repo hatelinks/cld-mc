@@ -63,13 +63,17 @@ void main() {
             m = maskAt(relPos.xz + side) & maskAt(relPos.xz - side);
         }
         if ((m & 1) != 0 && abs(relPos.y) < VertRange) discard;
-        if (abs(Pass - 1.0) > 0.5 && (m & 2) != 0) discard;
+        if (Pass > 2.5) {
+            // Pass 3 (грубый под блочными): только в клетках блочных тайлов, закрывает щели на их краю,
+            // где грубый рельеф снаружи выше блочного и между ними не было стенки
+            if ((maskAt(relPos.xz) & 2) == 0) discard;
+        } else if (abs(Pass - 1.0) > 0.5 && (m & 2) != 0) discard;
     } else if (length(relPos) < ClipRadius) discard;
     vec3 c = vertexColor.rgb;
     float alpha = vertexColor.a;
     // мировые координаты (по модулю, чтобы хватало точности): для волн и теней облаков
     vec2 wp = relPos.xz + WorldXZ;
-    if (Pass > 1.5) {
+    if (abs(Pass - 2.0) < 0.5) {
         // вода (Pass 2): рябь, отражение неба под острым углом, блик солнца
         vec3 n = vec3(0.0, 1.0, 0.0);
         if (Waves > 0.0) {

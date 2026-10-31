@@ -65,7 +65,6 @@ final class ChunkMask {
         if (cells.length != size * size) cells = new byte[size * size];
         else java.util.Arrays.fill(cells, (byte) 0);
         fill(camX, camY, camZ, rd);
-        erode();
         chunks = cells.clone();
     }
 
@@ -107,22 +106,6 @@ final class ChunkMask {
                     }
                 }
                 cells[iz * size + ix] |= CHUNK;
-            }
-    }
-
-    // Крайний ряд чанков игры тоже отдаётся дальнему рельефу (он рисуется под ними, игра поверх): на краю прорисовки
-    // игра рисует чанк не целиком (нет боковых граней к соседу, туман, плавное появление у Sodium),
-    // и без этого вдоль границы просвечивало небо светлыми полосами.
-    private void erode() {
-        byte[] src = cells.clone();
-        for (int z = 0; z < size; z++)
-            for (int x = 0; x < size; x++) {
-                if ((src[z * size + x] & CHUNK) == 0) continue;
-                boolean inner = x > 0 && z > 0 && x < size - 1 && z < size - 1;
-                for (int dz = -1; dz <= 1 && inner; dz++)
-                    for (int dx = -1; dx <= 1; dx++)
-                        if ((src[(z + dz) * size + x + dx] & CHUNK) == 0) inner = false;
-                if (!inner) cells[z * size + x] &= ~CHUNK;
             }
     }
 
