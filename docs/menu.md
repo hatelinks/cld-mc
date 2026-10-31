@@ -2,15 +2,16 @@
 
 Карта кода. Читать вместо разбора исходников; кто меняет мод, обновляет эту страницу в своём PR.
 
-- modId `cld_menu`, папка `menu/`, версия **1.3.0** (`VERSION` в `menu/build.sh`). Только клиент.
+- modId `cld_menu`, папка `menu/`, версия **1.4.0** (`VERSION` в `menu/build.sh`). Только клиент.
 - Живой пиксельный пейзаж вместо кубической панорамы (во всех меню, где она была), логотип «TelipailoCraft» шрифтом Minecraft, без кнопок Realms и «Моды», без строк версий внизу слева.
 - С 1.1.0 пейзаж рисуется в память (`scene/`, без Minecraft) и одной текстурой выводится на экран. Погода выбирается при каждом запуске (7 видов, зимой снег 4 запуска из 5), время суток и фаза луны по часам компьютера, время года по календарю.
 - С 1.2.0 два ближних слоя собраны из настоящих блоков Minecraft (текстуры текущего ресурс-пака): трава, земля, камень, вода и лёд, дуб, берёза, ель, весной вишня, трава и цветы; зимой всё заметено. Солнце, луна и облака из текстур игры (`sun.png`, `moon_phases.png`, `clouds.png`).
 - С 1.3.0 у меню звуки: фон природы синтезом (ветер, вьюга, дождь, птицы днём, сверчки ночью), гром игры рядом (сразу, громко) и вдалеке (тихо, ниже, с задержкой), капли дождя игры. Ползунок «Звуки меню» в настройках звука, музыка в непогоду тише.
+- С 1.4.0 экран «TC Моды» (общий экран настроек сборки ведёт этот мод): кнопка в правом верхнем углу настроек и меню паузы, слева разделы, справа настройки с кнопкой «Сброс».
 
 ## Сборка
 ```sh
-LIBS=/mnt/project-files/libs menu/build.sh   # menu/dist/cld_menu-neoforge-1.21.1-1.3.0.jar
+LIBS=/mnt/project-files/libs menu/build.sh   # menu/dist/cld_menu-neoforge-1.21.1-1.4.0.jar
 ```
 
 ## Файлы
@@ -28,6 +29,8 @@ LIBS=/mnt/project-files/libs menu/build.sh   # menu/dist/cld_menu-neoforge-1.21.
 | `SoundSlider` | Ползунок «Звуки меню» в конце `SoundOptionsScreen` (через `ScreenEvent.Init.Post`), сохраняет `sounds` в конфиг. |
 | `mixin/SoundEngineMixin` | `calculateVolume(SoundInstance)` RETURN: музыка умножается на `MenuSounds.musicFactor()`. |
 | `assets/cld_menu/sounds.json` | Событие `cld_menu:menu.ambient` ссылается на ванильный `ambient/weather/rain1` (stream), чтобы прошла проверка файла; сам звук берётся из `getStream`. |
+| `OurModsScreen` | Экран «TC Моды». Разделы: «Главное меню» (погода, время года, время суток, звуки, музыка в грозу, частота пейзажа; применяется сразу через `Landscape.applyConfig`), по разделу на каждый наш мод из `ModList` (modId `cld_*`, `tcw`, `sable_android`: версия, описание, кнопка «Открыть настройки мода», если мод дал `IConfigScreenFactory`, как cld_far и cld_bombs), «Датапаки сборки» (в мире показывает, включены ли `pack_fixes`, `colony_guard`). Последний раздел запоминается. При узком экране (guiScale 6) колонки сжимаются. |
+| `MenuMod` | Кроме событий: `IConfigScreenFactory` для cld_menu (открывает «TC Моды»), кнопка «TC Моды» в `OptionsScreen` и `PauseScreen` через `ScreenEvent.Init.Post`, F9 в главном меню. |
 | `scene/MenuConfig` | `config/cld_menu.properties`: `weather`, `season`, `time`, `fps`. |
 | `scene/Raster`, `Col`, `Noise` | Картинка int[] RGB, цвета, хеш и шум. |
 | `Logo` | Название из lang-ключа `cld_menu.title` (`assets/cld_menu/lang/en_us.json`): объёмные изумрудные бока, обводка, масштаб по ширине экрана. |
@@ -37,6 +40,7 @@ LIBS=/mnt/project-files/libs menu/build.sh   # menu/dist/cld_menu-neoforge-1.21.
 | `mixin/TitleScreenMixin` | `@Redirect` на `BrandingControl.forEachLine` в `render` (без строк версий); после `init` обнуляет `realmsNotificationsScreen` (значки Realms). |
 
 ## Настройки
+В игре: Настройки или Esc, кнопка «TC Моды» справа вверху, раздел «Главное меню». Тот же файл:
 `config/cld_menu.properties` (создаётся сам): `weather` (auto, clear, rain, thunder, snow, fog, blizzard, rainbow), `season` (auto, winter, spring, summer, autumn), `time` (auto или 21:30), `fps` (60), `sounds` (громкость звуков меню 0..1, 0.7), `musicInStorm` (доля громкости музыки в грозу, дождь и метель, 0.45). Название меняется в lang-файле.
 В главном меню F9 следующая погода, Shift+F9 время года, Ctrl+F9 плюс два часа (для проверки, не сохраняется).
 

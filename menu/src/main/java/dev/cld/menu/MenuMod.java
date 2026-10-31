@@ -5,6 +5,12 @@ import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.PauseScreen;
+import net.minecraft.client.gui.screens.options.OptionsScreen;
+import net.minecraft.network.chat.Component;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
@@ -14,13 +20,23 @@ import org.lwjgl.glfw.GLFW;
 
 @Mod(value = "cld_menu", dist = Dist.CLIENT)
 public final class MenuMod {
-    public MenuMod(IEventBus bus) {
+    public MenuMod(IEventBus bus, ModContainer mod) {
+        mod.registerExtensionPoint(IConfigScreenFactory.class, (c, parent) -> new OurModsScreen(parent));
+        NeoForge.EVENT_BUS.addListener(MenuMod::ourModsButton);
         bus.addListener(RegisterClientReloadListenersEvent.class,
                 e -> e.registerReloadListener((ResourceManagerReloadListener) rm -> Landscape.texturesChanged()));
         NeoForge.EVENT_BUS.addListener(TitleButtons::onInit);
         NeoForge.EVENT_BUS.addListener(MenuMod::onKey);
         NeoForge.EVENT_BUS.addListener(ClientTickEvent.Post.class, e -> MenuSounds.tick());
         NeoForge.EVENT_BUS.addListener(SoundSlider::onInit);
+    }
+
+    // кнопка TC Моды в правом верхнем углу настроек и меню паузы
+    private static void ourModsButton(ScreenEvent.Init.Post e) {
+        Screen s = e.getScreen();
+        if (!(s instanceof OptionsScreen) && !(s instanceof PauseScreen p && p.showsPauseMenu())) return;
+        e.addListener(Button.builder(Component.translatable("cld_menu.ourmods.title"), b -> OurModsScreen.open())
+                .bounds(s.width - 108, 6, 100, 20).build());
     }
 
     // в главном меню F9 переключает погоду, чтобы посмотреть все виды

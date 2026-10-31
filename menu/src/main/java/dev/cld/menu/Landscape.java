@@ -129,6 +129,17 @@ public final class Landscape {
         texture.upload();
     }
 
+    // настройки поменяли на экране TC Моды: сохранить и, если надо, заново выбрать погоду
+    static void applyConfig(boolean resetScene) {
+        config().save(FMLPaths.CONFIGDIR.get().resolve("cld_menu.properties"));
+        if (resetScene) {
+            weather = null;
+            season = null;
+            hourShift = 0;
+        }
+        lastFrame = 0;
+    }
+
     static boolean shownRecently() {
         return Util.getMillis() - lastShown < 500;
     }
