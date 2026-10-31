@@ -229,9 +229,9 @@ public final class TileMesh {
                 river[id] = (float) Math.min(1e6, c.riverDist);
                 slope[id] = (float) c.slope;
                 st[id] = (byte) c.dominant().ordinal();
-                boolean inner = i > 0 && j > 0 && i < m - 1 && j < m - 1;
+                // палитра нужна и на полях за краем тайла: без неё у края вода считалась берегом (пена),
+                // а лёд и кроны обрывались, и по стыкам тайлов шла светлая сетка
                 boolean wet = c.waterKind != Terrain.WATER_NONE && c.water > c.height;
-                if (!inner) continue;
                 if (wet) {
                     int w = palette.water(t, c, gx, gz);
                     wcol[id] = w >= 0 ? w : WATER;
@@ -281,7 +281,6 @@ public final class TileMesh {
                 // крупный рельеф сглаживается по клетке (среднее 5 точек), мелкие детали ослабляются
                 if (keep < 1 && !Float.isNaN(sm.mac5[id])) hh = Math.max(Macro.SEA + 2, sm.mac5[id] + (hh - sm.mac[id]) * keep);
                 double gx = x0 + (i - 1) * step, gz = z0 + (j - 1) * step;
-                boolean inner = i > 0 && j > 0 && i < m - 1 && j < m - 1;
                 boolean wet0 = kind != Terrain.WATER_NONE && water > hh;
                 // замёрзшая вода: сплошной лёд на уровне воды
                 if (o.ice() && wet0 && (sm.fl[id] & 1) != 0) {
@@ -299,7 +298,7 @@ public final class TileMesh {
                 wk[id] = (byte) kind;
                 boolean wet = kind != 0 && water > hh;
                 // кроны леса: бугор над землёй, выше и гуще в джунглях
-                if (o.trees() && !wet && inner && tr[id] == 0 && sm.dens[id] > 0) {
+                if (o.trees() && !wet && tr[id] == 0 && sm.dens[id] > 0) {
                     double dens = sm.dens[id];
                     double cell = Math.max(4, step);
                     double r1 = speck(Math.round(gx / cell), Math.round(gz / cell), 1) / 2, r2 = speck(Math.round(gz / cell) + 77, Math.round(gx / cell), 1) / 2;
@@ -309,8 +308,8 @@ public final class TileMesh {
                     if (canopy[id] > 0) tr[id] = 1;
                 }
                 top[id] = wet && !clearWater ? (float) water : h[id];
-                ground[id] = tr[id] == 2 ? ICE : inner && kind == 0 ? sm.ground[id] : -1;
-                if (inner && wet) wcol[id] = sm.wcol[id] != 0 ? sm.wcol[id] : WATER;
+                ground[id] = tr[id] == 2 ? ICE : kind == 0 ? sm.ground[id] : -1;
+                if (wet) wcol[id] = sm.wcol[id] != 0 ? sm.wcol[id] : WATER;
             }
         // столбы генератора: точки сетки, попавшие в столб, опускаются к его основанию, сам столб рисуется отдельно
         List<Pillars.P> pillars = o.pillars() ? sm.pillars : List.of();

@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 final class TileCache {
     private static final Logger LOG = LoggerFactory.getLogger("cld_far");
     // поднимать при изменении формата Samples или того, что в них пишется
-    private static final int FORMAT = 1;
+    private static final int FORMAT = 2;
 
     private final LinkedHashMap<Long, TileMesh.Samples> mem = new LinkedHashMap<>(256, 0.75f, true);
     private long memBytes, memLimit;
