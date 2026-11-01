@@ -56,11 +56,18 @@ public class PanelScreen extends Screen {
         if (c.layout < 2) {
             // главные окна первыми, большие и редкие в конце
             List<Window> order = new java.util.ArrayList<>(Panel.windows());
-            List<String> pri = List.of("baritone", "functions", "movement", "world", "info", "panel", "search", "radar", "waypoints", "settings");
+            List<String> pri = List.of("baritone", "functions", "movement", "world", "auto", "macros", "info", "panel", "search", "radar", "waypoints", "settings");
             order.sort(java.util.Comparator.comparingInt(w -> pri.indexOf(w.id) < 0 ? 99 : pri.indexOf(w.id)));
             Layout.arrange(order, sw, sh - 13);
+            for (Window w : order) w.state.fresh = false;
             c.layout = 2;
             c.save();
+        }
+        // новое окно в новой версии: свёрнутым на свободное место, чужую раскладку не трогаем
+        for (Window w : Panel.windows()) if (w.state.fresh) {
+            w.state.fresh = false;
+            w.state.collapsed = true;
+            Layout.fitOpened(w, Panel.windows(), sw, sh - 13);
         }
         for (Window w : Panel.windows()) {
             // после смены размера интерфейса окно не должно уехать за край
@@ -68,6 +75,8 @@ public class PanelScreen extends Screen {
             // раскрытое окно целиком на экране: если не влезает снизу, поднимаем
             w.state.y = Math.max(0, Math.min(sh - Math.min(w.height(), sh), w.state.y));
             w.render(g, font, mx, my, false);
+            // текст копится в буфере и рисуется в конце; сбрасываем после каждого окна, иначе текст нижнего окна проступает сквозь верхнее
+            g.flush();
         }
         if (Element.tooltip != null && drag == null) tip(g, Element.tooltip, mx, my, sw, sh);
         g.pose().popPose();

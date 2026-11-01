@@ -51,7 +51,8 @@ public class Window {
         int color = Theme.color(state.color);
         Theme.current = color;
         int h = height();
-        g.fill(x, y, x + w, y + h, Theme.BODY);
+        // на экране панели фон плотный, чтобы окно сверху не просвечивало; на HUD полупрозрачный
+        g.fill(x, y, x + w, y + h, hud ? Theme.BODY : 0xFF141414);
         g.fill(x, y, x + w, y + TITLE, 0xE0000000 | color);
         g.drawString(font, title, x + 4, y + 3, 0xFFFFFFFF, true);
         if (!hud) {
@@ -69,6 +70,7 @@ public class Window {
         Element.mouseY = my;
         for (Element e : rows) {
             boolean hover = !hud && mx >= x && mx < x + w && my >= ry && my < ry + e.height();
+            if (hover && e.tip != null) Element.tooltip = e.tip;
             e.render(g, font, x, ry, w, hover);
             ry += e.height();
         }

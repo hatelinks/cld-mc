@@ -20,6 +20,13 @@ public abstract class Element {
     static int mouseX = -1, mouseY = -1;
     // Подсказка строки под мышью, рисует PanelScreen поверх окон
     public static String tooltip;
+    // Подсказка этой строки при наведении, рисует PanelScreen
+    public String tip;
+
+    public Element tip(String t) {
+        tip = t;
+        return this;
+    }
 
     public int height() {
         return H;
@@ -56,18 +63,19 @@ public abstract class Element {
         final Supplier<String> label;
         final BooleanSupplier on;
         final Consumer<Integer> action;
-        // Подсказка при наведении: что делает функция
-        String tip;
-
-        public Button tip(String t) {
-            tip = t;
-            return this;
-        }
-
         public Button(Supplier<String> label, BooleanSupplier on, Consumer<Integer> action) {
             this.label = label;
             this.on = on;
             this.action = action;
+        }
+
+        // Надпись сейчас, для макросов (toggle имя)
+        public String text() {
+            return label.get();
+        }
+
+        public boolean isOn() {
+            return on.getAsBoolean();
         }
 
         public Button(String label, Runnable action) {
@@ -77,7 +85,6 @@ public abstract class Element {
         @Override
         public void render(GuiGraphics g, Font font, int x, int y, int w, boolean hover) {
             boolean active = on.getAsBoolean();
-            if (hover && tip != null) tooltip = tip;
             int bg = active ? Theme.accent(0xC0) : hover ? 0x40FFFFFF : 0x20FFFFFF;
             g.fill(x + 1, y + 1, x + w - 1, y + H - 1, bg);
             Integer key = PanelConfig.get().binds.get(bindId);
@@ -120,6 +127,18 @@ public abstract class Element {
         final boolean keep;
         String text = "";
         boolean focus;
+        int limit = 200;
+
+        // Длинное поле, например шаги макроса
+        public Input limit(int n) {
+            limit = n;
+            return this;
+        }
+
+        // Подставить текст без фокуса
+        public void set(String t) {
+            text = t == null ? "" : t;
+        }
 
         public String value() {
             return text;
@@ -185,7 +204,7 @@ public abstract class Element {
         @Override
         public boolean chr(char c) {
             if (!focus || c < 32) return false;
-            if (text.length() < 200) text += c;
+            if (text.length() < limit) text += c;
             return true;
         }
     }

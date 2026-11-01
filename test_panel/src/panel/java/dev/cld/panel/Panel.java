@@ -59,6 +59,8 @@ public final class Panel {
         if (!hooked && mc.player != null) hookLogger();
         Cheats.tick();
         BlockEsp.tick();
+        Automation.tick();
+        Macros.tick();
         while (OPEN.consumeClick()) if (mc.screen == null) mc.setScreen(new PanelScreen());
         while (CONSOLE.consumeClick()) if (mc.screen == null) mc.setScreen(new ConsoleScreen(null));
     }
@@ -92,7 +94,10 @@ public final class Panel {
         double s = scale();
         g.pose().pushPose();
         g.pose().scale((float) s, (float) s, 1);
-        for (Window w : windows()) if (w.state.pinned) w.render(g, mc.font, -1, -1, true);
+        for (Window w : windows()) if (w.state.pinned) {
+            w.render(g, mc.font, -1, -1, true);
+            g.flush();
+        }
         g.pose().popPose();
     }
 

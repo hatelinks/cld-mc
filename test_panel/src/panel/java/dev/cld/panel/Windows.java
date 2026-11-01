@@ -35,6 +35,8 @@ final class Windows {
         list.add(FunctionWindows.search(c));
         list.add(FunctionWindows.movement(c));
         list.add(FunctionWindows.world(c));
+        list.add(AutoWindows.automation(c));
+        list.add(AutoWindows.macros(c));
         return list;
     }
 
