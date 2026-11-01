@@ -58,7 +58,7 @@ final class FunctionWindows {
     static Window world(PanelConfig c) {
         Window w = new Window("world", "Мир", 150, c.win("world", 466, 230, 4));
         w.add(new Button(() -> "FastBreak", () -> Cheats.fastBreak, b -> Cheats.fastBreak = Cheats.toggle(Cheats.fastBreak, "FastBreak")).tip("Ломать быстрее и без паузы между блоками"));
-        w.add(new Button(() -> "AutoTool", () -> Cheats.autoTool, b -> Cheats.autoTool = Cheats.toggle(Cheats.autoTool, "AutoTool")).tip("Сам берёт лучший инструмент из хотбара, пока ломаешь"));
+        w.add(new Button(() -> "AutoTool", () -> Cheats.autoTool, b -> Cheats.autoTool = Cheats.toggle(Cheats.autoTool, "AutoTool")).tip("Сам берёт лучший инструмент из хотбара или рюкзака, пока ломаешь. Почти сломанный не берёт"));
         w.add(new Button(() -> "AutoFish", () -> Cheats.autoFish, b -> Cheats.autoFish = Cheats.toggle(Cheats.autoFish, "AutoFish")).tip("Сам вытаскивает рыбу при поклёвке и забрасывает снова"));
         return w;
     }

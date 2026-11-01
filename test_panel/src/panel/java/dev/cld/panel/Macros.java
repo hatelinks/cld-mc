@@ -13,7 +13,7 @@ import java.util.Locale;
 // Макросы: цепочка команд с паузами, запуск кнопкой или клавишей, повтор через N секунд.
 // Шаги через ; или с новой строки. Только одиночная игра и свои серверы.
 public final class Macros {
-    static final String HELP = "Шаги через ;  команда Baritone (goto 0 70 0, mine iron_ore), wait 20 (тиков) или wait 2s, waitidle (ждать, пока Baritone закончит), slot 1..9, use (ПКМ предметом), toggle AutoEat (кнопка панели), /команда сервера, say текст, .bind и другие команды с точкой, stop";
+    static final String HELP = "Шаги через ;  команда Baritone (goto 0 70 0, mine iron_ore), wait 20 (тиков) или wait 2s, waitidle (ждать, пока Baritone закончит), slot 1..9, use (ПКМ предметом), on AutoEat и off AutoEat (включить или выключить функцию панели), toggle AutoEat (переключить), /команда сервера, say текст, команды с точкой, end (закончить макрос). stop это команда Baritone: остановить его";
     // Повтор: 0 значит один раз
     static final int[] REPEAT = {0, 5, 10, 30, 60, 300, 600};
 
@@ -161,11 +161,12 @@ public final class Macros {
                 }
             }
             case "use" -> mc.gameMode.useItem(p, InteractionHand.MAIN_HAND);
-            case "toggle" -> {
-                if (!pressButton(arg)) Panel.log("Макрос " + r.m.name + ": нет кнопки " + arg);
+            case "toggle", "on", "off" -> {
+                Boolean want = cmd.equals("on") ? Boolean.TRUE : cmd.equals("off") ? Boolean.FALSE : null;
+                if (!pressButton(arg, want)) Panel.log("Макрос " + r.m.name + ": нет кнопки " + arg);
             }
             case "say" -> p.connection.sendChat(arg);
-            case "stop" -> {
+            case "end" -> {
                 return false;
             }
             default -> {
@@ -178,7 +179,8 @@ public final class Macros {
     }
 
     // Нажать кнопку панели по надписи: сначала точное совпадение, потом начало (Timer x1 по слову timer)
-    static boolean pressButton(String name) {
+    // want: null переключить, иначе нажать только если состояние другое
+    static boolean pressButton(String name, Boolean want) {
         String n = name.trim().toLowerCase(Locale.ROOT);
         if (n.isEmpty()) return false;
         for (int pass = 0; pass < 2; pass++)
@@ -187,7 +189,7 @@ public final class Macros {
                     if (!(e instanceof Element.Button b)) continue;
                     String t = b.text().toLowerCase(Locale.ROOT);
                     if (pass == 0 ? t.equals(n) : t.startsWith(n)) {
-                        e.click(0, 0, 0, 0, w.width, 0);
+                        if (want == null || b.isOn() != want) e.click(0, 0, 0, 0, w.width, 0);
                         return true;
                     }
                 }

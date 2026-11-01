@@ -189,22 +189,41 @@ public final class Cheats {
         else p.connection.sendCommand("tick rate " + (int) rate);
     }
 
-    // AutoTool: пока держишь атаку по блоку, в руке лучший инструмент из хотбара
+    // AutoTool: пока держишь атаку по блоку, в руке лучший инструмент из всего инвентаря.
+    // Из рюкзака инструмент кладётся в пустой слот хотбара, а если пустых нет, в текущий
     private static void autoTool(Minecraft mc, LocalPlayer p) {
         if (mc.screen != null || !mc.options.keyAttack.isDown()) return;
         if (!(mc.hitResult instanceof net.minecraft.world.phys.BlockHitResult hit) || hit.getType() != net.minecraft.world.phys.HitResult.Type.BLOCK) return;
         var state = mc.level.getBlockState(hit.getBlockPos());
         var inv = p.getInventory();
         int best = inv.selected;
-        float bestSpeed = inv.getItem(best).getDestroySpeed(state);
-        for (int i = 0; i < 9; i++) {
-            float sp = inv.getItem(i).getDestroySpeed(state);
-            if (sp > bestSpeed) {
+        float bestSpeed = toolSpeed(inv.getItem(best), state);
+        for (int i = 0; i < 36; i++) {
+            float sp = toolSpeed(inv.getItem(i), state);
+            // хотбар выигрывает при равной скорости, чтобы зря не перекладывать
+            if (sp > bestSpeed || (sp == bestSpeed && i < 9 && best >= 9)) {
                 bestSpeed = sp;
                 best = i;
             }
         }
-        inv.selected = best;
+        if (best < 9) {
+            inv.selected = best;
+            return;
+        }
+        if (p.containerMenu != p.inventoryMenu || !p.containerMenu.getCarried().isEmpty()) return;
+        int to = inv.selected;
+        for (int h = 0; h < 9; h++) if (inv.getItem(h).isEmpty()) {
+            to = h;
+            break;
+        }
+        mc.gameMode.handleInventoryMouseClick(p.inventoryMenu.containerId, best, to, net.minecraft.world.inventory.ClickType.SWAP, p);
+        inv.selected = to;
+    }
+
+    // Скорость ломания; почти сломанный инструмент не берём, чтобы не доломать
+    private static float toolSpeed(net.minecraft.world.item.ItemStack s, net.minecraft.world.level.block.state.BlockState state) {
+        if (s.isDamageableItem() && s.getMaxDamage() - s.getDamageValue() <= 3) return 0;
+        return s.getDestroySpeed(state);
     }
 
     // AutoFish: клюёт, вытаскиваем, через полсекунды снова забрасываем

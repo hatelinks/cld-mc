@@ -13,6 +13,7 @@ import dev.cld.panel.ui.Element.Input;
 import dev.cld.panel.ui.Element.Label;
 import dev.cld.panel.ui.Element.ListView;
 import dev.cld.panel.ui.Element.ListView.Row;
+import dev.cld.panel.ui.Theme;
 import dev.cld.panel.ui.Window;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
@@ -39,6 +40,26 @@ final class ToolWindows {
     static int radarMode;
     // Краткие описания настроек Baritone по-русски: имя, табуляция, текст
     private static Map<String, String> descriptions;
+    // Темы настроек: имя темы и шаблон имён, первая подошедшая тема выигрывает
+    private static final String[][] TOPIC_RULES = {
+        {"Элитры", "elytra.*"},
+        {"Стройка", "build.*|okIf.*|layer.*|startAtLayer|skipFailedLayers|mapArtMode|incorrectSize|breakCorrect.*|placeIncorrect.*|schematic.*"},
+        {"Добыча", "mine.*|minYLevel.*|maxYLevel.*|allowOnlyExposed.*|legitMine.*|forceInternalMining|internalMiningAirException|maxCachedWorldScanCount|exploreForBlocks|useSwordToMine|preferSilkTouch"},
+        {"Исследование и ферма", "explore.*|worldExploring.*|replant.*|farm.*"},
+        {"Следование", "follow.*"},
+        {"Инвентарь", "allowInventory|ticksBetweenInventoryMoves|inventoryMoveOnlyIfStationary|itemSaver.*|autoTool|assumeExternalAutoTool|acceptableThrowawayItems"},
+        {"Ломать и ставить", "allowBreak.*|allowPlace.*|blockPlacementPenalty|blockBreak.*|blocksTo.*|avoidBreakingMultiplier|avoidUpdatingFallingBlocks|pauseMiningForFallingBlocks|rightClickSpeed|blockReachDistance|walkWhileBreaking|breakFromAbove|goalBreakFromAbove"},
+        {"Обзор", "freeLook|blockFreeLook|smoothLook.*|remainWithExistingLookDirection|randomLooking.*|antiCheatCompatibility"},
+        {"Рисование", "render.*|color.*|fadePath|.*LineWidth.*|cachedChunksOpacity|selection.*|yLevelBoxSize"},
+        {"Чат и уведомления", "logAsToast|toastTimer|chat.*|prefix.*|shortBaritonePrefix|useMessageTag|echoCommands|censor.*|verboseCommandExceptions|desktopNotifications|notification.*"},
+        {"Память и точки", "chunkCaching|pruneRegionsFromRAM|chunkPackerQueueMaxSize|extendCacheOnThreshold|cachedChunksExpirySeconds|do.*Waypoints"},
+        {"Движение", "allowSprint|allowParkour.*|allowDiagonal.*|allowDownward|allowJump.*|assume.*|sprint.*|overshootTraverse|allowOvershootDiagonalDescend|allowVines|allowWalkOn.*|allowWaterBucketFall|maxFallHeight.*|considerPotionEffects|strictLiquidCheck|jumpPenalty|walkOnWaterOnePenalty|enterPortal"},
+        {"Поиск пути", "cost.*|pathing.*|backtrack.*|avoidance|mob.*|minimumImprovement.*|cutoffAtLoadBoundary|maxCostIncrease|pathCutoff.*|planningTickLookahead|simplifyUnloadedYCoord|repackOnAnyBlockChange|movementTimeoutTicks|.*TimeoutMS|slowPath.*|pathThroughCachedOnly|blacklistClosestOnFailure|splicePath|maxPathHistoryLength|pathHistoryCutoffAmount|distanceTrim|cancelOnGoalInvalidation|disableCompletionCheck|backfill"},
+    };
+    // Порядок тем в списке: частые сверху
+    static final String[] TOPICS = {"Все", "Движение", "Ломать и ставить", "Инвентарь", "Добыча", "Исследование и ферма", "Следование", "Стройка", "Элитры", "Обзор", "Рисование", "Чат и уведомления", "Поиск пути", "Память и точки", "Прочее"};
+    private static int topic;
+    private static final Map<String, String> topicCache = new HashMap<>();
 
     private ToolWindows() {}
 
@@ -49,13 +70,25 @@ final class ToolWindows {
         Input search = new Input("поиск по имени", true, t -> {});
         Input edit = new Input("имя значение, Enter: задать", false, t -> Panel.run("set " + t));
         w.add(search);
+        w.add(new Button(() -> "Тема: " + TOPICS[topic], () -> topic > 0, b -> {
+            topic = (topic + (b == 1 ? TOPICS.length - 1 : 1)) % TOPICS.length;
+        }).tip("ЛКМ следующая тема, ПКМ предыдущая. В теме Все настройки идут по темам с заголовками"));
         w.add(new ListView(15, () -> {
             String q = search.value().trim().toLowerCase(Locale.ROOT);
             List<Row> rows = new ArrayList<>();
             List<Settings.Setting<?>> all = new ArrayList<>(s.allSettings);
-            all.sort(Comparator.comparing(Settings.Setting::getName));
+            List<String> order = List.of(TOPICS);
+            all.sort(Comparator.<Settings.Setting<?>>comparingInt(st -> order.indexOf(topicOf(st.getName()))).thenComparing(Settings.Setting::getName));
+            String head = null;
             for (Settings.Setting<?> st : all) {
                 if (st.isJavaOnly() || (!q.isEmpty() && !st.getName().toLowerCase(Locale.ROOT).contains(q))) continue;
+                String t = topicOf(st.getName());
+                if (topic > 0 && !t.equals(TOPICS[topic])) continue;
+                // заголовок темы перед её первой настройкой
+                if (topic == 0 && !t.equals(head)) {
+                    head = t;
+                    rows.add(new Row("- " + t + " -", Theme.accent(0xFF), null));
+                }
                 rows.add(settingRow(s, st, edit));
             }
             return rows;
@@ -104,6 +137,13 @@ final class ToolWindows {
         } catch (Exception e) {
             return String.valueOf(st.defaultValue);
         }
+    }
+
+    static String topicOf(String name) {
+        return topicCache.computeIfAbsent(name, n -> {
+            for (String[] r : TOPIC_RULES) if (n.matches(r[1])) return r[0];
+            return "Прочее";
+        });
     }
 
     static String describe(String name) {

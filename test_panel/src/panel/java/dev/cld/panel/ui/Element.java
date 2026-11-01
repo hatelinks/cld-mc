@@ -74,6 +74,10 @@ public abstract class Element {
             return label.get();
         }
 
+        public boolean isOn() {
+            return on.getAsBoolean();
+        }
+
         public Button(String label, Runnable action) {
             this(() -> label, () -> false, b -> action.run());
         }
