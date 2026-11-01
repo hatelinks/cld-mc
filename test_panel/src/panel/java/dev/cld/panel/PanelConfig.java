@@ -53,12 +53,17 @@ public final class PanelConfig {
     public List<String> eject = new ArrayList<>();
     public boolean ejectKeep = true;
     public List<Macro> macros = new ArrayList<>();
+    // Готовые макросы уже добавлены: после удаления сами не возвращаются
+    public int presets;
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static PanelConfig instance;
 
     public static PanelConfig get() {
-        if (instance == null) instance = load();
+        if (instance == null) {
+            instance = load();
+            instance.ensurePresets();
+        }
         return instance;
     }
 
@@ -103,6 +108,14 @@ public final class PanelConfig {
         } catch (Exception e) {
             Panel.LOG.warn("cld_test_panel: не записался конфиг", e);
         }
+    }
+
+    // Готовые макросы один раз при первом запуске новой версии
+    void ensurePresets() {
+        if (presets >= 1) return;
+        Macros.addPresets(this);
+        presets = 1;
+        save();
     }
 
     public Win win(String id, int x, int y, int color) {

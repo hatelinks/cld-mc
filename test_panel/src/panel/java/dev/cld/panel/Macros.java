@@ -31,6 +31,50 @@ public final class Macros {
 
     private static final List<Run> running = new ArrayList<>();
 
+    // Готовые макросы, выбранные владельцем в анкете 01.11: имя, шаги, повтор в секундах
+    private static final String KEEP = "on AutoEat; on AutoReplenish; on Eject; ";
+    static final String[][] PRESETS = {
+        {"Алмазы", KEEP + "mine diamond_ore deepslate_diamond_ore", "0"},
+        {"Железо", KEEP + "mine iron_ore deepslate_iron_ore", "0"},
+        {"Уголь", KEEP + "mine coal_ore deepslate_coal_ore", "0"},
+        {"Медь", KEEP + "mine copper_ore deepslate_copper_ore", "0"},
+        {"Золото", KEEP + "mine gold_ore deepslate_gold_ore", "0"},
+        {"Редстоун", KEEP + "mine redstone_ore deepslate_redstone_ore", "0"},
+        {"Лазурит", KEEP + "mine lapis_ore deepslate_lapis_ore", "0"},
+        {"Изумруды", KEEP + "mine emerald_ore deepslate_emerald_ore", "0"},
+        {"Незер: обломки и кварц", "on AutoEat; on AutoReplenish; mine ancient_debris nether_quartz_ore", "0"},
+        {"Лес", "on AutoTool; on AutoReplenish; mine oak_log birch_log spruce_log jungle_log acacia_log dark_oak_log mangrove_log cherry_log", "0"},
+        {"Туннель 3x3", KEEP + "tunnel 3 3 100", "0"},
+        {"Здесь дом", "sethome", "0"},
+        {"Домой", "stop; surface; waitidle; home", "0"},
+        {"Разведка и домой", "sethome; explore; wait 300s; stop; home", "0"},
+        {"Ферма по кругу", "farm 64; waitidle", "300"},
+        {"AFK рыбалка", "on AutoFish; use", "0"},
+        {"Долгая работа", "on AutoEat; on AutoReplenish; on Eject; on NoFall", "0"},
+        {"Осторожно", "set allowBreak false; set allowPlace false; set allowParkour false", "0"},
+        {"Обычно", "set allowBreak true; set allowPlace true; set allowParkour false", "0"},
+        {"Быстро", "set allowParkour true; set allowParkourPlace true; set allowSprint true", "0"},
+        {"День и ясно", "/time set day; /weather clear", "0"},
+        {"Квадрат 500 блоков", "goto ~500 ~; waitidle; goto ~ ~500; waitidle; goto ~-500 ~; waitidle; goto ~ ~-500; waitidle", "0"},
+    };
+
+    // Добавить готовые макросы, которых нет по имени; свои макросы и клавиши не трогаем
+    static int addPresets(PanelConfig c) {
+        int n = 0;
+        for (String[] p : PRESETS) {
+            boolean has = false;
+            for (PanelConfig.Macro m : c.macros) has |= m.name.equalsIgnoreCase(p[0]);
+            if (has) continue;
+            PanelConfig.Macro m = new PanelConfig.Macro();
+            m.name = p[0];
+            m.steps = p[1];
+            m.repeat = Integer.parseInt(p[2]);
+            c.macros.add(m);
+            n++;
+        }
+        return n;
+    }
+
     private Macros() {}
 
     static List<String> parse(String text) {

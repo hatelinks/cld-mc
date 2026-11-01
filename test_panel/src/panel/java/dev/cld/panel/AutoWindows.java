@@ -111,6 +111,11 @@ final class AutoWindows {
         }).tip("Макрос запускается снова через столько секунд после конца. ЛКМ больше, ПКМ меньше"));
         w.add(new Button("Сохранить", () -> save(c, name, steps, key)));
         w.add(new Button(() -> Macros.count() > 0 ? "Остановить все (" + Macros.count() + ")" : "Остановить все", () -> false, b -> Macros.stopAll()));
+        w.add(new Button("Вернуть готовые макросы", () -> {
+            int n = Macros.addPresets(c);
+            c.save();
+            Panel.log(n == 0 ? "Все готовые макросы уже есть" : "Добавлено готовых макросов: " + n);
+        }).tip("Добавляет удалённые готовые макросы обратно, свои и изменённые не трогает"));
         return w;
     }
 
