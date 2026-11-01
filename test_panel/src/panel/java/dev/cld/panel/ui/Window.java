@@ -70,6 +70,7 @@ public class Window {
         Element.mouseY = my;
         for (Element e : rows) {
             boolean hover = !hud && mx >= x && mx < x + w && my >= ry && my < ry + e.height();
+            if (hover && e.tip != null) Element.tooltip = e.tip;
             e.render(g, font, x, ry, w, hover);
             ry += e.height();
         }

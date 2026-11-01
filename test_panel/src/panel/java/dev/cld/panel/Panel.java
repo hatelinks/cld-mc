@@ -59,6 +59,8 @@ public final class Panel {
         if (!hooked && mc.player != null) hookLogger();
         Cheats.tick();
         BlockEsp.tick();
+        Automation.tick();
+        Macros.tick();
         while (OPEN.consumeClick()) if (mc.screen == null) mc.setScreen(new PanelScreen());
         while (CONSOLE.consumeClick()) if (mc.screen == null) mc.setScreen(new ConsoleScreen(null));
     }

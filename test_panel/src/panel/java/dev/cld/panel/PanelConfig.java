@@ -18,6 +18,16 @@ public final class PanelConfig {
         public int x, y;
         public boolean collapsed, pinned;
         public int color;
+        // Окна ещё не было в конфиге: панель найдёт ему свободное место
+        public transient boolean fresh;
+    }
+
+    // Макрос: шаги через ; клавиша (-1 нет), повтор через repeat секунд (0 один раз)
+    public static final class Macro {
+        public String name = "";
+        public String steps = "";
+        public int key = -1;
+        public int repeat;
     }
 
     // Размер панели относительно "Размера интерфейса" игры: 1 значит как у остального меню
@@ -37,6 +47,12 @@ public final class PanelConfig {
     public List<String> search = new ArrayList<>();
     // Версия раскладки окон: меньше 2 значит разложить окна заново при открытии панели
     public int layout;
+    // Автоматизация: есть при голоде не выше eatAt (из 20), пополнять хотбар при refill и меньше, выбрасывать eject
+    public int eatAt = 14;
+    public int refill = 8;
+    public List<String> eject = new ArrayList<>();
+    public boolean ejectKeep = true;
+    public List<Macro> macros = new ArrayList<>();
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static PanelConfig instance;
@@ -62,6 +78,12 @@ public final class PanelConfig {
                     if (c.binds == null) c.binds = new LinkedHashMap<>();
                     if (c.commandBinds == null) c.commandBinds = new LinkedHashMap<>();
                     if (c.search == null) c.search = new ArrayList<>();
+                    if (c.eject == null) c.eject = new ArrayList<>();
+                    if (c.macros == null) c.macros = new ArrayList<>();
+                    c.macros.removeIf(m -> m == null || m.name == null || m.name.isBlank());
+                    for (Macro m : c.macros) if (m.steps == null) m.steps = "";
+                    if (c.eatAt < 2 || c.eatAt > 19) c.eatAt = 14;
+                    if (c.refill < 1 || c.refill > 63) c.refill = 8;
                     if (c.flySpeed < 1 || c.flySpeed > 10) c.flySpeed = 2;
                     if (c.camSpeed < 0.25 || c.camSpeed > 5) c.camSpeed = 1.0;
                     if (c.espRadius < 16 || c.espRadius > 160) c.espRadius = 64;
@@ -89,6 +111,7 @@ public final class PanelConfig {
             w.x = x;
             w.y = y;
             w.color = color;
+            w.fresh = true;
             return w;
         });
     }
