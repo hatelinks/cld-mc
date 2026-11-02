@@ -42,6 +42,11 @@ public class CompatMixinPlugin implements IMixinConfigPlugin {
                     apply ? "включена" : "не нужна", gg, cp, has);
             return apply;
         }
+        if (mixinClassName.endsWith(".WntNoSleepMixin")) {
+            boolean apply = modLoaded("minecolonytax");
+            LOG.info("cld_compat: War 'n Taxes без 5 секунд сна при старте мира {}", apply ? "включено" : "не нужно");
+            return apply;
+        }
         return true;
     }
 

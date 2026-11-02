@@ -5,6 +5,6 @@
   "plugin": "dev.cld.compat.mixin.CompatMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixinPriority": 500,
-  "mixins": ["PropulsionThrusterStubMixin"],
+  "mixins": ["PropulsionThrusterStubMixin", "WntNoSleepMixin"],
   "injectors": {"defaultRequire": 1}
 }
