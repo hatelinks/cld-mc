@@ -111,6 +111,8 @@ public final class Islands {
     }
 
     private Island[] make(int ci, int cj) {
+        // в End Sea весь мир и так острова
+        if (t.opt.endSea()) return NONE;
         long h = seed ^ ci * 0x632BE59BD9B4E019L ^ cj * 0x8CB92BA72F3D8DD7L;
         SplittableRandom rnd = new SplittableRandom(h);
         if (rnd.nextDouble() >= CHANCE) return NONE;

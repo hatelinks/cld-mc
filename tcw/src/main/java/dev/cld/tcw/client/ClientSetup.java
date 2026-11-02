@@ -26,13 +26,18 @@ public final class ClientSetup {
             ResourceKey.create(Registries.WORLD_PRESET, ResourceLocation.fromNamespaceAndPath(TcwMod.NS, "telipailo"));
     static final ResourceKey<NoiseGeneratorSettings> SETTINGS =
             ResourceKey.create(Registries.NOISE_SETTINGS, ResourceLocation.fromNamespaceAndPath(TcwMod.NS, "telipailo"));
+    public static final ResourceKey<WorldPreset> END_SEA =
+            ResourceKey.create(Registries.WORLD_PRESET, ResourceLocation.fromNamespaceAndPath(TcwMod.NS, "end_sea"));
 
     private ClientSetup() {}
 
     public static void init(net.neoforged.bus.api.IEventBus modBus) {
         NeoForge.EVENT_BUS.addListener(ClientSetup::onClientCommands);
         modBus.addListener((net.neoforged.neoforge.client.event.RegisterPresetEditorsEvent e) ->
-                e.register(PRESET, (screen, ctx) -> new OptionsScreen(screen)));
+                {
+                    e.register(PRESET, (screen, ctx) -> new OptionsScreen(screen));
+                    e.register(END_SEA, (screen, ctx) -> new OptionsScreen(screen));
+                });
     }
 
     /** Кнопка «Карта мира» для вкладки «Мир» (ширина как у поля сида). */
@@ -63,7 +68,7 @@ public final class ClientSetup {
 
     private static boolean isTcw(WorldCreationUiState ui) {
         var h = ui.getWorldType().preset();
-        return h != null && h.is(PRESET);
+        return h != null && (h.is(PRESET) || h.is(END_SEA));
     }
 
     static void openPreview(CreateWorldScreen s) {

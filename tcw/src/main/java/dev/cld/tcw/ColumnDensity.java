@@ -38,7 +38,7 @@ public final class ColumnDensity implements DensityFunction {
 
     public enum Value implements StringRepresentable {
         SURFACE("surface"), CONTINENTS("continents"), EROSION("erosion"), RIDGES("ridges"),
-        TEMPERATURE("temperature"), VEGETATION("vegetation"), DEPTH("depth"), CAVES("caves"), ROCK("rock"), PEAK("peak"), SKY("sky");
+        TEMPERATURE("temperature"), VEGETATION("vegetation"), DEPTH("depth"), CAVES("caves"), ROCK("rock"), PEAK("peak"), SKY("sky"), ISLE("isle");
         public static final Codec<Value> CODEC = StringRepresentable.fromEnum(Value::values);
         private final String name;
         Value(String name) { this.name = name; }
@@ -58,6 +58,7 @@ public final class ColumnDensity implements DensityFunction {
         if (value == Value.ROCK) return t.rocks.combined(x, y, z, cols);
         if (value == Value.PEAK) return peak(t, x, y, z);
         if (value == Value.SKY) return skyTop(t, x, z) - y;
+        if (value == Value.ISLE) return isle(t, x, y, z);
         Terrain.Column c = Worlds.column(t, x, z);
         return switch (value) {
             case SURFACE -> (c.height - y) * SLOPE;
@@ -92,6 +93,13 @@ public final class ColumnDensity implements DensityFunction {
             c.peakBase = base;
         }
         return y > base ? (h - y) * SLOPE : NO_PEAK;
+    }
+
+    // End Sea: положительно выше низа острова, над пустотой всегда воздух. Идёт в min с остальной плотностью
+    static double isle(Terrain t, int x, int y, int z) {
+        if (t.arch == null) return 1000;
+        double b = t.isleBottom(Worlds.column(t, x, z), x, z);
+        return b == Double.POSITIVE_INFINITY ? -1 : (y - b) * SLOPE;
     }
 
     // верх, выше которого в узлах сетки шума можно не считать ванильные пещеры: самый высокий из 9 столбцов
@@ -130,6 +138,7 @@ public final class ColumnDensity implements DensityFunction {
             case ROCK -> -2.5;
             case PEAK -> NO_PEAK;
             case SKY -> -2000;
+            case ISLE -> -1000 * SLOPE;
             case DEPTH -> -7;
             case CAVES -> -3;
             default -> -2;
@@ -141,6 +150,7 @@ public final class ColumnDensity implements DensityFunction {
         return switch (value) {
             case SURFACE, PEAK -> 800 * SLOPE;
             case SKY -> 2000;
+            case ISLE -> 1000;
             case ROCK -> 2.5;
             case DEPTH -> 7;
             case CAVES -> Caves.SOLID;

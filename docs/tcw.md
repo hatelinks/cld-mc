@@ -2,7 +2,7 @@
 
 Карта кода. Читать вместо разбора исходников; кто меняет мод, обновляет эту страницу в своём PR.
 
-- modId `tcw`, папка `tcw/`, версия **0.6.0** (зашита в `tcw/build.sh`, переменная `VERSION`, без `${VERSION:-}`).
+- modId `tcw`, папка `tcw/`, версия **0.7.0** (зашита в `tcw/build.sh`, переменная `VERSION`, без `${VERSION:-}`).
 - Свой генератор рельефа поверх ванильного `NoiseBasedChunkGenerator`: континенты, хребты 8 стилей, реки до океана, озёра, снег, ледники, свои пещеры, горные биомы. Высота мира 768 (Y от -128 до 640), море 63.
 - Тип мира по умолчанию. Ставится на клиент и на сервер. От него зависит cld_far (берёт тот же `Terrain` по сиду).
 - Пререлизы: `releases/tcw-<версия>/`.
@@ -10,7 +10,7 @@
 ## Сборка и проверка
 
 ```sh
-LIBS=/mnt/project-files/libs tcw/build.sh          # tcw/dist/tcw-neoforge-1.21.1-0.6.0.jar
+LIBS=/mnt/project-files/libs tcw/build.sh          # tcw/dist/tcw-neoforge-1.21.1-0.7.0.jar
 ```
 `build.sh` сначала запускает `tools/build_data.py <client-*-extra.jar> build/classes`: все json мира (тип измерения, пресет, noise_settings, биомы, фичи, biome modifier) генерируются из ванильных файлов, в `src/main/resources/data` лежат только два biome modifier. Потом javac.
 
@@ -22,6 +22,7 @@ java -cp /tmp/tcw Bench      # время Macro.sample, Hydro, Terrain.column
 java -cp /tmp/tcw Find       # координаты каждого стиля гор для сида 42
 java -cp /tmp/tcw Dbg out.png  # маска суша/море/берег крупного рельефа
 java -cp /tmp/tcw Sky <seed> <клеток> out.png  # список небесных островов, ближайшая группа сверху и в разрезе
+java -cp /tmp/tcw Sea <seed> <cx> <cz> <размер> <блоков на пиксель> out.png  # мир End Sea: острова сверху и разрез
 ```
 Скорость генерации: `qa/bench/tcw.sh` (только gen, контрольная сумма рельефа) и `qa/bench/server_pregen.sh` (настоящий сервер, JFR, `QAFEAT` по фичам), см. `docs/qa.md`.
 
@@ -38,7 +39,8 @@ java -cp /tmp/tcw Sky <seed> <клеток> out.png  # список небесн
 | `Caves` | Свои пещеры: гигантские залы (`hall`), подземные реки (`nearGallery`, `riverLevel`), ледяные ходы (`glacial`, `iceLevel`), сеноты (`sink`). `density` < 0 внутри пещеры, `fluid`/`topFluidLevel` для воды и лавы. |
 | `Rocks` | Арки и карнизы с навесами: `combined` (одно значение для final_density), `add`, `cut`, `top`. Карнизы пятнами: шум `pick`, порог `PICK`. |
 | `Islands` | Небесные острова: клетки 1024x1024, в половине клеток группа (большой остров r 26-53 и до 4 маленьких). Верх над самым высоким рельефом под островом плюс глубина острова и зазор 40-80, не выше 600. `column` даёт низ и верх острова в точке, `bottom` для поправки карт высот, `at` для биома. 9 биомов по климату (`BIOMES`). |
-| `Options` | 6 настроек экрана «Настроить» (0, 1, 2; 1 по умолчанию): континенты, горы, высота, климат, снег, залы. Хранятся в level.dat внутри источника биомов. |
+| `Archipelago` | Мир End Sea (`Options.world = 1`): маска островов `edge` (три шума 1500/430/90 блоков, порог 0.16, на месте океанов tcw пустота) и низ острова `bottom` (у края 3-6 блоков, в середине больших до 190). `Terrain.isleBottom` кэширует низ в `Column.isle`. Около четверти площади острова. |
+| `Options` | `world` (0 обычный, 1 End Sea, задаётся пресетом) и 6 настроек экрана «Настроить» (0, 1, 2; 1 по умолчанию): континенты, горы, высота, климат, снег, залы. Хранятся в level.dat внутри источника биомов. |
 | `MapRender` | Цвет карты сверху с отмывкой (экран карты, `/tcwmap`, Preview). |
 | `Simplex` | 2D симплекс-шум с производными. |
 
@@ -60,10 +62,12 @@ java -cp /tmp/tcw Sky <seed> <клеток> out.png  # список небесн
 | `RingCache` | Кольца крепостей в `world/data/tcw_rings.txt` (ключ: сид, набор, параметры, версия tcw, настройки). |
 | `SkyBound`, `BeardRange`, `DeepFluidPicker`, `Precheck`, `PrecheckSlot`, `OreSkip` | Помощники ускорений, см. миксины ниже. |
 | `QuietLogs` | Глушит спам «CSA config read» от Create Structures Arise. |
+| `EndSeaStructures` + `mixin/StructureMixin`, `mixin/NearestStructureMixin` | End Sea: старт структуры только на целом острове (вся площадь с запасом 4 блока дальше 0.02 от края, низ структуры выше дна острова); подземная структура переносится вверх в толщу острова или отменяется; структуры только морских биомов и старты над пустотой отбрасываются до подсчёта биомов; поиск ближайшей структуры (/locate, карты, глаз Края) не дальше 8000 блоков, иначе поиск того, чего нет, вешает сервер. |
 | `client/ClientSetup` | Редактор пресета (кнопка «Настроить»), кнопка «Карта мира», клиентская команда `/tcwmap` (только одиночная игра). |
 | `client/MapScreen`, `client/OptionsScreen` | Экран карты мира (колесо, перетаскивание) и экран 6 настроек. |
 
 ### Данные (`tools/build_data.py`)
+- `tcw:end_sea`: тип измерения с небом Края (`effects the_end`, `fixed_time 12800`, сумерки), noise_settings как у telipailo, но final_density = min(..., `tcw:column isle`), без водоносных слоёв, жидкость по умолчанию воздух (FluidPickerMixin отдаёт воздух везде, ни моря, ни лавы у дна), уровень моря 63 оставлен для глубины крепостей и шахт. Пресет `tcw:end_sea` в теге `minecraft:normal`, название «TelipailoCraft: End Sea». Biome modifier `end_sea.json` с теми же фичами, кроме небесных островов.
 - `tcw:telipailo`: dimension_type (min_y -128, height 768), world_preset (добавлен в тег `minecraft:normal`), noise_settings (`size_vertical 2`, роутер климата из `tcw:column`, final_density = ванильный с нашей поверхностью, пещеры `caves`, `peak`, `rock`, `sky_cut`).
 - Ванильные пещерные функции копируются в `tcw:caves/*` с высотами под 768.
 - Свои биомы копируются с ванильных (taiga, meadow, stony_peaks, frozen_peaks), теги `is_mountain`, `is_taiga`, `is_forest`.
@@ -74,10 +78,12 @@ java -cp /tmp/tcw Sky <seed> <клеток> out.png  # список небесн
 Все ускорения дают тот же мир, что без них (сверено).
 | Миксин | Куда | Что делает |
 |---|---|---|
+| `StructureMixin` | `Structure.findValidGenerationPoint` HEAD, `Structure.generate` RETURN | Только End Sea, см. `EndSeaStructures`. |
+| `NearestStructureMixin` | `ChunkGenerator.findNearestMapStructure` HEAD | Только End Sea: радиус поиска не больше 8000 блоков по шагу размещения. |
 | `NoiseFillMixin` + `NoiseChunkAccessor` | `NoiseBasedChunkGenerator.doFill` HEAD | Заполняет шумом только ячейки до верха рельефа (`SkyBound`). Выключить: `-Dtcw.fullFill=true`. Совместим с Noisiumed. |
 | `AquiferMixin` | `Aquifer.NoiseBasedAquifer.computeSubstance` | Высоко над поверхностью сразу воздух, без поиска 12 центров. |
 | `BeardifierMixin` | `Beardifier` init/compute | Вне диапазона Y частей структур подсыпка сразу 0. Все миры. |
-| `FluidPickerMixin` | `createFluidPicker` | Лавовый уровень на 10 блоков над дном мира (а не Y -54) в мирах глубже -64; `DeepFluidPicker`. |
+| `FluidPickerMixin` | `createFluidPicker` | Лавовый уровень на 10 блоков над дном мира (а не Y -54) в мирах глубже -64; `DeepFluidPicker`. Если жидкость по умолчанию воздух (End Sea), везде воздух. |
 | `FluidPostProcessMixin` | `LevelChunk.postProcessGeneration` | Не тикает стоячие источники воды при загрузке чанка (лаг океанов, 0.5.4). Все миры. |
 | `RingPositionsMixin` | `ChunkGeneratorStructureState.generateRingPositions` | Кэш колец крепостей (`RingCache`), только tcw. |
 | `DiskFeatureMixin` + `PrecheckSlotMixin`, `StateTestingAccessor`, `CombiningAccessor`, `NotAccessor` | `DiskFeature.placeColumn` | Сначала проверка условия по одному блоку (`Precheck`). Удешевило wythers stone_cliffs. |
@@ -100,7 +106,8 @@ java -cp /tmp/tcw Sky <seed> <клеток> out.png  # список небесн
 - Тяжёлые фичи других модов в полной сборке и что уже выключено по решению владельца: см. `CLAUDE.md`, раздел «Грабли».
 - Небесные острова ставятся фичей, а не функцией плотности: старт структур, `SkyBound` и водоносные слои их не видят, структуры под островом не прыгают на него. Под островом нет деревьев (карта высот смотрит на остров). cld_far острова пока не рисует.
 - Сид `Terrain` в игре это не сид мира, а `Worlds.seedFrom(шум)`: координаты из `Sky`/`Preview` с сидом мира не совпадают с игрой, в игре искать `/locate tcw sky_island`.
+- End Sea: в мире нет морских структур (монументы, затонувшие корабли, руины), шахты и древние города редки (нужна толща острова). cld_far рисует End Sea как обычный мир, без пустоты (пока не доделан). Спавн в середине крупного острова (`Spawn`, `edge >= 0.15`). Реки у края острова стекают водопадом в пустоту.
 - Не реализовано (на потом): живые горы, опасности, структуры только на ровном, лавины, камнепады, холод на высоте (`HANDOFF.md` §10).
 
 ## Версии (коротко)
-0.1 свой тип мира; 0.2 `/locate tcw`; 0.3 свои пещеры; 0.4 тип по умолчанию, горные пояса, спавн в долине, карта, настройки; 0.4.3 тишина CSA; 0.5.0 арки и карнизы; 0.5.2 карнизов меньше, нет летающих кусков; 0.5.3 генерация почти вдвое быстрее; 0.5.4 нет лага океанов; 0.5.5 Precheck дисков; 0.5.6 OreSkip, ReplaceBlobs; 0.5.7 убраны обрывы wythers и Lost Caves surface; 0.5.8 ленивый столбец в CaveFeature; 0.6.0 небесные острова.
+0.1 свой тип мира; 0.2 `/locate tcw`; 0.3 свои пещеры; 0.4 тип по умолчанию, горные пояса, спавн в долине, карта, настройки; 0.4.3 тишина CSA; 0.5.0 арки и карнизы; 0.5.2 карнизов меньше, нет летающих кусков; 0.5.3 генерация почти вдвое быстрее; 0.5.4 нет лага океанов; 0.5.5 Precheck дисков; 0.5.6 OreSkip, ReplaceBlobs; 0.5.7 убраны обрывы wythers и Lost Caves surface; 0.5.8 ленивый столбец в CaveFeature; 0.6.0 небесные острова; 0.7.0 мир End Sea.

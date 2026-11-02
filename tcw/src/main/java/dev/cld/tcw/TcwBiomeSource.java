@@ -35,7 +35,8 @@ public final class TcwBiomeSource extends BiomeSource {
             com.mojang.serialization.Codec.INT.optionalFieldOf("height", 1).forGetter(Options::height),
             com.mojang.serialization.Codec.INT.optionalFieldOf("climate", 1).forGetter(Options::climate),
             com.mojang.serialization.Codec.INT.optionalFieldOf("snow", 1).forGetter(Options::snow),
-            com.mojang.serialization.Codec.INT.optionalFieldOf("halls", 1).forGetter(Options::halls)
+            com.mojang.serialization.Codec.INT.optionalFieldOf("halls", 1).forGetter(Options::halls),
+            com.mojang.serialization.Codec.INT.optionalFieldOf("world", 0).forGetter(Options::world)
     ).apply(i, Options::new));
 
     public static final MapCodec<TcwBiomeSource> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(

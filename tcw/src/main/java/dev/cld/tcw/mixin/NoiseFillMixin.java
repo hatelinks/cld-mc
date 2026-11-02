@@ -33,13 +33,14 @@ public abstract class NoiseFillMixin {
     protected abstract NoiseChunk createNoiseChunk(ChunkAccess chunk, StructureManager sm, Blender blender, RandomState rs);
 
     @Unique private static final ResourceLocation TCW_SETTINGS = ResourceLocation.fromNamespaceAndPath(TcwMod.NS, "telipailo");
+    @Unique private static final ResourceLocation TCW_END_SEA = ResourceLocation.fromNamespaceAndPath(TcwMod.NS, "end_sea");
     @Unique private static final ThreadLocal<Boolean> TCW_INNER = ThreadLocal.withInitial(() -> false);
     @Unique private static final boolean TCW_OFF = Boolean.getBoolean("tcw.fullFill");
 
     @Inject(method = "doFill", at = @At("HEAD"), cancellable = true, require = 0)
     private void tcw$skipSky(Blender blender, StructureManager sm, RandomState rs, ChunkAccess chunk, int minCellY, int cellCountY,
                              CallbackInfoReturnable<ChunkAccess> cir) {
-        if (TCW_OFF || blender != Blender.empty() || !settings.is(TCW_SETTINGS) || TCW_INNER.get()) return;
+        if (TCW_OFF || blender != Blender.empty() || !(settings.is(TCW_SETTINGS) || settings.is(TCW_END_SEA)) || TCW_INNER.get()) return;
         NoiseGeneratorSettings s = settings.value();
         int cellH = s.noiseSettings().getCellHeight();
         NoiseChunk nc = chunk.getOrCreateNoiseChunk(c -> createNoiseChunk(c, sm, blender, rs));

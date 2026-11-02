@@ -15,6 +15,8 @@ public final class Terrain {
     public final Caves caves;
     public final Rocks rocks;
     public final Islands islands;
+    // только для мира End Sea (opt.endSea()), иначе null
+    public final Archipelago arch;
     final long seed;
     final Simplex fine, rough, meanderA, meanderB, snowN;
     private final Map<Long, CompletableFuture<Hydro>> hydros = new LinkedHashMap<>(16, 0.75f, true) {
@@ -39,9 +41,20 @@ public final class Terrain {
         caves = new Caves(this);
         rocks = new Rocks(this);
         islands = new Islands(this);
+        arch = opt.endSea() ? new Archipelago(seed) : null;
     }
 
     public long seed() { return seed; }
+
+    // End Sea: низ острова в столбце или +бесконечность, если тут пустота
+    public double isleBottom(Column c, double x, double z) {
+        double b = c.isle;
+        if (Double.isNaN(b)) {
+            double e = arch.edge(x, z, c.height);
+            c.isle = b = e > 0 ? arch.bottom(x, z, c.height, e) : Double.POSITIVE_INFINITY;
+        }
+        return b;
+    }
 
     public Hydro hydro(int ci, int cj) {
         if (!macro.landCell(ci, cj)) return null;
@@ -63,6 +76,8 @@ public final class Terrain {
         public int waterKind;
         // высота, выше которой столбец выше всех соседей (тонкий пик), считается лениво
         public double peakBase = Double.NaN;
+        // End Sea: низ острова в этом столбце, +бесконечность над пустотой, NaN пока не считали
+        public double isle = Double.NaN;
         public final double[] style = new double[Macro.STYLES.length];
         final Macro.Sample s = new Macro.Sample(), sx = new Macro.Sample(), sz = new Macro.Sample();
         public Macro.Style dominant() {
@@ -120,6 +135,7 @@ public final class Terrain {
 
     public Column column(double x, double z, Column c) {
         c.peakBase = Double.NaN;
+        c.isle = Double.NaN;
         MCache mc = x == Math.rint(x) && z == Math.rint(z) ? MC.get() : null;
         Macro.Sample s = sampleC(mc, x, z, c.s);
         double h0 = s.height;
