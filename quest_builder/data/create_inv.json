@@ -572,8 +572,8 @@
    "deps": [
     "create_inv/mending_rune",
     "63B86FA0C25B7639",
-    "36A573B8F77EE4EC",
-    "0AAF27D578857371"
+    "0AAF27D578857371",
+    "36A573B8F77EE4EC"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -678,8 +678,8 @@
    ],
    "deps": [
     "create_inv/mending_rune",
-    "4D1D7873774CA66B",
-    "722FF84B978AB3C4"
+    "722FF84B978AB3C4",
+    "4D1D7873774CA66B"
    ],
    "shape": "gear",
    "size": 1.5
@@ -880,8 +880,8 @@
    ],
    "deps": [
     "create_inv/train_buffer",
-    "24619BF54C5E12ED",
-    "create_andesite/metal_girder"
+    "create_andesite/metal_girder",
+    "24619BF54C5E12ED"
    ]
   },
   {
@@ -1025,7 +1025,7 @@
    "desc": [
     "&6Как получить:&r верстак: Горелка всполоха, Парус ветряной мельницы."
    ],
-   "icon": null,
+   "icon": "minecraft:fire_charge",
    "optional": true,
    "tasks": [
     {
@@ -1042,8 +1042,8 @@
    ],
    "deps": [
     "create_inv/sticky_boots_boots",
-    "293E9B8D6EA8FD5D",
-    "3351EFE6BEA86D5B"
+    "3351EFE6BEA86D5B",
+    "293E9B8D6EA8FD5D"
    ]
   },
   {

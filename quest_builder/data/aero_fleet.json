@@ -494,8 +494,8 @@
    ],
    "deps": [
     "aero_fleet/adv_head_in_the_clouds",
-    "4D1D7873774CA66B",
-    "sim_physics/gyroscopic_mechanism"
+    "sim_physics/gyroscopic_mechanism",
+    "4D1D7873774CA66B"
    ],
    "note": "Ручное описание по общим знаниям о моде",
    "shape": "gear",
@@ -533,9 +533,9 @@
    ],
    "deps": [
     "aero_fleet/gyroscopic_propeller_bearing",
-    "4D1D7873774CA66B",
     "create_andesite/propeller",
-    "sim_physics/gyroscopic_mechanism"
+    "sim_physics/gyroscopic_mechanism",
+    "4D1D7873774CA66B"
    ]
   },
   {
@@ -1153,8 +1153,8 @@
    ],
    "deps": [
     "aero_fleet/liquid_burner",
-    "56239D98E7831D04",
-    "27D0961A37A6E0CB"
+    "27D0961A37A6E0CB",
+    "56239D98E7831D04"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1185,8 +1185,8 @@
    ],
    "deps": [
     "aero_fleet/liquid_burner",
-    "4D1D7873774CA66B",
     "3311659D6E2742B8",
+    "4D1D7873774CA66B",
     "024258E95184EEE4"
    ],
    "note": "Ручное описание по общим знаниям о моде"
@@ -1443,8 +1443,8 @@
    ],
    "deps": [
     "aero_fleet/liquid_burner",
-    "sim_physics/redstone_sim",
     "63B86FA0C25B7639",
+    "sim_physics/redstone_sim",
     "5E476C1ED8B02443"
    ],
    "note": "Ручное описание по общим знаниям о моде",
@@ -1705,8 +1705,8 @@
    ],
    "deps": [
     "aero_fleet/ion_thruster",
-    "4D1D7873774CA66B",
-    "49A87F51BFFBB1C4"
+    "49A87F51BFFBB1C4",
+    "4D1D7873774CA66B"
    ],
    "shape": "gear",
    "size": 1.5
@@ -2006,8 +2006,8 @@
    ],
    "deps": [
     "aero_fleet/compact_flap_bearing",
-    "4D1D7873774CA66B",
-    "sim_physics/spring"
+    "sim_physics/spring",
+    "4D1D7873774CA66B"
    ]
   },
   {

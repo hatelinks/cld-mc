@@ -163,8 +163,8 @@
    ],
    "deps": [
     "submarine/intro",
-    "create_andesite/propeller",
-    "3311659D6E2742B8"
+    "3311659D6E2742B8",
+    "create_andesite/propeller"
    ],
    "shape": "gear",
    "size": 1.5
@@ -257,8 +257,8 @@
    ],
    "deps": [
     "submarine/water_thruster",
-    "746BD117BEB07418",
     "49A87F51BFFBB1C4",
+    "746BD117BEB07418",
     "create_andesite/propeller"
    ]
   },
@@ -292,8 +292,8 @@
    ],
    "deps": [
     "submarine/water_thruster",
-    "create_logistics/transmitter",
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "create_logistics/transmitter"
    ],
    "shape": "gear",
    "size": 1.5

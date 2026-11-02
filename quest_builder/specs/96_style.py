@@ -105,6 +105,14 @@ def run(b):
                 q["deps"] = [d for d in q.get("deps", []) if d not in outside] + [wr]
         b.reindex()
 
+    # предметы, у которых в самом моде сломана модель (в игре розово-чёрная иконка): иконка квеста другая
+    broken = {"create_things_and_misc:blaze_ballon": "minecraft:fire_charge"}
+    for c in b.ch.values():
+        for q in c["quests"]:
+            t = q["tasks"][0] if q["tasks"] else {}
+            if t.get("id") in broken and not q.get("icon"):
+                q["icon"] = broken[t["id"]]
+
     # формы, цвета в текстах, награды
     for key, c in b.ch.items():
         refs = [b.ref(c, q) for q in c["quests"]]

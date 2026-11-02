@@ -254,8 +254,8 @@
    ],
    "deps": [
     "off_road/rockcutting_wheel",
-    "sim_physics/spring",
-    "652F92B7AB111650"
+    "652F92B7AB111650",
+    "sim_physics/spring"
    ]
   },
   {
@@ -366,8 +366,8 @@
    ],
    "deps": [
     "off_road/rockcutting_wheel",
-    "sim_physics/spring",
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "sim_physics/spring"
    ]
   },
   {
