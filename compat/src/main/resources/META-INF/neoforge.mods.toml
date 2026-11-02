@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="cld_compat"
+version="${version}"
+displayName="Совместимость модов сборки"
+authors="D, Claude"
+description='''Мелкие заплатки, чтобы чужие моды сборки уживались друг с другом. Сейчас: Gadgets & Gizmos 1.2.10 вместе с Create Propulsion 1.1.3.'''
+
+[[mixins]]
+config="cld_compat.mixins.json"
+
+[[dependencies.cld_compat]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.cld_compat]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
