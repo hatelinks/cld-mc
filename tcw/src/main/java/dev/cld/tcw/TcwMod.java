@@ -29,6 +29,7 @@ public final class TcwMod {
         FEATURES.register("water", () -> new WaterFeature(NoneFeatureConfiguration.CODEC));
         FEATURES.register("rock", () -> new RockFeature(NoneFeatureConfiguration.CODEC));
         FEATURES.register("caves", () -> new CaveFeature(NoneFeatureConfiguration.CODEC));
+        FEATURES.register("islands", () -> new IslandFeature(NoneFeatureConfiguration.CODEC));
         FEATURES.register("snow", () -> new SnowFeature(NoneFeatureConfiguration.CODEC));
         MODIFIERS.register("world", () -> WorldModifier.CODEC);
     }

@@ -190,11 +190,11 @@ dump(preset, NS, "worldgen", "world_preset", "telipailo.json")
 dump({"values": ["tcw:telipailo"]}, "minecraft", "tags", "worldgen", "world_preset", "normal.json")
 
 # --- фичи
-for f, step in [("caves", "lakes"), ("water", "lakes"), ("rock", "local_modifications"), ("snow", "top_layer_modification")]:
+for f, step in [("islands", "raw_generation"), ("caves", "lakes"), ("water", "lakes"), ("rock", "local_modifications"), ("snow", "top_layer_modification")]:
     dump({"type": f"tcw:{f}", "config": {}}, NS, "worldgen", "configured_feature", f + ".json")
     dump({"feature": f"tcw:{f}", "placement": []}, NS, "worldgen", "placed_feature", f + ".json")
 dump({"type": "tcw:world", "dimension_type": "tcw:telipailo", "biomes": "#minecraft:is_overworld",
-      "features": [{"step": "lakes", "feature": "tcw:caves"}, {"step": "lakes", "feature": "tcw:water"}, {"step": "local_modifications", "feature": "tcw:rock"},
+      "features": [{"step": "raw_generation", "feature": "tcw:islands"}, {"step": "lakes", "feature": "tcw:caves"}, {"step": "lakes", "feature": "tcw:water"}, {"step": "local_modifications", "feature": "tcw:rock"},
                    {"step": "top_layer_modification", "feature": "tcw:snow"}],
       "remove_carvers": ["bettercaves:better_cave", "bettercaves:surface_cave"]},
      NS, "neoforge", "biome_modifier", "world.json")

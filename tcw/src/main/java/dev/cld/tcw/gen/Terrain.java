@@ -14,6 +14,7 @@ public final class Terrain {
     public final Macro macro;
     public final Caves caves;
     public final Rocks rocks;
+    public final Islands islands;
     final long seed;
     final Simplex fine, rough, meanderA, meanderB, snowN;
     private final Map<Long, CompletableFuture<Hydro>> hydros = new LinkedHashMap<>(16, 0.75f, true) {
@@ -37,6 +38,7 @@ public final class Terrain {
         snowN = new Simplex(s + 5);
         caves = new Caves(this);
         rocks = new Rocks(this);
+        islands = new Islands(this);
     }
 
     public long seed() { return seed; }
