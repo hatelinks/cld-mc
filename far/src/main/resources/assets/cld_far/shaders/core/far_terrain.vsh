@@ -11,10 +11,13 @@ uniform float Pass;
 
 out vec4 vertexColor;
 out vec3 relPos;
+out float worldY;
 
 void main() {
     // ChunkOffset = угол тайла относительно камеры
     vec3 pos = Position + ChunkOffset;
+    // высота в мире (Position.y абсолютная): по ней слои мезы
+    worldY = Position.y;
     // кривизна земли: вдали поверхность уходит вниз
     pos.y -= Curv * dot(pos.xz, pos.xz);
     gl_Position = ProjMat * ModelViewMat * vec4(pos, 1.0);
