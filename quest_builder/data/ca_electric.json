@@ -1265,8 +1265,8 @@
     }
    ],
    "deps": [
-    "ca_electric/wires",
-    "445AA98B4A1410FD"
+    "445AA98B4A1410FD",
+    "ca_electric/wires"
    ]
   },
   {

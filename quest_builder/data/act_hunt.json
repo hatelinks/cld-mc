@@ -582,5 +582,14 @@
    ]
   }
  ],
- "color": "&2"
+ "color": "&2",
+ "deco": [
+  [
+   "minecraft:textures/item/bow.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
+ ]
 }

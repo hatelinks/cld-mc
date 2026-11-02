@@ -617,5 +617,14 @@
    "size": 2.0
   }
  ],
- "color": "&8"
+ "color": "&3",
+ "deco": [
+  [
+   "create:textures/item/schedule.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
+ ]
 }

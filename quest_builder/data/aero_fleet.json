@@ -533,9 +533,9 @@
    ],
    "deps": [
     "aero_fleet/gyroscopic_propeller_bearing",
-    "create_andesite/propeller",
     "4D1D7873774CA66B",
-    "sim_physics/gyroscopic_mechanism"
+    "sim_physics/gyroscopic_mechanism",
+    "create_andesite/propeller"
    ]
   },
   {
@@ -720,8 +720,8 @@
    ],
    "deps": [
     "aero_fleet/adv_unidentified_floating_object",
-    "56239D98E7831D04",
-    "727F09E229C92364"
+    "727F09E229C92364",
+    "56239D98E7831D04"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1153,8 +1153,8 @@
    ],
    "deps": [
     "aero_fleet/liquid_burner",
-    "27D0961A37A6E0CB",
-    "56239D98E7831D04"
+    "56239D98E7831D04",
+    "27D0961A37A6E0CB"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1185,9 +1185,9 @@
    ],
    "deps": [
     "aero_fleet/liquid_burner",
-    "4D1D7873774CA66B",
+    "3311659D6E2742B8",
     "024258E95184EEE4",
-    "3311659D6E2742B8"
+    "4D1D7873774CA66B"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1443,9 +1443,9 @@
    ],
    "deps": [
     "aero_fleet/liquid_burner",
-    "63B86FA0C25B7639",
     "sim_physics/redstone_sim",
-    "5E476C1ED8B02443"
+    "5E476C1ED8B02443",
+    "63B86FA0C25B7639"
    ],
    "note": "Ручное описание по общим знаниям о моде",
    "shape": "gear",
@@ -1635,9 +1635,9 @@
    ],
    "deps": [
     "aero_fleet/ion_thruster",
-    "76799FE853392922",
     "024258E95184EEE4",
-    "56239D98E7831D04"
+    "56239D98E7831D04",
+    "76799FE853392922"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1705,8 +1705,8 @@
    ],
    "deps": [
     "aero_fleet/ion_thruster",
-    "49A87F51BFFBB1C4",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "49A87F51BFFBB1C4"
    ],
    "shape": "gear",
    "size": 1.5
@@ -1897,8 +1897,8 @@
    ],
    "deps": [
     "aero_fleet/assembler_stick",
-    "create_andesite/flywheel",
-    "sim_physics/gimbal_sensor"
+    "sim_physics/gimbal_sensor",
+    "create_andesite/flywheel"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -2006,8 +2006,8 @@
    ],
    "deps": [
     "aero_fleet/compact_flap_bearing",
-    "sim_physics/spring",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "sim_physics/spring"
    ]
   },
   {

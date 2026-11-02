@@ -58,7 +58,7 @@ def run(b):
            "Главы из групп открыты сразу, но удобнее идти сверху вниз."],
           [inv, book, keys, jei], icon="minecraft:nether_star", xp=50, flags=HIDE, shape="hexagon", size=2.0,
           rewards=[{"type": "xp", "amount": 50}, {"type": "random", "table": "food"}])
-    pos = {"welcome": (2, 0.5), "inventory": (0, -0.5), "questbook": (1.33, -1.0), "keys": (2.67, -1.0), "jei": (4, -0.5), "finish": (2, 2.5)}
+    pos = {"welcome": (2, 0.5), "inventory": (0, -0.5), "questbook": (1.33, -1.0), "keys": (2.67, -1.0), "jei": (4, -0.5), "finish": (2, 3.2)}
     for q in c["quests"]:
         if q.get("k") in pos:
             q["x"], q["y"] = pos[q["k"]]

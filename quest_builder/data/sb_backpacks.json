@@ -1799,5 +1799,14 @@
    "size": 2.0
   }
  ],
- "color": "&2"
+ "color": "&2",
+ "deco": [
+  [
+   "minecraft:textures/item/bundle.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
+ ]
 }

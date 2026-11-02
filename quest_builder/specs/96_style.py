@@ -6,7 +6,7 @@ SKY = ["sim_physics", "aero_fleet", "gizmos", "submarine", "off_road"]
 
 # эпохи Create: ключ, новое название, порядок, цвет (старое название уходит в подзаголовок)
 ERAS = [("create_andesite", "Эпоха андезита", 1, "&7"), ("create_fluids", "Эпоха меди", 1.5, "&c"),
-        ("create_brass", "Эпоха латуни", 2, "&e"), ("create_trains", "Эпоха поездов", 2.5, "&8")]
+        ("create_brass", "Эпоха латуни", 2, "&e"), ("create_trains", "Эпоха поездов", 2.5, "&3")]
 
 GROUP_COLOR = {"Эра механизмов": "&6", "Небо и техника": "&b", "Хозяйство и путешествия": "&2",
                "Мистическое земледелие": "&d", "Жизнь колонии": "&a", "": "&f"}
@@ -42,6 +42,18 @@ KEY_TABLE = {"act_explore": "explore", "act_hunt": "explore", "ec_compass": "exp
 CHOICE = {"Эра механизмов": "choice_tech", "Небо и техника": "choice_tech", "Хозяйство и путешествия": "choice_home",
           "Мистическое земледелие": "choice_mystic", "Жизнь колонии": "choice_colony", "": "choice_home"}
 
+# крупная картинка слева от первого квеста главы, как тематические значки в aoa
+DECO = {"create_andesite": "create:textures/item/andesite_alloy.png", "create_fluids": "create:textures/block/copper_casing.png",
+        "create_brass": "create:textures/item/brass_ingot.png", "create_trains": "create:textures/item/schedule.png",
+        "create_logistics": "create:textures/item/cardboard.png", "create_contraptions": "create:textures/item/super_glue.png",
+        "create_misc": "create:textures/item/wrench.png", "create_inv": "create:textures/item/precision_mechanism.png",
+        "food_factory": "createfood:textures/item/hamburger.png", "food_sweets": "create_confectionery:textures/item/full_chocolate_bar.png",
+        "market": "stockmarket:textures/item/market_remote.png", "act_explore": "minecraft:textures/item/filled_map.png",
+        "ec_compass": "minecraft:textures/item/compass_00.png", "vanilla_progress": "minecraft:textures/item/diamond_pickaxe.png",
+        "fd_kitchen": "minecraft:textures/item/bread.png", "act_hunt": "minecraft:textures/item/bow.png",
+        "act_farm": "minecraft:textures/item/wheat.png", "sb_backpacks": "minecraft:textures/item/bundle.png"}
+LOGO = "cldquests:textures/quests/logo.png"
+
 KEYS_RE = re.compile(r"(?<![&\w])(ПКМ|ЛКМ|Shift|Ctrl|Alt|Tab|Esc)(?!\w)")
 
 
@@ -62,6 +74,13 @@ def run(b):
 
     for key, c in b.ch.items():
         c.setdefault("color", CH_COLOR.get(key, GROUP_COLOR.get(c["group"], "")))
+
+    for key, t in DECO.items():
+        if key in b.ch:
+            b.ch[key]["deco"] = [[t, -2.6, 0, 1.8, 1.8]]
+    # логотип над началом первой главы каждой эпохи
+    if "create_andesite" in b.ch:
+        b.ch["create_andesite"]["deco"].append([LOGO, -4.6, -1.5, 6.0, 0.86])
 
     # приветствия
     for key, lines in WELCOME.items():

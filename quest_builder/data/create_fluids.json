@@ -1076,5 +1076,14 @@
    "size": 2.0
   }
  ],
- "color": "&c"
+ "color": "&c",
+ "deco": [
+  [
+   "create:textures/block/copper_casing.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
+ ]
 }

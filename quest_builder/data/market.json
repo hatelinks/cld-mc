@@ -98,9 +98,9 @@
    ],
    "deps": [
     "market/intro",
-    "63B86FA0C25B7639",
     "4D1D7873774CA66B",
-    "create_misc/glass"
+    "create_misc/glass",
+    "63B86FA0C25B7639"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -268,5 +268,14 @@
    "size": 2.0
   }
  ],
- "color": "&e"
+ "color": "&e",
+ "deco": [
+  [
+   "stockmarket:textures/item/market_remote.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
+ ]
 }

@@ -256,6 +256,12 @@ for ch in chapters:
     order = chapters.index(ch)
     body = f'{{\n\tid: "{cid}"\n\tgroup: "{gid}"\n\torder_index: {order}\n\tfilename: "{ch["key"]}"\n'
     body += f'\tprogression_mode: "{ch.get("progression_mode", "linear")}"\n'
+    # картинки-украшения рядом с первым квестом главы (координаты известны только после раскладки)
+    if ch.get("deco") and ch["quests"]:
+        r0 = ch["quests"][0]
+        for im in ch["deco"]:
+            ch.setdefault("images", []).append({"image": im[0], "x": r0["x"] + im[1], "y": r0["y"] + im[2],
+                                                "width": im[3], "height": im[4]})
     if ch.get("images"):
         body += "\timages: [\n"
         for n, im in enumerate(ch["images"]):

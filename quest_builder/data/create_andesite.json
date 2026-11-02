@@ -1767,5 +1767,21 @@
    "size": 2.0
   }
  ],
- "color": "&7"
+ "color": "&7",
+ "deco": [
+  [
+   "create:textures/item/andesite_alloy.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ],
+  [
+   "cldquests:textures/quests/logo.png",
+   -4.6,
+   -1.5,
+   6.0,
+   0.86
+  ]
+ ]
 }

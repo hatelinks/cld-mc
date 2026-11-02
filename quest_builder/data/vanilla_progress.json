@@ -1831,5 +1831,14 @@
    "size": 2.0
   }
  ],
- "color": "&f"
+ "color": "&f",
+ "deco": [
+  [
+   "minecraft:textures/item/diamond_pickaxe.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
+ ]
 }

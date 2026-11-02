@@ -756,5 +756,14 @@
    "size": 2.0
   }
  ],
- "color": "&2"
+ "color": "&2",
+ "deco": [
+  [
+   "minecraft:textures/item/compass_00.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
+ ]
 }

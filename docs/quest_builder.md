@@ -26,6 +26,7 @@ python3 -I quest_builder/make.py   # out/ftbquests_config.zip и out/checklist.m
 | `tools/layout.py` | Автораскладка главы: колонки по длине цепочки, барицентр, сетка листьев. |
 | `tools/fam.py` | Семейства предметов (цвета, породы дерева и камня) для «любой вариант». |
 | `tools/extract_jars.py` | Выгрузка новых jar в `jars_new/`: `python3 -I quest_builder/tools/extract_jars.py путь/*.jar`. Разбирает и вложенные jar, повторный запуск заменяет данные тех же модов. |
+| `tools/render_chapter.py` | Превью главы по готовым SNBT, похоже на экран FTB Quests: `python3 -I quest_builder/tools/render_chapter.py out.png <глава> <jar с текстурами>...`. Это рендер по файлам, не скриншот. |
 | `tools/snbt.py`, `tools/import_zip.py` | Парсер SNBT и импорт готового zip квестов обратно в json. |
 | `tools/gen_ma_gear.py`, `tools/patch_rewards.py`, `tools/vanilla_ru.py`, `tools/preview.py` | Генерация глав снаряжения Mystical Agriculture, пул наград, русские названия ванили, картинка раскладки (путь в `preview.py` старый, `/home/claude/out`). |
 | `jars/`, `jars_new/` | Выгрузка из jar сборки: id предметов по модам, `*.lang.json`, `_valid.json` (у кого есть модель), `_recipes.json`, `_tags.json`, `_adv.json`, `_models.json`, `_world.json`. |
@@ -42,3 +43,4 @@ python3 -I quest_builder/make.py   # out/ftbquests_config.zip и out/checklist.m
 - Квест: `flags` (словарь полей как есть, например `hide_until_deps_complete: true`), `icon_tex` (картинка вместо предмета через `ftbquests:custom_icon`), награды `{"type": "random"|"choice"|"loot"|"all_table", "table": ключ}` и `{"type": "xp_levels", "amount": N}`. У `random` всегда `exclude_from_claim_all`.
 - Глава: `color` (код цвета перед названием), `images` (`image`, `x`, `y`, `width`, `height`), `layout: "manual"` (свои координаты).
 - Картинка в описании: строка `{image:cldquests:textures/quests/keys.png width:300 height:75 align:center fit:true}`. Картинки лежат в ресурспаке `resourcepack/` (namespace `cldquests`), без него вместо них пусто.
+- Глава: `deco` (картинки рядом с первым квестом, `[текстура, dx, dy, ширина, высота]`, ставятся после раскладки).

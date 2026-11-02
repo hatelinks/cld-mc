@@ -699,9 +699,9 @@
    ],
    "deps": [
     "sim_physics/torsion_spring",
-    "49A87F51BFFBB1C4",
     "024258E95184EEE4",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "5E476C1ED8B02443"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -920,8 +920,8 @@
    ],
    "deps": [
     "sim_physics/gyroscopic_mechanism",
-    "520494043376DA40",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "520494043376DA40"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1023,8 +1023,8 @@
    ],
    "deps": [
     "sim_physics/adv_steamless_engine",
-    "49A87F51BFFBB1C4",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "49A87F51BFFBB1C4"
    ],
    "note": "Ручное описание по общим знаниям о моде",
    "shape": "gear",
@@ -1097,8 +1097,8 @@
    ],
    "deps": [
     "sim_physics/optical_sensor",
-    "63B86FA0C25B7639",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "63B86FA0C25B7639"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1174,8 +1174,8 @@
    ],
    "deps": [
     "sim_physics/optical_sensor",
-    "0C03B415D50A44C3",
-    "create_brass/polished_rose_quartz"
+    "create_brass/polished_rose_quartz",
+    "0C03B415D50A44C3"
    ],
    "shape": "gear",
    "size": 1.5
@@ -1253,8 +1253,8 @@
    ],
    "deps": [
     "sim_physics/redstone_sim",
-    "63B86FA0C25B7639",
-    "create_logistics/transmitter"
+    "create_logistics/transmitter",
+    "63B86FA0C25B7639"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1289,8 +1289,8 @@
    ],
    "deps": [
     "sim_physics/redstone_sim",
-    "49A87F51BFFBB1C4",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "49A87F51BFFBB1C4"
    ]
   },
   {
@@ -1368,8 +1368,8 @@
    ],
    "deps": [
     "sim_physics/ropes",
-    "63B86FA0C25B7639",
-    "727F09E229C92364"
+    "727F09E229C92364",
+    "63B86FA0C25B7639"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
