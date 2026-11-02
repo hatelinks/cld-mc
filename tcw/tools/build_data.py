@@ -175,14 +175,14 @@ sr = ns["surface_rule"]["sequence"]
 above = next(r for r in sr if r.get("if_true", {}).get("type") == "minecraft:above_preliminary_surface")
 above["then_run"]["sequence"][0:0] = own_rules
 dump(ns, NS, "worldgen", "noise_settings", "telipailo.json")
-# --- End Sea: тот же рельеф, но острова в пустоте (min с низом острова), без воды морей и водоносных слоёв
+# --- TC Islands: тот же рельеф, но острова в пустоте (min с низом острова), без воды морей и водоносных слоёв
 import copy
 es = copy.deepcopy(ns)
 # уровень моря оставляем 63: по нему крепости и шахты выбирают глубину. Воды всё равно нет (FluidPickerMixin)
 es["aquifers_enabled"] = False
 es["default_fluid"] = {"Name": "minecraft:air"}
 es["noise_router"]["final_density"] = {"type": "minecraft:min", "argument1": r["final_density"], "argument2": col("isle")}
-dump(es, NS, "worldgen", "noise_settings", "end_sea.json")
+dump(es, NS, "worldgen", "noise_settings", "islands.json")
 dump({"firstOctave": -7, "amplitudes": [1.0]}, NS, "worldgen", "noise", "seed.json")
 
 # --- тип измерения и пресет
@@ -195,16 +195,16 @@ preset["dimensions"]["minecraft:overworld"] = {
     "generator": {"type": "minecraft:noise", "settings": "tcw:telipailo",
                   "biome_source": {"type": "tcw:telipailo", "preset": "minecraft:overworld"}}}
 dump(preset, NS, "worldgen", "world_preset", "telipailo.json")
-# End Sea: небо Края (без солнца и дня), свет как в сумерках, остальное как в Верхнем мире
-de = dict(dt, effects="minecraft:the_end", fixed_time=12800)
-dump(de, NS, "dimension_type", "end_sea.json")
+# TC Islands: обычное небо и смена дня и ночи (решение владельца), свой тип только чтобы отличать мир
+de = dict(dt)
+dump(de, NS, "dimension_type", "islands.json")
 ep = copy.deepcopy(preset)
 ep["dimensions"]["minecraft:overworld"] = {
-    "type": "tcw:end_sea",
-    "generator": {"type": "minecraft:noise", "settings": "tcw:end_sea",
+    "type": "tcw:islands",
+    "generator": {"type": "minecraft:noise", "settings": "tcw:islands",
                   "biome_source": {"type": "tcw:telipailo", "preset": "minecraft:overworld", "options": {"world": 1}}}}
-dump(ep, NS, "worldgen", "world_preset", "end_sea.json")
-dump({"values": ["tcw:telipailo", "tcw:end_sea"]}, "minecraft", "tags", "worldgen", "world_preset", "normal.json")
+dump(ep, NS, "worldgen", "world_preset", "islands.json")
+dump({"values": ["tcw:telipailo", "tcw:islands"]}, "minecraft", "tags", "worldgen", "world_preset", "normal.json")
 
 # --- фичи
 for f, step in [("islands", "raw_generation"), ("caves", "lakes"), ("water", "lakes"), ("rock", "local_modifications"), ("snow", "top_layer_modification")]:
@@ -215,12 +215,12 @@ dump({"type": "tcw:world", "dimension_type": "tcw:telipailo", "biomes": "#minecr
                    {"step": "top_layer_modification", "feature": "tcw:snow"}],
       "remove_carvers": ["bettercaves:better_cave", "bettercaves:surface_cave"]},
      NS, "neoforge", "biome_modifier", "world.json")
-# в End Sea те же фичи, кроме небесных островов (там весь мир острова)
-dump({"type": "tcw:world", "dimension_type": "tcw:end_sea", "biomes": "#minecraft:is_overworld",
+# в TC Islands те же фичи, кроме небесных островов (там весь мир острова)
+dump({"type": "tcw:world", "dimension_type": "tcw:islands", "biomes": "#minecraft:is_overworld",
       "features": [{"step": "lakes", "feature": "tcw:caves"}, {"step": "lakes", "feature": "tcw:water"}, {"step": "local_modifications", "feature": "tcw:rock"},
                    {"step": "top_layer_modification", "feature": "tcw:snow"}],
       "remove_carvers": ["bettercaves:better_cave", "bettercaves:surface_cave"]},
-     NS, "neoforge", "biome_modifier", "end_sea.json")
+     NS, "neoforge", "biome_modifier", "islands.json")
 # --- WWOO: «заплатки» из мёртвых кораллов, бетона и терракоты вне бесплодных земель (во всех мирах)
 W = "wythers:"
 patches = ["terrain/extended/dead_coral_stone", "terrain/extended/dead_coral_stone_2", "terrain/local/beach_mossy_stone",

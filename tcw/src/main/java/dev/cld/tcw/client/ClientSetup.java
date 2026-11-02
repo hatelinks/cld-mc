@@ -27,7 +27,7 @@ public final class ClientSetup {
     static final ResourceKey<NoiseGeneratorSettings> SETTINGS =
             ResourceKey.create(Registries.NOISE_SETTINGS, ResourceLocation.fromNamespaceAndPath(TcwMod.NS, "telipailo"));
     public static final ResourceKey<WorldPreset> END_SEA =
-            ResourceKey.create(Registries.WORLD_PRESET, ResourceLocation.fromNamespaceAndPath(TcwMod.NS, "end_sea"));
+            ResourceKey.create(Registries.WORLD_PRESET, ResourceLocation.fromNamespaceAndPath(TcwMod.NS, "islands"));
 
     private ClientSetup() {}
 

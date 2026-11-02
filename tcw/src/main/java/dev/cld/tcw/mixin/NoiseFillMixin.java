@@ -33,7 +33,7 @@ public abstract class NoiseFillMixin {
     protected abstract NoiseChunk createNoiseChunk(ChunkAccess chunk, StructureManager sm, Blender blender, RandomState rs);
 
     @Unique private static final ResourceLocation TCW_SETTINGS = ResourceLocation.fromNamespaceAndPath(TcwMod.NS, "telipailo");
-    @Unique private static final ResourceLocation TCW_END_SEA = ResourceLocation.fromNamespaceAndPath(TcwMod.NS, "end_sea");
+    @Unique private static final ResourceLocation TCW_END_SEA = ResourceLocation.fromNamespaceAndPath(TcwMod.NS, "islands");
     @Unique private static final ThreadLocal<Boolean> TCW_INNER = ThreadLocal.withInitial(() -> false);
     @Unique private static final boolean TCW_OFF = Boolean.getBoolean("tcw.fullFill");
 
