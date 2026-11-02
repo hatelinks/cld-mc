@@ -699,8 +699,8 @@
    ],
    "deps": [
     "sim_physics/torsion_spring",
-    "024258E95184EEE4",
     "4D1D7873774CA66B",
+    "49A87F51BFFBB1C4",
     "5E476C1ED8B02443"
    ],
    "note": "Ручное описание по общим знаниям о моде"
@@ -883,8 +883,8 @@
    "deps": [
     "sim_physics/adv_steamless_engine",
     "create_andesite/nuggets",
-    "024258E95184EEE4",
-    "56239D98E7831D04"
+    "56239D98E7831D04",
+    "024258E95184EEE4"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1133,8 +1133,8 @@
    ],
    "deps": [
     "sim_physics/optical_sensor",
-    "create_misc/iron_blocks",
-    "27D0961A37A6E0CB"
+    "27D0961A37A6E0CB",
+    "create_misc/iron_blocks"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1174,8 +1174,8 @@
    ],
    "deps": [
     "sim_physics/optical_sensor",
-    "create_brass/polished_rose_quartz",
-    "0C03B415D50A44C3"
+    "0C03B415D50A44C3",
+    "create_brass/polished_rose_quartz"
    ],
    "shape": "gear",
    "size": 1.5
@@ -1253,8 +1253,8 @@
    ],
    "deps": [
     "sim_physics/redstone_sim",
-    "create_logistics/transmitter",
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "create_logistics/transmitter"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1368,8 +1368,8 @@
    ],
    "deps": [
     "sim_physics/ropes",
-    "727F09E229C92364",
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "727F09E229C92364"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },

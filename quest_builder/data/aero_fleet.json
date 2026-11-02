@@ -534,8 +534,8 @@
    "deps": [
     "aero_fleet/gyroscopic_propeller_bearing",
     "4D1D7873774CA66B",
-    "sim_physics/gyroscopic_mechanism",
-    "create_andesite/propeller"
+    "create_andesite/propeller",
+    "sim_physics/gyroscopic_mechanism"
    ]
   },
   {
@@ -1185,9 +1185,9 @@
    ],
    "deps": [
     "aero_fleet/liquid_burner",
+    "4D1D7873774CA66B",
     "3311659D6E2742B8",
-    "024258E95184EEE4",
-    "4D1D7873774CA66B"
+    "024258E95184EEE4"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1444,8 +1444,8 @@
    "deps": [
     "aero_fleet/liquid_burner",
     "sim_physics/redstone_sim",
-    "5E476C1ED8B02443",
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "5E476C1ED8B02443"
    ],
    "note": "Ручное описание по общим знаниям о моде",
    "shape": "gear",
@@ -1635,9 +1635,9 @@
    ],
    "deps": [
     "aero_fleet/ion_thruster",
-    "024258E95184EEE4",
+    "76799FE853392922",
     "56239D98E7831D04",
-    "76799FE853392922"
+    "024258E95184EEE4"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -2047,8 +2047,8 @@
    ],
    "deps": [
     "aero_fleet/compact_flap_bearing",
-    "create_misc/iron_blocks",
-    "sim_physics/spring"
+    "sim_physics/spring",
+    "create_misc/iron_blocks"
    ]
   },
   {

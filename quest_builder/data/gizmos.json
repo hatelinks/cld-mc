@@ -134,8 +134,8 @@
    ],
    "deps": [
     "gizmos/blackstone_sheet",
-    "create_andesite/nuggets",
-    "49A87F51BFFBB1C4"
+    "49A87F51BFFBB1C4",
+    "create_andesite/nuggets"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -170,9 +170,9 @@
    ],
    "deps": [
     "gizmos/intro",
-    "727F09E229C92364",
     "0C03B415D50A44C3",
-    "102C27CB1DF6B087"
+    "102C27CB1DF6B087",
+    "727F09E229C92364"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -368,8 +368,8 @@
    ],
    "deps": [
     "gizmos/propulsion_upgrade_t1",
-    "create_misc/iron_blocks",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "create_misc/iron_blocks"
    ]
   },
   {

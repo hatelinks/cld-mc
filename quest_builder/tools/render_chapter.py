@@ -244,7 +244,7 @@ def main(out, key, jars):
             n = int(r * 1.15)
             img.alpha_composite(ic.resize((n, n), Image.NEAREST), (int(cx - n / 2), int(cy - n / 2)))
         t = lang.get(f'quest.{q["id"]}.title', "")
-        if s >= 1.5 and t:
+        if s >= 1.5 and t and "--labels" in sys.argv:
             tw = ImageFont.truetype(FONT, 12).getlength(re.sub(r"&.", "", t))
             colored(d, (cx - tw / 2, cy + r + 4), t, ImageFont.truetype(FONT, 12))
     img.convert("RGB").save(out)

@@ -80,7 +80,7 @@ def run(b):
             b.ch[key]["deco"] = [[t, -2.6, 0, 1.8, 1.8]]
     # логотип над началом первой главы каждой эпохи
     if "create_andesite" in b.ch:
-        b.ch["create_andesite"]["deco"].append([LOGO, -4.6, -1.5, 6.0, 0.86])
+        b.ch["create_andesite"]["deco"].append([LOGO, -4.6, -2.8, 6.0, 0.86])
 
     # приветствия
     for key, lines in WELCOME.items():

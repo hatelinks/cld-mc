@@ -2052,8 +2052,8 @@
     }
    ],
    "deps": [
-    "6A92B09ECEEED6A0",
-    "fd_kitchen/rice_line"
+    "fd_kitchen/rice_line",
+    "6A92B09ECEEED6A0"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -2289,8 +2289,8 @@
     }
    ],
    "deps": [
-    "6A92B09ECEEED6A0",
-    "fd_kitchen/harvest_fd"
+    "fd_kitchen/harvest_fd",
+    "6A92B09ECEEED6A0"
    ]
   },
   {

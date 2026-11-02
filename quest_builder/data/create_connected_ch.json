@@ -1674,8 +1674,8 @@
    ],
    "deps": [
     "432ABD3EEE72BED0",
-    "create_logistics/transmitter",
-    "create_brass/crafter_slot_cover"
+    "create_brass/crafter_slot_cover",
+    "create_logistics/transmitter"
    ]
   },
   {

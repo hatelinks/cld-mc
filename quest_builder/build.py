@@ -110,6 +110,7 @@ for ch in chapters:
         layout.apply(ch, qid)
 
 lang = {}
+bg_layout = {}
 used_tables = set()
 group_ids = {}
 chapter_files = {}
@@ -262,12 +263,32 @@ for ch in chapters:
         for im in ch["deco"]:
             ch.setdefault("images", []).append({"image": im[0], "x": r0["x"] + im[1], "y": r0["y"] + im[2],
                                                 "width": im[3], "height": im[4]})
+    # тематический фон под всей главой: картинку рисует resourcepack/make_backgrounds.py по bg_layout.json
+    if ch["quests"] and not ch.get("no_bg"):
+        xs0 = [q["x"] - float(q.get("size", 1)) / 2 for q in ch["quests"]] + [i["x"] - i["width"] / 2 for i in ch.get("images", [])]
+        xs1 = [q["x"] + float(q.get("size", 1)) / 2 for q in ch["quests"]] + [i["x"] + i["width"] / 2 for i in ch.get("images", [])]
+        ys0 = [q["y"] - float(q.get("size", 1)) / 2 for q in ch["quests"]] + [i["y"] - i["height"] / 2 for i in ch.get("images", [])]
+        ys1 = [q["y"] + float(q.get("size", 1)) / 2 + (0.6 if float(q.get("size", 1)) >= 1.5 else 0) for q in ch["quests"]] + [i["y"] + i["height"] / 2 for i in ch.get("images", [])]
+        bx0, bx1, by0, by1 = min(xs0) - 1.5, max(xs1) + 1.5, min(ys0) - 3.0, max(ys1) + 1.5
+        bx0, bx1, by0, by1 = [round(v * 2) / 2 for v in (bx0, bx1, by0, by1)]
+        bg_layout[ch["key"]] = {
+            "box": [bx0, by0, bx1, by1], "group": ch["group"], "title": ch["title"], "subtitle": ch.get("subtitle", ""),
+            "color": ch.get("color", ""), "theme": ch.get("theme", ""),
+            "quests": [{"id": q["id"], "x": q["x"], "y": q["y"], "size": float(q.get("size", 1)), "shape": q.get("shape", "circle"),
+                        "title": q["title"] if float(q.get("size", 1)) >= 1.5 else "", "optional": bool(q.get("optional"))}
+                       for q in ch["quests"]],
+            "edges": [[qid.get(d) or qid.get(f'{ch["key"]}/{d}'), q["id"]] for q in ch["quests"] for d in q.get("deps", [])
+                      if (qid.get(d) or qid.get(f'{ch["key"]}/{d}')) in {x["id"] for x in ch["quests"]}],
+        }
+        ch["images"] = [{"image": f"cldquests:textures/quests/bg/{ch['key']}.png", "x": (bx0 + bx1) / 2, "y": (by0 + by1) / 2,
+                         "width": bx1 - bx0, "height": by1 - by0, "order": -10}] + ch.get("images", [])
     if ch.get("images"):
         body += "\timages: [\n"
         for n, im in enumerate(ch["images"]):
             body += (f'\t\t{{\n\t\t\tid: "{hid("image", ch["key"], str(n))}"\n\t\t\timage: "{im["image"]}"\n'
                      f'\t\t\tx: {float(im["x"])}d\n\t\t\ty: {float(im["y"])}d\n\t\t\twidth: {float(im["width"])}d\n'
-                     f'\t\t\theight: {float(im["height"])}d\n\t\t\trotation: 0.0d\n\t\t}}\n')
+                     f'\t\t\theight: {float(im["height"])}d\n\t\t\trotation: 0.0d\n'
+                     + (f'\t\t\torder: {im["order"]}\n' if "order" in im else "") + '\t\t}\n')
         body += "\t]\n"
     body += f'\ticon: {{ id: "{icon}" }}\n\tquests: [\n' + "\n".join(qtexts) + "\n\t]\n}\n"
     chapter_files[ch["key"]] = (cid, body)
@@ -397,6 +418,7 @@ for e in errors:
 if errors:
     sys.exit(1)
 
+json.dump(bg_layout, open(os.path.join(OUT, "bg_layout.json"), "w", encoding="utf-8"), ensure_ascii=False)
 zpath = os.path.join(OUT, "ftbquests_config.zip")
 with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
     for base, _, files in os.walk(os.path.join(OUT, "ftbquests")):

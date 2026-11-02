@@ -176,8 +176,8 @@
    ],
    "deps": [
     "off_road/intro",
-    "create_misc/iron_blocks",
-    "024258E95184EEE4"
+    "024258E95184EEE4",
+    "create_misc/iron_blocks"
    ],
    "note": "Ручное описание по общим знаниям о моде",
    "shape": "gear",
@@ -254,8 +254,8 @@
    ],
    "deps": [
     "off_road/rockcutting_wheel",
-    "652F92B7AB111650",
-    "sim_physics/spring"
+    "sim_physics/spring",
+    "652F92B7AB111650"
    ]
   },
   {
@@ -366,8 +366,8 @@
    ],
    "deps": [
     "off_road/rockcutting_wheel",
-    "63B86FA0C25B7639",
-    "sim_physics/spring"
+    "sim_physics/spring",
+    "63B86FA0C25B7639"
    ]
   },
   {
