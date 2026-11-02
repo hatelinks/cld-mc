@@ -31,7 +31,8 @@
 | `autotest/` | **cld_autotest**, служебный, в игру не ставить: с `config/cld_autotest.properties` сам заходит в мир, меряет FPS, CPU, память, пишет JFR и выходит. Свойства: `world`, `warmup`, `measure`, `pause`, `yaw`, `fly`, `maxfps`, `jfr`, `spark`, `setup`, `quit`. | 0.1.3 | `autotest/build.sh` |
 | `sable_android/` | **sable-android-support** (modId `sable_android`): нативка Rapier для Sable на Android + прореживание тиков блоков Simulated (coremod JS). Только для Android, на Маке не нужен. Исходники восстановлены из jar. | 2.0.0 | `sable_android/build.sh`; нативку пересобирать `sable_android/native/build_android_native.sh` (на Маке) |
 | `bombs/` | **cld_bombs** «Бомбы с уровнями»: дополнение к бомбам Supplementaries, уровни 1-10, прокачка порохом, кратер за несколько тиков, уровни в сундуках. Нужен Supplementaries 4.0. | 1.0.2 | `MODS=/mnt/project-files/libs-mods bombs/build.sh` |
-| `datapacks/` | Свои датапаки сборки (сейчас `cld_hourglass`: гравипесок Quark в песочных часах). | — | `datapacks/build.sh` → `datapacks/dist/*.zip` |
+| `questjei/` | **cld_questjei** «Квесты и JEI»: клик по предмету в окне FTB Quests открывает рецепт в JEI, Shift+клик показывает где используется. Только клиент. Карта `docs/questjei.md`. | 1.0.0 | `MODS=/mnt/project-files/libs-mods questjei/build.sh` |
+| `datapacks/` | Свои датапаки сборки (`cld_hourglass`: гравипесок Quark в песочных часах; `cld_recipes`: крафты для предметов без рецепта). | — | `datapacks/build.sh` → `datapacks/dist/*.zip` |
 | `quest_builder/` | Генератор квестов FTB Quests (36 глав, ~1300 квестов). | — | `python3 -I quest_builder/make.py` → `out/ftbquests_config.zip` + `out/checklist.md` |
 | `pack/` | Конфиги экземпляра Prism (`minecraft/config`, `defaultconfigs`, `options.txt`, `instance.cfg`, `mmc-pack.json`) и `MODS.md` — список модов с SHA-1. Полный архив с jar — в Releases (`cld-mc-pack.zip`). | — | — |
 
@@ -61,6 +62,7 @@
 | cld_bombs | `docs/bombs.md` |
 | quest_builder | `docs/quest_builder.md` |
 | qa и cld_qabench | `docs/qa.md` |
+| cld_questjei | `docs/questjei.md` |
 
 Исходники всех наших модов есть в репозитории и собираются (проверено 29.10: размеры jar совпадают с выданными). Порт JJThunder To The Max (jjtm) и «Горы до небес» (gdn) удалены 30.10: чужой датапак (All Rights Reserved) не распространяем, вместо них tcw. 31.10 история git переписана без них (git filter-repo, force push всех веток), теги пререлизов переносит владелец скриптом с Мака: push тегов из облака запрещён. Чужие моды и датапаки в репозиторий и релизы не класть.
 
@@ -106,4 +108,5 @@ VERSION=1.3.3 LIBS=... pregen/build.sh
 - Лаг при загрузке океана (0.5.4): ванильный водоносный слой 1.21.1 помечает на дообработку почти всю воду, и при загрузке чанка она тикает на главном потоке (в глубоком океане tcw ~15 тысяч блоков на чанк). `FluidPostProcessMixin` пропускает тик источника, вокруг которого снизу и по бокам только такие же источники или сплошные блоки. Зависание при загрузке 256 океанских чанков стало 2.5 с вместо 10.9 с.
 - JEI 19.70 и All The Leaks 1.1.12 несовместимы: миксин ATL `SmithingCategoryExtensionMixin` (фикс FixCopyItemStack) считает, что в слоте 0 лежит `this`, а JEI 19.70 собран оптимизатором и переиспользует слот 0. Итог: `VerifyError: Bad type on operand stack` в `SmithingCategoryExtension.setOutput` при входе в мир (30.10). ATL убран из `mods` копии (лежит в `pack-update-backup-2026-10-30/mods`); вернуть только с версией ATL, где это исправлено, или с JEI 19.27.
 - cld_test_panel это полный форк Baritone (пакеты `baritone.*`): вместе с обычным `baritone-api-neoforge` не ставить, иначе игра не запускается (`ResolutionException: Modules baritoe and cld_test_panel export package baritone.api.schematic`, 31.10). Обычный Baritone убран из `mods` копии в `pack-update-backup-2026-10-30/mods`.
+- Проверка рецептов (2.11, 130 модов): все предметы в JEI видны (скрыты тегом только 2 служебных). Без рецепта в обычной игре были только якорь, весло и декомпрессионная камера Create Submarine, им крафты в датапаке `cld_recipes`. Скрипты разбора jar: `/mnt/project-files/jei-audit/` (`extract.py`, рецепты чужих модов без их мода считать нерабочими). KubeJS в сборке нет.
 - Квесты: ID предмета должен иметь модель (`_valid.json`), lang-строки без переносов.
