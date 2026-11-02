@@ -699,9 +699,9 @@
    ],
    "deps": [
     "sim_physics/torsion_spring",
-    "49A87F51BFFBB1C4",
+    "024258E95184EEE4",
     "5E476C1ED8B02443",
-    "4D1D7873774CA66B"
+    "49A87F51BFFBB1C4"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -882,9 +882,9 @@
    ],
    "deps": [
     "sim_physics/adv_steamless_engine",
-    "create_andesite/nuggets",
+    "024258E95184EEE4",
     "56239D98E7831D04",
-    "024258E95184EEE4"
+    "create_andesite/nuggets"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -920,8 +920,8 @@
    ],
    "deps": [
     "sim_physics/gyroscopic_mechanism",
-    "520494043376DA40",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "520494043376DA40"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1023,8 +1023,8 @@
    ],
    "deps": [
     "sim_physics/adv_steamless_engine",
-    "49A87F51BFFBB1C4",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "49A87F51BFFBB1C4"
    ],
    "note": "Ручное описание по общим знаниям о моде",
    "shape": "gear",
@@ -1097,8 +1097,8 @@
    ],
    "deps": [
     "sim_physics/optical_sensor",
-    "63B86FA0C25B7639",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "63B86FA0C25B7639"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1133,8 +1133,8 @@
    ],
    "deps": [
     "sim_physics/optical_sensor",
-    "27D0961A37A6E0CB",
-    "create_misc/iron_blocks"
+    "create_misc/iron_blocks",
+    "27D0961A37A6E0CB"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1253,8 +1253,8 @@
    ],
    "deps": [
     "sim_physics/redstone_sim",
-    "63B86FA0C25B7639",
-    "create_logistics/transmitter"
+    "create_logistics/transmitter",
+    "63B86FA0C25B7639"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1289,8 +1289,8 @@
    ],
    "deps": [
     "sim_physics/redstone_sim",
-    "49A87F51BFFBB1C4",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "49A87F51BFFBB1C4"
    ]
   },
   {

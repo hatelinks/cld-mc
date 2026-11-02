@@ -1227,8 +1227,8 @@
    ],
    "deps": [
     "vd_veggies/vd_soups",
-    "6A92B09ECEEED6A0",
-    "fd_kitchen/cooked_cuts"
+    "fd_kitchen/cooked_cuts",
+    "6A92B09ECEEED6A0"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1313,8 +1313,8 @@
     }
    ],
    "deps": [
-    "0827532257C43B0B",
     "vd_veggies/cut_veg",
+    "0827532257C43B0B",
     "7C127A168C098708"
    ],
    "note": "Ручное описание по общим знаниям о моде"

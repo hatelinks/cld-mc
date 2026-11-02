@@ -129,8 +129,8 @@
    ],
    "deps": [
     "submarine/intro",
-    "create_andesite/propeller",
-    "create_misc/iron_blocks"
+    "create_misc/iron_blocks",
+    "create_andesite/propeller"
    ]
   },
   {
@@ -163,8 +163,8 @@
    ],
    "deps": [
     "submarine/intro",
-    "3311659D6E2742B8",
-    "create_andesite/propeller"
+    "create_andesite/propeller",
+    "3311659D6E2742B8"
    ],
    "shape": "gear",
    "size": 1.5
@@ -257,9 +257,9 @@
    ],
    "deps": [
     "submarine/water_thruster",
+    "create_andesite/propeller",
     "49A87F51BFFBB1C4",
-    "746BD117BEB07418",
-    "create_andesite/propeller"
+    "01732AB44FE34758"
    ]
   },
   {
@@ -292,8 +292,8 @@
    ],
    "deps": [
     "submarine/water_thruster",
-    "63B86FA0C25B7639",
-    "create_logistics/transmitter"
+    "create_logistics/transmitter",
+    "63B86FA0C25B7639"
    ],
    "shape": "gear",
    "size": 1.5
@@ -390,8 +390,8 @@
    ],
    "deps": [
     "submarine/sonar",
-    "49A87F51BFFBB1C4",
-    "024258E95184EEE4"
+    "024258E95184EEE4",
+    "49A87F51BFFBB1C4"
    ]
   },
   {

@@ -208,13 +208,16 @@ def main(out, key, jars):
             k = f"assets/{k}"
         if k in tex.files:
             p = Image.open(io.BytesIO(tex.files[k]())).convert("RGBA")
-            w, h = int(im["width"] * U), int(im["height"] * U)
+            # как в FTB Quests: картинка шириной width * размер кнопки, а шаг сетки это кнопка + промежуток
+            w, h = int(im["width"] * U * 1.5 / 1.75), int(im["height"] * U * 1.5 / 1.75)
             cx, cy = pos(im["x"], im["y"])
             img.alpha_composite(p.resize((w, h), Image.NEAREST), (int(cx - w / 2), int(cy - h / 2)))
 
     # линии зависимостей
     byid = {q["id"]: q for q in qs}
     for q in qs:
+        if q.get("hide_dependency_lines"):
+            continue
         for dep in q.get("dependencies", []):
             if dep in byid:
                 a, b = pos(byid[dep]["x"], byid[dep]["y"]), pos(q["x"], q["y"])

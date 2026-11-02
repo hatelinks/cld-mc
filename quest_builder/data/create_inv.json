@@ -533,8 +533,8 @@
     }
    ],
    "deps": [
-    "create_inv/rose_quartz_sheet",
-    "create_inv/experience_sheet"
+    "create_inv/experience_sheet",
+    "create_inv/rose_quartz_sheet"
    ],
    "note": "Ручное описание по общим знаниям о моде",
    "shape": "gear",
@@ -571,9 +571,9 @@
    ],
    "deps": [
     "create_inv/mending_rune",
-    "63B86FA0C25B7639",
+    "36A573B8F77EE4EC",
     "0AAF27D578857371",
-    "36A573B8F77EE4EC"
+    "63B86FA0C25B7639"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -604,8 +604,8 @@
    ],
    "deps": [
     "create_inv/mending_rune",
-    "create_andesite/propeller",
-    "36A573B8F77EE4EC"
+    "36A573B8F77EE4EC",
+    "create_andesite/propeller"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -678,8 +678,8 @@
    ],
    "deps": [
     "create_inv/mending_rune",
-    "722FF84B978AB3C4",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "722FF84B978AB3C4"
    ],
    "shape": "gear",
    "size": 1.5
@@ -880,8 +880,8 @@
    ],
    "deps": [
     "create_inv/train_buffer",
-    "create_andesite/metal_girder",
-    "24619BF54C5E12ED"
+    "24619BF54C5E12ED",
+    "create_andesite/metal_girder"
    ]
   },
   {
@@ -1101,8 +1101,8 @@
    ],
    "deps": [
     "create_inv/vibration_mechanism",
-    "3B6917DA1CFEF16E",
-    "722946AB95A2EBBE"
+    "722946AB95A2EBBE",
+    "3B6917DA1CFEF16E"
    ]
   },
   {

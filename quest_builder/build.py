@@ -25,6 +25,10 @@ GROUP_ORDER = ["", "Эра механизмов", "Небо и техника", 
 # стиль названий групп: цвет, жирный, подчёркнутый (как в aoa)
 GROUP_STYLE = {"Эра механизмов": "&e&l&n", "Небо и техника": "&b&l&n", "Хозяйство и путешествия": "&6&l&n",
                "Мистическое земледелие": "&d&l&n", "Жизнь колонии": "&a&l&n"}
+# FTB Quests ставит квесты и картинки с шагом (размер кнопки + промежуток) = 1.75 зума на клетку,
+# а ширину картинки считает как ширина * размер кнопки (1.5 зума). Без поправки картинка выходит
+# на 1/7 меньше и фон главы съезжает с квестов. Здесь все размеры картинок в клетках сетки.
+IMG_K = 1.75 / 1.5
 # таблицы наград: quest_builder/reward_tables.json
 TABLES = json.load(open(os.path.join(ROOT, "reward_tables.json"), encoding="utf-8"))
 
@@ -105,6 +109,7 @@ def resolve(ch, ref):
 
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 import layout  # noqa: E402
+import icons  # noqa: E402
 for ch in chapters:
     if ch.get("layout", "auto") == "auto":
         layout.apply(ch, qid)
@@ -123,6 +128,30 @@ def item_obj(rid, comps=None):
     return f'{{ count: 1, id: "{rid}" }}'
 
 
+COMB_MIN = 5  # с какого числа листьев рисовать гребёнку вместо отдельных линий
+
+
+def comb_groups(ch):
+    # [(родитель, [листья])]: листья зависят только от родителя, от них никто не зависит,
+    # и все стоят правее родителя
+    byid = {q["id"]: q for q in ch["quests"]}
+    deps = {q["id"]: [r for r in (qid.get(d) or qid.get(f'{ch["key"]}/{d}') for d in q.get("deps", [])) if r in byid]
+            for q in ch["quests"]}
+    has_kids = {r for ds in deps.values() for r in ds}
+    kids = collections.defaultdict(list)
+    for q in ch["quests"]:
+        ds = deps[q["id"]]
+        if len(ds) == 1 and q["id"] not in has_kids and not q.get("finale"):
+            kids[ds[0]].append(q)
+    out = []
+    for hub, leaves in kids.items():
+        h = byid[hub]
+        leaves = [q for q in leaves if q["x"] > h["x"] + 0.9]
+        if len(leaves) >= COMB_MIN:
+            out.append((h, leaves))
+    return out
+
+
 for ch in chapters:
     cid = ch.get("id") or hid("chapter", ch["key"])
     gid = ""
@@ -132,6 +161,13 @@ for ch in chapters:
     lang[f"chapter.{cid}.title"] = ch.get("color", "") + ch["title"]
     if ch.get("subtitle"):
         lang[f"chapter.{cid}.chapter_subtitle"] = ch["subtitle"]
+
+    # гребёнки: у квеста с сеткой листьев линии к каждому листу перечёркивают всю сетку.
+    # Такие линии прячем, а фон главы рисует под сеткой одну гребёнку от родителя.
+    combs = comb_groups(ch)
+    for hub, leaves in combs:
+        for q in leaves:
+            q["hide_lines"] = True
 
     seen_pos = {}
     qtexts = []
@@ -222,7 +258,7 @@ for ch in chapters:
         deps = [resolve(ch, d) for d in q.get("deps", [])]
         deps = [d for d in deps if d]
         s = f'\t\t{{\n\t\t\tid: "{i}"\n\t\t\tx: {float(q["x"])}d\n\t\t\ty: {float(q["y"])}d\n'
-        ic = q.get("icon")
+        ic = q.get("icon") or icons.pick(ch, q, known)
         if q.get("icon_tex"):
             s += f'\t\t\ticon: {{ id: "ftbquests:custom_icon", components: {{ "ftbquests:icon": "{q["icon_tex"]}" }} }}\n'
         elif ic:
@@ -278,7 +314,8 @@ for ch in chapters:
                         "title": q["title"] if float(q.get("size", 1)) >= 1.5 else "", "optional": bool(q.get("optional"))}
                        for q in ch["quests"]],
             "edges": [[qid.get(d) or qid.get(f'{ch["key"]}/{d}'), q["id"]] for q in ch["quests"] for d in q.get("deps", [])
-                      if (qid.get(d) or qid.get(f'{ch["key"]}/{d}')) in {x["id"] for x in ch["quests"]}],
+                      if (qid.get(d) or qid.get(f'{ch["key"]}/{d}')) in {x["id"] for x in ch["quests"]} and not q.get("hide_lines")],
+            "combs": [[h["id"], [q["id"] for q in leaves]] for h, leaves in combs],
         }
         ch["images"] = [{"image": f"cldquests:textures/quests/bg/{ch['key']}.png", "x": (bx0 + bx1) / 2, "y": (by0 + by1) / 2,
                          "width": bx1 - bx0, "height": by1 - by0, "order": -10}] + ch.get("images", [])
@@ -286,8 +323,8 @@ for ch in chapters:
         body += "\timages: [\n"
         for n, im in enumerate(ch["images"]):
             body += (f'\t\t{{\n\t\t\tid: "{hid("image", ch["key"], str(n))}"\n\t\t\timage: "{im["image"]}"\n'
-                     f'\t\t\tx: {float(im["x"])}d\n\t\t\ty: {float(im["y"])}d\n\t\t\twidth: {float(im["width"])}d\n'
-                     f'\t\t\theight: {float(im["height"])}d\n\t\t\trotation: 0.0d\n'
+                     f'\t\t\tx: {float(im["x"])}d\n\t\t\ty: {float(im["y"])}d\n\t\t\twidth: {round(im["width"] * IMG_K, 4)}d\n'
+                     f'\t\t\theight: {round(im["height"] * IMG_K, 4)}d\n\t\t\trotation: 0.0d\n'
                      + (f'\t\t\torder: {im["order"]}\n' if "order" in im else "") + '\t\t}\n')
         body += "\t]\n"
     body += f'\ticon: {{ id: "{icon}" }}\n\tquests: [\n' + "\n".join(qtexts) + "\n\t]\n}\n"
