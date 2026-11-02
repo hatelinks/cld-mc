@@ -9,7 +9,7 @@
  "quests": [
   {
    "k": "intro",
-   "title": "Единый склад",
+   "title": "&bЕдиный склад",
    "sub": "Все сундуки в одном окне",
    "desc": [
     "Tom's Storage соединяет ваши сундуки, бочки и ящики в одну сеть. Терминал показывает всё содержимое сразу и ищет по названию.",
@@ -31,7 +31,9 @@
      "amount": 10
     }
    ],
-   "deps": []
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
   },
   {
    "k": "inventory_connector",
@@ -87,6 +89,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -154,12 +160,18 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
     "toms/intro"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "inventory_cable_connector",
@@ -184,6 +196,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -251,7 +267,9 @@
    "deps": [
     "toms/storage_terminal"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "wireless_terminal",
@@ -311,6 +329,10 @@
     {
      "type": "xp",
      "amount": 30
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -380,6 +402,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -443,6 +469,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -472,6 +502,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -594,7 +628,7 @@
   },
   {
    "k": "finale",
-   "title": "Единый склад",
+   "title": "&6&lЕдиный склад",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -624,6 +658,10 @@
      "type": "item",
      "id": "minecraft:iron_ingot",
      "count": 16
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
     }
    ],
    "deps": [
@@ -632,7 +670,10 @@
     "toms/interface",
     "toms/filing_cabinet"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&2"
 }

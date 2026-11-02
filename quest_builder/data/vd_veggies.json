@@ -9,7 +9,7 @@
  "quests": [
   {
    "id": "5B13827920C96059",
-   "title": "Грядки с зеленью",
+   "title": "&bГрядки с зеленью",
    "sub": "Veggies Delight — больше овощей на столе",
    "desc": [
     "Veggies Delight добавляет дикие и посевные овощи и много блюд для кухни из Farmer's Delight.",
@@ -31,7 +31,9 @@
      "amount": 10
     }
    ],
-   "deps": []
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
   },
   {
    "id": "33C18F854C790A50",
@@ -83,6 +85,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -242,7 +248,9 @@
    ],
    "deps": [
     "33C18F854C790A50"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "76E37EF338FB2773",
@@ -266,6 +274,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -294,6 +306,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -326,7 +342,9 @@
    ],
    "deps": [
     "4FFEDB6897050467"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "1E6AD7D6363C90B6",
@@ -420,7 +438,9 @@
    ],
    "deps": [
     "76E37EF338FB2773"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "7C127A168C098708",
@@ -444,11 +464,17 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
     "2CF54A1FCC965932"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "30F5AC669E2C7FEE",
@@ -653,6 +679,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -944,7 +974,7 @@
    "desc": [
     "Нож на разделочной доске режет овощи на дольки и ломтики для сложных блюд.",
     "&6Как получить:&r верстак: Чеснок.",
-    "&6Зачем нужен:&r идёт в Голубцы, Куриный суп, Ролл с ламинарией, Рататуй, Фаршированная тыква."
+    "&6Зачем нужен:&r идёт в Кожевенный суп, Ведро растительного масла, Голубцы, Куриный суп, Ролл с ламинарией."
    ],
    "icon": null,
    "optional": false,
@@ -979,6 +1009,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1019,6 +1053,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -1138,6 +1176,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -1185,8 +1227,8 @@
    ],
    "deps": [
     "vd_veggies/vd_soups",
-    "fd_kitchen/cooked_cuts",
-    "6A92B09ECEEED6A0"
+    "6A92B09ECEEED6A0",
+    "fd_kitchen/cooked_cuts"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1221,12 +1263,16 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
     "vd_veggies/vd_snacks",
-    "fd_kitchen/cooked_cuts",
-    "6A92B09ECEEED6A0"
+    "6A92B09ECEEED6A0",
+    "fd_kitchen/cooked_cuts"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1267,9 +1313,9 @@
     }
    ],
    "deps": [
-    "0827532257C43B0B",
     "vd_veggies/cut_veg",
-    "7C127A168C098708"
+    "7C127A168C098708",
+    "0827532257C43B0B"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1308,6 +1354,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1345,6 +1395,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -1354,7 +1408,7 @@
   },
   {
    "k": "finale",
-   "title": "Огородник",
+   "title": "&6&lОгородник",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -1379,6 +1433,10 @@
      "type": "item",
      "id": "minecraft:golden_carrot",
      "count": 16
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
     }
    ],
    "deps": [
@@ -1387,7 +1445,10 @@
     "vd_veggies/vd_drinks",
     "6FB5E3E616FC24D7"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&2"
 }

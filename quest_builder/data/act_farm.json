@@ -9,7 +9,7 @@
  "quests": [
   {
    "k": "intro",
-   "title": "Щедрая земля",
+   "title": "&bЩедрая земля",
    "sub": "Работа на земле и у плиты",
    "desc": [
     "Квесты на достижения Farmer's Delight, Veggies Delight и обычные хозяйственные дела."
@@ -30,7 +30,9 @@
      "amount": 10
     }
    ],
-   "deps": []
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
   },
   {
    "k": "adv_main_get_fd_seed",
@@ -80,6 +82,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -139,11 +145,17 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
     "act_farm/intro"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "adv_main_plant_rice",
@@ -166,6 +178,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -252,11 +268,17 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
     "act_farm/adv_main_harvest_straw"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "adv_main_harvest_ropelogged_tomato",
@@ -306,6 +328,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -365,11 +391,17 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
     "act_farm/adv_main_get_mushroom_colony"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "adv_main_eat_nourishing_food",
@@ -392,6 +424,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -455,7 +491,9 @@
    ],
    "deps": [
     "act_farm/adv_main_use_skillet"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "adv_main_hit_raider_with_rotten_tomato",
@@ -505,6 +543,10 @@
     {
      "type": "xp",
      "amount": 60
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -586,11 +628,17 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
     "act_farm/adv_main_get_ham"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "adv_main_r_fruit_veggie",
@@ -645,6 +693,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -672,6 +724,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -703,7 +759,9 @@
    ],
    "deps": [
     "act_farm/adv_main_r_first_veggie"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "adv_main_vd_sweet_potato_master",
@@ -758,6 +816,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -812,6 +874,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
     }
    ],
    "deps": [
@@ -882,6 +948,10 @@
     {
      "type": "xp",
      "amount": 50
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -890,7 +960,7 @@
   },
   {
    "k": "finale",
-   "title": "Щедрый урожай",
+   "title": "&6&lЩедрый урожай",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -915,6 +985,10 @@
      "type": "item",
      "id": "minecraft:golden_carrot",
      "count": 32
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
     }
    ],
    "deps": [
@@ -923,7 +997,10 @@
     "act_farm/adv_main_vd_sweet_potato_master",
     "act_farm/adv_main_vd_turnip_master"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&2"
 }

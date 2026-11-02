@@ -1,0 +1,42 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "waystones"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": true,
+  "category": "misc",
+  "pattern": [
+    " S ",
+    "SWS",
+    "CGC",
+    "OOO"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:mud_bricks"
+    },
+    "W": {
+      "item": "waystones:warp_stone"
+    },
+    "C": {
+      "item": "create:andesite_casing"
+    },
+    "G": {
+      "item": "create:cogwheel"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "waystones:mud_bricks_waystone"
+  }
+}

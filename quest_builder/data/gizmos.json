@@ -1,0 +1,815 @@
+{
+ "key": "gizmos",
+ "id": "",
+ "title": "Двигатели и гаджеты",
+ "subtitle": "Gadgets & Gizmos: тяга, моторы и пульты для кораблей",
+ "group": "Небо и техника",
+ "icon": "createthrusters:thruster",
+ "order": 10.5,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "&bДвигатели и гаджеты",
+   "sub": "Реактивная тяга для кораблей",
+   "desc": [
+    "&6Gadgets & Gizmos&r (Create Thrusters) добавляет кораблям Aeronautics двигатели на топливе, маневровые сопла, моторы и генераторы, пульты, подшипники для рулей и много мелких устройств.",
+    "Двигателю нужно топливо из окислителя. Мощность растёт с улучшениями тяги.",
+    "&cТяжёлый мод: на Android следите за FPS."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "createthrusters:thruster",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "aero_fleet/intro"
+   ],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
+   "k": "blackstone_alloy",
+   "title": "Чернитовый сплав",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Чернитовый сплав: основной материал мода.",
+    "&6Как получить:&r механический смешиватель над чашей: Кусочек меди, Чернит.",
+    "&6Зачем нужен:&r идёт в Продвинутый пульт конструкции, Блок чернитового сплава, Чернитовый лист, Маневровый двигатель."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:blackstone_alloy",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "blackstone_sheet",
+   "title": "Чернитовый лист",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс: Чернитовый сплав.",
+    "&6Зачем нужен:&r идёт в Шестерня, Вал, Чернитовый сплав, Вычислительный механизм."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:blackstone_sheet",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "gizmos/blackstone_alloy"
+   ]
+  },
+  {
+   "k": "computation_mechanism",
+   "title": "Вычислительный механизм",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вычислительный механизм: собирается по шагам, как механизм точности.",
+    "&6Как получить:&r последовательная сборка: Кусочек меди, Электронная лампа, Чернитовый лист, Незаконченный вычислительный механизм.",
+    "&6Зачем нужен:&r идёт в Продвинутый пульт конструкции, Пульт конструкции Sable, Продвинутая связь данных."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:computation_mechanism",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "gizmos/blackstone_sheet",
+    "create_andesite/nuggets",
+    "49A87F51BFFBB1C4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "fuel_oxidizer",
+   "title": "Окислитель топлива",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Окислитель делает топливо для двигателей.",
+    "&6Как получить:&r верстак: Андезитовый сплав, Латунный лист, Вентилятор в корпусе, Жидкостная труба."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:fuel_oxidizer",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "gizmos/intro",
+    "0C03B415D50A44C3",
+    "102C27CB1DF6B087",
+    "727F09E229C92364"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "oxidized_solid_fuel",
+   "title": "Окисленное твёрдое топливо",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:oxidized_solid_fuel",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/intro"
+   ]
+  },
+  {
+   "k": "small_thruster",
+   "title": "Малый двигатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Малый двигатель толкает корабль в сторону, куда смотрит сопло.",
+    "&6Как получить:&r верстак: Двигатель.",
+    "&6Зачем нужен:&r идёт в Двигатель."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:small_thruster",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "gizmos/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "thruster",
+   "title": "Двигатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Малый двигатель.",
+    "&6Зачем нужен:&r идёт в Улучшение обработки: обдув душ I, Улучшение обработки: плавка I, Улучшение обработки: копчение I, Улучшение тяги I, Улучшение тяги II."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:thruster",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/small_thruster"
+   ]
+  },
+  {
+   "k": "rcs_thruster",
+   "title": "Маневровый двигатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Маневровые сопла поворачивают корабль на месте.",
+    "&6Как получить:&r верстак: Железный лист, Вал, Чернитовый сплав."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:rcs_thruster",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "gizmos/blackstone_alloy",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "propulsion_upgrade_t1",
+   "title": "Улучшение тяги I",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав, Горелка всполоха, Двигатель, Красный портативный двигатель.",
+    "&6Зачем нужен:&r идёт в Улучшение тяги II."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:propulsion_upgrade_t1",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "gizmos/thruster",
+    "293E9B8D6EA8FD5D",
+    "sim_physics/portable_engine"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "industrial_motor",
+   "title": "Промышленный мотор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав, Латунный корпус, Блок промышленного железа, Вал, Андезитовый кабель."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:industrial_motor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "gizmos/propulsion_upgrade_t1",
+    "create_misc/iron_blocks",
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "k": "alternator",
+   "title": "Промышленный генератор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Медный корпус, Блок промышленного железа, Вал, Золотой слиток, Редстоун."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:alternator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/propulsion_upgrade_t1",
+    "create_misc/iron_blocks",
+    "7B0E0CC10C513F62"
+   ]
+  },
+  {
+   "k": "andesite_cable",
+   "title": "Андезитовый кабель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав, Железный лист.",
+    "&6Зачем нужен:&r идёт в Промышленный мотор."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:andesite_cable",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "gizmos/propulsion_upgrade_t1",
+    "024258E95184EEE4"
+   ]
+  },
+  {
+   "k": "analogue_joystick",
+   "title": "Аналоговый джойстик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Тяговый рычаг."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:analogue_joystick",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/propulsion_upgrade_t1",
+    "sim_physics/throttle_lever"
+   ]
+  },
+  {
+   "k": "advanced_contraption_controller",
+   "title": "Продвинутый пульт конструкции",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический крафтер: Андезитовый сплав, Пульт конструкции Sable, Чернитовый сплав, Вычислительный механизм."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:advanced_contraption_controller",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "gizmos/computation_mechanism"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "aileron_bearing",
+   "title": "Подшипник элерона",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Угловая передача, Сервоподшипник."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:aileron_bearing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "gizmos/advanced_contraption_controller",
+    "7E1ADD131FC9B5E2"
+   ]
+  },
+  {
+   "k": "vector_bearing",
+   "title": "Векторный подшипник",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Механизм точности, Редстоун, Шарнирный подшипник."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:vector_bearing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "gizmos/advanced_contraption_controller",
+    "63B86FA0C25B7639",
+    "sim_physics/swivel_bearing"
+   ]
+  },
+  {
+   "k": "ship_coupler",
+   "title": "Сцепка кораблей",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав, Цепь, Железный слиток, Редстоун."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:ship_coupler",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/advanced_contraption_controller",
+    "7BF2AA99A5A1C7CD"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "physics_goggles",
+   "title": "Умные очки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Авиаторские очки, Ножницы."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:physics_goggles",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/advanced_contraption_controller",
+    "aero_fleet/aviators_goggles"
+   ]
+  },
+  {
+   "k": "ion_thruster",
+   "title": "Ионный двигатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:ion_thruster",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/ship_coupler"
+   ]
+  },
+  {
+   "k": "claw",
+   "title": "Клешня",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый корпус, Шестерня, Железный слиток.",
+    "&6Зачем нужен:&r идёт в Метатель существ."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:claw",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/ship_coupler",
+    "25385F994C28D4F2",
+    "56239D98E7831D04"
+   ]
+  },
+  {
+   "k": "scissor_piston",
+   "title": "Ножничный поршень",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Блок промышленного железа, Вал, Scissor Arms, Сгусток слизи."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:scissor_piston",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/ship_coupler",
+    "create_misc/iron_blocks"
+   ]
+  },
+  {
+   "k": "entity_launcher",
+   "title": "Метатель существ",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав, Латунный корпус, Механизм точности, Вал, Клешня."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:entity_launcher",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/ship_coupler",
+    "63B86FA0C25B7639",
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "k": "powered_zipline",
+   "title": "Моторный трос",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Латунный корпус, Латунный лист, Шестерня, Большая шестерня, Крепление для верёвки."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createthrusters:powered_zipline",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "gizmos/ship_coupler",
+    "sim_physics/ropes",
+    "4D1D7873774CA66B"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "&6&lИнженер тяги",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Двигатели, моторы и пульты собраны: корабль летит куда скажете.",
+    "&7Откроется, когда будут выполнены последние квесты главы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "choice",
+     "table": "choice_tech"
+    }
+   ],
+   "deps": [
+    "gizmos/analogue_joystick",
+    "gizmos/advanced_contraption_controller",
+    "gizmos/aileron_bearing",
+    "gizmos/vector_bearing"
+   ],
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
+  }
+ ],
+ "color": "&c"
+}

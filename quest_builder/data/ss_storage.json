@@ -8,6 +8,33 @@
  "order": 13,
  "quests": [
   {
+   "k": "welcome",
+   "title": "&bДобро пожаловать: Ларцы и бочки",
+   "sub": "Sophisticated Storage — контейнеры с улучшениями и единый склад",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Sophisticated Storage: сундуки и бочки с улучшениями. Их можно увеличивать, не выкладывая вещи."
+   ],
+   "icon": "sophisticatedstorage:chest",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
    "id": "19DCDFB2D2779BDE",
    "title": "Ларец",
    "sub": "Начало склада",
@@ -31,7 +58,11 @@
      "amount": 10
     }
    ],
-   "deps": []
+   "deps": [
+    "ss_storage/welcome"
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "002E186ECA29418A",
@@ -55,6 +86,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -120,7 +155,9 @@
    ],
    "deps": [
     "19DCDFB2D2779BDE"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "71EB0F9D9877AB9F",
@@ -144,6 +181,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -205,6 +246,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -441,6 +486,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -630,6 +679,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -751,6 +804,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -814,6 +871,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -903,6 +964,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -1192,12 +1257,18 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
     "002E186ECA29418A"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "shulkers",
@@ -1243,6 +1314,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1303,7 +1378,7 @@
    "x": 0,
    "y": 0,
    "desc": [
-    "Расширение применяется ПКМ по уже стоящему хранилищу: оно повышает уровень, не вынимая вещей.",
+    "Расширение применяется &bПКМ&r по уже стоящему хранилищу: оно повышает уровень, не вынимая вещей.",
     "&6Как получить:&r верстак: Рычаг.",
     "&6Зачем нужен:&r идёт в Расширение «Медь → Золото».",
     "&7Вариантов: 5. Засчитывается «Расширение «Медь → Железо»»."
@@ -1328,6 +1403,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -1394,6 +1473,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -1524,6 +1607,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -1554,6 +1641,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1619,6 +1710,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -1678,6 +1773,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -1783,6 +1882,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -1813,6 +1916,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1890,7 +1997,7 @@
   },
   {
    "k": "finale",
-   "title": "Хранитель сокровищ",
+   "title": "&6&lХранитель сокровищ",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -1915,6 +2022,10 @@
      "type": "item",
      "id": "minecraft:diamond",
      "count": 2
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
     }
    ],
    "deps": [
@@ -1923,7 +2034,10 @@
     "583853C0E9F30486",
     "ss_storage/super_packing_tape"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&2"
 }

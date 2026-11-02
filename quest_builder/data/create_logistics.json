@@ -8,6 +8,36 @@
  "order": 4,
  "quests": [
   {
+   "k": "welcome",
+   "title": "&bДобро пожаловать: Река посылок",
+   "sub": "Хранилища, упаковки и автоматические заказы (Create 6.0)",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Логистика Create: склады, посылки, лягушки-отправщики и заказы через пульт.",
+    "Машины сами доставят нужное туда, где оно требуется."
+   ],
+   "icon": "create:item_vault",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B"
+   ],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
    "id": "6B83F5A0F12F3DE5",
    "title": "Хранилище предметов",
    "sub": "Большой склад",
@@ -33,8 +63,10 @@
     }
    ],
    "deps": [
-    "4D1D7873774CA66B"
-   ]
+    "create_logistics/welcome"
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "4BEAF37297D8D98E",
@@ -58,6 +90,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -86,6 +122,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -181,6 +221,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -270,6 +314,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -362,7 +410,7 @@
     }
    ],
    "deps": [
-    "4D1D7873774CA66B"
+    "create_logistics/welcome"
    ]
   },
   {
@@ -390,7 +438,8 @@
     }
    ],
    "deps": [
-    "3F57DDE28908D3B5"
+    "3F57DDE28908D3B5",
+    "create_logistics/welcome"
    ]
   },
   {
@@ -428,7 +477,9 @@
     "6B83F5A0F12F3DE5",
     "27D0961A37A6E0CB"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "package_filter",
@@ -439,7 +490,7 @@
    "desc": [
     "Фильтр по адресу посылки: пропускает только посылки с нужной подписью.",
     "&6Как получить:&r верстак: Кусочек цинка.",
-    "&6Как использовать:&r ПКМ с предметом: Открывает &eинтерфейс конфигурации&r."
+    "&6Как использовать:&r &bПКМ&r с предметом: Открывает &eинтерфейс конфигурации&r."
    ],
    "icon": null,
    "optional": false,
@@ -485,6 +536,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -516,6 +571,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -703,6 +762,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -764,7 +827,7 @@
   },
   {
    "k": "finale",
-   "title": "Почтмейстер",
+   "title": "&6&lПочтмейстер",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -794,6 +857,10 @@
      "type": "item",
      "id": "create:brass_casing",
      "count": 4
+    },
+    {
+     "type": "choice",
+     "table": "choice_tech"
     }
    ],
    "deps": [
@@ -802,7 +869,10 @@
     "6A427A1873C0D2E5",
     "create_logistics/redstone_requester"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&6"
 }

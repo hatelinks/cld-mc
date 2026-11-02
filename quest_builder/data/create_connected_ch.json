@@ -8,6 +8,35 @@
  "order": 7,
  "quests": [
   {
+   "k": "welcome",
+   "title": "&bДобро пожаловать: Узлы и связи",
+   "sub": "Create: Connected — коробки передач, муфты, копикэты и катализаторы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Create: Connected добавляет хитрые узлы передачи: муфты, переключатели, инверторы и связанные рычаги."
+   ],
+   "icon": "create_connected:six_way_gearbox",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4705492C0880AE87"
+   ],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
    "id": "432ABD3EEE72BED0",
    "title": "Крестовой соединитель",
    "sub": "Два вала в одном блоке",
@@ -33,8 +62,10 @@
     }
    ],
    "deps": [
-    "4705492C0880AE87"
-   ]
+    "create_connected_ch/welcome"
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "437E77CFFFB85CF9",
@@ -58,6 +89,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -125,7 +160,8 @@
    ],
    "deps": [
     "7E1ADD131FC9B5E2",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "create_connected_ch/welcome"
    ]
   },
   {
@@ -150,6 +186,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -247,8 +287,11 @@
     }
    ],
    "deps": [
-    "10D862C5EBBB6111"
-   ]
+    "10D862C5EBBB6111",
+    "create_connected_ch/welcome"
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "6BA7039206C86E4E",
@@ -275,7 +318,8 @@
     }
    ],
    "deps": [
-    "5D8CF4488B5C2679"
+    "5D8CF4488B5C2679",
+    "create_connected_ch/welcome"
    ]
   },
   {
@@ -300,6 +344,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -445,10 +493,15 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
-    "5D6B3DC9FECF044C"
+    "5D6B3DC9FECF044C",
+    "create_connected_ch/welcome"
    ]
   },
   {
@@ -514,7 +567,8 @@
     }
    ],
    "deps": [
-    "1CE9B60F0C48C2D6"
+    "1CE9B60F0C48C2D6",
+    "create_connected_ch/welcome"
    ]
   },
   {
@@ -542,7 +596,8 @@
     }
    ],
    "deps": [
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "create_connected_ch/welcome"
    ]
   },
   {
@@ -604,7 +659,8 @@
     }
    ],
    "deps": [
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "create_connected_ch/welcome"
    ]
   },
   {
@@ -629,6 +685,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -657,6 +717,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -694,7 +758,8 @@
     }
    ],
    "deps": [
-    "01732AB44FE34758"
+    "01732AB44FE34758",
+    "create_connected_ch/welcome"
    ]
   },
   {
@@ -780,10 +845,15 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
-    "6B83F5A0F12F3DE5"
+    "6B83F5A0F12F3DE5",
+    "create_connected_ch/welcome"
    ]
   },
   {
@@ -869,10 +939,15 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
-    "0528BC2DA69E662B"
+    "0528BC2DA69E662B",
+    "create_connected_ch/welcome"
    ]
   },
   {
@@ -900,7 +975,8 @@
     }
    ],
    "deps": [
-    "6CA896B7E668CBB2"
+    "6CA896B7E668CBB2",
+    "create_connected_ch/welcome"
    ]
   },
   {
@@ -928,7 +1004,8 @@
     }
    ],
    "deps": [
-    "2256B71788516C06"
+    "2256B71788516C06",
+    "create_connected_ch/welcome"
    ]
   },
   {
@@ -961,8 +1038,11 @@
     }
    ],
    "deps": [
-    "102C27CB1DF6B087"
-   ]
+    "102C27CB1DF6B087",
+    "create_connected_ch/welcome"
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "5A9AF88D7EB1A36A",
@@ -1047,6 +1127,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -1200,8 +1284,11 @@
     }
    ],
    "deps": [
-    "0C03B415D50A44C3"
-   ]
+    "0C03B415D50A44C3",
+    "create_connected_ch/welcome"
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "2577CF8DFFF23C05",
@@ -1465,6 +1552,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1480,7 +1571,7 @@
    "desc": [
     "&6Как работает:&r &eЗаполняемые панели&r, собранные в коробку для удобного размещения.",
     "&6Как получить:&r верстак: Заполняемая панель.",
-    "&6Как использовать:&r ПКМ с блоком в руке: Применяет &eпредмет в руке&r как его &eматериал&r, если это возможно. &eКликните снова&r, чтобы изменить &eориентацию&r или &eсостояние&r. Используйте гаечный ключ для демонтажа установленного материала."
+    "&6Как использовать:&r &bПКМ&r с блоком в руке: Применяет &eпредмет в руке&r как его &eматериал&r, если это возможно. &eКликните снова&r, чтобы изменить &eориентацию&r или &eсостояние&r. Используйте гаечный ключ для демонтажа установленного материала."
    ],
    "icon": null,
    "optional": false,
@@ -1519,7 +1610,7 @@
    "y": 0,
    "desc": [
     "Катализатор ставится перед вентилятором и превращает поток воздуха в нужную обработку без открытого огня или жидкости.",
-    "&6Как получить:&r применение предмета к блоку (ПКМ): Торт всполоха, Пустой вентиляторный катализатор.",
+    "&6Как получить:&r применение предмета к блоку (&bПКМ&r): Торт всполоха, Пустой вентиляторный катализатор.",
     "&6Зачем нужен:&r идёт в Пустой вентиляторный катализатор.",
     "&7Вариантов: 6. Засчитывается «Катализатор массового супернагрева»."
    ],
@@ -1544,6 +1635,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -1579,13 +1674,13 @@
    ],
    "deps": [
     "432ABD3EEE72BED0",
-    "create_logistics/transmitter",
-    "create_brass/crafter_slot_cover"
+    "create_brass/crafter_slot_cover",
+    "create_logistics/transmitter"
    ]
   },
   {
    "k": "finale",
-   "title": "Мастер передач",
+   "title": "&6&lМастер передач",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -1610,6 +1705,10 @@
      "type": "item",
      "id": "create:brass_ingot",
      "count": 16
+    },
+    {
+     "type": "choice",
+     "table": "choice_tech"
     }
    ],
    "deps": [
@@ -1618,7 +1717,10 @@
     "20AC0A60D4443698",
     "2CDB6DFACADE2462"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&6"
 }

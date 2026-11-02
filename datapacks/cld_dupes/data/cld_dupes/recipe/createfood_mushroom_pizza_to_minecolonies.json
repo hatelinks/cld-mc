@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createfood"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "minecolonies"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "cld_dupes_mushroom_pizza",
+  "ingredients": [
+    {
+      "item": "createfood:mushroom_pizza"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecolonies:mushroom_pizza"
+  }
+}

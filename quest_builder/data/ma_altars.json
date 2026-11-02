@@ -8,6 +8,35 @@
  "order": 10,
  "quests": [
   {
+   "k": "welcome",
+   "title": "&bДобро пожаловать: Алтари и души",
+   "sub": "Mystical Agriculture — инфузия, пробуждение и автоматизация",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Алтари Mystical Agriculture: инфузия делает семена и снаряжение, пробуждение усиливает их, души мобов открывают новые семена."
+   ],
+   "icon": "mysticalagriculture:infusion_altar",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "63108DCABED29F5B"
+   ],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
    "id": "33DFC8922EAF47A3",
    "title": "Пьедестал инфузии",
    "sub": "Подставки для ингредиентов",
@@ -32,7 +61,7 @@
     }
    ],
    "deps": [
-    "63108DCABED29F5B"
+    "ma_altars/welcome"
    ]
   },
   {
@@ -57,6 +86,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "mystic"
     }
    ],
    "deps": [
@@ -85,11 +118,17 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
     "61B65A3ED7BE3828"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "229B35E02987370D",
@@ -207,6 +246,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "mystic"
     }
    ],
    "deps": [
@@ -297,6 +340,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "mystic"
     }
    ],
    "deps": [
@@ -362,7 +409,9 @@
    ],
    "deps": [
     "535437FB70D9C21A"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "14D605F3D882C7CF",
@@ -509,6 +558,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "mystic"
     }
    ],
    "deps": [
@@ -570,6 +623,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -631,6 +688,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "mystic"
     }
    ],
    "deps": [
@@ -722,6 +783,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "mystic"
     }
    ],
    "deps": [
@@ -731,7 +796,7 @@
   },
   {
    "k": "finale",
-   "title": "Хранитель алтарей",
+   "title": "&6&lХранитель алтарей",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -756,6 +821,10 @@
      "type": "item",
      "id": "mysticalagriculture:imperium_essence",
      "count": 8
+    },
+    {
+     "type": "choice",
+     "table": "choice_mystic"
     }
    ],
    "deps": [
@@ -764,7 +833,10 @@
     "100ACF9639AA4835",
     "2DF0163A30459511"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&d"
 }

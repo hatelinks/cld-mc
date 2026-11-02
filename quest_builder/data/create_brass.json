@@ -1,12 +1,44 @@
 {
  "key": "create_brass",
  "id": "348C996FBFCCB172",
- "title": "Латунный рассвет",
- "subtitle": "Автоматика, точные механизмы и чертежи",
+ "title": "Эпоха латуни",
+ "subtitle": "Латунный рассвет. Автоматика, точные механизмы и чертежи",
  "group": "Эра механизмов",
  "icon": "create:brass_casing",
  "order": 2,
  "quests": [
+  {
+   "k": "welcome",
+   "title": "&bДобро пожаловать: Эпоха латуни",
+   "sub": "Латунный рассвет. Автоматика, точные механизмы и чертежи",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Латунь открывает точную механику: механизмы точности, механическую руку, чертежи и умные блоки.",
+    "Для латуни нужен смешиватель с подогревом от горелки всполоха."
+   ],
+   "icon": "create:brass_casing",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "61F3DD348420C73D",
+    "726EE956CAD7B225",
+    "293E9B8D6EA8FD5D"
+   ],
+   "shape": "square",
+   "size": 2.0
+  },
   {
    "id": "33627C656E58AF04",
    "title": "Латунь",
@@ -33,10 +65,10 @@
     }
    ],
    "deps": [
-    "61F3DD348420C73D",
-    "726EE956CAD7B225",
-    "293E9B8D6EA8FD5D"
-   ]
+    "create_brass/welcome"
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "0C03B415D50A44C3",
@@ -60,11 +92,17 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
     "33627C656E58AF04"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "27D0961A37A6E0CB",
@@ -88,10 +126,15 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
-    "722FF84B978AB3C4"
+    "722FF84B978AB3C4",
+    "create_brass/welcome"
    ]
   },
   {
@@ -124,7 +167,8 @@
     }
    ],
    "deps": [
-    "722FF84B978AB3C4"
+    "722FF84B978AB3C4",
+    "create_brass/welcome"
    ]
   },
   {
@@ -159,7 +203,9 @@
    "deps": [
     "0C03B415D50A44C3",
     "25385F994C28D4F2"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "6B1C78F7E8D37C21",
@@ -186,7 +232,8 @@
     }
    ],
    "deps": [
-    "0E718320D3288F39"
+    "0E718320D3288F39",
+    "create_brass/welcome"
    ]
   },
   {
@@ -275,12 +322,18 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
     "661D00C466179724",
     "0C03B415D50A44C3"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "590DB3C6FF1EAEE7",
@@ -333,6 +386,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -459,6 +516,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -523,6 +584,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -646,11 +711,16 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
     "25385F994C28D4F2",
-    "56239D98E7831D04"
+    "56239D98E7831D04",
+    "create_brass/welcome"
    ]
   },
   {
@@ -703,6 +773,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -826,6 +900,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -888,6 +966,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -950,6 +1032,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -1010,6 +1096,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -1106,7 +1196,9 @@
    "deps": [
     "33627C656E58AF04"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "crafter_slot_cover",
@@ -1163,11 +1255,15 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
-    "4D1D7873774CA66B",
-    "49A87F51BFFBB1C4"
+    "49A87F51BFFBB1C4",
+    "4D1D7873774CA66B"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1194,6 +1290,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1275,6 +1375,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -1315,7 +1419,7 @@
   },
   {
    "k": "finale",
-   "title": "Латунный инженер",
+   "title": "&6&lЛатунный инженер",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -1345,6 +1449,10 @@
      "type": "item",
      "id": "create:brass_ingot",
      "count": 16
+    },
+    {
+     "type": "choice",
+     "table": "choice_tech"
     }
    ],
    "deps": [
@@ -1353,7 +1461,10 @@
     "34905A16E2C24FB0",
     "687BB901F267E6D0"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&e"
 }

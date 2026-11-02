@@ -1,0 +1,703 @@
+{
+ "key": "food_factory",
+ "id": "",
+ "title": "Фабрика вкуса",
+ "subtitle": "Create Food: кухня на машинах Create",
+ "group": "Хозяйство и путешествия",
+ "icon": "createfood:hamburger",
+ "order": 11.2,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "&bФабрика вкуса",
+   "sub": "Еда, которую готовят машины",
+   "desc": [
+    "&6Create Food&r добавляет больше тысячи блюд, и почти все их делают машины Create: жернова мелют, смешиватель месит тесто, пресс раскатывает, механическая рука кладёт начинку, вентилятор печёт.",
+    "Смотрите рецепты в JEI: у многих блюд несколько шагов, их удобно собрать на конвейере."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "createfood:hamburger",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
+   "k": "salt",
+   "title": "Соль",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Соль: основа для многих рецептов.",
+    "&6Как получить:&r механический смешиватель над чашей: Тканевый фильтр.",
+    "&6Зачем нужен:&r идёт в Ведро соуса Альфредо, Печёный картофель, Варёное яйцо, Варёное яйцо (очищенное), Сливочное масло."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:salt",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_factory/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "butter",
+   "title": "Сливочное масло",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический смешиватель над чашей: Соль.",
+    "&6Зачем нужен:&r идёт в Ведро соуса Альфредо, Ведро яблочно-сливочной глазури, Ведро яблочной начинки для пирога, Печёный картофель, Ведро сладко-ягодно-сливочной глазури."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:butter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_factory/intro"
+   ]
+  },
+  {
+   "k": "cheese_slice",
+   "title": "Ломтик сыра",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r разделочная доска: Cheese wheel, Алмазный нож.",
+    "&6Зачем нужен:&r идёт в Ведро соуса Альфредо, Печёный картофель, Говяжья булочка."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:cheese_slice",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "food_factory/intro"
+   ]
+  },
+  {
+   "k": "pizza_dough",
+   "title": "Тесто для пиццы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс: Солёное тесто.",
+    "&6Зачем нужен:&r идёт в Тесто для пиццы, Сырая пицца."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:pizza_dough",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_factory/intro"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "cheese_pizza",
+   "title": "Пицца",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r костёр: Сырая пицца.",
+    "&6Зачем нужен:&r идёт в Кусок пиццы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:cheese_pizza",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_factory/pizza_dough"
+   ]
+  },
+  {
+   "k": "bun",
+   "title": "Булочка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r костёр: Солёное тесто.",
+    "&6Зачем нужен:&r идёт в Говяжья булочка."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:bun",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_factory/pizza_dough"
+   ]
+  },
+  {
+   "k": "ground_beef",
+   "title": "Говяжий фарш",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r жернова: Сырая говядина.",
+    "&6Зачем нужен:&r идёт в Говяжья фрикаделька, Говядина с рисом, Колбасный фарш, Сырое кальцоне, Сырая говяжья фрикаделька."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:ground_beef",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_factory/pizza_dough"
+   ]
+  },
+  {
+   "k": "hamburger",
+   "title": "Гамбургер",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Говяжья булочка, Bun."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:hamburger",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_factory/pizza_dough"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "cheeseburger",
+   "title": "Сырбургер",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Говяжья булочка, Bun."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:cheeseburger",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "food_factory/hamburger"
+   ]
+  },
+  {
+   "k": "pasta",
+   "title": "Паста",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический смешиватель над чашей: Raw pasta.",
+    "&6Зачем нужен:&r идёт в Паста."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:pasta",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_factory/hamburger",
+    "fd_kitchen/dough_fd"
+   ]
+  },
+  {
+   "k": "macaroni_bowl",
+   "title": "Макароны",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Макароны, Миска.",
+    "&6Зачем нужен:&r идёт в Макароны."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:macaroni_bowl",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_factory/hamburger"
+   ]
+  },
+  {
+   "k": "waffle",
+   "title": "Вафля",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс над чашей.",
+    "&6Зачем нужен:&r идёт в Мини-вафля."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:waffle",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_factory/hamburger"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "cake_base",
+   "title": "Основа для торта",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс над чашей.",
+    "&6Зачем нужен:&r идёт в Медовый торт, Торт, Основа для кекса."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:cake_base",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_factory/waffle"
+   ]
+  },
+  {
+   "k": "cheesecake",
+   "title": "Чизкейк",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r костёр: Сырой чизкейк.",
+    "&6Зачем нужен:&r идёт в Кусок чизкейка."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:cheesecake",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_factory/waffle"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "berry_pie",
+   "title": "Пирог со сладкими ягодами",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r костёр: Сырой пирог со сладкими ягодами.",
+    "&6Зачем нужен:&r идёт в Кусок пирога со сладкими ягодами."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:berry_pie",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_factory/waffle"
+   ]
+  },
+  {
+   "k": "sausages",
+   "title": "Колбаски",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r костёр: Сырые сосиски.",
+    "&6Зачем нужен:&r идёт в Печёный картофель, Буррито, Макароны, Картофельное пюре, Паста."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:sausages",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_factory/waffle"
+   ]
+  },
+  {
+   "k": "beef_taco",
+   "title": "Тако",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Филе приготовленной говядины, Тако-ракушка.",
+    "&6Зачем нужен:&r идёт в Тако."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:beef_taco",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_factory/cheesecake"
+   ]
+  },
+  {
+   "k": "potato_chips",
+   "title": "Картофельные чипсы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический смешиватель над чашей: Тёртый картофель.",
+    "&6Зачем нужен:&r идёт в Картофельные чипсы."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:potato_chips",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_factory/cheesecake"
+   ]
+  },
+  {
+   "k": "onion_rings",
+   "title": "Луковые кольца",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический смешиватель над чашей: Сырые луковые кольца."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:onion_rings",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_factory/cheesecake"
+   ]
+  },
+  {
+   "k": "ration_box",
+   "title": "Паёк",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Паёк: сытная еда в дорогу.",
+    "&6Как получить:&r верстак."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createfood:ration_box",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_factory/cheesecake"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "finale",
+   "title": "&6&lШеф машинной кухни",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Ваши машины готовят пиццу, бургеры и торты.",
+    "&7Откроется, когда будут выполнены последние квесты главы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
+    }
+   ],
+   "deps": [
+    "food_factory/berry_pie",
+    "food_factory/sausages",
+    "food_factory/beef_taco",
+    "food_factory/potato_chips"
+   ],
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
+  }
+ ],
+ "color": "&6"
+}

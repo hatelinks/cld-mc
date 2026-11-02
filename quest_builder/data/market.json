@@ -1,0 +1,272 @@
+{
+ "key": "market",
+ "id": "",
+ "title": "Рынок и лавки",
+ "subtitle": "Stock Market, Trading Floor, Tradeworks",
+ "group": "Хозяйство и путешествия",
+ "icon": "stockmarket:market_terminal",
+ "order": 16,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "&bРынок и лавки",
+   "sub": "Торговля на машинах Create",
+   "desc": [
+    "&6Stock Market&r: биржевой терминал, где цены на товары меняются по спросу и предложению.",
+    "&6Trading Floor&r: торговое депо, в которое ставится житель, и механика Create торгует с ним сама.",
+    "&6Tradeworks&r: стеллажи и скатерти для витрин, чтобы игроки могли покупать товары друг у друга."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "stockmarket:market_terminal",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
+   "k": "trading_depot",
+   "title": "Торговое депо",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Поставьте депо рядом с жителем: механическая рука или конвейер подаёт товар, и депо проводит сделку.",
+    "&6Как получить:&r верстак: Депо, Электронная лампа."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "trading_floor:trading_depot",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "market/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "market_terminal",
+   "title": "Рыночный терминал",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Терминал биржи: продавайте и покупайте товары по текущей цене.",
+    "&6Как получить:&r верстак: Латунный корпус, Обрамлённое стекло, Механизм точности.",
+    "&6Зачем нужен:&r идёт в Рыночный пульт."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "stockmarket:market_terminal",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "colony"
+    }
+   ],
+   "deps": [
+    "market/intro",
+    "63B86FA0C25B7639",
+    "4D1D7873774CA66B",
+    "create_misc/glass"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "market_remote",
+   "title": "Рыночный пульт",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Пульт биржи: торговать можно не подходя к терминалу.",
+    "&6Как получить:&r верстак: Жемчуг Края, Железный самородок, Редстоун, Рыночный терминал."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "stockmarket:market_remote",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "market/market_terminal",
+    "create_uf/uf_pearl"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "oak_shelf",
+   "title": "Дубовый стеллаж",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав, Дубовая плита."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "tradeworks:oak_shelf",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "colony"
+    }
+   ],
+   "deps": [
+    "market/intro",
+    "7BF2AA99A5A1C7CD"
+   ]
+  },
+  {
+   "k": "andesite_metal_shelf",
+   "title": "Андезитовый фронтальный стеллаж",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r камнерез: Андезитовый корпус."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "tradeworks:andesite_metal_shelf",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "market/intro",
+    "25385F994C28D4F2"
+   ]
+  },
+  {
+   "k": "red_inverted_table_cloth",
+   "title": "Красная скатерть с тёмной каймой",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак.",
+    "&6Зачем нужен:&r идёт в Чёрная скатерть, Синяя скатерть, Коричневая скатерть, Бирюзовая скатерть, Серая скатерть."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "tradeworks:red_inverted_table_cloth",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "market/oak_shelf"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "&6&lТорговый дом",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Депо, биржа и витрины работают на вас.",
+    "&7Откроется, когда будут выполнены последние квесты главы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
+    }
+   ],
+   "deps": [
+    "market/trading_depot",
+    "market/market_terminal",
+    "market/market_remote"
+   ],
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
+  }
+ ],
+ "color": "&e"
+}

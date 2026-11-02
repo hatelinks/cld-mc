@@ -62,8 +62,8 @@
 
 ## Генерация мира и «летающие острова»
 - Обычный мир ванильный. Своих генераторов рельефа нет, TerraBlender и Lithostitched стоят как библиотеки.
-- Летающие корабли над землёй это **Integrated Villages** (CraisinLord): деревня `airship_village` из кораблей на высоте ровно y=100 (`start_height absolute 100`, `terrain_adaptation none`), набор `air_villages`, spacing 115 и separation 90 чанков, в любом биоме обычного мира. Остальные 10 деревень (таверна, пиратская, средиземноморская, кутча, оазис, мшистые холмы, хижины, Quark минка, рыночная, clockwork, затонувшая) в наборе `regular_villages` (spacing 26). В конфиге `Disable Vanilla Villages = true` и `Activate Create Contraptions = true` (в деревнях работающие механизмы Create).
-- Для tcw: высота 100 у нас часто внутри гор (рельеф до 640). Если брать мод, нужен датапак с другой высотой кораблей (например над поверхностью) и проверка с cld_structures.
+- Летающие корабли над землёй это **Integrated Villages** (CraisinLord): деревня `airship_village` из кораблей на 100 блоков выше поверхности (`project_start_to_heightmap WORLD_SURFACE_WG` плюс `start_height absolute 100`, `terrain_adaptation none`), набор `air_villages`, spacing 115 и separation 90 чанков, в любом биоме обычного мира. Остальные 10 деревень (таверна, пиратская, средиземноморская, кутча, оазис, мшистые холмы, хижины, Quark минка, рыночная, clockwork, затонувшая) в наборе `regular_villages` (spacing 26). В конфиге `Disable Vanilla Villages = true` и `Activate Create Contraptions = true` (в деревнях работающие механизмы Create).
+- Для tcw: над горами выше 540 корабли ушли бы за потолок мира (640). Датапак `datapacks/cld_airships` ограничивает `y_allowance.max_y_allowed = 590` (поле Integrated API, `min_y_allowed` и `max_y_allowed`). С cld_structures ещё проверить в игре.
 - Пресеты Simulated (есть и у нас, мод в Create Aeronautics bundled): `simulated:airship_ready` (суперплоский на y=63 для проверки кораблей) и `simulated:end_sea` (пустой Энд как «море», игрок появляется на одном физическом блоке камня, `sable:floating_materials/end_stone` даёт энд-камню подъёмную силу).
 - Create Submarine (Deep Seas) добавляет измерение `create_abyss:abyss` (море до y=700) и углубление океанов через Lithostitched, в aoa оба выключены (`enableDeeperOceans = false`).
 
@@ -86,3 +86,9 @@
 - `ExtraCreateRecipes.zip` с pack_format 9 и папкой `recipes/`: в 1.21 рецепты лежат в `recipe/`, этот датапак не загружается.
 - Sinytra Connector и Forgified Fabric API ради фабрик-модов, Iris с шейдерами, EMF и ETF: тяжело, на Android не годится.
 - Конфиги от модов, которых нет в сборке (waystones, biomeswevegone, createbigcannons), и десятки `.bak`: мусор после обновлений.
+
+## Что перенесли к себе (анкета владельца, 02.11)
+- Квесты: цвета групп и глав, цвета в текстах, приветствия, формы, логотип и картинки (ресурспак `resourcepack/`), иконка книги, закреплённая панель глав, «Обучение» и «Полезно знать», группы и эпохи, linear, таблицы случайных наград и награды на выбор. Подробно в `docs/quest_builder.md`.
+- Моды (jar взяты из `aoa/minecraft/mods`, копия для владельца в `/mnt/project-files/aoa-mods/`, список в `pack/MODS.md`): Polymorph, Controlling и Searchables, Corpse, Enchantment Descriptions (с Bookshelf и Prickle), Mouse Tweaks, JEP и Just Enough Breeding, Copycats+, Train Parts, Railways Navigator (с DragonLib), Bells & Whistles, Create Food, Confectionery, Winery, Cafe, Stock Market, Trading Floor, Tradeworks, Gadgets & Gizmos, Create Submarine, Neruina (с Configurable), Integrated Villages и Stronghold, Loot Integrations (с Cupboard).
+- Датапаки: `cld_waystones` (путевые камни на механическом крафтере), `cld_dupes` (обмен одинаковых предметов), `cld_airships` (корабли не выше 590). Свои, написаны заново.
+- Небесные острова в tcw и мир End Sea ведёт отдельный тред.

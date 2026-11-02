@@ -9,7 +9,7 @@
  "quests": [
   {
    "k": "intro",
-   "title": "Своя колония",
+   "title": "&bСвоя колония",
    "sub": "С чего начинается город",
    "desc": [
     "MineColonies превращает вас в правителя: жители сами строят, добывают, готовят и защищают город.",
@@ -32,7 +32,9 @@
      "amount": 10
     }
    ],
-   "deps": []
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
   },
   {
    "k": "supply",
@@ -98,6 +100,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -143,7 +149,9 @@
    "deps": [
     "mc_found/build_tool"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "builder",
@@ -173,12 +181,18 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
     "mc_found/townhall"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "adv_minecolonies_check_out_guide",
@@ -187,7 +201,7 @@
    "x": 0,
    "y": 0,
    "desc": [
-    "&6Цель:&r Нажми ПКМ на Хижину строителя, чтобы понять, как всё устроено."
+    "&6Цель:&r Нажми &bПКМ&r на Хижину строителя, чтобы понять, как всё устроено."
    ],
    "icon": null,
    "optional": true,
@@ -228,6 +242,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -322,6 +340,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -415,6 +437,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -606,6 +632,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -640,6 +670,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -750,6 +784,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -934,6 +972,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -993,6 +1035,10 @@
     {
      "type": "xp",
      "amount": 45
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1020,6 +1066,10 @@
     {
      "type": "xp",
      "amount": 70
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -1108,6 +1158,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -1181,7 +1235,7 @@
   },
   {
    "k": "finale",
-   "title": "Отец-основатель",
+   "title": "&6&lОтец-основатель",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -1211,6 +1265,10 @@
      "type": "item",
      "id": "minecraft:iron_ingot",
      "count": 16
+    },
+    {
+     "type": "choice",
+     "table": "choice_colony"
     }
    ],
    "deps": [
@@ -1219,7 +1277,10 @@
     "mc_found/post_stash",
     "mc_found/rack"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&a"
 }
