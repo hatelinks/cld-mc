@@ -206,8 +206,27 @@ ep["dimensions"]["minecraft:overworld"] = {
 dump(ep, NS, "worldgen", "world_preset", "islands.json")
 dump({"values": ["tcw:telipailo", "tcw:islands"]}, "minecraft", "tags", "worldgen", "world_preset", "normal.json")
 
+# --- Край TelipailoCraft (в обоих типах мира): до EndLands.INNER ванильный центр с драконом, дальше наши острова
+end = van("worldgen/noise_settings/end.json")
+end["noise"]["height"] = 256
+# не legacy: тогда шум tcw:seed тот же, что в Верхнем мире, и генератор рельефа общий (Worlds.terrain)
+end["legacy_random_source"] = False
+er = end["noise_router"]
+def zone(vanilla, ours):
+    return {"type": "minecraft:range_choice", "input": col("end_zone"), "min_inclusive": -1.0, "max_exclusive": 0.5,
+            "when_in_range": vanilla, "when_out_of_range": ours}
+er["final_density"] = zone(er["final_density"], col("end"))
+er["initial_density_without_jaggedness"] = zone(er["initial_density_without_jaggedness"], col("end"))
+er["erosion"] = zone(er["erosion"], col("end_erosion"))
+dump(end, NS, "worldgen", "noise_settings", "end.json")
+end_dim = {"type": "minecraft:the_end",
+           "generator": {"type": "minecraft:noise", "settings": "tcw:end", "biome_source": {"type": "minecraft:the_end"}}}
+for name, pr in [("telipailo", preset), ("islands", ep)]:
+    pr["dimensions"]["minecraft:the_end"] = end_dim
+    dump(pr, NS, "worldgen", "world_preset", name + ".json")
+
 # --- фичи
-for f, step in [("islands", "raw_generation"), ("caves", "lakes"), ("water", "lakes"), ("rock", "local_modifications"), ("snow", "top_layer_modification")]:
+for f, step in [("end", "vegetal_decoration"), ("islands", "raw_generation"), ("caves", "lakes"), ("water", "lakes"), ("rock", "local_modifications"), ("snow", "top_layer_modification")]:
     dump({"type": f"tcw:{f}", "config": {}}, NS, "worldgen", "configured_feature", f + ".json")
     dump({"feature": f"tcw:{f}", "placement": []}, NS, "worldgen", "placed_feature", f + ".json")
 dump({"type": "tcw:world", "dimension_type": "tcw:telipailo", "biomes": "#minecraft:is_overworld",
@@ -221,6 +240,11 @@ dump({"type": "tcw:world", "dimension_type": "tcw:islands", "biomes": "#minecraf
                    {"step": "top_layer_modification", "feature": "tcw:snow"}],
       "remove_carvers": ["bettercaves:better_cave", "bettercaves:surface_cave"]},
      NS, "neoforge", "biome_modifier", "islands.json")
+# Край: тёмный низ островов, хорусовые леса, пурпурные шпили (фича сама проверяет, что Край наш)
+for name in ["telipailo", "islands"]:
+    dump({"type": "tcw:world", "dimension_type": f"tcw:{name}", "biomes": "#minecraft:is_end",
+          "features": [{"step": "vegetal_decoration", "feature": "tcw:end"}]},
+         NS, "neoforge", "biome_modifier", f"end_{name}.json")
 # --- WWOO: «заплатки» из мёртвых кораллов, бетона и терракоты вне бесплодных земель (во всех мирах)
 W = "wythers:"
 patches = ["terrain/extended/dead_coral_stone", "terrain/extended/dead_coral_stone_2", "terrain/local/beach_mossy_stone",

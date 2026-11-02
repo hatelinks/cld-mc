@@ -17,6 +17,8 @@ public final class Terrain {
     public final Islands islands;
     // только для мира End Sea (opt.endSea()), иначе null
     public final Archipelago arch;
+    // острова Края (свой Край в обоих типах мира)
+    public final EndLands end;
     final long seed;
     final Simplex fine, rough, meanderA, meanderB, snowN;
     private final Map<Long, CompletableFuture<Hydro>> hydros = new LinkedHashMap<>(16, 0.75f, true) {
@@ -42,6 +44,7 @@ public final class Terrain {
         rocks = new Rocks(this);
         islands = new Islands(this);
         arch = opt.endSea() ? new Archipelago(seed) : null;
+        end = new EndLands(seed);
     }
 
     public long seed() { return seed; }
