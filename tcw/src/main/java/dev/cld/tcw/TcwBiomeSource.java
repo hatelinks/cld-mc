@@ -2,6 +2,7 @@ package dev.cld.tcw;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.cld.tcw.gen.Islands;
 import dev.cld.tcw.gen.Macro;
 import dev.cld.tcw.gen.Options;
 import dev.cld.tcw.gen.Simplex;
@@ -34,7 +35,8 @@ public final class TcwBiomeSource extends BiomeSource {
             com.mojang.serialization.Codec.INT.optionalFieldOf("height", 1).forGetter(Options::height),
             com.mojang.serialization.Codec.INT.optionalFieldOf("climate", 1).forGetter(Options::climate),
             com.mojang.serialization.Codec.INT.optionalFieldOf("snow", 1).forGetter(Options::snow),
-            com.mojang.serialization.Codec.INT.optionalFieldOf("halls", 1).forGetter(Options::halls)
+            com.mojang.serialization.Codec.INT.optionalFieldOf("halls", 1).forGetter(Options::halls),
+            com.mojang.serialization.Codec.INT.optionalFieldOf("world", 0).forGetter(Options::world)
     ).apply(i, Options::new));
 
     public static final MapCodec<TcwBiomeSource> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
@@ -49,8 +51,11 @@ public final class TcwBiomeSource extends BiomeSource {
     private final MultiNoiseBiomeSource base;
     private final Holder<Biome> subalpine, meadow, tundra, scree, glacier, volcanic, frostCaves, sandCaves;
     private final Options options;
+    // биомы небесных островов по номеру из Islands.BIOMES (null, если биома нет)
+    private final Holder<Biome>[] islandBiomes;
 
     private TcwBiomeSource(TcwBiomeSource o, Options options) {
+        islandBiomes = o.islandBiomes;
         preset = o.preset; base = o.base; subalpine = o.subalpine; meadow = o.meadow; tundra = o.tundra; scree = o.scree;
         glacier = o.glacier; volcanic = o.volcanic; frostCaves = o.frostCaves; sandCaves = o.sandCaves;
         this.options = options;
@@ -74,6 +79,12 @@ public final class TcwBiomeSource extends BiomeSource {
         boolean ycb = ModList.get() != null && ModList.get().isLoaded("yungscavebiomes");
         frostCaves = ycb ? optional(biomes, "yungscavebiomes", "frosted_caves") : null;
         sandCaves = ycb ? optional(biomes, "yungscavebiomes", "lost_caves") : null;
+        @SuppressWarnings("unchecked") Holder<Biome>[] ib = new Holder[Islands.BIOMES.length];
+        for (int i = 0; i < ib.length; i++) {
+            ResourceLocation id = ResourceLocation.parse(Islands.BIOMES[i]);
+            ib[i] = optional(biomes, id.getNamespace(), id.getPath());
+        }
+        islandBiomes = ib;
     }
 
     private static Holder<Biome> own(HolderGetter<Biome> g, String name) {
@@ -90,9 +101,10 @@ public final class TcwBiomeSource extends BiomeSource {
     @Override
     protected Stream<Holder<Biome>> collectPossibleBiomes() {
         List<Holder<Biome>> own = new ArrayList<>(List.of(subalpine, meadow, tundra, scree, glacier, volcanic));
+        for (Holder<Biome> b : islandBiomes) if (b != null) own.add(b);
         if (frostCaves != null) own.add(frostCaves);
         if (sandCaves != null) own.add(sandCaves);
-        return Stream.concat(base.possibleBiomes().stream(), own.stream());
+        return Stream.concat(base.possibleBiomes().stream(), own.stream()).distinct();
     }
 
     @Override
@@ -106,6 +118,10 @@ public final class TcwBiomeSource extends BiomeSource {
 
     /** Свой биом в точке или null (тогда ванильный выбор по климату). */
     private Holder<Biome> pick(Terrain t, int x, int y, int z) {
+        if (y > Macro.SEA + 40) {
+            Islands.Island is = t.islands.at(x, y, z);
+            if (is != null && islandBiomes[is.biome] != null) return islandBiomes[is.biome];
+        }
         Terrain.Column c = Worlds.column(t, x, z);
         double h = c.height;
         if (y < h - 28) {

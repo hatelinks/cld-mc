@@ -19,6 +19,12 @@ public class FluidPickerMixin {
     private static void tcw$deepLava(NoiseGeneratorSettings settings, CallbackInfoReturnable<Aquifer.FluidPicker> cir) {
         int minY = settings.noiseSettings().minY();
         if (minY >= -64) return;
+        // End Sea: жидкость по умолчанию воздух, ни моря, ни лавы у дна
+        if (settings.defaultFluid().isAir()) {
+            Aquifer.FluidStatus air = new Aquifer.FluidStatus(minY, settings.defaultFluid());
+            cir.setReturnValue((x, y, z) -> air);
+            return;
+        }
         cir.setReturnValue(new DeepFluidPicker(minY + 10, settings.seaLevel(), settings.defaultFluid()));
     }
 }

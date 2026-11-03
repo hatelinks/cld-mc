@@ -1,0 +1,16 @@
+{
+ "create_early": {"title": "Детали андезитовой эпохи", "items": [["create:andesite_alloy", 8], ["create:cogwheel", 4], ["create:large_cogwheel", 2], ["create:shaft", 8], ["create:iron_sheet", 6], ["create:water_wheel", 1], ["create:belt_connector", 4], ["create:andesite_casing", 4], ["create:gearbox", 2]]},
+ "create_mid": {"title": "Детали медной и латунной эпох", "items": [["create:brass_ingot", 4], ["create:copper_casing", 4], ["create:brass_casing", 2], ["create:electron_tube", 2], ["create:fluid_pipe", 8], ["create:copper_sheet", 6], ["create:zinc_ingot", 6], ["create:precision_mechanism", 1]]},
+ "ingots": {"title": "Слитки", "items": [["minecraft:iron_ingot", 8], ["minecraft:copper_ingot", 12], ["create:zinc_ingot", 8], ["create:brass_ingot", 4], ["minecraft:gold_ingot", 4]]},
+ "xp": {"title": "Опыт", "items": [["create:experience_nugget", 9], ["minecraft:experience_bottle", 4]], "xp": [100, 250]},
+ "food": {"title": "Припасы", "items": [["minecraft:bread", 8], ["minecraft:cooked_beef", 6], ["minecraft:baked_potato", 8], ["minecraft:golden_carrot", 4], ["farmersdelight:rich_soil", 4], ["farmersdelight:onion", 4]]},
+ "explore": {"title": "Снаряжение путника", "items": [["minecraft:ender_pearl", 2], ["minecraft:golden_carrot", 8], ["minecraft:arrow", 16], ["minecraft:torch", 32], ["supplementaries:rope", 16]]},
+ "colony": {"title": "Запасы колонии", "items": [["minecraft:emerald", 4], ["minecraft:oak_log", 32], ["minecraft:cobblestone", 64], ["minecraft:iron_ingot", 8], ["minecraft:bread", 16]]},
+ "mystic": {"title": "Мистические эссенции", "items": [["mysticalagriculture:inferium_essence", 16], ["mysticalagriculture:prudentium_essence", 4], ["mysticalagriculture:prosperity_shard", 4], ["minecraft:bone_meal", 16]]},
+ "sky": {"title": "Детали для кораблей", "items": [["create:iron_sheet", 8], ["create:andesite_casing", 4], ["create:brass_casing", 2], ["create:propeller", 1], ["create:super_glue", 1]]},
+ "storage": {"title": "Для склада", "items": [["minecraft:chest", 4], ["minecraft:oak_planks", 32], ["minecraft:iron_ingot", 6], ["minecraft:barrel", 4]]},
+ "choice_tech": {"title": "Большая награда инженера", "items": [["create:precision_mechanism", 4], ["create:brass_ingot", 24], ["create:andesite_casing", 24], ["create:blaze_burner", 1], ["minecraft:diamond", 3]]},
+ "choice_home": {"title": "Большая награда хозяйства", "items": [["minecraft:diamond", 3], ["minecraft:golden_apple", 2], ["minecraft:ender_pearl", 8], ["minecraft:emerald", 12], ["minecraft:golden_carrot", 32]]},
+ "choice_mystic": {"title": "Большая награда мистика", "items": [["mysticalagriculture:prudentium_essence", 32], ["mysticalagriculture:tertium_essence", 16], ["mysticalagriculture:imperium_essence", 4], ["minecraft:diamond", 3]]},
+ "choice_colony": {"title": "Большая награда колонии", "items": [["minecraft:emerald", 16], ["minecraft:iron_ingot", 32], ["minecraft:golden_apple", 2], ["minecraft:diamond", 3]]}
+}

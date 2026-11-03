@@ -8,6 +8,34 @@
  "order": 12,
  "quests": [
   {
+   "k": "welcome",
+   "title": "&bДобро пожаловать: Рюкзак странника",
+   "sub": "Sophisticated Backpacks — рюкзак, который растёт вместе с вами",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Рюкзаки Sophisticated Backpacks носят много вещей, а улучшения сами подбирают, сортируют и пополняют предметы.",
+    "&bB&r открывает рюкзак, который надет."
+   ],
+   "icon": "sophisticatedbackpacks:backpack",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
    "id": "18AE36E4AB5933AD",
    "title": "Простой рюкзак",
    "sub": "Хранилище на спине",
@@ -32,7 +60,11 @@
      "amount": 10
     }
    ],
-   "deps": []
+   "deps": [
+    "sb_backpacks/welcome"
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "5D828058C1DC7AA0",
@@ -56,11 +88,17 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
     "18AE36E4AB5933AD"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "3E2D0DC93AC00A3F",
@@ -84,6 +122,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -178,6 +220,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -385,6 +431,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -511,6 +561,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -540,6 +594,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -637,6 +695,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -695,6 +757,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -821,6 +887,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -1005,6 +1075,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1304,6 +1378,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -1370,6 +1448,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -1418,7 +1500,7 @@
    "x": 0,
    "y": 0,
    "desc": [
-    "&6Как работает:&r Выгружает предметы из рюкзака во внешний инвентарь при нажатии Shift + ПКМ\nИмеет больше настроек фильтрации",
+    "&6Как работает:&r Выгружает предметы из рюкзака во внешний инвентарь при нажатии &bShift&r + &bПКМ&r\nИмеет больше настроек фильтрации",
     "&6Как получить:&r верстак (следующий уровень): Улучшение «Разгрузка»."
    ],
    "icon": null,
@@ -1464,6 +1546,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -1494,6 +1580,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1558,6 +1648,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -1571,7 +1665,7 @@
    "x": 0,
    "y": 0,
    "desc": [
-    "&6Как работает:&r Нагружает рюкзак предметами из внешнего инвентаря при нажатии Shift + ПКМ\nИмеет больше настроек фильтрации",
+    "&6Как работает:&r Нагружает рюкзак предметами из внешнего инвентаря при нажатии &bShift&r + &bПКМ&r\nИмеет больше настроек фильтрации",
     "&6Как получить:&r верстак (следующий уровень): Улучшение «Загрузка»."
    ],
    "icon": null,
@@ -1615,6 +1709,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -1659,7 +1757,7 @@
   },
   {
    "k": "finale",
-   "title": "Странник налегке",
+   "title": "&6&lСтранник налегке",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -1684,6 +1782,10 @@
      "type": "item",
      "id": "minecraft:diamond",
      "count": 2
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
     }
    ],
    "deps": [
@@ -1692,7 +1794,19 @@
     "sb_backpacks/auto_cook_sb",
     "sb_backpacks/advanced_compacting_upgrade"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
+ ],
+ "color": "&2",
+ "deco": [
+  [
+   "minecraft:textures/item/bundle.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
  ]
 }

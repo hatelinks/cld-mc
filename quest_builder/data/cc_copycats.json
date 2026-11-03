@@ -1,0 +1,709 @@
+{
+ "key": "cc_copycats",
+ "id": "",
+ "title": "Блоки-подражатели",
+ "subtitle": "Copycats+: любые формы из любых блоков",
+ "group": "Эра механизмов",
+ "icon": "copycats:copycat_slope",
+ "order": 5.6,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "&bБлоки-подражатели",
+   "sub": "Форма от одного блока, вид от другого",
+   "desc": [
+    "&6Copycats+&r добавляет десятки заполняемых блоков: склоны, балки, ступени, двери, люки, заборы, шестерни.",
+    "Поставьте заполняемый блок и нажмите по нему &bПКМ&r любым блоком: он примет его вид. Гаечный ключ снимает облицовку.",
+    "Так можно сделать красивый корабль или дом без сотни разных блоков из разных модов."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "copycats:copycat_slope",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
+   "k": "copycat_block",
+   "title": "Заполняемый блок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Заполняемая плита."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "cc_copycats/intro"
+   ]
+  },
+  {
+   "k": "copycat_slab",
+   "title": "Заполняемая плита",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Заполняемая балка.",
+    "&6Зачем нужен:&r идёт в Заполняемый блок."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_slab",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "cc_copycats/intro"
+   ]
+  },
+  {
+   "k": "copycat_stairs",
+   "title": "Заполняемые ступеньки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Заполняемые вертикальные ступеньки.",
+    "&6Зачем нужен:&r идёт в Заполняемые вертикальные ступеньки."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_stairs",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "cc_copycats/intro"
+   ]
+  },
+  {
+   "k": "copycat_slope",
+   "title": "Заполняемый склон",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Заполняемый вертикальный склон.",
+    "&6Зачем нужен:&r идёт в Заполняемый вертикальный склон."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_slope",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "cc_copycats/intro"
+   ]
+  },
+  {
+   "k": "copycat_vertical_slope",
+   "title": "Заполняемый вертикальный склон",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Заполняемый склон.",
+    "&6Зачем нужен:&r идёт в Заполняемый склон."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_vertical_slope",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_slope"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "copycat_beam",
+   "title": "Заполняемая балка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r камнерез: Цинковый слиток.",
+    "&6Зачем нужен:&r идёт в Заполняемая плита."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_beam",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_vertical_slope",
+    "61F3DD348420C73D"
+   ]
+  },
+  {
+   "k": "copycat_board",
+   "title": "Заполняемая пластина",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r камнерез: Цинковый слиток.",
+    "&6Зачем нужен:&r идёт в Заполняемая коробка, Заполняемый мостик."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_board",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_vertical_slope",
+    "61F3DD348420C73D"
+   ]
+  },
+  {
+   "k": "copycat_vertical_step",
+   "title": "Заполняемая вертикальная ступенька",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Заполняемая ступенька.",
+    "&6Зачем нужен:&r идёт в Заполняемая ступенька."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_vertical_step",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_vertical_slope"
+   ]
+  },
+  {
+   "k": "copycat_layer",
+   "title": "Заполняемый слой",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Заполняемая половина слоя."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_layer",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_vertical_slope"
+   ]
+  },
+  {
+   "k": "copycat_catwalk",
+   "title": "Заполняемый мостик",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Заполняемая пластина."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_catwalk",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_board"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "copycat_door",
+   "title": "Заполняемая дверь",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r камнерез: Цинковый слиток."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_door",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_catwalk",
+    "61F3DD348420C73D"
+   ]
+  },
+  {
+   "k": "copycat_trapdoor",
+   "title": "Заполняемый люк",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Заполняемая панель.",
+    "&6Зачем нужен:&r идёт в Заполняемая панель."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_trapdoor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_catwalk"
+   ]
+  },
+  {
+   "k": "copycat_fence",
+   "title": "Заполняемый забор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r камнерез: Цинковый слиток."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_fence",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_catwalk",
+    "61F3DD348420C73D"
+   ]
+  },
+  {
+   "k": "copycat_wall",
+   "title": "Заполняемая ограда",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r камнерез: Цинковый слиток."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_wall",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_catwalk",
+    "61F3DD348420C73D"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "copycat_ladder",
+   "title": "Заполняемая лестница",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r камнерез: Цинковый слиток."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_ladder",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_wall",
+    "61F3DD348420C73D"
+   ]
+  },
+  {
+   "k": "copycat_pane",
+   "title": "Заполняемая составная панель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Заполняемая панель.",
+    "&6Зачем нужен:&r идёт в Заполняемая панель."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_pane",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_wall"
+   ]
+  },
+  {
+   "k": "copycat_shaft",
+   "title": "Заполняемый вал",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вал, который выглядит как любой блок: передаёт вращение, как обычный.",
+    "&6Как получить:&r камнерез: Цинковый слиток."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_shaft",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_wall",
+    "61F3DD348420C73D"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "copycat_cogwheel",
+   "title": "Заполняемая шестерня",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Шестерня под вид любого блока.",
+    "&6Как получить:&r верстак: Шестерня, Цинковый слиток."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_cogwheel",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_wall",
+    "61F3DD348420C73D"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "copycat_fluid_pipe",
+   "title": "Заполняемая жидкостная труба",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Труба для жидкостей, спрятанная под облицовкой.",
+    "&6Как получить:&r верстак: Жидкостная труба, Цинковый слиток."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_fluid_pipe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_wall",
+    "727F09E229C92364",
+    "61F3DD348420C73D"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "copycat_ghost_block",
+   "title": "Заполняемый призрачный блок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Призрачный блок: выглядит как блок, но сквозь него можно пройти.",
+    "&6Как получить:&r камнерез: Цинковый слиток."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "copycats:copycat_ghost_block",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_wall",
+    "61F3DD348420C73D"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "finale",
+   "title": "&6&lМастер облицовки",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вы освоили заполняемые блоки: теперь любая форма может выглядеть как угодно.",
+    "&7Откроется, когда будут выполнены последние квесты главы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "choice",
+     "table": "choice_tech"
+    }
+   ],
+   "deps": [
+    "cc_copycats/copycat_ladder",
+    "cc_copycats/copycat_pane",
+    "cc_copycats/copycat_shaft",
+    "cc_copycats/copycat_cogwheel"
+   ],
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
+  }
+ ],
+ "color": "&6"
+}

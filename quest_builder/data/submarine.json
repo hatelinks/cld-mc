@@ -1,0 +1,646 @@
+{
+ "key": "submarine",
+ "id": "",
+ "title": "Под водой и на волнах",
+ "subtitle": "Create Submarine и High Seas",
+ "group": "Небо и техника",
+ "icon": "create_submarine:submarine_propeller",
+ "order": 10.7,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "&bПод водой и на волнах",
+   "sub": "Корабли, которые плавают и ныряют",
+   "desc": [
+    "&6Create Submarine&r: балластные цистерны набирают воду и корабль погружается, гребной винт и водомёт двигают его, кислород подаётся диффузором, сонар показывает дно.",
+    "&6Create High Seas&r: паруса, руль, якорь, лодочный мотор и буи для надводных кораблей.",
+    "&cТяжёлый мод: на Android следите за FPS."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "create_submarine:submarine_propeller",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "sim_physics/intro"
+   ],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
+   "k": "ballast_tank",
+   "title": "Балластная цистерна субмарины",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав, Жидкостный бак, Железный лист."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:ballast_tank",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "submarine/intro"
+   ]
+  },
+  {
+   "k": "ballast_vent",
+   "title": "Балластный клапан",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Кусочек меди, Медный блок."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:ballast_vent",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "submarine/intro",
+    "create_andesite/nuggets"
+   ]
+  },
+  {
+   "k": "submarine_propeller",
+   "title": "Гребной винт субмарины",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Блок промышленного железа, Пропеллер, Вал."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:submarine_propeller",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "submarine/intro",
+    "create_andesite/propeller",
+    "create_misc/iron_blocks"
+   ]
+  },
+  {
+   "k": "water_thruster",
+   "title": "Водомётный двигатель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Механическая помпа, Пропеллер, Медный блок."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:water_thruster",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "submarine/intro",
+    "create_andesite/propeller",
+    "3311659D6E2742B8"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "copper_pressurizer",
+   "title": "Медное прочное стекло",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Медный блок, Стекло."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:copper_pressurizer",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "submarine/water_thruster"
+   ]
+  },
+  {
+   "k": "electrolyzer",
+   "title": "Электролизер",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Электронная лампа, Медный блок, Стекло, Пружина."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:electrolyzer",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "submarine/water_thruster",
+    "49A87F51BFFBB1C4",
+    "sim_physics/spring"
+   ]
+  },
+  {
+   "k": "oxygene_diffuser",
+   "title": "Кислородный диффузор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Электронная лампа, Осушитель предметов, Форсунка, Пропеллер, Редстоуновый передатчик сигнала."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:oxygene_diffuser",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "submarine/water_thruster",
+    "create_andesite/propeller",
+    "49A87F51BFFBB1C4",
+    "01732AB44FE34758"
+   ]
+  },
+  {
+   "k": "sonar",
+   "title": "Сонар",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Латунный лист, Медный лист, Механизм точности, Передатчик, Осколок аметиста."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:sonar",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "submarine/water_thruster",
+    "63B86FA0C25B7639",
+    "create_logistics/transmitter"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "floater",
+   "title": "Поплавок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Позволяет лодке держаться\nна поверхности воды.",
+    "&6Как получить:&r верстак: Альгологическая мембрана, black wool."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:floater",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "submarine/sonar"
+   ]
+  },
+  {
+   "k": "steel_cable",
+   "title": "Стальной трос",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Железный лист, Моток верёвки, Пружина."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:steel_cable",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "submarine/sonar",
+    "sim_physics/ropes"
+   ]
+  },
+  {
+   "k": "industrial_alarm",
+   "title": "Промышленная сирена",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Электронная лампа, Железный лист, Нотный блок, red stained glass pane, redstone lamp."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:industrial_alarm",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "submarine/sonar",
+    "49A87F51BFFBB1C4",
+    "024258E95184EEE4"
+   ]
+  },
+  {
+   "k": "underwater_mine",
+   "title": "Подводная мина",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Блок промышленного железа, Динамит."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_submarine:underwater_mine",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 25
+    }
+   ],
+   "deps": [
+    "submarine/sonar",
+    "create_misc/iron_blocks"
+   ]
+  },
+  {
+   "k": "white_sail",
+   "title": "Парус",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Парус ветряной мельницы, Нить.",
+    "&6Зачем нужен:&r идёт в Парус ветряной мельницы, Руль."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_high_seas:white_sail",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "submarine/intro"
+   ]
+  },
+  {
+   "k": "rudder",
+   "title": "Руль",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Заполняемая панель, Парус."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_high_seas:rudder",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "submarine/white_sail"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "anchor",
+   "title": "Якорь",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_high_seas:anchor",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "submarine/rudder"
+   ]
+  },
+  {
+   "k": "boat_engine",
+   "title": "Лодочный мотор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Пропеллер, Плавильная печь, Рычаг."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_high_seas:boat_engine",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "sky"
+    }
+   ],
+   "deps": [
+    "submarine/rudder",
+    "create_andesite/propeller"
+   ]
+  },
+  {
+   "k": "buoy",
+   "title": "Буй",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: red wool, Белая шерсть."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_high_seas:buoy",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "submarine/rudder"
+   ]
+  },
+  {
+   "k": "seaglide",
+   "title": "Подводный буксир",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Пропеллер, Вал, Медный слиток."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_high_seas:seaglide",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "submarine/rudder",
+    "create_andesite/propeller"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "&6&lКапитан глубин",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Подлодка ныряет, а парусник ходит по волнам.",
+    "&7Откроется, когда будут выполнены последние квесты главы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "choice",
+     "table": "choice_tech"
+    }
+   ],
+   "deps": [
+    "submarine/oxygene_diffuser",
+    "submarine/sonar",
+    "submarine/floater",
+    "submarine/anchor",
+    "submarine/boat_engine"
+   ],
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
+  }
+ ],
+ "color": "&9"
+}

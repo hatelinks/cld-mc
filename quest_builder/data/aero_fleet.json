@@ -3,13 +3,13 @@
  "id": "",
  "title": "Небесный флот",
  "subtitle": "Create Aeronautics и Propulsion — дирижабли и самолёты",
- "group": "Эра механизмов",
+ "group": "Небо и техника",
  "icon": "aeronautics:propeller_bearing",
  "order": 10,
  "quests": [
   {
    "k": "intro",
-   "title": "Всё небо — ваш простор",
+   "title": "&bВсё небо — ваш простор",
    "sub": "Аэростаты, пропеллеры и реактивная тяга",
    "desc": [
     "Aeronautics добавляет то, что держит штуковину в воздухе: &eоболочки аэростатов&r с горячим воздухом, &eлевитит&r и пропеллеры.",
@@ -34,7 +34,9 @@
    ],
    "deps": [
     "sim_physics/physics_assembler"
-   ]
+   ],
+   "shape": "square",
+   "size": 2.0
   },
   {
    "k": "aviators_goggles",
@@ -137,6 +139,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -247,12 +253,18 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
     "aero_fleet/adjustable_burner",
     "aero_fleet/envelope"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "steam_vent",
@@ -277,6 +289,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -373,6 +389,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -406,8 +426,8 @@
    ],
    "deps": [
     "aero_fleet/adv_head_in_the_clouds",
-    "024258E95184EEE4",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "024258E95184EEE4"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -432,6 +452,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -470,10 +494,12 @@
    ],
    "deps": [
     "aero_fleet/adv_head_in_the_clouds",
-    "4D1D7873774CA66B",
-    "sim_physics/gyroscopic_mechanism"
+    "sim_physics/gyroscopic_mechanism",
+    "4D1D7873774CA66B"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "smart_propeller",
@@ -484,7 +510,7 @@
    "desc": [
     "&6Как работает:&r &eСоздаёт тягу&r при вращении. &eПри наклоне пропеллера&r по одной из осей всегда пытается &eвыровнять его строго по вертикали&r.",
     "&6Как получить:&r верстак: Латунный корпус, Пропеллер, Механизм гироскопа.",
-    "&6Как использовать:&r ПКМ гаечным ключом: &eМеняет&r направление тяги пропеллера."
+    "&6Как использовать:&r &bПКМ&r гаечным ключом: &eМеняет&r направление тяги пропеллера."
    ],
    "icon": null,
    "optional": false,
@@ -499,13 +525,17 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
     "aero_fleet/gyroscopic_propeller_bearing",
-    "4D1D7873774CA66B",
+    "create_andesite/propeller",
     "sim_physics/gyroscopic_mechanism",
-    "create_andesite/propeller"
+    "4D1D7873774CA66B"
    ]
   },
   {
@@ -532,6 +562,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -621,11 +655,17 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
     "aero_fleet/levitite"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "pearlescent_levitite",
@@ -680,8 +720,8 @@
    ],
    "deps": [
     "aero_fleet/adv_unidentified_floating_object",
-    "56239D98E7831D04",
-    "727F09E229C92364"
+    "727F09E229C92364",
+    "56239D98E7831D04"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -735,6 +775,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -798,6 +842,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -827,12 +875,18 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
     "aero_fleet/platinum_ingot"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "platinum_casing",
@@ -897,7 +951,9 @@
     "aero_fleet/platinum_sheet",
     "36A573B8F77EE4EC"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "pine_resin",
@@ -922,6 +978,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -977,6 +1037,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -1016,8 +1080,8 @@
    ],
    "deps": [
     "aero_fleet/platinum_fluid_tank",
-    "024258E95184EEE4",
-    "27D0961A37A6E0CB"
+    "27D0961A37A6E0CB",
+    "024258E95184EEE4"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1044,13 +1108,19 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
     "aero_fleet/platinum_fluid_tank",
     "727F09E229C92364"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "stirling_engine",
@@ -1075,12 +1145,16 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
     "aero_fleet/liquid_burner",
-    "56239D98E7831D04",
-    "27D0961A37A6E0CB"
+    "27D0961A37A6E0CB",
+    "56239D98E7831D04"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1111,9 +1185,9 @@
    ],
    "deps": [
     "aero_fleet/liquid_burner",
+    "3311659D6E2742B8",
     "4D1D7873774CA66B",
-    "024258E95184EEE4",
-    "3311659D6E2742B8"
+    "024258E95184EEE4"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1172,6 +1246,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -1259,6 +1337,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -1319,11 +1401,15 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
-    "aero_fleet/cable",
-    "aero_fleet/platinum_casing"
+    "aero_fleet/platinum_casing",
+    "aero_fleet/cable"
    ]
   },
   {
@@ -1349,15 +1435,21 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
     "aero_fleet/liquid_burner",
-    "5E476C1ED8B02443",
+    "63B86FA0C25B7639",
     "sim_physics/redstone_sim",
-    "63B86FA0C25B7639"
+    "5E476C1ED8B02443"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "adv_energy_propulsion",
@@ -1472,6 +1564,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -1539,9 +1635,9 @@
    ],
    "deps": [
     "aero_fleet/ion_thruster",
+    "76799FE853392922",
     "56239D98E7831D04",
-    "024258E95184EEE4",
-    "76799FE853392922"
+    "024258E95184EEE4"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1567,6 +1663,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -1605,9 +1705,11 @@
    ],
    "deps": [
     "aero_fleet/ion_thruster",
-    "4D1D7873774CA66B",
-    "49A87F51BFFBB1C4"
-   ]
+    "49A87F51BFFBB1C4",
+    "4D1D7873774CA66B"
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "auto_glue",
@@ -1633,6 +1735,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1663,11 +1769,17 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
     "aero_fleet/redstone_transmission"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "glued_contraption_mover",
@@ -1785,8 +1897,8 @@
    ],
    "deps": [
     "aero_fleet/assembler_stick",
-    "create_andesite/flywheel",
-    "sim_physics/gimbal_sensor"
+    "sim_physics/gimbal_sensor",
+    "create_andesite/flywheel"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1799,8 +1911,8 @@
    "desc": [
     "&6Как работает:&r Двухосевой &eрычаг управления&r, передающий сигналы на настраиваемых частотах &eRedstone Link&r.",
     "&6Как получить:&r механический крафтер: Латунный слиток, Механизм точности, Редстоуновый передатчик сигнала, Вал.",
-    "&6Как использовать:&r При ПКМ: &eПереключает&r джойстик. &eДвижения мыши&r используются для наклона рычага, пока он активен. Нажмите &eESC&r для выхода.",
-    "&6Как использовать:&r При ПКМ с зажатой клавишей крадущегося режима: Открывает ручной &eинтерфейс настройки&r.",
+    "&6Как использовать:&r При &bПКМ&r: &eПереключает&r джойстик. &eДвижения мыши&r используются для наклона рычага, пока он активен. Нажмите &eESC&r для выхода.",
+    "&6Как использовать:&r При &bПКМ&r с зажатой клавишей крадущегося режима: Открывает ручной &eинтерфейс настройки&r.",
     "&6Как использовать:&r При питании редстоуном: &eСохраняет&r &eнаклон&r рычага."
    ],
    "icon": null,
@@ -1825,8 +1937,8 @@
    ],
    "deps": [
     "aero_fleet/assembler_stick",
-    "01732AB44FE34758",
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "01732AB44FE34758"
    ]
   },
   {
@@ -1853,12 +1965,18 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
     "aero_fleet/assembler_stick",
     "sim_physics/spring"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "analog_compact_flap_bearing",
@@ -1921,6 +2039,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -1987,6 +2109,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -2036,6 +2162,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "sky"
     }
    ],
    "deps": [
@@ -2093,7 +2223,7 @@
   },
   {
    "k": "finale_air",
-   "title": "Капитан небес",
+   "title": "&6&lКапитан небес",
    "sub": "",
    "x": 0,
    "y": 0,
@@ -2119,6 +2249,10 @@
      "type": "item",
      "id": "createpropulsion:platinum_ingot",
      "count": 8
+    },
+    {
+     "type": "choice",
+     "table": "choice_tech"
     }
    ],
    "deps": [
@@ -2129,7 +2263,9 @@
     "aero_fleet/glider"
    ],
    "finale": true,
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "hexagon",
+   "size": 2.0
   },
   {
    "k": "climb_ropes",
@@ -2186,5 +2322,6 @@
     "aero_fleet/intro"
    ]
   }
- ]
+ ],
+ "color": "&b"
 }
