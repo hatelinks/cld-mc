@@ -394,8 +394,8 @@
    ],
    "deps": [
     "sim_physics/adv_get_a_grip",
-    "25385F994C28D4F2",
-    "50EE13560C3B6D6C"
+    "50EE13560C3B6D6C",
+    "25385F994C28D4F2"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -699,9 +699,9 @@
    ],
    "deps": [
     "sim_physics/torsion_spring",
-    "024258E95184EEE4",
-    "5E476C1ED8B02443",
-    "49A87F51BFFBB1C4"
+    "49A87F51BFFBB1C4",
+    "4D1D7873774CA66B",
+    "5E476C1ED8B02443"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -882,9 +882,9 @@
    ],
    "deps": [
     "sim_physics/adv_steamless_engine",
-    "024258E95184EEE4",
     "56239D98E7831D04",
-    "create_andesite/nuggets"
+    "create_andesite/nuggets",
+    "024258E95184EEE4"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -920,8 +920,8 @@
    ],
    "deps": [
     "sim_physics/gyroscopic_mechanism",
-    "4D1D7873774CA66B",
-    "520494043376DA40"
+    "520494043376DA40",
+    "4D1D7873774CA66B"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1023,8 +1023,8 @@
    ],
    "deps": [
     "sim_physics/adv_steamless_engine",
-    "4D1D7873774CA66B",
-    "49A87F51BFFBB1C4"
+    "49A87F51BFFBB1C4",
+    "4D1D7873774CA66B"
    ],
    "note": "Ручное описание по общим знаниям о моде",
    "shape": "gear",
@@ -1097,8 +1097,8 @@
    ],
    "deps": [
     "sim_physics/optical_sensor",
-    "4D1D7873774CA66B",
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "4D1D7873774CA66B"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1174,8 +1174,8 @@
    ],
    "deps": [
     "sim_physics/optical_sensor",
-    "create_brass/polished_rose_quartz",
-    "0C03B415D50A44C3"
+    "0C03B415D50A44C3",
+    "create_brass/polished_rose_quartz"
    ],
    "shape": "gear",
    "size": 1.5
@@ -1253,8 +1253,8 @@
    ],
    "deps": [
     "sim_physics/redstone_sim",
-    "create_logistics/transmitter",
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "create_logistics/transmitter"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1289,8 +1289,8 @@
    ],
    "deps": [
     "sim_physics/redstone_sim",
-    "4D1D7873774CA66B",
-    "49A87F51BFFBB1C4"
+    "49A87F51BFFBB1C4",
+    "4D1D7873774CA66B"
    ]
   },
   {

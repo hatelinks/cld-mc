@@ -128,6 +128,12 @@ def item_obj(rid, comps=None):
     return f'{{ count: 1, id: "{rid}" }}'
 
 
+# Зависимостей в квестах нет (решение владельца 03.11): все квесты открыты сразу, а связи
+# из поля deps рисуются только линиями на фоне главы (resourcepack/make_backgrounds.py).
+# Поля квеста, которые без зависимостей не нужны, в SNBT не пишем.
+DEP_FLAGS = {"hide_until_deps_complete", "hide_until_deps_visible", "hide_dependency_lines", "hide_dependent_lines",
+             "min_required_dependencies", "dependency_requirement"}
+
 COMB_MIN = 5  # с какого числа листьев рисовать гребёнку вместо отдельных линий
 
 
@@ -162,8 +168,8 @@ for ch in chapters:
     if ch.get("subtitle"):
         lang[f"chapter.{cid}.chapter_subtitle"] = ch["subtitle"]
 
-    # гребёнки: у квеста с сеткой листьев линии к каждому листу перечёркивают всю сетку.
-    # Такие линии прячем, а фон главы рисует под сеткой одну гребёнку от родителя.
+    # гребёнки: отдельные линии к каждому листу сетки перечеркнули бы всю сетку,
+    # поэтому фон главы рисует для неё одну гребёнку от родителя.
     combs = comb_groups(ch)
     for hub, leaves in combs:
         for q in leaves:
@@ -255,8 +261,9 @@ for ch in chapters:
                 rewards_s.append(f'\t\t\t\t{{\n\t\t\t\t\tid: "{rid_}"\n\t\t\t\t\ttype: "item"\n'
                                  f'\t\t\t\t\titem: {item_obj(r["id"])}\n\t\t\t\t\tcount: {r["count"]}\n\t\t\t\t}}')
 
-        deps = [resolve(ch, d) for d in q.get("deps", [])]
-        deps = [d for d in deps if d]
+        # зависимости только проверяем: в игру они не идут, связи рисует фон главы
+        for d in q.get("deps", []):
+            resolve(ch, d)
         s = f'\t\t{{\n\t\t\tid: "{i}"\n\t\t\tx: {float(q["x"])}d\n\t\t\ty: {float(q["y"])}d\n'
         ic = q.get("icon") or icons.pick(ch, q, known)
         if q.get("icon_tex"):
@@ -272,17 +279,15 @@ for ch in chapters:
             s += f'\t\t\tshape: "{q["shape"]}"\n'
         if q.get("size"):
             s += f'\t\t\tsize: {float(q["size"])}d\n'
-        if q.get("hide_lines"):
-            s += "\t\t\thide_dependency_lines: true\n"
-        # прочие поля квеста как есть: hide_until_deps_visible, invisible_until_tasks и т.п.
+        # прочие поля квеста как есть, кроме связанных с зависимостями (их больше нет)
         for fk, fv in q.get("flags", {}).items():
+            if fk in DEP_FLAGS:
+                continue
             fv = "true" if fv is True else "false" if fv is False else f'"{fv}"' if isinstance(fv, str) else fv
             s += f"\t\t\t{fk}: {fv}\n"
         s += "\t\t\ttasks: [\n" + "\n".join(tasks_s) + "\n\t\t\t]\n"
         if rewards_s:
             s += "\t\t\trewards: [\n" + "\n".join(rewards_s) + "\n\t\t\t]\n"
-        if deps:
-            s += "\t\t\tdependencies: [" + " ".join(f'"{d}"' for d in deps) + "]\n"
         s += "\t\t}"
         qtexts.append(s)
 
@@ -292,7 +297,7 @@ for ch in chapters:
         icon = "minecraft:book"
     order = chapters.index(ch)
     body = f'{{\n\tid: "{cid}"\n\tgroup: "{gid}"\n\torder_index: {order}\n\tfilename: "{ch["key"]}"\n'
-    body += f'\tprogression_mode: "{ch.get("progression_mode", "linear")}"\n'
+    body += '\tprogression_mode: "flexible"\n'
     # картинки-украшения рядом с первым квестом главы (координаты известны только после раскладки)
     if ch.get("deco") and ch["quests"]:
         r0 = ch["quests"][0]
