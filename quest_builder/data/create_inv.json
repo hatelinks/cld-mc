@@ -572,8 +572,8 @@
    "deps": [
     "create_inv/mending_rune",
     "63B86FA0C25B7639",
-    "0AAF27D578857371",
-    "36A573B8F77EE4EC"
+    "36A573B8F77EE4EC",
+    "0AAF27D578857371"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1042,8 +1042,8 @@
    ],
    "deps": [
     "create_inv/sticky_boots_boots",
-    "3351EFE6BEA86D5B",
-    "293E9B8D6EA8FD5D"
+    "293E9B8D6EA8FD5D",
+    "3351EFE6BEA86D5B"
    ]
   },
   {
@@ -1101,8 +1101,8 @@
    ],
    "deps": [
     "create_inv/vibration_mechanism",
-    "3B6917DA1CFEF16E",
-    "722946AB95A2EBBE"
+    "722946AB95A2EBBE",
+    "3B6917DA1CFEF16E"
    ]
   },
   {

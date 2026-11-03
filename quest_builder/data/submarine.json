@@ -163,8 +163,8 @@
    ],
    "deps": [
     "submarine/intro",
-    "3311659D6E2742B8",
-    "create_andesite/propeller"
+    "create_andesite/propeller",
+    "3311659D6E2742B8"
    ],
    "shape": "gear",
    "size": 1.5
@@ -227,8 +227,8 @@
    ],
    "deps": [
     "submarine/water_thruster",
-    "sim_physics/spring",
-    "49A87F51BFFBB1C4"
+    "49A87F51BFFBB1C4",
+    "sim_physics/spring"
    ]
   },
   {
@@ -257,9 +257,9 @@
    ],
    "deps": [
     "submarine/water_thruster",
+    "create_andesite/propeller",
     "49A87F51BFFBB1C4",
-    "746BD117BEB07418",
-    "create_andesite/propeller"
+    "01732AB44FE34758"
    ]
   },
   {

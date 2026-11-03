@@ -1408,8 +1408,8 @@
     }
    ],
    "deps": [
-    "aero_fleet/cable",
-    "aero_fleet/platinum_casing"
+    "aero_fleet/platinum_casing",
+    "aero_fleet/cable"
    ]
   },
   {
@@ -2006,8 +2006,8 @@
    ],
    "deps": [
     "aero_fleet/compact_flap_bearing",
-    "sim_physics/spring",
-    "4D1D7873774CA66B"
+    "4D1D7873774CA66B",
+    "sim_physics/spring"
    ]
   },
   {
@@ -2047,8 +2047,8 @@
    ],
    "deps": [
     "aero_fleet/compact_flap_bearing",
-    "sim_physics/spring",
-    "create_misc/iron_blocks"
+    "create_misc/iron_blocks",
+    "sim_physics/spring"
    ]
   },
   {

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# Рисует тематические фоны глав квестов: картинка под всей главой, дорожки под линиями квестов,
+# Рисует тематические фоны глав квестов: картинка под всей главой, дорожки и линии от квеста к квесту
+# (зависимостей в квестах нет, связи видны только на фоне),
 # подложки под квестами, подписи под крупными квестами и лента с названием главы по центру.
 # Берёт раскладку из out/bg_layout.json (его пишет quest_builder/build.py), кладёт PNG в
 # pack/assets/cldquests/textures/quests/bg/<глава>.png
@@ -20,6 +21,7 @@ REG = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 PX = 32      # пикселей на клетку в готовой картинке
 SS = 2       # рисуем в 2 раза крупнее и уменьшаем, так края гладкие
 MAXSIDE = 1600
+QK = 1.5 / 1.75  # квест размера 1 на экране FTB Quests занимает 1.5 / 1.75 клетки сетки
 
 # тема: верх, низ, акцент, дорожка, украшения
 THEMES = {
@@ -59,6 +61,12 @@ GROUP_THEME = {"Эра механизмов": "workshop", "Небо и техн�
 
 def mix(a, b, t):
     return tuple(int(a[i] * (1 - t) + b[i] * t) for i in range(3))
+
+
+def vivid(c, sat, lum):
+    # сочнее и светлее: в игре фон лежит на тёмном размытом мире и выглядит блекло
+    m = sum(c) / 3
+    return tuple(max(0, min(255, int((m + (v - m) * sat) * lum))) for v in c)
 
 
 def rgba(c, a):
@@ -153,6 +161,7 @@ def contour(d, cx, cy, r, col, w, rnd):
 def draw(key, ch):
     theme = ch.get("theme") or KEY_THEME.get(key) or GROUP_THEME.get(ch["group"], "overworld")
     top, bot, acc, path, decor = THEMES[theme]
+    top, bot = vivid(top, 1.35, 1.15), vivid(bot, 1.35, 1.1)
     x0, y0, x1, y1 = ch["box"]
     px = min(PX, MAXSIDE / max(x1 - x0, y1 - y0))
     S = px * SS
@@ -177,7 +186,7 @@ def draw(key, ch):
     qs = ch["quests"]
     byid = {q["id"]: q for q in qs}
     # точки, где нельзя ставить украшения: квесты и линии
-    busy = [(q["x"], q["y"], q["size"] * 0.5 + 0.9) for q in qs]
+    busy = [(q["x"], q["y"], q["size"] * QK * 0.5 + 0.9) for q in qs]
     for a, b in ch["edges"]:
         qa, qb = byid[a], byid[b]
         L = math.hypot(qb["x"] - qa["x"], qb["y"] - qa["y"])
@@ -185,6 +194,27 @@ def draw(key, ch):
             t = k / max(1, int(L * 2))
             busy.append((qa["x"] + (qb["x"] - qa["x"]) * t, qa["y"] + (qb["y"] - qa["y"]) * t, 0.55))
     busy.append(((x0 + x1) / 2, y0 + 1.5, (x1 - x0) * 0.3))
+
+    # гребёнки: от родителя к стволу левее сетки листьев, от ствола по строкам сетки
+    segs = [(byid[a], byid[b]) for a, b in ch["edges"]]
+    segs = [((qa["x"], qa["y"]), (qb["x"], qb["y"])) for qa, qb in segs]
+    joints = []
+    for hub, leaves in ch.get("combs", []):
+        h = byid[hub]
+        ls = [byid[i] for i in leaves]
+        tx = min(q["x"] for q in ls) - 0.75
+        rows = sorted({q["y"] for q in ls})
+        segs.append(((h["x"], h["y"]), (tx, h["y"])))
+        segs.append(((tx, min(rows + [h["y"]])), (tx, max(rows + [h["y"]]))))
+        for y in rows:
+            segs.append(((tx, y), (max(q["x"] for q in ls if q["y"] == y), y)))
+            joints.append((tx, y))
+        joints.append((tx, h["y"]))
+    for A, B in segs[len(ch["edges"]):]:
+        L = math.hypot(B[0] - A[0], B[1] - A[1])
+        for k in range(int(L * 2) + 1):
+            t = k / max(1, int(L * 2))
+            busy.append((A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t, 0.55))
 
     def free(x, y, r):
         return all(math.hypot(x - bx, y - by) > br + r for bx, by, br in busy)
@@ -200,7 +230,7 @@ def draw(key, ch):
     for x, y, r in spots:
         cx, cy = P(x, y)
         R = r * S
-        a = rnd.randint(28, 60)
+        a = rnd.randint(40, 80)
         if decor == "gears":
             gear(d, cx, cy, R, rgba(acc, a), teeth=rnd.choice((8, 10, 12)))
         elif decor == "blueprint":
@@ -242,9 +272,8 @@ def draw(key, ch):
 
     # ---------- дорожки под линиями квестов ----------
     pw = S * 0.32
-    for a, b in ch["edges"]:
-        qa, qb = byid[a], byid[b]
-        A, B = P(qa["x"], qa["y"]), P(qb["x"], qb["y"])
+    for a_, b_ in segs:
+        A, B = P(*a_), P(*b_)
         L = math.hypot(B[0] - A[0], B[1] - A[1]) or 1
         nx, ny = -(B[1] - A[1]) / L, (B[0] - A[0]) / L
         if path == "belt":
@@ -283,17 +312,30 @@ def draw(key, ch):
         else:
             d.line((A, B), fill=rgba(acc, 90), width=int(pw * 0.5))
 
+    # зависимостей в квестах нет, связи видны только здесь: поверх дорожки чёткая линия от квеста к квесту
+    line = rgba(mix(acc, (255, 255, 255), 0.55), 235)
+    lw2 = max(2, int(S * 0.075))
+    for a_, b_ in segs:
+        d.line((P(*a_), P(*b_)), fill=(0, 0, 0, 120), width=lw2 + 2 * max(1, int(S * 0.025)))
+    for a_, b_ in segs:
+        d.line((P(*a_), P(*b_)), fill=line, width=lw2)
+
+    for jx, jy in joints:
+        cx, cy = P(jx, jy)
+        r = pw * 0.3
+        d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=line, outline=(0, 0, 0, 120), width=max(1, int(S * 0.025)))
+
     # ---------- подложки под квестами ----------
     glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     g = ImageDraw.Draw(glow)
     for q in qs:
         cx, cy = P(q["x"], q["y"])
-        r = S * (q["size"] * 0.5 + 0.18)
+        r = S * (q["size"] * QK * 0.5 + 0.16)
         g.ellipse((cx - r, cy - r, cx + r, cy + r), fill=rgba(acc, 70 if not q["optional"] else 35))
     deco.alpha_composite(glow.filter(ImageFilter.GaussianBlur(S * 0.12)))
     for q in qs:
         cx, cy = P(q["x"], q["y"])
-        r = S * (q["size"] * 0.5 + 0.12)
+        r = S * (q["size"] * QK * 0.5 + 0.1)
         d.ellipse((cx - r, cy - r, cx + r, cy + r), outline=rgba(acc, 120 if not q["optional"] else 60), width=lw)
 
     # ---------- подписи под крупными квестами, по центру ----------
@@ -314,13 +356,13 @@ def draw(key, ch):
             for o in qs:
                 if o is q:
                     continue
-                r = o["size"] * 0.5 + 0.1
+                r = o["size"] * QK * 0.5 + 0.1
                 if abs(o["x"] - lx) < hw + r and abs(o["y"] - (ly + hh / 2)) < hh / 2 + r:
                     return True
             return any(abs(px_ - lx) < hw + pw_ and abs(py_ - ly) < hh for px_, py_, pw_ in placed)
 
         ly = None
-        for cand in (q["y"] + q["size"] * 0.5 + 0.12, q["y"] - q["size"] * 0.5 - 0.62):
+        for cand in (q["y"] + q["size"] * QK * 0.5 + 0.12, q["y"] - q["size"] * QK * 0.5 - 0.62):
             if not hits(q["x"], cand):
                 ly = cand
                 break
@@ -338,7 +380,7 @@ def draw(key, ch):
     mask = Image.new("L", (W, H), 0)
     m = ImageDraw.Draw(mask)
     edge = int(S * 0.9)
-    m.rounded_rectangle((edge, edge, W - edge, H - edge), S * 0.6, fill=225)
+    m.rounded_rectangle((edge, edge, W - edge, H - edge), S * 0.6, fill=250)
     mask = mask.filter(ImageFilter.GaussianBlur(edge * 0.6))
     img.putalpha(mask)
     deco = Image.new("RGBA", (W, H), (0, 0, 0, 0))

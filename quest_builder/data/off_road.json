@@ -176,8 +176,8 @@
    ],
    "deps": [
     "off_road/intro",
-    "024258E95184EEE4",
-    "create_misc/iron_blocks"
+    "create_misc/iron_blocks",
+    "024258E95184EEE4"
    ],
    "note": "Ручное описание по общим знаниям о моде",
    "shape": "gear",
@@ -214,8 +214,8 @@
    ],
    "deps": [
     "off_road/rockcutting_wheel",
-    "7E1ADD131FC9B5E2",
-    "create_misc/iron_blocks"
+    "create_misc/iron_blocks",
+    "7E1ADD131FC9B5E2"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
