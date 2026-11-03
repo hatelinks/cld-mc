@@ -50,11 +50,18 @@ public final class TileMesh {
     static final int[] BANDS = { 0xA0573A, 0xD1B2A1, 0x8F3D2E, 0x876A61, 0xBA8523, 0x9A5E44, 0x4D3323 };
 
     // Цвет слоя мезы на высоте y: слои по 4 блока, порядок по хешу (одинаковый во всех тайлах).
+    // Тот же хеш в шейдере (bandColor в far_terrain.fsh): гладкие склоны красятся слоями там.
     static int band(double y) {
-        long k = (long) Math.floor(y / 4) * 0x9E3779B97F4A7C15L;
-        k ^= k >>> 29;
-        return BANDS[(int) ((k >>> 33) % BANDS.length)];
+        int h = (int) Math.floor(y / 4) * 0x9E3779B1;
+        h ^= h >>> 15;
+        h *= 0x85EBCA77;
+        h ^= h >>> 13;
+        return BANDS[Integer.remainderUnsigned(h, BANDS.length)];
     }
+
+    // Сила слоёв мезы в альфе вершины (гладкая сетка): 255 нет слоёв, ниже, сильнее. Шейдер красит слоями
+    // по высоте каждого пикселя, иначе на крутом склоне цвет одной вершины тянулся полосами на десятки блоков.
+    static final int BAND_ALPHA = 60;
 
     // Пестрота: множитель яркости от 1 - a до 1 + a по хешу клетки.
     static double speck(long x, long z, double a) {
@@ -145,8 +152,9 @@ public final class TileMesh {
         public final double x0, z0, size, step;
         public final int n, m;
         // высота, крупный рельеф, среднее крупного рельефа по клетке (только вдали, иначе NaN), вода, климат,
-        // расстояние до реки, густота леса и шум крон
-        public final float[] h, mac, mac5, wl, tmp, hum, mnt, river, slope, dens;
+        // расстояние до реки, густота леса и шум крон; мир TC Islands: isle больше 0 на острове (0 или меньше пустота),
+        // bot низ острова (в обычном мире isle 1, bot NaN)
+        public final float[] h, mac, mac5, wl, tmp, hum, mnt, river, slope, dens, isle, bot;
         // вид воды, стиль рельефа, флаги (1, замерзает)
         public final byte[] wk, st, fl;
         public final int[] ground, wcol;
@@ -156,17 +164,17 @@ public final class TileMesh {
             this.x0 = x0; this.z0 = z0; this.size = size; this.n = n; this.m = n + 3; this.step = size / n;
             int k = m * m;
             h = new float[k]; mac = new float[k]; mac5 = new float[k]; wl = new float[k]; tmp = new float[k]; hum = new float[k];
-            mnt = new float[k]; river = new float[k]; slope = new float[k]; dens = new float[k];
+            mnt = new float[k]; river = new float[k]; slope = new float[k]; dens = new float[k]; isle = new float[k]; bot = new float[k];
             wk = new byte[k]; st = new byte[k]; fl = new byte[k];
             ground = new int[k]; wcol = new int[k];
             this.pillars = pillars;
         }
 
-        public long bytes() { return (long) m * m * (10 * 4 + 3 + 8) + pillars.size() * 64L + 64; }
+        public long bytes() { return (long) m * m * (12 * 4 + 3 + 8) + pillars.size() * 64L + 64; }
 
         public void write(java.io.DataOutputStream out) throws java.io.IOException {
             out.writeDouble(x0); out.writeDouble(z0); out.writeDouble(size); out.writeInt(n);
-            for (float[] a : new float[][] { h, mac, mac5, wl, tmp, hum, mnt, river, slope, dens }) for (float v : a) out.writeFloat(v);
+            for (float[] a : new float[][] { h, mac, mac5, wl, tmp, hum, mnt, river, slope, dens, isle, bot }) for (float v : a) out.writeFloat(v);
             out.write(wk); out.write(st); out.write(fl);
             for (int v : ground) out.writeInt(v);
             for (int v : wcol) out.writeInt(v);
@@ -182,7 +190,7 @@ public final class TileMesh {
             int n = in.readInt();
             if (n <= 0 || n > 4096) throw new java.io.IOException("bad tile");
             Samples s = new Samples(x0, z0, size, n, new ArrayList<>());
-            for (float[] a : new float[][] { s.h, s.mac, s.mac5, s.wl, s.tmp, s.hum, s.mnt, s.river, s.slope, s.dens })
+            for (float[] a : new float[][] { s.h, s.mac, s.mac5, s.wl, s.tmp, s.hum, s.mnt, s.river, s.slope, s.dens, s.isle, s.bot })
                 for (int i = 0; i < a.length; i++) a[i] = in.readFloat();
             in.readFully(s.wk); in.readFully(s.st); in.readFully(s.fl);
             for (int i = 0; i < s.ground.length; i++) s.ground[i] = in.readInt();
@@ -204,7 +212,8 @@ public final class TileMesh {
         Terrain.Column c = new Terrain.Column();
         Macro.Sample ms = new Macro.Sample();
         float[] h = new float[m * m], mac = new float[m * m], mac5 = new float[m * m], wl = new float[m * m], tmp = new float[m * m],
-                hum = new float[m * m], mnt = new float[m * m], river = new float[m * m], slope = new float[m * m], dens = new float[m * m];
+                hum = new float[m * m], mnt = new float[m * m], river = new float[m * m], slope = new float[m * m], dens = new float[m * m],
+                isle = new float[m * m], bot = new float[m * m];
         byte[] wk = new byte[m * m], st = new byte[m * m], fl = new byte[m * m];
         int[] ground = new int[m * m], wcol = new int[m * m];
         for (int j = 0; j < m; j++) {
@@ -215,6 +224,14 @@ public final class TileMesh {
                 t.column(gx, gz, c);
                 for (int k = 0; k < 3; k++) pillarW[k] = Math.max(pillarW[k], Pillars.weight(k, c));
                 h[id] = (float) c.height;
+                // TC Islands: тот же разрез на острова, что у генератора (Archipelago), и низ острова
+                isle[id] = 1;
+                bot[id] = Float.NaN;
+                if (t.arch != null) {
+                    double e = t.arch.edge(gx, gz, c.height);
+                    isle[id] = (float) e;
+                    if (e > 0) bot[id] = (float) t.arch.bottom(gx, gz, c.height, e);
+                }
                 mac[id] = (float) c.macroHeight;
                 // среднее крупного рельефа по клетке нужно только для сглаживания вдали (шаг больше 12)
                 mac5[id] = Float.NaN;
@@ -247,7 +264,8 @@ public final class TileMesh {
         System.arraycopy(h, 0, s.h, 0, h.length); System.arraycopy(mac, 0, s.mac, 0, h.length); System.arraycopy(mac5, 0, s.mac5, 0, h.length);
         System.arraycopy(wl, 0, s.wl, 0, h.length); System.arraycopy(tmp, 0, s.tmp, 0, h.length); System.arraycopy(hum, 0, s.hum, 0, h.length);
         System.arraycopy(mnt, 0, s.mnt, 0, h.length); System.arraycopy(river, 0, s.river, 0, h.length); System.arraycopy(slope, 0, s.slope, 0, h.length);
-        System.arraycopy(dens, 0, s.dens, 0, h.length); System.arraycopy(wk, 0, s.wk, 0, h.length); System.arraycopy(st, 0, s.st, 0, h.length);
+        System.arraycopy(dens, 0, s.dens, 0, h.length);
+        System.arraycopy(isle, 0, s.isle, 0, h.length); System.arraycopy(bot, 0, s.bot, 0, h.length); System.arraycopy(wk, 0, s.wk, 0, h.length); System.arraycopy(st, 0, s.st, 0, h.length);
         System.arraycopy(fl, 0, s.fl, 0, h.length); System.arraycopy(ground, 0, s.ground, 0, h.length); System.arraycopy(wcol, 0, s.wcol, 0, h.length);
         return s;
     }
@@ -351,7 +369,7 @@ public final class TileMesh {
         for (int id = 0; id < m * m; id++) if (canopy[id] > 0) top[id] += canopy[id];
         // цвета вершин 0..n с отмывкой от фиксированного солнца
         int n1 = n + 1;
-        int[] col = new int[n1 * n1], flat = new int[n1 * n1];
+        int[] col = new int[n1 * n1], flat = new int[n1 * n1], bandA = new int[n1 * n1];
         for (int j = 0; j < n1; j++)
             for (int i = 0; i < n1; i++) {
                 int id = (j + 1) * m + i + 1;
@@ -361,8 +379,13 @@ public final class TileMesh {
                 double depth = wet ? wl[id] - h[id] : 0;
                 double[] rgb = ground[id] >= 0 ? land(t, x0 + i * step, z0 + j * step, h[id], tmp[id], st[id], slope, ground[id])
                         : wet ? seabed(depth) : MapRender.color(t, x0 + i * step, z0 + j * step, h[id], wl[id], wk[id], tmp[id], hum[id], mnt[id], st[id], slope);
-                if (o.mesaBands() && !wet && Macro.STYLES[st[id]] == Macro.Style.MESA && slope > 0.4)
-                    rgb = mix(rgb, unpack(band(h[id])), Macro.ss(0.4, 0.9, slope));
+                bandA[j * n1 + i] = 255;
+                if (o.mesaBands() && !wet && Macro.STYLES[st[id]] == Macro.Style.MESA && slope > 0.4) {
+                    double bw = Macro.ss(0.4, 0.9, slope);
+                    // блоками верх клетки плоский, там слой по высоте вершины; в гладкой сетке слои рисует шейдер
+                    if (pixel >= 2) rgb = mix(rgb, unpack(band(h[id])), bw);
+                    else bandA[j * n1 + i] = 255 - (int) Math.round(bw * BAND_ALPHA);
+                }
                 if (wet && !clearWater) rgb = waterOver(rgb, o.shore() ? shoreTint(wcol[id], depth, tmp[id], shoreAt(wcol, id, m)) : wcol[id], depth);
                 // впадины темнее: вершина ниже среднего восьми соседей
                 double light = 1;
@@ -390,6 +413,7 @@ public final class TileMesh {
         if (pixel >= 2) blocks(q, n, m, step, top, wk, st, tr, flat, o);
         else {
             if (pixel == 1) facets(n, m, step, top, flat, col);
+            for (int v = 0; v < col.length; v++) col[v] = bandA[v] << 24 | col[v] & 0xFFFFFF;
             float s = (float) step;
             for (int j = 0; j < n; j++)
                 for (int i = 0; i < n; i++) {
@@ -413,6 +437,15 @@ public final class TileMesh {
             int cg = ground[(vj + 1) * m + vi + 1];
             double snow = t.snowLine(p.x(), p.z(), tmp[(vj + 1) * m + vi + 1]);
             pillar(q, p, x0, z0, step, pixel, pillarColor(p, cg, snow));
+        }
+        // TC Islands: рельеф режется на острова, как у генератора, снизу у острова каменное дно.
+        // Без этого над пустотой рисовался сплошной материк с океанами, а внутри прорисовки его вырезала маска,
+        // и выходили висящие плиты с пустотой под ними
+        if (t.arch != null) {
+            boolean[] onIsle = isleCells(n, m, sm.isle);
+            q = cut(q, n, step, onIsle);
+            if (water != null) water = cut(water, n, step, onIsle);
+            isleUnder(q, n, m, step, top, sm.bot, onIsle, pixel);
         }
         return new TileMesh(x0, z0, step, q, water);
     }
@@ -669,6 +702,8 @@ public final class TileMesh {
         byte[] st = new byte[m * m];
         int[] top = new int[m * m], col = new int[m * m];
         boolean[] wet = new boolean[m * m];
+        // TC Islands: низ острова в столбике, NaN над пустотой (в обычном мире не нужен)
+        float[] low = t.arch != null ? new float[m * m] : null;
         Terrain.Column c = new Terrain.Column();
         for (int j = 0; j < m; j++) {
             if (cancelled.getAsBoolean()) return null;
@@ -676,6 +711,10 @@ public final class TileMesh {
                 int id = j * m + i;
                 double x = x0 + (i - 1) * b, z = z0 + (j - 1) * b;
                 t.column(x, z, c);
+                if (low != null) {
+                    double e = t.arch.edge(x + b * 0.5, z + b * 0.5, c.height);
+                    low[id] = e > 0 ? (float) Math.floor(t.arch.bottom(x + b * 0.5, z + b * 0.5, c.height, e)) : Float.NaN;
+                }
                 boolean w = c.waterKind != Terrain.WATER_NONE && c.water > c.height;
                 if (w && o.ice() && palette.frozen(t, c, x, z)) {
                     // лёд: сплошной на уровне воды
@@ -705,6 +744,7 @@ public final class TileMesh {
         for (int j = 1; j <= n; j++)
             for (int i = 1; i <= n; i++) {
                 int id = j * m + i, cc = col[id];
+                if (low != null && Float.isNaN(low[id])) continue;
                 float x = (i - 1) * b, z = (j - 1) * b, y = top[id] + (wet[id] ? -0.1f : 0);
                 int ct = 0xFF000000 | cc;
                 q.vertex(x, y, z, ct);
@@ -714,12 +754,41 @@ public final class TileMesh {
                 // бока с освещением как у блоков в игре: x, 0.6, z, 0.8
                 int kd = o.blockSides() && !wet[id] ? kind(cc, st[id], o.mesaBands()) : PLAIN, rk = pack(rock(Macro.STYLES[st[id]]));
                 float strip = 0.2f * b;
-                if (top[id - 1] < top[id]) sideFaces(q, x, z, x, z + b, top[id - 1], y, cc, kd, rk, 0.6, strip);
-                if (top[id + 1] < top[id]) sideFaces(q, x + b, z, x + b, z + b, top[id + 1], y, cc, kd, rk, 0.6, strip);
-                if (top[id - m] < top[id]) sideFaces(q, x, z, x + b, z, top[id - m], y, cc, kd, rk, 0.8, strip);
-                if (top[id + m] < top[id]) sideFaces(q, x, z + b, x + b, z + b, top[id + m], y, cc, kd, rk, 0.8, strip);
+                // у края острова верхний слой бока до 4 блоков, ниже камень до дна (ниже)
+                int edge = top[id] - 4;
+                int tw = side(low, top, id - 1, edge), te = side(low, top, id + 1, edge), tn = side(low, top, id - m, edge), ts = side(low, top, id + m, edge);
+                if (tw < top[id]) sideFaces(q, x, z, x, z + b, tw, y, cc, kd, rk, 0.6, strip);
+                if (te < top[id]) sideFaces(q, x + b, z, x + b, z + b, te, y, cc, kd, rk, 0.6, strip);
+                if (tn < top[id]) sideFaces(q, x, z, x + b, z, tn, y, cc, kd, rk, 0.8, strip);
+                if (ts < top[id]) sideFaces(q, x, z + b, x + b, z + b, ts, y, cc, kd, rk, 0.8, strip);
+                if (low != null) {
+                    // остров: дно и каменные бока к пустоте
+                    float lo = Math.min(low[id], y - 3);
+                    int under = shadeRgb(ISLE_ROCK, 0.55);
+                    q.vertex(x + b, lo, z, under);
+                    q.vertex(x + b, lo, z + b, under);
+                    q.vertex(x, lo, z + b, under);
+                    q.vertex(x, lo, z, under);
+                    int[] nb = { id - 1, id + 1, id - m, id + m };
+                    for (int d = 0; d < 4; d++) {
+                        int a = nb[d];
+                        // к пустоте камень от дна до верхнего слоя, к соседу на острове от нашего дна до его дна
+                        float to = Float.isNaN(low[a]) ? Math.min(y, edge) : Math.min(y, Math.min(top[a], low[a]));
+                        if (to <= lo) continue;
+                        int sc = shadeRgb(ISLE_ROCK, d < 2 ? 0.6 : 0.8);
+                        if (d == 0) side(q, x, z, x, z + b, lo, to, sc);
+                        else if (d == 1) side(q, x + b, z, x + b, z + b, lo, to, sc);
+                        else if (d == 2) side(q, x, z, x + b, z, lo, to, sc);
+                        else side(q, x, z + b, x + b, z + b, lo, to, sc);
+                    }
+                }
             }
         return new TileMesh(x0, z0, b, q, null);
+    }
+
+    // Высота соседа для бока столбика: над пустотой (TC Islands) бок только до edge.
+    private static int side(float[] low, int[] top, int nb, int edge) {
+        return low != null && Float.isNaN(low[nb]) ? edge : top[nb];
     }
 
     private static void side(Quads q, float ax, float az, float bx, float bz, float lo, float hi, int c) {
@@ -773,6 +842,77 @@ public final class TileMesh {
 
     static double[] mix(double[] a, double[] b, double k) {
         return new double[] { a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k };
+    }
+
+    // Клетки на острове: среднее isle по углам больше 0. Индекс (cj + 1) * (n + 2) + ci + 1, клетки от -1 до n.
+    static boolean[] isleCells(int n, int m, float[] isle) {
+        int k = n + 2;
+        boolean[] keep = new boolean[k * k];
+        for (int cj = -1; cj <= n; cj++)
+            for (int ci = -1; ci <= n; ci++) {
+                int a = (cj + 1) * m + ci + 1;
+                keep[(cj + 1) * k + ci + 1] = isle[a] + isle[a + 1] + isle[a + m] + isle[a + m + 1] > 0;
+            }
+        return keep;
+    }
+
+    static boolean kept(boolean[] keep, int n, double step, double x, double z) {
+        int k = n + 2;
+        int ci = (int) Math.max(-1, Math.min(n, Math.floor(x / step))), cj = (int) Math.max(-1, Math.min(n, Math.floor(z / step)));
+        return keep[(cj + 1) * k + ci + 1];
+    }
+
+    // Убрать квады над пустотой. Квад остаётся, если рядом с его центром есть клетка острова
+    // (стенки и юбки лежат на границе клеток, поэтому проверяются клетки с обеих сторон).
+    static Quads cut(Quads q, int n, double step, boolean[] keep) {
+        Quads out = new Quads();
+        double e = step * 0.01;
+        for (int f = 0; f < q.quads(); f++) {
+            int v = f * 4;
+            double cx = 0, cz = 0;
+            for (int i = 0; i < 4; i++) { cx += q.p[(v + i) * 3]; cz += q.p[(v + i) * 3 + 2]; }
+            cx /= 4; cz /= 4;
+            if (!kept(keep, n, step, cx - e, cz - e) && !kept(keep, n, step, cx + e, cz - e)
+                    && !kept(keep, n, step, cx - e, cz + e) && !kept(keep, n, step, cx + e, cz + e)) continue;
+            for (int i = 0; i < 4; i++) out.vertex(q.p[(v + i) * 3], q.p[(v + i) * 3 + 1], q.p[(v + i) * 3 + 2], q.c[v + i]);
+        }
+        return out;
+    }
+
+    static final int ISLE_ROCK = 0x6F6A64;
+
+    // Дно островов и стенки по краю: от верха до низа острова. В режиме блоков верх клетки, как у блоков, иначе по углам.
+    static void isleUnder(Quads q, int n, int m, double step, float[] top, float[] bot, boolean[] keep, int pixel) {
+        int k = n + 2;
+        float s = (float) step;
+        int under = shadeRgb(ISLE_ROCK, 0.55), sideA = shadeRgb(ISLE_ROCK, 0.8), sideB = shadeRgb(ISLE_ROCK, 0.65);
+        for (int cj = 0; cj < n; cj++)
+            for (int ci = 0; ci < n; ci++) {
+                if (!keep[(cj + 1) * k + ci + 1]) continue;
+                int a = (cj + 1) * m + ci + 1;
+                int[] id = { a, a + m, a + m + 1, a + 1 };
+                float[] xs = { ci * s, ci * s, (ci + 1) * s, (ci + 1) * s }, zs = { cj * s, (cj + 1) * s, (cj + 1) * s, cj * s };
+                float[] hi = new float[4], lo = new float[4];
+                float cell = (float) Math.ceil(Math.max(Math.max(top[a], top[a + 1]), Math.max(top[a + m], top[a + m + 1])));
+                for (int i = 0; i < 4; i++) {
+                    hi[i] = pixel >= 2 ? cell : top[id[i]];
+                    // угол над пустотой: тонкий край острова
+                    lo[i] = Float.isNaN(bot[id[i]]) ? hi[i] - 4 : Math.min(bot[id[i]], hi[i] - 3);
+                }
+                // дно в обратном порядке вершин (смотрит вниз)
+                for (int i = 3; i >= 0; i--) q.vertex(xs[i], lo[i], zs[i], under);
+                // стенки там, где соседняя клетка пустая: 0 запад, 1 юг, 2 восток, 3 север
+                int[][] nb = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } };
+                for (int d = 0; d < 4; d++) {
+                    if (keep[(cj + 1 + nb[d][1]) * k + ci + 1 + nb[d][0]]) continue;
+                    int i0 = d, i1 = (d + 1) & 3;
+                    int c = (d & 1) == 0 ? sideA : sideB;
+                    q.vertex(xs[i0], hi[i0], zs[i0], c);
+                    q.vertex(xs[i0], lo[i0], zs[i0], c);
+                    q.vertex(xs[i1], lo[i1], zs[i1], c);
+                    q.vertex(xs[i1], hi[i1], zs[i1], c);
+                }
+            }
     }
 
     private static void skirt(Quads q, float ax, float az, float bx, float bz, float ha, float hb, int ca, int cb, float drop) {

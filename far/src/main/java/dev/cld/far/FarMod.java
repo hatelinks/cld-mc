@@ -28,7 +28,7 @@ public final class FarMod {
     }
 
     private static void onPayloads(RegisterPayloadHandlersEvent e) {
-        e.registrar("1").optional().playToClient(SeedPayload.TYPE, SeedPayload.CODEC,
+        e.registrar("2").optional().playToClient(SeedPayload.TYPE, SeedPayload.CODEC,
                 (p, ctx) -> ctx.enqueueWork(() -> dev.cld.far.client.FarClient.onSeed(p)));
     }
 
@@ -40,6 +40,6 @@ public final class FarMod {
         ServerLevel ow = server.overworld();
         long seed = Worlds.seedFrom(ow.getChunkSource().randomState().getOrCreateNoise(Worlds.SEED_NOISE));
         Options o = Worlds.currentOptions();
-        PacketDistributor.sendToPlayer(sp, new SeedPayload(seed, o.continents(), o.mountains(), o.height(), o.climate(), o.snow(), o.halls()));
+        PacketDistributor.sendToPlayer(sp, new SeedPayload(seed, o.continents(), o.mountains(), o.height(), o.climate(), o.snow(), o.halls(), o.world()));
     }
 }
