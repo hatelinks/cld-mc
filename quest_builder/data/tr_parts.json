@@ -1,0 +1,567 @@
+{
+ "key": "tr_parts",
+ "id": "",
+ "title": "Вагоны и вокзалы",
+ "subtitle": "Train Parts, Railways Navigator, Bells & Whistles",
+ "group": "Эра механизмов",
+ "icon": "bellsandwhistles:headlight",
+ "order": 6.2,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "&bВагоны и вокзалы",
+   "sub": "Поезд должен быть красивым",
+   "desc": [
+    "Три мода для поездов Create: &6Train Parts&r (ступени, трапы, сдвижные окна, шлагбаум), &6Bells & Whistles&r (прожекторы, путеочистители, поручни, двери метро, платформы) и &6Create Railways Navigator&r (навигатор маршрутов и табло на станциях).",
+    "Навигатор в руке строит маршрут между станциями с пересадками, а табло показывает ближайшие поезда."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "bellsandwhistles:headlight",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "3B6917DA1CFEF16E"
+   ],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
+   "k": "train_step_andesite",
+   "title": "Андезитовые ступени",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Ступени у двери вагона: удобно заходить с низкой платформы.",
+    "&6Как получить:&r верстак: Ступеньки из резного андезитового кирпича, Андезитовый корпус.",
+    "&6Зачем нужен:&r идёт в Андезитовый трап."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_train_parts:train_step_andesite",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tr_parts/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "train_slide_andesite",
+   "title": "Андезитовый трап",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Трап выдвигается, когда поезд стоит на станции.",
+    "&6Как получить:&r верстак: Андезитовый корпус, Андезитовые ступени."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_train_parts:train_slide_andesite",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "tr_parts/train_step_andesite"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "andesite_sliding_window",
+   "title": "Андезитовое сдвижное окно",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый корпус, Обрамлённый стеклянный люк."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_train_parts:andesite_sliding_window",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "tr_parts/intro",
+    "25385F994C28D4F2"
+   ]
+  },
+  {
+   "k": "crossing",
+   "title": "Железнодорожный шлагбаум",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Шлагбаум закрывается сигналом редстоуна, например от сигнала поезда.",
+    "&6Как получить:&r верстак: Андезитовый корпус, Электронная лампа, Железный лист."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_train_parts:crossing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "tr_parts/intro",
+    "49A87F51BFFBB1C4",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "headlight",
+   "title": "Прожектор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Железный самородок, Факел."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "bellsandwhistles:headlight",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tr_parts/intro"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "andesite_pilot",
+   "title": "Андезитовый путеочиститель",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "bellsandwhistles:andesite_pilot",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "tr_parts/headlight",
+    "7BF2AA99A5A1C7CD"
+   ]
+  },
+  {
+   "k": "andesite_grab_rails",
+   "title": "Андезитовые поручни",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "bellsandwhistles:andesite_grab_rails",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tr_parts/headlight",
+    "7BF2AA99A5A1C7CD"
+   ]
+  },
+  {
+   "k": "andesite_door_step",
+   "title": "Андезитовый порог двери",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Андезитовый сплав."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "bellsandwhistles:andesite_door_step",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "tr_parts/headlight",
+    "7BF2AA99A5A1C7CD"
+   ]
+  },
+  {
+   "k": "metro_casing",
+   "title": "Метрокорпус",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Железный лист, Зелёный краситель.",
+    "&6Зачем нужен:&r идёт в Гофрированный метрокорпус, Метропанель, Метролюк, Метроокно."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "bellsandwhistles:metro_casing",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "tr_parts/headlight",
+    "024258E95184EEE4"
+   ]
+  },
+  {
+   "k": "metro_window",
+   "title": "Метроокно",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Метрокорпус."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "bellsandwhistles:metro_window",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "tr_parts/metro_casing"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "sliding_metro_door",
+   "title": "Раздвижная дверь метро",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Раздвижная дверь метро: открывается, когда поезд останавливается."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "bellsandwhistles:sliding_metro_door",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tr_parts/metro_window"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "station_platform",
+   "title": "Платформа станции",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r камнерез: Гладкий камень."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "bellsandwhistles:station_platform",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
+    }
+   ],
+   "deps": [
+    "tr_parts/metro_window"
+   ]
+  },
+  {
+   "k": "navigator",
+   "title": "Навигатор",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Навигатор: выберите станцию назначения, и он покажет поезда и пересадки.",
+    "&6Как получить:&r механический крафтер: Обрамлённая стеклянная панель, Медный лист, Железный лист, Андезитовый сплав, Механизм точности."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createrailwaysnavigator:navigator",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tr_parts/metro_window",
+    "63B86FA0C25B7639",
+    "27D0961A37A6E0CB",
+    "024258E95184EEE4"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "advanced_display",
+   "title": "Продвинутое табло",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Табло для станции или вагона: показывает ближайшие поезда и следующую остановку.",
+    "&6Как получить:&r верстак: Прочный лист, Андезитовый сплав, Механическое табло.",
+    "&6Как использовать:&r При нажатии &bПКМ&r гаечным ключом: Открывает меню &eнастройки&r табло.",
+    "&6Зачем нужен:&r идёт в Блок продвинутого табло, Продвинутая информационная панель, Малое продвинутое табло."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createrailwaysnavigator:advanced_display",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tr_parts/metro_window",
+    "7BF2AA99A5A1C7CD"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "train_station_clock",
+   "title": "Станционные часы",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как работает:&r Показывает &eтекущее время&r.",
+    "&6Как получить:&r верстак: Железный лист, Механизм точности, Часы.",
+    "&6Как использовать:&r При нажатии &bПКМ&r: Отображает &eтекущее время&r над панелью быстрого доступа.",
+    "&6Как использовать:&r При нажатии &bПКМ&r по другим станционным часам: Изменяет часы для отображения времени &eсо всех четырёх сторон&r."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createrailwaysnavigator:train_station_clock",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "tr_parts/station_platform",
+    "63B86FA0C25B7639",
+    "024258E95184EEE4"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "&6&lОбразцовая дорога",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Вагоны с подножками, табло на станциях и навигатор в кармане.",
+    "&7Откроется, когда будут выполнены последние квесты главы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "choice",
+     "table": "choice_tech"
+    }
+   ],
+   "deps": [
+    "tr_parts/sliding_metro_door",
+    "tr_parts/station_platform",
+    "tr_parts/navigator",
+    "tr_parts/advanced_display"
+   ],
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
+  }
+ ],
+ "color": "&6"
+}

@@ -31,8 +31,9 @@
 | `autotest/` | **cld_autotest**, служебный, в игру не ставить: с `config/cld_autotest.properties` сам заходит в мир, меряет FPS, CPU, память, пишет JFR и выходит. Свойства: `world`, `warmup`, `measure`, `pause`, `yaw`, `fly`, `maxfps`, `jfr`, `spark`, `setup`, `quit`. | 0.1.3 | `autotest/build.sh` |
 | `sable_android/` | **sable-android-support** (modId `sable_android`): нативка Rapier для Sable на Android + прореживание тиков блоков Simulated (coremod JS). Только для Android, на Маке не нужен. Исходники восстановлены из jar. | 2.0.0 | `sable_android/build.sh`; нативку пересобирать `sable_android/native/build_android_native.sh` (на Маке) |
 | `bombs/` | **cld_bombs** «Бомбы с уровнями»: дополнение к бомбам Supplementaries, уровни 1-10, прокачка порохом, кратер за несколько тиков, уровни в сундуках. Нужен Supplementaries 4.0. | 1.0.2 | `MODS=/mnt/project-files/libs-mods bombs/build.sh` |
-| `datapacks/` | Свои датапаки сборки (сейчас `cld_hourglass`: гравипесок Quark в песочных часах). | — | `datapacks/build.sh` → `datapacks/dist/*.zip` |
-| `quest_builder/` | Генератор квестов FTB Quests (36 глав, ~1300 квестов). | — | `python3 -I quest_builder/make.py` → `out/ftbquests_config.zip` + `out/checklist.md` |
+| `datapacks/` | Свои датапаки сборки: `cld_hourglass` (гравипесок Quark в песочных часах), `cld_waystones` (путевые камни на механическом крафтере), `cld_dupes` (обмен одинаковых предметов разных модов), `cld_airships` (деревня кораблей Integrated Villages не выше 590), `cld_start_book` (книга квестов при первом заходе). | — | `datapacks/build.sh` → `datapacks/dist/*.zip`; рецепты генерирует `datapacks/tools/make_recipes.py` |
+| `resourcepack/` | Ресурспак сборки: логотип, схема клавиш и тематические фоны всех глав квестов (namespace `cldquests`, фоны рисует `make_backgrounds.py` по `out/bg_layout.json` после `quest_builder/make.py`), иконка книги квестов. Включён в `pack/minecraft/options.txt` вместе со всеми паками, которые игра включает сама (`vanilla`, оверрайды createfood, `mod_resources`, `moonlight:merged_pack`, пак atmospherics, `quark-emote-pack`): если список в options.txt пустой, наш пак выключен и вместо фонов квестов розово-чёрная заглушка (02.11). | — | `resourcepack/build.sh` → `resourcepack/dist/cld_resources.zip`; картинки рисует `make_assets.py` (Pillow) |
+| `quest_builder/` | Генератор квестов FTB Quests (45 глав, ~1490 квестов, оформление как в aoa; с 03.11 без зависимостей, связи только линиями на фоне из ресурспака). | — | `python3 -I quest_builder/make.py` → `out/ftbquests_config.zip` + `out/checklist.md` |
 | `pack/` | Конфиги экземпляра Prism (`minecraft/config`, `defaultconfigs`, `options.txt`, `instance.cfg`, `mmc-pack.json`) и `MODS.md` — список модов с SHA-1. Полный архив с jar — в Releases (`cld-mc-pack.zip`). | — | — |
 
 Свои датапаки сборки (`pack_fixes.zip`, `colony_guard.zip`) лежат у владельца в `moonlight-global-datapacks`, описаны в `HANDOFF.md` §3.
@@ -61,6 +62,7 @@
 | cld_bombs | `docs/bombs.md` |
 | quest_builder | `docs/quest_builder.md` |
 | qa и cld_qabench | `docs/qa.md` |
+| Чужая сборка All of Create: Aeronautics (идеи для квестов, моды, деревни-корабли) | `docs/aoa.md` |
 
 Исходники всех наших модов есть в репозитории и собираются (проверено 29.10: размеры jar совпадают с выданными). Порт JJThunder To The Max (jjtm) и «Горы до небес» (gdn) удалены 30.10: чужой датапак (All Rights Reserved) не распространяем, вместо них tcw. 31.10 история git переписана без них (git filter-repo, force push всех веток), теги пререлизов переносит владелец скриптом с Мака: push тегов из облака запрещён. Чужие моды и датапаки в репозиторий и релизы не класть.
 
@@ -107,3 +109,4 @@ VERSION=1.3.3 LIBS=... pregen/build.sh
 - JEI 19.70 и All The Leaks 1.1.12 несовместимы: миксин ATL `SmithingCategoryExtensionMixin` (фикс FixCopyItemStack) считает, что в слоте 0 лежит `this`, а JEI 19.70 собран оптимизатором и переиспользует слот 0. Итог: `VerifyError: Bad type on operand stack` в `SmithingCategoryExtension.setOutput` при входе в мир (30.10). ATL убран из `mods` копии (лежит в `pack-update-backup-2026-10-30/mods`); вернуть только с версией ATL, где это исправлено, или с JEI 19.27.
 - cld_test_panel это полный форк Baritone (пакеты `baritone.*`): вместе с обычным `baritone-api-neoforge` не ставить, иначе игра не запускается (`ResolutionException: Modules baritoe and cld_test_panel export package baritone.api.schematic`, 31.10). Обычный Baritone убран из `mods` копии в `pack-update-backup-2026-10-30/mods`.
 - Квесты: ID предмета должен иметь модель (`_valid.json`), lang-строки без переносов.
+- FTB Quests рисует картинки глав шириной от размера кнопки (1.5 зума), а ставит по шагу сетки (1.75 зума): без поправки `IMG_K` в `quest_builder/build.py` фон главы на 1/7 меньше и подложки съезжают с квестов (02.11, `docs/quest_builder.md`).
