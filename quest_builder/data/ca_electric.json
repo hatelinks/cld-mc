@@ -1122,8 +1122,8 @@
     }
    ],
    "deps": [
-    "ca_electric/wires",
-    "5B43B9550057047C"
+    "5B43B9550057047C",
+    "ca_electric/wires"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -1265,8 +1265,8 @@
     }
    ],
    "deps": [
-    "ca_electric/wires",
-    "445AA98B4A1410FD"
+    "445AA98B4A1410FD",
+    "ca_electric/wires"
    ]
   },
   {

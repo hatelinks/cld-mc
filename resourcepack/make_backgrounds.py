@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# Рисует тематические фоны глав квестов: картинка под всей главой, дорожки под линиями квестов,
+# Рисует тематические фоны глав квестов: картинка под всей главой, дорожки и линии от квеста к квесту
+# (зависимостей в квестах нет, связи видны только на фоне),
 # подложки под квестами, подписи под крупными квестами и лента с названием главы по центру.
 # Берёт раскладку из out/bg_layout.json (его пишет quest_builder/build.py), кладёт PNG в
 # pack/assets/cldquests/textures/quests/bg/<глава>.png
@@ -311,10 +312,18 @@ def draw(key, ch):
         else:
             d.line((A, B), fill=rgba(acc, 90), width=int(pw * 0.5))
 
+    # зависимостей в квестах нет, связи видны только здесь: поверх дорожки чёткая линия от квеста к квесту
+    line = rgba(mix(acc, (255, 255, 255), 0.55), 235)
+    lw2 = max(2, int(S * 0.075))
+    for a_, b_ in segs:
+        d.line((P(*a_), P(*b_)), fill=(0, 0, 0, 120), width=lw2 + 2 * max(1, int(S * 0.025)))
+    for a_, b_ in segs:
+        d.line((P(*a_), P(*b_)), fill=line, width=lw2)
+
     for jx, jy in joints:
         cx, cy = P(jx, jy)
-        r = pw * 0.45
-        d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=rgba(acc, 200))
+        r = pw * 0.3
+        d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=line, outline=(0, 0, 0, 120), width=max(1, int(S * 0.025)))
 
     # ---------- подложки под квестами ----------
     glow = Image.new("RGBA", (W, H), (0, 0, 0, 0))

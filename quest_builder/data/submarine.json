@@ -129,8 +129,8 @@
    ],
    "deps": [
     "submarine/intro",
-    "create_misc/iron_blocks",
-    "create_andesite/propeller"
+    "create_andesite/propeller",
+    "create_misc/iron_blocks"
    ]
   },
   {
@@ -227,8 +227,8 @@
    ],
    "deps": [
     "submarine/water_thruster",
-    "sim_physics/spring",
-    "49A87F51BFFBB1C4"
+    "49A87F51BFFBB1C4",
+    "sim_physics/spring"
    ]
   },
   {
@@ -292,8 +292,8 @@
    ],
    "deps": [
     "submarine/water_thruster",
-    "create_logistics/transmitter",
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "create_logistics/transmitter"
    ],
    "shape": "gear",
    "size": 1.5
@@ -390,8 +390,8 @@
    ],
    "deps": [
     "submarine/sonar",
-    "024258E95184EEE4",
-    "49A87F51BFFBB1C4"
+    "49A87F51BFFBB1C4",
+    "024258E95184EEE4"
    ]
   },
   {
