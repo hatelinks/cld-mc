@@ -20,7 +20,9 @@
     "RuleTestAccessors$Block",
     "RuleTestAccessors$State",
     "ReplaceBlobsMixin",
-    "PrecheckSlotMixin"
+    "PrecheckSlotMixin",
+    "StructureMixin",
+    "NearestStructureMixin"
   ],
   "injectors": {
     "defaultRequire": 1

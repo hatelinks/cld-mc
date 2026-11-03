@@ -8,6 +8,35 @@
  "order": 8,
  "quests": [
   {
+   "k": "welcome",
+   "title": "&bДобро пожаловать: Золото знаний",
+   "sub": "Create: Enchantment Industry — жидкий опыт, зачарование и печать книг",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Create Enchantment Industry превращает опыт в жидкость: её можно качать, хранить и тратить на зачарование машинами."
+   ],
+   "icon": "create_enchantment_industry:blaze_enchanter",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "33627C656E58AF04"
+   ],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
    "id": "762DEABF97F9A868",
    "title": "Крупица опыта",
    "sub": "Опыт в твёрдом виде",
@@ -32,7 +61,7 @@
     }
    ],
    "deps": [
-    "33627C656E58AF04"
+    "create_enchant_ch/welcome"
    ]
   },
   {
@@ -58,6 +87,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -87,6 +120,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -182,6 +219,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -272,6 +313,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -338,7 +383,8 @@
     }
    ],
    "deps": [
-    "25385F994C28D4F2"
+    "25385F994C28D4F2",
+    "create_enchant_ch/welcome"
    ]
   },
   {
@@ -396,6 +442,10 @@
     {
      "type": "xp",
      "amount": 30
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -426,6 +476,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -580,7 +634,7 @@
   },
   {
    "k": "finale",
-   "title": "Хранитель знаний",
+   "title": "&6&lХранитель знаний",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -605,6 +659,10 @@
      "type": "item",
      "id": "minecraft:experience_bottle",
      "count": 16
+    },
+    {
+     "type": "choice",
+     "table": "choice_tech"
     }
    ],
    "deps": [
@@ -613,7 +671,10 @@
     "1DC5F329A32BBC2E",
     "0981AFBDDDC9FD9F"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&a"
 }
