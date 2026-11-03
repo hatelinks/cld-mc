@@ -1,0 +1,10 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "dev.cld.compat.mixin",
+  "plugin": "dev.cld.compat.mixin.CompatMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixinPriority": 500,
+  "mixins": ["PropulsionThrusterStubMixin", "WntNoSleepMixin"],
+  "injectors": {"defaultRequire": 1}
+}

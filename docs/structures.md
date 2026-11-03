@@ -2,13 +2,13 @@
 
 Карта кода. Читать вместо разбора исходников; кто меняет мод, обновляет эту страницу в своём PR.
 
-- modId `cld_structures`, папка `structures/`, версия **1.0.0** (`VERSION` в `structures/build.sh`).
+- modId `cld_structures`, папка `structures/`, версия **1.0.1** (`VERSION` в `structures/build.sh`).
 - Структуры разных модов не появляются друг в друге: набор структур пропускает чанк, если рядом может встать структура более редкого набора того же этапа генерации с подходящим биомом.
 - Решение зависит только от сида и координат, порядок генерации чанков не важен. Серверный по сути, ставится и на клиент, и на сервер.
 
 ## Сборка
 ```sh
-LIBS=/mnt/project-files/libs structures/build.sh   # structures/dist/cld_structures-neoforge-1.21.1-1.0.0.jar
+LIBS=/mnt/project-files/libs structures/build.sh   # structures/dist/cld_structures-neoforge-1.21.1-1.0.1.jar
 ```
 
 ## Файлы
@@ -18,6 +18,8 @@ LIBS=/mnt/project-files/libs structures/build.sh   # structures/dist/cld_structu
 | `Overlap` | Вся логика. `blocked(set, state, cx, cz)`: для каждого другого набора с большим приоритетом и общим этапом (`GenerationStep.Decoration`) ищет возможный старт в радиусе `min(max_radius, r1 + r2)` чанков. Приоритет = spacing у random spread, у колец (крепости) максимум, у прочих 32; при равенстве сравниваются id. Радиус структуры: у пазловых `maxDistanceFromCenter / 16 * size_factor` (1-6 чанков, через отражение), иначе 2. Биом проверяется на высотах Y -32, 32, 64, 128, 256. |
 | `mixin/ChunkGeneratorMixin` | `@Inject` в HEAD лямбды `lambda$createStructures$14` у `ChunkGenerator`, отменяет набор, если `Overlap.blocked`. |
 | `mixin/StructureStateAccessor` | Доступ к `biomeSource` у `ChunkGeneratorStructureState`. |
+| `ring/RingCandidates`, `mixin/RingCandidatesMixin` | Начальные точки колец крепостей (с 1.0.1): та же последовательность случайных чисел, что в ванильном `generateRingPositions` (включая `fork`), но без поиска биома; считается мгновенно и кэшируется на `ChunkGeneratorStructureState`. Крепость встает не дальше 7 чанков от своей точки (поиск биома в 112 блоках), `near` берет 8. |
+| `mixin/RingNearSpawnMixin` | `ConcentricRingsStructurePlacement.isPlacementChunk`: если рядом нет ни одной начальной точки, сразу `false`, без `getRingPositionsFor().join()`. Тот же прием в `Overlap.hasValidStart` для колец. |
 
 ## Настройки
 `config/cld_structures.properties` (создаётся сам):
@@ -26,6 +28,7 @@ LIBS=/mnt/project-files/libs structures/build.sh   # structures/dist/cld_structu
 - `ignored_sets`: наборы через запятую, которые не трогаем (например `minecraft:mineshafts`).
 
 ## Грабли
+- Новый мир: ваниль на первом чанке ждет поиск биома для всех 128 крепостей (`getRingPositionsFor` делает `join`). В мире tcw поиск тянет гидрологию (`Hydro`) десятков далеких континентов, это десятки секунд процессора, и область спавна стоит на 0%. Ждали и ваниль, и `Overlap` (проверка соседства с крепостью для каждого чанка). С 1.0.1 оба места отвечают по начальным точкам без ожидания; список колец сверен с прежним (`tcw_rings.txt` совпал, все 128 крепостей в 7 чанках от своих точек). Замер в облаке, полная сборка, 4 ядра: область спавна 48.5 с стала 28.9 с.
 - Имя лямбды `lambda$createStructures$14` зависит от компилятора Minecraft: при смене версии игры или NeoForge проверить (иначе миксин упадёт, `defaultRequire 1`).
 - В игре на новом мире ещё не проверен (`HANDOFF.md` §9).
 - Кэш `INFO` по наборам живёт до выхода из игры; при смене датапаков без перезапуска может держать старые данные.

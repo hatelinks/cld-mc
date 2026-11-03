@@ -27,4 +27,7 @@ test_panel/dist/
 bombs/build/
 bombs/dist/
 datapacks/dist/
+compat/dist/
+compat/build/
+structures/dist/
 resourcepack/dist/
