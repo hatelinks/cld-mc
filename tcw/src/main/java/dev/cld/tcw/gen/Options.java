@@ -1,14 +1,23 @@
 package dev.cld.tcw.gen;
 
 /** Настройки мира TelipailoCraft (экран «Настроить»): каждая — 0, 1 или 2, где 1 — как по умолчанию. */
-public record Options(int continents, int mountains, int height, int climate, int snow, int halls) {
-    public static final Options DEFAULT = new Options(1, 1, 1, 1, 1, 1);
+// world: 0 обычный мир, 1 End Sea (архипелаг в пустоте, см. Archipelago)
+public record Options(int continents, int mountains, int height, int climate, int snow, int halls, int world) {
+    public static final Options DEFAULT = new Options(1, 1, 1, 1, 1, 1, 0);
+
+    public Options(int continents, int mountains, int height, int climate, int snow, int halls) {
+        this(continents, mountains, height, climate, snow, halls, 0);
+    }
+
+    public boolean endSea() { return world == 1; }
+
+    public Options withWorld(int w) { return new Options(continents, mountains, height, climate, snow, halls, w); }
 
     private static int c(int v) { return Math.max(0, Math.min(2, v)); }
 
     public Options {
         continents = c(continents); mountains = c(mountains); height = c(height);
-        climate = c(climate); snow = c(snow); halls = c(halls);
+        climate = c(climate); snow = c(snow); halls = c(halls); world = Math.max(0, Math.min(1, world));
     }
 
     /** Размер ячейки континента, блоков. */

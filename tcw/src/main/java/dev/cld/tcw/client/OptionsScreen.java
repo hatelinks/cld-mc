@@ -14,6 +14,8 @@ import net.minecraft.network.chat.Component;
 
 /** «Настроить» для типа мира TelipailoCraft. */
 public final class OptionsScreen extends Screen {
+    // обычный мир или End Sea: меняется только выбором типа мира, здесь сохраняем как есть
+    private int world;
     private final CreateWorldScreen parent;
     private final int[] v;
     private final HeaderAndFooterLayout layout = new HeaderAndFooterLayout(this);
@@ -32,6 +34,7 @@ public final class OptionsScreen extends Screen {
         this.parent = parent;
         Options o = ClientSetup.options(parent.getUiState());
         v = new int[] { o.continents(), o.mountains(), o.height(), o.climate(), o.snow(), o.halls() };
+        world = o.world();
     }
 
     @Override
@@ -49,11 +52,11 @@ public final class OptionsScreen extends Screen {
         layout.addToContents(grid);
         LinearLayout footer = layout.addToFooter(LinearLayout.horizontal().spacing(8));
         footer.addChild(Button.builder(Component.literal("По умолчанию"), b -> {
-            ClientSetup.setOptions(parent.getUiState(), Options.DEFAULT);
+            ClientSetup.setOptions(parent.getUiState(), Options.DEFAULT.withWorld(world));
             minecraft.setScreen(new OptionsScreen(parent));
         }).width(100).build());
         footer.addChild(Button.builder(Component.translatable("gui.done"), b -> {
-            ClientSetup.setOptions(parent.getUiState(), new Options(v[0], v[1], v[2], v[3], v[4], v[5]));
+            ClientSetup.setOptions(parent.getUiState(), new Options(v[0], v[1], v[2], v[3], v[4], v[5], world));
             onClose();
         }).width(100).build());
         footer.addChild(Button.builder(Component.translatable("gui.cancel"), b -> onClose()).width(100).build());

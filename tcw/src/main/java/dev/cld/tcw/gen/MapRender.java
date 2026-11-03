@@ -32,6 +32,8 @@ public final class MapRender {
                 g.h[id] = (float) c.height; g.wl[id] = (float) c.water; g.wk[id] = (byte) c.waterKind;
                 g.tmp[id] = (float) c.temp; g.hum[id] = (float) c.humid; g.mnt[id] = (float) c.mountain;
                 g.st[id] = (byte) c.dominant().ordinal();
+                // End Sea: пустота между островами
+                if (t.arch != null && t.arch.edge(g.x0 + i * g.k, g.z0 + j * g.k, c.height) <= 0) g.wk[id] = -1;
             }
             g.done.incrementAndGet();
         });
@@ -40,6 +42,7 @@ public final class MapRender {
     /** Цвет пикселя 0xRRGGBB. */
     public static int pixel(Terrain t, Grid g, int i, int j) {
         int n = g.n, id = j * n + i;
+        if (g.wk[id] == -1) return 0x0c0a14;
         float[] h = g.h;
         double k = g.k;
         double hx = (h[j * n + Math.min(n - 1, i + 1)] - h[j * n + Math.max(0, i - 1)]) / (2 * k);

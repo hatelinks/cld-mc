@@ -36,6 +36,8 @@ public final class Spawn {
                     t.column(x, z, c);
                     double elev = c.height - Macro.SEA;
                     if (c.waterKind != Terrain.WATER_NONE || elev < 4 || elev > 140 || c.slope > 0.18 || c.temp < -0.35) continue;
+                    // End Sea: только середина крупного острова
+                    if (t.arch != null && t.arch.edge(x, z, c.height) < 0.15) continue;
                     // горы вокруг: самая высокая точка кольца 400–900 блоков
                     double around = 0;
                     for (int a = 0; a < 8; a++) {
@@ -59,6 +61,7 @@ public final class Spawn {
             for (int j = -6; j <= 6; j++) {
                 t.column(bx + i * 8, bz + j * 8, c);
                 if (c.waterKind != Terrain.WATER_NONE || c.riverDist < 8) continue;
+                if (t.arch != null && t.arch.edge(bx + i * 8, bz + j * 8, c.height) < 0.1) continue;
                 double s = c.slope * 100 + Math.hypot(i, j);
                 if (s < bs) { bs = s; fx = bx + i * 8; fz = bz + j * 8; fy = (int) Math.ceil(c.height) + 1; }
             }

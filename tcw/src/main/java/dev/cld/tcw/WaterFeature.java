@@ -37,7 +37,7 @@ public final class WaterFeature extends Feature<NoneFeatureConfiguration> {
                 if (kind == Terrain.WATER_NONE) continue;
                 int wl = (int) Math.floor(w[0]);
                 if (wl < 62) continue;
-                int top = level.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, x, z) - 1;
+                int top = Surface.height(level, t.islands, Heightmap.Types.OCEAN_FLOOR_WG, x, z) - 1;
                 if (kind == Terrain.WATER_RIVER) {
                     int bottom = Math.min((int) Math.floor(w[1]), top);
                     if (top - wl > 8) continue; // под навесом или в столбе: не трогаем
