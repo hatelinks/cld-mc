@@ -18,7 +18,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "minecraft:nether_star"
+      "item": "minecraft:diamond_block"
     },
     "B": {
       "item": "create:sturdy_sheet"
@@ -30,10 +30,10 @@
       "item": "create:precision_mechanism"
     },
     "E": {
-      "item": "mysticalagriculture:awakened_supremium_ingot"
+      "item": "mysticalagriculture:imperium_ingot"
     },
     "F": {
-      "item": "minecraft:netherite_block"
+      "item": "create:brass_block"
     },
     "G": {
       "item": "create:wand_of_symmetry"
