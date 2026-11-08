@@ -1,6 +1,7 @@
 #!/bin/sh
 # Проверка пилы Create на настоящем сервере: ставит деревья (/place feature), перед стволом пилу и творческий мотор,
 # считает брёвна и листву до и после спила (clone filtered ничего не меняет в исходной области).
+# Пила стоит у точки посадки: у мангра, капока, баньяна ствол бывает в стороне, тогда в отчёте "пила не достала".
 # Запуск: qa/saw_trees.sh <папка mods> [список деревьев через пробел]
 # В mods: create, cld_lumber (или без него для сравнения), wwoo и cristellib для деревьев WWOO.
 set -eu
@@ -28,7 +29,7 @@ spawn-protection=0
 view-distance=4
 simulation-distance=4
 P
-echo "-Xms2G -Xmx6G -Dcld_lumber.debug=true" > "$RUN/user_jvm_args.txt"
+echo "-Xms2G -Xmx6G -Dcld_lumber.debug=true -Dstdout.encoding=UTF-8" > "$RUN/user_jvm_args.txt"
 cd "$RUN"
 rm -f in && mkfifo in
 sleep infinity > in &
@@ -102,8 +103,14 @@ for ln in lines:
         m = re.search(r'Successfully cloned (\d+) block', ln) or re.search(r'cloned (\d+) block', ln)
         if m or 'No blocks' in ln or 'too many' in ln.lower():
             k = (cur[1], cur[2], cur[0]); res[k] = res.get(k, 0) + (int(m.group(1)) if m else 0); cur = None
+cut = {}
+for ln in lines:
+    m = re.search(r'cld_lumber: .* x=(-?\d+), y=100, z=0\}: (.*)', ln)
+    if m: cut[m.group(1)] = m.group(2)
 for x, n in names.items():
     def g(f, w): return res.get((x, f, w), 0)
+    # без отладочной строки пила ничего не спилила: ствол этого дерева не стоит в точке посадки
+    print('%-40s %s | %s' % (n, place.get(x, '?'), cut.get(x, 'пила не достала до ствола' if cut else '')))
     print('%-40s %s скорость %s | брёвна %d -> %d (на уровне спила %d) | листва %d -> %d | грибы %d -> %d' % (n, place.get(x, '?'), speed.get(x, '?'),
         g('#minecraft:logs', 'before'), g('#minecraft:logs', 'after'), g('#minecraft:logs', 'ground'), g('#minecraft:leaves', 'before'), g('#minecraft:leaves', 'after'),
         g('minecraft:mushroom_stem', 'before') + g('minecraft:red_mushroom_block', 'before'), g('minecraft:mushroom_stem', 'after') + g('minecraft:red_mushroom_block', 'after')))
