@@ -82,6 +82,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "ingots"
     }
    ],
    "deps": [
@@ -118,7 +122,9 @@
    ],
    "deps": [
     "4BD21DA830FF08BA"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "5E3E38D8D407304B",
@@ -173,6 +179,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -200,6 +210,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "ingots"
     }
    ],
    "deps": [
@@ -263,7 +277,9 @@
    ],
    "deps": [
     "5CCD05F7CE371A22"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "495DC7E802186D7C",
@@ -319,6 +335,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "ingots"
     }
    ],
    "deps": [
@@ -405,6 +425,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "ingots"
     }
    ],
    "deps": [
@@ -501,7 +525,9 @@
    ],
    "deps": [
     "3F7D9D88D7A8EC84"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "3A7686CE769A8AE7",
@@ -524,6 +550,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -551,6 +581,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "ingots"
     }
    ],
    "deps": [
@@ -788,7 +822,9 @@
    ],
    "deps": [
     "3F7D9D88D7A8EC84"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "38BB3B7717185D39",
@@ -821,7 +857,9 @@
    "deps": [
     "78E38D0087E1CEE2",
     "5E3E38D8D407304B"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "4302069B6EAB8877",
@@ -844,6 +882,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "ingots"
     }
    ],
    "deps": [
@@ -898,6 +940,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "ingots"
     }
    ],
    "deps": [
@@ -1135,7 +1181,9 @@
    ],
    "deps": [
     "495DC7E802186D7C"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "2AD0CD9868BF9EA7",
@@ -1190,6 +1238,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1217,6 +1269,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "ingots"
     }
    ],
    "deps": [
@@ -1479,6 +1535,10 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "ingots"
     }
    ],
    "deps": [
@@ -1515,7 +1575,9 @@
    ],
    "deps": [
     "2F25FFB8F67B7823"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "2B89BC6DB7745208",
@@ -1565,6 +1627,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "ingots"
     }
    ],
    "deps": [
@@ -1718,7 +1784,7 @@
   },
   {
    "k": "finale",
-   "title": "Покоритель миров",
+   "title": "&6&lПокоритель миров",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -1748,6 +1814,10 @@
      "type": "item",
      "id": "minecraft:golden_apple",
      "count": 2
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
     }
    ],
    "deps": [
@@ -1756,7 +1826,19 @@
     "1550F4511D952623",
     "294C263339C2A04A"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
+ ],
+ "color": "&f",
+ "deco": [
+  [
+   "minecraft:textures/item/diamond_pickaxe.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
  ]
 }

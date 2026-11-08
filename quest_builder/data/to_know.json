@@ -1,0 +1,363 @@
+{
+ "key": "to_know",
+ "id": "",
+ "title": "Полезно знать",
+ "subtitle": "Особенности сборки и моды без предметов",
+ "group": "",
+ "icon": "minecraft:knowledge_book",
+ "order": -1,
+ "quests": [
+  {
+   "k": "tcw",
+   "title": "Мир TelipailoCraft",
+   "sub": "Горы до неба, реки и ледники",
+   "x": 0.0,
+   "y": 0.0,
+   "desc": [
+    "Тип мира по умолчанию &6TelipailoCraft&r: высота от -128 до 640, горы с ледниками, реки, пещеры и горные биомы.",
+    "&b/locate tcw&r ищет особые места, &b/tcwmap&r рисует карту. Изменения генерации видны только в новых чанках."
+   ],
+   "icon": "minecraft:grass_block",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [],
+   "shape": "gear",
+   "size": 1.25
+  },
+  {
+   "k": "far",
+   "title": "Дальний рельеф",
+   "sub": "Горизонт без лагов",
+   "x": 1.5,
+   "y": 0.0,
+   "desc": [
+    "&6cld_far&r рисует горы за пределами прорисовки без загрузки чанков. Настройки на &bF7&r, пресеты и дальность там же.",
+    "В пещерах дальний рельеф выключается сам."
+   ],
+   "icon": "minecraft:spyglass",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [],
+   "shape": "gear",
+   "size": 1.25
+  },
+  {
+   "k": "bombs",
+   "title": "Бомбы с уровнями",
+   "sub": "Прокачка порохом",
+   "x": 3.0,
+   "y": 0.0,
+   "desc": [
+    "Бомбы Supplementaries получают уровни от 1 до 10: соедините бомбу с порохом. Чем выше уровень, тем больше кратер.",
+    "Бомбы с уровнем попадаются и в сундуках структур."
+   ],
+   "icon": "minecraft:gunpowder",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [],
+   "shape": "gear",
+   "size": 1.25
+  },
+  {
+   "k": "colony",
+   "title": "Колония рядом",
+   "sub": "MineColonies",
+   "x": 4.5,
+   "y": 0.0,
+   "desc": [
+    "Колония MineColonies защищена от монстров и чужих разрушений. Жители строят по схемам, а вы даёте им материалы.",
+    "Глава &6Жизнь колонии&r ведёт от лагеря снабжения до большого города."
+   ],
+   "icon": "minecolonies:supplycampdeployer",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [],
+   "shape": "gear",
+   "size": 1.25
+  },
+  {
+   "k": "android",
+   "title": "Игра на Android",
+   "sub": "Что отличается",
+   "x": 6.0,
+   "y": 0.0,
+   "desc": [
+    "На телефоне нет Sodium и шейдеров, а моды на физике кораблей (Aeronautics, двигатели, субмарины) нагружают сильнее.",
+    "Если FPS низкий: уменьшите дальность в &bF7&r и прорисовку чанков."
+   ],
+   "icon": "minecraft:redstone_torch",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [],
+   "shape": "gear",
+   "size": 1.25
+  },
+  {
+   "k": "polymorph",
+   "title": "Polymorph",
+   "sub": "Один рецепт, разные результаты",
+   "x": 0.0,
+   "y": 1.5,
+   "desc": [
+    "Если одинаковые ингредиенты дают разные предметы из разных модов, в верстаке появится кнопка выбора результата."
+   ],
+   "icon": "minecraft:crafting_table",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "corpse",
+   "title": "Могила после смерти",
+   "sub": "Corpse",
+   "x": 1.5,
+   "y": 1.5,
+   "desc": [
+    "После смерти вещи остаются в теле на месте гибели. Подойдите и нажмите &bПКМ&r, чтобы забрать их. Тело не исчезает."
+   ],
+   "icon": "minecraft:skeleton_skull",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "controlling",
+   "title": "Поиск клавиш",
+   "sub": "Controlling и Searchables",
+   "x": 3.0,
+   "y": 1.5,
+   "desc": [
+    "В настройках управления есть поиск по названию и по клавише, а конфликты подсвечены. Поиск есть и в других списках настроек."
+   ],
+   "icon": "minecraft:oak_sign",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "mousetweaks",
+   "title": "Быстрый инвентарь",
+   "sub": "Mouse Tweaks",
+   "x": 4.5,
+   "y": 1.5,
+   "desc": [
+    "Зажмите &bПКМ&r и проведите по слотам, чтобы разложить стопку. &bShift&r и проведите, чтобы перенести много предметов. Колесо мыши перекладывает по одному."
+   ],
+   "icon": "minecraft:hopper",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "enchdesc",
+   "title": "Что делают чары",
+   "sub": "Enchantment Descriptions",
+   "x": 6.0,
+   "y": 1.5,
+   "desc": [
+    "Наведите на зачарованную книгу и зажмите &bShift&r: появится описание каждого зачарования."
+   ],
+   "icon": "minecraft:enchanted_book",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "jep",
+   "title": "Профессии и разведение",
+   "sub": "Just Enough Professions и Breeding",
+   "x": 0.0,
+   "y": 3.0,
+   "desc": [
+    "В JEI есть вкладки: какой блок даёт какую профессию жителю и чем кормить животных для разведения."
+   ],
+   "icon": "minecraft:emerald",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "neruina",
+   "title": "Защита от вылетов",
+   "sub": "Neruina",
+   "x": 1.5,
+   "y": 3.0,
+   "desc": [
+    "Если блок или существо ломает тик мира, &6Neruina&r останавливает только его и пишет в чат, вместо вылета игры."
+   ],
+   "icon": "minecraft:shield",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  },
+  {
+   "k": "waystones",
+   "title": "Путевые камни",
+   "sub": "Делаются на механическом крафтере",
+   "x": 3.0,
+   "y": 3.0,
+   "desc": [
+    "Путевые камни в этой сборке собираются на &6механическом крафтере Create&r, обычного рецепта нет.",
+    "Найденные в мире камни работают как обычно."
+   ],
+   "icon": "waystones:waystone",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": []
+  }
+ ],
+ "color": "&a",
+ "layout": "manual",
+ "images": [
+  {
+   "image": "cldquests:textures/quests/logo.png",
+   "width": 6.0,
+   "height": 0.86,
+   "x": 3.0,
+   "y": -2.2
+  }
+ ]
+}

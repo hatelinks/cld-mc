@@ -9,7 +9,7 @@
  "quests": [
   {
    "id": "38F8CA97833248DE",
-   "title": "Порядок на складе",
+   "title": "&bПорядок на складе",
    "sub": "Storage Drawers — склад по видам",
    "desc": [
     "Ящики хранят большое количество предметов одного вида и удобно складываются в стены.",
@@ -31,7 +31,9 @@
      "amount": 10
     }
    ],
-   "deps": []
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
   },
   {
    "id": "5F269EF90ABC2903",
@@ -59,7 +61,9 @@
    ],
    "deps": [
     "38F8CA97833248DE"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "04448CA67380B917",
@@ -83,6 +87,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -205,11 +213,17 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
     "5F269EF90ABC2903"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "2E9946C02098A3FD",
@@ -266,6 +280,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -388,6 +406,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -481,7 +503,9 @@
    ],
    "deps": [
     "04448CA67380B917"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "07DCD154FC0A963D",
@@ -650,6 +674,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -828,6 +856,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -890,6 +922,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -991,6 +1027,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -1052,6 +1092,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -1119,6 +1163,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1147,6 +1195,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "storage"
     }
    ],
    "deps": [
@@ -1238,7 +1290,7 @@
   },
   {
    "k": "finale",
-   "title": "Порядок во всём",
+   "title": "&6&lПорядок во всём",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -1263,6 +1315,10 @@
      "type": "item",
      "id": "minecraft:diamond",
      "count": 2
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
     }
    ],
    "deps": [
@@ -1271,7 +1327,10 @@
     "3E93FF3157DA75BC",
     "sd_drawers/drawer_magnet"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&2"
 }

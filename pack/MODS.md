@@ -107,3 +107,41 @@ Minecraft 1.21.1, NeoForge 21.1.248. Сами jar — в архиве на ст�
 | Clumps | clumps | 19.0.0.1 | Clumps-neoforge-1.21.1-19.0.0.1.jar | fa2576297c7bd12b28aa7070e8141792bd66da4c |
 | Packet Fixer | packetfixer | 3.3.1 | packetfixer-3.3.1-1.20.5-1.21.X-merged.jar | a8bb6e25807682e72c23bf4065f3cd5f6373ece3 |
 | Ускорения клиента сборки | cld_perf | 0.1.0 | cld_perf-neoforge-1.21.1-0.1.0.jar | 1fe35e204d10e2e34d44b4867b0b1285ab99282c |
+
+## Ждут установки: моды из сборки aoa (02.11)
+Выбраны владельцем по анкете (`docs/aoa.md`). Jar лежат в `/mnt/project-files/aoa-mods/`, их надо скопировать в `mods` экземпляра. Зависимости и версии сверены с нашей сборкой (NeoForge 21.1.248, Create 6.0.10, Aeronautics, Supplementaries 4.0.2, Integrated API 1.9.1). После установки перенести строки в основную таблицу.
+
+| Jar | SHA-1 |
+|---|---|
+| Controlling-neoforge-1.21.1-19.0.5.jar | 8a34424fc1428778be2fdbfa4da67b21b70bcbfe |
+| JustEnoughProfessions-neoforge-1.21.1-4.0.5.jar | 439ea1baa5e3065e36e0e57422f22403918bb59f |
+| MouseTweaks-neoforge-mc1.21-2.26.1.jar | 6dae57f4f50f7808d2ed9a18f6cd1c0d4640c6bc |
+| Searchables-neoforge-1.21.1-1.0.2.jar | 5b8a0b43a474c066371b2e16f9bfb88622552a74 |
+| bellsandwhistles-0.4.7-1.21.1.jar | 85944080f8bd47dad64a8193a70662cd9ddbb200 |
+| bookshelf-neoforge-1.21.1-21.1.81.jar | efc4cda6da4dd879f24d057ed0a6413764c9ba40 |
+| configurable-3.5.3+1.21.1-neoforge.jar | 694e68c671dacf418c8ed7ab543f62c80fdd0f95 |
+| copycats-3.0.9+mc.1.21.1-neoforge.jar | 74de17876c43f5f780bac478b9f9eb11e687b8d7 |
+| corpse-neoforge-1.21.1-1.1.22.jar | 0d73e082e4d5c0f185aa8030bcefb68c259d1107 |
+| create-confectionery1.21.1_v1.1.3b.jar | 47e235efa862c5cbea53fdf8346d4c499674defa |
+| create-stockmarket-1.1.1+mc1.21.1.jar | 8cb5b4320e0ccbdaaf6fc8d46bfd3c194d9d3b94 |
+| create_submarine-3.3.0.jar | b1aaaf64423d9e80aa750c71de426f6aaa33989e |
+| create_train_parts-0.5.2-1.21.1-6.0.10-281.jar | 2d0dc7d7838f5bdaabdd96080b1e4b950bfd3306 |
+| create_winery-2.0.3-neoforge-1.21.1.jar | cc655c9e7a4f35587c72ee1a821b49f51e8d110e |
+| createcafe-1.4.3.jar | 2a9fe857d415bacae3635b19b01e0f5897d15bc7 |
+| createfood-neoforge-1.21.1-3.0.0.jar | 8cb5a2bf84c7ce28e0ca5815785da35d23fd6569 |
+| createrailwaysnavigator-neoforge-1.21.1-beta-0.10.0-C6.jar | bf0ff70b421fb6fdb899f21e8e2899bbc9bd5e33 |
+| cupboard-1.21.1-4.2.jar | 6c2d786a161f49470dad92b2edaefdac38a1e79b |
+| dragonlib-3.0.29+mc1.21.1-neoforge.jar | ca7227b30334cb50117efe5cf76a01772e053eed |
+| enchdesc-neoforge-1.21.1-21.1.11.jar | 4d453df785ac21e0e7389cba949f4fa460c3e267 |
+| gadgets-and-gizmos-bundled-V1.2.10.jar | f19a50a30352916e136de831fe87f8c39dca2a97 |
+| integrated_stronghold-1.1.4+1.21.1-neoforge.jar | 9c425610a04f04d81ce9491e886c6df3fc4feac8 |
+| integrated_villages-1.3.3+1.21.1-neoforge.jar | 4ba7360abf671b1f0f40c43c590977da2048490e |
+| justenoughbreeding-neoforge-1.21.1-3.3.1.jar | f75b1bc60dcdc6045b01e1f37746320a8c8ade67 |
+| lootintegrations-1.21.1-4.7.jar | ba601fe630f444d974838bfd80a185a0e3e0309c |
+| neruina-3.3.5+1.21.1-neoforge.jar | f8556c45619b21b95741f340b0eaea48f26b4a6b |
+| polymorph-neoforge-1.1.0+1.21.1.jar | 84f8c539fa326dc723ae62b7a6916d6b01982d07 |
+| prickle-neoforge-1.21.1-21.1.11.jar | 5174059ecf97340a0de5ef211b938de26c4eaa36 |
+| tradeworks-1.0.7.jar | d04d0d7dfac9a28593f2644c469ce608c4415f77 |
+| trading_floor-3.0.16.jar | 7be6d8b24f3120fa6a2520c32a2e6c8c4254322c |
+
+Ресурспак `cld_resources.zip` (из `resourcepack/build.sh`) кладётся в `resourcepacks` экземпляра, в `options.txt` он уже включён вместе с `vanilla` и `mod_resources`.

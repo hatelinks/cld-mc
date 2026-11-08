@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create_connected"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "copycats"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "cld_dupes_copycat_box",
+  "ingredients": [
+    {
+      "item": "create_connected:copycat_box"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "copycats:copycat_box"
+  }
+}

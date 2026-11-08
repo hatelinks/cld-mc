@@ -47,7 +47,7 @@ public final class SnowFeature extends Feature<NoneFeatureConfiguration> {
                 p.set(x, g, z);
                 BlockState gs = level.getBlockState(p);
                 if (!gs.getFluidState().isEmpty() || !RockFeature.natural(gs)) continue;
-                int top = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, x, z);
+                int top = Surface.height(level, t.islands, Heightmap.Types.WORLD_SURFACE_WG, x, z);
                 int hollow = Math.max(0, ground.maxNeighbor(i, j) - g);
                 if (cold && slope <= 1 && g > snowLine + 20 && a > 0.6) {
                     // ледник

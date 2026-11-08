@@ -9,7 +9,7 @@
  "quests": [
   {
    "k": "intro",
-   "title": "За гранью супремия",
+   "title": "&bЗа гранью супремия",
    "sub": "Инсаний и особые основы",
    "desc": [
     "Mystical Agradditions добавляет шестую ступень — &5инсаний&r, особые основания для семян звезды Незера и яйца дракона, а также яблоки, уголь и паксели."
@@ -32,7 +32,9 @@
    ],
    "deps": [
     "ma_gear/supremium_mat"
-   ]
+   ],
+   "shape": "square",
+   "size": 2.0
   },
   {
    "k": "insanium_essence",
@@ -63,7 +65,9 @@
    "deps": [
     "ma_add/intro"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "insanium_mat",
@@ -93,6 +97,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "mystic"
     }
    ],
    "deps": [
@@ -202,6 +210,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -242,6 +254,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "mystic"
     }
    ],
    "deps": [
@@ -349,6 +365,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "mystic"
     }
    ],
    "deps": [
@@ -406,6 +426,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "mystic"
     }
    ],
    "deps": [
@@ -449,7 +473,7 @@
   },
   {
    "k": "finale",
-   "title": "За гранью",
+   "title": "&6&lЗа гранью",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -474,6 +498,10 @@
      "type": "item",
      "id": "mysticalagradditions:insanium_essence",
      "count": 4
+    },
+    {
+     "type": "choice",
+     "table": "choice_mystic"
     }
    ],
    "deps": [
@@ -482,7 +510,10 @@
     "ma_add/nether_star_shard",
     "ma_add/nether_star_crux"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&d"
 }

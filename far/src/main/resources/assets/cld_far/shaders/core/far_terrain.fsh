@@ -2,6 +2,7 @@
 
 in vec4 vertexColor;
 in vec3 relPos;
+in float worldY;
 
 uniform sampler2D Mask;
 uniform vec4 ColorModulator;
@@ -42,6 +43,23 @@ float vnoise(vec2 p) {
 
 out vec4 fragColor;
 
+// слой мезы на высоте y, как TileMesh.band: слои по 4 блока, порядок по хешу
+vec3 bandColor(float y) {
+    uint h = uint(int(floor(y / 4.0))) * 0x9E3779B1u;
+    h ^= h >> 15u;
+    h *= 0x85EBCA77u;
+    h ^= h >> 13u;
+    uint i = h % 7u;
+    vec3 c = vec3(0.627, 0.341, 0.227);
+    if (i == 1u) c = vec3(0.820, 0.698, 0.631);
+    else if (i == 2u) c = vec3(0.561, 0.239, 0.180);
+    else if (i == 3u) c = vec3(0.529, 0.416, 0.380);
+    else if (i == 4u) c = vec3(0.729, 0.522, 0.137);
+    else if (i == 5u) c = vec3(0.604, 0.369, 0.267);
+    else if (i == 6u) c = vec3(0.302, 0.200, 0.137);
+    return c;
+}
+
 int maskAt(vec2 xz) {
     ivec2 cell = ivec2(floor((xz - MaskOrigin) / 16.0));
     if (cell.x < 0 || cell.y < 0 || cell.x >= int(MaskSize) || cell.y >= int(MaskSize)) return 0;
@@ -71,6 +89,16 @@ void main() {
     } else if (length(relPos) < ClipRadius) discard;
     vec3 c = vertexColor.rgb;
     float alpha = vertexColor.a;
+    // слои мезы на крутых склонах гладкой сетки: сила в альфе вершины (TileMesh.BAND_ALPHA = 60)
+    if (abs(Pass - 2.0) > 0.5) {
+        float bw = clamp((1.0 - alpha) * 255.0 / 60.0, 0.0, 1.0);
+        if (bw > 0.01) {
+            // яркость вершины (отмывка) переносится на слой
+            float lum = dot(c, vec3(0.299, 0.587, 0.114)) / 0.45;
+            c = mix(c, bandColor(worldY) * clamp(lum, 0.5, 1.15), bw);
+        }
+        alpha = 1.0;
+    }
     // мировые координаты (по модулю, чтобы хватало точности): для волн и теней облаков
     vec2 wp = relPos.xz + WorldXZ;
     if (abs(Pass - 2.0) < 0.5) {

@@ -2,6 +2,7 @@ package dev.cld.structures;
 
 import com.mojang.logging.LogUtils;
 import dev.cld.structures.mixin.StructureStateAccessor;
+import dev.cld.structures.ring.RingCandidates;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -81,6 +82,8 @@ public final class Overlap {
             return false;
         }
         if (p instanceof ConcentricRingsStructurePlacement rings) {
+            // список колец ждет поиска биома для всех крепостей; если рядом нет ни одной начальной точки, ждать незачем
+            if (state instanceof RingCandidates rc && !RingCandidates.near(rc.cld$candidates(rings), cx, cz, r)) return false;
             List<ChunkPos> list = state.getRingPositionsFor(rings);
             if (list == null) return false;
             for (ChunkPos c : list)

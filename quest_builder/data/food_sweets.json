@@ -1,0 +1,852 @@
+{
+ "key": "food_sweets",
+ "id": "",
+ "title": "Сладости и напитки",
+ "subtitle": "Confectionery, Cafe, Winery",
+ "group": "Хозяйство и путешествия",
+ "icon": "create_confectionery:full_chocolate_bar",
+ "order": 11.3,
+ "quests": [
+  {
+   "k": "intro",
+   "title": "&bСладости и напитки",
+   "sub": "Шоколад, кофе и вино",
+   "desc": [
+    "&6Create Confectionery&r: какао, шоколад трёх видов, карамель, зефир и пряники. Шоколад течёт по трубам и разливается в формы.",
+    "&6Create Cafe&r: кофе и бабл-ти с шариками тапиоки, десятки вкусов.",
+    "&6Create Winery&r: виноград, сусло, вино и сидр, выдержка в винном погребе."
+   ],
+   "x": 0,
+   "y": 0,
+   "icon": "create_confectionery:full_chocolate_bar",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
+   "k": "crushed_cocoa",
+   "title": "Дроблёное какао",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс: Какао-бобы.",
+    "&6Зачем нужен:&r идёт в Какао-масло, Какао-порошок."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_confectionery:crushed_cocoa",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/intro"
+   ]
+  },
+  {
+   "k": "cocoa_butter",
+   "title": "Какао-масло",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r дробильные колёса: Дроблёное какао.",
+    "&6Зачем нужен:&r идёт в Плитка белого шоколада, Какао-масло, Ведро какао-масла."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_confectionery:cocoa_butter",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_sweets/crushed_cocoa"
+   ]
+  },
+  {
+   "k": "cocoa_powder",
+   "title": "Какао-порошок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r дробильные колёса: Дроблёное какао.",
+    "&6Зачем нужен:&r идёт в Злаковый батончик, Ведро шоколадного теста для торта, Ведро шоколадно-сливочной глазури, Шоколадный заварной крем, Ведро шоколадного мороженого."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_confectionery:cocoa_powder",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "food_sweets/crushed_cocoa"
+   ]
+  },
+  {
+   "k": "full_chocolate_bar",
+   "title": "Большая плитка шоколада",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Шоколадная плитка, Бумага."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_confectionery:full_chocolate_bar",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_sweets/intro",
+    "create_fluids/bar_of_chocolate"
+   ]
+  },
+  {
+   "k": "chocolate_candy",
+   "title": "Шоколадная конфета",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r заправщик: Плитка карамели."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_confectionery:chocolate_candy",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/intro"
+   ]
+  },
+  {
+   "k": "marshmallow",
+   "title": "Зефир",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический смешиватель над чашей: Сгусток слизи, Сахар.",
+    "&6Зачем нужен:&r идёт в Зефир в шоколаде, Зефир на палочке, Успокаивающий горячий шоколад, Галета, Помадка из крем-карамели."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_confectionery:marshmallow",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_sweets/intro"
+   ]
+  },
+  {
+   "k": "chocolate_glazed_marshmallow",
+   "title": "Зефир в шоколаде",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r заправщик: Зефир."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_confectionery:chocolate_glazed_marshmallow",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/marshmallow"
+   ]
+  },
+  {
+   "k": "gingerbread_man",
+   "title": "Пряничный человечек",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический пресс: Имбирное тесто."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_confectionery:gingerbread_man",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_sweets/chocolate_glazed_marshmallow"
+   ]
+  },
+  {
+   "k": "hot_chocolate_bottle",
+   "title": "Горячий шоколад",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r заправщик: Стеклянный пузырёк.",
+    "&6Зачем нужен:&r идёт в Успокаивающий горячий шоколад, Стеклянный пузырёк."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_confectionery:hot_chocolate_bottle",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/chocolate_glazed_marshmallow"
+   ]
+  },
+  {
+   "k": "candy_cane_pickaxe",
+   "title": "Леденцовая кирка",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Леденцовая трость."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_confectionery:candy_cane_pickaxe",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/chocolate_glazed_marshmallow"
+   ]
+  },
+  {
+   "k": "coffee_beans",
+   "title": "Кофейные зёрна",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Кофейные зёрна растут на кусте кофе, семена ищите в JEI.",
+    "&6Как получить:&r дробильные колёса: Кофейная ягода.",
+    "&6Зачем нужен:&r идёт в Растительное масло, Обжаренные кофейные зёрна."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createcafe:coffee_beans",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "food_sweets/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде"
+  },
+  {
+   "k": "roasted_coffee_beans",
+   "title": "Обжаренные кофейные зёрна",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r коптильня: Кофейные зёрна.",
+    "&6Зачем нужен:&r идёт в Молотый кофе."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createcafe:roasted_coffee_beans",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_sweets/coffee_beans"
+   ]
+  },
+  {
+   "k": "coffee_grounds",
+   "title": "Молотый кофе",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r дробильные колёса: Обжаренные кофейные зёрна."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createcafe:coffee_grounds",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/roasted_coffee_beans"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "black_coffee",
+   "title": "Чёрный кофе",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createcafe:black_coffee",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_sweets/coffee_grounds"
+   ]
+  },
+  {
+   "k": "iced_coffee_milk",
+   "title": "Холодный кофе с молоком",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r заправщик: Ведро молока, Холодный кофе."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createcafe:iced_coffee_milk",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/coffee_grounds"
+   ]
+  },
+  {
+   "k": "tapioca_flour",
+   "title": "Мука тапиоки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r дробильные колёса: Корень маниоки.",
+    "&6Зачем нужен:&r идёт в Сырые шарики тапиоки."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createcafe:tapioca_flour",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_sweets/coffee_grounds"
+   ]
+  },
+  {
+   "k": "boba",
+   "title": "Шарики тапиоки",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический смешиватель над чашей: Сырые шарики тапиоки.",
+    "&6Зачем нужен:&r идёт в Стакан с тапиокой."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createcafe:boba",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/coffee_grounds"
+   ]
+  },
+  {
+   "k": "strawberry_milk_tea",
+   "title": "Клубничный бабл-ти",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r заправщик: Стакан с тапиокой."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "createcafe:strawberry_milk_tea",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/tapioca_flour"
+   ]
+  },
+  {
+   "k": "red_grapes",
+   "title": "Красный виноград",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Виноград растёт на кусте, его можно найти в мире или в JEI.",
+    "&6Как получить:&r верстак: Ящик красного винограда.",
+    "&6Зачем нужен:&r идёт в Ящик красного винограда, Выжимка красного винограда."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_winery:red_grapes",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "xp"
+    }
+   ],
+   "deps": [
+    "food_sweets/intro"
+   ],
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "grape_juice",
+   "title": "Виноградный сок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r механический смешиватель над чашей: Выжимка красного винограда, Сахар."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_winery:grape_juice",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_sweets/red_grapes"
+   ]
+  },
+  {
+   "k": "merlot",
+   "title": "Мерло",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r особый рецепт: Выжимка красного винограда."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_winery:merlot",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/red_grapes"
+   ]
+  },
+  {
+   "k": "wine_cellar",
+   "title": "Винный погреб",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Железный слиток."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_winery:wine_cellar",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "food_sweets/red_grapes"
+   ]
+  },
+  {
+   "k": "apple_juice",
+   "title": "Яблочный сок",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r верстак: Яблочное сусло, Сахар."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_winery:apple_juice",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/red_grapes"
+   ]
+  },
+  {
+   "k": "cider",
+   "title": "Сидр",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r особый рецепт: Яблочное сусло."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_winery:cider",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/apple_juice"
+   ]
+  },
+  {
+   "k": "champaign",
+   "title": "Шампанское",
+   "sub": "",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "&6Как получить:&r особый рецепт: Выжимка белого винограда."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "item",
+     "id": "create_winery:champaign",
+     "count": 1
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 20
+    }
+   ],
+   "deps": [
+    "food_sweets/apple_juice"
+   ]
+  },
+  {
+   "k": "finale",
+   "title": "&6&lКондитер и сомелье",
+   "sub": "Финал главы",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Шоколад, кофе и вино делаются сами.",
+    "&7Откроется, когда будут выполнены последние квесты главы."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Подвести итог главы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 200
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
+    }
+   ],
+   "deps": [
+    "food_sweets/merlot",
+    "food_sweets/wine_cellar",
+    "food_sweets/apple_juice"
+   ],
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
+  }
+ ],
+ "color": "&d",
+ "deco": [
+  [
+   "create_confectionery:textures/item/full_chocolate_bar.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
+ ]
+}

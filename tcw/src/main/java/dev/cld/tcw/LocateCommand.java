@@ -5,6 +5,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.cld.tcw.gen.Caves;
 import dev.cld.tcw.gen.Rocks;
 import dev.cld.tcw.gen.Hydro;
+import dev.cld.tcw.gen.Islands;
 import dev.cld.tcw.gen.Macro;
 import dev.cld.tcw.gen.Terrain;
 import java.util.function.BiPredicate;
@@ -63,6 +64,7 @@ public final class LocateCommand {
             return columns(s, "подземная река", s.getPosition().x, s.getPosition().z, 8, 6000,
                     (t, x, z) -> t.caves.nearGallery(x, z), (t, col, x, z) -> t.caves.riverLevel(x, z, col));
         }));
+        tcw.then(Commands.literal("sky_island").executes(c -> skyIsland(c.getSource())));
         tcw.then(Commands.literal("ice_cave").executes(c -> iceCave(c.getSource())));
         d.register(Commands.literal("locate").requires(s -> s.hasPermission(2)).then(tcw));
     }
@@ -296,6 +298,31 @@ public final class LocateCommand {
 
     private static double dist(double[] p, double x, double z) {
         return Math.hypot(p[0] - x, p[1] - z);
+    }
+
+    // ближайший большой небесный остров: клетки по кольцам вокруг игрока
+    private static int skyIsland(CommandSourceStack src) {
+        Terrain t = terrain(src);
+        if (t == null) return 0;
+        double x0 = src.getPosition().x, z0 = src.getPosition().z;
+        int ci = Math.floorDiv((int) Math.floor(x0), Islands.CELL), cj = Math.floorDiv((int) Math.floor(z0), Islands.CELL);
+        Islands.Island best = null;
+        double bd = Double.MAX_VALUE;
+        int maxR = RADIUS / Islands.CELL;
+        for (int r = 0; r <= maxR; r++) {
+            // остров в кольце r не ближе (r - 1) клеток, дальше искать незачем
+            if (best != null && (r - 1) * (double) Islands.CELL > Math.sqrt(bd)) break;
+            for (int i = -r; i <= r; i++)
+                for (int j = -r; j <= r; j++) {
+                    if (Math.max(Math.abs(i), Math.abs(j)) != r) continue;
+                    Islands.Island[] c = t.islands.cell(ci + i, cj + j);
+                    if (c.length == 0) continue;
+                    double d = (c[0].x - x0) * (c[0].x - x0) + (c[0].z - z0) * (c[0].z - z0);
+                    if (d < bd) { bd = d; best = c[0]; }
+                }
+        }
+        return report(src, t, "небесный остров", best == null ? null : new double[] { best.x + 0.5, best.z + 0.5 },
+                best == null ? Double.NaN : best.top + 3);
     }
 
     private static int report(CommandSourceStack src, Terrain t, String what, double[] hit, double y) {

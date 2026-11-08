@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="cld_tunnel"
+version="${version}"
+displayName="Игра по сети"
+authors="D, Claude"
+description='''Открывает одиночный мир для друзей по интернету без проброса портов: после Открыть для сети мир получает адрес на relay-сервере сборки, друзья заходят по нему обычным клиентом. Relay свой, ставится на любой сервер с Java 21.'''
+
+[[dependencies.cld_tunnel]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.cld_tunnel]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="CLIENT"
