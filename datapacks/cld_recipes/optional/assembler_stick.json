@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createpropulsion"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "  E",
+    " W ",
+    "B  "
+  ],
+  "key": {
+    "E": {
+      "item": "create:electron_tube"
+    },
+    "W": {
+      "item": "create:wrench"
+    },
+    "B": {
+      "item": "create:brass_ingot"
+    }
+  },
+  "result": {
+    "id": "createpropulsion:assembler_stick",
+    "count": 1
+  }
+}
