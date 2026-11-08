@@ -23,7 +23,9 @@ public class FarPreview {
     public static void main(String[] a) throws Exception {
         long seed = Long.parseLong(a[0]);
         double cx = Double.parseDouble(a[1]), cz = Double.parseDouble(a[3]);
-        Terrain t = new Terrain(seed);
+        // 16-й аргумент 1: мир TC Islands (острова в пустоте)
+        boolean isles = a.length > 15 && a[15].equals("1");
+        Terrain t = new Terrain(seed, dev.cld.tcw.gen.Options.DEFAULT.withWorld(isles ? 1 : 0));
         double ground = t.column(cx, cz, new Terrain.Column()).height;
         double cy = a[2].startsWith("+") ? Math.max(ground, 63) + Double.parseDouble(a[2].substring(1)) : Double.parseDouble(a[2]);
         System.out.printf("camera y %.0f (ground %.0f)%n", cy, ground);

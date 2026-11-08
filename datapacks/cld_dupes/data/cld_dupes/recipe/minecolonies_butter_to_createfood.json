@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "minecolonies"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createfood"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "cld_dupes_butter",
+  "ingredients": [
+    {
+      "item": "minecolonies:butter"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "createfood:butter"
+  }
+}

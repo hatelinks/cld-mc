@@ -1,0 +1,39 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="cld_questjei"
+version="${version}"
+displayName="Квесты и JEI"
+authors="D, Claude"
+description='''Клик по предмету в окне FTB Quests открывает его рецепт в JEI, клик с Shift показывает где предмет используется. Наведение и клавиши JEI R и U тоже работают.'''
+
+
+[[dependencies.cld_questjei]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.cld_questjei]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.cld_questjei]]
+modId="jei"
+type="required"
+versionRange="[19,)"
+ordering="AFTER"
+side="CLIENT"
+
+[[dependencies.cld_questjei]]
+modId="ftbquests"
+type="required"
+versionRange="[2101.1,)"
+ordering="AFTER"
+side="CLIENT"

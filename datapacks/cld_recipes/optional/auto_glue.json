@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createpropulsion"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " E ",
+    "HGH"
+  ],
+  "key": {
+    "E": {
+      "item": "create:electron_tube"
+    },
+    "H": {
+      "item": "minecraft:honey_bottle"
+    },
+    "G": {
+      "item": "create:super_glue"
+    }
+  },
+  "result": {
+    "id": "createpropulsion:auto_glue",
+    "count": 1
+  }
+}

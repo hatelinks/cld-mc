@@ -1,0 +1,222 @@
+{
+ "key": "tutorial",
+ "id": "",
+ "title": "Обучение",
+ "subtitle": "С чего начать в TelipailoCraft",
+ "group": "",
+ "icon": "minecraft:writable_book",
+ "order": -2,
+ "quests": [
+  {
+   "k": "welcome",
+   "title": "Добро пожаловать в &b&lTelipailoCraft&r!",
+   "sub": "Нажмите на этот квест и прочитайте описание",
+   "x": 2,
+   "y": 0.5,
+   "desc": [
+    "Это сборка про &6Create&r, колонии &6MineColonies&r, мистическое земледелие и большой мир &6TelipailoCraft&r.",
+    "Книга квестов ведёт по сборке шаг за шагом. Квест открывается, когда выполнены те, от которых он зависит: линии показывают порядок.",
+    "Отметьте галочку справа внизу и заберите награду. После этого откроются следующие квесты обучения."
+   ],
+   "icon": "minecraft:writable_book",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "item",
+     "id": "minecraft:bread",
+     "count": 8
+    }
+   ],
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
+  },
+  {
+   "k": "inventory",
+   "title": "Инвентарь и команда",
+   "sub": "Играть можно вместе",
+   "x": 0,
+   "y": -0.5,
+   "desc": [
+    "Нажмите &bE&r, чтобы открыть инвентарь. Слева вверху кнопки книги квестов и команды &6FTB Teams&r.",
+    "В команде квесты общие: если друг выполнил квест, он засчитан всем. Позвать друга можно кнопкой команды.",
+    "&bB&r открывает рюкзак, &bG&r слоты аксессуаров."
+   ],
+   "icon": "minecraft:chest",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "tutorial/welcome"
+   ],
+   "flags": {
+    "hide_until_deps_complete": true
+   }
+  },
+  {
+   "k": "questbook",
+   "title": "Книга квестов",
+   "sub": "Как читать квесты",
+   "x": 1.33,
+   "y": -1.0,
+   "desc": [
+    "Слева список глав, они собраны в группы. &bTab&r и &bShift+&bTab&r&r листают главы, колесо мыши и &b+&r, &b-&r меняют масштаб.",
+    "&6Квадрат&r это приветствие главы, &6шестерня&r важная веха, &6шестиугольник&r финал главы с большой наградой на выбор.",
+    "Предметные квесты засчитываются сами, когда нужный предмет оказывается у вас в инвентаре. Предметы не забираются.",
+    "Квест можно закрепить (кнопка с булавкой): он будет виден справа на экране."
+   ],
+   "icon": "minecraft:writable_book",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "tutorial/welcome"
+   ],
+   "flags": {
+    "hide_until_deps_complete": true
+   }
+  },
+  {
+   "k": "keys",
+   "title": "Наши клавиши",
+   "sub": "Что есть только в этой сборке",
+   "x": 2.67,
+   "y": -1.0,
+   "desc": [
+    "{image:cldquests:textures/quests/keys.png width:300 height:75 align:center fit:true}",
+    "&bF7&r настройки дальнего рельефа cld_far. &bJ&r карта JourneyMap. &bY&r панель тестирования (если стоит).",
+    "&bW&r над предметом Create в JEI или инвентаре: анимированная инструкция Ponder.",
+    "&bEsc&r, кнопка &6TC Моды&r: настройки всех наших модов в одном месте."
+   ],
+   "icon": "minecraft:compass",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "tutorial/welcome"
+   ],
+   "flags": {
+    "hide_until_deps_complete": true
+   }
+  },
+  {
+   "k": "jei",
+   "title": "Рецепты в JEI",
+   "sub": "Как найти любой рецепт",
+   "x": 4,
+   "y": -0.5,
+   "desc": [
+    "Справа в инвентаре список предметов &6JEI&r. Наведите на предмет и нажмите &bR&r: рецепт, &bU&r: где используется.",
+    "Поиск &b@create&r показывает предметы одного мода, &b#&r ищет по подсказке. &bA&r добавляет предмет в закладки.",
+    "Если у рецепта несколько вариантов результата, &6Polymorph&r покажет кнопку выбора прямо в верстаке."
+   ],
+   "icon": "minecraft:crafting_table",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "tutorial/welcome"
+   ],
+   "flags": {
+    "hide_until_deps_complete": true
+   }
+  },
+  {
+   "k": "finish",
+   "title": "Обучение пройдено",
+   "sub": "Дальше сами",
+   "x": 2,
+   "y": 3.2,
+   "desc": [
+    "Теперь откройте главу &6Полезно знать&r, а потом начинайте с &6Путь выжившего&r и &6Эпохи андезита&r.",
+    "Главы из групп открыты сразу, но удобнее идти сверху вниз."
+   ],
+   "icon": "minecraft:nether_star",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитано"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 50
+    },
+    {
+     "type": "random",
+     "table": "food"
+    }
+   ],
+   "deps": [
+    "tutorial/inventory",
+    "tutorial/questbook",
+    "tutorial/keys",
+    "tutorial/jei"
+   ],
+   "flags": {
+    "hide_until_deps_complete": true
+   },
+   "shape": "hexagon",
+   "size": 2.0
+  }
+ ],
+ "color": "&b",
+ "layout": "manual",
+ "images": [
+  {
+   "image": "cldquests:textures/quests/logo.png",
+   "width": 6.0,
+   "height": 0.86,
+   "x": 2.0,
+   "y": -2.2
+  }
+ ]
+}

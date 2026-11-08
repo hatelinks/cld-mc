@@ -9,7 +9,7 @@
  "quests": [
   {
    "k": "intro",
-   "title": "Тропа охотника",
+   "title": "&bТропа охотника",
    "sub": "Защитите себя и колонию",
    "desc": [
     "Квесты на победу над мобами. Счётчик растёт сам, когда вы побеждаете нужных существ.",
@@ -31,7 +31,9 @@
      "amount": 10
     }
    ],
-   "deps": []
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
   },
   {
    "k": "hunt_0",
@@ -121,6 +123,10 @@
     {
      "type": "xp",
      "amount": 50
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -220,6 +226,10 @@
     {
      "type": "xp",
      "amount": 100
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -261,6 +271,10 @@
     {
      "type": "xp",
      "amount": 100
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -269,7 +283,7 @@
   },
   {
    "k": "hunt_5",
-   "title": "Легенды",
+   "title": "&6&lЛегенды",
    "sub": "",
    "x": 0,
    "y": 0,
@@ -302,12 +316,18 @@
     {
      "type": "xp",
      "amount": 300
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
     }
    ],
    "deps": [
     "act_hunt/hunt_4"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   },
   {
    "k": "raid_0",
@@ -561,5 +581,15 @@
     "act_hunt/raid_4"
    ]
   }
+ ],
+ "color": "&2",
+ "deco": [
+  [
+   "minecraft:textures/item/bow.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
  ]
 }

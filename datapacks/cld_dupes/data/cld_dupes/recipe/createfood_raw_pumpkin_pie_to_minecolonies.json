@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createfood"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "minecolonies"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "cld_dupes_raw_pumpkin_pie",
+  "ingredients": [
+    {
+      "item": "createfood:raw_pumpkin_pie"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecolonies:raw_pumpkin_pie"
+  }
+}

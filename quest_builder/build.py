@@ -21,7 +21,16 @@ import zipfile
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(os.path.dirname(ROOT), "out")
 QDIR = os.path.join(OUT, "ftbquests", "quests")
-GROUP_ORDER = ["", "Эра механизмов", "Хозяйство и путешествия", "Мистическое земледелие", "Жизнь колонии"]
+GROUP_ORDER = ["", "Эра механизмов", "Небо и техника", "Хозяйство и путешествия", "Мистическое земледелие", "Жизнь колонии"]
+# стиль названий групп: цвет, жирный, подчёркнутый (как в aoa)
+GROUP_STYLE = {"Эра механизмов": "&e&l&n", "Небо и техника": "&b&l&n", "Хозяйство и путешествия": "&6&l&n",
+               "Мистическое земледелие": "&d&l&n", "Жизнь колонии": "&a&l&n"}
+# FTB Quests ставит квесты и картинки с шагом (размер кнопки + промежуток) = 1.75 зума на клетку,
+# а ширину картинки считает как ширина * размер кнопки (1.5 зума). Без поправки картинка выходит
+# на 1/7 меньше и фон главы съезжает с квестов. Здесь все размеры картинок в клетках сетки.
+IMG_K = 1.75 / 1.5
+# таблицы наград: quest_builder/reward_tables.json
+TABLES = json.load(open(os.path.join(ROOT, "reward_tables.json"), encoding="utf-8"))
 
 
 def hid(*parts):
@@ -100,11 +109,14 @@ def resolve(ch, ref):
 
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 import layout  # noqa: E402
+import icons  # noqa: E402
 for ch in chapters:
     if ch.get("layout", "auto") == "auto":
         layout.apply(ch, qid)
 
 lang = {}
+bg_layout = {}
+used_tables = set()
 group_ids = {}
 chapter_files = {}
 
@@ -116,15 +128,52 @@ def item_obj(rid, comps=None):
     return f'{{ count: 1, id: "{rid}" }}'
 
 
+# Зависимостей в квестах нет (решение владельца 03.11): все квесты открыты сразу, а связи
+# из поля deps рисуются только линиями на фоне главы (resourcepack/make_backgrounds.py).
+# Поля квеста, которые без зависимостей не нужны, в SNBT не пишем.
+DEP_FLAGS = {"hide_until_deps_complete", "hide_until_deps_visible", "hide_dependency_lines", "hide_dependent_lines",
+             "min_required_dependencies", "dependency_requirement"}
+
+COMB_MIN = 5  # с какого числа листьев рисовать гребёнку вместо отдельных линий
+
+
+def comb_groups(ch):
+    # [(родитель, [листья])]: листья зависят только от родителя, от них никто не зависит,
+    # и все стоят правее родителя
+    byid = {q["id"]: q for q in ch["quests"]}
+    deps = {q["id"]: [r for r in (qid.get(d) or qid.get(f'{ch["key"]}/{d}') for d in q.get("deps", [])) if r in byid]
+            for q in ch["quests"]}
+    has_kids = {r for ds in deps.values() for r in ds}
+    kids = collections.defaultdict(list)
+    for q in ch["quests"]:
+        ds = deps[q["id"]]
+        if len(ds) == 1 and q["id"] not in has_kids and not q.get("finale"):
+            kids[ds[0]].append(q)
+    out = []
+    for hub, leaves in kids.items():
+        h = byid[hub]
+        leaves = [q for q in leaves if q["x"] > h["x"] + 0.9]
+        if len(leaves) >= COMB_MIN:
+            out.append((h, leaves))
+    return out
+
+
 for ch in chapters:
     cid = ch.get("id") or hid("chapter", ch["key"])
     gid = ""
     if ch["group"]:
         gid = group_ids.setdefault(ch["group"], hid("group", ch["group"]))
-        lang[f"chapter_group.{gid}.title"] = ch["group"]
-    lang[f"chapter.{cid}.title"] = ch["title"]
+        lang[f"chapter_group.{gid}.title"] = GROUP_STYLE.get(ch["group"], "") + ch["group"]
+    lang[f"chapter.{cid}.title"] = ch.get("color", "") + ch["title"]
     if ch.get("subtitle"):
         lang[f"chapter.{cid}.chapter_subtitle"] = ch["subtitle"]
+
+    # гребёнки: отдельные линии к каждому листу сетки перечеркнули бы всю сетку,
+    # поэтому фон главы рисует для неё одну гребёнку от родителя.
+    combs = comb_groups(ch)
+    for hub, leaves in combs:
+        for q in leaves:
+            q["hide_lines"] = True
 
     seen_pos = {}
     qtexts = []
@@ -196,17 +245,30 @@ for ch in chapters:
             rid_ = hid("reward", i, str(n))
             if r["type"] == "xp":
                 rewards_s.append(f'\t\t\t\t{{\n\t\t\t\t\tid: "{rid_}"\n\t\t\t\t\ttype: "xp"\n\t\t\t\t\txp: {r["amount"]}\n\t\t\t\t}}')
+            elif r["type"] == "xp_levels":
+                rewards_s.append(f'\t\t\t\t{{\n\t\t\t\t\tid: "{rid_}"\n\t\t\t\t\ttype: "xp_levels"\n\t\t\t\t\txp_levels: {r["amount"]}\n\t\t\t\t}}')
+            elif r["type"] in ("random", "choice", "loot", "all_table"):
+                if r["table"] not in TABLES:
+                    errors.append(f'{tag}: нет таблицы наград {r["table"]}')
+                    continue
+                used_tables.add(r["table"])
+                tnum = int(hid("table", r["table"]), 16)
+                ex = "\t\t\t\t\texclude_from_claim_all: true\n" if r["type"] == "random" else ""
+                rewards_s.append(f'\t\t\t\t{{\n\t\t\t\t\tid: "{rid_}"\n{ex}\t\t\t\t\ttable_id: {tnum}L\n\t\t\t\t\ttype: "{r["type"]}"\n\t\t\t\t}}')
             elif r["type"] == "item":
                 if not known(r["id"]):
                     errors.append(f'{tag}: награда с неизвестным ID {r["id"]}')
                 rewards_s.append(f'\t\t\t\t{{\n\t\t\t\t\tid: "{rid_}"\n\t\t\t\t\ttype: "item"\n'
                                  f'\t\t\t\t\titem: {item_obj(r["id"])}\n\t\t\t\t\tcount: {r["count"]}\n\t\t\t\t}}')
 
-        deps = [resolve(ch, d) for d in q.get("deps", [])]
-        deps = [d for d in deps if d]
+        # зависимости только проверяем: в игру они не идут, связи рисует фон главы
+        for d in q.get("deps", []):
+            resolve(ch, d)
         s = f'\t\t{{\n\t\t\tid: "{i}"\n\t\t\tx: {float(q["x"])}d\n\t\t\ty: {float(q["y"])}d\n'
-        ic = q.get("icon")
-        if ic:
+        ic = q.get("icon") or icons.pick(ch, q, known)
+        if q.get("icon_tex"):
+            s += f'\t\t\ticon: {{ id: "ftbquests:custom_icon", components: {{ "ftbquests:icon": "{q["icon_tex"]}" }} }}\n'
+        elif ic:
             if known(ic):
                 s += f'\t\t\ticon: {{ id: "{ic}" }}\n'
             else:
@@ -217,13 +279,15 @@ for ch in chapters:
             s += f'\t\t\tshape: "{q["shape"]}"\n'
         if q.get("size"):
             s += f'\t\t\tsize: {float(q["size"])}d\n'
-        if q.get("hide_lines"):
-            s += "\t\t\thide_dependency_lines: true\n"
+        # прочие поля квеста как есть, кроме связанных с зависимостями (их больше нет)
+        for fk, fv in q.get("flags", {}).items():
+            if fk in DEP_FLAGS:
+                continue
+            fv = "true" if fv is True else "false" if fv is False else f'"{fv}"' if isinstance(fv, str) else fv
+            s += f"\t\t\t{fk}: {fv}\n"
         s += "\t\t\ttasks: [\n" + "\n".join(tasks_s) + "\n\t\t\t]\n"
         if rewards_s:
             s += "\t\t\trewards: [\n" + "\n".join(rewards_s) + "\n\t\t\t]\n"
-        if deps:
-            s += "\t\t\tdependencies: [" + " ".join(f'"{d}"' for d in deps) + "]\n"
         s += "\t\t}"
         qtexts.append(s)
 
@@ -233,7 +297,41 @@ for ch in chapters:
         icon = "minecraft:book"
     order = chapters.index(ch)
     body = f'{{\n\tid: "{cid}"\n\tgroup: "{gid}"\n\torder_index: {order}\n\tfilename: "{ch["key"]}"\n'
-    body += f'\tprogression_mode: "{ch.get("progression_mode", "flexible")}"\n'
+    body += '\tprogression_mode: "flexible"\n'
+    # картинки-украшения рядом с первым квестом главы (координаты известны только после раскладки)
+    if ch.get("deco") and ch["quests"]:
+        r0 = ch["quests"][0]
+        for im in ch["deco"]:
+            ch.setdefault("images", []).append({"image": im[0], "x": r0["x"] + im[1], "y": r0["y"] + im[2],
+                                                "width": im[3], "height": im[4]})
+    # тематический фон под всей главой: картинку рисует resourcepack/make_backgrounds.py по bg_layout.json
+    if ch["quests"] and not ch.get("no_bg"):
+        xs0 = [q["x"] - float(q.get("size", 1)) / 2 for q in ch["quests"]] + [i["x"] - i["width"] / 2 for i in ch.get("images", [])]
+        xs1 = [q["x"] + float(q.get("size", 1)) / 2 for q in ch["quests"]] + [i["x"] + i["width"] / 2 for i in ch.get("images", [])]
+        ys0 = [q["y"] - float(q.get("size", 1)) / 2 for q in ch["quests"]] + [i["y"] - i["height"] / 2 for i in ch.get("images", [])]
+        ys1 = [q["y"] + float(q.get("size", 1)) / 2 + (0.6 if float(q.get("size", 1)) >= 1.5 else 0) for q in ch["quests"]] + [i["y"] + i["height"] / 2 for i in ch.get("images", [])]
+        bx0, bx1, by0, by1 = min(xs0) - 1.5, max(xs1) + 1.5, min(ys0) - 3.0, max(ys1) + 1.5
+        bx0, bx1, by0, by1 = [round(v * 2) / 2 for v in (bx0, bx1, by0, by1)]
+        bg_layout[ch["key"]] = {
+            "box": [bx0, by0, bx1, by1], "group": ch["group"], "title": ch["title"], "subtitle": ch.get("subtitle", ""),
+            "color": ch.get("color", ""), "theme": ch.get("theme", ""),
+            "quests": [{"id": q["id"], "x": q["x"], "y": q["y"], "size": float(q.get("size", 1)), "shape": q.get("shape", "circle"),
+                        "title": q["title"] if float(q.get("size", 1)) >= 1.5 else "", "optional": bool(q.get("optional"))}
+                       for q in ch["quests"]],
+            "edges": [[qid.get(d) or qid.get(f'{ch["key"]}/{d}'), q["id"]] for q in ch["quests"] for d in q.get("deps", [])
+                      if (qid.get(d) or qid.get(f'{ch["key"]}/{d}')) in {x["id"] for x in ch["quests"]} and not q.get("hide_lines")],
+            "combs": [[h["id"], [q["id"] for q in leaves]] for h, leaves in combs],
+        }
+        ch["images"] = [{"image": f"cldquests:textures/quests/bg/{ch['key']}.png", "x": (bx0 + bx1) / 2, "y": (by0 + by1) / 2,
+                         "width": bx1 - bx0, "height": by1 - by0, "order": -10}] + ch.get("images", [])
+    if ch.get("images"):
+        body += "\timages: [\n"
+        for n, im in enumerate(ch["images"]):
+            body += (f'\t\t{{\n\t\t\tid: "{hid("image", ch["key"], str(n))}"\n\t\t\timage: "{im["image"]}"\n'
+                     f'\t\t\tx: {float(im["x"])}d\n\t\t\ty: {float(im["y"])}d\n\t\t\twidth: {round(im["width"] * IMG_K, 4)}d\n'
+                     f'\t\t\theight: {round(im["height"] * IMG_K, 4)}d\n\t\t\trotation: 0.0d\n'
+                     + (f'\t\t\torder: {im["order"]}\n' if "order" in im else "") + '\t\t}\n')
+        body += "\t]\n"
     body += f'\ticon: {{ id: "{icon}" }}\n\tquests: [\n' + "\n".join(qtexts) + "\n\t]\n}\n"
     chapter_files[ch["key"]] = (cid, body)
 
@@ -278,6 +376,22 @@ os.makedirs(os.path.join(QDIR, "chapters"))
 os.makedirs(os.path.join(QDIR, "lang"))
 for key, (cid, body) in chapter_files.items():
     open(os.path.join(QDIR, "chapters", key + ".snbt"), "w", encoding="utf-8").write(body)
+# таблицы наград, только те, что где-то используются
+os.makedirs(os.path.join(QDIR, "reward_tables"))
+for n, key in enumerate(sorted(used_tables)):
+    t = TABLES[key]
+    tid = hid("table", key)
+    lang[f"reward_table.{tid}.title"] = t["title"]
+    rows = []
+    for m, (rid, cnt) in enumerate(t["items"]):
+        if not known(rid):
+            errors.append(f"таблица {key}: неизвестный предмет {rid}")
+            continue
+        rows.append(f'\t\t{{\n\t\t\tcount: {cnt}\n\t\t\tid: "{hid("trow", key, str(m))}"\n\t\t\titem: {item_obj(rid)}\n\t\t}}')
+    for m, xp in enumerate(t.get("xp", [])):
+        rows.append(f'\t\t{{\n\t\t\tid: "{hid("txp", key, str(m))}"\n\t\t\ttype: "xp"\n\t\t\txp: {xp}\n\t\t}}')
+    open(os.path.join(QDIR, "reward_tables", key + ".snbt"), "w", encoding="utf-8").write(
+        f'{{\n\tid: "{tid}"\n\tloot_size: 1\n\torder_index: {n}\n\trewards: [\n' + "\n".join(rows) + "\n\t]\n}\n")
 with open(os.path.join(QDIR, "chapter_groups.snbt"), "w", encoding="utf-8") as f:
     f.write("{\n\tchapter_groups: [\n")
     for gid in group_ids.values():
@@ -346,6 +460,7 @@ for e in errors:
 if errors:
     sys.exit(1)
 
+json.dump(bg_layout, open(os.path.join(OUT, "bg_layout.json"), "w", encoding="utf-8"), ensure_ascii=False)
 zpath = os.path.join(OUT, "ftbquests_config.zip")
 with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED) as z:
     for base, _, files in os.walk(os.path.join(OUT, "ftbquests")):

@@ -9,7 +9,7 @@
  "quests": [
   {
    "k": "intro",
-   "title": "Дальние горизонты",
+   "title": "&bДальние горизонты",
    "sub": "Мир большой — посмотрите его",
    "desc": [
     "Здесь квесты на путешествия. Задачи засчитываются сами, когда вы входите в биом или постройку.",
@@ -31,7 +31,9 @@
      "amount": 10
     }
    ],
-   "deps": []
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
   },
   {
    "k": "biomes_0",
@@ -125,6 +127,10 @@
     {
      "type": "xp",
      "amount": 30
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -233,6 +239,10 @@
     {
      "type": "xp",
      "amount": 30
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -282,6 +292,10 @@
     {
      "type": "xp",
      "amount": 30
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -368,7 +382,9 @@
    ],
    "deps": [
     "act_explore/intro"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "idas_castle",
@@ -393,6 +409,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -451,6 +471,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -514,6 +538,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -543,6 +571,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -981,11 +1013,17 @@
     {
      "type": "xp",
      "amount": 20
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
     "act_explore/intro"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "rs_city_nether",
@@ -1037,6 +1075,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -1098,6 +1140,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1126,6 +1172,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -1297,7 +1347,9 @@
    ],
    "deps": [
     "act_explore/intro"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "csa_windmill",
@@ -1348,6 +1400,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -1398,6 +1454,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -1453,6 +1513,10 @@
     {
      "type": "xp",
      "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1747,6 +1811,10 @@
     {
      "type": "xp",
      "amount": 60
+    },
+    {
+     "type": "random",
+     "table": "explore"
     }
    ],
    "deps": [
@@ -1781,8 +1849,367 @@
    ]
   },
   {
+   "k": "iv_airship_village",
+   "title": "Деревня воздушных кораблей",
+   "sub": "Integrated Villages",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Корабли висят высоко над землёй. Ищите их в небе: снизу видны канаты и паруса.",
+    "&7Деревни Integrated Villages заменяют обычные деревни Minecraft."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_villages:airship_village",
+     "title": "Деревня воздушных кораблей"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/intro"
+   ],
+   "shape": "gear",
+   "size": 1.5
+  },
+  {
+   "k": "iv_tavern_village",
+   "title": "Деревня с таверной",
+   "sub": "Integrated Villages",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите эту деревню и войдите в неё: квест засчитается сам.",
+    "&7Деревни Integrated Villages заменяют обычные деревни Minecraft."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_villages:tavern_village",
+     "title": "Деревня с таверной"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    },
+    {
+     "type": "item",
+     "id": "minecraft:golden_carrot",
+     "count": 8
+    }
+   ],
+   "deps": [
+    "act_explore/iv_airship_village"
+   ]
+  },
+  {
+   "k": "iv_pirate_village",
+   "title": "Пиратская деревня",
+   "sub": "Integrated Villages",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите эту деревню и войдите в неё: квест засчитается сам.",
+    "&7Деревни Integrated Villages заменяют обычные деревни Minecraft."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_villages:pirate_village",
+     "title": "Пиратская деревня"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    },
+    {
+     "type": "random",
+     "table": "explore"
+    }
+   ],
+   "deps": [
+    "act_explore/iv_airship_village"
+   ]
+  },
+  {
+   "k": "iv_mediterranean_village",
+   "title": "Средиземноморская деревня",
+   "sub": "Integrated Villages",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите эту деревню и войдите в неё: квест засчитается сам.",
+    "&7Деревни Integrated Villages заменяют обычные деревни Minecraft."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_villages:mediterranean_village",
+     "title": "Средиземноморская деревня"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/iv_airship_village"
+   ]
+  },
+  {
+   "k": "iv_oasis_village",
+   "title": "Деревня в оазисе",
+   "sub": "Integrated Villages",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите эту деревню и войдите в неё: квест засчитается сам.",
+    "&7Деревни Integrated Villages заменяют обычные деревни Minecraft."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_villages:oasis_village",
+     "title": "Деревня в оазисе"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/iv_airship_village"
+   ]
+  },
+  {
+   "k": "iv_cabin_village",
+   "title": "Деревня хижин",
+   "sub": "Integrated Villages",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите эту деревню и войдите в неё: квест засчитается сам.",
+    "&7Деревни Integrated Villages заменяют обычные деревни Minecraft."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_villages:cabin_village",
+     "title": "Деревня хижин"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/iv_airship_village"
+   ]
+  },
+  {
+   "k": "iv_clockwork_village",
+   "title": "Деревня часовщиков",
+   "sub": "Integrated Villages",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Механизмы Create в этой деревне работают по-настоящему.",
+    "&7Деревни Integrated Villages заменяют обычные деревни Minecraft."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_villages:clockwork_village",
+     "title": "Деревня часовщиков"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/iv_airship_village"
+   ]
+  },
+  {
+   "k": "iv_marketstead_village",
+   "title": "Рыночная деревня",
+   "sub": "Integrated Villages",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите эту деревню и войдите в неё: квест засчитается сам.",
+    "&7Деревни Integrated Villages заменяют обычные деревни Minecraft."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_villages:marketstead_village",
+     "title": "Рыночная деревня"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/iv_airship_village"
+   ]
+  },
+  {
+   "k": "iv_mossy_mounds",
+   "title": "Мшистые холмы",
+   "sub": "Integrated Villages",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите эту деревню и войдите в неё: квест засчитается сам.",
+    "&7Деревни Integrated Villages заменяют обычные деревни Minecraft."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_villages:mossy_mounds",
+     "title": "Мшистые холмы"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/iv_airship_village"
+   ]
+  },
+  {
+   "k": "iv_kutcha_village",
+   "title": "Деревня кутча",
+   "sub": "Integrated Villages",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите эту деревню и войдите в неё: квест засчитается сам.",
+    "&7Деревни Integrated Villages заменяют обычные деревни Minecraft."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_villages:kutcha_village",
+     "title": "Деревня кутча"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/iv_airship_village"
+   ]
+  },
+  {
+   "k": "iv_sunken_village",
+   "title": "Затонувшая деревня",
+   "sub": "Integrated Villages",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Найдите эту деревню и войдите в неё: квест засчитается сам.",
+    "&7Деревни Integrated Villages заменяют обычные деревни Minecraft."
+   ],
+   "icon": null,
+   "optional": true,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_villages:sunken_village",
+     "title": "Затонувшая деревня"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 40
+    }
+   ],
+   "deps": [
+    "act_explore/iv_airship_village"
+   ]
+  },
+  {
+   "k": "iv_stronghold",
+   "title": "Новая крепость Края",
+   "sub": "Integrated Stronghold",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Integrated Stronghold заменяет обычную крепость Края: она больше, с ловушками и сокровищницами.",
+    "Портал в Край по-прежнему внутри. Глаз Края укажет дорогу."
+   ],
+   "icon": null,
+   "optional": false,
+   "tasks": [
+    {
+     "type": "structure",
+     "id": "integrated_stronghold:stronghold",
+     "title": "Крепость Края"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 60
+    }
+   ],
+   "deps": [
+    "act_explore/iv_pirate_village"
+   ]
+  },
+  {
    "k": "finale",
-   "title": "Великий путешественник",
+   "title": "&6&lВеликий путешественник",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -1812,15 +2239,31 @@
      "type": "item",
      "id": "minecraft:ender_pearl",
      "count": 8
+    },
+    {
+     "type": "choice",
+     "table": "choice_home"
     }
    ],
    "deps": [
     "act_explore/dims",
+    "act_explore/iv_stronghold",
     "act_explore/idas_castle",
-    "act_explore/idas_haunted_manor",
-    "act_explore/idas_labyrinth"
+    "act_explore/idas_haunted_manor"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
+ ],
+ "color": "&2",
+ "deco": [
+  [
+   "minecraft:textures/item/filled_map.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
  ]
 }

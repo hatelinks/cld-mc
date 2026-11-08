@@ -9,7 +9,7 @@
  "quests": [
   {
    "k": "intro",
-   "title": "Мастерская изобретателя",
+   "title": "&bМастерская изобретателя",
    "sub": "Маленькие, но полезные аддоны",
    "desc": [
     "Здесь собраны небольшие аддоны Create: окраска вентилятором, подводные машины, загрузчики чанков и множество гаджетов."
@@ -30,7 +30,9 @@
      "amount": 10
     }
    ],
-   "deps": []
+   "deps": [],
+   "shape": "square",
+   "size": 2.0
   },
   {
    "k": "fluid_hatch",
@@ -41,7 +43,7 @@
    "desc": [
     "Жидкостный люк — компактный вход и выход жидкостей для машин.",
     "&6Как получить:&r верстак: Осушитель предметов.",
-    "&6Как использовать:&r При ПКМ: &eПередаёт&r &eжидкость&r из &eпредмета в руке&r в &eбак&r, на который он установлен, или &eизвлекает&r &eжидкость&r из &eбака&r в &eпустые ёмкости&r.",
+    "&6Как использовать:&r При &bПКМ&r: &eПередаёт&r &eжидкость&r из &eпредмета в руке&r в &eбак&r, на который он установлен, или &eизвлекает&r &eжидкость&r из &eбака&r в &eпустые ёмкости&r.",
     "&6Зачем нужен:&r идёт в Люк опыта."
    ],
    "icon": null,
@@ -86,6 +88,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -151,6 +157,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -186,6 +196,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -282,6 +296,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -341,13 +359,19 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
     "create_inv/andesite_chunk_loader",
     "56239D98E7831D04"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "radar",
@@ -406,6 +430,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -434,6 +462,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -504,7 +536,9 @@
     "create_inv/rose_quartz_sheet",
     "create_inv/experience_sheet"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "spout_gun",
@@ -529,13 +563,17 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
     "create_inv/mending_rune",
-    "0AAF27D578857371",
+    "63B86FA0C25B7639",
     "36A573B8F77EE4EC",
-    "63B86FA0C25B7639"
+    "0AAF27D578857371"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -566,8 +604,8 @@
    ],
    "deps": [
     "create_inv/mending_rune",
-    "36A573B8F77EE4EC",
-    "create_andesite/propeller"
+    "create_andesite/propeller",
+    "36A573B8F77EE4EC"
    ],
    "note": "Ручное описание по общим знаниям о моде"
   },
@@ -598,6 +636,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -636,9 +678,11 @@
    ],
    "deps": [
     "create_inv/mending_rune",
-    "4D1D7873774CA66B",
-    "722FF84B978AB3C4"
-   ]
+    "722FF84B978AB3C4",
+    "4D1D7873774CA66B"
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "card_reader",
@@ -663,6 +707,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -698,6 +746,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -794,7 +846,9 @@
    ],
    "deps": [
     "create_inv/card_press"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "train_stop",
@@ -818,6 +872,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -868,7 +926,7 @@
    "x": 0,
    "y": 0,
    "desc": [
-    "&6Как получить:&r применение предмета к блоку (ПКМ): Блок-липучка, Медный блок."
+    "&6Как получить:&r применение предмета к блоку (&bПКМ&r): Блок-липучка, Медный блок."
    ],
    "icon": null,
    "optional": false,
@@ -896,7 +954,7 @@
    "x": 0,
    "y": 0,
    "desc": [
-    "&6Как получить:&r применение предмета к блоку (ПКМ): Латунный блок, Copper Sticky Launcher."
+    "&6Как получить:&r применение предмета к блоку (&bПКМ&r): Латунный блок, Copper Sticky Launcher."
    ],
    "icon": null,
    "optional": false,
@@ -911,6 +969,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -950,7 +1012,9 @@
    "deps": [
     "create_inv/train_buffer"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "blaze_ballon",
@@ -961,7 +1025,7 @@
    "desc": [
     "&6Как получить:&r верстак: Горелка всполоха, Парус ветряной мельницы."
    ],
-   "icon": null,
+   "icon": "minecraft:fire_charge",
    "optional": true,
    "tasks": [
     {
@@ -978,8 +1042,8 @@
    ],
    "deps": [
     "create_inv/sticky_boots_boots",
-    "3351EFE6BEA86D5B",
-    "293E9B8D6EA8FD5D"
+    "293E9B8D6EA8FD5D",
+    "3351EFE6BEA86D5B"
    ]
   },
   {
@@ -1049,6 +1113,7 @@
    "y": 0,
    "desc": [
     "&6Как получить:&r верстак: Латунный слиток, Палка.",
+    "&6Зачем нужен:&r идёт в Кусочек торта опыта, Кусок яблочного чизкейка, Кусок торта, Ломтик яблока, Кусочки бекона.",
     "&7Вариантов: 3. Засчитывается «Brass Knife»."
    ],
    "icon": null,
@@ -1229,7 +1294,7 @@
   },
   {
    "k": "finale",
-   "title": "Изобретатель",
+   "title": "&6&lИзобретатель",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -1259,6 +1324,10 @@
      "type": "item",
      "id": "create:zinc_ingot",
      "count": 16
+    },
+    {
+     "type": "choice",
+     "table": "choice_tech"
     }
    ],
    "deps": [
@@ -1267,7 +1336,19 @@
     "create_inv/sticky_boots_boots",
     "create_inv/card_reader"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
+ ],
+ "color": "&6",
+ "deco": [
+  [
+   "create:textures/item/precision_mechanism.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
  ]
 }

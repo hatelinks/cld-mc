@@ -9,7 +9,7 @@
  "quests": [
   {
    "k": "intro",
-   "title": "Руки колонии",
+   "title": "&bРуки колонии",
    "sub": "Рабочие места",
    "desc": [
     "Каждое рабочее здание даёт жителю профессию. Работник берёт инструменты и ресурсы со склада и сам делает продукцию.",
@@ -33,7 +33,9 @@
    ],
    "deps": [
     "mc_found/builder"
-   ]
+   ],
+   "shape": "square",
+   "size": 2.0
   },
   {
    "k": "lumberjack",
@@ -98,6 +100,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -170,7 +176,9 @@
    "deps": [
     "mc_craft/intro"
    ],
-   "note": "Ручное описание по общим знаниям о моде"
+   "note": "Ручное описание по общим знаниям о моде",
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "k": "field",
@@ -195,6 +203,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -257,6 +269,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -398,6 +414,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -495,6 +515,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -624,6 +648,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -659,6 +687,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -803,6 +835,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -862,6 +898,10 @@
     {
      "type": "xp",
      "amount": 15
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -926,6 +966,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -956,6 +1000,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -1051,6 +1099,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -1112,6 +1164,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -1177,6 +1233,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -1208,6 +1268,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -1303,6 +1367,10 @@
     {
      "type": "xp",
      "amount": 25
+    },
+    {
+     "type": "random",
+     "table": "colony"
     }
    ],
    "deps": [
@@ -1346,7 +1414,7 @@
   },
   {
    "k": "finale",
-   "title": "Город мастеров",
+   "title": "&6&lГород мастеров",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -1371,6 +1439,10 @@
      "type": "item",
      "id": "minecraft:emerald",
      "count": 8
+    },
+    {
+     "type": "choice",
+     "table": "choice_colony"
     }
    ],
    "deps": [
@@ -1379,7 +1451,10 @@
     "mc_craft/sifter",
     "mc_craft/beekeeper"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
- ]
+ ],
+ "color": "&a"
 }

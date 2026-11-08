@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create_confectionery"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createfood"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "cld_dupes_cocoa_powder",
+  "ingredients": [
+    {
+      "item": "create_confectionery:cocoa_powder"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "createfood:cocoa_powder"
+  }
+}

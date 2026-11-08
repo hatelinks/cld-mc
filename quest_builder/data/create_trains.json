@@ -1,12 +1,42 @@
 {
  "key": "create_trains",
  "id": "781B1E4F3D70C1DB",
- "title": "Стальные пути",
- "subtitle": "Рельсы, станции, расписания и информационные панели",
+ "title": "Эпоха поездов",
+ "subtitle": "Стальные пути. Рельсы, станции, расписания и информационные панели",
  "group": "Эра механизмов",
  "icon": "create:track",
- "order": 6,
+ "order": 2.5,
  "quests": [
+  {
+   "k": "welcome",
+   "title": "&bДобро пожаловать: Эпоха поездов",
+   "sub": "Стальные пути. Рельсы, станции, расписания и информационные панели",
+   "x": 0,
+   "y": 0,
+   "desc": [
+    "Поезда Create ходят сами по расписанию между станциями. Нужны рельсы, тележки, железнодорожный корпус и станция.",
+    "Ponder на рельсах покажет, как строить повороты и сигналы."
+   ],
+   "icon": "create:track",
+   "optional": false,
+   "tasks": [
+    {
+     "type": "check",
+     "title": "Прочитать вступление"
+    }
+   ],
+   "rewards": [
+    {
+     "type": "xp",
+     "amount": 10
+    }
+   ],
+   "deps": [
+    "4D1D7873774CA66B"
+   ],
+   "shape": "square",
+   "size": 2.0
+  },
   {
    "id": "3B6917DA1CFEF16E",
    "title": "Железнодорожный корпус",
@@ -32,7 +62,7 @@
     }
    ],
    "deps": [
-    "4D1D7873774CA66B"
+    "create_trains/welcome"
    ]
   },
   {
@@ -58,11 +88,17 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
     "3B6917DA1CFEF16E"
-   ]
+   ],
+   "shape": "gear",
+   "size": 1.5
   },
   {
    "id": "731DBE26F6069AEE",
@@ -86,6 +122,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "xp"
     }
    ],
    "deps": [
@@ -181,6 +221,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -363,7 +407,8 @@
     }
    ],
    "deps": [
-    "5A476EC56B83BCA9"
+    "5A476EC56B83BCA9",
+    "create_trains/welcome"
    ]
   },
   {
@@ -391,7 +436,8 @@
     }
    ],
    "deps": [
-    "63B86FA0C25B7639"
+    "63B86FA0C25B7639",
+    "create_trains/welcome"
    ]
   },
   {
@@ -416,6 +462,10 @@
     {
      "type": "xp",
      "amount": 10
+    },
+    {
+     "type": "random",
+     "table": "create_mid"
     }
    ],
    "deps": [
@@ -521,7 +571,7 @@
   },
   {
    "k": "finale",
-   "title": "Начальник дороги",
+   "title": "&6&lНачальник дороги",
    "sub": "Финал главы",
    "x": 0,
    "y": 0,
@@ -551,6 +601,10 @@
      "type": "item",
      "id": "create:railway_casing",
      "count": 8
+    },
+    {
+     "type": "choice",
+     "table": "choice_tech"
     }
    ],
    "deps": [
@@ -558,7 +612,19 @@
     "2256B71788516C06",
     "create_trains/controller_rail"
    ],
-   "finale": true
+   "finale": true,
+   "shape": "hexagon",
+   "size": 2.0
   }
+ ],
+ "color": "&3",
+ "deco": [
+  [
+   "create:textures/item/schedule.png",
+   -2.6,
+   0,
+   1.8,
+   1.8
+  ]
  ]
 }
