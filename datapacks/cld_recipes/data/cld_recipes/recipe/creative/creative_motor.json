@@ -1,0 +1,81 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create_connected"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createaddition"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mysticalagradditions"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mysticalagriculture"
+    }
+  ],
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:nether_star"
+    },
+    "B": {
+      "item": "create:sturdy_sheet"
+    },
+    "C": {
+      "item": "mysticalagradditions:insanium_block"
+    },
+    "D": {
+      "item": "create:precision_mechanism"
+    },
+    "E": {
+      "item": "mysticalagriculture:awakened_supremium_ingot"
+    },
+    "F": {
+      "item": "minecraft:netherite_block"
+    },
+    "G": {
+      "item": "createaddition:electric_motor"
+    },
+    "H": {
+      "item": "create:rotation_speed_controller"
+    },
+    "I": {
+      "item": "create_connected:kinetic_battery"
+    },
+    "J": {
+      "item": "createaddition:alternator"
+    },
+    "K": {
+      "item": "create:sequenced_gearshift"
+    },
+    "X": {
+      "item": "minecraft:heavy_core"
+    }
+  },
+  "pattern": [
+    "ABBBCBBBA",
+    "BDDEFEDDB",
+    "BDGHIHGDB",
+    "BEHJKJHEB",
+    "CFIKXKIFC",
+    "BEHJKJHEB",
+    "BDGHIHGDB",
+    "BDDEFEDDB",
+    "ABBBCBBBA"
+  ],
+  "result": {
+    "id": "create:creative_motor",
+    "count": 1
+  },
+  "show_notification": true
+}

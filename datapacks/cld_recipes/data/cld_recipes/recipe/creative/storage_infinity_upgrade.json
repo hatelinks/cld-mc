@@ -1,0 +1,77 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mysticalagradditions"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mysticalagriculture"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "sophisticatedstorage"
+    }
+  ],
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:nether_star"
+    },
+    "B": {
+      "item": "create:sturdy_sheet"
+    },
+    "C": {
+      "item": "mysticalagradditions:insanium_block"
+    },
+    "D": {
+      "item": "create:precision_mechanism"
+    },
+    "E": {
+      "item": "mysticalagriculture:awakened_supremium_ingot"
+    },
+    "F": {
+      "item": "minecraft:netherite_block"
+    },
+    "G": {
+      "item": "sophisticatedstorage:stack_upgrade_omega_tier"
+    },
+    "H": {
+      "item": "sophisticatedstorage:netherite_barrel"
+    },
+    "I": {
+      "item": "create:item_vault"
+    },
+    "J": {
+      "item": "minecraft:shulker_box"
+    },
+    "K": {
+      "item": "sophisticatedstorage:survival_infinity_upgrade"
+    },
+    "X": {
+      "item": "create:creative_crate"
+    }
+  },
+  "pattern": [
+    "ABBBCBBBA",
+    "BDDEFEDDB",
+    "BDGHIHGDB",
+    "BEHJKJHEB",
+    "CFIKXKIFC",
+    "BEHJKJHEB",
+    "BDGHIHGDB",
+    "BDDEFEDDB",
+    "ABBBCBBBA"
+  ],
+  "result": {
+    "id": "sophisticatedstorage:infinity_upgrade",
+    "count": 1
+  },
+  "show_notification": true
+}
