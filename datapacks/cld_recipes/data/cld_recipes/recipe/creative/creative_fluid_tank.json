@@ -1,0 +1,81 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create_submarine"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createpropulsion"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mysticalagradditions"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mysticalagriculture"
+    }
+  ],
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:diamond_block"
+    },
+    "B": {
+      "item": "create:sturdy_sheet"
+    },
+    "C": {
+      "item": "mysticalagradditions:insanium_block"
+    },
+    "D": {
+      "item": "create:precision_mechanism"
+    },
+    "E": {
+      "item": "mysticalagriculture:imperium_ingot"
+    },
+    "F": {
+      "item": "create:brass_block"
+    },
+    "G": {
+      "item": "create:fluid_tank"
+    },
+    "H": {
+      "item": "create:mechanical_pump"
+    },
+    "I": {
+      "item": "create:spout"
+    },
+    "J": {
+      "item": "createpropulsion:platinum_fluid_tank"
+    },
+    "K": {
+      "item": "create_submarine:electrolyzer"
+    },
+    "X": {
+      "item": "minecraft:conduit"
+    }
+  },
+  "pattern": [
+    "ABBBCBBBA",
+    "BDDEFEDDB",
+    "BDGHIHGDB",
+    "BEHJKJHEB",
+    "CFIKXKIFC",
+    "BEHJKJHEB",
+    "BDGHIHGDB",
+    "BDDEFEDDB",
+    "ABBBCBBBA"
+  ],
+  "result": {
+    "id": "create:creative_fluid_tank",
+    "count": 1
+  },
+  "show_notification": true
+}

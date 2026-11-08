@@ -1,0 +1,77 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mysticalagradditions"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mysticalagriculture"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "storagedrawers"
+    }
+  ],
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:diamond_block"
+    },
+    "B": {
+      "item": "create:sturdy_sheet"
+    },
+    "C": {
+      "item": "mysticalagradditions:insanium_block"
+    },
+    "D": {
+      "item": "create:precision_mechanism"
+    },
+    "E": {
+      "item": "mysticalagriculture:imperium_ingot"
+    },
+    "F": {
+      "item": "create:brass_block"
+    },
+    "G": {
+      "item": "minecraft:emerald_block"
+    },
+    "H": {
+      "item": "storagedrawers:netherite_storage_upgrade"
+    },
+    "I": {
+      "item": "create:item_vault"
+    },
+    "J": {
+      "item": "create:mechanical_arm"
+    },
+    "K": {
+      "item": "storagedrawers:upgrade_template"
+    },
+    "X": {
+      "item": "storagedrawers:creative_storage_upgrade"
+    }
+  },
+  "pattern": [
+    "ABBBCBBBA",
+    "BDDEFEDDB",
+    "BDGHIHGDB",
+    "BEHJKJHEB",
+    "CFIKXKIFC",
+    "BEHJKJHEB",
+    "BDGHIHGDB",
+    "BDDEFEDDB",
+    "ABBBCBBBA"
+  ],
+  "result": {
+    "id": "storagedrawers:creative_vending_upgrade",
+    "count": 1
+  },
+  "show_notification": true
+}
