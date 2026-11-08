@@ -32,6 +32,7 @@
 | `tunnel/` | **cld_tunnel** «Игра по сети»: свой аналог e4mc. После «Открыть для сети» одиночный мир получает постоянный адрес на нашем relay (по имени `слово-слово-NN.<домен>` или IP:порт), друзья заходят обычным клиентом без проброса портов. Только клиент, без миксинов; протокол свой на TCP (ключ через HMAC), работает и на Android. Relay: `cld_tunnel-relay-*.jar`, Java 21 без библиотек, ставится на VPS `tunnel/deploy/install_relay.sh`. Команда `/cldtunnel`. Карта: `docs/cld_tunnel.md`. | 0.1.0 | `tunnel/build.sh`, relay `tunnel/build_relay.sh`, тесты `tunnel/test.sh` (в облаке, без игры) |
 | `autotest/` | **cld_autotest**, служебный, в игру не ставить: с `config/cld_autotest.properties` сам заходит в мир, меряет FPS, CPU, память, пишет JFR и выходит. Свойства: `world`, `warmup`, `measure`, `pause`, `yaw`, `fly`, `maxfps`, `jfr`, `spark`, `setup`, `quit`. | 0.1.3 | `autotest/build.sh` |
 | `sable_android/` | **sable-android-support** (modId `sable_android`): нативка Rapier для Sable на Android + прореживание тиков блоков Simulated (coremod JS). Только для Android, на Маке не нужен. Исходники восстановлены из jar. | 2.0.0 | `sable_android/build.sh`; нативку пересобирать `sable_android/native/build_android_native.sh` (на Маке) |
+| `lumber/` | **cld_lumber** «Пила рубит деревья целиком»: механическая пила Create (и на контрапции) срубает дерево целиком, как Treecapitator: деревья ванили и модов (WWOO), толстые стволы, ветки во все стороны, обтёсанные брёвна внутри дерева. Постройки из брёвен без природной кроны не трогает. Нужен Create 6.0.x. | 1.0.0 | `MODS=/mnt/project-files/libs-mods lumber/build.sh` (сначала проверки `lumber/tools/FellTest`) |
 | `bombs/` | **cld_bombs** «Бомбы с уровнями»: дополнение к бомбам Supplementaries, уровни 1-10, прокачка порохом, кратер за несколько тиков, уровни в сундуках. Нужен Supplementaries 4.0. | 1.0.2 | `MODS=/mnt/project-files/libs-mods bombs/build.sh` |
 | `questjei/` | **cld_questjei** «Квесты и JEI»: клик по предмету в окне FTB Quests открывает рецепт в JEI, Shift+клик показывает где используется. Только клиент. Карта `docs/questjei.md`. | 1.0.0 | `MODS=/mnt/project-files/libs-mods questjei/build.sh` |
 | `datapacks/` | Свои датапаки сборки: `cld_hourglass` (гравипесок Quark в песочных часах), `cld_waystones` (путевые камни на механическом крафтере), `cld_dupes` (обмен одинаковых предметов разных модов), `cld_airships` (деревня кораблей Integrated Villages не выше 590), `cld_start_book` (книга квестов при первом заходе), `cld_recipes` (крафты для предметов без рецепта). | — | `datapacks/build.sh` → `datapacks/dist/*.zip`; рецепты генерирует `datapacks/tools/make_recipes.py` |
@@ -65,6 +66,7 @@
 | cld_autotest | `docs/autotest.md` |
 | sable-android-support | `docs/sable_android.md` |
 | cld_bombs | `docs/bombs.md` |
+| cld_lumber | `docs/lumber.md` |
 | quest_builder | `docs/quest_builder.md` |
 | qa и cld_qabench | `docs/qa.md` |
 | cld_questjei | `docs/questjei.md` |

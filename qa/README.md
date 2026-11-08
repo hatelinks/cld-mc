@@ -9,6 +9,7 @@
 | `python3 -I qa/check_mods.py <mods> [--datapacks …] [--android] [--server]` | Статическая проверка набора: дубликаты modId, обязательные зависимости и версии (точный порт Maven/FML, включая правило FML 4 «1.21 засчитывается как 1.21.1»), несовместимости, jarjar, mixin-конфиги и их классы, датапаки (pack.mcmeta, pack_format 48, JSON, имена папок 1.21), нативные библиотеки, риски для Android, клиентские моды на сервере | нет |
 | `python3 -I qa/tests/selftest.py` | Проверка самой проверки: заведомо сломанные моды/датапаки должны ловиться | нет |
 | `qa/server.sh <mods> [датапаки…]` | Смоук-тест выделенного сервера NeoForge 21.1.248: установка, запуск без клиентских модов, `datapack list`, `reload`, прогрузка 160×160 блоков, `stop`, отчёт по логу | maven.neoforged.net, libraries.minecraft.net, piston-*.mojang.com |
+| `qa/saw_trees.sh <mods> [деревья…]` | Пила Create на сервере: ставит деревья (`/place feature`), пилу с творческим мотором, считает брёвна и листву до и после спила (для cld_lumber; в mods create, cld_lumber, wwoo, cristellib) | как у server.sh |
 | `python3 -I qa/log_report.py <latest.log> [crash-reports]` | Разбор лога: время запуска, ошибки по источникам, mixin/датапак/теги/конфиги/реестры/сеть, краши; известный безвредный шум (IDAS, CSA) отделяется | нет |
 
 Сборка из Releases (`cld-mc-pack.zip`) скачивается через GitHub API (assets/<id>, `Accept: application/octet-stream`).

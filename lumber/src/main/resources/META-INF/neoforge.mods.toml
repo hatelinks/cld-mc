@@ -1,0 +1,34 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="cld_lumber"
+version="${version}"
+displayName="Пила рубит деревья целиком"
+authors="D, Claude"
+description='''Механическая пила Create срубает дерево целиком: любые деревья ванили и модов (WWOO и другие), толстые стволы, ветки во все стороны, обтёсанные брёвна внутри дерева. Постройки из брёвен не трогает.'''
+
+[[mixins]]
+config="cld_lumber.mixins.json"
+
+[[dependencies.cld_lumber]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.cld_lumber]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.cld_lumber]]
+modId="create"
+type="required"
+versionRange="[6.0,)"
+ordering="AFTER"
+side="BOTH"
