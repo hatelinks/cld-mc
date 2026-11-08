@@ -41,6 +41,15 @@ systemctl restart cld-relay
 if command -v ufw >/dev/null 2>&1 && ufw status | grep -q active; then
   ufw allow 25580/tcp; ufw allow 25565/tcp; ufw allow 25601:25650/tcp
 fi
+# Oracle Cloud и похожие образы закрывают всё правилами iptables (REJECT в INPUT), ufw там нет
+if command -v iptables >/dev/null 2>&1 && iptables -S INPUT 2>/dev/null | grep -q REJECT; then
+  for p in 25580 25565 25601:25650; do
+    iptables -C INPUT -p tcp -m state --state NEW -m tcp --dport $p -j ACCEPT 2>/dev/null ||
+      iptables -I INPUT 1 -p tcp -m state --state NEW -m tcp --dport $p -j ACCEPT
+  done
+  command -v netfilter-persistent >/dev/null 2>&1 && netfilter-persistent save >/dev/null 2>&1 || true
+  echo "Порты открыты в iptables. В Oracle Cloud ещё добавьте их в Security List (Ingress Rules) сети VCN."
+fi
 sleep 2
 systemctl --no-pager status cld-relay | head -5
 echo

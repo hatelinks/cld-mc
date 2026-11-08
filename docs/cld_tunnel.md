@@ -2,10 +2,11 @@
 
 Карта кода. Читать вместо разбора исходников; кто меняет мод, обновляет эту страницу в своём PR.
 
-- modId `cld_tunnel`, папка `tunnel/`, версия **0.1.0** (`VERSION` в `tunnel/build.sh` и `tunnel/build_relay.sh`). Только клиент (`dist = CLIENT`), на сервер не ставить.
+- modId `cld_tunnel`, папка `tunnel/`, мод **0.1.0** (`VERSION` в `tunnel/build.sh`), relay **0.1.1** (`tunnel/build_relay.sh`). Только клиент (`dist = CLIENT`), на сервер не ставить.
 - Свой аналог e4mc: одиночный мир после «Открыть для сети» получает адрес на нашем relay-сервере, друзья заходят по нему обычным клиентом сборки, без проброса портов. Код e4mc не использовался, протокол свой.
 - Две части: мод (`cld_tunnel-neoforge-1.21.1-<версия>.jar`) и relay (`cld_tunnel-relay-<версия>.jar`, чистая Java 21 без библиотек, ставится на VPS).
-- Пререлиз: `releases/cld_tunnel-0.1.0/` (jar мода и zip с relay и скриптом установки).
+- Пререлизы: `releases/cld_tunnel-0.1.0/` (jar мода и zip с relay), `releases/cld_tunnel_relay-0.1.1/` (relay и скрипт установки с открытием портов в iptables для Oracle Cloud).
+- Решения владельца (анкета 02.11): relay на бесплатном облаке (Oracle Free Tier), без домена (адреса вида IP:порт), свой TCP, без совместимости с e4mc, открытие мира только по ключу, постоянный адрес мира.
 
 ## Как работает
 1. Мод раз в секунду смотрит, открыт ли одиночный мир для сети (`IntegratedServer.isPublished`, без миксинов). Если да и в настройках есть relay, открывает управляющее TCP-соединение к relay (порт 25580).
@@ -40,6 +41,12 @@ tunnel/build_relay.sh                               # tunnel/dist/cld_tunnel-rel
 sh install_relay.sh cld_tunnel-relay-0.1.0.jar mc.example.ru 81.2.3.4   # на VPS от root
 ```
 `relay.properties`: `control` (порт для модов), `public` (общий порт игроков), `domain` (для адресов по имени, нужна DNS запись `*.domain` на сервер), `address` и `ports` (адреса по порту без домена), `key`, `maxHosts`, `maxPlayersPerHost`, `state`. Открыть в файрволе 25580, 25565 и диапазон `ports`. Памяти хватает 256 МБ.
+
+Oracle Cloud Free Tier (выбор владельца): образ Ubuntu 24.04 (ARM Ampere или AMD, оба подходят), без домена:
+```sh
+sh install_relay.sh cld_tunnel-relay-0.1.1.jar "" <публичный IP>
+```
+Скрипт сам открывает порты в iptables (в образах Oracle там REJECT, ufw нет). Отдельно в консоли Oracle: VCN, Security List, Ingress Rules, TCP 25580 и 25601-25650 с 0.0.0.0/0. В моде: relay `<IP>:25580`, ключ из вывода скрипта.
 
 ## Сборка и тесты
 ```sh
