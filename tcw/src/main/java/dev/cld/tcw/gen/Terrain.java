@@ -207,9 +207,10 @@ public final class Terrain {
                     double wch = hy.sw[si], relief = h - b;
                     double hc;
                     if (d <= wch) {
-                        hc = b - hy.sdep[si] * (1 - (d / wch) * (d / wch));
+                        hc = bed(hy, si, b, d, wch);
                         if (d < c.riverDist) c.riverDist = d;
-                        if (hc < b - 0.6 && (c.waterKind != WATER_RIVER || b - 0.5 > c.water)) {
+                        // из двух русел берём нижнее: там и рельеф, иначе вода повисает над соседней долиной
+                        if (hc < b - 0.6 && (c.waterKind != WATER_RIVER || b - 0.5 < c.water)) {
                             c.water = b - 0.5;
                             c.waterKind = WATER_RIVER;
                         }
@@ -245,6 +246,26 @@ public final class Terrain {
         return c;
     }
 
+    // дно русла: у горных рек плоское на блок ниже воды, у равнинных корытом
+    private static double bed(Hydro hy, int si, double b, double d, double wch) {
+        if (hy.sSh[si]) return b - 1.2;
+        return b - hy.sdep[si] * (1 - (d / wch) * (d / wch));
+    }
+
+    // уровень реки до этой высоты равен уровню моря, чтобы у устья вода не шла ступенькой
+    public static final int SEA_TOP = Macro.SEA - 1, SEA_SNAP = Macro.SEA + 2;
+
+    // Вода реки в блоках: out = {верхний блок воды, блок дна}. false, если тут не река или её заливает море.
+    public boolean riverBlocks(int x, int z, double[] tmp, int[] out) {
+        if (water(x, z, tmp) != WATER_RIVER) return false;
+        int s = (int) Math.floor(tmp[0]);
+        if (s < SEA_TOP) return false;
+        if (s <= SEA_SNAP) s = SEA_TOP;
+        out[0] = s;
+        out[1] = Math.min((int) Math.floor(tmp[1]), s - 1);
+        return true;
+    }
+
     private final ThreadLocal<Macro.Cont> contTmp = ThreadLocal.withInitial(Macro.Cont::new);
 
     /**
@@ -269,8 +290,8 @@ public final class Terrain {
                 if (d > wch) continue;
                 double ba = hy.sba[si], bb = hy.sbb[si];
                 double b = ba - bb > 3 ? (t < 0.7 ? ba : t > 0.78 ? bb : ba + (bb - ba) * Macro.ss(0.7, 0.78, t)) : ba + (bb - ba) * t;
-                double bottom = b - hy.sdep[si] * (1 - (d / wch) * (d / wch));
-                if (kind != WATER_RIVER || b - 0.5 > out[0]) {
+                double bottom = bed(hy, si, b, d, wch);
+                if (kind != WATER_RIVER || b - 0.5 < out[0]) {
                     out[0] = b - 0.5;
                     out[1] = bottom;
                     kind = WATER_RIVER;
