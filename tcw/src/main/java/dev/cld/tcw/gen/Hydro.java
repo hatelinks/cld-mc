@@ -20,6 +20,8 @@ public final class Hydro {
     // отрезки рек
     int segN;
     float[] sax, saz, sbx, sbz, sba, sbb, sw, sdep, sR, sAcc;
+    // горная река: мелкое плоское русло, вода в один блок на дне
+    boolean[] sSh;
     // индекс отрезков по корзинам B×B
     final int bnx, bnz;
     int[][] buckets;
@@ -124,6 +126,7 @@ public final class Hydro {
         for (int id = 0; id < n; id++) if (isRiver(id)) cnt++;
         sax = new float[cnt]; saz = new float[cnt]; sbx = new float[cnt]; sbz = new float[cnt];
         sba = new float[cnt]; sbb = new float[cnt]; sw = new float[cnt]; sdep = new float[cnt]; sR = new float[cnt]; sAcc = new float[cnt];
+        sSh = new boolean[cnt];
         bnx = (int) Math.ceil((double) nx * G / B) + 1;
         bnz = bnx;
         int[] bc = new int[bnx * bnz];
@@ -139,6 +142,8 @@ public final class Hydro {
             sAcc[s] = a;
             sw[s] = (float) Math.min(40, 1.5 + 0.55 * Math.sqrt(a));
             sdep[s] = (float) Math.min(9, 1.2 + 0.18 * Math.sqrt(a));
+            double len = Math.max(1, Math.hypot(sbx[s] - sax[s], sbz[s] - saz[s]));
+            sSh[s] = mnt[id] > 0.3 || (sba[s] - sbb[s]) / len > 0.05;
             float mx = 0;
             int i0 = id % nx, k0 = id / nx;
             for (int dk = -6; dk <= 6; dk++)
